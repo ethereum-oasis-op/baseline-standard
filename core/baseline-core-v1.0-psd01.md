@@ -288,9 +288,9 @@ BPIs are strongly dependent on the security and privacy capabilities of the DLT 
 
 [R9]	A BPI MUST be implemented on a DLT.
 
-Security and Privacy requirements of a Smart Bilateral are key and are strongly dependent on the security and privacy assurances that the DLT on which the BPI is implemented can provide. BPIs need to take great care to avoid the following two situations:
+Security and Privacy requirements of a BPI are key and are strongly dependent on the security and privacy assurances that the DLT on which the BPI is implemented can provide. BPIs need to take great care to avoid the following two situations:
 1.	Weaken the security assurances of the underlying DLT by increasing the DLT attack surface. Such an expansion of the attack surface can occur through for example concentration of value-at-risk in one or more BPIs above the value used to economically secure the underlying DLT. This situation would make it economically attractive to attack, and subvert, the underlying DLT to extract the value in one or more BPIs.
-2.	Appreciably increase the existing attack surface of a DLT such that the security assur-ances of the Smart Bilateral become significantly weaker than the underlying DLT. An example of such a situation can occur when a commercial state object such as a Financing contract or an Order in BPI A is dependent on a commercial state object such as an invoice as collateral in BPI B, and when BPI B has weaker transaction finality assurances than either BPI A or the underlying DLT. In that scenario, the commercial state object in BPI A cannot provably rely on the invoice as collateral in BPI B since the invoice might be reverted, and it would then no longer be a suitable collateral.
+2.	Appreciably increase the existing attack surface of a DLT such that the security assurances of the BPI become significantly weaker than the underlying DLT. An example of such a situation can occur when a commercial state object such as a Financing contract or an Order in BPI A is dependent on a commercial state object such as an invoice as collateral in BPI B, and when BPI B has weaker transaction finality assurances than either BPI A or the underlying DLT. In that scenario, the commercial state object in BPI A cannot provably rely on the invoice as collateral in BPI B since the invoice might be reverted, and it would then no longer be a suitable collateral.
 	
 Hence, we enumerate the following requirements below:
 
@@ -304,11 +304,11 @@ Verifiable in this context means that a 3rd party can verify through a cryptogra
 
 Liveness means that if a DLT does not require (commercial) counterparties to constantly monitor its state to ensure that the state of the DLT is correct, then the BPI should not require a constant observation of its state either.
 
-[R13]	A Smart Bilateral MUST be censorship resistant.
+[R13]	A BPI MUST be censorship resistant.
 
 Censorship resistant means that a (commercial) counterparty can terminate a commercial transaction at any time without another counterparty or any Node of the DLT used to implement the BPI being able to stop the termination of the commercial transaction.
 
-[R14]	A Smart Bilateral MUST be able to provide privacy of the Buyer’s and the Seller’s data with respect to any party outside of the Smart Bilateral.
+[R14]	A BPI MUST be able to provide privacy of the (commercial) conterparties data with respect to any party outside of the BPI.
 
  
 ## 2.5 High-Level Functional Requirements
