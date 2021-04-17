@@ -297,7 +297,7 @@ Hence, we enumerate the following requirements below:
 
 **[R10]**	A BPI MUST have the same security assurances as the DLT used to implement it.
 
-**[R11]*	(Commercial) State changes of a BPI MUST be verifiable on the DLT used to implement it.
+**[R11]**	(Commercial) State changes of a BPI MUST be verifiable on the DLT used to implement it.
 
 Verifiable in this context means that a 3rd party can verify through a cryptographic proof on the DLT that a transaction changed the state of a (commercial) state object in the BPI correctly based on agreed upon business rules - for example changing the Order status from open to completed.
 
