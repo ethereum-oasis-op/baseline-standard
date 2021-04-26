@@ -212,14 +212,14 @@ A counterparty that provides one or more state object to another counterparty is
 
 A Requester may request state objects from multiple Providers and in the context of a supply chain of state objects, a Provider of one state object may also play the role of a Requester of other state objects.
 
-## 2.3 Commercially and Legally Binding Documents
+## 2.4 Commercially and Legally Binding Documents
 Prior to establishing a business and operational environment, Requester(s) and Provider(s) (“the parties”) sign documents that commercially and legally bind the parties. 
 
 Such documents may be presented as a combination of one or more of the following: Master Services Agreement, Specific Terms and Conditions and an Order.
 
 **[R2]**	The parties to a Commercial Agreement MUST sign commercially and legally binding documents with each other.
 
-### 2.3.1	Contract
+### 2.4.1	Contract
 
 This section details the prerequisites a legal contract that defines the general terms and conditions governing commercial transactions between the parties to the agreement needs to fulfill within the context of this document. 
 
@@ -241,7 +241,7 @@ Specific Terms and Conditions (“Specific T&C”) defines the terms and conditi
 
 This would allow the fine graining and consistent application of commercial state object specific business rules and data.
 
-### 2.3.2	Commercial Documents 
+### 2.4.2	Commercial Documents 
 
 Commercial Documents, a category of commercial state objects, refer to a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments.
 
@@ -264,7 +264,7 @@ Note that while non-repudiation in the physical world is most often tied to a ph
 Example
 A Buyer and Seller may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being a digitally signed and recorded within a Baseline Protocol Implementation.
 
-## 2.4 Distributed Ledger Technology (DLT)
+## 2.5 Distributed Ledger Technology (DLT)
 
 A distributed ledger (also called a shared ledger or distributed ledger technology or DLT) is a consensus of replicated, shared, and synchronized digital data spread across multiple sites. There is no central administrator or centralized data storage. 
 
@@ -274,9 +274,9 @@ A peer-to-peer network is required as well as a consensus algorithm to ensure re
 
 For specificity, the popular word "Blockchain" is a particular form of DLT design.
 
-## 2.5 Baseline Protocol Instance
+## 2.6 Baseline Protocol Instance
 
-Baseline Protocol Instances (BPIs) are logical constructs shared between (commercial) counterparties of Requesters and Providers and implemented on a Distributed Ledger. They are used to either validate, or reconcile commercial transactions between Requesters and Providers related to all (commercial) state obects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may (commercially) transact to/from each other interchangeably. 
+Baseline Protocol Instances (BPIs) are logical constructs shared between (commercial) counterparties of Requesters and Providers and implemented on a Distributed Ledger. They are used to either validate, or reconcile commercial transactions between Requesters and Providers related to all (commercial) state objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may (commercially) transact to/from each other interchangeably. 
 
 Abstractly, a BPI consists of
 * private messaging between agreement counterparties about the state or the requested or finalized state changes of the agreement between them,
@@ -312,13 +312,13 @@ Censorship resistant means that a (commercial) counterparty can terminate a comm
 **[R14]**	A BPI MUST be able to provide privacy of the (commercial) conterparties data with respect to any party outside of the BPI.
 
  
-## 2.5 High-Level Functional Requirements
+## 2.7 High-Level Functional Requirements
 
 This section describes the prerequisites and high-level general operational framework requirements 
 * Functional Requirements on commercial counterparties
 * DLT-based Lifecycle Processes
 
-### 2.5.1	Functional Requirements on commercial counterparties 
+### 2.7.1	Functional Requirements on commercial counterparties 
 
 This section states the commercial and operational functionalities required from commercial counterparties.
 
@@ -336,7 +336,7 @@ It is important for (commercial) counterparties to know what level of conformanc
 
 **[R18]**	Counterparties MUST publish their con-formance (self-declaration or certification) with the Baseline Protocol standard in a publicly accessible manner.
 
-### 2.5.2	DLT-based Lifecycle Processes
+### 2.7.2	DLT-based Lifecycle Processes
 
 Commercial Counterparties must comply efficiently and effectively with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury) when employing new operational and commercial frameworks as laid out in this standard.
 
@@ -348,7 +348,7 @@ Therefore, a pseudonymous map of a supply chain is a cryptographically connected
 
 This allows enforcement of conformance with regulations, additional legal and technical requirements without disclosure of confidential information.
 
-## 2.6 Baseline Protocol Reference Architecture 
+## 2.8 Baseline Protocol Reference Architecture 
 
 This section describes the components of the Baseline Reference Architecture 
 * (Commercial) State Synchornization
@@ -356,13 +356,13 @@ This section describes the components of the Baseline Reference Architecture
 * External Applications
 * Baseline Protocol Stack Detailed Reference Architecture Layers and Componants
 
-### 2.6.1 (Commercial) State Synchornization
+### 2.8.1 (Commercial) State Synchornization
 
-A BPI can be used  as a common frame of reference for business processes that can be used in a complementary way to existing System-of-Recor integrations.
+A BPI can be used  as a common frame of reference for business processes that can be used in a complementary way to existing System-of-Record integrations.
 
 #### Illustrative High-Level Example
 
-A Master Services Agreement (MSA) between a Requester (Buyer) and a Provider (Seller) is implemented on a BPI and contains billing terms, pricing, discounts, and Seller information such as billing address etc. Once established and agreed upon by Buyer and Seller, the BPI provides state synchronization between Buyer and Seller since the ERP systems for Buyer and Seller can now refer to mutually agreed upon data as a common frame of reference. Based on this mutuall agreed upon state in the MSA, the Buyer creates an Order in the business workflow based on the MSA and a cryptographic proof (in zero knowledge) that confirms not only the correct application of business logic but also correct application of commercial data in the Order creation. This proof is submitted together with the Order through the BPI and then validated by the Seller without having to utilize its own System of Record for validation using the BPI. If the proof is validated, the Seller accepts the proposed state change by generating its own cryptographic proof confirming its acceptance of the state change. The Seller then updates the state of the business workflow in the BPI and sends the new proof to the Buyer. 
+A Master Services Agreement (MSA) between a Requester (Buyer) and a Provider (Seller) is implemented on a BPI and contains billing terms, pricing, discounts, and Seller information such as billing address etc. Once established and agreed upon by Buyer and Seller, the BPI provides state synchronization between Buyer and Seller since the ERP systems for Buyer and Seller can now refer to mutually agreed upon data as a common frame of reference. Based on this mutually agreed upon state in the MSA, the Buyer creates an Order in the business workflow based on the MSA and a cryptographic proof (in zero knowledge) that confirms not only the correct application of business logic but also correct application of commercial data in the Order creation. This proof is submitted together with the Order through the BPI and then validated by the Seller without having to utilize its own System of Record for validation using the BPI. If the proof is validated, the Seller accepts the proposed state change by generating its own cryptographic proof confirming its acceptance of the state change. The Seller then updates the state of the business workflow in the BPI and sends the new proof to the Buyer. 
 
 The figure below visually demonstrates high-level Buyer and Seller Order generation and acceptance assuming that a MSA between Buyer and Seller already exists and is recorded on a BPI, and that the commercial state has been synchronized up to this workstep in the commercial business workflow.
 
@@ -387,7 +387,7 @@ Without a BPI, both Buyer and Seller must assume that the MSA between them and a
 
 **[R25]** 	A (commercial) counterparty MUST include a verifiable proof of correctness of the (commercial) state object generated by the commercial state change in the BPI Messages between the transacting counterparties.
 
-### 2.6.2 DLTs and BPI/DLT Abstraction Layers
+### 2.8.2 DLTs and BPI/DLT Abstraction Layers
 
 <figure>
   <img
@@ -414,13 +414,13 @@ The agreement on the governance entity, its rules, and its method of achieving i
 
 **[R29]**	The (commercial) counterparties MUST agree on the BPI.
 
-### 2.6.3	External Applications
+### 2.8.3	External Applications
 
-**[R30]**	Internal application/s providing commercial transaction fnctionality such as billing to (commercial) counterparties MUST be independent of any BPI.
+**[R30]**	Application/s providing commercial transaction functionality such as billing to (commercial) counterparties, and re, therefore, external with respect to the BPI, MUST be independent of any BPI.
 
-Note, that this requirement is motivated by reducing the dependency of internal systems on the BPI and vice versa. 
+Note, that this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
 
-### 2.6.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Componants
+### 2.8.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Componants
 
 <figure>
   <img
@@ -432,7 +432,7 @@ Note, that this requirement is motivated by reducing the dependency of internal 
 A Baseline Protocol Stack Reference Architecture as depicted above in Figure 3 is comprised of the following layers:
 * **Baseline Protocol (BPI) Abstraction Layer**: This layer enables accessing all externally available BPI functions through APIs as defined in the Baseline Protcol API Standards document 
 * **Middleware Layer**: This layer manages all counterparties to an agreement and its associated workflows and worksteps with business rules and business data as well as all counterparrty delegates. In addition, it manages all messaging between counterparties to an agreement and instantiation of processing layers based on newly created or updated agreements and their workflows, worksteps, business rules and business data.  
-* **Processing Layer**: Manages, properly sequences and deterministiaclly processes and finalizes in a privacy-preserving, cryptographically verifiabl manner all state change requests from counterparties to all agreements represented in the BPI.  
+* **Processing Layer**: Manages, properly sequences and deterministiaclly processes and finalizes in a privacy-preserving, cryptographically verifiable manner all state change requests from counterparties to all agreements represented in the BPI.  
 * **DLT Abstraction Layer**: This layer enables accessing all required BPI functions implemented on one or more DLTs through APIs as defined in the Baseline Protcol API Standards document. 
 * **DLT Layer**: This layer manages, properly sequences and deterministiaclly processes in a privacy-preserving, cryptographically verifiable manner all transactions from the Processing Layer as well as either deterministcally or probabilistically finalizes on the DLT all DLT state transitions based on said transactions.
 
@@ -447,7 +447,7 @@ Below we list and define the components of each layer. The detailed requirements
     * **Messaging**: A mesaging capability that allows the exchange of secure and privacy-preserving messages between counterparties to an agreement to communicate and coordinate agreement on proposed (commercial) state changes. 
 * **Processing Layer** is comprised of
     * **Transaction Pool**: one or more transaction pools which hold, properly sequence, preprocess and batch for processing by the Virtual State Machine all requested state change transactions of a BPI.
-    * **Virtual State Machine**: one or more Virtual State Machines which deterministiaclly processes and finalizes in a privacy-preserving, cryptographically verifiabl manner all state change request transactions.
+    * **Virtual State Machine**: one or more Virtual State Machines which deterministiaclly processes and finalizes in a privacy-preserving, cryptographically verifiable manner all state change request transactions.
     * **Storage**: A storage system for the cryptographically linked current and historical state of all (commercial) agreements in a BPI.
 * **DLT Abstraction Layer** is comprised of
     * **API Gateway**: An API gateway which enables accessing all required BPI functions implemented on one or more DLTs, and properly directs the requests within the DLT Abstraction layer to the proper DLT API application logic
