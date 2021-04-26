@@ -1,0 +1,4758 @@
+openapi: '3.0.2'
+info:
+  title: Baseline API
+  description: OASIS standard API specification for the Baseline Protocol
+  license:
+    name: CC0 1.0 Universal License
+    url: 'https://raw.githubusercontent.com/ethereum-oasis/baseline-standard/main/LICENSE'
+  version: v1.0.0
+servers:
+  - url: 'https://baseline.provide.network'
+    description: Provide Baseline Operator
+  - url: 'http://localhost:8080'
+    description: Local Baseline Integration Stack
+  - url: 'http://localhost:9999'
+    description: Local BRI-1 Stack
+security:
+  - bearerAuth: []
+tags:
+  - name: .well-known
+    description: /.well-known path
+  - name: Authn/authz
+    description: Provides Authentication and authorization for `User`, `Organization` and `Workgroup` entities in Baseline core systems. 
+  - name: CCSM
+    description: Baseline core CCSM API provides interfaces for general interaction with the underlying mainnet.
+  - name: Infrastructure
+    description: Distributed infrastructure API provides cloud-agnostic Command and Control (C2) that manages connections from distributed networks to various Systems of Record.
+  - name: Oracles
+    description: Third-party services that query, verify, and authenticate external data sources in order to provide baselined ecosystems with information from the outside world. 
+  - name: Persistence
+    description: Baseline core persistence provides internal integration middleware interfaces for baselining systems of record.
+  - name: Privacy
+    description: Baseline core privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
+  - name: Registry
+    description: Baseline core registry API provides interfaces for the organization registry.
+  - name: Users
+    description: Baseline core users API provides interfaces for creating and authorizing users.
+  - name: Vault
+    description: |- 
+      Baseline core vault API provides tools and methods for managing digital authentication credentials for `Uers`, `Organizations`, and `Workgroups`. 
+paths:
+  /accounts:
+    get:
+      tags:
+        - CCSM
+      summary: List accounts
+      description: 'Retrieves a list of `Account` instances used for storing cryptocurrency or tokens on behalf of users managing cryptographic material (i.e., for signing transactions).'
+      operationId: listAccounts
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+    post:
+      tags:
+        - CCSM
+      summary: Create account
+      description: |-
+        Creates an `Account` (also referred to as a signing identity) capable of storing cryptocurrencies and tokens native to a specific `Network`. 
+
+        An `Account` may be setup as custodial or non-custodial, and may be derived from a `Wallet`. If the `Account` is custodial then the platform will sign and broadcast transactions to the
+        `Network` on behalf of an authorized `User` or `Workgroup`.
+      operationId: createAccount
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          description: The request was successful and a new `Account` was created
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+  '/accounts/{id}':
+    get:
+      tags:
+        - CCSM
+      summary: Get account details
+      description: Returns details for the specified `Account`
+      operationId: getAccountDetails
+      parameters:
+        - name: id
+          in: path
+          description: UUID of the target `Account`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+  /authenticate:
+    post:
+      tags:
+        - Authn/authz
+      summary: User authentication
+      security:
+        - OAuth2:
+            - offline_access
+            - email
+      description: |-
+        Returns a `bearer` API token for the a specified `User`. 
+
+        The presence of a `bearer` API token is required to authorize most Baseline API calls. A `bearer` API token is an encoded JWT which contains a subject claim (`sub`) which references an authorized entity (i.e., the `User`, `Application` or `Organization`). The authorized entity uses a signed `bearer` authorization Token to access one or more resources for which the Token was authorized. Unless otherwise noted, all API requests must include a header such as `Authorization: bearer <jwt>`.
+      operationId: authentication
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /connectors:
+    get:
+      tags:
+        - Infrastructure
+      summary: List connectors
+      description: Retrieves a list of `Connector` instances. Connectors are adapters that connect external arbitrary infrastructure with a Baseline `Workgroup`. `Token` should be `Application` type.
+      operationId: listConnectors
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+        - $ref: '#/components/parameters/public'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Connector'
+        
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Infrastructure
+      summary: Create connector
+      description: Create a new `Connector` using the given configuration. `Token` should be `Application` type.
+      operationId: createConnector
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Connector'
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+  '/connectors/{id}':
+    get:
+      tags:
+        - Infrastructure
+      summary: Get connector details
+      description: Returns details for the target `Connector`
+      operationId: getConnectorDetails
+      parameters:
+        - name: id
+          in: path
+          description: UUID of the target `Connector`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+    delete:
+      tags:
+        - Infrastructure
+      summary: Delete connector
+      description: Deletes the specified `Connector`
+      operationId: deleteConnector
+      parameters:
+        - name: id
+          in: path
+          description: UUID of the target `Connector`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: The request was successful but did not return a response.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/connectors/{id}/load_balancers':
+    get:
+      tags:
+        - Infrastructure
+      summary: Retrieve load balancer details
+      description: Returns details for a specified `Load Balancer`
+      operationId: getLoadBalancerDetails
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Load Balancer`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful.
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/LoadBalancer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+  /contracts:
+    get:
+      tags:
+        - CCSM
+      summary: List contracts
+      description: Returns a list of smart contracts visible to an authorized `User` or `Workgroup`.
+      operationId: listContracts
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+        - name: filter_tokens
+          in: query
+          description: flag to indicate if Token contracts should be filtered from the response. Default is true
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          description: 'parameter to indicate how the response should be sorted; currently, recent is the only supported option and returns by accessed_at descending.'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful.
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contract'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+    post:
+      tags:
+        - CCSM
+      summary: Deploy contract
+      description: Deploy a smart contract to the specified network
+      operationId: deployContract
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contract'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Contract'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/contracts/{id}':
+    get:
+      tags:
+        - CCSM
+      summary: Get contract detail
+      description: Get contract details
+      operationId: getContractDetail
+      parameters:
+        - name: id
+          in: path
+          description: ID of target contract
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful.
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Contract'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+  '/contracts/{id}/execute':
+    post:
+      tags:
+        - CCSM
+      summary: Execute contract
+      description: Construct and execute a specific method in a smart contract.
+      operationId: executeContract
+      parameters:
+        - name: id
+          in: path
+          description: UUID of contract being executed. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecuteContract'
+            example:
+              method: broadcast
+              params:
+                - hello world
+              value: 0
+              account_id: 8a1f4492-9a73-4e3d-bafe-6a3794b1320e
+        required: true
+      responses:
+        '202':
+          description: |
+            The request was successfully accepted and processing will complete
+            asynchronously.
+
+            The API returns 202 Accepted if the contract execution will
+            broadcast a Transaction to the network and returns a ref, which is
+            an identifier you may use to ask for the execution status of the
+            Transaction.
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExecuteContract'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /networks:
+    get:
+      tags:
+        - CCSM
+      summary: List networks
+      description: List available peer-to-peer networks and related configuration details.
+      operationId: listNetworks
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+        - $ref: '#/components/parameters/public'
+      responses:
+        '200':
+          description: The request was successful
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Network'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - CCSM
+      summary: Create network
+      description: |-
+        Configuring a new peer-to-peer network can be quite complex. Just how complex depends on the kind of network you intend to provision, and the clients and protocols you plan to support (both now, and in the future). Creating the configuration for a new logical network involves having deep understanding of your goals for the network and the underlying consensus and governance protocols. 
+      operationId: createNetwork
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Network'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Network'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/networks/{id}':
+    put:
+      tags:
+        - CCSM
+      summary: Update network
+      description: Update a network
+      operationId: updateNetwork
+      parameters:
+        - name: id
+          in: path
+          description: UUID of the target network. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Network'
+      responses:
+        '204':
+          description: The request was successful but did not return a response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/NoContent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/networks/{id}/status':
+    get:
+      tags:
+        - CCSM
+      summary: Get network status
+      description: 'Retrieve the syncing status and, if fully-synced, real-time network-specific metrics and metadata.'''
+      operationId: getNetworkStatus
+      parameters:
+        - name: id
+          in: path
+          description: UUID of the target `Network`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful.
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/NetworkStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+  /oracles:
+    get:
+      tags:
+        - Oracles
+      summary: List oracles
+      description: Retrieve a list of `Oracle` contracts
+      operationId: listOracles
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: The request was successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Oracles
+      summary: Create oracle
+      description: Create an `Oracle`
+      operationId: createOracle
+      parameters: []
+      responses:
+        '201': 
+          description: Request was successful and a new `Oracle` was created
+          # content:
+          #   application/json:
+          #     schema:
+          #       $ref: '#/components/schemas/Oracles'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/oracles/{id}':
+    get:
+      tags:
+        - Oracles
+      summary: Get oracle details
+      description: Returns details for the target `Oracle`
+      operationId: getOracleDetail
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Oracle`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    put:
+      tags:
+        - Oracles
+      summary: Update oracle
+      description: Update an `Oracle`
+      operationId: updateOracle
+      parameters:
+        - name: id
+          in: path
+          description: ID of Oracle
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    delete:
+      tags:
+        - Oracles
+      summary: Delete oracle
+      description: Delete specified oracle.
+      operationId: deleteOracle
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Oracle`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /organizations:
+    get:
+      tags:
+        - Registry
+      summary: List organizations
+      description: Retrieves a list of `Organization` instances in the authorized scope
+      operationId: listOrganizations
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: The request was successful
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Registry
+      summary: Create organization
+      description: Creates a new `Organization`
+      operationId: createOrganization
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new Organization was created
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/organizations/{id}':
+    get:
+      tags:
+        - Registry
+      summary: Get organization details
+      description: Retrieve `Organization` details
+      operationId: getOrganizationDetails
+      parameters:
+        - name: id
+          in: path
+          description: UUID of Organization. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    put:
+      tags:
+        - Registry
+      summary: Update organization details
+      description: Update an `Organization`
+      operationId: updateOrganizationDetails
+      parameters:
+        - name: id
+          in: path
+          description: UUID of the `Organization` being updated. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Organization'
+        required: true
+      responses:
+        '200':
+          description: The request was successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /tokens:
+    get:
+      tags:
+        - Authn/authz
+      summary: List revocable tokens
+      description: Retrieves a list of revocable tokens
+      operationId: listTokens
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: The request was successful.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Token'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Authn/authz
+      summary: Token authorization
+      description: 'Authorizes a Token on behalf of a `User`, `Application` or `Organization`. Returns an authorized JSON formatted JWT with an `offline-access` scoped long-term `access_token` that serves as authentication for `User`,`Organization`, and `Workgroup` related requests. To authorize a `Workgroup` token, replace `organization_id` in this example with `workgroup_id`.To authorize a `User` token, replace `organization_id` with `user_id`.'
+      operationId: tokenAuthorization
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Token'
+            example:
+              scope: offline_access
+              organization_id: cfdc122c-5c06-43e3-a478-f3d169f123a9
+        required: true
+      responses:
+        '201':
+          description: Request successfully authorized a `Token`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/tokens/{id}':
+    delete:
+      tags:
+        - Authn/authz
+      summary: Revoke token
+      description: Revokes a previously-authorized Token
+      operationId: revokeToken
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Token`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /transactions:
+    get:
+      tags:
+        - CCSM
+      summary: List transactions
+      description: Retrieves a list of `Transactions` scoped to the authorized `User` or `Application`
+      operationId: listTransactions
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+        - name: filter_contract_creations
+          in: query
+          description: 'when true, contract creation transactions are filtered'
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: boolean
+        - name: status
+          in: query
+          description: comma-delimited list of statuses by which the transactions response is filtered.
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - CCSM
+      summary: Create transaction
+      description: |
+        Create and broadcast a transaction in a chain- and protocol-agnostic manner.
+
+        This API provides an asynchronous, fault-tolerant mechanism for providing some guarantees about how a well-formed transaction will become eventually-consistent with the underlying target Network. Currently, transactions are guaranteed to be successfully broadcast to the target network or timeout within 5 minutes. If a transaction is unable to be broadcast to the network for any reason (i.e., network reachability, invalid nonce etc.) it is retried every 60 seconds. It is likely these retry and timeout constraints will be made more configurable in a future release.
+
+        In addition to the asynchronous and resilient nature of broadcasting transactions using this API, instrumentation of the full transaction lifecycle is captured for each transaction.
+      operationId: createTransaction
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/transactions/{id}':
+    get:
+      tags:
+        - CCSM
+      summary: Get transaction details
+      description: Returns details for the target `Transaction`
+      operationId: getTransactionDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /users:
+    get:
+      tags:
+        - Users
+      summary: List users
+      description: Retrieves a list of `User` instances in the authorized scope. A `User` may be associated with a `Workgroup` and one or more `Organization` instances.
+      operationId: listUsers
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Users
+      summary: Create user
+      description: |-
+        Create a new user
+
+         The Provide Operator Stack (made available at baseline.provide.network) is an API gateway that uses the various microservices running in Provide's production environment. Please make use of this resource in accordance with the [Privacy Policy](https://provide.services/privacy-policy).
+      operationId: createUser
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/users/{id}':
+    get:
+      tags:
+        - Users
+      summary: Get user detail
+      description: Returns details for the target `User`
+      operationId: getUserDetail
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+    put:
+      tags:
+        - Users
+      summary: Update user
+      description: Update target `User`.
+      operationId: updateUser
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `User`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    delete:
+      tags:
+        - Users
+      summary: Delete user
+      description: Delete target `User`.
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `User`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Target `User` deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /unseal:
+    post:
+      tags:
+        - Vault
+      summary: Unseal vault
+      description: |
+        One sealing key is valid for all vaults within a single instance. The SEAL_UNSEAL_VALIDATION_HASH  environment variable contains a SHA-256 hash of the 256-bit entropy BIP39 seed phrase used for the seal/unseal key. When a valid sealing key is presented to the vault (i.e. one that has the same SHA-256 hash value as the SEAL_UNSEAL_VALIDATION_HASH environment variable), the seal/unseal key will then be cloaked (i.e., encrypted with a random, ephemeral, in-memory cloaking key) in memory and decrypted only when required for operations by the cloaking key.
+      operationId: unsealVault
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsealVaultRequest'
+        required: true
+      responses:
+        '204':
+          description: The request was successful but did not return a response
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /vaults:
+    get:
+      tags:
+        - Vault
+      summary: List vaults
+      description: List Vaults for the authorized context.
+      operationId: listVaults
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: The request was successful
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vault'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Vault
+      summary: Create a vault
+      description: Create a `Vault` for authorized context
+      operationId: createVault
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vault'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new Vault was created
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Vault'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/vaults/{id}/keys':
+    get:
+      tags:
+        - Vault
+      summary: List keys
+      operationId: listkeys
+      description: Retrieves a list of Keys in target `Vault`
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+        - name: id
+          in: path
+          description: UUID of target `Vault`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Key'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Vault
+      summary: Create a key
+      operationId: createKey
+      description: Create a key in target `Vault`
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Vault`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Key'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Key'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/vaults/{id}/keys/{key_id}/derive':
+    post:
+      tags:
+        - Vault
+      summary: Derive a key
+      description: Derives the target `Key`.
+      operationId: deriveaKeyRequest
+      parameters:
+        - name: id
+          in: path
+          description: UUID of host `Vault`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+        - name: key_id
+          in: path
+          description: Name of derived `Key`
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Key'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new entity was created.
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/DeriveKey'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/vaults/{id}/keys/{key_id}':
+    delete:
+      tags:
+        - Vault
+      summary: Delete a key
+      description: 'Delete target `Key`'
+      operationId: deleteKey
+      parameters:
+        - name: id
+          in: path
+          description: UUID of host `Vault`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+        - name: key_id
+          in: path
+          description: UUID of target `Key`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/vaults/{id}/secrets':
+    get:
+      tags:
+        - Vault
+      summary: List secrets
+      operationId: listSecrets
+      description: Re
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+        - name: id
+          in: path
+          description: UUID of `Vault` containing at least 1 `Secret`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                example: []
+                items:
+                  $ref: '#/components/schemas/Vault'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Vault
+      summary: Store secret
+      operationId: storeSecret
+      parameters:
+        - name: id
+          description: UUID of target `Vault`. _UUID as specified by RFC4122_
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Secret'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/vaults/{id}/secrets/{secret_id}':
+    get:
+      tags:
+        - Vault
+      summary: Retrieve secret
+      operationId: retrieveSecret
+      parameters:
+        - name: id
+          description: UUID of `Vault` containing target `Secret`. _UUID as specified by RFC4122_
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: secret_id
+          description: UUID of target `Secret`. _UUID as specified by RFC4122_
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    delete:
+      tags:
+        - Vault
+      summary: Delete secret
+      operationId: deleteSecret
+      parameters:
+        - name: id
+          in: path
+          description: UUID of `Vault` containing target `Secret`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+        - name: secret_id
+          in: path
+          description: UUID of target `Secret`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: The request was successful but did not return a response.
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /wallets:
+    get:
+      tags:
+        - CCSM
+      summary: List wallets
+      description: Retrieves a list of `Wallet` instances
+      operationId: listWallets
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: The request was successful
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Wallet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - CCSM
+      summary: Create wallet
+      description: |
+        Creates a `Wallet`. A `Wallet` may be setup as custodial or non-custodial. If the Wallet is custodial then the platform will derive addresses and securely persist an `Account` for each of those derived addresses
+      operationId: createWallet
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Wallet'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/wallets/{id}/accounts':
+    get:
+      tags:
+        - CCSM
+      summary: List wallet accounts
+      operationId: listWalletAccounts
+      description: Retrieves a list of `Account` instances for a target `Wallet`
+      parameters:
+        - $ref: '#/components/parameters/results-per-page'
+        - name: id
+          in: path
+          description: UUID of `Wallet` containing Accounts. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          headers:
+            X-Total-Results-Count:
+              $ref: '#/components/headers/X-Total-Results-Count'
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /workgroups:
+    get:
+      tags:
+        - Persistence
+        - Registry
+      summary: List workgroups
+      description: Retrieve a list of `Workgroup` instances in the authorized `scope`
+      operationId: listWorkgroups
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Workgroup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Persistence
+        - Registry
+      summary: Create workgroup
+      description: Create a `Workgroup` with the details provided in the request body
+      operationId: createWorkgroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workgroup'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/workgroups/{id}':
+      get:
+        tags:
+        - Persistence
+        - Registry
+        summary: Get workgroup details
+        description: Returns details for the specified `Workgroup`
+        operationId: getWorkgroupDetails
+        parameters:
+          - name: id
+            in: path
+            description: UUID of target `Workgroup`. _UUID as specified by RFC4122_
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: The request was successful
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Workgroup'
+          '401':
+            $ref: '#/components/responses/Unauthorized'
+          '403':
+            $ref: '#/components/responses/Forbidden'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '429':
+            $ref: '#/components/responses/TooManyRequests'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+          '503':
+            $ref: '#/components/responses/ServiceUnavailable'
+      put:
+        tags:
+        - Persistence
+        - Registry
+        summary: Update workgroup
+        description: Updates the target `Workgroup`.
+        operationId: updateWorkgroup
+        parameters:
+          - name: id
+            description: UUID of target `Workgroup`. _UUID as specified by RFC4122_
+            in: path
+            required: true
+            schema:
+              type: string
+        requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workgroup'
+        responses:
+          '204':
+            description: The request was successful but did not return a response
+          '401':
+            $ref: '#/components/responses/Unauthorized'
+          '403':
+            $ref: '#/components/responses/Forbidden'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '429':
+            $ref: '#/components/responses/TooManyRequests'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+          '503':
+            $ref: '#/components/responses/ServiceUnavailable'
+        deprecated: false
+      delete:
+        tags:
+        - Persistence
+        - Registry
+        summary: Delete workgroup
+        description: Deletes the target `Workgroup`
+        operationId: deleteWorkgroup
+        parameters:
+          - name: id
+            in: path
+            description: UUID of target `Workgroup`. _UUID as specified by RFC4122_
+            required: true
+            schema:
+              type: string
+        responses:
+          '204':
+            description: The request was successful but did not return a response
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Workgroup'
+          '401':
+            $ref: '#/components/responses/Unauthorized'
+          '403':
+            $ref: '#/components/responses/Forbidden'
+          '404':
+            $ref: '#/components/responses/NotFound'
+          '429':
+            $ref: '#/components/responses/TooManyRequests'
+          '500':
+            $ref: '#/components/responses/InternalServerError'
+          '503':
+            $ref: '#/components/responses/ServiceUnavailable'
+        deprecated: false
+  '/workgroups/{id}/users':
+    get:
+      tags:
+        - Persistence
+        - Registry
+      summary: List workgroup users
+      description: Retrieves a list of `Organization` records associated with a target `Workgroup`
+      operationId: listWorkgroupUsers
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+        - name: id
+          in: path
+          description: UUID of target `Workgroup`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Persistence
+        - Registry
+      summary: Associate workgroup user
+      description: Associates an `Organizastion` to the target `Workgroup`
+      operationId: associateWorkgroupUser
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Workgroup`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssociateWorkgroupUserRequest'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /workflows:
+    get:
+      tags:
+        - Persistence
+      summary: List workflow instances
+      description: Retrieves a list of `Workflow` instances.
+      operationId: listWorkflows
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Workflow'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      tags:
+        - Persistence
+      summary: Create `Workflow` instance
+      description: Creates a `Workflow` instance.
+      operationId: createWorkflow
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workflow'
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Workflow'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /workflows/{id}:
+    get:
+      tags:
+        - Persistence
+      summary: Get workflow details
+      description: Returns target `Workflow` details
+      operationId: getWorkflowDetails
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Workflow`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Workflow'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /worksteps:
+    get:
+      tags:
+        - Persistence
+      summary: List workstep instances
+      description: Retrieves a list of `Workstep` instances
+      operationId: listWorksteps
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Workstep'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+    post:
+      tags:
+        - Persistence
+      summary: Create a `Workstep` instance
+      description: Creates a `Workstep` instance
+      operationId: createWorkstep
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Workstep'
+      responses:
+        '201':
+          description: The request was successful and a new entity was created
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /worksteps/{id}:
+    get:
+      tags:
+        - Persistence
+      summary: Get workstep details
+      description: Returns target `Workstep` details.
+      operationId: getWorkstepDetails
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Workstep`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string      
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/Workstep'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /objects:
+    post:
+      tags:
+        - Persistence
+      summary: Create a Baseline object
+      description: Creates a Baseline object.
+      operationId: createBaselineObject
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/Accepted'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+      servers:
+        - url: 'https://baseline.proxy/api/v1'
+  '/objects/{id}':
+    put:
+      tags:
+        - Persistence
+      summary: Update a Baseline Object
+      description: Updates the target Baseline Object.
+      operationId: updateBaselineObject
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target object. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and the entity was updated.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+      servers:
+        - url: 'https://baseline.proxy/api/v1'
+  /circuits:
+    get:
+      tags:
+        - Privacy
+      summary: List Circuits
+      description: Retrieves a list of `Circuit` instances.
+      operationId: listCircuits
+      parameters:
+        - name: curve
+          in: query
+          description: filter the response by elliptic curve
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: identifier
+          in: query
+          description: filter the response by identifier
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: provider
+          in: query
+          description: filter the response by provider
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: proving scheme
+          in: query
+          description: filter the response by proving scheme
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: filter the response by the status
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Circuit'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+    post:
+      tags:
+        - Privacy
+      summary: Create circuit
+      description: |
+        Creates a baselined `Circuit`.
+
+        You must provision a circuit before it can be used to generate and verify proofs. The foregoing holds true regardless of which provider, proving_scheme, curve and circuit identifier you specify (or source, if the raw source code of the `Circuit` is provided instead of an identifier).
+
+        A powerful aspect of this API is the asynchronous nature by which computationally-intensive cryptographic operations are executed. The lifecycle of a zero-knowledge circuit depends largely on the chosen proving_scheme. For example, zkSNARK proving schemes (i.e., groth16) require a trusted setup whereas more modern schemes (i.e., plonk) do not.
+
+        A persistent store is implicitly initialized upon the creation of a new circuit unless an existing store_id is provided and the referenced store is valid in the context of the circuit and authorized `scope`.
+      operationId: createCircuit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Circuit'
+        required: true
+      responses:
+        '201':
+          description: The request was successful
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/circuits/{id}':
+    get:
+      tags:
+        - Privacy
+      summary: Get circuit details
+      description: Returns details of the target `Circuit`.
+      operationId: getCircuitDetails
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Circuit`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+            format: UUID
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Circuit'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/circuits/{id}/prove':
+    post:
+      tags:
+        - Privacy
+      summary: Prove circuit
+      description: 'Once you have provisioned a circuit, this API can be used to generate a proof given valid witness parameters. Calling this API has an implicit side-effect of writing the hash of generated proof to the persistent store associated with the `Circuit`.'
+      operationId: prove
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Circuit`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProveRequest'
+        required: true
+      responses:
+        '200':
+          description: The request was successful
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          description: 'The API returns a 422 status code and human-readable error message(s) if (i) the witness parameters is not provided, (ii) required circuit arguments (i.e., fields) are not included within the given witness parameter or (iii) when Circuit constraints are not satisfied.'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/circuits/{id}/verify':
+    post:
+      tags:
+        - Privacy
+      summary: Verify
+      description: Verify a `Proof` using the given `Witness` parameters.
+      operationId: verify
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Circuit`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyProofRequest'
+        required: true
+      responses:
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  '/circuits/{id}/store/{index}':
+    get:
+      tags:
+        - Privacy
+      summary: Retrieve store value
+      description: Returns the store value of the specified `Circuit`. The store value is a hash of the proof
+      operationId: getStoreValue
+      parameters:
+        - name: id
+          in: path
+          description: UUID of target `Circuit`. _UUID as specified by RFC4122_
+          required: true
+          schema:
+            type: string
+        - name: index
+          in: path
+          description: The index of the leaf in the Merkle tree for the underlying data structure.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request was successful
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+  /.well-known/keys:
+    get:
+      tags:
+        - .well-known
+      summary: JSON Web Key Set (JWK)
+      description: |-
+        Returns the JSON Web Key Set (JWK) for the operator of the well-known path.
+
+        The JSON Web Key Set (JWK) is a set of public keys used to verify issued credentials (i.e., signed JWTs).
+      operationId: listWellKnownKeys
+      parameters: []
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JWK'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  '/.well-known/openid-configuration':
+    get:
+      tags:
+        - .well-known
+      summary: Returns OpenID configuration
+      description: |-
+        Retrieve OpenID configuration.
+
+        Openid-configuration is a Well-known URI Discovery Mechanism for the Provider Configuration URI and is defined in OpenID Connect.
+
+        Openid-configuration is a URI defined within OpenID Connect which provides configuration information about the Identity Provider (IDP).
+
+        Openid-configuration is the OpenID Connect Provider's discovery document. The discovery document describes the provider's API endpoints used during the authentication sequence. Specifying this URL connects the authenticator to a particular OpenID Connect Provider. For Example, for Google (including Google Apps), the discovery document URL
+
+        The Openid-configuration publishes a JSON object listing the Provider's OAuth 2.0 / OpenID Connect Endpoints as well as the supported grants, response types, authentication methods and security algorithms. These details are needed by clients and application developers to construct requests to the server.
+      operationId: listOpenIDConfiguration
+      parameters: []
+      responses:
+        '200':
+          description: The request was successful
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/OpenIDConfig'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      deprecated: false
+components:
+  schemas:
+    Account:
+      title: Account
+      type: object
+      properties:
+        id:
+          description: UUID of the reference `Account`. _UUID as specified by RFC4122_
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          description: Timestamp of `Account` creation.
+          format: date-time
+          readOnly: true
+        network_id:
+          type: string
+          description: UUID of host `Network`. _UUID as specified by RFC4122_
+          format: uuid
+        user_id:
+          type: string
+          description: UUID of `User` that created the `Account`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        vault_id:
+          type: string
+          description: UUID of the `Vault` that houses `Account` key. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        key_id:
+          type: string
+          description: UUID of the `Key` used to sign the `Account`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        public_key:
+          type: string
+          description: Public key of the `Account`
+          readOnly: true
+        address:
+          type: string
+          description: Address of the `Account`
+          readOnly: true
+      example: 
+        id: 99c404e9-fe10-4ca7-b787-d5943d03591c
+        created_at: '2021-06-15T00:50:40.475580742Z'
+        network_id: 66d44f30-9092-4182-a3c4-bc02736d6ae5
+        user_id: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
+        vault_id: 190822c9-62f5-4caf-a419-df735a793b2f
+        key_id: 331156fb-fa5c-4557-ac39-69ae34c72c18
+        public_key: >-
+          0x04f4c6bc6d79b727f2034ffaa7958a84d3bf88142a9d81b5baa18dc81f162c97c273f7acf8132a6a5aa9a81dcd3c485d6d17277a993334575d136f18171053792b
+        address: '0x4A252b7e30f6cD6a85d20476Bb291Ef7f3a05293'
+    AssociateWorkgroupUserRequest:
+      title: Associate Workgroup User Request
+      required:
+        - user_id
+      type: object
+      properties:
+        user_id:
+          type: string
+          format: UUID
+          description: UUID of `User` to be associated with `Workgroup`. _UUID as specified by RFC4122_
+    AuthenticationRequest:
+      title: Authentication Request
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          description: Email of User to be authenticated
+        password:
+          type: string
+          description: Password of User to be authenticated
+      example:
+        email: joeusr@baseline.local
+        password: s3cr37
+    AuthenticationResponse:
+      title: Authentication Response
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        token:
+          $ref: '#/components/schemas/Token'
+      example:
+        user:
+          id: 7r19e831-43fd-237e-8b43-12af828ba3e3
+          created_at: '2021-01-27T03:19:33.349Z'
+          name: Joe User
+          first_name: Joe
+          last_name: User
+          email: joeusr@baseline.local
+          permissions: 415
+          privacy_policy_agreed_at: '2021-01-27T03:19:33.349Z'
+          terms_of_service_agreed_at: '2021-01-27T03:19:33.349Z'
+        token:
+          id: 9d3ef7d2-044e-409a-889d-f90b49627f7e
+          expires_in: 900
+          token: <JWT>
+          permissions: 415
+    BaselineContext:
+      title: Baseline Context
+      type: object
+      description: A `Workflow` context consisting of a set of stepwise `BaselineRecord` instances
+      properties:
+        id:
+          type: string
+          description: UUID of the `BaselineContext`. _UUID as specified by RFC4122_
+          readOnly: true
+        baseline_id:
+          type: string
+          description: UUID of the target Baseline instance. _UUID as specified by RFC4122_
+          readOnly: false
+        type:
+          type: string
+          description: Type of `BaselineContext`
+          readOnly: false
+        workflow_id:
+          type: string
+          format: UUID
+          description: UUID of associated `Workflow`. _UUID as specified by RFC4122_ 
+          readOnly: false
+        workflow:
+          $ref: '#/components/schemas/Workflow'
+      example:
+        id: 55f0b82e-de35-44f9-a61c-acc2e8002cf2
+        baseline_id: a24dd3cc-9822-4a6c-8216-822b9effb0db
+        type: 0x
+        workflow_id: 55f560ff-9fbe-4bf3-8b04-5b6317943845
+        workflow: 
+          $ref: '#/components/schemas/Workflow' 
+    BaselineRecord:
+      title: Baseline Record
+      type: object
+      description: The link between an object or document in an internal system of record and a `BaselineContext`
+      properties:
+        id:
+          type: string
+          description: UUID of the `BaselineContext`. _UUID as specified by RFC4122_
+          readOnly: true
+        baseline_id:
+          type: string
+          description: UUID of the target Baseline instance. _UUID as specified by RFC4122_
+          readOnly: false
+        baseline_context:
+          $ref: '#/components/schemas/BaselineContext'
+        baseline_context_id:
+          type: string
+          description: UUID of associated `BaselineContext`. _UUID as specified by RFC4122_
+        type:
+          type: string
+          description: Type of `BaselineRecord`
+      example:
+        id: 24ac3268-9778-419e-9bb5-e4e382cd1ad4
+        baseline_id: a24dd3cc-9822-4a6c-8216-822b9effb0db
+        baseline_context: 
+          $ref: '#/components/schemas/BaselineContext'
+        baseline_context_id: 55f0b82e-de35-44f9-a61c-acc2e8002cf2
+        type: baseline
+    Object:
+      title: Object
+      required:
+        - id
+        - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of object being created
+        id:
+          type: string
+      example:
+        type: purchase_order
+        id: '4500002427'
+        payload:
+          hello: world
+    Chainspec:
+      title: Chainspec
+      type: object
+      properties:
+        config: {}
+        alloc:
+          type: object
+        coinbase:
+          type: string
+        difficulty:
+          type: string
+        extraData:
+          type: string
+        gasLimit:
+          type: string
+        nonce:
+          type: string
+        mixhash:
+          type: string
+        parentHash:
+          type: string
+        timestamp:
+          type: string
+      example:
+        config:
+          homesteadBlock: 0
+          eip150Block: 0
+          eip155Block: 0
+          eip158Block: 0
+          byzantiumBlock: 0
+          constantinopleBlock: 0
+          petersburgBlock: 0
+        alloc: {}
+        coinbase: 0x
+        difficulty: '131072'
+        extraData: ''
+        gasLimit: '3141592'
+        nonce: '66'
+        mixhash: 0x
+        parentHash: 0x
+        timestamp: 2021-02-27T14:26:06.864Z 
+    Circuit:
+      title: Circuit
+      description: ''
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: UUID for the `Circuit`. _UUID as specified by RFC4122_
+          readOnly: true
+        created_at:
+          type: string
+          description: Date and time of `Circuit` creation
+          format: date-time
+          readOnly: true
+        vault_id:
+          type: string
+          format: uuid
+          description: UUID of host `Vault`. _UUID as specified by RFC4122_
+          readOnly: false
+        proving_key_id:
+          type: string
+          format: uuid
+          description: UUID of `Key` used for proving the `Circuit`. _UUID as specified by RFC4122_
+          readOnly: false
+        verifying_key_id:
+          type: string
+          format: uuid
+          description: UUID of `Key` used for verifying the `Circuit`. _UUID as specified by RFC4122_
+          readOnly: false
+        name:
+          type: string
+          description: User-defined name of `Circuit`
+          readOnly: false
+        description:
+          type: string
+          description: User-defined descriptor of the `Circuit`
+          readOnly: false
+        identifier:
+          type: string
+          description: Circuit identifier
+          example: Cubic
+        provider:
+          type: string
+          description: Circuit provider
+          example: gnark
+        proving_scheme:
+          type: string
+          description: Proving scheme to be used
+          example: groth16
+        curve:
+          type: string
+          description: Pairing-friendly elliptic curve
+          example: BN256
+        status:
+          type: string
+          description: Status of `Circuit`. 
+          enum: 
+            - init
+              compiling
+              compiled
+              pending_setup
+              running_setup
+              deploying_artifacts
+              provisioned
+        store_id:
+          type: string
+          description: Identifier of the persistent store instance
+      required:
+        - name
+        - identifier
+        - provider
+        - proving_scheme
+        - curve
+    CompiledArtifact:
+      title: Compiled Artifact
+      type: object
+      properties:
+        contract_name:
+          type: string
+        abi:
+          type: object
+        bytecode:
+          type: string
+        source:
+          type: string
+      example:
+        contract_name: Ekho
+        abi:
+          anonymous: false
+          inputs:
+          - indexed: false
+            internal_type: bytes
+            name: message
+            type: bytes
+          name: Ekho
+          type: event
+        inputs:
+          - internal_type: bytes
+            name: message
+            type: bytes
+        name: broadcast
+        utputs: []
+        state_mutability: nonpayable
+        type: function
+        bytecode: 0x
+        source: |
+          contract Ekho {
+              event Ekho(bytes message);
+              function broadcast(bytes memory message) public {
+                  emit Ekho(message);
+              }
+          }
+    Config:
+      title: Config
+      type: object
+      properties:
+        counterparties:
+          $ref: '#/components/schemas/Participant'
+        env:
+          type: string
+        errors:
+          type: string
+        network_id:
+          type: string
+        organization_address:
+          type: string
+        organization_id:
+          type: string
+        organization_refresh_token:
+          type: string
+        registry_contract_address:
+          type: string
+    Connector:
+      title: Connector
+      required:
+        - name
+        - network_id
+        - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID for the referenced `Connector`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          description: Timestamp of `Connector` creation
+          format: date-time
+          readOnly: true
+        workgroup_id:
+          type: string
+          description: UUID of connected `Workgroup`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        network_id:
+          type: string
+          description: UUID of host `Network`. _UUID as specified by RFC4122_
+          format: uuid
+        organization_id:
+          type: string
+          description: UUID of connected `Organization`. _UUID as specified by RFC4122_
+          format: uuid
+          nullable: true
+        name:
+          type: string
+          description: User-defined name of `Connector`
+        type:
+          type: string
+        status:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          description: User-defined descriptor of the reference `Connector`
+          nullable: true
+        config:
+          $ref: '#/components/schemas/ConnectorConfig'
+      example:
+        id: dfec9cb2-e655-4d6d-b4fe-35fb6c6af7a0
+        created_at: '2021-04-16T15:05:23.107Z'
+        workgroup_id: dc767890-0bbc-4c1d-bc04-f5842330018f
+        network_id: 66d44f30-9092-4182-a3c4-bc02736d6ae5
+        name: Sample Connector
+        type: provide
+        status: provisioning
+        config:
+          api_port: 8080
+          api_url: |
+            'https://ceeb3bca-3b92-44b9-8ac5-fdd4564-717022042.us-east-2.elb.amazonaws.com:8080'
+          container: providenetwork-ipfs
+          image: provide/ident
+          provider_id: docker
+          region: us-east-2
+          role: peer
+          security:
+            egress: '*'
+            ingress:
+              0.0.0.0/0:
+                tcp:
+                  - 8080
+                udp: []
+          target_id: aws
+    ConnectorConfig:
+      title: Connector Config
+      type: object
+      properties:
+        image:
+          type: string
+        gateway_port:
+          type: integer
+          format: int32
+        provider_id:
+          type: string
+        region:
+          type: string
+        role:
+          type: string
+        rpc_port:
+          type: integer
+          format: int32
+        security:
+          $ref: '#/components/schemas/Security'
+        target_id:
+          type: string
+          description: UUID of target instance. _UUID as specified by RFC4122_
+        api_port:
+          type: integer
+          format: int32
+          description: Port used for external API communications
+        api_url:
+          type: string
+          description: URL endpoint for API communications
+      example:
+        image: provide/nats-server
+        provider_id: docker
+        region: us-east-1
+        role: peer
+        port: 4222
+        security:
+          egress: '*'
+          ingress:
+            0.0.0.0/0:
+              tcp:
+                - 4222
+              udp: []
+        target_id: 0x
+    Contract:
+      title: Contract
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: UUID of the target `Contract`. _UUID as specified by RFC4122_
+        created_at:
+          type: string
+          readOnly: true
+          description: Date-time of `Contract` creation
+        workgroup_id:
+          type: string
+          format: uuid
+          readOnly: false
+          description: UUID of target `Workgroup`._UUID as specified by RFC4122_
+        organization_id:
+          type: string
+          nullable: true
+          readOnly: true
+          description: UUID of `Organization` associated with reference `Contract` 
+        network_id:
+          type: string
+          readOnly: false
+          description: UUID of target `Network`. _UUID as specified by RFC4122_
+        contract_id:
+          type: string
+          nullable: true
+          readOnly: true
+          description: UUID of the parent `Contract`. _UUID as specified by RFC4122_
+        transaction_id:
+          type: string
+          nullable: true
+          readOnly: true
+          description: UUID of the `Transaction`. _UUID as specified by RFC4122_
+        name:
+          type: string
+          readOnly: false
+          description: User-defined name of `Contract`
+        address:
+          type: string
+          readOnly: true
+          description: Address of `Contract`
+        type:
+          type: string
+          nullable: true
+          readOnly: false
+          description: Type of `Contract`
+        accessed_at:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Date-time of last authorized access
+        pubsub_prefix:
+          type: string
+          nullable: true
+          description: Prefix used to filter inbound and outbound messages for the reference `Contract`
+          readOnly: false
+        params:
+          $ref: '#/components/schemas/ContractParams'
+      example:
+        id: 84a91108-70db-43c5-9f2f-e1655b9e0b03
+        created_at: '2021-02-27T14:26:06.864Z'
+        workgroup_id: dc767890-0bbc-4c1d-bc04-f5842330018f
+        network_id: 07102258-5e49-480e-86af-6d0c3260827d
+        transaction_id: 4c388cca-f11c-4818-96a0-e8ad0b30553d
+        name: Shuttle
+        address: '0xD3F14c012a8717FF7b5D5AC08C287de58C38D8ba'
+        type: registry
+        accessed_at: '2021-02-28T00:41:44.506+0000'
+        pubsub_prefix: 57478604c134ef20b94dff84e52c0fd562ddae56cd50431339766819a7523d09
+        params:
+          account_id: df83bcbb-ff5b-4c4c-b1f5-8ca6a61fe460
+          contract_name: Ekho
+          abi:
+            anonymous: false
+            inputs:
+              indexed: false
+              internal_type: bytes
+              name: message
+              type: bytes
+            name: Ekho
+            type: event
+          outputs: []
+          state_mutability: nonpayable
+          type: function
+          bytecode: 0x
+          source: 0x
+    ContractParams:
+      title: Contract Params
+      type: object
+      properties:
+        account_id:
+          type: string
+          description: UUID of target `Account`. _UUID as specified by RFC4122_
+        CompiledArtifact:
+          $ref: '#/components/schemas/CompiledArtifact'
+      example:
+        account_id: df83bcbb-ff5b-4c4c-b1f5-8ca6a61fe460
+        contract_name: Ekho
+        abi:
+          - anonymous: false
+            inputs:
+              - indexed: false
+                internal_type: bytes
+                name: message
+                type: bytes
+            name: Ekho
+            type: event
+          - inputs:
+              - internal_type: bytes
+                name: message
+                type: bytes
+            name: broadcast
+            outputs: []
+            state_mutability: nonpayable
+            type: function
+        bytecode: 0x
+        source: |
+          contract Ekho {
+              event Ekho(bytes message);
+              function broadcast(bytes memory message) public {
+                  emit Ekho(message);
+              }
+          }  
+    CreateSealorUnsealKey:
+      title: Create Seal/Unseal Key
+      required:
+        - key
+        - validation_hash
+      type: object
+      properties:
+        key:
+          type: string
+        validation_hash:
+          type: string
+      example:
+        key: quantum leap fast forward keep west promote satisfy limit butter mother oyster lazy whip earn spot ticket protect mean play script peace parent intact
+        validation_hash: 698465416514684984piouhygiuytfruytdcghbkjhbvjyhdc
+    # Credentials:
+    #   title: Credentials
+    #   type: object
+    #   properties:
+    #     aws_access_key_id:
+    #       type: string
+    #       format: password
+    #     aws_secret_access_key:
+    #       type: string
+    #       format: password
+    #   example:
+    #     aws_access_key_id: '{{aws_access_key_id}}'
+    #     aws_secret_access_key: '{{aws_secret_key}}'
+    DeployContract:
+      title: Deploy Contract
+      type: object
+      properties:
+        id:
+          type: string
+        created_at:
+          type: string
+        workgroup_id:
+          type: string
+        organization_id:
+          type: string
+          nullable: true
+        network_id:
+          type: string
+        contract_id:
+          type: string
+          nullable: true
+        transaction_id:
+          type: string
+          nullable: true
+        name:
+          type: string
+        address:
+          type: string
+        type:
+          type: string
+          nullable: true
+        params:
+          $ref: '#/components/schemas/ContractParams'
+        accessed_at:
+          type: string
+          nullable: true
+        pubsub_prefix:
+          type: string
+      example:
+        id: 3956687d-154f-4a86-a6f8-43b39a8bd58e
+        created_at: '2021-04-16T15:20:35.143+0000'
+        workgroup_id: dc767890-0bbc-4c1d-bc04-f5842330018f
+        network_id: 66d44f30-9092-4182-a3c4-bc02736d6ae5
+        name: Ekho
+        address: '0xD3F14c012a8717FF7b5D5AC08C287de58C38D8ba'
+        params:
+          account_id: 8a1f4492-9a73-4e3d-bafe-6a3794b1320e
+          CompiledArtifact:
+            contractName: Ekho
+            abi:
+              anonymous: false
+              inputs:
+                name: Ekho
+                type: event
+            bytecode: 0x
+            source: 0x
+        pubsub_prefix: 57478604c134ef20b94dff84e52c0fd562ddae56cd50431339766819a7523d09
+    DeriveKey:
+      title: Derive Key Request
+      required:
+        - context
+        - description
+        - name
+        - nonce
+      type: object
+      properties:
+        nonce:
+          type: integer
+          format: int32
+        context:
+          type: string
+        name:
+          type: string
+          description: Name of derived `Key`
+        description:
+          type: string
+          description: Description of derived `Key`
+      example:
+        nonce: 45 
+        context: channel-6852386c-8a3d-41c6-aa0e-766a31a8faaf
+        name: private chat
+        description: this is a secure channel
+    Error:
+      title: Error
+      required:
+        - code
+        - message
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      example:
+        code: '500'
+        message: The request resulted in an internal error during processing
+    ExecuteContract:
+      title: Execute Contract
+      required:
+        - account_id
+        - method
+        - params
+        - value
+      type: object
+      properties:
+        method:
+          type: string
+        params:
+          type: array
+          items:
+            type: string
+        value:
+          type: integer
+          format: int32
+        account_id:
+          type: string
+          description: UUID of `Account` funding `Contract` execution. _UUID as specified by RFC4122_
+      example:
+        method: broadcast
+        params:
+          - hello world
+        value: 0
+        account_id: 30ff7e74-b870-449e-b41d-e508487f7faf
+    IssueVerifiableCredential:
+      title: Issue Verifiable Credential Request
+      type: object
+      description: request to issue a verifiable credential
+      properties:
+        address:
+          type: string
+        organization_id:
+          type: string
+          format: uuid
+        public_key:
+          type: string
+        signature:
+          type: string
+    JWK:
+      title: JSON Web Key Set (JWK)
+      required:
+        - 'e'
+        - fingerprint
+        - kid
+        - 'n'
+        - public_key
+      type: object
+      properties:
+        kid:
+          type: string
+          description: The unique identifier for the key.
+        'n':
+          type: string
+          description: The modulus for the RSA public key.
+        e:
+          type: string
+          description: The exponent for the RSA public key.
+        fingerprint:
+          type: string
+        public_key:
+          type: string
+      example:
+        kid: 'c5:eb:8d:59:44:38:63:06:c9:d3:e4:97:08:fb:68:9c'
+        'n': '995527063618956193410833036962507246986474398054602179908260487445806246489215766039251752652683534248392227323379449531373094174748653054997706465668689972252213093587018180990218764975713772974100211316813863025129179630019623482456703746731298216105196239902672165546333004057492239784978826286556220816776336241042696753088894672303989781706643733233579846968753349402992192452275172979617296256431304053528963070154587755597334718471566532697695566806848739816890462413410326248045976990042651171835110004317895064969114765347902086739148556954319383964003317643357488047800335770372072590234276602697951534723513814120780494254368686116204741180163099781052651805841038832515887268451518717672650541960189952548208271063651390926536783230127645827697776323106258247121628807721231425504345976051589179188919820510476741228874102006646132604055010539746291533048142740994895058566847763900593989114102754149269150841200709200458437074129362211966398371438300510481258132560736028943646699639829561555724431474507308017460343637655844991892817988961745641951250027197531503911248482778035085865533953601104790476037915508823689020619850341247576271568925023930116394277127637893466936882893442420321634189068402675796649097631203'
+        e: '10001'
+        fingerprint: 'e6:f7:d5:24:e2:59:06:2b:bc:a2:8c:35:9d:ca:0a:87'
+        public_key: 0x055c95n123456f3216eaeba7d165a1ff1287d04b90d0c8be02fb1e18d26406484a52a5b0dcf49498ae09e0d097024124fc2849655c344edf62bdb8478f2d9a8bcb
+    Key:
+      title: Key
+      required:
+        - name
+        - spec
+      type: object
+      readOnly: true
+      properties:
+        type:
+          type: string
+          description: Type of `Key` being created
+          enum:
+            - asymmetric
+            - symmetric
+        usage:
+          type: string
+          description: Purpose for `Key` being created
+          enum:
+            - encrypt/decrypt
+            - sign/verify
+        spec:
+          type: string
+          description: Specification to be used for `Key` creation
+          enum:
+            - AES-256-GCM
+            - babyJubJub
+            - BIP39
+            - ChaCha20
+            - C25519
+            - Ed25519
+            - RSA-2048
+            - RSA-3072
+            - RSA-4096
+            - secp256k1
+        name:
+          type: string
+          description: Name of `Key` to be generated
+        description:
+          type: string
+          description: Description of `Key` to be generated
+        public_key:
+          type: string
+          readOnly: true
+      example:
+        id: 02e81595-ef57-4e71-8e27-1c8b2dfdefbf
+        created_at: '2021-04-17T21:07:16.098Z'
+        vault_id: ae3c07d9-8a41-4cd3-92c0-e6358cbd516c
+        type: symmetric
+        usage: encrypt/decrypt
+        spec: ChaCha20
+        name: private chat
+        description: this is a secure channel
+    LastBlockHeader:
+      title: Last Block Header
+      type: object
+      properties:
+        difficulty:
+          type: string
+        extra_data:
+          type: string
+        gas_limit:
+          type: string
+        gas_used:
+          type: string
+        hash:
+          type: string
+        logs_bloom:
+          type: string
+        miner:
+          type: string
+        mixHash:
+          type: string
+        nonce:
+          type: string
+        number:
+          type: string
+        parent_hash:
+          type: string
+        receipts_root:
+          type: string
+        sha3_uncles:
+          type: string
+        state_root:
+          type: string
+        timestamp:
+          type: string
+        transactions_root:
+          type: string
+      example:
+        difficulty: '0x6fc715c5'
+        extraData: '0xd883010a01846765746886676f312e31368777696e646f7773'
+        gasLimit: '0x7a1200'
+        gasUsed: '0x12710a'
+        hash: '0x252583967a2371984a30a647a8568bd50d8330e72ff33891d69ebb079aeb2ba1'
+        logsBloom: '0x00200000010000000000000480020000020000000000000000814020000000000000000000000000000000000000000000008000000200000000000000010000080010000000000000000008004000a00000010000000000000000000000000000000010020000100080400000020800000000020000001000000010040000000200000000000000304008000000000000001000000000081102004000012040100000000001000008020000000000080000000001080020000000018000020000000002000000000000000000000000041000200082001004000002000020000c00000000900000000000000000000000800000020080000080000000000000'
+        miner: '0x77d1ca4b0cd084e5a421e5d26b96b9a49fa752c2'
+        mixHash: '0x75c043be1d1dbb6dc568065c4048a65b763f186348b5c5d2d0a84880f6747edc'
+        nonce: '0x4fe1d5c3202230a8'
+        number: '0x9e1fd7'
+        parentHash: '0x279dbc9f7b7efe981ac58329bbca1864b39723df8aa362796a7a9bd5893ab1aa'
+        receiptsRoot: '0x7f874242eaa2e4c5b478f9e8b6abdd95cb10b939ad0fe000e8dc4807efacc4e6'
+        sha3Uncles: '0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347'
+        stateRoot: '0x76f111ed19e015cc7ce8d9a5e4f387365390adc5fcc97228705643e907eb793a'
+        timestamp: '0x60b840dc'
+        transactionsRoot: '0xed041ced1958b58c1040e1e09c456dcc551298eae8d7edca2659f6695a873f'
+    LoadBalancer:
+      title: Load Balancer
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID of load balancer. _UUID as specified by RFC4122_
+          readOnly: true
+        created_at:
+          type: string
+          description: Date and time of creation
+          readOnly: true
+        network_id:
+          type: string
+          description: UUID of host `Network`. _UUID as specified by RFC4122_
+          readOnly: false 
+        workgroup_id:
+          type: string
+          description: UUID of the `Workgroup` associated with the load balancer. _UUID as specified by RFC4122_
+          readOnly: false
+        name:
+          type: string
+          description: User-defined name of the load balancer
+          readOnly: false
+        type:
+          type: string
+          description: Type of load balancer
+          readOnly: false
+        host:
+          type: string
+          description: Name of host of load balancer
+          readOnly: false
+        ipv4:
+          type: integer
+          format: int32
+          description: IPV4 address of the load balancer. _IPV4 as specified by RFC791_
+          nullable: true
+          readOnly: false
+        ipv6:
+          type: string
+          nullable: true
+          description: IPV6 address of the load balancer. _IPV6 as specified by RFC 2460, RFC 8200_
+          readOnly: false
+        description:
+          type: string
+          description: User-defined descriptor of the load balancer
+          readOnly: false
+        region:
+          type: string
+          description: Physical geographic location of the hardware hosting the load balancer.
+          readOnly: false
+        status:
+          type: string
+          description: Current status of the load balancer.
+          readOnly: false
+      example:
+        id: 64d209eb-a09d-4e2c-939e-4985a8aba70a
+        created_at: '2021-04-16T15:05:23.130Z'
+        network_id: 66d44f30-9092-4182-a3c4-bc02736d6ae5
+        workgroup_id: dc767890-0bbc-4c1d-bc04-f5842330018f
+        name: ceeb3bca-3b92-44b9-8ac5-fdd4564
+        type: provide
+        host: ceeb3bca-3b92-44b9-8ac5-fdd4564-717022042.us-east-2.elb.amazonaws.com
+        description: ceeb3bca-3b92-44b9-8ac5-fdd4564 - aws us-east-2
+        region: us-east-2
+        status: active
+        config: {}
+    LogMessage:
+      title: Log Message
+      type: object
+      description: Format to receive system of record log messages in the proxy
+      properties:
+        baseline_id:
+          type: string
+          
+        message:
+          type: string
+        object_id:
+          type: string
+        severity:
+          type: string
+        timestamp:
+          type: string
+          readOnly: true
+        type:
+          type: string
+    Message:
+      title: Message
+      type: object
+      description: Proxy-internal wrapper for protocol message handling
+      properties:
+        baseline_id:
+          type: string
+        errors:
+          type: string
+        id:
+          type: string
+        message_id:
+          type: string
+        payload:
+          type: string
+        protocol_message:
+          type: string
+        recipients:
+          type: string
+        type:
+          type: string
+    Network:
+      title: Network
+      required:
+        - config
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: UUID of `Network`. _UUID as specifed by RFC4122_
+        created_at:
+          type: string
+          readOnly: true
+          description: Date and time of `Network` creation
+        workgroup_id:
+          type: string
+          readOnly: true
+          description: UUID of `Workgroup` that created the `Network`
+        name:
+          type: string
+          readOnly: false
+          description: User-defined name of `Network`
+        description:
+          type: string
+          nullable: true
+          readOnly: false
+          description: User-defined descriptor of the `Network`
+        enabled:
+          type: boolean
+          description: When true, `Network` is available for use to all provisioned to do so. 
+        chain_id:
+          type: string
+          format: UUID
+          description: UUID of assocated blockchain network. _UUID as specified by RFC4122_
+        is_production:
+          type: boolean
+          description: Denotes that `Network` is stable and ready for use in production environment. 
+        config: {}
+      example:
+        description: Network detail
+        id: 2461556c-25ab-4c49-80e7-8d4733e0231b
+        created_at: '2021-04-16T15:07:01.962+0000'
+        workgroup_id: dc767890-0bbc-4c1d-bc04-f5842330018f
+        name: Sample Testnet
+        enabled: true
+        chain_id: '0x1618585621'
+        config:
+          chain: test
+          chainspec:
+            alloc: {}
+            coinbase: 0
+            config:
+              byzantiumBlock: 0
+              constantinopleBlock: 0
+              eip150Block: 0
+              eip155Block: 0
+              eip158Block: 0
+              homesteadBlock: 0
+              petersburgBlock: 0
+            difficulty: 131072
+            extraData: ''
+            gasLimit: 3141592
+            mixhash: 0
+            nonce: 66
+            parentHash: 0
+            timestamp: 0
+          engine_id: ethash
+          native_currency: TEST
+          network_id: 1618585621
+          platform: evm
+          protocol_id: pow
+    NetworkStatus:
+      title: Network Status
+      properties:
+        block:
+          type: integer
+          format: int32
+        chain_id:
+          type: string
+          format: UUID
+        last_block_at:
+          type: integer
+          format: int64
+        meta:
+          type: object
+          readOnly: true
+          properties:
+            average_blocktime:
+              type: string
+            blocktimes:
+              type: array
+              items:
+                type: string
+            last_block_hash:
+              type: string
+            last_block_header:
+              $ref: '#/components/schemas/LastBlockHeader'
+      example:
+        block: 10051293
+        chain_id: '3'
+        last_block_at: 1618585516000
+        meta:
+          average_blocktime: 0x
+          blocktimes:
+            - '55'
+            - '24'
+            - '8'
+            - '1'
+            - '3'
+            - '20'
+            - '7'
+          last_block_hash: 698465416514684984piouhygiuytfruytdcghbkjhbvjyhdc
+          last_block_header:
+            $ref: '#/components/schemas/LastBlockHeader'
+    OpenIDConfig:
+      title: OpenID Config
+      type: object
+      properties:
+        authorization_endpoint:
+          type: string
+        claims_supported:
+          type: array
+          items:
+            type: string
+        cloud_instance_name:
+          type: string
+        device_authorization_endpoint:
+          type: string
+        end_session_endpoint:
+          type: object
+        frontchannel_logout_supported:
+          type: boolean
+        http_logout_supported:
+          type: boolean
+        id_token_signing_alg_values_supported:
+          type: array
+          items:
+            type: string
+        issuer:
+          type: string
+        jwks_uri:
+          type: string
+        rbac_url:
+          type: object
+        request_uri_parameter_supported:
+          type: boolean
+        response_modes_supported:
+          type: array
+          items:
+            type: string
+        response_types_supported:
+          type: array
+          items:
+            type: string
+        scopes_supported:
+          type: array
+          items:
+            type: string
+        subject_types_supported:
+          type: array
+          items:
+            type: string
+        tenant_region_scope:
+          type: object
+        token_endpoint:
+          type: string
+        token_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+        userinfo_endpoint:
+          type: string
+      example:
+        authorization_endpoint: 'https://ident.provide.services/api/v1/oauth/authorize'
+        claims_supported:
+          - acr
+          - aud
+          - email
+          - exp
+          - iat
+          - iss
+          - nats
+          - nonce
+          - nbf
+          - prvd
+          - sub
+        cloud_instance_name: provide.services
+        device_authorization_endpoint: 'https://ident.provide.services/api/v1/oauth/devicecode'
+        frontchannel_logout_supported: false
+        http_logout_supported: false
+        id_token_signing_alg_values_supported:
+          - EdDSA
+          - RS256
+        issuer: 'https://ident.provide.services'
+        jwks_uri: 'https://ident.provide.services/.well-known/keys'
+        request_uri_parameter_supported: false
+        response_modes_supported:
+          - query
+          - fragment
+          - form_post
+        response_types_supported:
+          - code
+          - id_token
+          - code id_token
+          - id_token token
+        scopes_supported:
+          - email
+          - offline_access
+          - openid
+          - profile
+        subject_types_supported:
+          - pairwise
+        token_endpoint: 'https://ident.provide.services/api/v1/tokens'
+        token_endpoint_auth_methods_supported:
+          - client_secret_post
+          - private_key_jwt
+          - client_secret_basic
+        userinfo_endpoint: 'https://ident.provide.services/api/v1/userinfo'
+    Organization:
+      title: Organization
+      required:
+        - description
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of `Organization` being created
+        description:
+          type: string
+          description: Description of `Organization` being created
+      example:
+        name: ACME Inc.
+        description: organization for testing
+    Participant:
+      title: Participant
+      type: object
+      description: Party to a Baseline `Workgroup` or `Workflow` context
+      properties:
+        address:
+          type: string
+          description: Wallet address of associated `Organization`
+        metadata:
+          type: object
+        api_endpoint:
+          type: string
+          description: Pointer to API communication channel
+        messaging_endpoint:
+          type: string
+          description: Pointer to the client used by the subject `Participant` to send or receive messages 
+      example:
+        adress: 0x1f4a6f3bfdea8fe1539ad538421cba0668bf8edf
+        metadata: {}
+        api_endpoint: https://api_enpoint/api/v1/endpoint
+        messaging_endpoint: https://api_endpoint/v1/messaging
+    ProtocolMessage:
+      title: Protocol Message
+      type: object
+      description: Baseline protocol message
+      properties:
+        baseline_id:
+          type: string
+          format: uuid
+          readOnly: false
+          description: UUID of associated baseline_id
+        opcode:
+          type: string
+        sender:
+          type: string
+        recipient:
+          type: string
+        shield:
+          type: string
+        identifer:
+          type: string
+          format: uuid
+          readOnly: true
+        signature:
+          type: string
+        type:
+          type: string
+        payload:
+          $ref: '#/components/schemas/ProtocolMessagePayload'
+    ProtocolMessagePayload:
+      title: Protocol Message Payload
+      description: Baseline protocol message payload
+      properties:
+        object:
+          type: object
+        proof:
+          type: string
+        type:
+          type: string
+        witness:
+          type: object
+    ProveRequest:
+      title: Prove Request
+      required:
+        - curve
+        - identifier
+        - name
+        - provider
+        - proving_scheme
+      type: object
+      properties:
+        identifier:
+          type: string
+        proving_scheme:
+          type: string
+        curve:
+          type: string
+        provider:
+          type: string
+        name:
+          type: string
+      example:
+        identifier: cubic
+        proving_scheme: groth16
+        curve: BN256
+        provider: gnark
+        name: my 1337 circuit
+    Secret:
+      title: Secret
+      required:
+        - description
+        - name
+        - type
+        - vault_id
+        - value
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID of `Secret`. _UUID as specified by RFC4122_
+        created_at:
+          type: string
+          readOnly: true
+          description: Date-time of `Secret` creation
+        vault_id:
+          type: string
+          readOnly: false
+          description: UUID of `Vault` associated with reference `Secret`. _UUID as specified by RFC4122_
+        type:
+          type: string
+          readOnly: false
+          description: Type of `Secret`. 
+        name:
+          type: string
+          readOnly: false
+          description: User-defined name of `Secret`. 
+        description:
+          type: string
+          readOnly: false
+          description: User-defined descriptor of reference `Secret`
+        value:
+          type: string
+          readOnly: false
+
+      example:
+        id: e9138dd7-b429-410a-bfa8-2a506d9e4297
+        created_at: '2021-04-17T20:35:34.062+0000'
+        vault_id: 22e48752-7bff-4daa-89b3-91053bd509f2
+        type: sample secret
+        name: 'secret #1'
+        description: this secret is being stored for demonstration purposes
+        value: 0x
+    Security:
+      title: Security
+      required:
+        - egress
+        - ingress
+      type: object
+      properties:
+        egress:
+          type: string
+        ingress: {}
+      example:
+        egress: '*'
+        ingress:
+          0.0.0.0/0:
+            tcp:
+              - 4222
+            udp: []
+    StateObject:
+      title: State Object
+      description: The account state of an `Organization`, which must only be changed as a result of a valid transaction (i.e., a successful `Workstep` execution)
+      type: object
+      required:
+        - id
+        - account_id
+      properties:
+        id:
+          type: string
+          format: UUID
+          description: UUID of referenced `StateObject`. _UUID as specified by RFC4122_
+          readOnly: true
+        account_id:
+          type: string
+          format: UUID
+          description: UUID of the `Account`. _UUID as specified by RFC4122_
+          readOnly: false
+        nonce:
+          type: integer
+          description: Nonce of associated `Account`
+          readOnly: false
+        circuit_id:
+          type: string
+          format: UUID
+          description: UUID of the associated `Circuit`. _UUID as specified by RFC4122_
+          readOnly: false   
+    Token:
+      title: Token
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID of `Token` issued. _UUID as specified by RFC4122_
+          readOnly: true
+        scope:
+          type: string
+          description: Scope of authorization request
+          enum:
+            - offline_access
+          readOnly: false
+        expires_in:
+          type: number
+          description: Time in minutes until `Token` will no longer be valid
+          readOnly: true
+          nullable: true
+        access_token:
+          type: string
+          description: JSON formatted Web Token
+          format: password
+          readOnly: true
+          nullable: true
+        refresh_token:
+          type: string
+          description: JSON formatted Web Token
+          format: password
+          readOnly: true
+          nullable: true
+        token:
+          type: string
+          description: JSON formatted Web Token
+          format: password
+          readOnly: true
+          nullable: true
+        permissions:
+          type: number
+          description: 'Authorized permissions for `Token`, expressed as a bitmask'
+          nullable: true
+          readOnly: true
+        organization_id:
+          type: string
+          description: UUID of `Organization` requiring authorization. _UUID as specified by RFC4122_
+          nullable: true
+          writeOnly: true
+        application_id:
+          type: string
+          description: ID of `Workgroup` requiring authorization. _UUID as specified by RFC4122_
+          nullable: true
+          writeOnly: true
+      example:
+        id: r19e831-43fd-237e-8b43-12af828ba3e3
+        scope: offline_access
+        expires_in: 900
+        access_token: <JWT>
+        refresh_token: <JWT>
+        permissions: 415
+    Transaction:
+      properties:
+        id:
+          type: string
+          description: UUID for a specific `Transaction`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          description: Date and time of `Transaction` creation
+          format: date-time
+          readOnly: true
+        network_id:
+          type: string
+          description: UUID of the `Network` on which the Transaction will be broadcast. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: false
+        user_id:
+          type: string
+          description: UUID for the `User` that created `Transaction`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        wallet_id:
+          type: string
+          description: UUID of `Wallet` to be used to sign `Transaction`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: false
+        key_id:
+          type: string
+          description: UUID of the Vault Key which will be used to sign the `Transaction`; required in the absence of a `signer`. _UUID as specified by RFC4122_
+          format: uuid
+        account_id:
+          type: string
+          description: UUID of `Account` to be used for `Transaction` creation. _UUID as specified by RFC4122_
+        hd_derivation_path:
+          type: string
+        to:
+          type: string
+          description: 'Public network address of the recipient of the Transaction, if applicable'
+        value:
+          type: number
+          description: 'Total amount of value, represented in the smallest standard denomination of native currency for the target Network (i.e., wei), to be transferred by the sender to the recipient'
+        data:
+          type: object
+          nullable: true
+        hash:
+          type: string
+          readOnly: true
+        status:
+          type: string
+          readOnly: true
+        ref:
+          type: object
+          nullable: true
+          readOnly: true
+        description:
+          type: object
+          nullable: true
+        block:
+          type: number
+          readOnly: true
+        block_timestamp:
+          type: string
+          readOnly: true
+        broadcast_at:
+          type: string
+          format: date-time
+          readOnly: true
+        finalized_at:
+          type: string
+          format: date-time
+          readOnly: true
+        published_at:
+          type: string
+          format: date-time
+          readOnly: true
+        queue_latency:
+          type: integer
+          readOnly: true
+        network_latency:
+          type: integer
+          readOnly: true
+        e2e_latency:
+          type: integer
+          readOnly: true
+      example:
+        id: 99a61ee5-73ea-46d1-a434-b6a2a908bc51
+        created_at: '2021-04-21T02:12:11.158Z'
+        network_id: 66d44f30-9092-4182-a3c4-bc02736d6ae5
+        user_id: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
+        wallet_id: 0fda2f96-d957-4f65-9e92-fa5092c51751
+        hd_derivation_path: m/44'/60'/0'/0/0
+        to: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
+        value: 0
+        hash: 698465416514684984piouhygiuytfruytdcghbkjhbvjyhdc
+        status: success
+        block: 10079406
+        block_timestamp: '2021-04-21T02:12:05.000Z'
+        finalized_at: '2021-04-21T02:12:14.277Z'
+    UnsealVaultRequest:
+      title: Unseal Vault Request
+      required:
+        - key
+      type: object
+      properties:
+        key:
+          type: string
+      example:
+        key: quantum mirror summer general keep west promote satisfy limit butter mother oyster lazy whip earn spot ticket protect mean play script peace parent intact
+    User:
+      title: User
+      required:
+        - email
+        - first_name
+        - last_name
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID for the reference `User`. Expressed as a _UUID as specified by RFC4122_
+          readOnly: true
+          example: 7r19e831-43fd-237e-8b43-12af828ba3e3
+        created_at:
+          type: string
+          description: Date and time of `User` creation
+          readOnly: true
+          example: '2021-01-27T03:19:33.349Z'
+        name:
+          type: string
+          description: Full name of `User`
+          example: Joe User
+          readOnly: true
+        first_name:
+          type: string
+          description: First name of `User`
+          example: Joe
+          readOnly: false
+        last_name:
+          type: string
+          description: Last name of `User`
+          example: User
+          readOnly: false
+        email:
+          type: string
+          description: Email address for `User`
+          example: joeusr@baseline.local
+          readOnly: false
+        password:
+          type: string
+          format: password
+          writeOnly: true
+          example: s3cr37
+        permissions:
+          type: integer
+          description: Authorized privileges for `User`
+          readOnly: true
+          example: 415
+        privacy_policy_agreed_at:
+          type: string
+          description: Date and time of acceptance of the privacy policy
+          readOnly: true
+          example: '2021-01-27T03:19:33.349Z'
+        terms_of_service_agreed_at:
+          type: string
+          description: Date and time of acceptance of the terms of service
+          readOnly: true
+          example: '2021-01-27T03:19:33.349Z'
+      example:
+        id: 7r19e831-43fd-237e-8b43-12af828ba3e3
+        created_at: '2021-01-27T03:19:33.349Z'
+        name: Joe User
+        first_name: Joe
+        last_name: User
+        email: joeusr@baseline.local
+        permissions: 415
+        privacy_policy_agreed_at: '2021-01-27T03:19:33.349Z'
+        terms_of_service_agreed_at: '2021-01-27T03:19:33.349Z'
+    Vault:
+      title: Vault
+      type: object
+      description: Provides key management with a focus on providing advanced privacy and messaging capabilities (i.e., zero-knowledge proofs, SNARK-friendly hash functions, double-ratchet algorithm, etc.)
+      properties:
+        id:
+          type: string
+          description: UUID for a specific `Vault` instance. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          description: Date and time of `Vault` creation. 
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          description: User-defined identifier for a specific `Vault` instance
+          readOnly: false
+        description:
+          type: string
+          description: User-defined summary of a specific `Vault`  instance
+          readOnly: false
+    VerifyProofRequest:
+      title: Verify Proof Request
+      description: Hierarchical deterministic (HD) wallet in accordance with BIP44
+      required:
+        - proof
+        - witness
+      type: object
+      properties:
+        witness:
+          $ref: '#/components/schemas/Witness'
+        proof:
+          type: string
+          description: The hex-formatted proof to verify
+        store:
+          type: boolean
+          description: 'when true, the proof hash is written to the configured circuit store'
+      example:
+        witness:
+          X: '3'
+          'Y': '35'
+        proof: 88b8d340795f4258c1f2c0ed8478b44859c90472af9ccdc5c54b02c85bcd879d9ddf3a3fb7c6926ea247c0b1c411abe2f5ba9c8deba60ab476428272767a761d1e14e343208024326429e361ebbc4c11daf5f16dbb7f7f4679cf85b17b59b1bdaa379a82ddab4dcbb7cd2bc32cdebadc6825c72d5f8e624f6d0f6b07906a8248
+    Wallet:
+      title: Wallet
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID for a unique `Wallet`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          description: Date and time of `Wallet` creation
+          readOnly: true
+        network_id:
+          type: string
+          format: uuid
+          readOnly: false
+          description: UUID for the target `Network`. _UUID as specified by RFC4122_
+        user_id:
+          type: string
+          description: UUID for the `User` that created a `Wallet`. _UUID as specified by RFC4122_
+          readOnly: true
+        vault_id:
+          type: string
+          description: UUID for the `Vault` that created a `Wallet`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+        key_id:
+          type: string
+          description: UUID of private key used to create `Wallet`
+          format: uuid
+          readOnly: true
+        purpose:
+          type: integer
+          description: Purpose is a constant set to 44' (or 0x8000002C) following the BIP43 recommendation. It indicates that the subtree of this node is used according to this specification. Hardened derivation is used at this level
+          format: string
+          readOnly: false
+        public_key:
+          type: string
+          description: Public signing key of `Wallet`
+          readOnly: true
+      example:
+        id: bbc1195e-d131-4b2f-b1a8-1b6f34b55d3e
+        created_at: '2021-03-30T02:50:17.155Z'
+        user_id: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
+        vault_id: 190822c9-62f5-4caf-a419-df735a793b2f
+        key_id: db9e6e21-23b0-497d-a02c-8a8813f8bf2d
+        purpose: 44
+        public_key: xpub661MyMwAqRbcGdYXwwnwcnrH51AxyF3kkTeEt6iZfNDXsg4MLPgV7bEZ2v4uCx9djAboy6vSv3VbHPc6hf4Do8wb7FpJCuG7aMBwH2QgLJu
+    Witness:
+      title: Witness
+      required:
+        - 'X'
+        - 'Y'
+      type: object
+      properties:
+        'X':
+          type: string
+        'Y':
+          type: string
+      description: Public and private inputs used to generate the `proof`
+      example:
+        X: '3'
+        'Y': '35'
+    Workgroup:
+      required:
+        - name
+        - type
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID for the `Workgroup`. _UUID as specified by RFC4122_
+          format: uuid
+          readOnly: true
+          example: bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6
+        created_at:
+          minLength: 1
+          type: string
+          description: Date and time of record creation.
+          format: date-time
+          readOnly: true
+          example: '2021-05-21T12:36:52.977Z'
+        network_id:
+          type: string
+          description: UUID for the host `Network` of the `Workgroup`. _UUID as specified by RFC4122_
+          format: uuid
+          example: 07102258-5e49-480e-86af-6d0c3260827d
+        user_id:
+          maxLength: 36
+          minLength: 1
+          type: string
+          description: UUID for the `User` that created the `Workgroup`. _UUID as specifed by RFC4122_
+          format: uuid
+          example: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
+        name:
+          minLength: 1
+          type: string
+          description: User-defined name of the `Workgroup`
+        description:
+          type: string
+          description: User-defined `Workgroup` descriptor
+          example: Sample workgroup description
+        type:
+          minLength: 1
+          type: string
+          description: 'Designates `Workgroup` type. In a baseline `Workgroup`, will always be `baseline`'
+          example: baseline
+          default: baseline
+        config:
+          $ref: '#/components/schemas/WorkgroupConfig'
+        hidden:
+          type: boolean
+          description: 'When `true`, the `Workgroup` is hidden/archived'
+      description: |-
+        A `Workgroup` represents a logical collection of resources provisioned within the baseline containerized microservices architecture. A `Workgroup` is immutably configured upon initialization with support for a primary 'Network' (or "mainnet").
+      example:
+        id: bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6
+        created_at: '2021-05-21T12:36:52.977Z'
+        network_id: 07102258-5e49-480e-86af-6d0c3260827d
+        user_id: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
+        name: Demo Workgroup
+        description: Workgroup intended for demonstration purposes
+        type: baseline
+        config:
+          baselined: true
+          webhook_secret: 1dfd34519a06420d8a6ed18afdffe932
+        hidden: false
+    WorkgroupConfig:
+      title: Workgroup Config
+      type: object
+      properties:
+        baselined:
+          type: boolean
+        webhook_secret:
+          minLength: 1
+          type: string
+        network_id:
+          type: string
+      description: Configuration object intended for use by integrated services
+    Workflow:
+      title: Workflow instance
+      type: object
+      description: Baseline `Workflow` context containing a subset of `Workgroup` participants and series of `Workstep` instances
+      properties:
+        id:
+          type: string
+          format: UUID
+          description: UUID of `Workflow`. _UUID as specified by RFC4122_
+        identifier:
+          type: string
+        participants:
+          type: array
+          items:
+            type: string
+            description: List of authorized `Organization` instances authorized to participate in the `Workflow`
+        shield:
+          type: string
+        workstep_index:
+          type: integer
+          format: int64
+    Workstep:
+      title: Workstep
+      description: One stepwise state transition in a `Workflow`, represented by a `Circuit`. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.
+      type: object
+      required:
+        - id
+        - participants
+      properties:
+        id:
+          type: string
+          format: UUID
+          description: UUID of `Workstep`. _UUID as specifed by RFC4122_
+        circuit_id:
+          type: string
+          format: UUID
+          description: UUID of the associated `Circuit`. _UUID as specifed by RFC4122_
+        parcicipants:
+          type: array
+          items:
+            type: string
+          description: Retrieves IDs of `Organization` instances authorized to provide inputsd
+        require_finality:
+          type: boolean
+          default: false
+        workflow_id:
+          type: string
+          format: UUID
+          description: UUID of `Workflow` instance the subject `Workstep` is included in            
+  responses:
+    OK:
+      description: The request was successful
+    NoContent:
+      description: The request was successful but did not return a response
+    Accepted:
+      description: 'The request has been accepted for processing, but the processing has not been completed'
+    Success:
+      description: The request was successful and a new entity was created
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+          example:
+            code: 401
+            message: 'The request required an API Authorization header, or one was provided which could not be authenticated'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+          example:
+            code: 403
+            message: The supplied API Authorization header does not have permission to access the requested resource. Please verify that you have sufficient permissions and try again
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+          example:
+            code: 404
+            message: Platform did not find the requested resource
+    TooManyRequests:
+      description: Too many requests
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+            example:
+              code: 429
+              message: The request was not accepted due to exceeding the rate limit
+    InternalServerError:
+      description: Not Implemented
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+          example:
+            code: 500
+            message: The requested resource is not implemented by the platform
+    ServiceUnavailable:
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+              message:
+                type: string
+          example:
+            code: 503
+            message: The request cannot be fulfilled due to temporary unavailability of a backend service
+  parameters:
+    page:
+      name: page
+      in: query
+      description: Limits resulting response to the page number specified
+      required: false
+      schema:
+        type: integer
+    results-per-page:
+      name: rpp
+      in: query
+      description: Sets the number of results included per page
+      required: false
+      schema:
+        type: integer
+    public:
+      name: public
+      in: query
+      description: When `TRUE` limits results to non-private records
+      required: false
+      schema:
+        type: boolean
+  headers:
+    X-Total-Results-Count:
+      schema:
+        type: integer
+        description: Number of total query hits across all pages
+        example: 14
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: 'The presence of a `bearer` API token is required to authorize most Baseline API calls. A `bearer` API token is an encoded JWT which contains a subject claim (`sub`) which references an authorized entity (i.e., the `User`, `Application` or `Organization`). The authorized entity uses a signed `bearer` authorization Token to access one or more resources for which the Token was authorized.  Unless otherwise noted, all API requests must include a header such as `Authorization: bearer <jwt>`'
+      scheme: bearer
+      bearerFormat: JWT
+    OAuth2:
+      type: oauth2
+      description: 'OAuth2 support. In accordance with the OAuth 2.0 specification, when an entity is authorized and the requested `scope` includes `offline_access`, a refresh token is vended and returned on behalf of the caller. This refresh token is long-lived and can be used to authorize short-lived access tokens using the `refresh_token `grant type on subsequent authorization requests. This pattern is useful for machine-to-machine applications; a secure practice is to store the long-lived refresh token in a Vault instance (i.e., as a secret), read it into application memory during container initialization and then use it to authorize a short-lived access token. If the container remains running long enough for the access token to expire, the refresh token should once again be used to seamlessly authorize a new access token.'
+      flows:
+        implicit:
+          authorizationUrl: 'https://ident.provide.services/api/v1/oauth/authorize'
+          scopes:
+            email: email and password
+            offline_access: access/refresh token authorization model
+            profile: ''
+            openid: ''
+externalDocs:
+    description: Privacy Policy
+    url: 'https://provide.services/privacy-policy'
