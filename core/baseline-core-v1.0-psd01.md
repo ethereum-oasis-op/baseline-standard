@@ -98,6 +98,22 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Glossary](#12-glossary) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Typographical Conventions](#13-typographical-conventions) \
 [2 Design and Architecture](#2-design-and-architecture) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](##21-Agreement)\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](##22-State-Object)\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](##23-Transacting-Counterparties)\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](##24-Commerciallyand-Legally-Binding-Documents)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1 Contract](###241-Contract)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](###242-Commercia-Documents)\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Distributed Ledger Technology (DLT)](##25-Distributed-Ledger-Technology-(DLT))\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](##26-Baseline-Protocol-Instance)\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](##27-High-Level-Functional-Requirements)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 Functional Requirements on commercial counterparties](###271-Functional-Requirements-on-commercial-counterparties)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 	DLT-based Lifecycle Processes](###272-DLT-based-Lifecycle-Processes)\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Baseline Protocol Reference Architecture](##28-Baseline-Protocol-Reference-Architecture)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.1 (Commercial) State Synchornization](###281-(Commercial)-State-Synchornization)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.2 DLTs and BPI/DLT Abstraction-Layers](###282-DLTs-and-BPI/DLT-Abstraction-Layers)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3-External-Applications](###283-External-Applications)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components](###284-Baseline-Protocol-Stack-Detailed-Reference-Architecture-Layers-and-Components)\
 [3 API and Data Model](#3-api-and-data-model) \
 [4 Communication](#4-communication) \
 &nbsp;&nbsp;&nbsp;&nbsp;[4.1 Authentication and Authorization](#41-authentication-and-authorization) \
@@ -371,7 +387,7 @@ Abstractly, a BPI consists of
 
 BPIs are strongly dependent on the security and privacy capabilities of the DLT used to implement a BPI.
 
-**[R11]**	A BPI MUST be implemented on a DLT.
+**[R11]**	A BPI MUST utilize a DLT.
 
 Security and Privacy requirements of a BPI are key and are strongly dependent on the security and privacy assurances of the DLT on which the BPI is implemented can provide. BPIs need to take great care to avoid the following two situations:
 
@@ -380,13 +396,13 @@ Security and Privacy requirements of a BPI are key and are strongly dependent on
 	
 Hence, we enumerate the following requirements below:
 
-**[R12]**	A BPI MUST have the same security assurances as the DLT used to implement it.
+**[R12]**	A BPI MUST have the same security assurances as the DLT it utilizes.
 
-**[R13]**	(Commercial) State changes of a BPI MUST be verifiable on the DLT used to implement it.
+**[R13]**	(Commercial) State changes of a BPI MUST be verifiable on the DLT it utilizes.
 
 Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the DLT, that a transaction changed the state of a (commercial) State Object in the BPI correctly, based on agreed upon business rules - for example changing the Order status from open to completed.
 
-**[R14]**	A BPI SHOULD have the same Liveness properties as the DLT used to implement it.
+**[R14]**	A BPI SHOULD have at least the same Liveness properties as the DLT it utilizes.
 
 Liveness means that if a DLT does not require (commercial) counterparties to constantly monitor its state to ensure that the state of the DLT is correct, then the BPI should not require a constant observation of its state either.
 
@@ -507,7 +523,7 @@ The agreement on the governance entity, its rules, and its method of achieving i
 
 Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
 
-### 2.8.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Componants
+### 2.8.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
 <figure>
   <img
