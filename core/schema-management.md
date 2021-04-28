@@ -2,13 +2,13 @@
 
 ## Problem Description
 
-To enable data exchange between business parties involved in a Baseline Workflow (or only Workstep?) (in short, parties), there must be present a set of pre-agreed schemas. 
+To enable data exchange between business Parties involved in a Baseline Workflow (or only Workstep?), there must be present a set of pre-agreed schemas. 
 
 Furthermore, at least identifying different versions of the same schema must be possible for each Baseline instance. A Baseline instance may support different versions of the same schema.
 
 ## Schema
   
-Minimum data model describing the structure of exchanged messages between different components and APIs. It must include list of mandatory fields/properties and their types (and their description?).
+Minimum data model describing the structure of exchanged messages between different components and APIs. It must include list of mandatory fields/properties and their types and should include their description.
 
 ## Agreement on Schema
 (in scope?)
@@ -23,7 +23,7 @@ An agreement could be _explicit_ with stating the list of agreed upon versioned 
 
 All the schemas must be available to all the Baseline instances involved in a Workflow (or only Workstep?).
 
-Schemas may be available publicly to everyone.
+Schemas may be made available publicly.
 
 A Schema must be uniquely identifiable by the Baseline instances.
 
