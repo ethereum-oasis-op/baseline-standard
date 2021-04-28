@@ -112,7 +112,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[2.8 Baseline Protocol Reference Architecture](##28-Baseline-Protocol-Reference-Architecture)\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.1 (Commercial) State Synchornization](###281-(Commercial)-State-Synchornization)\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.2 DLTs and BPI/DLT Abstraction-Layers](###282-DLTs-and-BPI/DLT-Abstraction-Layers)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3-External Applications](###283-External-Applications)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3 External Applications](###283-External-Applications)\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components](###284-Baseline-Protocol-Stack-Detailed-Reference-Architecture-Layers-and-Components)\
 [3 API and Data Model](#3-api-and-data-model) \
 [4 Communication](#4-communication) \
