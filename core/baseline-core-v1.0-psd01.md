@@ -216,6 +216,13 @@ The ability of a Party to migrate and re-baseline its existing Workflows and dat
 
 A way of ensuring the privacy of Workflow data represented on a public Mainnet. - permissionless vs public - to discuss and review.
 
+**Proof of Correctness:**
+A Proof of Correctness is a mathematical proof that a computer program or a part thereof will, when executed, yield correct results, i.e. results fulfilling specific requirements. Before proving a program correct, the theorem to be proved must, of course, be formulated. The hypothesis of such a correctness theorem is typically a condition that the relevant program variables must satisfy immediately before the program is executed. This condition is called the precondition. The thesis of the correctness theorem is typically a condition that the relevant program variables must satisfy immediately after execution of the program. This latter condition is called the postcondition. The thesis of a correctness theorem may be a statement that the final values of the program variables are a particular function of their initial values.
+
+"Encyclopedia of Software Engineering",
+Print ISBN: 9780471377375| Online ISBN: 9780471028956| DOI: 10.1002/0471028959,
+(2002), John Wiley & Sons, Inc.
+
 **System of Record:**
 
 The integrity of the data in data architecture is established by what can be called the “system of record.” The system of record is the one place where the value of data is definitively established. Note that the system of record applies only to detailed granular data. The system of record does not apply to summa-rized or derived data.
@@ -282,7 +289,10 @@ A Requester may request State Objects from multiple Providers and in the context
 ## 2.4 Commercially and Legally Binding Documents
 Prior to establishing a business and operational environment, Requester(s) and Provider(s) (“the parties”) sign agreements that commercially and legally bind the parties. 
 
-Such documents may be presented as a combination of one or more of the following: Master Services Agreement, Specific Terms and Conditions and an Order.
+Such documents may be presented as a combination of one or more of the following: 
+* Master Services Agreement,
+* Specific Terms and Conditions and 
+* an Order.
 
 **[R2]**	The parties to a Commercial Agreement MUST sign commercially and legally binding documents with each other.
 
@@ -336,8 +346,8 @@ Authorizations for commercial transactions are a foundational element in the con
 
 Note that while non-repudiation in the physical world is most often tied to a physical signature of an individual on a legal document, in the digital world a digital signature over a digital legal document such as an Order or an Invoice belonging to a known and verifiable digital identity of a counterparty serves the same purpose.
 
-Example
-A Buyer and Seller may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.
+Example:
+A Buyer ("Requester") and Seller ("Provider") may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.
 
 ## 2.5 Distributed Ledger Technology (DLT)
 
@@ -417,6 +427,8 @@ Commercial Counterparties must comply efficiently and effectively with requireme
 
 **[R21]**	If required to meet particular third party requirements, (e.g., privacy or regu-latory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
 
+Note, that in principal every product, service, or asset, or sets thereof has a supply chain. This requirement aims at situations where the product, service, or asset or sets thereof cannot be solely supplied by the Provider without sourcing components from other Providers.
+
 Requesters are only aware of the identity and commercial data of their Provider(s), but not of the other participants in the supply chain. However, Requesters can cryptographically verify that a given set of claims by Providers about the supply chain are true, for example, that all supply chain participants are not located in an embargo country.
 
 Therefore, a pseudonymous map of a supply chain is a cryptographically connected and verifiable list of proofs about the relationships of participants and integrity of supply chain events that does not disclose identifying details of Providers and their commercial data.
@@ -454,13 +466,13 @@ Without a BPI, both Buyer and Seller must assume that the MSA between them and a
 
 **[R23]** 	The (commercial) counterparties MUST validate the correctness of a (commercial) State Object based on a commercial state change against the transaction business logic in the applicable BPI workflow and workstep.
 
-**[R24]** 	The (commercial) counterparties MUST generate a proof of correctness of a (commercial) State Object based on a commercial state change that can be validated against the BPI transaction business logic.
+**[R24]** 	The (commercial) counterparties MUST generate a Proof of Correctness of a (commercial) State Object based on a commercial state change that can be validated against the BPI transaction business logic.
 
 **[R25]** 	Any new (commercial) state between counterparties MUST be recorded on the BPI between them.
 
-**[R26]** 	Any counterparty having received a proof of correctness of a (commercial) state change MUST be able to validate that proof of correctness aginst the BPI between the counterparties.
+**[R26]** 	Any counterparty having received a Proof of Correctness of a (commercial) state change MUST be able to validate that Proof of Correctness aginst the BPI between the counterparties.
 
-**[R27]** 	A (commercial) counterparty MUST include a verifiable proof of correctness of the (commercial) State Object generated by the commercial state change in the BPI Messages between the transacting counterparties.
+**[R27]** 	A (commercial) counterparty MUST include a Proof of Correctness of the (commercial) State Object generated by the commercial state change in the BPI Messages between the transacting counterparties.
 
 ### 2.8.2 DLTs and BPI/DLT Abstraction Layers
 
@@ -483,9 +495,9 @@ The Client DLT API as an external BPI API is implementation specific and will no
 
 This approach avoids lengthy discussions about which DLT protocol to utilize for a BPI, simplifying the decision making process considerably if most common DLTs are incorporated.
 
-Note that irrespective of whether one is in a public or private DLT scenario, the settings of a protocol such as block time, consensus model, type of execution framework etc. needs to be agreed upon by operating entities in some fashion either informally such as in Ethereum or formally such as in the Trade Finance consortium Komgo. 
+Note that irrespective of whether one is in a public or private DLT scenario, the protocol settings such as block time, consensus model, type of execution framework etc. needs to be agreed upon by operating entities in some fashion either informally such as in Ethereum or formally such as in the Trade Finance consortium Komgo. 
 
-The agreement on the governance entity, its rules, and its method of achieving interval syn-chronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.
+The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.
 
 **[R31]**	The (commercial) counterparties MUST agree on the BPI.
 
@@ -493,7 +505,7 @@ The agreement on the governance entity, its rules, and its method of achieving i
 
 **[R32]**	Application/s providing commercial transaction functionality such as billing to (commercial) counterparties, and re, therefore, external with respect to the BPI, MUST be independent of any BPI.
 
-Note, that this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
+Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
 
 ### 2.8.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Componants
 
