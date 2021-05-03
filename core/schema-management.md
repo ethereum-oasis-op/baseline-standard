@@ -2,7 +2,7 @@
 
 ## Problem Description
 
-To enable data exchange between business Parties involved in a Baseline Workflow (or only Workstep?), there must be present a set of pre-agreed schemas. 
+To enable data exchange and functional interoperability between business Parties involved in a Baseline Workflow (or only Workstep?), there must be present a set of pre-agreed schemas. 
 
 Furthermore, at least identifying different versions of the same schema must be possible for each Baseline instance. A Baseline instance may support different versions of the same schema.
 
