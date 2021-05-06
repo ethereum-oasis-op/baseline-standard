@@ -59,7 +59,7 @@ _Baseline DLT Requirements version 1.0_ - https://github.com/ethereum-oasis/base
 
 
 #### Abstract:
-This document describes the minimal set of technical prerequisites, functional and non-functional requirements on Distributed Ledger Technology (DLT) that when implemented ensures that two or more systems of record can synchronize their system state over a public DLT network.
+The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements for a Distributed Ledger Technology (DLT) network that when utilized ensures that two or more systems of record can synchronize their system state over said DLT securely and privately.
 
 #### Status:
 This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline TC team.
@@ -95,7 +95,7 @@ For complete copyright information please see the Notices section in the Appendi
 # Table of Contents
 [1 Introduction](#1-introduction) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 Glossary](#11-glossary) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Typographical Conventions](#12-typographical-conventions) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Typographical Conventions] (#12-typographical-conventions) \
 [2 Security](#2-Security) \
 [3 Privacy](#3-Privacy) \
 [4 Scalability](#4-Scalability) \

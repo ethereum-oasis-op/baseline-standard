@@ -7,7 +7,7 @@
 
 ## The Baseline CORE Specification
 
-The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture for a Distributed Ledger Technology (DLT) network that when utilized ensures that two or more systems of record can synchronize their system state over said DLT securely and privately.
+The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements for a Distributed Ledger Technology (DLT) network that when utilized ensures that two or more systems of record can synchronize their system state over said DLT securely and privately.
 
 ## Status
 
@@ -53,7 +53,11 @@ The Baseline DLT specification is currently work in progress.
     <td>Describes the requirements on Virtual State Machines that compute DLT state transitions in a DLT utilized in a Baseline implementation</td>
   </tr>
   <tr>
-    <td>Integration</td>
+    <td>Data Integrity & Transaction Completeness</td>
+    <td>Describes the requirements on a DLT utilized in a Baseline implementation such that data integrity and transaction completeness are ensured.</td>
+  </tr>
+  <tr>
+    <td>Integration to External Applications</td>
     <td>Describes the requirements on a DLT utilized in a Baseline implementation such that it can best intergate into an enterprise IT environment.</td>
   </tr>
 </table>
