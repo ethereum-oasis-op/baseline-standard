@@ -2,7 +2,7 @@
 ![OASIS Logo](http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 -------
 
-# Baseline Core Version 1.0
+# Baseline DLT Specification Version 1.0
 
 ## Project Specification Working Draft
 
@@ -55,7 +55,7 @@ This specification replaces or supersedes:
  -->
 
 This specification is related to: \
-_Baseline API and Data Model version 1.0_ - https://github.com/ethereum-oasis/baseline/tree/master/docs/specs/api
+_Baseline DLT Requirements version 1.0_ - https://github.com/ethereum-oasis/baseline/tree/master/docs/specs/dlt
 
 
 #### Abstract:
