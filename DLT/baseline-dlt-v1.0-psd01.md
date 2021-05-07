@@ -116,7 +116,7 @@ For complete copyright information please see the Notices section in the Appendi
 
 # 1 Introduction
 
-DLT is the foundational enabler of a Baseline Protocol Instance (BPI) with no or limited trust assumptions. The requirements that a DLT must satisfy for it to be used in a BPI as defined in the Baseline Standard fall in the following categories:
+Distributed Ledger Technology (DLT) is the foundational enabler of a Baseline Protocol Instance (BPI) with no or limited trust assumptions. The requirements that a DLT must satisfy for it to be used in a BPI as defined in the Baseline Standard fall in the following categories:
 1. Security
 2. Privacy
 3. Scalability
