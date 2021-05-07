@@ -187,6 +187,8 @@ Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive 
 
 # 2. Security
 
+DLT security is one of the most, if not the most important characteristic of a DLT. Therefore, great care has to be taken in its defintion, startting with the utilized cryptographic alogrithms and their implementations. 
+
 **[R1]**	A DLT utilized in a BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
 The usage of cryptographic libraries that successfully passed the National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program (CMVP) is recommended.
