@@ -95,7 +95,7 @@ For complete copyright information please see the Notices section in the Appendi
 # Table of Contents
 [1 Introduction](#1-introduction) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 Glossary](#11-glossary) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Typographical Conventions] (#12-typographical-conventions) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Typographical Conventions](#12-typographical-conventions) \
 [2 Security](#2-Security) \
 [3 Privacy](#3-Privacy) \
 [4 Scalability](#4-Scalability) \
