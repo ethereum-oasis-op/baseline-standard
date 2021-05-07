@@ -127,7 +127,7 @@ Distributed Ledger Technology (DLT) is the foundational enabler of a Baseline Pr
 8. Data Integrity & Transaction Completeness 
 9. Integration to External Applications
 
-In the requirements below we will refer to "The DLT" to mean a DLT chosen by the partici-pants to implement a BPI.
+In the requirements below we will refer to "The DLT" to mean a DLT chosen by the participants to implement a BPI.
 
 
 ## 1.2 Glossary
@@ -138,15 +138,15 @@ The Baseline Protocol is a set of methods that enable two or more state machines
 
 **Byzantine Fault Tolerant(BFT):**
 
-Given a network or system of n components, t of which are dishonest, and assuming only point-to-point channels between all the com-ponents, then whenever a component A tries to broadcast a value x such as a block of transactions, the other components are permit-ted to discuss with each other and verify the consistency of A's broadcast, and eventually settle on a common value y. The system is then considered to resist Byzantine faults if a component A can broadcast a value x, and then:
-* If A is honest, then all honest compo-nents agree on the value x.
+Given a network or system of n components, t of which are dishonest, and assuming only point-to-point channels between all the components, then whenever a component A tries to broadcast a value x such as a block of transactions, the other components are permit-ted to discuss with each other and verify the consistency of A's broadcast, and eventually settle on a common value y. The system is then considered to resist Byzantine faults if a component A can broadcast a value x, and then:
+* If A is honest, then all honest components agree on the value x.
 * If A is dishonest, all honest components agree on the common value y.
 
 "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982
 
 **Distributed Ledger Technology(DLT):**
 
-Distributed Ledger Technology is a digital system for recording the transaction of assets in which the transactions and their details are recorded in multiple places at the same time. Unlike traditional databases, distributed ledg-ers have no central data store or administra-tion functionality.
+Distributed Ledger Technology is a digital system for recording the transaction of assets in which the transactions and their details are recorded in multiple places at the same time. Unlike traditional databases, distributed ledgers have no central data store or administration functionality.
 
 University of Cambridge, Cambridge Judge Business School – Defining DLT, August 2018
 
@@ -155,7 +155,7 @@ University of Cambridge, Cambridge Judge Business School – Defining DLT, Augus
 The ability of a Party operating Workflows on a baseline-compliant implementation A to instantiate and operate one or more Workflows with one or more Party on a baseline-compliant implementation B without the Party on either implementation A or B having to know anything of the other Party’s implementation.
 
 **Liveness:**
-In concurrent computing, liveness refers to a set of properties of concurrent systems, that require a system to make progress, despite its concurrently executing components ("process-es") may have to "take turns" in critical sec-tions, parts of the program that cannot be sim-ultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
+In concurrent computing, liveness refers to a set of properties of concurrent systems, that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
 
 Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
 
@@ -172,7 +172,7 @@ Print ISBN: 9780471377375| Online ISBN: 9780471028956| DOI: 10.1002/0471028959,
 
 **Verifiably Secure:**
 
-Verifiable computing that can be described as verifiably secure enables a computer to of-fload the computation of some function to other perhaps untrusted clients, while main-taining verifiable, and thus secure, results. The other clients evaluate the function and return the result with a proof that the compu-tation of the function was carried out correct-ly. The proof is not absolute but is dependent on the validity of the security assumptions used in the proof. For example, a blockchain consensus algorithm where the proof of com-putation is the nonce of a block. Someone in-specting the block can assume with virtual certainty that the results are correct because the number of computational nodes that agreed on the outcome of the same computa-tion is defined as sufficient for the consensus outcome to be secure in the consensus algo-rithm’s mathematical proof of security. 
+Verifiable computing that can be described as verifiably secure enables a computer to offload the computation of some function to other perhaps untrusted clients, while maintaining verifiable, and thus secure, results. The other clients evaluate the function and return the result with a proof that the computation of the function was carried out correctly. The proof is not absolute but is dependent on the validity of the security assumptions used in the proof. For example, a blockchain consensus algorithm where the proof of computation is the nonce of a block. Someone inspecting the block can assume with virtual certainty that the results are correct because the number of computational nodes that agreed on the outcome of the same computation is defined as sufficient for the consensus outcome to be secure in the consensus algorithm’s mathematical proof of security. 
 
 Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive Verifiable Computing: Outsourcing Computation to Untrusted Workers. CRYPTO 2010. doi:10.1007/978-3-642-14623-7_25 
 
@@ -250,7 +250,7 @@ This requirement means that a DLT has a mechanism to securely connect its state 
 
 An example of such techniques is a two-phase lock relay bridge. Two-phase locking (2PL) is a concurrency control method that guarantees serializability. The protocol utilizes locks, applied by a DLT transaction to data/assets, which may block other DLT transactions from accessing the same data/assets during the transaction's life. This protocol requires support for DLT transaction receipts signaling DLT transaction lifecycle completeness. This approach requires a relay server (network) between the two DLTs which interacts with the locking/unlocking smart contracts on each of the DLTs. Since both DLTs operate the same DLT protocol the relay server can be a node on both networks which does not introduce further security assumptions.
 
-**[D6]**	When transactions connect one DLT with another DLT for the purpose of in-teroperating assets or data across BPIs, and the DLTs use different DLT Protocols, the DLTs utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
+**[D6]**	When transactions connect one DLT with another DLT for the purpose of interoperating assets or data across BPIs, and the DLTs use different DLT Protocols, the DLTs utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
 An example of such techniques are Atomic Swap protocols. An atomic swap is a DLT smart contract technology that enables the exchange of one DLT asset for another without using centralized intermediaries, such as exchanges.
 
@@ -276,11 +276,11 @@ The consensus algorithm is the most important component of a DLT as it ensures t
 
 **[R14]**	The DLT utilized in a BPI MUST be able to support more than one BFT consensus algorithm, also known as pluggable consensus.
 
-Note, that deterministic BFT consensus algorithms lead to strong consistency, and, thus, imme-diate finality. Probabilistic BFT consensus algorithms lead to eventual consistency, and, thus, eventual finality.
+Note, that deterministic BFT consensus algorithms lead to strong consistency, and, thus, immediate finality. Probabilistic BFT consensus algorithms lead to eventual consistency, and, thus, eventual finality.
 
 **[R15]**	Consensus algorithms employed in the DLT utilized in a BPI MUST have a mathematical proof of security.
 
-A mathematical proof of security is a collection of mathematically provable theorems that make security statements about the three characteristics of a consensus algorithm -- consisten-cy/safety, availability/liveness and fault tolerance and is based on specific operating assumptions of the protocol.
+A mathematical proof of security is a collection of mathematically provable theorems that make security statements about the three characteristics of a consensus algorithm -- consistency/safety, availability/liveness and fault tolerance and is based on specific operating assumptions of the protocol.
 
 **[D7]**	Consensus algorithms employed in the DLT utilized in a BPI SHOULD include economic security assurances with game theoretic security proofs.
 
@@ -314,11 +314,11 @@ Data integrity over time, in other words the inability to alter data once it has
 
 **[R21]**	If the DLT utilized in a BPI is eventually consistent (as defined in section 7), data committed to the state of the DLT MUST NOT be alterable after the DLT state has been final-ized (as defined in section 7). 
 
-Besides data integrity, the notion of censorship-resistance, or the inability of anyone participant in a DLT to stop any other participant’s transaction to be eventually included in the DLT state, is another key feature of typical DLTs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
+Besides data integrity, the notion of censorshipresistance, or the inability of anyone participant in a DLT to stop any other participant’s transaction to be eventually included in the DLT state, is another key feature of typical DLTs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
 
 **[R22]**	The DLT utilized in a BPI MUST guarantee that a transaction compliant with the DLT protocol rules is eventually included in the state of the DLT, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section 6 for details on the security assumptions of consensus algorithms).
 
-The reason why the reference to the consensus algorithm is important is as follows: To guaran-tee processing of a transaction, one needs only one honest DLT node in the network. However, this is not sufficient to guarantee consensus. Therefore, and to include a submitted transaction in the DLT state, there needs to be an honest majority of DLT nodes to reach consensus on the submitted transaction.
+The reason why the reference to the consensus algorithm is important is as follows: To guarantee processing of a transaction, one needs only one honest DLT node in the network. However, this is not sufficient to guarantee consensus. Therefore, and to include a submitted transaction in the DLT state, there needs to be an honest majority of DLT nodes to reach consensus on the submitted transaction.
 
 # 10. Integration Capabilities with External Systems 
 
