@@ -105,10 +105,10 @@ For complete copyright information please see the Notices section in the Appendi
 [8 Virtual State Machine](#8-Virtual-State-Machine) \
 [9 Data Integrity & Transaction Completeness ](#9-Data-Integrity-&-Transaction-Completeness) \
 [10 Integration to External Applications](#10-Integration-to-External-Applications) \
-[11 Conformance](#9-conformance) \
-&nbsp;&nbsp;&nbsp;&nbsp;[9.1 Conformance Targets](#111-conformance-targets) \
-&nbsp;&nbsp;&nbsp;&nbsp;[9.2 Conformance Levels](#112-conformances-levels)\
-&nbsp;&nbsp;&nbsp;&nbsp;[9.3 Interoperability](#113-interoperability)\
+[11 Conformance](#11-conformance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[11.1 Conformance Targets](#111-conformance-targets) \
+&nbsp;&nbsp;&nbsp;&nbsp;[11.2 Conformance Levels](#112-conformances-levels)\
+&nbsp;&nbsp;&nbsp;&nbsp;[11.3 Interoperability](#113-interoperability)\
 [Appendix A.        Acknowledgments]()\
 [Appendix B.        Revision History]()
 
@@ -336,20 +336,20 @@ Non-normative examples of such authentication technologies are OAUTH [[4]](####[
 
 **[R27]**	The DLT utilized in a BPI MUST support Hardware Security Modules (HSMs)[[9]](####9).
 
-# 10 Conformance
+# 11 Conformance
 
 Describes the conformance clauses and tests required to achieve baseline compliant implementations.
 
-## 10.1 Conformance Targets
+## 11.1 Conformance Targets
 
 Defines entities and implementations subject to conformance.
 
 
-## 10.2 Conformance Levels
+## 11.2 Conformance Levels
 
 Defines conformance levels and their conformance clauses.
 
-## 10.3 Interoperability
+## 11.3 Interoperability
 
 <!--
 
