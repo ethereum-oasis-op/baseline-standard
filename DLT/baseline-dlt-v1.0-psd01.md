@@ -187,7 +187,7 @@ Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive 
 
 # 2. Security
 
-DLT security is one of the most, if not the most important characteristic of a DLT. Therefore, great care has to be taken in its defintion, startting with the utilized cryptographic alogrithms and their implementations. 
+DLT security is one of the most, if not the most important characteristic of a DLT. Therefore, great care has to be taken in its definition, starting with the utilized cryptographic algorithms and their implementations. 
 
 **[R1]**	A DLT utilized in a BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
@@ -274,7 +274,7 @@ Weak synchrony in this context means,
 # 7. Consensus
 The consensus algorithm is the most important component of a DLT as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
 
-**[R14]**	The DLT utilized in a BPI MUST be able to support more than one BFT consensus algorithm, also known as pluggable consensus.
+**[R14]**	The DLT utilized in a BPI MUST be able to support more than one BFT consensus algorithm, also known as plugable consensus.
 
 Note, that deterministic BFT consensus algorithms lead to strong consistency, and, thus, immediate finality. Probabilistic BFT consensus algorithms lead to eventual consistency, and, thus, eventual finality.
 
@@ -312,9 +312,9 @@ Data integrity over time, in other words the inability to alter data once it has
 
 **[R20]**	If the DLT utilized in a BPI is strongly consistent (as defined in section 7), data committed to the state of the DLT MUST NOT be alterable after the DLT state has been finalized (as defined in section 7).
 
-**[R21]**	If the DLT utilized in a BPI is eventually consistent (as defined in section 7), data committed to the state of the DLT MUST NOT be alterable after the DLT state has been final-ized (as defined in section 7). 
+**[R21]**	If the DLT utilized in a BPI is eventually consistent (as defined in section 7), data committed to the state of the DLT MUST NOT be alterable after the DLT state has been finalized (as defined in section 7). 
 
-Besides data integrity, the notion of censorshipresistance, or the inability of anyone participant in a DLT to stop any other participant’s transaction to be eventually included in the DLT state, is another key feature of typical DLTs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
+Besides data integrity, the notion of censorship-resistance, or the inability of anyone participant in a DLT to stop any other participant’s transaction to be eventually included in the DLT state, is another key feature of typical DLTs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
 
 **[R22]**	The DLT utilized in a BPI MUST guarantee that a transaction compliant with the DLT protocol rules is eventually included in the state of the DLT, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section 6 for details on the security assumptions of consensus algorithms).
 
