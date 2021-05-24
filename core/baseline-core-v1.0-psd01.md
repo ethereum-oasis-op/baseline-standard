@@ -97,7 +97,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 Overview](#11-overview) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Glossary](#12-glossary) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Typographical Conventions](#13-typographical-conventions) \
-[2 Design and Architecture](#2-design-and-architecture) \
+[2 Design and Architecture](#2-Design-and-Architecture) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-Agreement)\
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-State-Object)\
 &nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](##23-Transacting-Counterparties)\
@@ -123,9 +123,12 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[5.1 Privacy](#51-privacy) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.2 Confidentiality](#52-confidentiality) \
 [6 Agreement Execution](#6-agreement-execution)  \
-&nbsp;&nbsp;&nbsp;&nbsp;[6.1 Business Logic Development](#61-business-logic-development) \
-&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Business Logic Execution](#62-business-logic-execution) \
-&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Performance](#63-performance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.1 BPI Workstep](#61-BPI-Workstep) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.2 BPI Workflow](#62-BPI-Workflow) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.3 BPI Workgroup](#63-BPI-Workgroup) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.4 BPI Account](#64-BPI-Account) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.5 BPI Transactions](#65-BPI-Transactions) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.6 BPI Transaction Lifecycle](#66-BPI-Transaction-Lifecycle) \
 [7 Governance](#7-governance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[7.1 Governance Model](#71-governance-model) \
 [8 Security Considerations](#8-security-considerations) \
@@ -635,36 +638,418 @@ Describes the mechanisms ensuring that other parties (i.e parties outside of tra
 
 # 6 Agreement Execution
 
-## 6.1 Business Logic Development
+Agreement execution within the context of this document is the deterministic state transition from state A to state B of a state object in a BPI, and where the state object represents a valid agreement state between agreement counterparties. A valid agreement state represents a data set that has been obtained from the correct application by a BPI of the agreement rules and data to a set of input data, the output of which has been agreed upon by the counterparties to the agreement. Agreement execution occurs in the processing layer of the BPI Processing Layer as defined in [Section 2](#2-Design-and-Architecture).
 
-Describes the requirements for the development of business rules that define what and how workflows are executed.
+Note that a deterministic state transition in the context of this document is facilitated by the combination of one or more worksteps grouped within a workflow. Also note that a workflow is the execution by the BPI of a series of causally connected and deterministic BPI worksteps and with agreement counterparties grouped into one or more BPI workgroups attached to the worksteps of the workflow. A BPI workstep, a BPI workflow and a BPI workgroup will be referred to as workstep, workflow and workgroup subsequently. See figure 6.1 below for a conceptual view of the relationship between workflow, workgroups and worksteps and BPI processing.
 
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| AGEXEC1 | IBaselineRPC  |
-| AGEXEC2| Shared agreement: up to each workgroup to agree on business logic  |
-| AGEXEC3| Shielding: up up to each workgroup to determine a suitable shielding mechanism. |
+<figure>
+  <img
+  src="./images/Baseline-Fig-6.1-Workflow-Agreement-Execution.png"
+  >
+  <figcaption>Figure 6.1: Conceptual View of Workflow, Workstep and Workgroup</figcaption>
+</figure>
 
-## 6.2 Business Logic Execution
+## 6.1 BPI Workstep
 
-Describes the mechanisms supporting the execution of the agreed business logic.
+First, we will discuss the requirements for worksteps which will be implemented in the Virtual State Machine of the BPI Processing Layer. Note that strictly speaking we need to differentiate between the workstep as a logical construct, and its instantiation within a BPI which we call a workstep instance. In the following, and unless required for disambiguation, we shall use workstep also to mean workstep instance. 
+
+**[RXX]** A workstep MUST have an input, one or more process steps and an output.
+
+This is just a well known convention from business process management frameworks.
+
+**[RXX]** The input of a workstep MUST represent a new, proposed state of a state object compliant with the agreement between the agreement counterparties.
+
+**[RXX]** The process steps in a workstep MUST represent a verification system comprised of the set, or subset, of agreement rules and agreement data such that an input can be validated to comply with the agreement rules and agreement data, or not.
+
+**[RXX]** The output of a workstep MUST represent the verifiable validation result of an input into a workstep as a correct new agreement state.
+
+Note that a new agreement state after a correct workstep execution is is defined as 
+```
+New Agreement State = Old Agreement State + Agreed upon New State Object + Workstep Output 
+```
+
+See sections Xx and YY below on BPI accounts associated with state objects and BPI transactions for details.
+
+**[RXX]** A workstep instance MUST be associated with only one BPI workgroup.
+
+**[RXX]** A workstep instance MUST inherit the security and privacy policies of its associated workgroup.
+
+See the details of workgroups and their security and privacy policies below.
+
+**[RXX]** A workstep MUST have a unique identifier within a BPI.
+
+**[RXX]** A workstep MUST be updatable.
+
+**[RXX]** A workstep instance MUST NOT be updated while the workstep is being executed by the BPI.
+
+This ensures that no breaking changes with potentially significant negative business impact are introduced while a workstep instance is being executed.
+
+**[RXX]** A workstep MUST be versioned within a BPI.
+
+Note that versions of the same workstep do not have to be compatible with one another. 
+
+**[RXX]** A workstep MUST be executed by a BPI.
+
+**[RXX]** The input of a workstep MUST be submitted by an authorized member of the workgroup attached to that workstep.
+
+Note, that this allows for delegation of authorization from the authorization bearing Entity A to Entity B, akin to a power-of-attorney. This concept is also known as attenuated authorization.
+
+**[RXX]** A workstep MUST be deterministic.
+
+This means that for a given input, there can be only one valid output from the workstep generated by the BPI.
+
+**[RXX]** The output from a workstep execution MUST be finalized through an agreed upon quorum of cryptographic signatures of the workgroup participants associated with the workstep.
+
+This means that the output of a workstep execution must be verified and agreed upon by a previously defined number of the workgroup participants. This naturally extends to the input as well. 
+
+**[RXX]** The output from a workstep execution MUST be a valid zero-knowledge proof of correctness of the input generated by the BPI executing the workstep (privacy preservation).
+
+A Zero-Knowledge Proof is defined as having to satisfy the following three properties:
+
+* **Completeness:** if the statement is true,  an honest verifier, i.e., an entity following the protocol properly, will be convinced of this fact by an honest prover.
+* **Soundness:** if the statement is false, no cheating prover can convince an honest verifier that it is true, except with some small probability.
+* **Zero-Knowledge:** if the statement is true, no verifier learns anything other than the fact that the statement is true. In other words, just knowing the statement (not the secret) is sufficient t construct a scenario that shows that the prover knows the secret. This is formalized by showing that every verifier has some simulator that, given only the statement to be proved (and no access to the prover), can produce a transcript that "looks like" an interaction between the honest prover and the verifier.
+
+**[RXX]** A zero-knowledge proof of correctness of an input MUST be non-interactive.
+
+Non-interactive in this context means that there is no interaction between the prover (generating the proof) and the verifier.
+
+**[RXX]** An input that does not represent a new, valid agreement state of a state object MUST NOT generate a valid zero-knowledge proof of correctness of the input. 
+
+**[RXX]** A zero-knowledge proof of correctness of an input MUST be verifiable by any 3rd party in a time at most proportional to the size of the prover system that generated the proof.
+
+The time requirement means that any 3rd party verifier must be able to verify the proof representing a prover system of O(10) in time of O(10) e.g. a Merkle-proof of a Merkle-trie branch of 10 tuples can be verified in 10 computational steps. It also means that the zero-knowledge proof of correctness of an input does not have to be succinct. Succinct means that the proofs are short (smaller than the size of the prover circuit) and that the verification is fast.
+
+**[DXX]** The zero-knowledge proof of correctness of an input SHOULD be succinct.
+
+**[DXX]** The zero-knowledge proof of correctness of an input SHOULD be efficient.
+
+Efficient in this context means that the size of the proof does not grow with the size of the prover system(s). This is a highly desireable feature when it comes to both data on a DLT and verification time. 
+
+**[DXX]** The zero-knowledge proof of correctness of an input SHOULD be based on modular constructions.
+
+Modular in this context means that the proof system can represent multiple statements, in other words multiple proofs together, in one proof. For example, "I have an invoice with a face value of over $10,000, payable within 30 days, and the payee has never missed a payment in 10 years of doing business with me". This is also highly desireable, especially when having to combine various proofs as in the previous statement.
+
+**[RXX]** A zero-knowledge proof of correctness of an input MUST be committed to the DLT utilized by the BPI using a compact cryptographic proof after it has been finalized on the BPI.
+
+Such a commitment can represent more than one zero-knowledge proof of correctness of an input. Compact in this context means that the DLT commitment is smaller in size than the totality of the proof(s) represented by the commitment. This is desireable because it reduces the data footprint of the BPI which should be one of the implementation goals of a BPI.
+
+**[RXX]** The cryptographic proof of the DLT commitment MUST be verifiable by any 3rd party at any time in a time at most proportional to the size of the prover system. 
+
+Note, that the requirement does not state that the proof has to be verifiable on the DLT itself, that it does not need to be succinct and that it does not need to be efficient.
+
+**[DXX]** The cryptographic proof of the DLT commitment SHOULDT be verifiable by any 3rd party at any time on the DLT utilized by the BPI.
+
+**[DXX]** The cryptographic proof of the DLT commitment SHOULD be succinct.
+
+**[DXX]** The cryptographic proof of the DLT commitment SHOULD be efficient.
+
+**[DXX]** The cryptographic proof of the DLT commitment SHOULD be based on modular constructions.
+
+In specific situations, the above SHOULD requirements become MUST.
+
+**[OXX1]** The zero-knowledge proof of correctness of an input MAY be used in a commercial value-creation or value-exchange event.
+
+This means that the output of a workstep can be used to represent a unit of value accounting such as a token. For example, one or more workstep outputs may be used as (verifiable) collateral in issuing an asset backed security (value-creation).
+
+**[CRXX1]<[OXX1]** The zero-knowledge proof of correctness of an input used in a commercial value-creation MUST be succinct.
+
+**[CRXX2]<[OXX1]** Each zero-knowledge proof of correctness of an input MUST be individually available on the DLT utilized by the BPI after it has been finalized on the BPI (Liveness).
+
+The zero-knowledge proof of correctness can be a cryptographic aggregator of proofs of workstep input correctness that would allow multiple proofs to be represented and provable within one proof. 
+
+**[CRXX3]<[OXX1]** The zero-knowledge proof of correctness of an input MUST be verifiable by any 3rd party on the DLT utilized by the BPI (censorship resistant individual proof verifiability). 
+
+**[CRXX4]<[OXX1]** The zero-knowledge proof of correctness of an input MUST NOT be able to be used in more than one commercial value-creation/exchange event at any time.
+
+This requirement is necessary to avoid the usage of the same output as collateral in more than one commercial value-creation event, such as a tokenization, and subsequent usage in value-exchange events, also known as double-pledging.
+
+A workstep output according to **[CRXX4]<[OXX1]** will have to be included into a commitment that the output is pledged in a commercial value-creation event. This will be called an "Output Pledge".
+
+Note that this only restricts the usage of pledged outputs to the DLT utilized in a given BPI. It is impossible to forsee which DLTs will be used for the implementation of a BPI. Therefore, for example, a document may be baselined on more than one BPI and DLT without being able to avoid a double pledge since the individual DLTs are not synchronized.
+
+**[CRXX5]<[OXX1]** A BPI MUST create an Output Pledge of a workstep output used in a commercial value-creation event as a succinct, efficient, non-interactive zero-knowledge proof of the pledge commitment (privacy preservation of an output pledged in a commercial value-creation event).
+
+Note that an Output Pledge can contain, and usually will, contain more than one workstep output used in a commercial value-creation event.
+
+**[CRXX6]<[OXX1]** The Output Pledge MUST be committed to the DLT utilized by the BPI (Liveness).
+
+**[CRXX7]<[OXX1]** The Output Pledge MUST be verifiable by any 3rd party on the DLT utilized by the BPI (censorship resistant proof verifiability).
+
+**[CRXX8]<[OXX1]** The Output Pledge MUST be updatable.
+
+**[CRXX9]<[OXX1]** The Output Pledge MUST only  be updated by the owners of the workstep output used in a commercial value-creation event.
+
+Note that there are many ways this can be achieved. Note, also that the ownership of the output might change and be highly fractionalized if used in a token as collateral. Therefore, there might be the need for a custodianship that is authorized to update the Output Pledge, and only under specific circumstances, such as when the outstanding token number is zero. 
+
+## 6.2 BPI Workflow
+After specifying a workstep, we will now turn to a workflow.
+
+**[RXX]** A workflow MUST contain at least one workstep.
+
+**[RXX]** All requirements for a workstep MUST also be applied to a workflow.
+
+This means that requirements such as determinism, updatabillity, versioning, characteristics of zero-knowledge proofs etc. also apply to a workflow.
+
+**[RXX]** If there is more than one workstep in a workflow, the worksteps in a workflow MUST be causally connected.
+
+This means that the output of a workstep in a workflow is a required input into the subsequent workstep. 
+
+**[DXX]** If there is more than one workstep in a workflow, the zero-knowledge proof of correctness of the input to the last workstep in the workflow SHOULD be a proof that accumulates the valid proofs for all previous inputs.
+
+Such proofs are known as inductive proof chains as each proof accumulates the previous proof, with further local inputs, in the causal chain of worksteps. The verifier, therefore, does not have to verify all proofs and hold all inputs but rather only the final one with the final public input to prove the validity of the entire computational chain. 
+
+**[DXX1]** The prover system in a workflow with more than one workstep SHOULD be the same for all worksteps.
+
+**[CRXX1]>[DXX]** The prover system in a workflow MUST be the same for all worksteps.
+
+**[RXX]** A workflow with more than one workstep MUST have a unique identifier within a BPI. 
+
+**[RXX]** A workflow with more than one workstep and a given set of inputs MUST be sequentially executed by a BPI.
+
+This simply means that for a given set of inputs there is only one process path through a given workflow.
+
+## 6.3 BPI Workgroup
+
+We are now discussing the requirements for a BPI workgroup. Note that which BPI users may or may not be able to create a workgroup is up to the individual implementations. However,
+
+**[RXX]** There MUST be at least one BPI user role that has the authorization to create a workgroup.
+
+**[RXX]** A workgroup MUST consist of at least one participant.
+
+Note that a workgroup participant may be a user of another BPI than the BPI the workgroup is defined in. The appropriate authentication and authorization policies to enable such a scenario are up to implementers and beyond the scope of this document.
+
+**[RXX]** A workgroup MUST have at least one administrator.
+
+**[RXX]** A workgroup MUST have at least one security policy.
+
+Note that a security policy consists of authentication and authorization rules for the workgroup participants. Note also that one or more workgroup administrators define the workgroup security policy.
+
+**[RXX]** A workgroup MUST have at least one privacy policy.
+
+A privacy policy the data visibility rules for each participant.
+
+**[RXX]** A workgroup administrator MUST be able to perform at minimum the following functions:
+* add or remove one or more participants
+* create, update and delete both security and privacy policies.
+* delete or archive a workgroup
+
+**[OXX2]** A workgroup MAY have more than one administrator.
+
+**[CRXX]>[OXX2]** There MUST a consensus model for administrative actions.
+
+**[OXX3]** A workgroup MAY be attached to one or more workstep instances. 
+
+**[OXX4]** A Workgroup MAY be attached to one or more workflow instances.
+
+**[CRXX]>[OXX4]** A workgroup attached to a workflow MUST be also attached to each workstep in the workflow.
+
+## 6.4 BPI Account
+Before we can move on to the requirements on the individual components in the processing layer required for agreement execution, we need to define and specify the prerequisites. Since we have been defining and discussing state objects in the context of a BPI, we need to define stateful object processing. This necessitates an account based model for both BPI users and BPI state objects. This is analogous to the the Ethereum model using accounts for individual participants and smart contracts -- both are stateful objects.
+
+**[RXX]** Each BPI user MUST be associated with an account.
+
+**[RXX]** Each BPI state object MUST be associated with an account.
+
+An account itself is defined through the following requirements:
+
+**[RXX]** An account MUST have a unique account number.
+
+**[RXX]** An account MUST have at least one account owner.
+
+**[OXX5]** An account MAY have more than one account owner.
+
+**[CRXX1]>[OXX5]** If an account has more than one account owner, the account MUST have an account authorization condition.
+
+An account authorization condition is the condition which have to be met by the account owners to authorize a BPI transaction from that account.
+
+**[RXX]** Account ownership and associated authorizations MUST be cryptographically provable.
+
+This may be achieved through for example a cryptographic digital signature.
+
+**[RXX]** An account MUST have a deterministic nonce.
+
+This ensures that transactions originating from an account are processed in the correct order.
+
+**[DXX3]** An account SHOULD have one or more unit of value-accounting balances.
+
+Also often known as tokens, these units of value-accounting allow the usage of state objects in financial transactions requiring units of accounting.
+
+**[RXX]** The state of an account MUST be represented by a cryptographic vector commitment scheme.
+
+**[RXX]** Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
+
+These last two requirements ensure the structural integrity and cryptographic verifiability of the account at all times.
+
+**[RXX]** The history of the state of an account MUST be represented by a cryptogrpahic vector commitment.
+
+This is required because not only does each state have to have structural integrity at all times but also its history with the causal connection between states.
+
+**[RXX]** The state of an account MUST be minimally comprised of the following elements:
+* Account Number
+* Owner(s)
+* Authorization Condition (if more than one owner)
+* Account Nonce
+* Value-Accounting Balance(s)
+* State Object Prover System representation (if account is associated with a state object)
+* State object storage (if account is associated with a state object)
+
+**[RXX]** The state of a BPI user account MUST only be changed based on a valid transaction originating from the BPI user account owner. 
+
+**[RXX]** The state of a BPI state object account MUST only be changed based on valid a transaction originating from a BPI user account or another BPI state object account.
+
+We will discuss the requirements on a transaction and what constitutes as valid in the next section.
+
+**[OXX6]** An account MAY be associated with the state of a workstep instance.
+
+## 6.5 BPI Transactions
+Account states, and therefore, the state of BPI users, BPI state objects, and, thus, agreement states are altered through BPI transactions submitted by requesters of (commercial) state changes from their accounts. In the following we specify requirements for the structure and characteristics of transactions.
+
+**[RXX]** Each transaction MUST have minimally the following identifiers:
+* Workflow ID (UID)
+* Workflow Instance ID (UID) 
+* Workstep ID (UID)
+* Workstep Instance ID (UID)
+* Transaction ID (UID)
+
+Note that the Workflow ID may be the same as Workstep ID, if the workflow has only one workstep. 
+
+**[RXX]** The Workflow Instance ID MUST be derivable from the Workflow ID.
+
+**[RXX]** The Workstep Instance ID MUST be derivable from the Workstep ID.
+
+**[DXX]** Each Transaction ID SHOULD be generated by the transaction originator/sender.
+
+**[RXX]** Each transaction MUST have a `From` (Sender) and a `To` (Receiver) element each containing the respective Sender and Receiver account numbers.
+
+**[RXX]** Each transaction MUST have a deterministic nonce based on the account of the sender.
+
+**[RXX]** Each transaction MUST contain a representation of the (commercial) document as a state object constituting the suggested new agreement state, such that it can be validated by the prover system associated with the account of the state object representing the agreement state to be altered.  
+
+**[RXX]** If there is more than one prover system associated with the receiver account, the transaction MUST unambiguously identify which prover system the transaction is targeting.
+
+**[RXX]** Each transaction MUST contain the cryptographic digital signature of the owner(s) of the Sender account.
+
+**[RXX]** A transaction MUST be considered invalid if one of the following conditions is met:
+* The transaction nonce is not equal to the account nonce plus 1.
+* The cryptographic signature of the account owner(s) on the transaction cannot be verified
+* The transaction does not have an existing Workflow ID, Workflow Instance ID, Workstep ID, Workstep Instance ID
+* The transaction `From` or `To` are not valid account numbers
+* The transaction is not well-formed based on the requirements of the chosen prover system of the Receiver Account
+
+Note, that this is only a minimal set of requirements on an invalid transaction. Each BPI can define other requirements not covered above.
+
+In the following, we will discuss the transaction lifecycle and its requirements as it pertains to Agreement Execution.
+
+## 6.6 BPI Transaction Lifecycle
+
+The figure below showcases at a high-level the flow of a transaction through a BPI. In our subsequent discussion on transaction lifecycle characteristics and requirement, we will focus on the BPI Processing Layer and the steps indicated in blue.
+
+<figure>
+  <img
+  src="./images/Baseline-Fig-6.2-High-Level Baseline-Transaction-Lifecycle.png"
+  >
+  <figcaption>Figure 6.2: High Level Transaction Lifecycle Flow through the BPI</figcaption>
+</figure>
+
+A prerequisite for transaction lifecycle step 4 where the BPI Processing Layer Transaction Pool pulls a transaction from BPI Middleware Layer's Messaging is that there is at least one transaction in the Messaging Capability waiting to be processed by the BPI Processing Layer.
+
+The requirements for the subsequent step (5) are as follows:
+
+**[RXX]** The Transaction Pool MUST be able to validate all transaction requirements for a valid transaction in section [6.5](#65-BPI-Transactions).
+
+**[RXX]** The Transaction Pool MUST order transactions for processing based on the order of their unique messaging ID and their account nonces.
+
+**[RXX]** If the order of two or more transactions from the same account in the Transaction Pool is in contradiction to the order of the deterministic account nonce, the transactions are first ordered by their account nonces and then by their message IDs.
+
+Note, that this is required to avoid a BPI operator ordering transactions in a malicious way, or injecting malicious transactions ahead of other transactions.
+
+**[RXX]** The Transaction Pool MUST create a batch of a fixed number of transactions after a given time period to be processed by the Virtual State Machine.
+
+The number of transactions per batch and the time period covered by each batch while fixed can be freely chosen by an implementer. Recommendations as to batch size and time frame will be given in an implementers guide and is beyond the scope of this document.
+
+**[RXX]** The Transaction Pool MUST process an invalid transaction by assigning the transaction an error code and an easily human readable error message and issuing a message minimally consisting of the tuple `(Sender Account, Error Code, Error Message, Transaction)` to the Messaging Capability of the BPI to inform the sender of the transaction failure and its reason.
+
+In the following, we will discuss the requirements on the Virtual State Machine of the BPI Processing Layer.
+
+Since BPIs are used to verify the correctness of state transitions (see step (6) in Fig. 6.2. above), BPIs will utilize a Virtual State Machine (VSM) for its computations to validate state transitions of state objects; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework. 
+
+**[RXX]**	The Execution Framework of a VSM MUST be deterministic.
+
+Any BPI running the same Execution Framework on the same state object with the same input data needs to arrive at the same result, in other words deterministic outcomes. This is only guaranteed if the Execution Framework either does not allow instructions to be executed in parallel, but only strictly sequential, or if the Execution Framework has methods in place that allow the identification and prevention of transactions that would cause state conflicts, if processed in parallel. 
+
+For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet processed. This means that if the transaction of the Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending which transaction is executed first.
+
+**[RXX]**	The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or abort in finite time, where what is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction.
+
+This requirement means that infinite computational loops cannot be allowed in a BPI. 
+
+**[RXX]**	The Execution Framework of a VSM MUST support widely cryptographic primitives for zero knowledge proofs natively, e.g., hashing, commitments, accumulators or zero-knowledge proof verification.
+
+**[DXX]**	The Execution Framework of a VSM SHOULD have a mathematical proof of correctness and security.
+
+**[RXX]**	The Execution Framework of a VSM MUST be Verifiably Secure. 
+
+**[RXX]** If a VSM can generate a valid Proof-of-Correctness for a transaction, it MUST update the state and the state history of the state object the transaction targeted based on the transaction data.
+
+**[RXX]** If a VSM can generate a valid Proof-of-Correctness for a transaction and the targeted state object is not the state object of the complete (commercial) agreement state, it MUST update the state object of the (commercial) agreement and its state history besides the state object and its history targeted by the transaction.
+
+**[RXX]** A VSM MUST store all proofs, state objects, their associated data and their histories in the Storage capability of the BPI Processing Layer.
+
+**[RXX]** The integrity of Proofs, transactions, state objects and their data and histories MUST be cryptographically verifiable by the owners of the accounts associated with the proofs, transactions, state objects and their data and history.
+
+**[RXX]** All updates to an agreement state and their associated accounts by a VSM MUST be communicated to all agreement counterparties through the Message capability in the BPI Middleware layer. 
+
+**[RXX]** The Proof-of-Correctness of a state transition and associated data required for proof verification a VSM generated MUST be communicated to the DLT Abstraction Layer for subsequent commitment to the DLT utilized by the BPI through the Message capability in the BPI Middleware layer. 
+
+Note, see the BPI transaction lifecycle management flow in Fig 6.2, in particular step (8).
+
+The following requirements are addressing the operating scenario where a BPI consists of more than one node. This is a perfectly feasible scenario with its own pros and cons beyond the scope of this document to discuss. However, there are certain requirements that need to be met for such a scenario to be operationally viable.
+
+**[OXX7]** A BPI MAY consist of more than one processing node.
+
+We will call this a BPI network.
+
+**[CRXX0]>[OXX7]** If there is a BPI network to execute and finalize transactions, it MUST utilize a consensus algorithm fulfilling all requirements described in the Baseline DLT Requirements document[add link here].
+
+**[CRXX1]>[OXX7]** If there is a BPI network to execute and finalize transactions, the consensus algorithm employed MUST have a time to consensus that is smaller than the time to consensus of the DLT utilized by the BPI network.
+
+**[CRXX2]>[OXX7]** If there is a BPI network to execute and finalize transactions, the consensus algorithm employed MUST have a time to finality that is smaller than the time to finality of the DLT utilized by the BPI network.
+
+These requirements are necessary such that transactions in the BPI cannot be altered after they have been committed to and finalized on the DLT utilized by the BPI.
 
 
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| AGEXEC4 | Workflows, worksteps - business rules chaining and sequenced execution |
-| AGEXEC5| Deterministic result - given a set of arguments and a state of the ledger, execution of business logic must produce the same result. |
-| AGEXEC6| Event-driven |
-| AGEXEC7| On-chain/ DTL execution mode|
+**[CRXX3]>[OXX7]** If there is a BPI network and it chooses consensus on the execution of a transaction, there MUST be consensus on both the order and the correct execution of transactions.
 
-## 6.3 Performance
+**[CRXX4]>[OXX7]** If there is a BPI network and it chooses consensus on the execution of a transaction, it MUST use a common execution framework. 
 
-Describes the performance requirements for the Agreement Execution component.
+Note that if more than one execution framework were chosen, no consensus could be reached on the outcome of a transaction because the state representation is execution framework dependent e.g. Ethereum account state vs. a zero-knowledge-proof of account state.
 
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| AGEXEC8 | Processing/Finality time  |
-| AGEXEC9| Execution/Process monitoring |
+The last capability relevant for the transaction lifecycle management in the BPI processing layer that needs to be specified is the Storage capability.
+
+The key discussion on the Storage capability is full data persistency (write many, read many) versus partial data persistency (write once, read many). An enterprise data base such as MongoDB is an example of the former, and Ethereum is an example of the latter.
+
+In the case of a BPI we need to distinguish between proof, transaction and state data and its history and meta data associated to state objects etc. Given the need to maintain consistency between state data on the DLT utilized by the BPI and state data in the BPI, the following requirement is key.
+
+**[RXX]** Proof, transaction, and state object data and their histories together with their integrity proofs MUST be stored as partially persistent data in the Storage capability.
+
+**[DXX]** All other data SHOULD be stored as fully persistent data in the Storage capability.
+
+This is a consequence of step (7) in Fig. 6.2 above.
+
+The following requirements all deal with integration requirements of the Storage capability to external system for data access and maintenance. 
+
+**[RXX]**	A Storage capability MUST be compatible with widely used external authentication services. 
+
+**[RXX]**	A Storage capability MUST support roles & access management.
+
+**[RXX]**	A Storage capability MUST support policy management.
+
+**[RXX]**	A Storage capability MUST support Single-Sign-On (SSO).
+
+**[RXX]**	A Storage capability SHOULD support Multi-Factor authentication.
+
+**[RXX]**	A Storage capability MUST support Hardware Security Modules (HSMs).
 
 -------
 
