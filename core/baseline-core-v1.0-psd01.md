@@ -541,7 +541,7 @@ Note, this requirement is motivated by reducing the dependency of counterparty i
 </figure>
 
 A Baseline Protocol Stack Reference Architecture as depicted above in Figure 3 is comprised of the following layers:
-* **Baseline Protocol (BPI) Abstraction Layer**: This layer enables accessing all externally available BPI functions through APIs as defined in the Baseline Protcol API Standards document 
+* **Baseline Protocol (BPI) Abstraction Layer**: This layer enables accessing all externally available BPI functions through APIs as defined in the Baseline Protocol API Standards document 
 * **Middleware Layer**: This layer manages all counterparties to an agreement and its associated workflows and worksteps with business rules and business data as well as all counterparty delegates. In addition, it manages all messaging between counterparties to an agreement and instantiation of processing layers based on newly created or updated agreements and their workflows, worksteps, business rules and business data.  
 * **Processing Layer**: Manages, properly sequences and deterministically processes and finalizes in a privacy-preserving, cryptographically verifiable manner all state change requests from counterparties to all agreements represented in the BPI.  
 * **DLT Abstraction Layer**: This layer enables accessing all required BPI functions implemented on one or more DLTs through APIs as defined in the Baseline Protocol API Standards document. 
