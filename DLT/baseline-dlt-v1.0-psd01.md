@@ -203,11 +203,13 @@ Note, economic security assurances such as used in Proof-of-Stake consensus algo
 
 **[D1]**	The DLT utilized in a BPI SHOULD be compatible with DLT protocol execution in Trusted Execution Environments (TEE)
 
-Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing with the TEE, along with confidentiality of their assets [[1]](####[1]).
+Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing with the TEE, along with confidentiality of their assets.
+
+**[R5]**	The DLT utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033 [[1]](####[1])
 
 Network attacks typically take the form of Distributed Denial of Service (DDOS) attacks, attacks from groups of malicious DLT nodes performing DLT reorganizations, front running of transactions through transaction injections, and censoring of transactions. This includes game theoretic attacks such as discouragement, extortion, value-extraction, or random oracle attacks.
 
-**[R6]**	The DLT utilized in a BPI MUST support a secure consensus algorithm as explained in Section 8.
+**[R6]**	The DLT utilized in a BPI MUST support a secure consensus algorithm as explained in [Section 8](#8-Virtual-State-Machine).
 
 Note that secure in this context refers to the security of a consensus algorithm against attacks against its three main characteristics – consistency, availability, and fault tolerance. Therefore, a consensus algorithm is considered secure for a given set of operating assumptions:
 * if all nodes produce the same valid output, according to the protocol rules, for the same message broadcast to the network (consistency/safety),
@@ -382,7 +384,7 @@ NA
 ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO
 
 #### [2]
-[23]	Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Ex-plain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3.
+Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3.
 
 #### [3]
 "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982
