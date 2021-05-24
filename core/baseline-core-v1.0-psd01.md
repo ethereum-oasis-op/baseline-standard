@@ -100,10 +100,10 @@ For complete copyright information please see the Notices section in the Appendi
 [2 Design and Architecture](#2-Design-and-Architecture) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-Agreement) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-State-Object) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](##23-Transacting-Counterparties) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and L egally Binding Documents](#24-Commerciallyand-Legally-Binding-Documents)\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](#23-Transacting-Counterparties) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](#24-Commercially-and-Legally-Binding-Documents)\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1 Contract](#241-Contract) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-Commercia-Documents) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-Commercial-Documents) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.5 Distributed Ledger Technology (DLT)](#25-Distributed-Ledger-Technology-(DLT)) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](#26-Baseline-Protocol-Instance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](#27-High-Level-Functional-Requirements) \
