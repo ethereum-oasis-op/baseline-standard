@@ -384,12 +384,12 @@ For specificity, the popular word "Blockchain" is a particular form of DLT desig
 
 ## 2.6 Baseline Protocol Instance
 
-Baseline Protocol Instances (BPIs) are logical constructs shared between (commercial) counterparties of Requesters and Providers and implemented on a Distributed Ledger. They are used to either validate, or reconcile, commercial transactions between Requesters and Providers related to all (commercial) State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may (commercially) transact to/from each other interchangeably. 
+Baseline Protocol Instances (BPIs) are logical constructs shared between (commercial) counterparties of Requesters and Providers and implemented on a Distributed Ledger. They are used to either validate, or reconcile, (commercial) transactions between Requesters and Providers related to all (commercial) State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may (commercially) transact to/from each other interchangeably. 
 
 Abstractly, a BPI consists of
-* the private messaging between legal Contract Counterparties about the state, or the requested or finalized state changes, of the commercial State Objects between them.
-* the representation of a (commercial) contract and commercial documents and their business rules and data as distinct workflows and worksteps between Contract Counterparties organized into workgroups based on the stipulations of the (commercial) contract.
-* the deterministic processing and finalization of state change requests based on commercial documents between the Contract Counterparties as stipulated by the (commercial) contract.
+* the private messaging between Agreement Counterparties about the state, or the requested or finalized state changes, of the (commercial) State Objects between them.
+* the representation of a (commercial) agreement and (commercial) documents and their business rules and data as distinct workflows and worksteps between Agreement Counterparties organized into workgroups based on the stipulations of the (commercial) agreement.
+* the deterministic processing and finalization of state change requests based on (commercial) documents between the Contract Counterparties as stipulated by the (commercial) agreement.
 * the preservation of privacy of all Contract Counterparties and their (commercial) data from other 3rd parties.
 
 BPIs are strongly dependent on the security and privacy capabilities of the DLT used to implement a BPI.
@@ -415,9 +415,9 @@ Liveness means that if a DLT does not require (commercial) counterparties to con
 
 **[R15]**	A BPI MUST be censorship resistant.
 
-Censorship resistant means that a (commercial) counterparty can terminate a commercial transaction at any time without another counterparty, or any Node of the DLT used to implement the BPI, being able to stop the termination of the commercial transaction.
+Censorship resistant means that a (commercial) counterparty can terminate a (commercial) transaction at any time without another counterparty, or any Node of the DLT used to implement the BPI, being able to stop the termination of the (commercial) transaction.
 
-**[R16]**	A BPI MUST be able to provide privacy of the (commercial) conterparties' data with respect to any party outside of the BPI.
+**[R16]**	A BPI MUST be able to provide privacy of the (commercial) counterparties' data with respect to any party outside of the BPI.
 
  
 ## 2.7 High-Level Functional Requirements
@@ -440,7 +440,7 @@ This comprises, e.g., fraud or tax audit requirements based on commercial transa
 
 An ability of a Requester to request products, services or assets, in other words commercial State Objects, through an instance of the Baseline Protocol's APIs does not necessarily imply the ability to provide products, services and assets through an instance of the Baseline Protocol APIs and vice versa.
 
-It is important for (commercial) counterparties to know the level of conformity other (commercial) counterparties have with the Baseline Protocol Standard.
+It is important for commercial counterparties to know the level of conformity other commercial counterparties have with the Baseline Protocol Standard.
 
 **[R20]**	Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol standard in a publicly accessible manner.
 
@@ -488,15 +488,15 @@ Without a BPI, both Buyer and Seller must assume that the MSA between them and a
 
 **[R22]**	The (commercial) counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
 
-**[R23]** 	The (commercial) counterparties MUST validate the correctness of a (commercial) State Object based on a commercial state change against the transaction business logic in the applicable BPI workflow and workstep.
+**[R23]** 	The (commercial) counterparties MUST validate the correctness of a (commercial) State Object based on a (commercial) state change against the transaction business logic in the applicable BPI workflow and workstep.
 
-**[R24]** 	The (commercial) counterparties MUST generate a Proof of Correctness of a (commercial) State Object based on a commercial state change that can be validated against the BPI transaction business logic.
+**[R24]** 	The (commercial) counterparties MUST generate a Proof of Correctness of a (commercial) State Object based on a (commercial) state change that can be validated against the BPI transaction business logic.
 
 **[R25]** 	Any new (commercial) state between counterparties MUST be recorded on the BPI between them.
 
-**[R26]** 	Any counterparty having received a Proof of Correctness of a (commercial) state change MUST be able to validate that Proof of Correctness aginst the BPI between the counterparties.
+**[R26]** 	Any counterparty having received a Proof of Correctness of a (commercial) state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
 
-**[R27]** 	A (commercial) counterparty MUST include a Proof of Correctness of the (commercial) State Object generated by the commercial state change in the BPI Messages between the transacting counterparties.
+**[R27]** 	A (commercial) counterparty MUST include a Proof of Correctness of the (commercial) State Object generated by the (commercial) state change in the BPI Messages between the transacting counterparties.
 
 ### 2.8.2 DLTs and BPI/DLT Abstraction Layers
 
@@ -527,7 +527,7 @@ The agreement on the governance entity, its rules, and its method of achieving i
 
 ### 2.8.3	External Applications
 
-**[R32]**	Application/s providing commercial transaction functionality such as billing to (commercial) counterparties, and re, therefore, external with respect to the BPI, MUST be independent of any BPI.
+**[R32]**	Application/s providing (commercial) transaction functionality such as billing to (commercial) counterparties, and are, therefore, external with respect to the BPI, MUST be independent of any BPI.
 
 Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
 
@@ -983,7 +983,7 @@ Any BPI running the same Execution Framework on the same state object with the s
 
 For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet processed. This means that if the transaction of the Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending which transaction is executed first.
 
-**[RXX]**	The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or abort in finite time, where what is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction.
+**[RXX]**	The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or abort in finite time, where what is deemed to be a suitable finite time is determined by the (commercially) allowable duration of a (commercial) transaction.
 
 This requirement means that infinite computational loops cannot be allowed in a BPI. 
 
