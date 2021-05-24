@@ -98,22 +98,22 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Glossary](#12-glossary) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Typographical Conventions](#13-typographical-conventions) \
 [2 Design and Architecture](#2-Design-and-Architecture) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-Agreement)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-State-Object)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](##23-Transacting-Counterparties)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](#24-Commerciallyand-Legally-Binding-Documents)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1 Contract](#241-Contract)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-Commercia-Documents)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Distributed Ledger Technology (DLT)](#25-Distributed-Ledger-Technology-(DLT))\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](#26-Baseline-Protocol-Instance)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](#27-High-Level-Functional-Requirements)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 Functional Requirements on commercial counterparties](#271-Functional-Requirements-on-commercial-counterparties)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 	DLT-based Lifecycle Processes](#272-DLT-based-Lifecycle-Processes)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Baseline Protocol Reference Architecture](#28-Baseline-Protocol-Reference-Architecture)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.1 (Commercial) State Synchronization](#281-(Commercial)-State-Synchronization)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.2 DLTs and BPI/DLT Abstraction-Layers](#282-DLTs-and-BPI/DLT-Abstraction-Layers)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3 External Applications](#283-External-Applications)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-Baseline-Protocol-Stack-Detailed-Reference-Architecture-Layers-and-Components)\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-Agreement) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-State-Object) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](##23-Transacting-Counterparties) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and L egally Binding Documents](#24-Commerciallyand-Legally-Binding-Documents)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1 Contract](#241-Contract) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-Commercia-Documents) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Distributed Ledger Technology (DLT)](#25-Distributed-Ledger-Technology-(DLT)) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](#26-Baseline-Protocol-Instance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](#27-High-Level-Functional-Requirements) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 Functional Requirements on commercial counterparties](#271-Functional-Requirements-on-commercial-counterparties) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 	DLT-based Lifecycle Processes](#272-DLT-based-Lifecycle-Processes) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Baseline Protocol Reference Architecture](#28-Baseline-Protocol-Reference-Architecture) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.1 (Commercial) State Synchronization](#281-(Commercial)-State-Synchronization) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.2 DLTs and BPI/DLT Abstraction-Layers](#282-DLTs-and-BPI/DLT-Abstraction-Layers) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3 External Applications](#283-External-Applications) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-Baseline-Protocol-Stack-Detailed-Reference-Architecture-Layers-and-Components) \
 [3 API and Data Model](#3-api-and-data-model) \
 [4 Communication](#4-communication) \
 &nbsp;&nbsp;&nbsp;&nbsp;[4.1 Authentication and Authorization](#41-authentication-and-authorization) \
