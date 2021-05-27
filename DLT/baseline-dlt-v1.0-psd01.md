@@ -2,7 +2,7 @@
 ![OASIS Logo](http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
 -------
 
-# Baseline DLT Specification Version 1.0
+# Baseline CCSM Specification Version 1.0
 
 ## Project Specification Working Draft
 
@@ -55,11 +55,11 @@ This specification replaces or supersedes:
  -->
 
 This specification is related to: \
-_Baseline DLT Requirements version 1.0_ - https://github.com/ethereum-oasis/baseline/tree/master/docs/specs/dlt
+_Baseline CCSM Requirements version 1.0_ - https://github.com/ethereum-oasis/baseline/tree/master/docs/specs/dlt
 
 
 #### Abstract:
-The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements for a Distributed Ledger Technology (DLT) network that when utilized ensures that two or more systems of record can synchronize their system state over said DLT securely and privately.
+The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements for a Distributed Ledger Technology (CCSM) network that when utilized ensures that two or more systems of record can synchronize their system state over said CCSM securely and privately.
 
 #### Status:
 This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline TC team.
@@ -79,7 +79,7 @@ When referencing this specification the following citation format should be used
 
 **[baseline-dlt-v1.0]**
 
-_Baseline DLT Requiements Version 1.0_. Edited by Anais Ofranc. 29 September 2020. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
+_Baseline CCSM Requiements Version 1.0_. Edited by Anais Ofranc. 29 September 2020. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
 
 -------
 
@@ -116,7 +116,7 @@ For complete copyright information please see the Notices section in the Appendi
 
 # 1 Introduction
 
-Distributed Ledger Technology (DLT) is the foundational enabler of a Baseline Protocol Instance (BPI) with no or limited trust assumptions. The requirements that a DLT must satisfy for it to be used in a BPI as defined in the Baseline Standard fall in the following categories:
+Distributed Ledger Technology (CCSM) is the foundational enabler of a Baseline Protocol Instance (BPI) with no or limited trust assumptions. The requirements that a CCSM must satisfy for it to be used in a BPI as defined in the Baseline Standard fall in the following categories:
 1. Security
 2. Privacy
 3. Scalability
@@ -127,7 +127,7 @@ Distributed Ledger Technology (DLT) is the foundational enabler of a Baseline Pr
 8. Data Integrity & Transaction Completeness 
 9. Integration to External Applications
 
-In the requirements below we will refer to "The DLT" to mean a DLT chosen by the participants to implement a BPI.
+In the requirements below we will refer to "The CCSM" to mean a CCSM chosen by the participants to implement a BPI.
 
 
 ## 1.2 Glossary
@@ -136,7 +136,7 @@ In the requirements below we will refer to "The DLT" to mean a DLT chosen by the
 
 The Baseline Protocol is a set of methods that enable two or more state machines to achieve and maintain data consistency, and workflow continuity by using a network as a common frame of reference. 
 
-**Byzantine Fault Tolerant(BFT):**
+**Byzantine Fault Tolerant (BFT):**
 
 Given a network or system of n components, t of which are dishonest, and assuming only point-to-point channels between all the components, then whenever a component A tries to broadcast a value x such as a block of transactions, the other components are permit-ted to discuss with each other and verify the consistency of A's broadcast, and eventually settle on a common value y. The system is then considered to resist Byzantine faults if a component A can broadcast a value x, and then:
 * If A is honest, then all honest components agree on the value x.
@@ -144,11 +144,15 @@ Given a network or system of n components, t of which are dishonest, and assumin
 
 "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982
 
-**Distributed Ledger Technology(DLT):**
+**Consensus Algorithm:**
 
-Distributed Ledger Technology is a digital system for recording the transaction of assets in which the transactions and their details are recorded in multiple places at the same time. Unlike traditional databases, distributed ledgers have no central data store or administration functionality.
+A consensus algorithm achieves agreement among a number of processes (or agents) on a single data value based on candidate values generated by and communicated amongst the processes (agents). Since some of the processes (agents) may fail or be unreliable, a consensus algorithm must be fault tolerant or resilient.
 
-University of Cambridge, Cambridge Judge Business School – Defining DLT, August 2018
+Coulouris, George; Jean Dollimore; Tim Kindberg (2001), Distributed Systems: Concepts and Design (3rd Edition), Addison-Wesley, p. 452, ISBN 978-0201-61918-8
+
+**Consensus Controlled State Machine  (CCSM):**
+
+A Consensus Controlled State Machine is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage.
 
 **Interoperability:**
 
@@ -187,156 +191,156 @@ Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive 
 
 # 2. Security
 
-DLT security is one of the most, if not the most important characteristic of a DLT. Therefore, great care has to be taken in its definition, starting with the utilized cryptographic algorithms and their implementations. 
+CCSM security is one of the most, if not the most important characteristic of a CCSM. Therefore, great care has to be taken in its definition, starting with the utilized cryptographic algorithms and their implementations. 
 
-**[R1]**	A DLT utilized in a BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
+**[R1]**	A CCSM utilized in a BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
 The usage of cryptographic libraries that successfully passed the National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program (CMVP) is recommended.
 
-**[R2]**	If the DLT utilized in a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
+**[R2]**	If the CCSM utilized in a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
-**[R3]**	The DLT utilized in a BPI MUST support DLT Node Key Management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard (FIPS) or ISO 27001.
+**[R3]**	The CCSM utilized in a BPI MUST support CCSM Node Key Management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard (FIPS) or ISO 27001.
 
-**[R4]**	The DLT utilized in a BPI SHOULD support programmatic economic security assurances.
+**[R4]**	The CCSM utilized in a BPI SHOULD support programmatic economic security assurances.
 
 Note, economic security assurances such as used in Proof-of-Stake consensus algorithms are designed to provide additional security assurances beyond those of cryptography in distributed systems. The security assurances are based on a system of economic incentives and disincentives for distributed system participants with the expressed goal that honest behavior of distributed system participants which enhances system security is in their economic self-interest. This is akin to determining if a cryptographic algorithm is secure or not, and what the level of security of said algorithm is, the security of a system of economic incentives and disincentives must be proven through a game theoretic security analysis.
 
-**[D1]**	The DLT utilized in a BPI SHOULD be compatible with DLT protocol execution in Trusted Execution Environments (TEE)
+**[D1]**	The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE)
 
 Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing with the TEE, along with confidentiality of their assets.
 
-**[R5]**	The DLT utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033 [[1]](####[1])
+**[R5]**	The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033 [[1]](####[1])
 
-Network attacks typically take the form of Distributed Denial of Service (DDOS) attacks, attacks from groups of malicious DLT nodes performing DLT reorganizations, front running of transactions through transaction injections, and censoring of transactions. This includes game theoretic attacks such as discouragement, extortion, value-extraction, or random oracle attacks.
+Network attacks typically take the form of Distributed Denial of Service (DDOS) attacks, attacks from groups of malicious CCSM nodes performing CCSM reorganizations, front running of transactions through transaction injections, and censoring of transactions. This includes game theoretic attacks such as discouragement, extortion, value-extraction, or random oracle attacks.
 
-**[R6]**	The DLT utilized in a BPI MUST support a secure consensus algorithm as explained in [Section 8](#8-Virtual-State-Machine).
+**[R6]**	The CCSM utilized in a BPI MUST support a secure consensus algorithm as explained in [Section 8](#8-Virtual-State-Machine).
 
 Note that secure in this context refers to the security of a consensus algorithm against attacks against its three main characteristics – consistency, availability, and fault tolerance. Therefore, a consensus algorithm is considered secure for a given set of operating assumptions:
 * if all nodes produce the same valid output, according to the protocol rules, for the same message broadcast to the network (consistency/safety),
 * if all non-faulty participating nodes produce an output indicating the termination, and subsequent restart, of the protocol upon reaching consensus (availability/liveness), and
 * if the network exhibits the capability to perform as intended if network nodes fail, either unintentionally or intentionally (fault tolerance).
 
-**[R7]**	A DLT utilized in a BPI MUST have one or more secure-by-construction or Verifiably Secure execution frameworks.
+**[R7]**	A CCSM utilized in a BPI MUST have one or more secure-by-construction or Verifiably Secure execution frameworks.
 
-See the glossary for a definition of Verifiably Secure and more details about DLT supported execution frameworks in section 9.
+See the glossary for a definition of Verifiably Secure and more details about CCSM supported execution frameworks in section 9.
 
 # 3. Privacy
-DLTs range in the level of privacy they support. One approach ensures that the contents of a DLT transaction or storage are meaningless to parties not participating in an interaction. Another more stringent approach is to use a DLT that precludes the accessibility of such information to non-participating parties. This standard sets the minimum requirement to the first approach, but the parties can agree to require that the BPI supports the second approach.
+CCSMs range in the level of privacy they support. One approach ensures that the contents of a CCSM transaction or storage are meaningless to parties not participating in an interaction. Another more stringent approach is to use a CCSM that precludes the accessibility of such information to non-participating parties. This standard sets the minimum requirement to the first approach, but the parties can agree to require that the BPI supports the second approach.
 
-**[R8]**	The DLT utilized in a BPI MUST support privacy preservation such that the contents of a DLT transaction or DLT storage does not carry meaning to parties not participating in a DLT based interaction.
+**[R8]**	The CCSM utilized in a BPI MUST support privacy preservation such that the contents of a CCSM transaction or CCSM storage does not carry meaning to parties not participating in a CCSM based interaction.
 
-**[R9]**	The DLT utilized in a BPI MUST support privacy preservation of transactions and their execution.
+**[R9]**	The CCSM utilized in a BPI MUST support privacy preservation of transactions and their execution.
 
-**[R10]**	The DLT utilized in a BPI MUST support segregation between public and private state/data.
+**[R10]**	The CCSM utilized in a BPI MUST support segregation between public and private state/data.
 
-**[D2]**	The DLT utilized in a BPI SHOULD support a privacy-preserving P2P message protocol.
+**[D2]**	The CCSM utilized in a BPI SHOULD support a privacy-preserving P2P message protocol.
 
 Privacy-preserving means in this context that at least the content of a message, and ideally, also the sender and recipient, is opaque to all participants of the P2P network except sender and recipient.
 
-**[D3]**	The DLT utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) Verification (if not generation) at the protocol level.
+**[D3]**	The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verification (if not generation) at the protocol level.
 
-Zero-Knowledge Proofs (ZKPs) [[2]](####2) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with DLTs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
+Zero-Knowledge Proofs (ZKPs) [[2]](####2) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
 
 # 4. Scalability
-To support the required commercial transaction volume between Baseline Protocol counterparties, the DLT utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public DLT setting there will be, potentially, a significant volume of transactions competing for scarce Block space. 
+To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce Block space. 
 
-Since forecasting future transaction volumes is difficult and could rapidly change based on adoption, the considered DLTs should have some form of throughput future-proofing built in. Examples of such techniques include state channels, sidechains, rollup frameworks, state sharding, multiple execution frameworks and parallel process transaction support. This is not mandated in this standard and is considered a question of implementation to be addressed in an agreement by the users of a BPI.
+Since forecasting future transaction volumes is difficult and could rapidly change based on adoption, the considered CCSMs should have some form of throughput future-proofing built in. Examples of such techniques include state channels, sidechains, rollup frameworks, state sharding, multiple execution frameworks and parallel process transaction support. This is not mandated in this standard and is considered a question of implementation to be addressed in an agreement by the users of a BPI.
 
 # 4. Interoperability
 
-**[D4]**	The DLT utilized in a BPI SHOULD support secure data sources.
+**[D4]**	The CCSM utilized in a BPI SHOULD support secure data sources.
 
-This requirement means that a DLT has a mechanism to securely connect its state through for example a smart contract with a data source which has certain security assurances in such a way that a) the security of the data source is not compromised by the DLT and b) the security assurances of the DLT are not compromised by the secure data source.
+This requirement means that a CCSM has a mechanism to securely connect its state through for example a smart contract with a data source which has certain security assurances in such a way that a) the security of the data source is not compromised by the CCSM and b) the security assurances of the CCSM are not compromised by the secure data source.
 
-**[D5]**	When transactions connect one DLT with another DLT for the purpose of interoperating assets or data across BPIs, and the DLTs use the same DLT Protocol, the DLTs utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
+**[D5]**	When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use the same CCSM Protocol, the CCSMs utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
-An example of such techniques is a two-phase lock relay bridge. Two-phase locking (2PL) is a concurrency control method that guarantees serializability. The protocol utilizes locks, applied by a DLT transaction to data/assets, which may block other DLT transactions from accessing the same data/assets during the transaction's life. This protocol requires support for DLT transaction receipts signaling DLT transaction lifecycle completeness. This approach requires a relay server (network) between the two DLTs which interacts with the locking/unlocking smart contracts on each of the DLTs. Since both DLTs operate the same DLT protocol the relay server can be a node on both networks which does not introduce further security assumptions.
+An example of such techniques is a two-phase lock relay bridge. Two-phase locking (2PL) is a concurrency control method that guarantees serializability. The protocol utilizes locks, applied by a CCSM transaction to data/assets, which may block other CCSM transactions from accessing the same data/assets during the transaction's life. This protocol requires support for CCSM transaction receipts signaling CCSM transaction lifecycle completeness. This approach requires a relay server (network) between the two CCSMs which interacts with the locking/unlocking smart contracts on each of the CCSMs. Since both CCSMs operate the same CCSM protocol the relay server can be a node on both networks which does not introduce further security assumptions.
 
-**[D6]**	When transactions connect one DLT with another DLT for the purpose of interoperating assets or data across BPIs, and the DLTs use different DLT Protocols, the DLTs utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
+**[D6]**	When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use different CCSM Protocols, the CCSMs utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
-An example of such techniques are Atomic Swap protocols. An atomic swap is a DLT smart contract technology that enables the exchange of one DLT asset for another without using centralized intermediaries, such as exchanges.
+An example of such techniques are Atomic Swap protocols. An atomic swap is a CCSM smart contract technology that enables the exchange of one CCSM asset for another without using centralized intermediaries, such as exchanges.
 
 # 6. Network
-Network in this context refers to the nodes of a DLT that form the DLT network. A DLT node has several components that impact the network namely its Peer-to-Peer (P2P) message protocol and its consensus algorithm. 
+Network in this context refers to the nodes of a CCSM that form the CCSM network. A CCSM node has several components that impact the network namely its Peer-to-Peer (P2P) message protocol and its consensus algorithm. 
 
 It is important that Peer-to-Peer (P2P) message protocols are used that do not require network nodes which act as message distribution hubs, e.g., leader nodes because network attacks on leader nodes can either cause unwanted network partitions or even network collapse.
 
-**[R11]**	A DLT utilized in a BPI MUST support a P2P message protocol that does not require network leader nodes.
+**[R11]**	A CCSM utilized in a BPI MUST support a P2P message protocol that does not require network leader nodes.
 
-The network requirements on the consensus algorithms are even more stringent than on the P2P protocol. Additional requirements on the consensus algorithm of the DLT are discussed in the next section, section 7.
+The network requirements on the consensus algorithms are even more stringent than on the P2P protocol. Additional requirements on the consensus algorithm of the CCSM are discussed in the next section, section 7.
 
-**[R12]** The DLT utilized in a BPI MUST be Byzantine Fault Tolerant (BFT) [[3]](####[3]).
+**[R12]** The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT) [[3]](####[3]).
 
-**[R13]** The DLT utilized in a BPI MUST be able to operate under Weak Synchrony. 
+**[R13]** The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
 
 Weak synchrony in this context means, 
 1. 	that all messages will eventually reach their intended recipients and 
 2. that after a certain, yet unknown, time the network will become synchronous again.
 
 # 7. Consensus
-The consensus algorithm is the most important component of a DLT as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
+The consensus algorithm is the most important component of a CCSM as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
 
-**[R14]**	The DLT utilized in a BPI MUST be able to support more than one BFT consensus algorithm, also known as plugable consensus.
+**[R14]**	The CCSM utilized in a BPI MUST be able to support more than one BFT consensus algorithm, also known as plugable consensus.
 
 Note, that deterministic BFT consensus algorithms lead to strong consistency, and, thus, immediate finality. Probabilistic BFT consensus algorithms lead to eventual consistency, and, thus, eventual finality.
 
-**[R15]**	Consensus algorithms employed in the DLT utilized in a BPI MUST have a mathematical proof of security.
+**[R15]**	Consensus algorithms employed in the CCSM utilized in a BPI MUST have a mathematical proof of security.
 
 A mathematical proof of security is a collection of mathematically provable theorems that make security statements about the three characteristics of a consensus algorithm -- consistency/safety, availability/liveness and fault tolerance and is based on specific operating assumptions of the protocol.
 
-**[D7]**	Consensus algorithms employed in the DLT utilized in a BPI SHOULD include economic security assurances with game theoretic security proofs.
+**[D7]**	Consensus algorithms employed in the CCSM utilized in a BPI SHOULD include economic security assurances with game theoretic security proofs.
 
-**[D8]**	Consensus algorithms employed in the DLT utilized in a BPI SHOULD require not more than order N messages to reach consensus where N is the number of nodes in the network.
+**[D8]**	Consensus algorithms employed in the CCSM utilized in a BPI SHOULD require not more than order N messages to reach consensus where N is the number of nodes in the network.
 
 Note that the larger the number of nodes, the higher the level of security. Also, note that performance for certain consensus algorithms degrades quickly as the number of nodes increases because of the number of messages required to exchange between them to achieve consensus can grow very quickly. Therefore, algorithms that scale in the number of nodes without significant performance degradation are preferred. Also, note that network performance such as poor network latency can lead to severe issues such as consensus failure if an algorithm requires the exchange of large numbers of messages to reach consensus.
 
 # 8. Virtual State Machine
-DLTs most often utilize a virtual state machine (VSM) for DLT computations of DLT state transitions; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework. 
+CCSMs most often utilize a virtual state machine (VSM) for CCSM computations of CCSM state transitions; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework. 
 
-**[R16]**	The Execution Framework of the DLT utilized in a BPI MUST be deterministic.
+**[R16]**	The Execution Framework of the CCSM utilized in a BPI MUST be deterministic.
 
-All DLT nodes need to arrive at the same result based on the same input and execution instructions, in other words deterministic outcomes. This is only guaranteed if the Execution Framework either does not allow instructions to be executed in parallel, but only strictly sequential, or if the Execution Framework has methods in place that allow the identification and prevention of transactions that would cause DLT state conflicts, if processed in parallel. 
+All CCSM nodes need to arrive at the same result based on the same input and execution instructions, in other words deterministic outcomes. This is only guaranteed if the Execution Framework either does not allow instructions to be executed in parallel, but only strictly sequential, or if the Execution Framework has methods in place that allow the identification and prevention of transactions that would cause CCSM state conflicts, if processed in parallel. 
 
-For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet confirmed by DLT consensus. This means that if the transaction of the Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending which transaction is executed first.
+For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet confirmed by CCSM consensus. This means that if the transaction of the Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending which transaction is executed first.
 
-**[R17]**	The Execution Framework of the DLT utilized in a BPI MUST ensure that state transition computations are either completed or abort in finite time, where what is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction.
+**[R17]**	The Execution Framework of the CCSM utilized in a BPI MUST ensure that state transition computations are either completed or abort in finite time, where what is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction.
 
-This requirement means that there cannot be infinite computational loops in a distributed computational system with consensus, as this would not allow the DLT network to reach consensus anymore and bring the DLT network itself to a halt. Note also, that when a DLT node is offline, the virtual state machine’s Execution Framework does not perform computations; when a DLT node comes back online, and synchronizes with the state of the DLT network, it only validates the last available state - either a global state or specific to that node. 
+This requirement means that there cannot be infinite computational loops in a distributed computational system with consensus, as this would not allow the CCSM network to reach consensus anymore and bring the CCSM network itself to a halt. Note also, that when a CCSM node is offline, the virtual state machine’s Execution Framework does not perform computations; when a CCSM node comes back online, and synchronizes with the state of the CCSM network, it only validates the last available state - either a global state or specific to that node. 
 
-**[R18]**	The Execution Framework of the DLT utilized in a BPI MUST support widely used cryptographic operations natively, e.g., hashing, digital signatures, or zero-knowledge proof verification.
+**[R18]**	The Execution Framework of the CCSM utilized in a BPI MUST support widely used cryptographic operations natively, e.g., hashing, digital signatures, or zero-knowledge proof verification.
 
-**[D9]**	The Execution Framework of the DLT utilized in a BPI SHOULD have a mathematical proof of correctness and security.
+**[D9]**	The Execution Framework of the CCSM utilized in a BPI SHOULD have a mathematical proof of correctness and security.
 
-**[R19]**	The Execution Framework of the DLT utilized in a BPI MUST be Verifiably Secure. 
+**[R19]**	The Execution Framework of the CCSM utilized in a BPI MUST be Verifiably Secure. 
 
 # 9. Data Integrity and Transaction Completeness
-Data integrity over time, in other words the inability to alter data once it has been committed to the state of the DLT, is one of the key features of typical DLTs.
+Data integrity over time, in other words the inability to alter data once it has been committed to the state of the CCSM, is one of the key features of typical CCSMs.
 
-**[R20]**	If the DLT utilized in a BPI is strongly consistent (as defined in section 7), data committed to the state of the DLT MUST NOT be alterable after the DLT state has been finalized (as defined in section 7).
+**[R20]**	If the CCSM utilized in a BPI is strongly consistent (as defined in section 7), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7).
 
-**[R21]**	If the DLT utilized in a BPI is eventually consistent (as defined in section 7), data committed to the state of the DLT MUST NOT be alterable after the DLT state has been finalized (as defined in section 7). 
+**[R21]**	If the CCSM utilized in a BPI is eventually consistent (as defined in section 7), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7). 
 
-Besides data integrity, the notion of censorship-resistance, or the inability of anyone participant in a DLT to stop any other participant’s transaction to be eventually included in the DLT state, is another key feature of typical DLTs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
+Besides data integrity, the notion of censorship-resistance, or the inability of anyone participant in a CCSM to stop any other participant’s transaction to be eventually included in the CCSM state, is another key feature of typical CCSMs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
 
-**[R22]**	The DLT utilized in a BPI MUST guarantee that a transaction compliant with the DLT protocol rules is eventually included in the state of the DLT, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section 6 for details on the security assumptions of consensus algorithms).
+**[R22]**	The CCSM utilized in a BPI MUST guarantee that a transaction compliant with the CCSM protocol rules is eventually included in the state of the CCSM, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section 6 for details on the security assumptions of consensus algorithms).
 
-The reason why the reference to the consensus algorithm is important is as follows: To guarantee processing of a transaction, one needs only one honest DLT node in the network. However, this is not sufficient to guarantee consensus. Therefore, and to include a submitted transaction in the DLT state, there needs to be an honest majority of DLT nodes to reach consensus on the submitted transaction.
+The reason why the reference to the consensus algorithm is important is as follows: To guarantee processing of a transaction, one needs only one honest CCSM node in the network. However, this is not sufficient to guarantee consensus. Therefore, and to include a submitted transaction in the CCSM state, there needs to be an honest majority of CCSM nodes to reach consensus on the submitted transaction.
 
 # 10. Integration Capabilities with External Systems 
 
-**[R23]**	The DLT utilized in a BPI MUST be compatible with widely used external authentication services. 
+**[R23]**	The CCSM utilized in a BPI MUST be compatible with widely used external authentication services. 
 
 Non-normative examples of such authentication technologies are OAUTH [[4]](####[4]), SAML [[5]](####[5]), [[6]](####[6]), AD/LDAP [[7]](####[7]).
 
-**[R23]**	The DLT utilized in a BPI MUST support roles & access management.
+**[R23]**	The CCSM utilized in a BPI MUST support roles & access management.
 
-**[R24]**	The DLT utilized in a BPI MUST support policy management.
+**[R24]**	The CCSM utilized in a BPI MUST support policy management.
 
-**[R25]**	The DLT utilized in a BPI MUST support Single-Sign-On (SSO) [[8]](####[8]).
+**[R25]**	The CCSM utilized in a BPI MUST support Single-Sign-On (SSO) [[8]](####[8]).
 
-**[R26]**	The DLT utilized in a BPI MUST support Multi-Factor authentication.
+**[R26]**	The CCSM utilized in a BPI MUST support Multi-Factor authentication.
 
-**[R27]**	The DLT utilized in a BPI MUST support Hardware Security Modules (HSMs)[[9]](####9).
+**[R27]**	The CCSM utilized in a BPI MUST support Hardware Security Modules (HSMs)[[9]](####9).
 
 # 11 Conformance
 
