@@ -59,7 +59,7 @@ _Baseline API and Data Model version 1.0_ - https://github.com/ethereum-oasis/ba
 
 
 #### Abstract:
-This document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Distributed Ledger Technology (DLT) network.
+This document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Distributed Ledger Technology (CCSM) network.
 
 #### Status:
 This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline TC team.
@@ -97,23 +97,23 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 Overview](#11-overview) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Glossary](#12-glossary) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Typographical Conventions](#13-typographical-conventions) \
-[2 Design and Architecture](#2-design-and-architecture) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](##21-Agreement)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](##22-State-Object)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](##23-Transacting-Counterparties)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](##24-Commerciallyand-Legally-Binding-Documents)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1 Contract](###241-Contract)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](###242-Commercia-Documents)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Distributed Ledger Technology (DLT)](##25-Distributed-Ledger-Technology-(DLT))\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](##26-Baseline-Protocol-Instance)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](##27-High-Level-Functional-Requirements)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 Functional Requirements on commercial counterparties](###271-Functional-Requirements-on-commercial-counterparties)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 	DLT-based Lifecycle Processes](###272-DLT-based-Lifecycle-Processes)\
-&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Baseline Protocol Reference Architecture](##28-Baseline-Protocol-Reference-Architecture)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.1 (Commercial) State Synchornization](###281-(Commercial)-State-Synchornization)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.2 DLTs and BPI/DLT Abstraction-Layers](###282-DLTs-and-BPI/DLT-Abstraction-Layers)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3 External Applications](###283-External-Applications)\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components](###284-Baseline-Protocol-Stack-Detailed-Reference-Architecture-Layers-and-Components)\
+[2 Design and Architecture](#2-Design-and-Architecture) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-Agreement) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-State-Object) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](#23-Transacting-Counterparties) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](#24-Commercially-and-Legally-Binding-Documents)\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1 Contract](#241-Contract) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-Commercial-Documents) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Distributed Ledger Technology (CCSM)](#25-Distributed-Ledger-Technology-(CCSM)) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](#26-Baseline-Protocol-Instance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](#27-High-Level-Functional-Requirements) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 Functional Requirements on commercial counterparties](#271-Functional-Requirements-on-commercial-counterparties) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 	CCSM-based Lifecycle Processes](#272-CCSM-based-Lifecycle-Processes) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Baseline Protocol Reference Architecture](#28-Baseline-Protocol-Reference-Architecture) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.1 (Commercial) State Synchronization](#281-(Commercial)-State-Synchronization) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.2 CCSMs and BPI/CCSM Abstraction-Layers](#282-CCSMs-and-BPI/CCSM-Abstraction-Layers) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3 External Applications](#283-External-Applications) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-Baseline-Protocol-Stack-Detailed-Reference-Architecture-Layers-and-Components) \
 [3 API and Data Model](#3-api-and-data-model) \
 [4 Communication](#4-communication) \
 &nbsp;&nbsp;&nbsp;&nbsp;[4.1 Authentication and Authorization](#41-authentication-and-authorization) \
@@ -123,9 +123,12 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[5.1 Privacy](#51-privacy) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.2 Confidentiality](#52-confidentiality) \
 [6 Agreement Execution](#6-agreement-execution)  \
-&nbsp;&nbsp;&nbsp;&nbsp;[6.1 Business Logic Development](#61-business-logic-development) \
-&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Business Logic Execution](#62-business-logic-execution) \
-&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Performance](#63-performance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.1 BPI Workstep](#61-BPI-Workstep) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.2 BPI Workflow](#62-BPI-Workflow) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.3 BPI Workgroup](#63-BPI-Workgroup) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.4 BPI Account](#64-BPI-Account) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.5 BPI Transactions](#65-BPI-Transactions) \
+&nbsp;&nbsp;&nbsp;&nbsp;[6.6 BPI Transaction Lifecycle](#66-BPI-Transaction-Lifecycle) \
 [7 Governance](#7-governance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[7.1 Governance Model](#71-governance-model) \
 [8 Security Considerations](#8-security-considerations) \
@@ -160,19 +163,19 @@ International Monetary Fund, Reference Guide to Anti-Money Laundering and Combat
 
 The Baseline Protocol is a set of methods that enable two or more state machines to achieve and maintain data consistency, and workflow continuity by using a network as a common frame of reference. 
 
-**Baseline-bridge:**
+**Baseline-Bridge:**
 
 A mechanism for one Workflow to use the proof generated by a different Workflow.
 to use a proof generated in a Workflow executed by Workgroup A as input to a Workflow executed by Workgroup B.
 
-**Baseline-connector:**
+**Baseline-Connector:**
 
 Proposed: An interface connecting and synchronizing a baseline stack and system of record.
 
-**Byzantine Fault Tolerant(BFT):**
+**Byzantine Fault Tolerant (BFT):**
 
-Given a network or system of n components, t of which are dishonest, and assuming only point-to-point channels between all the com-ponents, then whenever a component A tries to broadcast a value x such as a block of transactions, the other components are permit-ted to discuss with each other and verify the consistency of A's broadcast, and eventually settle on a common value y. The system is then considered to resist Byzantine faults if a component A can broadcast a value x, and then:
-* If A is honest, then all honest compo-nents agree on the value x.
+Given a network or system of n components, t of which are dishonest, and assuming only point-to-point channels between all the components, then whenever a component A tries to broadcast a value x such as a block of transactions, the other components are permit-ted to discuss with each other and verify the consistency of A's broadcast, and eventually settle on a common value y. The system is then considered to resist Byzantine faults if a component A can broadcast a value x, and then:
+* If A is honest, then all honest components agree on the value x.
 * If A is dishonest, all honest components agree on the common value y.
 
 "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982
@@ -181,15 +184,13 @@ Given a network or system of n components, t of which are dishonest, and assumin
 
 The ability of a Party to immediately cease all their active Workflows across all of their Workgroups within a Baseline-compliant implementation, and, if required, exit a Baseline-compliant implementation with all their data without any 3rd party being able to prevent the exit.
 
-**Common frame of reference:**
+**Common Frame of Reference:**
 
-Proposed: Baselining is a methodology for achieving and maintaining data consistency between two or more state machines  using a network as a common frame of reference. It enables workflow continuity between two or more Parties.
+A Common Frame of Reference as used in this document refers to achieving and maintaining data consistency between two or more Systems of Record using a consensus controlled state machine. This enables workflow and data continuity and integrity between two or more counterparties.
 
-**Distributed Ledger Technology(DLT):**
+**Consensus Controlled State Machine:**
 
-Distributed Ledger Technology is a digital system for recording the transaction of assets in which the transactions and their details are recorded in multiple places at the same time. Unlike traditional databases, distributed ledg-ers have no central data store or administra-tion functionality.
-
-University of Cambridge, Cambridge Judge Business School – Defining DLT, August 2018
+A Consensus Controlled State Machine is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage.
 
 **Electronic Record:**
 
@@ -201,7 +202,7 @@ Bulletin of the American Society for Information Science and Technology, Electro
 
 The condition of being the same with something described or asserted, per Merriam-Webster Dictionary.
 
-A concretization of the above used in this document: Identity is the combination of one or more unique identifiers with data associated with this/these identifi-er(s). Identity associated data consists of signed certificates or credentials such as veri-fiable credentials and other unsigned, non-verifiable data objects generated by or on be-half of the unique identifier(s).
+A concretization of the above used in this document: Identity is the combination of one or more unique identifiers with data associated with this/these identifier(s). Identity associated data consists of signed certificates or credentials such as verifiable credentials and other unsigned, non-verifiable data objects generated by or on be-half of the unique identifier(s).
 
 Merriam-Webster Dictionary, https://www.merriam-webster.com/dictionary/idntity
 
@@ -210,7 +211,7 @@ Merriam-Webster Dictionary, https://www.merriam-webster.com/dictionary/idntity
 The ability of a Party operating Workflows on a baseline-compliant implementation A to instantiate and operate one or more Workflows with one or more Party on a baseline-compliant implementation B without the Party on either implementation A or B having to know anything of the other Party’s implementation.
 
 **Liveness:**
-In concurrent computing, liveness refers to a set of properties of concurrent systems, that require a system to make progress, despite its concurrently executing components ("process-es") may have to "take turns" in critical sec-tions, parts of the program that cannot be sim-ultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
+In concurrent computing, liveness refers to a set of properties of concurrent systems, that require a system to make progress, despite its concurrently executing components ("process-es") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
 
 Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
 
@@ -233,7 +234,7 @@ The ability of a Party to migrate and re-baseline its existing Workflows and dat
 A way of ensuring the privacy of Workflow data represented on a public Mainnet. - permissionless vs public - to discuss and review.
 
 **Proof of Correctness:**
-A Proof of Correctness is a mathematical proof that a computer program or a part thereof will, when executed, yield correct results, i.e. results fulfilling specific requirements. Before proving a program correct, the theorem to be proved must, of course, be formulated. The hypothesis of such a correctness theorem is typically a condition that the relevant program variables must satisfy immediately before the program is executed. This condition is called the precondition. The thesis of the correctness theorem is typically a condition that the relevant program variables must satisfy immediately after execution of the program. This latter condition is called the postcondition. The thesis of a correctness theorem may be a statement that the final values of the program variables are a particular function of their initial values.
+A Proof of Correctness is a mathematical proof that a computer program or a part thereof will, when executed, yield correct results, i.e. results fulfilling specific requirements. Before proving a program correct, the theorem to be proved must, of course, be formulated. The hypothesis of such a correctness theorem is typically a condition that the relevant program variables must satisfy immediately before the program is executed. This condition is called the precondition. The thesis of the correctness theorem is typically a condition that the relevant program variables must satisfy immediately after execution of the program. This latter condition is called the post-condition. The thesis of a correctness theorem may be a statement that the final values of the program variables are a particular function of their initial values.
 
 "Encyclopedia of Software Engineering",
 Print ISBN: 9780471377375| Online ISBN: 9780471028956| DOI: 10.1002/0471028959,
@@ -241,19 +242,19 @@ Print ISBN: 9780471377375| Online ISBN: 9780471028956| DOI: 10.1002/0471028959,
 
 **System of Record:**
 
-The integrity of the data in data architecture is established by what can be called the “system of record.” The system of record is the one place where the value of data is definitively established. Note that the system of record applies only to detailed granular data. The system of record does not apply to summa-rized or derived data.
+The integrity of the data in data architecture is established by what can be called the “system of record.” The system of record is the one place where the value of data is definitively established. Note that the system of record applies only to detailed granular data. The system of record does not apply to summarized or derived data.
 
 W.H. Inmon, Daniel Linstedt and Mary Levins, "Data Architecture", 2019, Academic Press, ISBN: 978-0-12-816916-2
 
 **Trust Model:**
 
-Collection of entities and processes that Ser-vice Providers rely on to help preserve securi-ty, safety, and privacy of data and which is predicated on the use of a DLT implementa-tion.
+Collection of entities and processes that Ser-vice Providers rely on to help preserve security, safety, and privacy of data and which is predicated on the use of a CCSM implementation.
 
 Marsh S. (1994). "Formalizing Trust as a Computational Concept". PhD thesis, University of Stirling, Department of Computer Science and Mathematics.
 
 **Verifiably Secure:**
 
-Verifiable computing that can be described as verifiably secure enables a computer to of-fload the computation of some function to other perhaps untrusted clients, while main-taining verifiable, and thus secure, results. The other clients evaluate the function and return the result with a proof that the compu-tation of the function was carried out correct-ly. The proof is not absolute but is dependent on the validity of the security assumptions used in the proof. For example, a blockchain consensus algorithm where the proof of com-putation is the nonce of a block. Someone in-specting the block can assume with virtual certainty that the results are correct because the number of computational nodes that agreed on the outcome of the same computa-tion is defined as sufficient for the consensus outcome to be secure in the consensus algo-rithm’s mathematical proof of security. 
+Verifiable computing that can be described as verifiably secure enables a computer to offload the computation of some function to other perhaps untrusted clients, while maintaining verifiable, and thus secure, results. The other clients evaluate the function and return the result with a proof that the computation of the function was carried out correct-ly. The proof is not absolute but is dependent on the validity of the security assumptions used in the proof. For example, a blockchain consensus algorithm where the proof of computation is the nonce of a block. Someone inspecting the block can assume with virtual certainty that the results are correct because the number of computational nodes that agreed on the outcome of the same computation is defined as sufficient for the consensus outcome to be secure in the consensus algorithm’s mathematical proof of security. 
 
 Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive Verifiable Computing: Outsourcing Computation to Untrusted Workers. CRYPTO 2010. doi:10.1007/978-3-642-14623-7_25 
 
@@ -279,11 +280,13 @@ A workstep is characterized by an input, the deterministic application of a set 
 This section provides definitions, key concepts, and overviews of the components of a Baseline Protocol Implementation compliant with the requirements of this document. The intent of this section is to provide implementers with guidance to be able to build and operate implementations of the Baseline Protocol not only in an informal context, but also in a very formal, highly regulated context. The latter context in particulars requires implementers to prove that compliance with this standard not only does not violate regulatory frameworks but rather enables meeting regulatory requirements throughout the entire stack.
 
 ## 2.1 Agreement
+
 An agreement is a manifestation of mutual assent by two or more parties to one another see [Cornell Law School](https://www.law.cornell.edu/wex/agreement). An Agreement between two or more Counterparties allows for transactions between them dealing with, for example, commercial items such as products. An Agreement governs and defines all transactions between counterparties.
 
 **[R1]**	Transacting counterparties  MUST have a corresponding agreement.
 
 ## 2.2	State Object
+
 A State Object is an item which can be exchanged between counterparties to an agreement, whose state the counterparties have agreed on and which is defined in an agreement. In the context of this standard, a State Object is assumed to be a document derived from an agreement and representing a specific state of either an asset, a product offering or a service offering transacted between counterparties.
 
 Examples include but are not limited to a
@@ -296,6 +299,7 @@ referencing for example:
 * Financial Assets
  
 ## 2.3 Transacting Counterparties
+
 A transaction counterparty, or simply counterparty, that requests one or more State Objects from another counterparty is the Requester with respect to the State Object.  The Requester can also be the final recipient of one or more State Objects.
 
 A counterparty that provides one or more State Object to another counterparty is the Provider with respect to the provided State Objects. The Provider is accountable to the Requester for all the State Objects it provides to the Requester. 
@@ -317,7 +321,7 @@ Such legal, commercial documents may be presented as a combination of one or mor
 
 This section details the prerequisites required to be fulfilled by a legal contract, also referred to as a Commercial Agreement in this document, between the parties, and defines the general terms and conditions in the legal contract governing commercial transactions between these parties. These prerequisites are to be understood only within the context of this document, and are meant to be general in nature and not specific to particular legal and regulatory frameworks.
 
-A contract will typically govern all commercial transactions between its parties and includes, but is not limited to, sections defining the Governing Law, the Legal Jurisdic-tion, Indemnity, Liability, Force Majeure, Charges and Taxes, Term, Obligations, definitions of commercially relevant elements such as locations, equipment, and products, as well as any other terms and conditions that apply to the entire scope of commercial and legal relations between the parties. Other legal documents, such as an order, typically reference the contract for its general terms and conditions and might contain more specific terms and conditions, such as rates and discounts and other commercial information, relevant for the specific context of the legal document. These specific terms and conditions can expand or override the original contract, and are intentionally not specified in the original contract. The contract is the legal document from which specific commercial documents, such as a Quote or an Order, are derived.
+A contract will typically govern all commercial transactions between its parties and includes, but is not limited to, sections defining the Governing Law, the Legal Jurisdiction, Indemnity, Liability, Force Majeure, Charges and Taxes, Term, Obligations, definitions of commercially relevant elements such as locations, equipment, and products, as well as any other terms and conditions that apply to the entire scope of commercial and legal relations between the parties. Other legal documents, such as an order, typically reference the contract for its general terms and conditions and might contain more specific terms and conditions, such as rates and discounts and other commercial information, relevant for the specific context of the legal document. These specific terms and conditions can expand or override the original contract, and are intentionally not specified in the original contract. The contract is the legal document from which specific commercial documents, such as a Quote or an Order, are derived.
 
 **[R3]**	There MUST be a legally binding contract, however simple and temporary, before a commercial transaction — such as an order — between parties takes place. 
 
@@ -329,7 +333,7 @@ For example, the contract and the order can be combined into a single document f
 
 **[D3]**	 The contract SHOULD be an MSA between the contract parties. 
 
-An MSA is preferable since it allows a proliferation of contract based BPI (commercial) workflows and work staps between the parties reducing complexity and potential errors.
+An MSA is preferable since it allows a proliferation of contract based BPI (commercial) workflows and worksteps between the parties reducing complexity and potential errors.
 
 **[CR1]< [D3]** 	There MUST be only one MSA between a contract parties covering commercial transactions for a given set of products, services or assets to disambiguate which terms cover which part of a commercial relationship between parties.
 
@@ -366,59 +370,57 @@ Note that while non-repudiation in the physical world is most often tied to a ph
 Example:
 A Buyer ("Requester") and Seller ("Provider") may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.
 
-## 2.5 Distributed Ledger Technology (DLT)
+## 2.5 Consensus Controlled State Machine (CCSM)
 
-A distributed ledger (also called a shared ledger or Distributed Ledger Technology or DLT) is a consensus of replicated, shared, and synchronized digital data spread across multiple sites. There is no central administrator or centralized data storage. 
+A Consensus Controlled State Machine is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage. 
 
-A DLT is the foundational enabler of a BPI with no or limited trust assumptions.
+A CCSM with no or limited trust assumptions is the foundational enabler of a BPI.
 
-A peer-to-peer network is required as well as a consensus algorithm to ensure replication across nodes is undertaken [put reference here]
-
-For specificity, the popular word "Blockchain" is a particular form of DLT design.
+For specificity, the popular words "Blockchain" or "CCSM" is a particular form of CCSM design.
 
 ## 2.6 Baseline Protocol Instance
 
-Baseline Protocol Instances (BPIs) are logical constructs shared between (commercial) counterparties of Requesters and Providers and implemented on a Distributed Ledger. They are used to either validate, or reconcile, commercial transactions between Requesters and Providers related to all (commercial) State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may (commercially) transact to/from each other interchangeably. 
+Baseline Protocol Instances (BPIs) are logical constructs shared between (commercial) counterparties of Requesters and Providers and implemented on a Distributed Ledger. They are used to either validate, or reconcile, (commercial) transactions between Requesters and Providers related to all (commercial) State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may (commercially) transact to/from each other interchangeably. 
 
 Abstractly, a BPI consists of
-* the private messaging between legal Contract Counterparties about the state, or the requested or finalized state changes, of the commercial State Objects between them.
-* the representation of a (commercial) contract and commercial documents and their business rules and data as distinct workflows and worksteps between Contract Counterparties organized into workgroups based on the stipulations of the (commercial) contract.
-* the deterministic processing and finalization of state change requests based on commercial documents between the Contract Counterparties as stipulated by the (commercial) contract.
+* the private messaging between Agreement Counterparties about the state, or the requested or finalized state changes, of the (commercial) State Objects between them.
+* the representation of a (commercial) agreement and (commercial) documents and their business rules and data as distinct workflows and worksteps between Agreement Counterparties organized into workgroups based on the stipulations of the (commercial) agreement.
+* the deterministic processing and finalization of state change requests based on (commercial) documents between the Contract Counterparties as stipulated by the (commercial) agreement.
 * the preservation of privacy of all Contract Counterparties and their (commercial) data from other 3rd parties.
 
-BPIs are strongly dependent on the security and privacy capabilities of the DLT used to implement a BPI.
+BPIs are strongly dependent on the security and privacy capabilities of the CCSM used to implement a BPI.
 
-**[R11]**	A BPI MUST utilize a DLT.
+**[R11]**	A BPI MUST utilize a CCSM.
 
-Security and Privacy requirements of a BPI are key and are strongly dependent on the security and privacy assurances of the DLT on which the BPI is implemented can provide. BPIs need to take great care to avoid the following two situations:
+Security and Privacy requirements of a BPI are key and are strongly dependent on the security and privacy assurances of the CCSM on which the BPI is implemented can provide. BPIs need to take great care to avoid the following two situations:
 
-1. Weaken the security assurances of the underlying DLT by increasing the DLT attack surface. Such an expansion of the attack surface can occur through, for example, concentration of value-at-risk in one or more BPIs above the value used to economically secure the underlying DLT. This situation would provide an economic incentive to attack, and subvert, the underlying DLT to extract the value in one or more BPIs.
-2. Increase the existing attack surface of a DLT such that the security assurances of the BPI become significantly weaker than the underlying DLT. An example of such a situation can occur when a commercial State Object such as a Financing contract or an Order in BPI A is dependent on a commercial State Object such as an invoice as collateral in BPI B, and when BPI B has weaker transaction finality assurances than either BPI A or the underlying DLT. In that scenario, the commercial State Object in BPI A cannot provably rely on the invoice as collateral in BPI B since the invoice might be reverted, and it would then no longer be a suitable collateral.
+1. Weaken the security assurances of the underlying CCSM by increasing the CCSM attack surface. Such an expansion of the attack surface can occur through, for example, concentration of value-at-risk in one or more BPIs above the value used to economically secure the underlying CCSM. This situation would provide an economic incentive to attack, and subvert, the underlying CCSM to extract the value in one or more BPIs.
+2. Increase the existing attack surface of a CCSM such that the security assurances of the BPI become significantly weaker than the underlying CCSM. An example of such a situation can occur when a commercial State Object such as a Financing contract or an Order in BPI A is dependent on a commercial State Object such as an invoice as collateral in BPI B, and when BPI B has weaker transaction finality assurances than either BPI A or the underlying CCSM. In that scenario, the commercial State Object in BPI A cannot provably rely on the invoice as collateral in BPI B since the invoice might be reverted, and it would then no longer be a suitable collateral.
 	
 Hence, we enumerate the following requirements below:
 
-**[R12]**	A BPI MUST have the same security assurances as the DLT it utilizes.
+**[R12]**	A BPI MUST have the same security assurances as the CCSM it utilizes.
 
-**[R13]**	(Commercial) State changes of a BPI MUST be verifiable on the DLT it utilizes.
+**[R13]**	(Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
-Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the DLT, that a transaction changed the state of a (commercial) State Object in the BPI correctly, based on agreed upon business rules - for example changing the Order status from open to completed.
+Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a (commercial) State Object in the BPI correctly, based on agreed upon business rules - for example changing the Order status from open to completed.
 
-**[R14]**	A BPI SHOULD have at least the same Liveness properties as the DLT it utilizes.
+**[R14]**	A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
 
-Liveness means that if a DLT does not require (commercial) counterparties to constantly monitor its state to ensure that the state of the DLT is correct, then the BPI should not require a constant observation of its state either.
+Liveness means that if a CCSM does not require (commercial) counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require a constant observation of its state either.
 
 **[R15]**	A BPI MUST be censorship resistant.
 
-Censorship resistant means that a (commercial) counterparty can terminate a commercial transaction at any time without another counterparty, or any Node of the DLT used to implement the BPI, being able to stop the termination of the commercial transaction.
+Censorship resistant means that a (commercial) counterparty can terminate a (commercial) transaction at any time without another counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the (commercial) transaction.
 
-**[R16]**	A BPI MUST be able to provide privacy of the (commercial) conterparties' data with respect to any party outside of the BPI.
+**[R16]**	A BPI MUST be able to provide privacy of the (commercial) counterparties' data with respect to any party outside of the BPI.
 
  
 ## 2.7 High-Level Functional Requirements
 
 This section describes the prerequisites and high-level general operational framework requirements 
 * Functional Requirements on commercial counterparties
-* DLT-based Lifecycle Processes
+* CCSM-based Lifecycle Processes
 
 ### 2.7.1	Functional Requirements on commercial counterparties 
 
@@ -430,19 +432,19 @@ This comprises, e.g., fraud or tax audit requirements based on commercial transa
 
 **[R18]**	Commercial Counterparties MUST support the Reference Architecture defined in this section.
 
-**[R19]**	Commercial Counterparties MUST use the Baseline Protocol APIs to transact on a commercial State Object.
+**[R19]**	Commercial Counterparties MUST use the BPI APIs to transact on a commercial State Object.
 
-An ability of a Requester to request products, services or assets, in other words commercial State Objects, through an instance of the Baseline Protocl's APIs does not necessarily imply the ability to provide products, services and assets through an instance of the Baseline Protocol APIs and vice versa.
+An ability of a Requester to request products, services or assets, in other words commercial State Objects, through an instance of the Baseline Protocol's APIs does not necessarily imply the ability to provide products, services and assets through an instance of the Baseline Protocol APIs and vice versa.
 
-It is important for (commercial) counterparties to know the level of conformity other (commercial) counterparties have with the Baseline Protocl Standard.
+It is important for commercial counterparties to know the level of conformity other commercial counterparties have with the Baseline Protocol Standard.
 
-**[R20]**	Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol standard in a publicly accessible manner.
+**[R20]**	Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol standard in a publicly accessible manner.
 
-### 2.7.2	DLT-based Lifecycle Processes
+### 2.7.2	CCSM-based Lifecycle Processes
 
 Commercial Counterparties must comply efficiently and effectively with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard.
 
-**[R21]**	If required to meet particular third party requirements, (e.g., privacy or regu-latory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
+**[R21]**	If required to meet particular third party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
 
 Note, that in principal every product, service, or asset, or sets thereof has a supply chain. This requirement aims at situations where the product, service, or asset or sets thereof cannot be solely supplied by the Provider without sourcing components from other Providers.
 
@@ -455,12 +457,12 @@ This allows enforcement of conformance with regulations, additional legal and te
 ## 2.8 Baseline Protocol Reference Architecture 
 
 This section describes the components of the Baseline Reference Architecture 
-* (Commercial) State Synchornization
-* DLTs and BPI/DLT Abstraction Layers
+* (Commercial) State Synchronization
+* CCSMs and BPI/CCSM Abstraction Layers
 * External Applications
-* Baseline Protocol Stack Detailed Reference Architecture Layers and Componants
+* Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
-### 2.8.1 (Commercial) State Synchornization
+### 2.8.1 (Commercial) State Synchronization
 
 A BPI can be used  as a common frame of reference for business processes that can be used in a complementary way to existing System-of-Record integrations.
 
@@ -477,42 +479,43 @@ The figure below visually demonstrates high-level Buyer and Seller Order generat
   <figcaption>Figure 1: Illustrative Example of how the commercial state between Buyer and Seller is synchronized and an Order created.</figcaption>
 </figure>
 
-Without a BPI, both Buyer and Seller must assume that the MSA between them and all its values are correctly represented in the other party’s respective Systems-of-Record. If an order is created based upon the MSA but does not comply with the MSA, it will likely result in extensive manual interactions between Seller and Buyer at one stage or another to re-solve the problem to their mutual satisfaction.  
+
+Without a BPI, both Buyer and Seller must assume that the MSA between them and all its values are correctly represented in the other party’s respective Systems-of-Record. If an order is created based upon the MSA but does not comply with the MSA, it will likely result in extensive manual interactions between Seller and Buyer at one stage or another to resolve the problem to their mutual satisfaction.  
 
 **[R22]**	The (commercial) counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
 
-**[R23]** 	The (commercial) counterparties MUST validate the correctness of a (commercial) State Object based on a commercial state change against the transaction business logic in the applicable BPI workflow and workstep.
+**[R23]** 	The (commercial) counterparties MUST validate the correctness of a (commercial) State Object based on a (commercial) state change against the transaction business logic in the applicable BPI workflow and workstep.
 
-**[R24]** 	The (commercial) counterparties MUST generate a Proof of Correctness of a (commercial) State Object based on a commercial state change that can be validated against the BPI transaction business logic.
+**[R24]** 	The (commercial) counterparties MUST generate a Proof of Correctness of a (commercial) State Object based on a (commercial) state change that can be validated against the BPI transaction business logic.
 
 **[R25]** 	Any new (commercial) state between counterparties MUST be recorded on the BPI between them.
 
-**[R26]** 	Any counterparty having received a Proof of Correctness of a (commercial) state change MUST be able to validate that Proof of Correctness aginst the BPI between the counterparties.
+**[R26]** 	Any counterparty having received a Proof of Correctness of a (commercial) state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
 
-**[R27]** 	A (commercial) counterparty MUST include a Proof of Correctness of the (commercial) State Object generated by the commercial state change in the BPI Messages between the transacting counterparties.
+**[R27]** 	A (commercial) counterparty MUST include a Proof of Correctness of the (commercial) State Object generated by the (commercial) state change in the BPI Messages between the transacting counterparties.
 
-### 2.8.2 DLTs and BPI/DLT Abstraction Layers
+### 2.8.2 CCSMs and BPI/CCSM Abstraction Layers
 
 <figure>
   <img
-  src="./images/Baseline-Fig2-DLT-BPI-Abstractions.png"
+  src="./images/Baseline-Fig2-CCSM-BPI-Abstractions.png"
   >
-  <figcaption>Figure 2: DLT and BPI Abstraction Architecture</figcaption>
+  <figcaption>Figure 2: CCSM and BPI Abstraction Architecture</figcaption>
 </figure>
 
-To maintain modularity in the reference architecture, we introduce the concept of DLT and BPI Abstraction. A DLT or BPI Abstraction expressed through a DLT Abstraction Layer, constitutes technology applications which wrap capabilities of DLTs and BPIs such that these capabilities can be exposed to applications above the DLT or BPI Abstraction Layers in a manner that minimizes the dependency of these application on the details of a DLT and BPI – Figure 2. 
+To maintain modularity in the reference architecture, we introduce the concept of CCSM and BPI Abstraction. A CCSM or BPI Abstraction expressed through a CCSM Abstraction Layer, constitutes technology applications which wrap capabilities of CCSMs and BPIs such that these capabilities can be exposed to applications above the CCSM or BPI Abstraction Layers in a manner that minimizes the dependency of these application on the details of a CCSM and BPI – Figure 2. 
 
-The Client DLT API as an external BPI API is implementation specific and will not be discussed further.
+The Client CCSM API as an external BPI API is implementation specific and will not be discussed further.
 
-**[R28]**	DLTs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of legal contracts.
+**[R28]**	CCSMs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of legal contracts.
 
-**[R29]**	A DLT or BPI Abstraction Layer used in a BPI MUST support more than one DLT instance.
+**[R29]**	A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM instance.
 
-**[R30]** A DLT or BPI Abstraction Layer used in a BPI MUST support more than one DLT type.
+**[R30]** A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM type.
 
-This approach avoids lengthy discussions about which DLT protocol to utilize for a BPI, simplifying the decision making process considerably if most common DLTs are incorporated.
+This approach avoids lengthy discussions about which CCSM protocol to utilize for a BPI, simplifying the decision making process considerably if most common CCSMs are incorporated.
 
-Note that irrespective of whether one is in a public or private DLT scenario, the protocol settings such as block time, consensus model, type of execution framework etc. needs to be agreed upon by operating entities in some fashion either informally such as in Ethereum or formally such as in the Trade Finance consortium Komgo. 
+Note that irrespective of whether one is in a public or private CCSM scenario, the protocol settings such as block time, consensus model, type of execution framework etc. needs to be agreed upon by operating entities in some fashion either informally such as in Ethereum or formally such as in the Trade Finance consortium Komgo. 
 
 The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.
 
@@ -520,7 +523,7 @@ The agreement on the governance entity, its rules, and its method of achieving i
 
 ### 2.8.3	External Applications
 
-**[R32]**	Application/s providing commercial transaction functionality such as billing to (commercial) counterparties, and re, therefore, external with respect to the BPI, MUST be independent of any BPI.
+**[R32]**	Application/s providing (commercial) transaction functionality such as billing to (commercial) counterparties, and are, therefore, external with respect to the BPI, MUST be independent of any BPI.
 
 Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
 
@@ -534,33 +537,33 @@ Note, this requirement is motivated by reducing the dependency of counterparty i
 </figure>
 
 A Baseline Protocol Stack Reference Architecture as depicted above in Figure 3 is comprised of the following layers:
-* **Baseline Protocol (BPI) Abstraction Layer**: This layer enables accessing all externally available BPI functions through APIs as defined in the Baseline Protcol API Standards document 
-* **Middleware Layer**: This layer manages all counterparties to an agreement and its associated workflows and worksteps with business rules and business data as well as all counterparrty delegates. In addition, it manages all messaging between counterparties to an agreement and instantiation of processing layers based on newly created or updated agreements and their workflows, worksteps, business rules and business data.  
-* **Processing Layer**: Manages, properly sequences and deterministiaclly processes and finalizes in a privacy-preserving, cryptographically verifiable manner all state change requests from counterparties to all agreements represented in the BPI.  
-* **DLT Abstraction Layer**: This layer enables accessing all required BPI functions implemented on one or more DLTs through APIs as defined in the Baseline Protcol API Standards document. 
-* **DLT Layer**: This layer manages, properly sequences and deterministiaclly processes in a privacy-preserving, cryptographically verifiable manner all transactions from the Processing Layer as well as either deterministcally or probabilistically finalizes on the DLT all DLT state transitions based on said transactions.
+* **Baseline Protocol (BPI) Abstraction Layer**: This layer enables accessing all externally available BPI functions through APIs as defined in the Baseline Protocol API Standards document 
+* **Middleware Layer**: This layer manages all counterparties to an agreement and its associated workflows and worksteps with business rules and business data as well as all counterparty delegates. In addition, it manages all messaging between counterparties to an agreement and instantiation of processing layers based on newly created or updated agreements and their workflows, worksteps, business rules and business data.  
+* **Processing Layer**: Manages, properly sequences and deterministically processes and finalizes in a privacy-preserving, cryptographically verifiable manner all state change requests from counterparties to all agreements represented in the BPI.  
+* **CCSM Abstraction Layer**: This layer enables accessing all required BPI functions implemented on one or more CCSMs through APIs as defined in the Baseline Protocol API Standards document. 
+* **CCSM Layer**: This layer manages, properly sequences and deterministically processes in a privacy-preserving, cryptographically verifiable manner all transactions from the Processing Layer as well as either deterministically or probabilistically finalizes on the CCSM all CCSM state transitions based on said transactions.
 
 Below we list and define the components of each layer. The detailed requirements for each component will be discussed in later sections of this document.
 
 * **BPI Abstraction layer**
     * **API Gateway**: An API gateway which exposes all required functionality to the counterparties to an agreement and enforces all necessary authentication and authorization of API calls as well as properly directs the API calls within the Baseline Protocol Stack
-    * **Application**: The application logic which manages the pre-processing and routing of all API requests, as well as the enforcement of authentication and authoorization protocols and rules.
+    * **Application**: The application logic which manages the pre-processing and routing of all API requests, as well as the enforcement of authentication and authorization protocols and rules.
 * **Middleware Layer**
-    * **Workflows**: A Business Process Management engine that allows for the definition, management and instantiation of workflows and worksteps and associated buiness rules and data based on (commercial) agreements between counterparties
-    * **Identity/Accounts/Workgroups**: A capability that allows for the identification and management of counterparties and their delegates as well as members of workflows and worksteps organizaed in workgroups which are derived from the counterparties to an agreement. 
-    * **Messaging**: A mesaging capability that allows the exchange of secure and privacy-preserving messages between counterparties to an agreement to communicate and coordinate agreement on proposed (commercial) state changes. 
+    * **Workflows**: A Business Process Management engine that allows for the definition, management and instantiation of workflows and worksteps and associated business rules and data based on (commercial) agreements between counterparties
+    * **Identity/Accounts/Workgroups**: A capability that allows for the identification and management of counterparties and their delegates as well as members of workflows and worksteps organized in workgroups which are derived from the counterparties to an agreement. 
+    * **Messaging**: A messaging capability that allows the exchange of secure and privacy-preserving messages between counterparties to an agreement to communicate and coordinate agreement on proposed (commercial) state changes. 
 * **Processing Layer**
     * **Transaction Pool**: one or more transaction pools which hold, properly sequence, preprocess and batch for processing by the Virtual State Machine all requested state change transactions of a BPI.
     * **Virtual State Machine**: one or more Virtual State Machines which deterministically processes and finalizes in a privacy-preserving, cryptographically verifiable manner all state change request transactions.
     * **Storage**: A storage system for the cryptographically linked current and historical state of all (commercial) agreements in a BPI.
-* **DLT Abstraction Layer** 
-    * **API Gateway**: An API gateway which enables accessing all required BPI functions implemented on one or more DLTs, and properly directs the requests within the DLT Abstraction layer to the proper DLT API application logic
-    * **Application**: The DLT API application logic which manages the pre-processing, as well as the proper usage of the underlying DLT and BPI authentication and authorization.
-*  **DLT Layer** is comprised of
-    * Messaging: A mesaging capability that allows the exchange of messages between DLT nodes that comprise either received transactions or a new proposed DLT state.
-    * Transaction Pool: A transaction pool holds, properly sequences, pre-processes and batches for processing by the DLT Virtual State Machine all submitted DLT transactions.
-    * Virtual State Machine: A Virtual State Machine deterministically cally processes in a cryptographically verifiable manner all submitted transactions for DLT state changes.
-    * Storage: A storage system for the cryptographically linked current and historical state of all DLT State Objects.
+* **CCSM Abstraction Layer** 
+    * **API Gateway**: An API gateway which enables accessing all required BPI functions implemented on one or more CCSMs, and properly directs the requests within the CCSM Abstraction layer to the proper CCSM API application logic
+    * **Application**: The CCSM API application logic which manages the pre-processing, as well as the proper usage of the underlying CCSM and BPI authentication and authorization.
+*  **CCSM Layer** is comprised of
+    * Messaging: A messaging capability that allows the exchange of messages between CCSM nodes that comprise either received transactions or a new proposed CCSM state.
+    * Transaction Pool: A transaction pool holds, properly sequences, pre-processes and batches for processing by the CCSM Virtual State Machine all submitted CCSM transactions.
+    * Virtual State Machine: A Virtual State Machine deterministically processes in a cryptographically verifiable manner all submitted transactions for CCSM state changes.
+    * Storage: A storage system for the cryptographically linked current and historical state of all CCSM State Objects.
 
 
 # 3 API and Data Model
