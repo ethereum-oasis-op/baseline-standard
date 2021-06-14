@@ -663,7 +663,7 @@ Otherwise, it would be possible to take control of identifiers away from Princip
 
 This is necessary to ensure that a single entity cannot prevent identifiers from being updated or renewed.
 
-## 3.2 BPI Identifiers, Identities and Credentials and their Management
+## 3.2 BPI Identifiers, Identities and Credentials, and their Management
 
 Building of the requirements in [Section 3.1](##31-Introduction), this section focuses on identifiers, identities and credentials used within a BPI or a network of BPIs. Note that BPI interoperability which will be discussed in [Section 5](##5-Middleware,-Communication-and-Interoperability) is predicated on known, discoverable and identifiable approaches to how identifiers and credentials are created, updated, revoked, and deleted and how standardized identity frameworks are related to those identifiers and credentials utilized in one or more BPIs.
 
