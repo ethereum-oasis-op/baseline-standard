@@ -687,7 +687,7 @@ Uniqueness and security of BPI identifiers is very important to unambiguously id
 
 **[D5]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#####-W3C-DID)].
 
-### 3.2.2 Identities and Credentials
+### 3.2.2 BPI Identities and Credentials
 
 After having discussed the minimal set of requirements on identifiers utilized in a BPI, it is important to discuss how these relate to identity and claims about facts relevant to Requester, Provider and BPI Operator, also called credentials. 
 
