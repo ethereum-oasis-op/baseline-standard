@@ -566,72 +566,209 @@ Below we list and define the components of each layer. The detailed requirements
     * Storage: A storage system for the cryptographically linked current and historical state of all CCSM State Objects.
 
 
-# 3 API and Data Model
+# 3 Identifiers, Identity and Credential Management
+
+## 3.1 Introduction
+
+Currently 3rd parties such as Domain Name Services (DNS) registrars [put reference], Internet Corporation for Assigned Names and Numbers (ICANN) [put reference], X.509 Certificate Authorities (CAs) [put reference], and social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
+
+As evidenced over the last 20+ years, this design has demonstrated serious usability and security shortcomings.
+
+When DNS and X.509 Public Key Infrastructure (PKIX)[put reference] was designed, the internet did not have a way to agree upon the state of a registry (or database) in a reliable manner with no trust assumptions. Consequently, standard bodies designated trusted 3rd parties (TTP) to manage identifiers and public keys. Today, virtually all Internet software relies on these authorities. These trusted 3rd parties, however, are central points of failure, where each is capable of compromising the integrity and security of large portions the Internet. Therefore, once a TTP has been compromised, the usability of the identifiers it manages is also compromised. 
+
+As a result, companies spend significant resources fighting security breaches caused by CAs, and public internet communications that are both truly secure and user-friendly are still out of reach for most.
+
+Given the above, the Baseline Protocol Standard identity approach is as follows: Every identity is controlled by its Principal owner and not by a 3rd party, unless the Principal Owner has delegated control to a 3rd party. 
+
+A Principal Owner is defined as the entity controlling the public key(s) which control the identity and its identifiers upon inception of the identity.
+
+The Baseline Protocol Standard defines identity in the context of this document to mean the following:
+
+```
+Identity = <Identifier(s)> + <associated data>
+```
+where associated data refers to data describing the characteristics of the identity that is associated with the identifier(s). An example of such associated could be an X.509 issues by a CA. 
+
+This approach requires a decentralized, or at least strongly federated, infrastructure as expressed in the requirements below. 
+
+**[D5]**	The Public Key Infrastructure (PKI)  of a BPI SHOULD be decentralized.
+
+Decentralized in this context means that there is no single point of failure in the PKI where possibly no participants are known to one another.
+
+**[R33]**	The PKI of a BPI MUST be strongly federated.
+
+Strongly federated in this context means that there is known, finite number of participants, while there is still no single point of failure in the PKI. However, a collusion of a limited number of participants in the federated infrastructure could lead to a compromised PKI. The consensus thresholds required for a change in the infrastructure is out of scope for this document. 
+
+**[R34]**	The identifiers and identity utilized in a BPI MUST be controlled by its Principal Owner.
+
+For a BPI to properly operate communication must be trusted and secure. Communications are secured through the safe delivery of public keys tied to identities. The Principal Owner of the identity uses a corresponding secret private key to both decrypt messages sent to them, and to prove they sent a message by signing it with its private key.
+
+PKI systems are responsible for the secure delivery of public keys. However, the commonly used X.509 PKI (PKIX) undermines both the creation and the secure delivery of these keys.
+
+In PKIX services are secured through the creation of keys signed by CAs. However, the complexity of generating and managing keys and certificates in PKIX have caused companies to manage the creation and signing of these keys themselves, rather than leaving it to their clients. This creates major security concerns from the outset, as it results in the accumulation of private keys at a central point of failure, making it possible for anyone with access to that repository of keys to compromise the security of connections in a way that is virtually undetectable.
+
+The design of X.509 PKIX also permits any of the thousands of CAs to impersonate any website or web service. Therefore, entities cannot be certain that their communications are not being compromised by a fraudulent certificate allowing a MITM (Man-in-the-Middle) attack. While workarounds have been proposed, good ones do not exist.
+
+Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative.
+The goal of DPKI is to ensure that, unlike PKIX, no single third-party can compromise the integrity and security of a system employing DPKI as a whole. 
+
+Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the MITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier.
+In this design, control over the identifier is returned to the Principal Owner. 
+
+Within this design. it is no longer trivial for any one entity to undermine the security of the entire DKPI system or to compromise an identifier that is not theirs overcoming the challenges of typical PKI.
+
+Furthermore, DPKI requires a public registry of identifiers and their associated public keys that can be read by anyone but cannot be compromised. As long as this registration remains valid and the Principal Owner is able to maintain control of their private key, no 3rd party can take ownership of that identifier without resorting to direct coercion of the Principal Owner.
+
+**[O1]** A BPI MAY utilize a DPKI.
+
+**[CR1]>[O1]**	Any Principal Owner in a DPKI system utilized by a BPI MUST be able to broadcast a message if it is well-formed within the context of the DPKI.
+
+Other peers in the system do not require admission control. This implies a decentralized consensus mechanism naturally leading to the utilization of systems such as CCSMs.
+
+**[CR2]>[O1]**	Given two or more histories of updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
+
+This implies the existence of a method of ascertaining the level of resources backing a DPKI history such as the hash power in Bitcoin based on difficulty level and nonce.
+
+Requirements of Identifier registration in DPKI is handled differently from DNS. Although registrars may exist in DPKI, these registrars must adhere to several requirements that ensure that identities belong to the entities they represent. This is achieved the following way:
+
+**[CR3]>[O1]**	Private keys utilized in a BPI MUST be generated in a manner that ensures they remain under the Principal Owner’s control. 
+
+**[CR4]>[O1]** Generating key pairs in a BPI on behalf of Principal Owner MUST NOT be allowed.
+
+**[CR5]>[O1]**	Principals Owners in a BPI MUST always be in control of their identifiers and the corresponding public keys. 
+
+**[O2]**	Principal Owners MAY extend control of their identifier to third parties.
+
+For example for recovery purposes.
+
+**[CR6]<[O2]** Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal of such identifier.
+
+**[R35]**	Private keys MUST be stored and/or transmitted in a secure manner.
+
+No mechanism should exist that would allow a single entity to deprive a Principal Owner of their identifier without their consent. This implies that:
+
+**[CR7]<[O1]**	Once a namespace is created within the context of a BPI, it MUST NOT be possible to destroy it.
+
+**[CR8]<[O1]**	Namespaces in a DPKI utilized by a BPI MUST NOT contain blacklisting mechanisms that would allow anyone to invalidate identifiers that do not belong to them.
+
+**[CR9]<[O1]**	The rules for registering and renewing identifiers in a DPKI utilized by a BPI MUST be transparent and expressed in simple terms.
+
+**[R36]**	If registration is used as security to an expiration policy, the Principal Owner MUST be explicitly and timely warned that failure to renew the registration on time could result in the Principal Owner losing control of the identifier.
+
+**[CR10]>[O1]**	Once set, namespace rules within a DPKI utilized by a BPI MUST NOT be altered to introduce any new restrictions for renewing or updating identifiers.
+
+Otherwise, it would be possible to take control of identifiers away from Principals Owners without their consent.
+
+**[CR11]>[O1]**	Within a DPKI utilized by a BPI, processes for renewing or updating identifiers MUST NOT be modified to introduce new restrictions for updating or renewing an identifier, once issued.
+
+**[CR12]>[O1]**	Within a DPKI utilized by a BPI, all network communications for creating, updating, renewing, or deleting identifiers MUST be sent via a non-centralized mechanism.
+
+This is necessary to ensure that a single entity cannot prevent identifiers from being updated or renewed.
+
+## 3.2 BPI Identifiers, Identities and Credentials and their Management
+
+Building of the requirements in [Section 3.1](##31-Introduction), this section focuses on identifiers, identities and credentials used within a BPI or a network of BPIs. Note that BPI interoperability which will be discussed in [Section 5](##5-Middleware,-Communication-and-Interoperability) is predicated on known, discoverable and identifiable approaches to how identifiers and credentials are created, updated, revoked, and deleted and how standardized identity frameworks are related to those identifiers and credentials utilized in one or more BPIs.
+
+In the following, we will use Requester and Provider as established in this document to refer to the entities making and those receiving requests. 
+
+### 3.2.1 BPI Identifiers
+
+Uniqueness and security of BPI identifiers is very important to unambiguously identify entities interacting with and through one or more BPIs and keep those interaction secure. Furthermore, to facilitate automation and real time interactions within and through a BPI, discovery of identifiers and an ability to resolve them to the underlying public keys that secure them is also critical. 
+
+**[R37]** Requester and Provider interacting with and through a BPI as well as any BPI Operator MUST each have a unique identifier.
+
+**[R38]** Any unique identifier utilized within a BPI MUST be associated with a set of public keys.
+
+**[R39]** Any unique identifier utilized within a BPI MUST be discoverable by any 3rd party.
+
+**[R40]** Any unique identifier utilized within a BPI MUST be resolvable to its associated public keys used for cryptographic authentication of the unique identifier.
+
+**[R41]** A unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that identifies the Baseline Protocol Standard as a supported protocol including the supported version(s).
+
+**[R42]** A unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
+
+**[D5]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [put reference here].
+
+### 3.2.2 Identities and Credentials
+
+After having discussed the minimal set of requirements on identifiers utilized in a BPI, it is important to discuss how these relate to identity and claims about facts relevant to Requester, Provider and BPI Operator, also called credentials. 
+
+Before we can discuss requirements we need to establish the scope of identity and credential management within the context of a BPI.
+
+In the figure below, we establish the context and scope of identity and credential management for a BPI.
+
+<figure>
+  <img
+  src="./images/section-3-baseline-spec-identity-scope.png"
+  >
+  <figcaption>Figure 4: Delineation of the Identity and Credential scope of a BPI</figcaption>
+</figure>
+
+As depicted, identities and credentials are established outside of the context, and, therefore, scope of a BPI. Hence, it is incumbent on BPI participants -- Requesters, Providers and, if distinct, Operators -- to establish the trust context of acceptable identities and credentials for a BPI. This statement also applies to a network of BPIs which are to interoperate with one another.
+
+**[D6]** A unique identifier utilized within one or more BPIs SHOULD be linked to an (Legal) Entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
+
+Note that credentials utilized within one ore more BPIs may be self-issued. The acceptance of self-issued credentials is up to the BPI participants that need to  rely on the claim(s) within a self-issued credential.
+
+**[R43]** The unique identifier of the (Legal) Entity MUST be the subject of the credential.
+
+**[R44]** The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIS MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
+
+**[D7]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [put reference here].
+
+**[R45]** A credential utilized within one or more BPIs MUST have a unique and resolvable identifier.
+
+**[R46]** If present, the status of a credential utilized within one or more BPIs MUST be discoverable by any 3rd party.
+
+**[D8]** A credential utilized within one or more BPIs SHOULD be discoverable by any 3rd party.
+
+**[R47]** The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the credential holder.
+
+**[R48]** If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the BPI context the holder operates in.
+
+As discussed in [Section 3.1](##31-Introduction), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.  
+
+<figure>
+  <img
+  src="./images/section-3-baseline-spec-identity-authorities.png"
+  >
+  <figcaption>Figure 5: Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID COnnect Relying Party as examples</figcaption>
+</figure>
+
+As depicted in Figure 5 above, the accepted Entity identity credentials or other credentials from Identity providers and presented by a BPI participant need to be verified by the BPI against the issuing providers and subsequently stored in the BPI, and if required, updated from the identity provider once expired, revoked or otherwise changed. 
+
+For a BPI to achieve these objectives, the following requirements need to be met:
+
+**[R49]** A unique identifier utilized in a BPI MUST be stored by the BPI.
+
+**[R50]** The Principal Owner or their delegates MUST prove control over a unique identifier utilized in a BPI every time said unique identifier is used in the BPI by the Principal Owner or their delegates.
+
+**[R51]** Every time a unique identifier utilized in a BPI is used in the BPI by the Principal Owner or their delegates, the BPI MUST verify that the Principal Owner or their delegates are in control of said unique identifier.
+
+Note that proof of control might be performed by a relying party, if authority has been delegated.
+
+**[R52]** A credential utilized in a BPI SHOULD be stored by the BPI.
+
+This avoids re-presentation of the credential after the initial presentation.
+
+**[R50]** A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
+
+**[R51]** Every time a credentialed utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance and that the credential holder is in control of said credential.
+
+Note that credential content verification can only done through the inspection of underlying documentation or through a verification by the issuer such as an OpenId Connect Identity Provider.
+
+We will discuss further, more detailed management requirements in the context of BPI participant account management in [Section 5](##5-Middleware-Communication-and-Interoperability). 
+
+-------
+
+# 4 BPI Abstraction Layers
+
 
 
 -------
 
-# 4 Communication
+# 5 Middleware, Communication and Interoperability
 
-This section describes the logical architecture (presented as two abstract services - Authentication & Authorization and Message Delivery) that allows parties to send and receive messages securely.
-
-## 4.1 Authentication and Authorization
-
-Describes the requirements for the Authentication service responsible for establishing and maintaining the connection between verified parties.
-
-| Requirement ID | Requirement  | 
-| :--- | :--- |
-| COM1 | something MUST something |
-| COM2 | something SHOULD something |
-
-## 4.2 Message Delivery
-
-Describes the requirements for the Delivery service responsible for exchanging messages between verified parties.
-
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| COM3 | MUST implement IMessagingService interface to interact with verified parties. |
-| COM4 | MUST implement pub-sub pattern. |
-| COM5 | MUST implement XYZ Protocol Messages (types, formats, queues, inbound, outbound). |
-| COM6 | Automated message validation |
-| COM7 | Messaging Endpoints - SHOULD be distinct from system of record. |
-
-## 4.3 Performance
-
-Describes the performance requirements for the Communication component.
-
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| COM8 | Durable messaging  |
-| COM9 | Persistent messaging|
-| COM10 | Latency  |
-| COM11 | Fault-tolerance |
-| COM12 | Scalability |
-
-
--------
-
-# 5 Privacy and Confidentiality
-
-This section describes mechanisms to ensure counterparties confidentiality and shielded private transactions.
-
-## 5.1 Privacy
-Describes mechanisms ensuring that only information relevant to the transaction and pre-agreed by verified parties is used to its purpose.
-
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| PRICON1 | something MUST something  |
-| PRICON2 | something SHOULD something |
-
-
-## 5.2 Confidentiality
-
-Describes the mechanisms ensuring that other parties (i.e parties outside of transaction) are prevented from accessing data that they are not authorized to access.
-
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| PRICON3 | something MUST something  |
-| PRICON4 | something SHOULD something |
 
 -------
 
@@ -1052,74 +1189,9 @@ The following requirements all deal with integration requirements of the Storage
 
 -------
 
-# 7 Governance
-Describes the required functionalities to implement governance processes at every functional layer of the Baseline specification.
-
-
-## 7.1 Governance Model
-
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| GOV1 | Change Control - requirements for introducing change in a controlled and coordinated manner for each functional layer. |
-| GOV2| Execution/Process monitoring |
-
-
-## 7.2 Audit
-
-Describes the requirements for audit activities. 
-
-
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| GOV3 |Internal audit |
-| GOV4| External audit  |
-
-
-## 7.3 Monitoring & Reporting
-
-Describes the requirements for monitoring and reporting on operations for each functional layer.
-
-| Requirement ID|Requirement  |
-| :--- | :--- |
-| GOV5 | something MUST something  |
-| GOV6| something SHOULD something |
-
--------
-
-# 8 Security Considerations
-
-
-Describes security topics that should be important in Baseline implementations but that are NOT requirements. 
-
-## 8.1 Data Privacy
-
-Provides a list of considerations related to data privacy.
-
-The standard does not set any requirements for compliance to jurisdiction legislation/regulations, responsibility of the implementer to comply to applicable data privacy laws.
-
-## 8.2 Production Readiness
-
-Provides a list of considerations related to the use of underlying protocols/applications/tools etc. 
-
-The standard does not set any requirements for the use of specific applications/tools/libraries etc.
-Examples included in standard to be non-normative.
-The implementer should perform due diligence when selecting tools, libraries etc.
 
 
 
-<!--
-
-(Note: OASIS strongly recommends that Open Projects consider issues that might affect safety, security, privacy, and/or data protection in implementations of their specification and document them for implementers and adopters. For some purposes, you may find it required, e.g. if you apply for IANA registration.
-
-While it may not be immediately obvious how your specification might make systems vulnerable to attack, most specifications, because they involve communications between systems, message formats, or system settings, open potential channels for exploit. For example, IETF [[RFC3552](#rfc3552)] lists “eavesdropping, replay, message insertion, deletion, modification, and man-in-the-middle” as well as potential denial of service attacks as threats that must be considered and, if appropriate, addressed in IETF RFCs.
-
-In addition to considering and describing foreseeable risks, this section should include guidance on how implementers and adopters can protect against these risks.
-
-We encourage editors and OP members concerned with this subject to read _Guidelines for Writing RFC Text on Security Considerations_, IETF [[RFC3552](#rfc3552)], for more information.
-
--->
-
--------
 
 # 9 Conformance
 
@@ -1190,8 +1262,38 @@ Rescorla, E. and B. Korver, "Guidelines for Writing RFC Text on Security Conside
 -->
 -------
 
-# Appendix B. ABC
+# Appendix B. Security Considerations
 
+
+Describes security topics that should be important in Baseline implementations but that are NOT requirements. 
+
+## B.1 Data Privacy
+
+Provides a list of considerations related to data privacy.
+
+The standard does not set any requirements for compliance to jurisdiction legislation/regulations, responsibility of the implementer to comply to applicable data privacy laws.
+
+## B.2 Production Readiness
+
+Provides a list of considerations related to the use of underlying protocols/applications/tools etc. 
+
+The standard does not set any requirements for the use of specific applications/tools/libraries etc.
+Examples included in standard to be non-normative.
+The implementer should perform due diligence when selecting tools, libraries etc.
+
+
+
+<!--
+
+(Note: OASIS strongly recommends that Open Projects consider issues that might affect safety, security, privacy, and/or data protection in implementations of their specification and document them for implementers and adopters. For some purposes, you may find it required, e.g. if you apply for IANA registration.
+
+While it may not be immediately obvious how your specification might make systems vulnerable to attack, most specifications, because they involve communications between systems, message formats, or system settings, open potential channels for exploit. For example, IETF [[RFC3552](#rfc3552)] lists “eavesdropping, replay, message insertion, deletion, modification, and man-in-the-middle” as well as potential denial of service attacks as threats that must be considered and, if appropriate, addressed in IETF RFCs.
+
+In addition to considering and describing foreseeable risks, this section should include guidance on how implementers and adopters can protect against these risks.
+
+We encourage editors and OP members concerned with this subject to read _Guidelines for Writing RFC Text on Security Considerations_, IETF [[RFC3552](#rfc3552)], for more information.
+
+-->
 
 -------
 
@@ -1235,21 +1337,13 @@ If revision tracking is handled in another system like github, provide a link to
 | baseline-core-v1.0-psd01 | 2020-09-29 | Anais Ofranc | Initial working draft |
 
 -------
-<!--
-# Appendix E. Example Appendix with subsections
-
-## E.1 Subsection title
-
-### E.1.1 Sub-subsection
--->
--------
 
 # Appendix F. Notices
 
 <!-- This required section should not be altered, except to modify the license information in the second paragraph -->
 
 
-Copyright © OASIS Open 2020. All Rights Reserved.
+Copyright © OASIS Open 2021. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
 
