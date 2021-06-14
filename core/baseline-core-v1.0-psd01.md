@@ -515,7 +515,7 @@ The Client CCSM API as an external BPI API is implementation specific and will n
 
 This approach avoids lengthy discussions about which CCSM protocol to utilize for a BPI, simplifying the decision making process considerably if most common CCSMs are incorporated.
 
-Note that irrespective of whether one is in a public or private CCSM scenario, the protocol settings such as block time, consensus model, type of execution framework etc. needs to be agreed upon by operating entities in some fashion either informally such as in Ethereum or formally such as in the Trade Finance consortium Komgo. 
+Note that irrespective of whether one is in a public or private CCSM scenario, the protocol settings such as block time, consensus model, type of execution framework etc. needs to be agreed upon by operating entities in some fashion either informally such as in [Ethereum](https://ethereum.org/en/) or formally such as in the Trade Finance consortium [Komgo](https://www.komgo.io/). 
 
 The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.
 
@@ -570,11 +570,11 @@ Below we list and define the components of each layer. The detailed requirements
 
 ## 3.1 Introduction
 
-Currently 3rd parties such as Domain Name Services (DNS) registrars [put reference], Internet Corporation for Assigned Names and Numbers (ICANN) [put reference], X.509 Certificate Authorities (CAs) [put reference], and social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
+Currently 3rd parties such as Domain Name Services (DNS) registrars [put reference], Internet Corporation for Assigned Names and Numbers [(ICANN)](https://www.icann.org/), X.509 Certificate Authorities (CAs), see Reference [[X.509](######-X.509)] and Reference [[CA](######-CA)], or social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
 
 As evidenced over the last 20+ years, this design has demonstrated serious usability and security shortcomings.
 
-When DNS and X.509 Public Key Infrastructure (PKIX)[put reference] was designed, the internet did not have a way to agree upon the state of a registry (or database) in a reliable manner with no trust assumptions. Consequently, standard bodies designated trusted 3rd parties (TTP) to manage identifiers and public keys. Today, virtually all Internet software relies on these authorities. These trusted 3rd parties, however, are central points of failure, where each is capable of compromising the integrity and security of large portions the Internet. Therefore, once a TTP has been compromised, the usability of the identifiers it manages is also compromised. 
+When DNS and X.509 Public Key Infrastructure (PKIX) [[NIST SP 800-32](#####-NIST-SP-800-32)] was designed, the internet did not have a way to agree upon the state of a registry (or database) in a reliable manner with no trust assumptions. Consequently, standard bodies designated trusted 3rd parties (TTP) to manage identifiers and public keys. Today, virtually all Internet software relies on these authorities. These trusted 3rd parties, however, are central points of failure, where each is capable of compromising the integrity and security of large portions the Internet. Therefore, once a TTP has been compromised, the usability of the identifiers it manages is also compromised. 
 
 As a result, companies spend significant resources fighting security breaches caused by CAs, and public internet communications that are both truly secure and user-friendly are still out of reach for most.
 
@@ -609,11 +609,9 @@ In PKIX services are secured through the creation of keys signed by CAs. However
 
 The design of X.509 PKIX also permits any of the thousands of CAs to impersonate any website or web service. Therefore, entities cannot be certain that their communications are not being compromised by a fraudulent certificate allowing a MITM (Man-in-the-Middle) attack. While workarounds have been proposed, good ones do not exist.
 
-Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative.
-The goal of DPKI is to ensure that, unlike PKIX, no single third-party can compromise the integrity and security of a system employing DPKI as a whole. 
+Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative. The goal of DPKI is to ensure that, unlike PKIX, no single third-party can compromise the integrity and security of a system employing DPKI as a whole. 
 
-Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the MITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier.
-In this design, control over the identifier is returned to the Principal Owner. 
+Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the MITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier. In this design, control over the identifier is returned to the Principal Owner. 
 
 Within this design. it is no longer trivial for any one entity to undermine the security of the entire DKPI system or to compromise an identifier that is not theirs overcoming the challenges of typical PKI.
 
@@ -687,7 +685,7 @@ Uniqueness and security of BPI identifiers is very important to unambiguously id
 
 **[R42]** A unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
-**[D5]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [put reference here].
+**[D5]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#####-W3C-DID)].
 
 ### 3.2.2 Identities and Credentials
 
@@ -714,7 +712,7 @@ Note that credentials utilized within one ore more BPIs may be self-issued. The 
 
 **[R44]** The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIS MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
-**[D7]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [put reference here].
+**[D7]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [[W3C VC](#####-W3C-VC)].
 
 **[R45]** A credential utilized within one or more BPIs MUST have a unique and resolvable identifier.
 
@@ -732,7 +730,7 @@ As discussed in [Section 3.1](##31-Introduction), BPIs require either decentrali
   <img
   src="./images/section-3-baseline-spec-identity-authorities.png"
   >
-  <figcaption>Figure 5: Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID COnnect Relying Party as examples</figcaption>
+  <figcaption>Figure 5: Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID Connect Relying Party as examples</figcaption>
 </figure>
 
 As depicted in Figure 5 above, the accepted Entity identity credentials or other credentials from Identity providers and presented by a BPI participant need to be verified by the BPI against the issuing providers and subsequently stored in the BPI, and if required, updated from the identity provider once expired, revoked or otherwise changed. 
@@ -755,7 +753,7 @@ This avoids re-presentation of the credential after the initial presentation.
 
 **[R51]** Every time a credentialed utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance and that the credential holder is in control of said credential.
 
-Note that credential content verification can only done through the inspection of underlying documentation or through a verification by the issuer such as an OpenId Connect Identity Provider.
+Note that credential content verification can only done through the inspection of underlying documentation or through a verification by the issuer such as an [OpenId Connect Identity Provider](https://openid.net/developers/specs/).
 
 We will discuss further, more detailed management requirements in the context of BPI participant account management in [Section 5](##5-Middleware-Communication-and-Interoperability). 
 
@@ -1256,10 +1254,22 @@ Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, 
 -->
 
 ## A.2 Informative References
-<!-- 
-###### [RFC3552]
-Rescorla, E. and B. Korver, "Guidelines for Writing RFC Text on Security Considerations", BCP 72, RFC 3552, DOI 10.17487/RFC3552, July 2003, https://www.rfc-editor.org/info/rfc3552.
--->
+ 
+###### [X.509]
+ International Telecommunications Union, October 2019, https://www.itu.int/rec/T-REC-X.509-201910-I/en
+
+##### [CA]
+NIST SP 800-56B Rev. 2, March 2019, https://doi.org/10.6028/NIST.SP.800-56Br2
+
+##### [NIST SP 800-32]
+NIST SP 800-32, 2001, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf
+
+##### [W3C DID]
+W3C Recommended Specification "Decentralized Identifiers (DIDs) v1.0", June 2021, https://www.w3.org/TR/did-core/
+
+##### [W3C VC]
+W3C Specification "Verifiable Credentials Data Model 1.0", October 2019, https://www.w3.org/TR/vc-data-model/
+
 -------
 
 # Appendix B. Security Considerations
