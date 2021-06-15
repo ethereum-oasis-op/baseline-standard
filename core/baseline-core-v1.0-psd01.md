@@ -662,7 +662,7 @@ This is just a well known convention from business process management frameworks
 
 **[RXX]** The output of a workstep MUST represent the verifiable validation result of an input into a workstep as a correct new agreement state.
 
-Note that a new agreement state after a correct workstep execution is is defined as 
+Note that a new agreement state after a correct workstep execution is defined as 
 ```
 New Agreement State = Old Agreement State + Agreed upon New State Object + Workstep Output 
 ```
@@ -707,7 +707,7 @@ A Zero-Knowledge Proof is defined as having to satisfy the following three prope
 
 * **Completeness:** if the statement is true,  an honest verifier, i.e., an entity following the protocol properly, will be convinced of this fact by an honest prover.
 * **Soundness:** if the statement is false, no cheating prover can convince an honest verifier that it is true, except with some small probability.
-* **Zero-Knowledge:** if the statement is true, no verifier learns anything other than the fact that the statement is true. In other words, just knowing the statement (not the secret) is sufficient t construct a scenario that shows that the prover knows the secret. This is formalized by showing that every verifier has some simulator that, given only the statement to be proved (and no access to the prover), can produce a transcript that "looks like" an interaction between the honest prover and the verifier.
+* **Zero-Knowledge:** if the statement is true, no verifier learns anything other than the fact that the statement is true. In other words, just knowing the statement (not the secret) is sufficient to construct a scenario that shows that the prover knows the secret. This is formalized by showing that every verifier has some simulator that, given only the statement to be proved (and no access to the prover), can produce a transcript that "looks like" an interaction between the honest prover and the verifier.
 
 **[RXX]** A zero-knowledge proof of correctness of an input MUST be non-interactive.
 
@@ -844,7 +844,7 @@ A privacy policy the data visibility rules for each participant.
 **[CRXX]>[OXX4]** A workgroup attached to a workflow MUST be also attached to each workstep in the workflow.
 
 ## 6.4 BPI Account
-Before we can move on to the requirements on the individual components in the processing layer required for agreement execution, we need to define and specify the prerequisites. Since we have been defining and discussing state objects in the context of a BPI, we need to define stateful object processing. This necessitates an account based model for both BPI users and BPI state objects. This is analogous to the the Ethereum model using accounts for individual participants and smart contracts -- both are stateful objects.
+Before we can move on to the requirements on the individual components in the processing layer required for agreement execution, we need to define and specify the prerequisites. Since we have been defining and discussing state objects in the context of a BPI, we need to define stateful object processing. This necessitates an account based model for both BPI users and BPI state objects. This is analogous to the Ethereum model using accounts for individual participants and smart contracts -- both are stateful objects.
 
 **[RXX]** Each BPI user MUST be associated with an account.
 
