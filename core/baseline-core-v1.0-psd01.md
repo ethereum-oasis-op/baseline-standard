@@ -602,13 +602,13 @@ PKI systems are responsible for the secure delivery of public keys. However, the
 
 In PKIX services are secured through the creation of keys signed by CAs. However, the complexity of generating and managing keys and certificates in PKIX have caused companies to manage the creation and signing of these keys themselves, rather than leaving it to their clients. This creates major security concerns from the outset, as it results in the accumulation of private keys at a central point of failure, making it possible for anyone with access to that repository of keys to compromise the security of connections in a way that is virtually undetectable.
 
-The design of X.509 PKIX also permits any of the thousands of CAs to impersonate any website or web service. Therefore, entities cannot be certain that their communications are not being compromised by a fraudulent certificate allowing a MITM (Man-in-the-Middle) attack. While workarounds have been proposed, good ones do not exist.
+The design of X.509 PKIX also permits any of the thousands of CAs to impersonate any website or web service. Therefore, entities cannot be certain that their communications are not being compromised by a fraudulent certificate allowing a PITM (Person-in-the-Middle) attack. While workarounds have been proposed, good ones do not exist.
 
 Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative. The goal of DPKI is to ensure that, unlike PKIX, no single third-party can compromise the integrity and security of a system employing DPKI as a whole. 
 
-Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the MITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier. In this design, control over the identifier is returned to the Principal Owner. 
+Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the PITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier. In this design, control over the identifier is returned to the Principal Owner. 
 
-Within this design. it is no longer trivial for any one entity to undermine the security of the entire DKPI system or to compromise an identifier that is not theirs overcoming the challenges of typical PKI.
+Within this design, it is no longer trivial for any one entity to undermine the security of the entire DKPI system or to compromise an identifier that is not theirs overcoming the challenges of typical PKI.
 
 Furthermore, DPKI requires a public registry of identifiers and their associated public keys that can be read by anyone but cannot be compromised. As long as this registration remains valid and the Principal Owner is able to maintain control of their private key, no 3rd party can take ownership of that identifier without resorting to direct coercion of the Principal Owner.
 
@@ -630,11 +630,11 @@ Requirements of Identifier registration in DPKI is handled differently from DNS.
 
 **[CR5]>[D6]**	Principals Owners in a BPI MUST always be in control of their identifiers and the corresponding public keys. 
 
-**[O2]**	Principal Owners MAY extend control of their identifier to third parties.
+**[O1]**	Principal Owners MAY extend control of their identifier to third parties.
 
 For example for recovery purposes.
 
-**[CR6]<[O2]** Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal of such identifier.
+**[CR6]<[O1]** Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal of such identifier.
 
 **[R35]**	Private keys MUST be stored and/or transmitted in a secure manner.
 
