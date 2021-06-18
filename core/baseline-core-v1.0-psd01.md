@@ -104,7 +104,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](#24-Commercially-and-Legally-Binding-Documents)\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1 Contract](#241-Contract) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-Commercial-Documents) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Distributed Ledger Technology (CCSM)](#25-Distributed-Ledger-Technology-(CCSM)) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Consensus Controlled State Machine (CCSM)](#25-Consensus-Controlled-State-Machine-(CCSM)) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](#26-Baseline-Protocol-Instance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](#27-High-Level-Functional-Requirements) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 Functional Requirements on commercial counterparties](#271-Functional-Requirements-on-commercial-counterparties) \
@@ -129,10 +129,9 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[6.5 BPI Transactions](#65-BPI-Transactions) \
 &nbsp;&nbsp;&nbsp;&nbsp;[6.6 BPI Transaction Lifecycle](#66-BPI-Transaction-Lifecycle) \
 
-[7 Conformance](#9-conformance) \
-&nbsp;&nbsp;&nbsp;&nbsp;[7.1 Conformance Targets](#91-conformance-targets) \
-&nbsp;&nbsp;&nbsp;&nbsp;[7.2 Conformance Levels](#92-conformances-levels)\
-&nbsp;&nbsp;&nbsp;&nbsp;[7.3 Interoperability](#93-interoperability)\
+[7 Conformance](#7-conformance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[7.1 Conformance Targets](#71-conformance-targets) \
+&nbsp;&nbsp;&nbsp;&nbsp;[7.2 Conformance Levels](#72-conformances-levels)\
 [Appendix A.        Acknowledgments]()\
 [Appendix B.        Revision History]()
 
@@ -563,7 +562,7 @@ Below we list and define the components of each layer. The detailed requirements
 
 # 3 Identifiers, Identity and Credential Management
 
-## 3.1 Introduction
+## 3.1 Introduction and high-level Requirements
 
 Currently 3rd parties such as Domain Name Services (DNS) registrars [put reference], Internet Corporation for Assigned Names and Numbers [(ICANN)](https://www.icann.org/), X.509 Certificate Authorities (CAs), see Reference [[X.509](######-X.509)] and Reference [[CA](######-CA)], or social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
 
@@ -1199,8 +1198,6 @@ Defines entities and implementations subject to conformance.
 ## 7.2 Conformance Levels
 
 Defines conformance levels and their conformance clauses.
-
-## 7.3 Interoperability
 
 <!--
 
