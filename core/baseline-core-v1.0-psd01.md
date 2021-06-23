@@ -112,7 +112,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[2.8 Baseline Protocol Reference Architecture](#28-Baseline-Protocol-Reference-Architecture) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.1 (Commercial) State Synchronization](#281-Commercial-State-Synchronization) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.2 CCSMs and BPI and CCSM Abstraction-Layers](#282-CCSMs-and-BPI-and-CCSM-Abstraction-Layers) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3 External Applications](#283-External-Applications) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3	External Applications](#283-External-Applications) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-Baseline-Protocol-Stack-Detailed-Reference-Architecture-Layers-and-Components) \
 [3 Identifiers, Identity and Credential Management](#3-Identifiers,-Identity-and-Credential-Management) \
 &nbsp;&nbsp;&nbsp;&nbsp;[3.1 Introduction](#31-Introduction) \
