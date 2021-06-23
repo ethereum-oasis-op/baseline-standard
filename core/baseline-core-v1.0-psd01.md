@@ -138,7 +138,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.2 BPI Storage: Decentralized Deployment](#752-BPI-Storage-Decentralized-Deployment) \
 [8 Conformance](#8-conformance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[8.1 Conformance Targets](#81-conformance-targets) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Conformance Levels](#82-conformances-levels)\
+&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Conformance Levels](#82-Conformance-Levels)\
 [Appendix A.        Acknowledgments]()\
 [Appendix B.        Revision History]()
 
