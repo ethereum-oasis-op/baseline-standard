@@ -1429,7 +1429,7 @@ There are two deployment options -- centralized or distributed/decentralized dep
 
 Below we will list the requirements for either option and indicate the differences between partially and fully persistent data storage where required.		
 
-### 7.5.1 BPI Storage -- Centralized Deployment
+### 7.5.1 BPI Storage: Centralized Deployment
 
 **[RXX]** BPI Storage  MUST support characteristics of commonly utilized enterprise-grade database solutions. 
 
@@ -1439,7 +1439,7 @@ Below we will list the requirements for either option and indicate the differenc
 
 Non-normative examples of such data bases are but not limited to OracleDB, MongoDB, PostGres, Cassandra and DynamoDB.
 
-### 7.5.2 BPI Storage -- Decentralized Deployment
+### 7.5.2 BPI Storage: Decentralized Deployment
 
 **[RXX]**	BPI Storage  MUST support authenticated naming systems.
 
