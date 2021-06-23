@@ -101,7 +101,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-Agreement) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-State-Object) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](#23-Transacting-Counterparties) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](#24-Commercially-and-Legally-Binding-Documents)\
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](#24-Commercially-and-Legally-Binding-Documents) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1 Contract](#241-Contract) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-Commercial-Documents) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.5 Consensus Controlled State Machine (CCSM)](#25-Consensus-Controlled-State-Machine-(CCSM)) \
@@ -128,7 +128,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[6.4 BPI Account](#64-BPI-Account) \
 &nbsp;&nbsp;&nbsp;&nbsp;[6.5 BPI Transactions](#65-BPI-Transactions) \
 &nbsp;&nbsp;&nbsp;&nbsp;[6.6 BPI Transaction Lifecycle](#66-BPI-Transaction-Lifecycle) \
-[7 General BPI Storage Capabilities](#7-General-BPI-Storage-Capabilities)
+[7 General BPI Storage Capabilities](#7-General-BPI-Storage-Capabilities) \
 &nbsp;&nbsp;&nbsp;&nbsp;[7.1 BPI Storage Security](#71-BPI-Storage-Security) \
 &nbsp;&nbsp;&nbsp;&nbsp;[7.2 BPI Storage Privacy](#72-BPI-Storage-Privacy) \
 &nbsp;&nbsp;&nbsp;&nbsp;[7.3 BPI Data Orchestration](#73-BPI-Data-Orchestration) \
