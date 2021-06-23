@@ -129,6 +129,13 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[6.5 BPI Transactions](#65-BPI-Transactions) \
 &nbsp;&nbsp;&nbsp;&nbsp;[6.6 BPI Transaction Lifecycle](#66-BPI-Transaction-Lifecycle) \
 [7 General BPI Storage Capabilities](#7-General-BPI-Storage-Capabilities)
+&nbsp;&nbsp;&nbsp;&nbsp;[7.1 BPI Storage Security](#71-BPI-Storage-Security) \
+&nbsp;&nbsp;&nbsp;&nbsp;[7.2 BPI Storage Privacy](#72-BPI-Storage-Privacy) \
+&nbsp;&nbsp;&nbsp;&nbsp;[7.3 BPI Data Orchestration](#73-BPI-Data-Orchestration) \
+&nbsp;&nbsp;&nbsp;&nbsp;[7.4 BPI-External Storage: Edge Storage](#74-BPI-External-Storage:-Edge-Storage) \
+&nbsp;&nbsp;&nbsp;&nbsp;[7.5 BPI-Internal Storage](#75-BPI-Internal-Storage) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.1 BPI Storage: Centralized Deployment](#751-BPI-Storage:-Centralized-Deployment) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.2 BPI Storage: Decentralized Deployment](#752-BPI-Storage:-Decentralized-Deployment) \
 [8 Conformance](#8-conformance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[8.1 Conformance Targets](#81-conformance-targets) \
 &nbsp;&nbsp;&nbsp;&nbsp;[8.2 Conformance Levels](#82-conformances-levels)\
@@ -141,9 +148,56 @@ For complete copyright information please see the Notices section in the Appendi
 
 # 1 Introduction
 
+The Baseline Protocol is an open source initiative that combines advances in cryptography, messaging, and consensus controlled state machines, often referred to as blockchains or distributed ledger technology (DLT) to deliver secure and private business processes at low cost -- event ordering, data consistency and workflow integrity. The Baseline Protocol provides a framework that allows Baseline Protocol Implementations (BPIs) to establish a common (business) frame of reference enabling confidential and complex (business) collaborations between enterprises without moving any sensitive data between traditional Systems of Record. The work is governed by the [Ethereum-Oasis Project](https://github.com/ethereum/oasis-open-project), which is managed by [OASIS](https://oasis-open-projects.org/).
 
 ## 1.1 Overview
 
+An illustrative example of the use of a BPI is a Buyer placing an order to a Seller. Normally a Buyer system creates an order and transmits it to the Seller system through some preestablished messaging system without providing any proof that the Order created is correct, forcing the Seller systems to validate the order, and more often than not, finding data inconsistencies between the Seller system and the Order. This then leads to a time consuming and often expensive back and forth between Seller and Buyer to rectify the issue. 
+
+In the case a BPI is used, the Buyer action of creating an order and submitting it to the BPI creates a cryptographic proof on the BPI that the order conforms (or not) to the agreed upon commercial contract terms and current contract state between Buyer and Seller stored on the BPI, whereupon verification, the commercial contract state is on the BPI updated based on the order details. Subsequently, the cryptographic proof of order correctness is attached to the order and sent to the Seller using either established integrations or the BPI. The Seller can then directly validate the proof without having to check the correctness of the order against its own System of Record anymore. A valid cryptographic proof ensures that the order will be correctly formulated the first time avoiding errors, and thus saving time and money -- a more detailed example is provided in [Section 2.8.1](#281-(Commercial)-State-Synchronization). A BPI, therefore, enforces the synchronization of Systems of Record between Buyer and Seller. 
+
+
+At a high-level a BPI's benefits and characteristics can be summarized as follows:
+* BPI usage avoids rework between contract counterparties due to improperly applied business logic because cryptographic proofs of correctness ensure that Systems of Record remain synchronized, and that rework is minimized, or even completely avoided.
+* Existing integrations can continue to be used with only minimal augmentation of cryptographic proofs that contractual business logic and data such as discounts are properly applied. 
+* Service request validation such as that of an order against the service request receiver's System of Record is no longer unnecessary.
+
+In the following, this document lays out the requirements on a BPI to achieve above described benefits and characteristics in several sections:
+* **Section 2: Design and Architecture** with definitions, key concepts, and overviews of the components of a complaint Baseline Protocol Implementation as delineated in the following subsections:
+    * Agreement
+    * State Object
+    * Transacting Counterparties
+    * Commercially and Legally Binding Documents
+    * Contract
+    * Commercial Documents
+    * Consensus Controlled State Machine (CCSM)
+    * Baseline Protocol Instance
+    * High-Level Functional Requirements
+    * Baseline Protocol Reference Architecture
+* **Section 3: Identifiers, Identity and Credential Management** with definitions, key concepts, and overviews of identifiers, identities and credentials necessary in a complaint Baseline Protocol Implementation as delineated in the following subsections 
+    * Introduction and high-level Requirements
+    * BPI Identifiers, Identities and Credentials, and their Management 
+* **Section 4: BPI Abstraction Layers** with definitions, concepts, scope and security considerations for BPI Abstraction Layers
+    * BPI Abstraction Scope and Components
+    * BPI Abstraction Layer Security and Integration
+* **Section 5: Middleware, Communication and Interoperability**
+* **Section 6: Agreement Execution** with definitions, key concepts, and overviews of the BPI Processing Layer components necessary in a compliant Baseline Protocol Implementation as delineated in the following subsections
+    * BPI Workstep
+    * BPI Workflow
+    * BPI Workgroup
+    * BPI Account
+    * BPI Transactions
+    * BPI Transaction Lifecycle
+* **Section 7: General BPI Storage Capabilities** with definitions, key concepts, and overviews of BPI Storage components applicable to all BPI layers and necessary in a compliant Baseline Protocol Implementation as delineated in the following subsections 
+    * BPI Storage Security
+    * BPI Storage Privacy
+    * BPI Data Orchestration
+    * BPI-External Storage: Edge Storage
+    * BPI-Internal Storage
+* **Section 8: Conformance** with specification of conformance 
+tests for each requirements and definitions of the different level of conformance of a BPI to this standard.
+    * Conformance Targets
+    * Conformance Levels
 
 ## 1.2 Glossary
 
@@ -265,7 +319,6 @@ A workstep is characterized by an input, the deterministic application of a set 
 - Naming conventions
 - Font colors and styles
 - Typographic conventions
-
 
 -------
 
@@ -763,7 +816,85 @@ We will discuss further, more detailed management requirements in the context of
 
 # 4 BPI Abstraction Layers
 
+BPI Abstraction Layers are the critical umbilical cords of a BPI to its underlying CCSM and external applications such as System of Records or other BPIs.
 
+It is, therefore, critical to carefully craft the requirements on these layers of a BPI in such way that allows implementers sufficient flexibility, while leveraging established standards and ensuring interoperability through a well-defined, minimal set of interfaces and capabilities.
+
+Since a BPI has two abstraction layers - the BPI and the CCSM Abstraction Layer -- the document will define a set of common requirements and differentiate between the two where necessary.
+
+## 4.1 BPI Abstraction Scope and Components
+
+The Abstraction layers define common standards and processes such as Information Models, APIs and API formats, Process Flows, Roles, Responsibilities, Events, etc. for exposing and managing all BPI capabilities that represent individual steps of the BPI lifecycle processes. This includes but is not limited to:
+1. Specifying BPI functional capabilities aligned with already existing common API definitions.
+2.	Onboarding, publishing, upgrading and retiring BPI APIs and BPI capabilities
+3.	Coexistence and interoperability with legacy platforms and different BPI stacks.
+
+This document defines an Abstraction Layer within the context of a BPI as a set of functions and procedures allowing the interaction of BPI-enabled applications that access the features or data of an operating system, application, or other service with BPI capabilities.
+
+**[R58]**	BPI Abstraction Layers MUST support 
+Operational Monitoring of an API system.
+
+In the context of this document, a BPI operational monitoring system of APIs refers to the practice of monitoring APIs, most commonly in production, to gain visibility into performance, availability and functional correctness. These type of systems are designed to help a BPI operator analyze the performance of BPI application and improve performance. Examples are measurements of how long a service takes to execute, how often it is called, where it is called from, and how much of total time is spent executing the service.
+
+**[R59]**	BPI Abstraction Layers MUST support an API Portal for provisioning.
+
+A BPI API portal in the context of this document is defined as a visual or a programmatic presentation that provides information about an API at every stage of its lifecycle. A BPI API portal allows operators to expose, document, provision access and otherwise enable their APIs, and users API to register applications, reset credentials,  provide API feedback, report bugs etc.
+
+**[R60]**	BPI Abstraction Layers MUST support an API Gateway with a low latency cache where low latency refers to a cache latency that does not impact the overall BPI system latency. 
+
+In the context of this document, an API gateway is an application or software pattern that sits in front of an API or a collection of microservices, facilitating requests and delivery of data and services. Its main function is to act as a single entry point and standardized process for interactions between a BPI and its data and services and external/internal user. An API gateway may perform various other functions to support and manage API usage, from authentication to rate limiting to analytics.
+
+**[D11]**	BPI Abstraction Layers SHOULD support Virtualized APIs.
+
+In the context of this document, virtualized APIs are defined as a production sandbox for continuos integration testing and continuous deployment of APIs.
+
+**[D12]**	A BPI Abstraction Layer SHOULD support a content delivery network (not applicable for a CCSM Abstraction Layer).
+
+In the context of a BPI a content delivery network is a geographically distributed proxy server network providing high availability and delivery performance of content such as large data files or video streams.
+
+**[CR13]>[D12]** A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support BPI user specific and time based content access control. 
+
+**[CR14]>[D12]** A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support time based, automated content removal.
+
+**[R61]**	BPI Abstraction Layers MUST support integration with internal, as defined in [Section 5](#5-Middleware-Communication-and-Interoperability), and/or external BPI User identity access management (IAM) or identity provider (IdP) systems. 
+
+See Figure 4 as to the meaning of an IdP in a BPI context, and Figure 5 in this document as to the meaning of external IAM and its interplay with BPI IAM discussed in Section 5(##5-Middleware-Communication-and-Interoperability).
+
+**[R62]**	BPI Abstraction Layers MUST support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in [Section 5](#5-Middleware-Communication-and-Interoperability)
+
+**[R63]**	BPI Abstraction Layers MUST support facilitating the discovery and negotiation of capabilities and subsequent integration between a BPI and Legacy Systems/other BPIs as defined in [Section 5](#5-Middleware-Communication-and-Interoperability) (for BPI Abstraction Layer only).
+
+**[R64]**	BPI Abstraction Layers MUST support integration of CCSM specific transaction interfaces, transaction crafting, and CCSM specific smart contract management. 
+
+Smart Contract management comprises full lifecycle management from testing, initial deployments, update and deactivation (for CCSM Abstraction Layer only). 
+
+The Figure 6 below shows the reference architecture for a BPI or CCSM Abstraction Layer. 
+
+<figure>
+  <img
+  src="./images/Baseline-Fig2-BPI-Abstraction-Layer.png"
+  >
+  <figcaption>Figure 6: High-Level Reference Architecture of a BPI Layer.</figcaption>
+</figure>
+
+
+## 4.2 BPI Abstraction Layer Security and Integration
+
+The security requirements of this section are distinct from the security requirements of the other BPI layers or any custom APIs because the external systems which are invoking services exposed by the BPI or CCSM Abstraction Layer should not be assumed to be a trusted service without authentication. This is because this standard does not define the operating model of external systems or a BPI or any of the BPI layers, and, therefore, must necessarily prescribe requirements assuming a 100% adversarial environment.
+
+**[R65]**	Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services or . 
+
+Non-normative examples of such authentication technologies are [OAUTH](####OAuth-2.0), [SAML](####SAML), [OIDC](####OIDC), [AD/LDAP](####ActiveDirectory).
+
+**[R66]**	Abstraction Layers utilized in a BPI MUST support roles & access management.
+
+**[R67]**	Abstraction Layers utilized in a BPI MUST support policy management.
+
+**[R68]**	Abstraction Layers utilized in a BPI MUST support Single-Sign-On [SSO](####SSO).
+
+**[R69]**	Abstraction Layers utilized in a BPI MUST support multi-factor authentication [MFA](####MFA).
+
+**[R70]**	Abstraction Layers utilized in a BPI MUST support hardware security modules [(HSMs)](####HSM).
 
 -------
 
@@ -1173,25 +1304,170 @@ In the case of a BPI we need to distinguish between proof, transaction and state
 
 This is a consequence of step (7) in Fig. 6.2 above.
 
-The following requirements all deal with integration requirements of the Storage capability to external system for data access and maintenance. 
-
-**[RXX]**	A Storage capability MUST be compatible with widely used external authentication services. 
-
-**[RXX]**	A Storage capability MUST support roles & access management.
-
-**[RXX]**	A Storage capability MUST support policy management.
-
-**[RXX]**	A Storage capability MUST support Single-Sign-On (SSO).
-
-**[RXX]**	A Storage capability SHOULD support Multi-Factor authentication.
-
-**[RXX]**	A Storage capability MUST support Hardware Security Modules (HSMs).
-
+The sotrage capability must also meet all requirements defined in [Section 7](#7-General-BPI-Storage-Capabilities)
 -------
 # 7 General BPI Storage Capabilities
 
--------
+BPI storage is a key enabler to scale BPI stack that are either data-intensive or data sensitive or both.
 
+This document defines BPI data storage -- outside of a CCSM -- as the storing of information in a digital, machine-readable medium where the data stored is relevant for the proper functioning of the BPI stack.
+
+The document defines storage capability requirements in the following areas 
+* Security
+* Privacy
+* Integration
+* Data Orchestration
+* Partially Persistent Data
+* Fully Persistent Data
+
+## 7.1 BPI Storage Security
+
+As has been done throughout this document, there are BPI layer specific security requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI security requirements in [Section 2](#2-Design-and-Architecture) 
+
+**[RXX]** Data in transit in a BPI MUST be encrypted.
+
+**[RXX]** Data at rest in a BPI MUST be encrypted.
+
+**[RXX]**	BPI Storage arranged in a network MUST support pairwise key/identity-relationships between storage nodes.
+
+This is also known as secure connection.
+
+**[RXX]**	BPI Storage MUST be compatible with widely used external authentication services or . 
+
+Non-normative examples of such authentication technologies are [OAUTH](####OAuth-2.0), [SAML](####SAML), [OIDC](####OIDC), [AD/LDAP](####ActiveDirectory).
+
+**[RXX]**	BPI Storage MUST support roles & access management.
+
+**[RXX]**	BPI Storage MUST support policy management.
+
+**[RXX]**	BPI Storage MUST support Single-Sign-On [SSO](####SSO).
+
+**[RXX]**	BPI Storage MUST support multi-factor authentication [MFA](####MFA).
+
+**[RXX]**	BPI Storage MUST support hardware security modules [(HSMs)](####HSM).
+
+
+## 7.2. BPI Storage Privacy
+
+As has been done throughout this document, there are BPI layer specific privacy requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI privacy requirements in [Section 2](#2-Design-and-Architecture)
+
+**[RXX]**	Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
+
+**[DXX]**	BPI Storage arranged in a network SHOULD utilize a privacy-preserving P2P message protocols.
+
+## 7.3. BPI Data Orchestration
+
+To accommodate a high-volume, low latency environment with many data changes, BPI Data Orchestration has the following requirements:
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST preserve source consistency. 
+
+To avoid subscribers seeing partial and/or inconsistent data, BPI Data Orchestration has the following requirements:
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST implement Transaction boundaries such that a single user's action can trigger atomic updates.
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST Commit the exact order in which operations happened on the primary database.
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST support Consistent state.
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST support User-space processing (perform computation triggered by the data change outside a database).
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST isolate data source and consumers.
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST support low latency of its pipeline.
+
+Low latency in this context refers to a pipeline latency that does not impact the overall system latency of the BPI.
+
+**[RXX]**	Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes.
+
+The BPI Data Orchestration must include the following four logical components:
+
+**[RXX]**	The Data Orchestration Layer utilized in a BPI MUST include a fetcher capability which extracts changes from the data source or another bus component.
+
+**[RXX]**	The Data Orchestration Layer utilized in a BPI MUST include a log store that caches the generated data change stream.
+
+**[RXX]**	The Data Orchestration Layer utilized in a BPI MUST include a snapshot store which stores a moving snapshot of the generated change data stream.
+
+**[RXX]**	The Data Orchestration Layer utilized in a BPI MUST include a subscription client pulling change events seamlessly across various components and servicing them to an application in a BPI.
+
+## 7.4 BPI-External Storage: Edge Storage
+
+There are operating scenarios where it could be necessary that BPI data is replicated outside of a BPI. 
+
+**[RXX]**	BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
+
+Weak synchrony in this context means, 
+* that all messages will eventually reach their intended recipients and 
+* that after a certain, yet unknown, time the network will become synchronous again.
+
+**[RXX]**	Replication conflicts MUST be automatically detectable 
+
+**[RXX]** Replication conflict MUST be resolvable either automatically or manually.
+
+**[RXX]**	BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
+
+**[DXX]**	BPI Edge Storage SHOULD be able to cryptographically sign messages.
+
+**[DXX]**	BPI Edge Storage SHOULD be discoverable by BPI Worgroup members or their delegates within a BPI.
+
+**[RXX]**	BPI Edge Storage MUST support BPI identifiers and identity as define in this document.
+
+**[RXX]**	BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data (see [Section 7.5](#75-BPI-Internal-Storage)) requirements for security, privacy, and integration.
+
+## 7.5 BPI-Internal Storage 
+
+There are two storage types BPI storage system can utilize, fully or partially persistent storage.
+
+Fully Persistent Data storage as one possible option for BPI storage can be characterized as Write many, read many. 
+
+Partially Persistent Data storage as one possible option for BPI storage can characterized as Write once, read many.
+
+There are two deployment options -- centralized or distributed/decentralized deployment.
+
+Below we will list the requirements for either option and indicate the differences between partially and fully persistent data storage where required.		
+
+### 7.5.1 BPI Storage -- Centralized Deployment
+
+**[RXX]** BPI Storage  MUST support characteristics of commonly utilized enterprise-grade database solutions. 
+
+**[O3]** Centralized BPI Storage MAY be partially persistent. 
+
+**[CRXX]>[O3]** Partially Persistent BPI Storage  MUST be append-only.
+
+Non-normative examples of such data bases are but not limited to OracleDB, MongoDB, PostGres, Cassandra and DynamoDB.
+
+### 7.5.2 BPI Storage -- Decentralized Deployment
+
+**[RXX]**	BPI Storage  MUST support authenticated naming systems.
+
+An authenticated naming system in the context of this document is defined ... 
+
+Non-normative examples include but are not limited to certificate authorities or a self-certifying PKI namespace.
+
+**[RXX]**	BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
+
+**[RXX]**	BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
+
+Non-normative examples are [libp2p](####libp2p) or distributed hash tables [(DHTs)](####DHT).
+
+**[RXX]**	BPI Storage  MUST support a Network Protocol that handles:
+* NAT traversal such as hole punching, port mapping, and relay
+* Multiple transport protocols
+* Encryption, signing, or clear communications
+* Multi-multiplexes such as Multiplex connections, streams, protocols, peers.
+
+**[RXX]**	Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
+
+Non-normative examples are conflict-free replicated data types [(CRDTs)](####[CRDT]) or Interval Tree Clocks [(ITC)](####[ITC]) to ensure eventual consistency.
+
+**[O4]** Decentralized BPI Storage MAY be partially persistent.
+
+**[CRXX]>[O4]**	Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual consistency.
+
+-------
 # 8 Conformance
 
 
@@ -1278,6 +1554,15 @@ W3C Recommended Specification "Decentralized Identifiers (DIDs) v1.0", June 2021
 ##### [W3C VC]
 W3C Specification "Verifiable Credentials Data Model 1.0", October 2019, https://www.w3.org/TR/vc-data-model/
 
+#### [ISO/IEC 27033] 
+ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO
+
+#### [How to Explain Zero-Knowledge Protocols to Your Children]
+Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3.
+
+#### [The Byzantine Generals Problem]
+"The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982
+
 #### [OAuth 2.0]
 Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518
 
@@ -1295,6 +1580,18 @@ Single Sign On, NIST SP 800-95, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nist
 
 #### [HSM]
 Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
+
+#### [libp2p]
+libp2p, https://docs.ipfs.io/concepts/libp2p/
+
+#### [CRDT]
+Shapiro, Marc; Preguiça, Nuno; Baquero, Carlos; Zawirski, Marek (2011), "Conflict-Free Replicated Data Types", Lecture Notes in Computer Science, 6976, Grenoble, France: Springer Berlin Heidelberg, pp. 386–400, doi:10.1007/978-3-642-24550-3_29
+
+#### [ITC]
+Almeida P.S., Baquero C., Fonte V. (2008) Interval Tree Clocks. In: Baker T.P., Bui A., Tixeuil S. (eds) Principles of Distributed Systems. OPODIS 2008. Lecture Notes in Computer Science, vol 5401. Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-540-92221-6_18
+
+#### [DHT]
+Liz, Crowcroft; et al. (2005). "A survey and comparison of peer-to-peer overlay network schemes" (PDF). IEEE Communications Surveys & Tutorials. 7 (2): 72–93. doi:10.1109/COMST.2005.1610546
 
 -------
 
