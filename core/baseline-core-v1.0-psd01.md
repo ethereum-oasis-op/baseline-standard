@@ -1304,7 +1304,7 @@ In the case of a BPI we need to distinguish between proof, transaction and state
 
 This is a consequence of step (7) in Fig. 6.2 above.
 
-The sotrage capability must also meet all requirements defined in [Section 7](#7-General-BPI-Storage-Capabilities)
+The Storage capability must also meet all requirements defined in [Section 7](#7-General-BPI-Storage-Capabilities)
 -------
 # 7 General BPI Storage Capabilities
 
