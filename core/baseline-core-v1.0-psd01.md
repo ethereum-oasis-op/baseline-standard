@@ -1036,19 +1036,7 @@ In the case of a BPI we need to distinguish between proof, transaction and state
 
 This is a consequence of step (7) in Fig. 6.2 above.
 
-The following requirements all deal with integration requirements of the Storage capability to external system for data access and maintenance. 
-
-**[RXX]**	A Storage capability MUST be compatible with widely used external authentication services. 
-
-**[RXX]**	A Storage capability MUST support roles & access management.
-
-**[RXX]**	A Storage capability MUST support policy management.
-
-**[RXX]**	A Storage capability MUST support Single-Sign-On (SSO).
-
-**[RXX]**	A Storage capability SHOULD support Multi-Factor authentication.
-
-**[RXX]**	A Storage capability MUST support Hardware Security Modules (HSMs).
+The Storage capability must also meet all requirements defined in [Section 7](#7-General-BPI-Storage-Capabilities)
 
 -------
 
