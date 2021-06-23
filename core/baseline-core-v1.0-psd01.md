@@ -6,7 +6,7 @@
 
 ## Project Specification Working Draft
 
-## 29 April 2021
+## 25 June 2021
 
 <!-- URI list start (commented out except during publication by OASIS TC Admin)
 
