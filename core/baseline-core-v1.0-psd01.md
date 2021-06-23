@@ -364,7 +364,7 @@ Such legal, commercial documents may be presented as a combination of one or mor
 
 **[R2]**	The parties to a Commercial Agreement MUST sign commercially and legally binding documents with each other.
 
-### 2.4.1	Contract
+### 2.4.1 Contract
 
 This section details the prerequisites required to be fulfilled by a legal contract, also referred to as a Commercial Agreement in this document, between the parties, and defines the general terms and conditions in the legal contract governing commercial transactions between these parties. These prerequisites are to be understood only within the context of this document, and are meant to be general in nature and not specific to particular legal and regulatory frameworks.
 
