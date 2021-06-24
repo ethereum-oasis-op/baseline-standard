@@ -158,7 +158,6 @@ An illustrative example of the use of a BPI is a Buyer placing an order to a Sel
 
 In the case a BPI is used, the Buyer action of creating an order and submitting it to the BPI creates a cryptographic proof on the BPI that the order conforms (or not) to the agreed upon commercial contract terms and current contract state between Buyer and Seller stored on the BPI, whereupon verification, the commercial contract state is on the BPI updated based on the order details. Subsequently, the cryptographic proof of order correctness is attached to the order and sent to the Seller using either established integrations or the BPI. The Seller can then directly validate the proof without having to check the correctness of the order against its own System of Record anymore. A valid cryptographic proof ensures that the order will be correctly formulated the first time avoiding errors, and thus saving time and money -- a more detailed example is provided in [Section 2.8.1](#281-(Commercial)-State-Synchronization). A BPI, therefore, enforces the synchronization of Systems of Record between Buyer and Seller. 
 
-
 At a high-level a BPI's benefits and characteristics can be summarized as follows:
 * BPI usage avoids rework between contract counterparties due to improperly applied business logic because cryptographic proofs of correctness ensure that Systems of Record remain synchronized, and that rework is minimized, or even completely avoided.
 * Existing integrations can continue to be used with only minimal augmentation of cryptographic proofs that contractual business logic and data such as discounts are properly applied. 
@@ -176,10 +175,10 @@ In the following, this document lays out the requirements on a BPI to achieve ab
     * Baseline Protocol Instance
     * High-Level Functional Requirements
     * Baseline Protocol Reference Architecture
-* **Section 3: Identifiers, Identity and Credential Management** with definitions, key concepts, and overviews of identifiers, identities and credentials necessary in a complaint Baseline Protocol Implementation as delineated in the following subsections 
+* **Section 3: Identifiers, Identity and Credential Management** with definitions, key concepts, and overviews of identifiers, identities, and credentials necessary in a complaint Baseline Protocol Implementation as delineated in the following subsections 
     * Introduction and high-level Requirements
     * BPI Identifiers, Identities and Credentials, and their Management 
-* **Section 4: BPI Abstraction Layers** with definitions, concepts, scope and security considerations for BPI Abstraction Layers
+* **Section 4: BPI Abstraction Layers** with definitions, concepts, scope, and security considerations for BPI Abstraction Layers
     * BPI Abstraction Scope and Components
     * BPI Abstraction Layer Security and Integration
 * **Section 5: Middleware, Communication and Interoperability**
