@@ -131,7 +131,7 @@ For complete copyright information please see the Notices section in the Appendi
 [7 General BPI Storage Capabilities](#7-General-BPI-Storage-Capabilities)
 [8 Conformance](#8-conformance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[8.1 Conformance Targets](#81-conformance-targets) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Conformance Levels](#82-conformances-levels)\
+&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Conformance Levels](#82-conformance-levels)\
 [Appendix A.        Acknowledgments]()\
 [Appendix B.        Revision History]()
 
