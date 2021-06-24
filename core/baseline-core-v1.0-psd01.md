@@ -120,6 +120,8 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2.1 BPI Identifiers](#321-BPI-Identifiers) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2.2 BPI Identities and Credentials](#322-BPI-Identities-and-Credentials) \
 [4 BPI Abstraction Layers](#4-BPI-Abstraction-Layers) \
+&nbsp;&nbsp;&nbsp;&nbsp;[4.1 BPI Abstraction Scope and Components](#41-BPI-Abstraction-Scope-and-Components) \
+&nbsp;&nbsp;&nbsp;&nbsp;[4.2  BPI Abstraction Layer Security and Integration](#42-BPI-Abstraction-Layer-Security-and-Integration) \
 [5  Middleware, Communication and Interoperability](#5-Middleware,-Communication-and-Interoperability) \
 [6 Agreement Execution](#6-agreement-execution)  \
 &nbsp;&nbsp;&nbsp;&nbsp;[6.1 BPI Workstep](#61-BPI-Workstep) \
