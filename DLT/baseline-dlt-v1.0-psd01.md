@@ -328,19 +328,21 @@ The reason why the reference to the consensus algorithm is important is as follo
 
 # 10. Integration Capabilities with External Systems 
 
-**[R23]**	The CCSM utilized in a BPI MUST be compatible with widely used external authentication services. 
+Depending on the CCSM employed in the implementation of a BPI, the security requirements around integration below need to be fulfilled either by the CCSM itself used for the implementation or, alternatively by the CCSM Abstraction Layer. Note that these requirements are distinct from the security requirements for the Baseline Protocol Standard APIs or any custom APIs for that matter because the BPI Processing Layer which is invoking services exposed by the CCSM Abstraction Layer or the CCSM itself should not be assumed to be a trusted service without authentication. This is because the standard does not define the operating model of a CCSM or a BPI or any of the BPI layers, and, therefore, must necessarily prescribe requirements for a 100% adversarial environment.
+
+**[R23]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM  MUST be compatible with widely used external authentication services. 
 
 Non-normative examples of such authentication technologies are OAUTH [[4]](####[4]), SAML [[5]](####[5]), [[6]](####[6]), AD/LDAP [[7]](####[7]).
 
-**[R23]**	The CCSM utilized in a BPI MUST support roles & access management.
+**[R23]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
 
-**[R24]**	The CCSM utilized in a BPI MUST support policy management.
+**[R24]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support policy management.
 
-**[R25]**	The CCSM utilized in a BPI MUST support Single-Sign-On (SSO) [[8]](####[8]).
+**[R25]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO) [[8]](####[8]).
 
-**[R26]**	The CCSM utilized in a BPI MUST support Multi-Factor authentication.
+**[R26]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication.
 
-**[R27]**	The CCSM utilized in a BPI MUST support Hardware Security Modules (HSMs)[[9]](####9).
+**[R27]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules (HSMs)[[9]](####9).
 
 # 11 Conformance
 
