@@ -116,7 +116,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-Baseline-Protocol-Stack-Detailed-Reference-Architecture-Layers-and-Components) \
 [3 Identifiers, Identity and Credential Management](#3-Identifiers,-Identity-and-Credential-Management) \
 &nbsp;&nbsp;&nbsp;&nbsp;[3.1 Introduction](#31-Introduction) \
-&nbsp;&nbsp;&nbsp;&nbsp;[3.2 BPI Identifiers, Identities and Credentials, and their Management](#32-BPI-Identifiers,-Identities-and-Credentials,-and-their-Management) \
+&nbsp;&nbsp;&nbsp;&nbsp;[3.2 BPI Identifiers, Identities and Credentials, and their Management](#32-BPI-Identifiers-Identities-and-Credentials-and-their-Management) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2.1 BPI Identifiers](#321-BPI-Identifiers) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2.2 BPI Identities and Credentials](#322-BPI-Identities-and-Credentials) \
 [4 BPI Abstraction Layers](#4-BPI-Abstraction-Layers) \
