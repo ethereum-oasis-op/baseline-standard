@@ -799,7 +799,7 @@ As discussed in [Section 3.1](##31-Introduction-and-High-Level-Requirements), BP
 
 As depicted in Figure 5 above, the accepted Entity identity credentials, or other credentials from Identity providers, that are  presented by a BPI participant need to be verified by the BPI against the issuing providers. Once validated, credentials are stored in the BPI.
 
-[OpenId Connect Identity Provider](https://openid.net/developers/specs/) is an example for a federated identity provider Provider and a DID or Verifiable Credentials Registry which is typically build using a CCSM as an example of a decentralized identity provider.
+[OpenId Connect Identity Provider](https://openid.net/developers/specs/) is an example for a federated identity provider and a DID or Verifiable Credentials Registry which is typically build using a CCSM as an example of a decentralized identity provider.
 
 For a BPI to achieve these objectives, the following requirements need to be met:
 
