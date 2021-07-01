@@ -732,7 +732,7 @@ In the context of this document, a credential verifier is defined per the [W3C V
 
 See the [W3C Verifiable Credential Standard](#####-W3C-VC) for a definition of credential holder.
 
-**[R51]** If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the BPI context the holder operates in.
+**[R51]** If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
 
 As discussed in [Section 3.1](##31-Introduction-and-High-Level-Requirements), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.  
 
@@ -740,10 +740,12 @@ As discussed in [Section 3.1](##31-Introduction-and-High-Level-Requirements), BP
   <img
   src="./images/section-3-baseline-spec-identity-authorities.png"
   >
-  <figcaption>Figure 5: Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID Connect Relying Party as examples</figcaption>
+  <figcaption>Figure 5: Example of a Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID Connect Relying Party as examples</figcaption>
 </figure>
 
-As depicted in Figure 5 above, the accepted Entity identity credentials or other credentials from Identity providers and presented by a BPI participant need to be verified by the BPI against the issuing providers and subsequently stored in the BPI, and if required, updated from the identity provider once expired, revoked or otherwise changed. 
+As depicted in Figure 5 above, the accepted Entity identity credentials, or other credentials from Identity providers, that are  presented by a BPI participant need to be verified by the BPI against the issuing providers. Once validated, credentials are stored in the BPI.
+
+[OpenId Connect Identity Provider](https://openid.net/developers/specs/) for federated and a DID or Verifiable Credentials Registry, typically a CCSM, for decentralized identity,
 
 For a BPI to achieve these objectives, the following requirements need to be met:
 
