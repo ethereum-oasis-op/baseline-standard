@@ -844,8 +844,7 @@ The Abstraction layers define common standards and processes such as Information
 
 This document defines an Abstraction Layer within the context of a BPI as a set of functions and procedures allowing the interaction of BPI-enabled applications that access the features or data of an operating system, application, or other service with BPI capabilities.
 
-**[R58]**	BPI Abstraction Layers MUST support 
-Operational Monitoring of an API system.
+**[R58]**	BPI Abstraction Layers MUST support Operational Monitoring of an API system.
 
 In the context of this document, a BPI operational monitoring system of APIs refers to the practice of monitoring APIs, most commonly in production, to gain visibility into performance, availability and functional correctness. These type of systems are designed to help a BPI operator analyze the performance of BPI application and improve performance. Examples are measurements of how long a service takes to execute, how often it is called, where it is called from, and how much of total time is spent executing the service.
 
@@ -895,7 +894,7 @@ The Figure 6 below shows the reference architecture for a BPI or CCSM Abstractio
 
 The security requirements of this section are distinct from the security requirements of the other BPI layers or any custom APIs because the external systems which are invoking services exposed by the BPI or CCSM Abstraction Layer should not be assumed to be a trusted service without authentication. This is because this standard does not define the operating model of external systems or a BPI or any of the BPI layers, and, therefore, must necessarily prescribe requirements assuming a 100% adversarial environment.
 
-**[R65]**	Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services or . 
+**[R65]**	Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
 
 Non-normative examples of such authentication technologies are [OAUTH](####OAuth-2.0), [SAML](####SAML), [OIDC](####OIDC), [AD/LDAP](####ActiveDirectory).
 
