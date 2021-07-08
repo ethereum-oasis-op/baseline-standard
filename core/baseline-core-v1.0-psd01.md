@@ -1017,7 +1017,7 @@ Such a commitment can represent more than one zero-knowledge proof of correctnes
 
 Note, that the requirement does not state that the proof has to be verifiable on the CCSM itself, that it does not need to be succinct and that it does not need to be efficient.
 
-**[DXX]** The cryptographic proof of the CCSM commitment SHOULDT be verifiable by any 3rd party at any time on the CCSM utilized by the BPI.
+**[DXX]** The cryptographic proof of the CCSM commitment SHOULD be verifiable by any 3rd party at any time on the CCSM utilized by the BPI.
 
 **[DXX]** The cryptographic proof of the CCSM commitment SHOULD be succinct.
 
@@ -1383,7 +1383,9 @@ To avoid subscribers seeing partial and/or inconsistent data, BPI Data Orchestra
 
 **[RXX]**	Data Orchestration utilized in a BPI MUST support Consistent state.
 
-**[RXX]**	Data Orchestration utilized in a BPI MUST support User-space processing (perform computation triggered by the data change outside a database).
+**[RXX]**	Data Orchestration utilized in a BPI MUST support User-space processing 
+
+In the context of this document, this requirement establishes a capability that allows for one or more computations outside a database to be triggered by a data change in the data storage system.
 
 **[RXX]**	Data Orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
 
@@ -1395,7 +1397,7 @@ Low latency in this context refers to a pipeline latency that does not impact th
 
 **[RXX]**	Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes.
 
-The BPI Data Orchestration must include the following four logical components:
+The BPI Data Orchestration must include the following four components:
 
 **[RXX]**	The Data Orchestration Layer utilized in a BPI MUST include a fetcher capability which extracts changes from the data source or another bus component.
 
@@ -1407,7 +1409,7 @@ The BPI Data Orchestration must include the following four logical components:
 
 ## 7.4 BPI-External Storage: Edge Storage
 
-There are operating scenarios where it could be necessary that BPI data is replicated outside of a BPI. 
+There are operating scenarios where it could be necessary that BPI data is replicated outside of a BPI such as to avoid having to rebase the state of a system or record due to an accidental data update, if the correct state is not readily accessible to enforce system of record access policies. 
 
 **[RXX]**	BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
 
@@ -1417,7 +1419,7 @@ Weak synchrony in this context means,
 
 **[RXX]**	Replication conflicts MUST be automatically detectable 
 
-**[RXX]** Replication conflict MUST be resolvable either automatically or manually.
+**[RXX]** Replication conflicts MUST be resolvable either automatically or manually.
 
 **[RXX]**	BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
 
@@ -1433,9 +1435,9 @@ Weak synchrony in this context means,
 
 There are two storage types BPI storage system can utilize, fully or partially persistent storage.
 
-Fully Persistent Data storage as one possible option for BPI storage can be characterized as Write many, read many. 
+[Fully Persistent Data storage](####FPDS) as one possible option for BPI storage can be characterized as Write many, Read many. 
 
-Partially Persistent Data storage as one possible option for BPI storage can characterized as Write once, read many.
+[Partially Persistent Data storage](####PPDS) as one possible option for BPI storage can characterized as Write once, Read many.
 
 There are two deployment options -- centralized or distributed/decentralized deployment.
 
@@ -1455,7 +1457,7 @@ Non-normative examples of such data bases are but not limited to OracleDB, Mongo
 
 **[RXX]**	BPI Storage  MUST support authenticated naming systems.
 
-An authenticated naming system in the context of this document is defined ... 
+An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [(DANE)](####DANE).   
 
 Non-normative examples include but are not limited to certificate authorities or a self-certifying PKI namespace.
 
@@ -1473,11 +1475,11 @@ Non-normative examples are [libp2p](####libp2p) or distributed hash tables [(DHT
 
 **[RXX]**	Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
-Non-normative examples are conflict-free replicated data types [(CRDTs)](####[CRDT]) or Interval Tree Clocks [(ITC)](####[ITC]) to ensure eventual consistency.
+Non-normative examples are conflict-free replicated data types [(CRDTs)](####[CRDT]) or Interval Tree Clocks [(ITC)](####[ITC]) to ensure eventual data consistency.
 
 **[O4]** Decentralized BPI Storage MAY be partially persistent.
 
-**[CRXX]>[O4]**	Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual consistency.
+**[CRXX]>[O4]**	Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
 
 -------
 # 8 Conformance
@@ -1604,6 +1606,15 @@ Almeida P.S., Baquero C., Fonte V. (2008) Interval Tree Clocks. In: Baker T.P., 
 
 #### [DHT]
 Liz, Crowcroft; et al. (2005). "A survey and comparison of peer-to-peer overlay network schemes" (PDF). IEEE Communications Surveys & Tutorials. 7 (2): 72–93. doi:10.1109/COMST.2005.1610546
+
+#### [FPDS]
+Driscoll JR, Sarnak N, Sleator DD, Tarjan RE (1986). "Making data structures persistent". Proceedings of the eighteenth annual ACM symposium on Theory of computing - STOC '86. Proceeding STOC '86. Proceedings of the Eighteenth Annual ACM Symposium on Theory of Computing. pp. 109–121. CiteSeerX 10.1.1.133.4630. doi:10.1145/12130.12142. ISBN 978-0-89791-193-1
+
+#### [PPDS]
+Conchon, Sylvain; Filliâtre, Jean-Christophe (2008), "Semi-persistent Data Structures", Programming Languages and Systems, Lecture Notes in Computer Science, 4960, Springer Berlin Heidelberg, pp. 322–336, doi:10.1007/978-3-540-78739-6_25, ISBN 9783540787389
+
+#### [DANE]
+Barnes, Richard (October 6, 2011). "DANE: Taking TLS Authentication to the Next Level Using DNSSEC", IETF Journal
 
 -------
 
