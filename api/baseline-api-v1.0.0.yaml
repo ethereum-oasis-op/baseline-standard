@@ -2528,7 +2528,7 @@ components:
           type: string
       example:
         key: quantum leap fast forward keep west promote satisfy limit butter mother oyster lazy whip earn spot ticket protect mean play script peace parent intact
-        validation_hash: 698465416514684984987984765465465465454
+        validation_hash: '698465416514684984987984765465465465454'
     DeployContract:
       title: Deploy Contract
       type: object
@@ -2874,7 +2874,7 @@ components:
         created_at: '2018-01-13T22:00:47.947907Z'
         name: Ethereum mainnet
         description: Ethereum mainnet
-        enabled: null
+        enabled: true
         chain_id: '1'
         config:
           block_explorer_url: 'https://etherscan.io'
@@ -2977,6 +2977,7 @@ components:
           example: {}
         payload_url:
           description: The URL of the payload on a Content Delivery Network (CDN)
+          type: string
         type:
           type: string
           description: Type of `Object`
@@ -3193,11 +3194,11 @@ components:
         epoch: 
           type: string
           format: uint64
-          description: The period during which the state was valid. 
+          description: The period during which the state was valid
           example: '1'
         state_claims: 
           type: array
-          description: List of `StateClaim` objects required to verify the `State`.
+          description: List of `StateClaim` objects required to verify the `State`
           items: 
             $ref: '#/components/schemas/StateClaim'
     StateClaim:
@@ -3205,16 +3206,19 @@ components:
       description: Representation of a valid state as claimed by a workgroup participant.
       type: object
       properties:
-        index: 
+        cardinality: 
           type: string
           format: uint256
-          description: Root index of a verifiable state.
+          description: Root index of a verifiable state
         path:
           type: string
-          description: Path containing the siblings needed to reconstruct the root at `index`.
+          description: Path containing the siblings needed to reconstruct the root at `cardinality`
+        root:
+          type: string
+          description: ''
         values: 
           type: array
-          description: List of hashed proofs corresponding to the values at `index` and each sibling `path`. 
+          description: List of hashed proofs corresponding to the values at `cardinality` and each sibling `path`. 
           items: 
             type: string
     Token:
