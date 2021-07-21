@@ -740,7 +740,7 @@ As discussed in [Section 3.1](##31-Introduction-and-High-Level-Requirements), BP
   <img
   src="./images/section-3-baseline-spec-identity-authorities.png"
   >
-  <figcaption>Figure 5: Example of a Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID Connect Relying Party as examples</figcaption>
+  <figcaption>Figure 5: Example of a Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID Connect Relying Party as examples.</figcaption>
 </figure>
 
 As depicted in Figure 5 above, the accepted Entity identity credentials, or other credentials from Identity providers, that are  presented by a BPI participant need to be verified by the BPI against the issuing providers. Once validated, credentials are stored in the BPI.
@@ -815,7 +815,6 @@ Note that a new agreement state after a correct workstep execution is defined as
 ```
 New Agreement State = Old Agreement State + Agreed upon New State Object + Workstep Output 
 ```
-
 See sections Xx and YY below on BPI accounts associated with state objects and BPI transactions for details.
 
 **[RXX]** A workstep instance MUST be associated with only one BPI workgroup.
