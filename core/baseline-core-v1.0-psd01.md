@@ -637,11 +637,11 @@ Requirements of Identifier registration in DPKI is handled differently from DNS.
 
 **[CR5]>[D6]**	Principals Owners in a BPI MUST always be in control of their identifiers and the corresponding public keys. 
 
-**[O1]**	Principal Owners MAY extend control of their identifier to third parties.
+**[D7]**	Principal Owners SHOULD extend control of their identifier to third parties.
 
 For example for recovery purposes.
 
-**[CR6]<[O1]** Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal of such identifier.
+**[CR6]<[D7]** Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal of such identifier.
 
 **[R38]**	Private keys MUST be stored and/or transmitted in a secure manner.
 
@@ -687,7 +687,7 @@ Uniqueness and security of BPI identifiers is very important to unambiguously id
 
 **[R45]** A unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
-**[D7]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#####-W3C-DID)].
+**[D8]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#####-W3C-DID)].
 
 ### 3.2.2 BPI Identities and Credentials
 
@@ -706,7 +706,7 @@ In the figure below, we establish the context and scope of identity and credenti
 
 As depicted, identities and credentials are established outside of the context, and, therefore, scope of a BPI. Hence, it is incumbent on BPI participants -- Requesters, Providers and, if distinct, Operators -- to establish the trust context of acceptable identities and credentials for a BPI. This statement also applies to a network of BPIs which are to interoperate with one another.
 
-**[D8]** A unique identifier utilized within one or more BPIs SHOULD be linked to an (Legal) Entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
+**[D9]** A unique identifier utilized within one or more BPIs SHOULD be linked to an (Legal) Entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
 
 In the context of this document, a Legal Entity is an individual, organization or company that has legal rights and obligations.
 
@@ -716,7 +716,7 @@ Note that credentials utilized within one ore more BPIs may be self-issued. The 
 
 **[R47]** The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
-**[D9]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [[W3C VC](#####-W3C-VC)].
+**[D10]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [[W3C VC](#####-W3C-VC)].
 
 **[R48]** A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 
@@ -726,7 +726,7 @@ Note, that the unique and resolvable identifier of a credential does not have to
 
 In the context of this document, a credential verifier is defined per the [W3C Verifiable Credential Standard](#####-W3C-VC).
 
-**[D10]** A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
+**[D11]** A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
 
 **[R50]** The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the credential holder.
 
