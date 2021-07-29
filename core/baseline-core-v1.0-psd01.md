@@ -127,6 +127,12 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[5.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services](#52-Discoverable-Authentication-and-Authorization-Capabilities-for-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.3 Discoverable and Negotiable BPI Interoperability Services](#53-Discoverable-and-Negotiable-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#54-Bi-and-Multi-directional-and-Mono-directional-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.1 Resolvable Identifiers for BPI Interoperability Services](#541-Resolvable-Identifiers-for-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services](#542-Discoverable-Authentication-and-Authorization-Capabilities-for-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.3 Discoverable and Negotiable BPI Interoperability Services](#543-Discoverable-and-Negotiable-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#544-Bi-and-Multi-directional-and-Mono-directional-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4.1 Mono-directional BPI services](#5441-Mono-directional-BPI-services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4.2 Bi- or Multi-directional BPI services](#5442-Bi-or-Multi-directional-BPI-services) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.5 Standardized Set of BPI Interoperability APIs](#55-Standardized-Set-of-BPI-Interoperability-APIs) \
 [6 Agreement Execution](#6-agreement-execution)  \
 &nbsp;&nbsp;&nbsp;&nbsp;[6.1 BPI Workstep](#61-BPI-Workstep) \
@@ -734,7 +740,7 @@ This is necessary to ensure that a single entity cannot prevent identifiers from
 
 ## 3.2 BPI Identifiers, Identities and Credentials, and their Management
 
-Building of the requirements in [Section 3.1](##31-Introduction-and-High-Level-Requirements), this section focuses on identifiers, identities and credentials used within a BPI or a network of BPIs. Note that BPI interoperability which will be discussed in [Section 5](#5-Middleware,-Communication-and-Interoperability) is predicated on known, discoverable and identifiable approaches to how identifiers and credentials are created, updated, revoked, and deleted and how standardized identity frameworks are related to those identifiers and credentials utilized in one or more BPIs.
+Building of the requirements in [Section 3.1](#31-Introduction-and-High-Level-Requirements), this section focuses on identifiers, identities and credentials used within a BPI or a network of BPIs. Note that BPI interoperability which will be discussed in [Section 5](#5-Middleware,-Communication-and-Interoperability) is predicated on known, discoverable and identifiable approaches to how identifiers and credentials are created, updated, revoked, and deleted and how standardized identity frameworks are related to those identifiers and credentials utilized in one or more BPIs.
 
 In the following, this document will use Requester and Provider as established in this document to refer to the entities making and those receiving requests. 
 
@@ -801,7 +807,7 @@ See the [W3C Verifiable Credential Standard](#W3C-VC) for a definition of creden
 
 **[R52]** If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
 
-As discussed in [Section 3.1](##31-Introduction-and-High-Level-Requirements), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.  
+As discussed in [Section 3.1](#31-Introduction-and-High-Level-Requirements), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.  
 
 <figure>
   <img
@@ -883,7 +889,7 @@ In the context of a BPI a content delivery network is a geographically distribut
 
 **[R62]**	BPI Abstraction Layers MUST support integration with internal, as defined in [Section 5](#5-Middleware-Communication-and-Interoperability), and/or external BPI User identity access management (IAM) or identity provider (IdP) systems. 
 
-See Figure 4 as to the meaning of an IdP in a BPI context, and Figure 5 in this document as to the meaning of external IAM and its interplay with BPI IAM discussed in Section 5(##5-Middleware-Communication-and-Interoperability).
+See Figure 4 as to the meaning of an IdP in a BPI context, and Figure 5 in this document as to the meaning of external IAM and its interplay with BPI IAM discussed in [Section 5](#5-Middleware-Communication-and-Interoperability).
 
 **[R63]**	BPI Abstraction Layers MUST support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in [Section 5](#5-Middleware-Communication-and-Interoperability)
 
@@ -1376,7 +1382,7 @@ Mono-directional BPI services in the context of BPI interoperability, not regula
 * Specification of the prover system of the lock commitment
 * A public validation URI of the originating BPI that allows a 3rd party to independently verify the lock commitment
 
-#### 5.4.4.1 Bi- or Multi-directional BPI services
+#### 5.4.4.2 Bi- or Multi-directional BPI services
 
 Bi- and Multi-directional BPI services in the context of BPI Interoperability are significantly more complex and varied as they need to enable dynamic processes between BPIs.
 
