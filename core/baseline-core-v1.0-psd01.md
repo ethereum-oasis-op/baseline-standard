@@ -194,7 +194,14 @@ In the following, this document lays out the requirements on a BPI to achieve ab
 * **Section 4: BPI Abstraction Layers** with definitions, concepts, scope, and security considerations for BPI Abstraction Layers
     * BPI Abstraction Scope and Components
     * BPI Abstraction Layer Security and Integration
-* **Section 5: Middleware, Communication and Interoperability**
+* **Section 5: Middleware, Communication and Interoperability** with definitions, key concepts, and overviews of BPI User Capabilities and Accounts, service orchestration, cummunication, BPI Interoperability with its APIs and Transport Security  
+    * BPI User Capabilities
+    * BPI User Account
+    * BPI Service Orchestration
+    * BPI Communication
+    * BPI Integration
+    * Standardized Set of BPI Interoperability APIs
+    * BPI Interoperability: Discoverable Standard Transport Security
 * **Section 6: Agreement Execution** with definitions, key concepts, and overviews of the BPI Processing Layer components necessary in a compliant Baseline Protocol Implementation as delineated in the following subsections
     * BPI Workstep
     * BPI Workflow
@@ -519,7 +526,7 @@ It is important for commercial counterparties to know the level of conformity ot
 
 **[R24]**	Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol standard in a publicly accessible manner.
 
-### 2.7.2	CCSM Lifecycle Processes
+### 2.7.2 CCSM Lifecycle Processes
 
 Commercial Counterparties must comply efficiently and effectively with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard.
 
