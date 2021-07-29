@@ -123,17 +123,19 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[4.1 BPI Abstraction Scope and Components](#41-BPI-Abstraction-Scope-and-Components) \
 &nbsp;&nbsp;&nbsp;&nbsp;[4.2  BPI Abstraction Layer Security and Integration](#42-BPI-Abstraction-Layer-Security-and-Integration) \
 [5  Middleware, Communication and Interoperability](#5-Middleware-Communication-and-Interoperability) \
-&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Resolvable Identifiers for BPI Interoperability Services](#51-Resolvable-Identifiers-for-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;[5.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services](#52-Discoverable-Authentication-and-Authorization-Capabilities-for-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;[5.3 Discoverable and Negotiable BPI Interoperability Services](#53-Discoverable-and-Negotiable-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;[5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#54-Bi--and-Multi-directional-and-Mono-directional-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.1 Resolvable Identifiers for BPI Interoperability Services](#541-Resolvable-Identifiers-for-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services](#542-Discoverable-Authentication-and-Authorization-Capabilities-for-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.3 Discoverable and Negotiable BPI Interoperability Services](#543-Discoverable-and-Negotiable-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#544-Bi--and-Multi-directional-and-Mono-directional-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4.1 Mono-directional BPI services](#5441-Mono-directional-BPI-services) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4.2 Bi- or Multi-directional BPI services](#5442-Bi--or-Multi-directional-BPI-services) \
-&nbsp;&nbsp;&nbsp;&nbsp;[5.5 Standardized Set of BPI Interoperability APIs](#55-Standardized-Set-of-BPI-Interoperability-APIs) \
+&nbsp;&nbsp;&nbsp;&nbsp;[5.1 BPI User Capabilities](#51-BPI-User-Capabilities) \
+&nbsp;&nbsp;&nbsp;&nbsp;[5.2 BPI User Account](#52-BPI-User-Account) \
+&nbsp;&nbsp;&nbsp;&nbsp;[5.3 BPI Service Orchestration](#53-BPI-Service-Orchestration) \
+&nbsp;&nbsp;&nbsp;&nbsp;[5.4 BPI Communication](#54-BPI-Communication) \
+&nbsp;&nbsp;&nbsp;&nbsp;[5.5 BPI Integration](#55-BPI-Integration) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.5.1 Resolvable Identifiers for BPI Interoperability Services](#551-Resolvable-Identifiers-for-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.5.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services](#552-Discoverable-Authentication-and-Authorization-Capabilities-for-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.5.3 Discoverable and Negotiable BPI Interoperability Services](#553-Discoverable-and-Negotiable-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#554-Bi--and-Multi-directional-and-Mono-directional-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.5.4.1 Mono-directional BPI services](#5541-Mono-directional-BPI-services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.5.4.2 Bi- or Multi-directional BPI services](#5542-Bi--or-Multi-directional-BPI-services) \
+&nbsp;&nbsp;&nbsp;&nbsp;[5.6 Standardized Set of BPI Interoperability APIs](#55-Standardized-Set-of-BPI-Interoperability-APIs) \
+&nbsp;&nbsp;&nbsp;&nbsp;[5.7 BPI Interoperability: Discoverable Standard Transport Security](#57-BPI-Interoperability-Discoverable-Standard-Transport-Security) \
 [6 Agreement Execution](#6-agreement-execution)  \
 &nbsp;&nbsp;&nbsp;&nbsp;[6.1 BPI Workstep](#61-BPI-Workstep) \
 &nbsp;&nbsp;&nbsp;&nbsp;[6.2 BPI Workflow](#62-BPI-Workflow) \
@@ -499,7 +501,7 @@ This section describes the prerequisites and high-level general operational fram
 * Functional Requirements on commercial counterparties
 * CCSM-based Lifecycle Processes
 
-### 2.7.1	Functional Requirements on commercial counterparties 
+### 2.7.1	Functional Requirements on commercial counterparties
 
 This section states the commercial and operational functionalities required from commercial counterparties.
 
@@ -531,7 +533,7 @@ Therefore, a pseudonymous map of a supply chain is a cryptographically connected
 
 This allows enforcement of conformance with regulations, additional legal and technical requirements without disclosure of confidential information.
 
-## 2.8 Baseline Protocol Reference Architecture 
+## 2.8 Baseline Protocol Reference Architecture
 
 This section describes the components of the Baseline Reference Architecture 
 * (Commercial) State Synchronization
@@ -598,7 +600,7 @@ The agreement on the governance entity, its rules, and its method of achieving i
 
 **[R35]**	The (commercial) counterparties MUST agree on the BPI.
 
-### 2.8.3	External Applications
+### 2.8.3 External Applications
 
 **[R36]**	Application/s providing (commercial) transaction functionality such as billing to (commercial) counterparties, and are, therefore, external with respect to the BPI, MUST be independent of any BPI.
 
@@ -1069,7 +1071,7 @@ Low latency in this context refers to a pipeline latency that does not impact th
 
 This requirement ensures that overall system latency is not impacted when volume meaningfully and rapidly changes.
 
-## 5.3 BPI Communication
+## 5.4 BPI Communication
 
 The BPI Communication capability is a foundational element of any BPI in order to facilitate complex workflows in workgroups. Therefore, it is supposed to meet 
 * the semantically demanding workflow communication and workflow orchestration requirements between BPI Users, and
@@ -1161,7 +1163,7 @@ An example of a challenge-response system is given in the figure below.
 
   Note that BPI Messages may fully, and directly support JSON-LD.
 
-## 5.4 BPI Integration
+## 5.5 BPI Integration
 
 BPI Integration or BPI Interoperability, meaning the ability of two or more BPIs to functionally interoperate with one another is both complex and crucial to generate network effects, and, thus, sustained adoption growth for the Baseline Protocol since none wants to operate in silos for long. 
 
@@ -1238,13 +1240,13 @@ Furthermore, and for simplicity of the example here, it is assumed that the ZK p
 
 Because the state advancement in the state channel is strictly deterministic, and dependent on the defined exit criteria, each workflow has now properly synchronized inputs for their next worksteps in their respective workflows.
 
-### 5.4.1 Resolvable Identifiers for BPI Interoperability Services
+### 5.5.1 Resolvable Identifiers for BPI Interoperability Services
 
 As for interactions of BPI User with a BPI, resolvable identifiers utilized within a BPI are of equivalent importance for interactions between BPIs. 
 
 **[R120]** Identifiers and Credentials utilized in BPI Interoperability MUST satisfy all requirements in [section 3](#3-Identifiers-Identity-and-Credential-Management). 
 
-### 5.4.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services
+### 5.5.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services
 
 Similar to a BPI itself, the interactions between BPIs through BPI Interoperability services must follow a similar, albeit slightly reduced set of requirements around BPI User authentication and authorization as a BPI.
 
@@ -1260,7 +1262,7 @@ Role and Access Management in this context refers to the required roles of BPI U
 
 Policy Management in this context refers to the management of authentication and authorization rules to access and execute BPI functionality for roles of BPI User across multiple BPIs.
 
-### 5.4.3 Discoverable and Negotiable BPI Interoperability Services
+### 5.5.3 Discoverable and Negotiable BPI Interoperability Services
 
 BPI Interoperability services discoverability is facilitated through BPI identifiers representing BPI Operator identities resolvable to BPI Interoperability services URIs of a BPI as described in section 3.
 
@@ -1296,7 +1298,7 @@ Based upon published BPI service capabilities, a BPI service requester may prese
 
 **[CR15]<[O2]** If the BPI service provider has not responded to any of the BPI service requests by a BPI, the BPI service provider MUST refuse the service request.
 
-### 5.4.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services
+### 5.5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services
 
 Mono-directional BPI services are important in the context of a BPI because they allow a BPI User to extract or export state objects, their history and associated meta data from a BPI and subsequently import them into another BPI. To avoid subsequent altering of a state object within a BPI, the state object needs to be provably locked or immobilized on the BPI it came from before it can be exported, and subsequently imported on another BPI, if required. 
 
@@ -1348,7 +1350,7 @@ The requirements below will specify public URIs for BPI Interoperability service
 
 Cryptographically secured in this context means that all communications follow a common authentication and authorization framework as previously discussed. Privacy preserving in this context means that all communications are end-to-end encrypted independent of the security properties of the transportation layer.
 
-#### 5.4.4.1 Mono-directional BPI services
+#### 5.5.4.1 Mono-directional BPI services
 
 Mono-directional BPI services in the context of BPI interoperability, not regular BPI transactions as specified in [Section 6.5](#65-BPI-Transactions) and [Section 6.6](#66-BPI-Transaction-Lifecycle), need only to perform two operations -- export and import. These operations have to encompass cryptographic material and URIs that allows independent verification of the cryptographic material presented to 3rd parties such as an auditor or another BPI.
 
@@ -1382,7 +1384,7 @@ Mono-directional BPI services in the context of BPI interoperability, not regula
 * Specification of the prover system of the lock commitment
 * A public validation URI of the originating BPI that allows a 3rd party to independently verify the lock commitment
 
-#### 5.4.4.2 Bi- or Multi-directional BPI services
+#### 5.5.4.2 Bi- or Multi-directional BPI services
 
 Bi- and Multi-directional BPI services in the context of BPI Interoperability are significantly more complex and varied as they need to enable dynamic processes between BPIs.
 
@@ -1773,13 +1775,13 @@ The exit operation can be invoked at any time during the lifecycle of an IVSM if
 
 This completes the specification of the Bi- and Multi-directional BPI interoperability operations.
 
-## 5.5 Standardized Set of BPI Interoperability APIs
+## 5.6 Standardized Set of BPI Interoperability APIs
 
 The detailed API specification of the Mono-directional and Bi-/Multi-directional BPI Interoperability operations will be given in the [Baseline Protocol API specification](./api/baseline-api-v1.0-psd01.md).
 
 **[R213]** There MUST be a set of BPI APIs supporting the BPI Interoperability operations enumerated in requirements **[141]** and **[R144]**.
 
-## 5.6 BPI Interoperability: Discoverable Standard Transport Security
+## 5.7 BPI Interoperability: Discoverable Standard Transport Security
 
 **[R214]** Data in transit between BPIs MUST be encrypted.
 
