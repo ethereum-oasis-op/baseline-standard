@@ -126,13 +126,13 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[5.1 Resolvable Identifiers for BPI Interoperability Services](#51-Resolvable-Identifiers-for-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services](#52-Discoverable-Authentication-and-Authorization-Capabilities-for-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.3 Discoverable and Negotiable BPI Interoperability Services](#53-Discoverable-and-Negotiable-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;[5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#54-Bi-and-Multi-directional-and-Mono-directional-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;[5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#54-Bi--and-Multi-directional-and-Mono-directional-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.1 Resolvable Identifiers for BPI Interoperability Services](#541-Resolvable-Identifiers-for-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services](#542-Discoverable-Authentication-and-Authorization-Capabilities-for-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.3 Discoverable and Negotiable BPI Interoperability Services](#543-Discoverable-and-Negotiable-BPI-Interoperability-Services) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#544-Bi-and-Multi-directional-and-Mono-directional-BPI-Interoperability-Services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#544-Bi--and-Multi-directional-and-Mono-directional-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4.1 Mono-directional BPI services](#5441-Mono-directional-BPI-services) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4.2 Bi- or Multi-directional BPI services](#5442-Bi-or-Multi-directional-BPI-services) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.4.4.2 Bi- or Multi-directional BPI services](#5442-Bi--or-Multi-directional-BPI-services) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.5 Standardized Set of BPI Interoperability APIs](#55-Standardized-Set-of-BPI-Interoperability-APIs) \
 [6 Agreement Execution](#6-agreement-execution)  \
 &nbsp;&nbsp;&nbsp;&nbsp;[6.1 BPI Workstep](#61-BPI-Workstep) \
