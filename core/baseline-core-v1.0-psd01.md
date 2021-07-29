@@ -768,7 +768,7 @@ In the figure below, this document establish the context and scope of identity a
   <img
   src="./images/section-3-baseline-spec-identity-scope.png"
   >
-  <figcaption>Figure 4: Delineation of the Identity and Credential scope of a BPI</figcaption>
+  <figcaption>Figure 4: Delineation of the Identity and Credential scope of a BPI; Source: Oliver Terbu (ConsensSys)</figcaption>
 </figure>
 
 As depicted, identities and credentials are established outside of the context, and, therefore, scope of a BPI. Hence, it is incumbent on BPI participants -- Requesters, Providers and, if distinct, Operators -- to establish the trust context of acceptable identities and credentials for a BPI. This statement also applies to a network of BPIs which are to interoperate with one another.
@@ -807,7 +807,7 @@ As discussed in [Section 3.1](##31-Introduction-and-High-Level-Requirements), BP
   <img
   src="./images/section-3-baseline-spec-identity-authorities.png"
   >
-  <figcaption>Figure 5: Example of a Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID Connect Relying Party as examples</figcaption>
+  <figcaption>Figure 5: Example of a Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID Connect Relying Party as examples; Source: Oliver Terbu (ConsensSys)</figcaption>
 </figure>
 
 As depicted in Figure 5 above, the accepted Entity identity credentials, or other credentials from Identity providers, that are  presented by a BPI participant need to be verified by the BPI against the issuing providers. Once validated, credentials are stored in the BPI.
@@ -926,16 +926,16 @@ Non-normative examples of such authentication technologies are [OAUTH](####OAuth
 # 5 Middleware, Communication and Interoperability
 
 This section of the document focuses on the concepts and requirements that describe the key capabilities to connect the BPI Abstraction Layer to the BPI Processing Layer and the correctness preserving integration of different BPIs. This section has the following structure:
-* BPI Users -- describing the key capabilities required for access authentication to a BPI and access authorization of BPI functionality and BPI- or user-specific data within a BPI.
+* BPI Users -- describing the key capabilities required for access authentication to a BPI, and access authorization of BPI functionality, and BPI- or -user-specific data within a BPI.
 * BPI Service Orchestration -- describing the middleware capability enabling the invocation of key BPI capabilities through the BPI Abstraction Layer.
 * BPI Communication -- describing the key capability of how BPI users can communicate with one another within a workgroup, within a BPI and, also, across BPIs.
-* BPI Integration -- describing the necessary capabilities to ensure the correct  intersection of multiple workflows between different BPIs with correctly advanced state across intersecting workflows with minimal or no trust assumptions.   
+* BPI Integration -- describing the necessary capabilities to ensure the correct intersection of multiple workflows between different BPIs with correctly advanced state across intersecting workflows with minimal or no trust assumptions.   
 
 ## 5.1 BPI User Capabilities
 
 A BPI User is defined through the capability requirements of [Section 3](#3-Identifiers-Identity-and-Credential-Management). Note that there are two types of BPI Users:
 * An external BPI User that only consumes BPI capabilities
-* An internal BPI User that manages the provisioning of BPI capabilities to external BPI User and the integration with other BPIs. 
+* An internal BPI User that manages the provisioning of BPI capabilities to external BPI User, and the integration with other BPIs. 
 
 This section describes the capabilities of a BPI User in the context of a BPI. Unless otherwise differentiated, this document refers to both external and internal BPI User as a BPI User. 
 
@@ -961,11 +961,11 @@ The minimal set of BPI User capabilities are as follows:
 An example of cryptographic secret sharing is called ["Shamir Secret Sharing"](####Shamir).
 
 **[R78]** An external BPI User MUST at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Users:
-* A BPI Account belonging to the BPI User. Note that a BPI Account as defined in Section 6 is different from a BPI User account as defined in [Section 5.2](#52-BPI-User-Account).
-* A BPI Workgroup as defined in [Section 6](#-6-Agreement-Execution). 
-* A BPI Workflow as defined in [Section 6](#-6-Agreement-Execution).
-* A BPI Workstep as defined in [Section 6](#-6-Agreement-Execution).
-* A BPI Transaction as defined in [Section 6](#-6-Agreement-Execution). 
+* A BPI Account belonging to the BPI User. Note that a BPI Account as defined in [Section 6.4](#64-BPI-Account) is different from a BPI User account as defined in [Section 5.2](#52-BPI-User-Account).
+* A BPI Workgroup as defined in [Section 6.3](#63-BPI-Workgroup). 
+* A BPI Workflow as defined in [Section 6.2](#62-BPI-Workflow).
+* A BPI Workstep as defined in [Section 6.1](#61-BPI-Workstep).
+* A BPI Transaction as defined in [Section 6.5](#65-BPI-Transactions). 
 
 There may be other BPI components such as role definitions or security policies. The enablement of additional components in a BPI beyond this standard is left to each specific implementation.
 
@@ -975,37 +975,37 @@ There may be other BPI components such as role definitions or security policies.
 
 **[R81]** A BPI User MUST be able to create, read BPI messages from other BPI users using the BPI Communication capability as defined in [Section 5.3](#53-BPI-Communication).
 
-Note that when a BPI User executes these capabilities they are understood to be enabled by services under the direct custody of the BPI User. However, the BPI User may delegate these capabilities to the BPI the BPI user operates in, called a custodial approach.  
+Note that when a BPI User executes these capabilities they are understood to be enabled by services under the direct custody of the BPI User. However, the BPI User may delegate these capabilities to the BPI in which the BPI user operates.  
 
 **[R82]** A BPI User MUST be able to delegate one or more BPI User capabilities to a 3rd party that is also a BPI User.
 
 ## 5.2 BPI User Account
 
-A BPI User Account is a key component of a BPI because it is the anchor point for all important BPI functions -- authentication and authorization, messages, workgroups, workflows, worksteps, transactions etc. Without the notion of a cryptographically verifiable state of a BPI User within a BPI which is afforded by a BPI User Account, no other BPI functions will be able to operate successfully since all functions are predicated on cryptographically verifiable counterparties that maintain a referable and verifiable state within a BPI.  
+A BPI User Account is a key component of a BPI because it is the anchor point for all important BPI functions -- authentication and authorization, messages, workgroups, workflows, worksteps, transactions etc. Without the notion of a cryptographically verifiable state of a BPI User within a BPI -- afforded by a BPI User Account -- no other BPI functions will be able to operate successfully, since all functions are predicated on cryptographically verifiable counterparties that maintain a referable and verifiable state within a BPI.  
 
 The following requirements on a BPI User Account assume that all identifiers and credentials referring to a BPI User are compliant with the requirement in [Section 3](#3-Identifiers-Identity-and-Credential-Management).
 
 **[R83]** A BPI User Account MUST NOT contain any personal identifiable information (PII).
 
-This requirement facilitates compliance with privacy laws in different jurisdiction.
+This requirement facilitates compliance with privacy laws in different jurisdictions.
 
 **[R84]** A BPI User Account MUST NOT be created by an external BPI User.
 
-This requirement ensure that only a BPI operator can create a BPI User Account to avoid account creation spamming and implementation of KYC processes required in certain jurisdictions.
+This requirement ensures that only a BPI operator can create a BPI User Account to avoid account creation spamming and implementation of KYC processes required in certain jurisdictions.
 
 **[R85]** A BPI User Account MUST have at least the following data properties:
 1. A unique, resolvable and cryptographically verifiable identifier
 2. One or more security policies including authentication and authorization policies
-3. A cryptographically verifiable credential establishing the (legal) identity of a BPI User and utilized by a BPI in the creation of the BPI Usr Account
-4. A BPI User Account recovery key that can be only derived by the BPI User owning the BPI User Account and is independent from the private key(s) associated with the BPI User Account identifier.
+3. A cryptographically verifiable credential establishing the (legal) identity of a BPI User, and utilized by a BPI in the creation of the BPI Usr Account
+4. A BPI User Account recovery key that can be only derived by the BPI User owning the BPI User Account, and is independent from the private key(s) associated with the BPI User Account identifier.
 5. A list of all BPI Accounts related to the BPI User Account
 
 This minimal set of requirements ensures:
-* that access to a BPI User account can be cryptographically verified (bullet 1),
-* that a BPI account can fine grain access and authorization requirements for the BPI User (bullet 2),
-* that other BPI User can independently verify the identity used to establish the BPI User Account (bullet 3),
-* that a BPI User can independently recover a BPI User Account even if their private key was compromised, and ensure forward security (bullet 4), and
-* that there is a provable relationships with BPI Accounts connected to BPI state objects connected to the BPI User Account owner (bullet 5).  
+* that access to a BPI User account can be cryptographically verified (bullet 85.1),
+* that a BPI account can fine grain access and authorization requirements for the BPI User (bullet 85.2),
+* that other BPI User can independently verify the identity used to establish the BPI User Account (bullet 85.3),
+* that a BPI User can independently recover a BPI User Account even if their private key was compromised, and ensure forward security (bullet 85.4), and
+* that there is a provable relationship with BPI Accounts connected to BPI state objects connected to the BPI User Account owner (bullet 85.5).  
 
 **[R86]** A BPI User Account MUST have a cryptographically verifiable audit trail from BPI User Account inception to its closure.
 
@@ -1015,7 +1015,7 @@ This is a critical audit requirement to ensure ease of compliance with regulator
 
 **[D13]** A BPI User Account SHOULD be re-encrypted after every BPI User session to one or more cryptographic keys only known to the BPI User Account holder.
 
-This requirement and recommendation ensure that a compromise of a BPI does not expose BPI User Account information. A BPI may use the BPI User Account unique identifier or another unique identifer such as an account number known to the BPI User Account holder as an unencrypted identifier of the BPI User Account stored within the BPI.
+**[R87]** and **[D13]** ensure that a compromise of a BPI does not expose BPI User Account information. A BPI may use the BPI User Account unique identifier or another unique identifer such as an account number known to the BPI User Account holder as an unencrypted identifier of the BPI User Account stored within the BPI.
 
 **[R88]** The BPI User Account owner MUST be able to perform the following operations on its BPI User Account: read, update and delete.
 
@@ -1059,13 +1059,17 @@ This ensure that there is less load and more stability of the orchestration stac
 
 Low latency in this context refers to a pipeline latency that does not impact the overall system latency of the BPI.
 
-**[R102]** BPI service orchestration utilized in a BPI MUST be scalable and highly available 
+**[R102]** BPI service orchestration utilized in a BPI MUST be scalable and highly available. 
 
 This requirement ensures that overall system latency is not impacted when volume meaningfully and rapidly changes.
 
 ## 5.3 BPI Communication
 
-The BPI Communication capability is a foundational element of any BPI in order to facilitate complex workflows in workgroups. Therefore, it is supposed to meet the semantically demanding workflow communication and workflow orchestration requirements between BPI User as well as the complex and highly asynchronous nature of BPI transactions originating from such workflows. This leads to the following core capability requirements:
+The BPI Communication capability is a foundational element of any BPI in order to facilitate complex workflows in workgroups. Therefore, it is supposed to meet 
+* the semantically demanding workflow communication and workflow orchestration requirements between BPI Users, and
+* the complex and highly asynchronous nature of BPI transactions originating from such workflows. 
+
+This leads to the following core capability requirements:
 
 **[R103]** BPI communication protocols MUST be message-based.
 
@@ -1073,13 +1077,15 @@ The BPI Communication capability is a foundational element of any BPI in order t
 
 **[R105]** BPI communication protocols MUST be simplex. 
 
-For example, agent X sends a message over channel A at time T0 to agent Y. It may receive a response from Agent Y over channel B at some later time T1.
+Simplex is a communication mode in which only one message is transmitted, and always going in the same direction.
+
+An example of the three requirements above is as follows: BPI User X sends a message over channel A at time T0 to BPI User Y. It may receive a response from BPI User Y over channel B at some later time T1.
 
 **[R106]** BPI communication protocols MUST be based on established communication protocol standards.
 
 Non-normative examples include but are not limited to [NATS](####NATS), [AMQP](####AMQP), and [DIDComm](####DIDCOMM).
 
-Note that typically and in the context of this document a communication protocol encompasses four layers:
+Note that typically, and in the context of this document, a communication protocol encompasses four layers:
 *	Semantic layer
 *	Routing layer
 *	Cryptographic layer
@@ -1087,12 +1093,12 @@ Note that typically and in the context of this document a communication protocol
 
 The layers are defined as follows:
 * Transport Layer
-  - **[R107]**	A BPI MUST utilize the well established TLS 1.2 or 1.3 protocol to transport messages between BPIs [add reference here]. 
-  - **[R108]**	For synchronous BPI messaging between BPIs, a BPI MUST utilize HTTPS.
+  - **[R107]**	A BPI MUST utilize the well established TLS [1.2](####TLS12) or [1.3](####TLS13) protocol to transport messages between BPIs. 
+  - **[R108]**	For synchronous BPI messaging between BPIs, a BPI MUST utilize [HTTPS](####HTTPS).
   - **[R109]**	 For asynchronous BPI messaging between BPIs or messaging within a BPI, a BPI MUST utilize established asynchronous protocols such as Websockets or AMQP. 
 
 * Cryptographic Layer: This layer deals with the BPI message envelope and the BPI message payload authenticity. However, it does not deal with authorization. Authorization is assumed to be validated based on security policies in the BPI core components such as workgroups. 
-  - **[R110]**	All BPI envelope level formats MUST be achieved through JOSE based structures. 
+  - **[R110]**	All BPI envelope level formats MUST be achieved through JOSE based structures see **[R111]** and **[R112]**. 
   - **[R111]**	The encrypted message formats MUST use an [Encrypted JSON Web Token (JWE)](####rfc7516) structure.
   - **[R112]** The signed unencrypted format MUST use a [Signed JSON Web Token (JWS)](####rfc7515) structure. 
   - **[D14]**	BPI messages SHOULD always use JWEs with the ciphertext containing a signed payload. 
@@ -1105,7 +1111,14 @@ This simplifies the authentication of the message without having to rely on a 3r
 
   - **[R113]** BPI Message authenticity and proof of control of the private keys MUST be established through a cryptographic challenge-response scheme utilizing a shared secret and the public keys of the involved BPI User. 
 
-We will give an example of the challenge-response in the context of the semantic layer below. 
+An example of a challenge-response system is given in the figure below.
+
+<figure>
+  <img
+  src="./images/10_did_auth_sign_up.png"
+  >
+  <figcaption>Figure 7: Example of a Challenge-Response system based on the DIDAuth protocol using a selective disclosure response to the challenge(sdr); source: [RSKSmart](https://rsksmart.github.io/rif-identity-docs/ssi/specs/did-auth.html) </figcaption>
+</figure>
 
 * Routing Layer:  A BPI is a “gated community”, hence, all BPI capabilities and BPI User services are known, or at least directly discoverable, and, therefore, directly addressable within a BPI. Therefore, there is no unknown path between sender and receiver, and, this routing is not required as it would be in a public network with an unknown number of participants of unknown identity. The scenario of a BPI User with an unknown communication endpoint will be addressed in Section 5.4, BPI Integration.
 
@@ -1119,11 +1132,11 @@ We will give an example of the challenge-response in the context of the semantic
 
 * Semantic Layer: The semantic layer specifies how a message payload needs to be structured to be both BPI capability/service and BPI User friendly. Note that the content level refers to the content and message inside the message envelope. For the semantic layer, this document specifies how messages are identified and processed.
 
-  - **[R116]**	Every BPI message MUST contains a message type that allows the context of the message to be established, the content structure to be verified against the context and the content to be correctly processed.
+  - **[R116]**	Every BPI message MUST contain a message type that allows the context of the message to be established, the content structure to be verified against the context, and the content to be correctly processed.
 
-  A message identification does not merely identify the message, the message type also identifies the associated processing protocol to use such as the specification for a particular zero-knowledge prover scheme. A processing protocol is essentially a group of related messages that are required to achieve a multi-step business process.
+  A message identification does not merely identify the message. The message type also identifies the associated processing protocol to use such as the specification for a particular zero-knowledge prover scheme. A processing protocol is essentially a group of related messages that are required to achieve a multi-step business process.
 
-  - **[R117]**	Every BPI message MUST contain a unique message-id that is generated by the sender.
+  - **[R117]**	A BPI message MUST contain a unique message-id that is generated by the sender.
 
   This allows unique identification of the message through its lifecycle.
 
@@ -1131,16 +1144,16 @@ We will give an example of the challenge-response in the context of the semantic
 
   In general, decorators in messages at a content level allow for the support of reusable conventions that are present across multiple messages in order to handle the same functionality in a consistent manner. A relevant analogy for decorators is that they are like HTTP headers in an HTTP request. The same HTTP header is often reused as a convention across multiple requests to achieve cross-cutting functionality.
 
-  An initial set of useful message decorators that can be used are but are not limited to:
+  An initial set of useful message decorators that can be used are, but not limited to:
   * ~thread: provide request/reply and threading semantics to allow for maintaining state within, and also across messages.
   *	~timing: timestamps, expiration, elapsed time
   *	~l10n: localization support
 
-  - **[R118]**	All content level BPI messages MUST be represented in JSON format. 
+  - **[R118]**	All content level BPI messages MUST be represented in [JSON format](####JSON). 
 
-  - **[R119]**	BPI Messages MUST be JSON-LD sympathetic.
+  - **[R119]**	BPI Messages MUST be [JSON-LD format](####JSONLD) sympathetic.
 
-  Note that BPI Messages may fully and directly support JSON-LD.
+  Note that BPI Messages may fully, and directly support JSON-LD.
 
 ## 5.4 BPI Integration
 
@@ -1772,13 +1785,13 @@ The detailed API specification of the Mono-directional and Bi-/Multi-directional
 
 Agreement execution within the context of this document is the deterministic state transition from state A to state B of a state object in a BPI, and where the state object represents a valid agreement state between agreement counterparties. A valid agreement state represents a data set that has been obtained from the correct application by a BPI of the agreement rules and data to a set of input data, the output of which has been agreed upon by the counterparties to the agreement. Agreement execution occurs in the processing layer of the BPI Processing Layer as defined in [Section 2](#2-Design-and-Architecture).
 
-Note that a deterministic state transition in the context of this document is facilitated by the combination of one or more worksteps grouped within a workflow. Also note that a workflow is the execution by the BPI of a series of causally connected and deterministic BPI worksteps and with agreement counterparties grouped into one or more BPI workgroups attached to the worksteps of the workflow. A BPI workstep, a BPI workflow and a BPI workgroup will be referred to as workstep, workflow and workgroup subsequently. See figure 6.1 below for a conceptual view of the relationship between workflow, workgroups and worksteps and BPI processing.
+Note that a deterministic state transition in the context of this document is facilitated by the combination of one or more worksteps grouped within a workflow. Also note that a workflow is the execution by the BPI of a series of causally connected and deterministic BPI worksteps and with agreement counterparties grouped into one or more BPI workgroups attached to the worksteps of the workflow. A BPI workstep, a BPI workflow and a BPI workgroup will be referred to as workstep, workflow and workgroup subsequently. See Figure 8 below for a conceptual view of the relationship between workflow, workgroups and worksteps and BPI processing.
 
 <figure>
   <img
   src="./images/Baseline-Fig-6.1-Workflow-Agreement-Execution.png"
   >
-  <figcaption>Figure 6.1: Conceptual View of Workflow, Workstep and Workgroup</figcaption>
+  <figcaption>Figure 8: Conceptual View of Workflow, Workstep and Workgroup</figcaption>
 </figure>
 
 ## 6.1 BPI Workstep
@@ -2077,7 +2090,7 @@ The figure below showcases at a high-level the flow of a transaction through a B
   <img
   src="./images/Baseline-Fig-6.2-High-Level Baseline-Transaction-Lifecycle.png"
   >
-  <figcaption>Figure 6.2: High Level Transaction Lifecycle Flow through the BPI</figcaption>
+  <figcaption>Figure 9: High Level Transaction Lifecycle Flow through the BPI</figcaption>
 </figure>
 
 A prerequisite for transaction lifecycle step 4 where the BPI Processing Layer Transaction Pool pulls a transaction from BPI Middleware Layer's Messaging is that there is at least one transaction in the Messaging Capability waiting to be processed by the BPI Processing Layer.
@@ -2163,7 +2176,7 @@ In the case of a BPI this document needs to distinguish between proof, transacti
 
 **[D30]** All other data SHOULD be stored as fully persistent data in the Storage capability.
 
-This is a consequence of step (7) in Fig. 6.2 above.
+This is a consequence of step (7) in Fig. 9 above.
 
 The Storage capability must also meet all requirements defined in [Section 7](#7-General-BPI-Storage-Capabilities)
 
@@ -2394,11 +2407,32 @@ ISO/IEC 27033: Information technology — Security techniques — Network securi
 #### [RFC3339]
 IETF RFC 3339, (2002), https://datatracker.ietf.org/doc/html/rfc3339#page-8
 
+#### [TLS12]
+IETF RFC5246, (2008) ,https://datatracker.ietf.org/doc/html/rfc5246
+
+#### [TLS13]
+IETF RFC8446, (2018), https://datatracker.ietf.org/doc/html/rfc8446
+
+#### [HTTPS]
+IETF RFC 2818, (2000), https://datatracker.ietf.org/doc/html/rfc2818
+
 #### [rfc7516]
 IETF RFC 7516, (2015), https://datatracker.ietf.org/doc/html/rfc7516
 
 #### [rfc7515]
 IETF RFC 7515, (2015), https://datatracker.ietf.org/doc/html/rfc7515
+
+#### [TLS12]
+IETF RFC5246, (2008) ,https://datatracker.ietf.org/doc/html/rfc5246
+
+#### [TLS13]
+IETF RFC8446, (2018), https://datatracker.ietf.org/doc/html/rfc8446
+
+#### [JSON]
+IETF RFC7159, (2014), https://www.rfc-editor.org/rfc/rfc7159.html
+
+#### [JSONLD]
+W3C, JSON-LD 1.1, (2020), https://www.w3.org/TR/json-ld11/
 
 <!-- 
 ###### [OpenC2-HTTPS-v1.0]
@@ -2426,7 +2460,7 @@ ISO/IEC 27001:2013, https://www.iso.org/standard/54534.html
 ICANN, Domain Name Registration, https://whois.icann.org/en/domain-name-registration-process
 
 ###### [X.509]
- International Telecommunications Union, October 2019, https://www.itu.int/rec/T-REC-X.509-201910-I/en
+International Telecommunications Union, October 2019, https://www.itu.int/rec/T-REC-X.509-201910-I/en
 
 ##### [CA]
 NIST SP 800-56B Rev. 2, March 2019, https://doi.org/10.6028/NIST.SP.800-56Br2
@@ -2490,6 +2524,7 @@ Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://ide
 
 #### [SIOP]
 Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
+
 
 -------
 
