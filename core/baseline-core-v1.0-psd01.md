@@ -465,7 +465,7 @@ Hence, this document enumerates the following requirements below:
 
 **[R13]**	A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
-The usage of cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [(CMVP)](#####CVMP).
+The usage of cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [(CMVP)](#CVMP).
 
 **[R14]**	If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
@@ -2392,16 +2392,16 @@ Remove this note before submitting for publication.)
 
 The following documents are referenced in such a way that some or all of their content constitutes requirements of this document.
 
-##### [NIST SP 800-32]
+##### [NIST-SP-800-32]
 NIST SP 800-32, 2001, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf
 
-##### [W3C DID]
+##### [W3C-DID]
 W3C Recommended Specification "Decentralized Identifiers (DIDs) v1.0", June 2021, https://www.w3.org/TR/did-core/
 
-##### [W3C VC]
+##### [W3C-VC]
 W3C Specification "Verifiable Credentials Data Model 1.0", October 2019, https://www.w3.org/TR/vc-data-model/
 
-#### [ISO/IEC 27033] 
+#### [ISO-IEC-27033] 
 ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO
 
 #### [RFC3339]
@@ -2447,82 +2447,82 @@ Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, 
 
 ## A.2 Informative References
 
-##### CVMP
+###### [CVMP]
 NIST CVMP, https://csrc.nist.gov/projects/cryptographic-module-validation-program
 
-##### [FIPS]
+###### [FIPS]
 FIPS, https://www.nist.gov/itl/current-fips
 
-##### [ISO27001]
+###### [ISO27001]
 ISO/IEC 27001:2013, https://www.iso.org/standard/54534.html
 
-#### [whois]
+###### [whois]
 ICANN, Domain Name Registration, https://whois.icann.org/en/domain-name-registration-process
 
-###### [X.509]
+###### [X509]
 International Telecommunications Union, October 2019, https://www.itu.int/rec/T-REC-X.509-201910-I/en
 
-##### [CA]
+###### [CA]
 NIST SP 800-56B Rev. 2, March 2019, https://doi.org/10.6028/NIST.SP.800-56Br2
 
-#### [How to Explain Zero-Knowledge Protocols to Your Children]
+###### [How-to-Explain-Zero-Knowledge-Protocols-to-Your-Children]
 Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3.
 
-#### [The Byzantine Generals Problem]
+###### [The-Byzantine-Generals-Problem]
 "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982
 
-#### [OAuth 2.0]
+###### [OAuth-20]
 Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518
 
-#### [SAML]
+###### [SAML]
 J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os
 
-#### [OIDC]
+###### [OIDC]
 OpenID Connect Federation 1.0, (2019) 
 
-#### [ActiveDirectory]
+###### [ActiveDirectory]
 “Directory System Agent". MSDN Library. Microsoft. (2018). 
 
-#### [SSO]
+###### [SSO]
 Single Sign On, NIST SP 800-95, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-95.pdf
 
-#### [HSM]
+###### [HSM]
 Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
 
-#### [libp2p]
+###### [libp2p]
 libp2p, https://docs.ipfs.io/concepts/libp2p/
 
-#### [CRDT]
+###### [CRDT]
 Shapiro, Marc; Preguiça, Nuno; Baquero, Carlos; Zawirski, Marek (2011), "Conflict-Free Replicated Data Types", Lecture Notes in Computer Science, 6976, Grenoble, France: Springer Berlin Heidelberg, pp. 386–400, doi:10.1007/978-3-642-24550-3_29
 
-#### [ITC]
+###### [ITC]
 Almeida P.S., Baquero C., Fonte V. (2008) Interval Tree Clocks. In: Baker T.P., Bui A., Tixeuil S. (eds) Principles of Distributed Systems. OPODIS 2008. Lecture Notes in Computer Science, vol 5401. Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-540-92221-6_18
 
-#### [DHT]
+###### [DHT]
 Liz, Crowcroft; et al. (2005). "A survey and comparison of peer-to-peer overlay network schemes" (PDF). IEEE Communications Surveys & Tutorials. 7 (2): 72–93. doi:10.1109/COMST.2005.1610546
 
-#### [FPDS]
+###### [FPDS]
 Driscoll JR, Sarnak N, Sleator DD, Tarjan RE (1986). "Making data structures persistent". Proceedings of the eighteenth annual ACM symposium on Theory of computing - STOC '86. Proceeding STOC '86. Proceedings of the Eighteenth Annual ACM Symposium on Theory of Computing. pp. 109–121. CiteSeerX 10.1.1.133.4630. doi:10.1145/12130.12142. ISBN 978-0-89791-193-1
 
-#### [PPDS]
+###### [PPDS]
 Conchon, Sylvain; Filliâtre, Jean-Christophe (2008), "Semi-persistent Data Structures", Programming Languages and Systems, Lecture Notes in Computer Science, 4960, Springer Berlin Heidelberg, pp. 322–336, doi:10.1007/978-3-540-78739-6_25, ISBN 9783540787389
 
-#### [DANE]
+###### [DANE]
 Barnes, Richard (October 6, 2011). "DANE: Taking TLS Authentication to the Next Level Using DNSSEC", IETF Journal
 
-#### [Shamir]
+###### [Shamir]
 Shamir, Adi (1979), "How to share a secret", Communications of the ACM, 22 (11): 612–613, doi:10.1145/359168.359176, S2CID 16321225.
 
-#### [NATS]
+###### [NATS]
 NATS, version 2.2 (2021), https://docs.nats.io/nats-concepts/intro
 
-#### [AMQP]
+###### [AMQP]
 OASIS, AMQP Version 1.0 (2012), http://docs.oasis-open.org/amqp/core/v1.0/amqp-core-complete-v1.0.pdf 
 
-#### [DIDCOMM]
+###### [DIDCOMM]
 Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://identity.foundation/didcomm-messaging/spec/
 
-#### [SIOP]
+###### [SIOP]
 Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
 
 
@@ -2536,15 +2536,11 @@ It should be noted that any BPI should have completed a security audit by a repu
 
 ## B.1 Data Privacy
 
-The standard does not set any requirements for compliance to jurisdiction legislation/regulations, responsibility of the implementer to comply to applicable data privacy laws.
+The standard does not set any requirements for compliance to jurisdiction legislation/regulations, responsibility of the implementer to comply with applicable data privacy laws.
 
-## B.2 Production Readiness
-
-Provides a list of considerations related to the use of underlying protocols/applications/tools etc. 
+## B.2 Production Readiness 
 
 The standard does not set any requirements for the use of specific applications/tools/libraries etc. Examples included in standard to be non-normative. The implementer should perform due diligence when selecting tools, libraries etc.
-
-
 
 <!--
 
