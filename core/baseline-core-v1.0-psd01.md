@@ -104,7 +104,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](#24-Commercially-and-Legally-Binding-Documents) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1	Contract](#241-Contract) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-Commercial-Documents) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Consensus Controlled State Machine (CCSM)](#25-Consensus-Controlled-State-Machine) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Consensus Controlled State Machine](#25-Consensus-Controlled-State-Machine) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](#26-Baseline-Protocol-Instance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](#27-High-Level-Functional-Requirements) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 Functional Requirements on commercial counterparties](#271-Functional-Requirements-on-commercial-counterparties) \
@@ -122,7 +122,7 @@ For complete copyright information please see the Notices section in the Appendi
 [4 BPI Abstraction Layers](#4-BPI-Abstraction-Layers) \
 &nbsp;&nbsp;&nbsp;&nbsp;[4.1 BPI Abstraction Scope and Components](#41-BPI-Abstraction-Scope-and-Components) \
 &nbsp;&nbsp;&nbsp;&nbsp;[4.2  BPI Abstraction Layer Security and Integration](#42-BPI-Abstraction-Layer-Security-and-Integration) \
-[5  Middleware, Communication and Interoperability](#5-Middleware,-Communication-and-Interoperability) \
+[5  Middleware, Communication and Interoperability](#5-Middleware-Communication-and-Interoperability) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.1 Resolvable Identifiers for BPI Interoperability Services](#51-Resolvable-Identifiers-for-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services](#52-Discoverable-Authentication-and-Authorization-Capabilities-for-BPI-Interoperability-Services) \
 &nbsp;&nbsp;&nbsp;&nbsp;[5.3 Discoverable and Negotiable BPI Interoperability Services](#53-Discoverable-and-Negotiable-BPI-Interoperability-Services) \
@@ -465,11 +465,11 @@ Hence, this document enumerates the following requirements below:
 
 **[R13]**	A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
-The usage of cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [(CMVP)](####CVMP).
+The usage of cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [(CMVP)](#####CVMP).
 
 **[R14]**	If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
-**[R15]**	A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](####FIPS) or [ISO 27001](####ISO27001).
+**[R15]**	A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#####FIPS) or [ISO 27001](#####ISO27001).
 
 **[R16]**	(Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
