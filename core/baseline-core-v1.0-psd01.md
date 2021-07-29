@@ -2447,7 +2447,7 @@ Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, 
 
 ## A.2 Informative References
 
-##### [CVMP]
+##### CVMP
 NIST CVMP, https://csrc.nist.gov/projects/cryptographic-module-validation-program
 
 ##### [FIPS]
