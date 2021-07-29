@@ -469,7 +469,7 @@ The usage of cryptographic libraries that successfully passed the US National In
 
 **[R14]**	If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
-**[R15]**	A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#####FIPS) or [ISO 27001](#####ISO27001).
+**[R15]**	A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001).
 
 **[R16]**	(Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
@@ -485,7 +485,7 @@ Censorship resistant means that a (commercial) counterparty can terminate a (com
 
 **[R19]**	A BPI MUST be able to provide privacy of the (commercial) counterparties' data with respect to any party outside of the BPI.
 
-**[R20]** A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](####RFC3339).
+**[R20]** A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#RFC3339).
  
 ## 2.7 High-Level Functional Requirements
 
@@ -641,11 +641,11 @@ Below this document lists and defines the components of each layer. The detailed
 
 ## 3.1 Introduction and High-Level Requirements
 
-Currently 3rd parties such as [Domain Name Services (DNS) registrars](####-whois), Internet Corporation for Assigned Names and Numbers [(ICANN)](https://www.icann.org/), X.509 Certificate Authorities (CAs), see Reference [[X.509](######-X.509)] and Reference [[CA](######-CA)], or social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
+Currently 3rd parties such as [Domain Name Services (DNS) registrars](#whois), Internet Corporation for Assigned Names and Numbers [(ICANN)](https://www.icann.org/), X.509 Certificate Authorities (CAs), see Reference [[X.509](#X509)] and Reference [[CA](#CA)], or social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
 
 As evidenced over the last 20+ years, this design has demonstrated serious usability and security shortcomings.
 
-When DNS and X.509 Public Key Infrastructure (PKIX) [[NIST SP 800-32](#####-NIST-SP-800-32)] was designed, the internet did not have a way to agree upon the state of a registry (or database) in a reliable manner with no trust assumptions. Consequently, standard bodies designated trusted 3rd parties (TTP) to manage identifiers and public keys. Today, virtually all Internet software relies on these authorities. These trusted 3rd parties, however, are central points of failure, where each is capable of compromising the integrity and security of large portions of the Internet. Therefore, once a TTP has been compromised, the usability of the identifiers it manages is also compromised. 
+When DNS and X.509 Public Key Infrastructure (PKIX) [[NIST SP 800-32](#NIST-SP-800-32)] was designed, the internet did not have a way to agree upon the state of a registry (or database) in a reliable manner with no trust assumptions. Consequently, standard bodies designated trusted 3rd parties (TTP) to manage identifiers and public keys. Today, virtually all Internet software relies on these authorities. These trusted 3rd parties, however, are central points of failure, where each is capable of compromising the integrity and security of large portions of the Internet. Therefore, once a TTP has been compromised, the usability of the identifiers it manages is also compromised. 
 
 As a result, companies spend significant resources fighting security breaches caused by CAs, and public internet communications that are both truly secure and user-friendly are still out of reach for most.
 
@@ -682,7 +682,7 @@ The design of X.509 PKIX also permits any of the thousands of CAs to impersonate
 
 Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative. The goal of DPKI is to ensure that, unlike PKIX, no single third-party can compromise the integrity and security of a system employing DPKI as a whole. 
 
-Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the PITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier. In this design, control over the identifier is returned to the Principal Owner. Therefore, it is no longer trivial for any one entity to undermine the security of the entire DKPI system or to compromise an identifier that is not theirs overcoming the challenges of typical PKI.
+Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the PITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier. In this design, control over the identifier is returned to the Principal Owner. Therefore, it is no longer trivial for any one entity to undermine the security of the entire DPKI system or to compromise an identifier that is not theirs overcoming the challenges of typical PKI.
 
 Furthermore, DPKI requires a public registry of identifiers and their associated public keys that can be read by anyone but cannot be compromised. As long as this registration remains valid, and the Principal Owner is able to maintain control of their private key, no 3rd party can take ownership of that identifier without resorting to direct coercion of the Principal Owner.
 
@@ -734,7 +734,7 @@ This is necessary to ensure that a single entity cannot prevent identifiers from
 
 ## 3.2 BPI Identifiers, Identities and Credentials, and their Management
 
-Building of the requirements in [Section 3.1](##31-Introduction-and-High-Level-Requirements), this section focuses on identifiers, identities and credentials used within a BPI or a network of BPIs. Note that BPI interoperability which will be discussed in [Section 5](##5-Middleware,-Communication-and-Interoperability) is predicated on known, discoverable and identifiable approaches to how identifiers and credentials are created, updated, revoked, and deleted and how standardized identity frameworks are related to those identifiers and credentials utilized in one or more BPIs.
+Building of the requirements in [Section 3.1](##31-Introduction-and-High-Level-Requirements), this section focuses on identifiers, identities and credentials used within a BPI or a network of BPIs. Note that BPI interoperability which will be discussed in [Section 5](#5-Middleware,-Communication-and-Interoperability) is predicated on known, discoverable and identifiable approaches to how identifiers and credentials are created, updated, revoked, and deleted and how standardized identity frameworks are related to those identifiers and credentials utilized in one or more BPIs.
 
 In the following, this document will use Requester and Provider as established in this document to refer to the entities making and those receiving requests. 
 
@@ -754,7 +754,7 @@ Uniqueness and security of BPI identifiers is very important to unambiguously id
 
 **[R46]** A unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
-**[D7]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#####-W3C-DID)].
+**[D7]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#W3C-DID)].
 
 ### 3.2.2 BPI Identities and Credentials
 
@@ -783,7 +783,7 @@ Note that credentials utilized within one ore more BPIs may be self-issued. The 
 
 **[R48]** The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
-**[D9]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [[W3C VC](#####-W3C-VC)].
+**[D9]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [[W3C VC](#W3C-VC)].
 
 **[R49]** A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 
@@ -791,13 +791,13 @@ Note, that the unique and resolvable identifier of a credential does not have to
 
 **[R50]** If present, the status of a credential utilized within one or more BPIs MUST be discoverable by a party verifying the credential, the credential verifier.
 
-In the context of this document, a credential verifier is defined per the [W3C Verifiable Credential Standard](#####-W3C-VC).
+In the context of this document, a credential verifier is defined per the [W3C Verifiable Credential Standard](#W3C-VC).
 
 **[D10]** A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
 
 **[R51]** The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the credential holder.
 
-See the [W3C Verifiable Credential Standard](#####-W3C-VC) for a definition of credential holder.
+See the [W3C Verifiable Credential Standard](#W3C-VC) for a definition of credential holder.
 
 **[R52]** If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
 
@@ -824,7 +824,7 @@ For a BPI to achieve these objectives, the following requirements need to be met
 
 Note that proof of control might be performed by a relying party, if authority has been delegated.
 
-In the context of this document, a relying party is defined per the [W3C Verifiable Credential Standard](#####-W3C-VC).
+In the context of this document, a relying party is defined per the [W3C Verifiable Credential Standard](#W3C-VC).
 
 **[R56]** A credential utilized in a BPI SHOULD be stored in the BPI.
 
@@ -836,7 +836,7 @@ This avoids re-presentation of the credential after the initial presentation.
 
 Note that credential content verification can only be done through the inspection of underlying documentation or through a verification by the issuer such as an [OpenId Connect Identity Provider](https://openid.net/developers/specs/).
 
-this document will discuss further, more detailed management requirements in the context of BPI participant account management in [Section 5](##5-Middleware-Communication-and-Interoperability). 
+this document will discuss further, more detailed management requirements in the context of BPI participant account management in [Section 5](#5-Middleware-Communication-and-Interoperability). 
 
 -------
 
@@ -852,8 +852,8 @@ Since a BPI has two abstraction layers - the BPI and the CCSM Abstraction Layer 
 
 The Abstraction layers define common standards and processes such as Information Models, APIs and API formats, Process Flows, Roles, Responsibilities, Events, etc. for exposing and managing all BPI capabilities that represent individual steps of the BPI lifecycle processes. This includes but is not limited to:
 1. Specifying BPI functional capabilities aligned with already existing common API definitions.
-2.	Onboarding, publishing, upgrading and retiring BPI APIs and BPI capabilities
-3.	Coexistence and interoperability with legacy platforms and different BPI stacks.
+2. Onboarding, publishing, upgrading and retiring BPI APIs and BPI capabilities
+3. Coexistence and interoperability with legacy platforms and different BPI stacks.
 
 This document defines an Abstraction Layer within the context of a BPI as a set of functions and procedures allowing the interaction of BPI-enabled applications that access the features or data of an operating system, application, or other service with BPI capabilities.
 
@@ -909,17 +909,17 @@ The security requirements of this section are distinct from the security require
 
 **[R66]**	Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are [OAUTH](####OAuth-2.0), [SAML](####SAML), [OIDC](####OIDC), [AD/LDAP](####ActiveDirectory).
+Non-normative examples of such authentication technologies are [OAUTH](#OAuth-20), [SAML](#SAML), [OIDC](#OIDC), [AD/LDAP](#ActiveDirectory).
 
 **[R67]**	Abstraction Layers utilized in a BPI MUST support roles & access management.
 
 **[R68]**	Abstraction Layers utilized in a BPI MUST support policy management.
 
-**[R69]**	Abstraction Layers utilized in a BPI MUST support Single-Sign-On [SSO](####SSO).
+**[R69]**	Abstraction Layers utilized in a BPI MUST support Single-Sign-On [SSO](#SSO).
 
-**[R70]**	Abstraction Layers utilized in a BPI MUST support multi-factor authentication [MFA](####MFA).
+**[R70]**	Abstraction Layers utilized in a BPI MUST support multi-factor authentication [MFA](#MFA).
 
-**[R71]**	Abstraction Layers utilized in a BPI MUST support hardware security modules [(HSMs)](####HSM).
+**[R71]**	Abstraction Layers utilized in a BPI MUST support hardware security modules [(HSMs)](#HSM).
 
 -------
 
@@ -958,7 +958,7 @@ The minimal set of BPI User capabilities are as follows:
 
 **[R77]**	A BPI User MUST be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms.
 
-An example of cryptographic secret sharing is called ["Shamir Secret Sharing"](####Shamir).
+An example of cryptographic secret sharing is called ["Shamir Secret Sharing"](#Shamir).
 
 **[R78]** An external BPI User MUST at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Users:
 * A BPI Account belonging to the BPI User. Note that a BPI Account as defined in [Section 6.4](#64-BPI-Account) is different from a BPI User account as defined in [Section 5.2](#52-BPI-User-Account).
@@ -1083,7 +1083,7 @@ An example of the three requirements above is as follows: BPI User X sends a mes
 
 **[R106]** BPI communication protocols MUST be based on established communication protocol standards.
 
-Non-normative examples include but are not limited to [NATS](####NATS), [AMQP](####AMQP), and [DIDComm](####DIDCOMM).
+Non-normative examples include but are not limited to [NATS](#NATS), [AMQP](#AMQP), and [DIDComm](#DIDCOMM).
 
 Note that typically, and in the context of this document, a communication protocol encompasses four layers:
 *	Semantic layer
@@ -1093,14 +1093,14 @@ Note that typically, and in the context of this document, a communication protoc
 
 The layers are defined as follows:
 * Transport Layer
-  - **[R107]**	A BPI MUST utilize the well established TLS [1.2](####TLS12) or [1.3](####TLS13) protocol to transport messages between BPIs. 
-  - **[R108]**	For synchronous BPI messaging between BPIs, a BPI MUST utilize [HTTPS](####HTTPS).
+  - **[R107]**	A BPI MUST utilize the well established TLS [1.2](#TLS12) or [1.3](#TLS13) protocol to transport messages between BPIs. 
+  - **[R108]**	For synchronous BPI messaging between BPIs, a BPI MUST utilize [HTTPS](#HTTPS).
   - **[R109]**	 For asynchronous BPI messaging between BPIs or messaging within a BPI, a BPI MUST utilize established asynchronous protocols such as Websockets or AMQP. 
 
 * Cryptographic Layer: This layer deals with the BPI message envelope and the BPI message payload authenticity. However, it does not deal with authorization. Authorization is assumed to be validated based on security policies in the BPI core components such as workgroups. 
   - **[R110]**	All BPI envelope level formats MUST be achieved through JOSE based structures see **[R111]** and **[R112]**. 
-  - **[R111]**	The encrypted message formats MUST use an [Encrypted JSON Web Token (JWE)](####rfc7516) structure.
-  - **[R112]** The signed unencrypted format MUST use a [Signed JSON Web Token (JWS)](####rfc7515) structure. 
+  - **[R111]**	The encrypted message formats MUST use an [Encrypted JSON Web Token (JWE)](#rfc7516) structure.
+  - **[R112]** The signed unencrypted format MUST use a [Signed JSON Web Token (JWS)](#rfc7515) structure. 
   - **[D14]**	BPI messages SHOULD always use JWEs with the ciphertext containing a signed payload. 
 
 A	JWS may be used for establishing a secure tunnel between BPIs in order to reduce the number of messages required.
@@ -1149,9 +1149,9 @@ An example of a challenge-response system is given in the figure below.
   *	~timing: timestamps, expiration, elapsed time
   *	~l10n: localization support
 
-  - **[R118]**	All content level BPI messages MUST be represented in [JSON format](####JSON). 
+  - **[R118]**	All content level BPI messages MUST be represented in [JSON format](#JSON). 
 
-  - **[R119]**	BPI Messages MUST be [JSON-LD format](####JSONLD) sympathetic.
+  - **[R119]**	BPI Messages MUST be [JSON-LD format](#JSONLD) sympathetic.
 
   Note that BPI Messages may fully, and directly support JSON-LD.
 
@@ -1244,7 +1244,7 @@ Similar to a BPI itself, the interactions between BPIs through BPI Interoperabil
 
 **[R121]**	BPI Interoperability Services MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are [OAUTH](####OAuth-2.0), [SAML](####SAML), [OIDC](####OIDC), [AD/LDAP](####ActiveDirectory).
+Non-normative examples of such authentication technologies are [OAUTH](#OAuth-20), [SAML](#SAML), [OIDC](#OIDC), [AD/LDAP](#ActiveDirectory).
 
 **[R122]**	BPI Interoperability Services MUST support roles & access management.
 
@@ -1777,7 +1777,7 @@ The detailed API specification of the Mono-directional and Bi-/Multi-directional
 
 **[R214]** Data in transit between BPIs MUST be encrypted.
 
-**[R215]**  BPI Communication for BPI Interoperability services MUST satisfy all requirements in [section 5.3](##53-BPI-Communication)
+**[R215]**  BPI Communication for BPI Interoperability services MUST satisfy all requirements in [section 5.3](#53-BPI-Communication)
 
 -------
 
@@ -2143,7 +2143,7 @@ This requirement means that infinite computational loops cannot be allowed in a 
 
 **[R282]** The Proof-of-Correctness of a state transition and associated data required for proof verification a VSM generated MUST be communicated to the CCSM Abstraction Layer for subsequent commitment to the CCSM utilized by the BPI through the Message capability in the BPI Middleware layer. 
 
-Note, see the BPI transaction lifecycle management flow in Fig 6.2, in particular step (8).
+Note, see the BPI transaction lifecycle management flow in Fig 9, in particular step (8).
 
 The following requirements are addressing the operating scenario where a BPI consists of more than one node. This is a perfectly feasible scenario with its own pros and cons beyond the scope of this document to discuss. However, there are certain requirements that need to be met for such a scenario to be operationally viable.
 
@@ -2209,17 +2209,17 @@ This is also known as secure connection.
 
 **[R287]**	BPI Storage MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are [OAUTH](####OAuth-2.0), [SAML](####SAML), [OIDC](####OIDC), [AD/LDAP](####ActiveDirectory).
+Non-normative examples of such authentication technologies are [OAUTH](#OAuth-20), [SAML](#SAML), [OIDC](#OIDC), [AD/LDAP](#ActiveDirectory).
 
 **[R288]**	BPI Storage MUST support roles & access management.
 
 **[R289]**	BPI Storage MUST support policy management.
 
-**[R290]**	BPI Storage MUST support Single-Sign-On [SSO](####SSO).
+**[R290]**	BPI Storage MUST support Single-Sign-On [SSO](#SSO).
 
-**[R291]**	BPI Storage MUST support multi-factor authentication [MFA](####MFA).
+**[R291]**	BPI Storage MUST support multi-factor authentication [MFA](#MFA).
 
-**[R292]**	BPI Storage MUST support hardware security modules [(HSMs)](####HSM).
+**[R292]**	BPI Storage MUST support hardware security modules [(HSMs)](#HSM).
 
 
 ## 7.2. BPI Storage Privacy
@@ -2298,9 +2298,9 @@ Weak synchrony in this context means,
 
 There are two storage types BPI storage system can utilize, fully or partially persistent storage.
 
-[Fully Persistent Data storage](####FPDS) as one possible option for BPI storage can be characterized as Write many, Read many. 
+[Fully Persistent Data storage](#FPDS) as one possible option for BPI storage can be characterized as Write many, Read many. 
 
-[Partially Persistent Data storage](####PPDS) as one possible option for BPI storage can characterized as Write once, Read many.
+[Partially Persistent Data storage](#PPDS) as one possible option for BPI storage can characterized as Write once, Read many.
 
 There are two deployment options -- centralized or distributed/decentralized deployment.
 
@@ -2320,7 +2320,7 @@ Non-normative examples of such data bases are but not limited to OracleDB, Mongo
 
 **[R314]**	BPI Storage  MUST support authenticated naming systems.
 
-An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [(DANE)](####DANE).   
+An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [(DANE)](#DANE).   
 
 Non-normative examples include but are not limited to certificate authorities or a self-certifying PKI namespace.
 
@@ -2328,7 +2328,7 @@ Non-normative examples include but are not limited to certificate authorities or
 
 **[R316]**	BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
 
-Non-normative examples are [libp2p](####libp2p) or distributed hash tables [(DHTs)](####DHT).
+Non-normative examples are [libp2p](#libp2p) or distributed hash tables [(DHTs)](#DHT).
 
 **[R317]**	BPI Storage  MUST support a Network Protocol that handles:
 * NAT traversal such as hole punching, port mapping, and relay
@@ -2338,7 +2338,7 @@ Non-normative examples are [libp2p](####libp2p) or distributed hash tables [(DHT
 
 **[R318]**	Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
-Non-normative examples are conflict-free replicated data types [(CRDTs)](####[CRDT]) or Interval Tree Clocks [(ITC)](####[ITC]) to ensure eventual data consistency.
+Non-normative examples are conflict-free replicated data types [(CRDTs)](#CRDT) or Interval Tree Clocks [(ITC)](#ITC) to ensure eventual data consistency.
 
 **[O9]** Decentralized BPI Storage MAY be partially persistent.
 
