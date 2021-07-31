@@ -1229,9 +1229,9 @@ Furthermore, and for simplicity of the example here, it is assumed that the ZK p
 
 2. Alice opens a state channel committing an initial state consisting of Set A
 
-    Note, besides a state channel any singleton state machine such as a sidechain may be employed.
+    Note, besides a state channel any singleton state machine such as a sidechain or other Layer 2 solotion may be employed.
 
-3. Alice sends state channel invites to Bob and Claire based on their communication endpoints in their DID doc creating the equivalent of a temporary workgroup. The invite must include the state information both Bob and Clair need to submit to the state channel, Set B and et C, and the required agreement criteria e.g. 2 of 3 digital signatures over the joined state of the ZK proofs in the form of an agreement predicate. The predicate would be a zk prover circuit with specified private and public inputs that can be run by Bob and Claire to generate zk proofs proving correct state updates. In this case, we choose simple signatures over the zk-proofs as  
+3. Alice sends state channel invites to Bob and Claire based on their communication endpoints in their DID doc creating the equivalent of a temporary workgroup. The invite must include the state information both Bob and Clair need to submit to the state channel, Set B and et C, and the required agreement criteria e.g. 2 of 3 digital signatures over the joined state of the ZK proofs in the form of an agreement predicate. The predicate would be a zk prover circuit with specified private and public inputs that can be run by Bob and Claire to generate zk proofs proving correct state updates. In this case, simple signatures over the zk-proofs are chosen.  
 
 4. After accepting the invites, Bob and Claire commit their states to the state channel in the following manner -> newStateRoot = H(H(Alice state, Bob State),Claire State) and also stores the inputs (Alice state, Bob State, Claire State)
 
