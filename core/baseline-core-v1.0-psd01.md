@@ -36,7 +36,8 @@ Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.co
 Andreas Freund (a.freundhaskel@gmail.com) \
 Brian Chamberlain (brian.chamberlain@consensys.net), [ConsenSys](https://consensys.net/) \
 Charles ‘Chaals’ Nevile (charles.nevile@consensys.net), [ConsenSys](https://entethalliance.org/) \
-Daniel Norkin (daniel.norkin@envisionblockchain.com), [Envision Blockchain](https://envisionblockchain.com/)
+Daniel Norkin (daniel.norkin@envisionblockchain.com), [Envision Blockchain](https://envisionblockchain.com/) \
+Gage Mondok (gagemondok@gmail.com)
 
 <!--
 #### Additional artifacts:
@@ -151,9 +152,12 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[7.5 BPI-Internal Storage](#75-BPI-Internal-Storage) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.1 BPI Storage: Centralized Deployment](#751-BPI-Storage-Centralized-Deployment) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.2 BPI Storage: Decentralized Deployment](#752-BPI-Storage-Decentralized-Deployment) \
-[8 Conformance](#8-conformance) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.1 Conformance Targets](#81-conformance-targets) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Conformance Levels](#82-Conformance-Levels)\
+[8 Data Inputs (Oracles)](#8-Data-Inputs) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.1 Data Trustworthiness](#81-Data-Trustworthiness) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Data Variance](#82-Data-Variance) \
+[9 Conformance](#9-conformance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[9.1 Conformance Targets](#81-conformance-targets) \
+&nbsp;&nbsp;&nbsp;&nbsp;[9.2 Conformance Levels](#82-Conformance-Levels)\
 [Appendix A.        Acknowledgments]()\
 [Appendix B.        Revision History]()
 
@@ -215,7 +219,10 @@ In the following, this document lays out the requirements on a BPI to achieve ab
     * BPI Data Orchestration
     * BPI-External Storage: Edge Storage
     * BPI-Internal Storage
-* **Section 8: Conformance** with specification of conformance 
+* **Section 8: Data Inputs (Oracles)**
+    * Data Trustworthiness
+    * Data Variance
+* **Section 9: Conformance** with specification of conformance 
 tests for each requirements and definitions of the different level of conformance of a BPI to this standard.
     * Conformance Targets
     * Conformance Levels
@@ -2360,17 +2367,53 @@ Non-normative examples are conflict-free replicated data types [(CRDTs)](#CRDT) 
 **[CR35]>[O9]**	Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
 
 -------
-# 8 Conformance
+
+# 8: Data Inputs (Oracles)
+This section covers the handling of data inputs from off-chain for the purpose of on-chain proof generation. In blockchain parlance, the mechanisms which handle this data input are referred to as "oracles". Blockchains, by design, omit oracles from their features since the problem set oracles solve is separate from that of blockchains. Off-chain data handling requires some different considerations vs on-chain. Achieving consensus on the validity of a signed transaction is a different problem than coming to consensus on a response to a request such as "What was the temperature at time X for shipping container Y?". Oracle data, unlike blockchain data, may be subject to a degree of variation which needs to be eliminated before being committed to the deterministic blockchain. The requirements set forth here aim to remove this variability, ensure data inputs are synchronized, trustworthy and generate deterministic results.
+
+## 8.1 Data Trustworthiness
+Oracle data, since it resides off-chain, is subject to manipulation risks that on-chain publicly auditable data is not subject to. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in the data reporting and error checking, either cross-party, by a neutral party or an honesty incentivized party. Effectively, the principles of decentralization securing blockchains should be carried over where possible for off-chain data.
+
+**[R319]**	Input data MAY, by necessity, come from a single endpoint.
+
+**[R320]**	Where possible, it is RECOMMENDED to source data from multiple endpoints.
+
+**[R321]**	While input data MAY reside at a single endpoint, it MAY NOT be reported by a single entity.
+
+**[R322]**	Reporting entities MAY only be composed of cross-party, neutral party and/or incentivized members to produce honest results.
+
+**[R323]**	Reporting SHALL be halted if a threshold majority of reporting entities are unresponsive.
+
+**[R324]**	Reported data MAY be signed to further ensure source provenance.
+
+**[R325]**	Cryptographic mechanisms such as Threshold Signatures/Secret Sharing and TEEs MAY be utilized if data obfuscation from the reporters is required.
+
+## 8.2 Data Variance
+Off-chain data is subject to variations such as time or fluctuations in precision. Party A may read the temperature of a shipment as 77.1F while party B reads it as 77.3F. Small variance in timing can also produce mismatched inputs. These variations may lead to failed proof verification if proof inputs are not identical between prover and verifier. In order for proofs to be deterministic, the inputs must also uphold determinism by removing these variances through a chosen variance removal algorithm (VRA) across the disparate data points such as mean, median, etc which generates a single golden truth from the aggregate data.
+
+**[R326]**	Given that inputs MUST be reported by multiple entities, a mechanism MUST exist between entities to equalize variance between these reports.
+
+**[R327]**	Reporting entities MUST adhere to a shared data format.
+
+**[R328]**	In the case of multiple data endpoints, the VRA SHOULD be executed upon each individual reporting entity's data set.
+
+**[R329]**	The VRA MUST be executed between reporting entities such that the multiple entities generate a single shared response, the proof input.
+
+**[R330]**	The implemented VRA MUST account for (remove) data from an outlier reporting entity.
+
+-------
+
+# 9 Conformance
 
 Describes the conformance clauses and tests required to achieve an implementation that is provably conformant with the requirements in this document.
 
-## 8.1 Conformance Targets
+## 9.1 Conformance Targets
 
 This document does not yet define a standardized set of test-fixtures with test inputs for all MUST, SHOULD and MAY requirements with conditional MUST or SHOULD requirements. 
 
 A standardized set of test-fixtures with test inputs for all MUST, SHOULD and MAY requirements with conditional MUST or SHOULD requirements is intended to be published with the next version of the spec.
 
-## 8.2 Conformance Levels
+## 9.2 Conformance Levels
 
 This section specifies the conformance levels of this standard. The aim of the conformance levels is to enable implementers several level of conformance to establish competitive differentiation.
 
