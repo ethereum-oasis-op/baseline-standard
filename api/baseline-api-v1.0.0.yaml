@@ -17,7 +17,7 @@ security:
   - bearerAuth: []
 tags:
   - name: Baseline
-    description: Baseline core Baseline provides internal integration middleware interfaces for baselining systems of record.
+    description: Baseline provides internal integration middleware interfaces for baselining systems of record.
   - name: CCSM
     description: Baseline core CCSM API provides interfaces for general interaction with the underlying mainnet.
   - name: Privacy
@@ -413,7 +413,7 @@ paths:
       tags:
         - CCSM
       summary: Update network
-      description: Update a `Network`
+      description: Updates a specified `Network`
       operationId: updateNetwork
       parameters:
         - name: id
@@ -1013,7 +1013,7 @@ paths:
         - Vault
       summary: List secrets
       operationId: listSecrets
-      description: Re
+      description: Returns a list of secrets store in a specified `Vault`
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
@@ -1053,7 +1053,7 @@ paths:
         - Vault
       summary: Store secret
       operationId: storeSecret
-      description: Stores a `Secret` in target `Vault`
+      description: Stores a `Secret` in a specified `Vault`
       parameters:
         - name: id
           description: ID of target `Vault`. _UUID as specified by RFC4122_
@@ -1416,7 +1416,7 @@ paths:
         - Baseline
         - Registry
       summary: List workgroup users
-      description: Retrieves a list of `Organization` records associated with a target `Workgroup`.
+      description: Retrieves a list of `Organization` records associated with a specified `Workgroup`.
       operationId: listWorkgroupUsers
       parameters:
         - $ref: '#/components/parameters/page'
@@ -1454,7 +1454,7 @@ paths:
         - Baseline
         - Registry
       summary: Associate workgroup Organization
-      description: Associates an `Organization` to the specified `Workgroup`
+      description: Associates an `Organization` to a specified `Workgroup`
       operationId: associateWorkgroupOrganization
       parameters:
         - name: id
@@ -1553,7 +1553,7 @@ paths:
       tags:
         - Baseline
       summary: Get workflow details
-      description: Returns details for the specified `Workflow`
+      description: Returns details for a specified `Workflow`
       operationId: getWorkflowDetails
       parameters:
         - name: id
@@ -1658,7 +1658,7 @@ paths:
       tags:
         - Baseline
       summary: Get workstep details
-      description: Returns details for the specified `Workstep`
+      description: Returns details for a specified `Workstep`
       operationId: getWorkstepDetails
       parameters:
         - name: id
@@ -1735,7 +1735,7 @@ paths:
       tags:
         - Baseline
       summary: Update Object
-      description: Updates the specified `Object`
+      description: Updates a specified `Object`
       operationId: updateObject
       parameters:
         - name: id
@@ -1946,7 +1946,7 @@ paths:
       tags:
         - Privacy
       summary: Get circuit details
-      description: Returns details of the specified `Circuit`
+      description: Returns details of a specified `Circuit`
       operationId: getCircuitDetails
       parameters:
         - name: id
@@ -2019,7 +2019,7 @@ paths:
       tags:
         - Privacy
       summary: Verify
-      description: Verify a `Proof` using the given `Witness` parameters
+      description: Verifies a `Proof` using the given `Witness` parameters
       operationId: verify
       parameters:
         - name: id
@@ -2368,10 +2368,12 @@ components:
             type: string 
         network_id:
           type: string
+          description: ID of the host network. _UUID as specified by RFC4122_
         organization_address:
           type: string
         organization_id:
           type: string
+          description: ID of the host `Organization`. _UUID as specified by RFC4122_
         organization_refresh_token:
           type: string
         registry_contract_address:
@@ -2682,17 +2684,6 @@ components:
         spec:
           type: string
           description: Specification to be used for `Key` creation
-          enum:
-            - AES-256-GCM
-            - babyJubJub
-            - BIP39
-            - ChaCha20
-            - C25519
-            - Ed25519
-            - RSA-2048
-            - RSA-3072
-            - RSA-4096
-            - secp256k1
           example: BIP39
         name:
           type: string
@@ -2712,8 +2703,8 @@ components:
         type: symmetric
         usage: encrypt/decrypt
         spec: ChaCha20
-        name: private chat
-        description: this is a secure channel
+        name: Private chat
+        description: Secure channel for messaging
     LastBlockHeader:
       title: Last Block Header
       type: object
@@ -2943,7 +2934,7 @@ components:
             $ref: '#/components/schemas/LastBlockHeader'
     Object:
       title: Object
-      description: ''
+      description: 'Wrapper for baseline message (payload) that includes payload context.'
       type: object
       properties:
         id:
@@ -2984,8 +2975,8 @@ components:
         claim: 
           $ref: '#/components/schemas/StateClaim'
       example:
+        id: 27194de0-dbf5-4b93-8b51-b29bb28999cc
         baseline_id: af96a1bb-0c6d-4b6d-9b18-801d1db07a9d
-        identifier: 27194de0-dbf5-4b93-8b51-b29bb28999cc
         opcode: BLINE
         payload:
           proof: 8d8f7498db7aee910428c737d8427ac4add98353f981ca70db07697a091d8c23972b55b0b20fc0eebc1ac6c2ae427d783291c7fcb2e3f7417d279fea78ce1eac2d2293e53579abbef4960a1e290bd023e2999d8ff423d01080d449ce5d14ca89c94e277e8e0bb14fb91a0b71129920ae4411e77685287611f4d2aaf66b8fc5dc
@@ -3424,6 +3415,7 @@ components:
         - first_name
         - last_name
       type: object
+      description: An individual participant in the baseline process. Can be virtual or non-virtual. A virtual user acts as a placeholder account that grants access to a specified `Organization` or `Workgroup`. 
       properties:
         id:
           type: string
@@ -3530,8 +3522,6 @@ components:
           description: 'When true, the proof hash is written to the configured circuit store'
       example:
         witness:
-          {}
-        proof:
           {}
     Wallet:
       title: Wallet
