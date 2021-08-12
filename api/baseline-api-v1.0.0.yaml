@@ -3525,8 +3525,7 @@ components:
       example:
         witness:
           {}
-        proof:
-          {}
+        proof: '0x'
     Wallet:
       title: Wallet
       type: object
