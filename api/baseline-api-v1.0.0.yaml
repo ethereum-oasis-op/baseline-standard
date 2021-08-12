@@ -3107,6 +3107,8 @@ components:
           $ref: '#/components/schemas/Witness'
     Secret:
       title: Secret
+      description: |-
+        The information or parameter that is used to encrypt and decrypt messages in a symmetric, or secret-key, encryption
       required:
         - description
         - name
@@ -3148,9 +3150,9 @@ components:
         created_at: '2021-04-17T20:35:34.062+0000'
         vault_id: 22e48752-7bff-4daa-89b3-91053bd509f2
         type: sample secret
-        name: 'secret #1'
+        name: 'Secret 1'
         description: This secret is being stored for demonstration purposes
-        value: 0x
+        value: '0x'
     State:
       title: State
       description: The account state of an `Organization`, which must only be changed as a result of a valid transaction (i.e., a successful `Workstep` execution) by way of a `StateClaim`.
@@ -3522,6 +3524,8 @@ components:
           description: 'When true, the proof hash is written to the configured circuit store'
       example:
         witness:
+          {}
+        proof:
           {}
     Wallet:
       title: Wallet
