@@ -707,7 +707,7 @@ Furthermore, DPKI requires a public registry of identifiers and their associated
 
 Other peers in the system do not require admission control. This implies a decentralized consensus mechanism naturally leading to the utilization of systems such as CCSMs.
 
-**[CR2]>[D6]**	Given two or more histories of updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
+**[CR2]>[D6]**	Given two or more histories of DPKI updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
 
 This implies the existence of a method of ascertaining the level of resources backing a DPKI history such as the hash power in Bitcoin based on difficulty level and nonce.
 
