@@ -1834,15 +1834,15 @@ paths:
       servers:
         - url: 'https://baseline.proxy/api/v1'
       deprecated: false
-  /circuits:
+  /provers:
     get:
       tags:
         - Privacy
-      summary: List Circuits
+      summary: List Provers
       description: |-
-        Retrieves a list of `Circuit` instances. A `Circuit` is a state synchronization and consistency mechanism for completing on- and off-chain state transitions using zero- or limited-knowledge proofs.
+        Retrieves a list of `Prover` instances. A `Prover` is a state synchronization and consistency mechanism for completing on- and off-chain state transitions.
         
-      operationId: listCircuits
+      operationId: listProvers
       parameters:
         - name: curve
           in: query
@@ -1892,7 +1892,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Circuit'
+                  $ref: '#/components/schemas/Prover'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1909,25 +1909,22 @@ paths:
     post:
       tags:
         - Privacy
-      summary: Create circuit
+      summary: Create prover
       description: |
-        Creates a baselined `Circuit`.
+        Creates a baseline `Prover`.
 
-        You must provision a circuit before it can be used to generate and verify proofs. The foregoing holds true regardless of which provider, proving_scheme, curve and circuit identifier you specify (or source, if the raw source code of the `Circuit` is provided instead of an identifier).
+        You must provision a prover before it can be used to generate and verify proofs. The foregoing holds true regardless of which provider, proving_scheme, curve and prover identifier you specify (or source, if the raw source code of the `Prover` is provided instead of an identifier).
 
-        A powerful aspect of this API is the asynchronous nature by which computationally-intensive cryptographic operations are executed. The lifecycle of a zero-knowledge circuit depends largely on the chosen proving_scheme. For example, zkSNARK proving schemes (i.e., groth16) require a trusted setup whereas more modern schemes (i.e., plonk) do not.
-
-        A persistent store is implicitly initialized upon the creation of a new circuit unless an existing store_id is provided and the referenced store is valid in the context of the circuit and authorized `scope`.
-      operationId: createCircuit
+      operationId: createProver
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Circuit'
+              $ref: '#/components/schemas/Prover'
         required: true
       responses:
         '201':
-          description: The request was successful and a new `Circuit` was created.
+          description: The request was successful and a new `Prover` was created.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1941,17 +1938,17 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       deprecated: false
-  '/circuits/{id}':
+  '/prover/{id}':
     get:
       tags:
         - Privacy
-      summary: Get circuit details
-      description: Returns details of a specified `Circuit`
-      operationId: getCircuitDetails
+      summary: Get prover details
+      description: Returns details of a specified `Prover`
+      operationId: getProverDetails
       parameters:
         - name: id
           in: path
-          description: ID of target `Circuit`. _UUID as specified by RFC4122_
+          description: ID of target `Prover`. _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -1962,7 +1959,7 @@ paths:
           content:
             application/json; charset=UTF-8:
               schema:
-                $ref: '#/components/schemas/Circuit'
+                $ref: '#/components/schemas/Prover'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1976,17 +1973,17 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       deprecated: false
-  '/circuits/{id}/prove':
+  '/provers/{id}/prove':
     post:
       tags:
         - Privacy
-      summary: Prove circuit
-      description: 'Once you have provisioned a circuit, this API can be used to generate a proof given valid witness parameters. Calling this API has an implicit side-effect of writing the hash of generated proof to the persistent store associated with the `Circuit`.'
-      operationId: proveCircuit
+      summary: Prove prover
+      description: 'Once you have provisioned a prover, this API can be used to generate a proof given valid witness parameters. Calling this API has an implicit side-effect of writing the hash of generated proof to the persistent store associated with the `Prover`.'
+      operationId: proveProver
       parameters:
         - name: id
           in: path
-          description: ID of `Circuit` requiring proof. _UUID as specified by RFC4122_
+          description: ID of `Prover` requiring proof. _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -2006,7 +2003,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
         '422':
-          description: 'The API returns a 422 status code and human-readable error message(s) if (i) the witness parameters is not provided, (ii) required circuit arguments (i.e., fields) are not included within the given witness parameter or (iii) when Circuit constraints are not satisfied.'
+          description: 'The API returns a 422 status code and human-readable error message(s) if (i) the witness parameters is not provided, (ii) required prover arguments (i.e., fields) are not included within the given witness parameter or (iii) when Prover constraints are not satisfied.'
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
@@ -2014,7 +2011,7 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       deprecated: false
-  '/circuits/{id}/verify':
+  '/prover/{id}/verify':
     post:
       tags:
         - Privacy
@@ -2024,7 +2021,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: ID of target `Circuit`. _UUID as specified by RFC4122_
+          description: ID of target `Prover`. _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -2050,17 +2047,17 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       deprecated: false
-  '/circuits/{id}/store/{index}':
+  '/provers/{id}/store/{index}':
     get:
       tags:
         - Privacy
       summary: Retrieve store value
-      description: Returns the store value of the specified `Circuit`. The store value is a hash of the proof.
+      description: Returns the store value of the specified `Prover`. The store value is a hash of the proof.
       operationId: getStoreValue
       parameters:
         - name: id
           in: path
-          description: ID of target `Circuit`. _UUID as specified by RFC4122_
+          description: ID of target `Prover`. _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -2230,87 +2227,6 @@ components:
         baseline_context: 
           $ref: '#/components/schemas/BaselineContext'
         type: baseline
-    Circuit:
-      title: Circuit
-      description: 'A state synchronization and consistency mechanism for completing on- and off-chain state transitions using zero- or limited-knowledge proofs.'
-      type: object
-      properties:
-        id:
-          type: string
-          format: UUID
-          description: ID for the `Circuit`. _UUID as specified by RFC4122_
-          readOnly: true
-          example: 'ce0319c8-ddc8-4d46-a16c-c506f5dae9a0'
-        created_at:
-          type: string
-          description: Date and time of `Circuit` creation
-          format: date-time
-          readOnly: true
-          example: '2021-02-27T14:26:06.864Z'
-        vault_id:
-          type: string
-          format: UUID
-          description: ID of host `Vault`. _UUID as specified by RFC4122_
-          readOnly: false
-          example: '0ca9331a-d3fb-401c-b00b-5ada557c1056'
-        proving_key_id:
-          type: string
-          format: UUID
-          description: ID of `Key` used for proving the `Circuit`. _UUID as specified by RFC4122_
-          readOnly: false
-          example: 'f2a9e144-79c1-4379-bee8-006f3401f4df'
-        verifying_key_id:
-          type: string
-          format: UUID
-          description: ID of `Key` used for verifying the `Circuit`. _UUID as specified by RFC4122_
-          readOnly: false
-          example: '2268935e-c21e-4891-88cc-d877cf496faf'
-        name:
-          type: string
-          description: User-defined name of `Circuit`
-          readOnly: false
-          example: 'Circuit demo name'
-        description:
-          type: string
-          description: User-defined descriptor of the `Circuit`
-          readOnly: false
-          example: 'Circuit demo description'
-        identifier:
-          type: string
-          description: Circuit identifier
-          example: Cubic
-        provider:
-          type: string
-          description: Circuit provider
-          example: gnark
-        proving_scheme:
-          type: string
-          description: Proving scheme to be used
-          example: groth16
-        curve:
-          type: string
-          description: Pairing-friendly elliptic curve
-          example: BN256
-        status:
-          type: string
-          description: Status of `Circuit`
-          enum: 
-            - init
-              compiling
-              compiled
-              pending_setup
-              running_setup
-              deploying_artifacts
-              provisioned
-        store_id:
-          type: string
-          description: ID of the persistent store instance
-      required:
-        - name
-        - identifier
-        - provider
-        - proving_scheme
-        - curve
     CompiledArtifact:
       title: Compiled Artifact
       type: object
@@ -3099,6 +3015,94 @@ components:
           description: ''
         witness:
           $ref: '#/components/schemas/Witness'
+    Prover:
+      title: Prover
+      description: 'A state synchronization and consistency mechanism for completing on- and off-chain state transitions.'
+      type: object
+      properties:
+        created_at:
+          type: string
+          description: Date and time of `Prover` creation
+          format: date-time
+          readOnly: true
+          example: '2021-02-27T14:26:06.864Z'
+        curve:
+          type: string
+          description: Pairing-friendly elliptic curve
+          readOnly: false
+          example: BN256
+          default: 
+        description:
+          type: string
+          description: User-defined descriptor of the `Prover`
+          readOnly: false
+          example: 'Prover example description'
+        id:
+          type: string
+          format: UUID
+          description: ID for the `Prover`. _UUID as specified by RFC4122_
+          readOnly: true
+          example: 'ce0319c8-ddc8-4d46-a16c-c506f5dae9a0'
+        identifier:
+          type: string
+          description: Prover identifier
+          example: Cubic
+        name:
+          type: string
+          description: User-defined name of `Prover`
+          readOnly: false
+          example: 'Prover example name'
+        type:
+          type: string
+          description: Kind of `Prover`
+          readOnly: false
+          example: 'circuit'
+        proving_key_id:
+          type: string
+          format: UUID
+          description: ID of `Key` used for proving the `Prover`. _UUID as specified by RFC4122_
+          readOnly: false
+          example: 'f2a9e144-79c1-4379-bee8-006f3401f4df'
+        vault_id:
+          type: string
+          format: UUID
+          description: ID of host `Vault`. _UUID as specified by RFC4122_
+          readOnly: false
+          example: '0ca9331a-d3fb-401c-b00b-5ada557c1056'
+        verifying_key_id:
+          type: string
+          format: UUID
+          description: ID of `Key` used for verifying the `Prover`. _UUID as specified by RFC4122_
+          readOnly: false
+          example: '2268935e-c21e-4891-88cc-d877cf496faf'
+        provider:
+          type: string
+          description: Prover provider
+          example: gnark
+        proving_scheme:
+          type: string
+          description: Proving scheme to be used
+          example: groth16
+        status:
+          type: string
+          description: Status of `Prover`
+          enum: 
+            - init
+              compiling
+              compiled
+              pending_setup
+              running_setup
+              deploying_artifacts
+              provisioned
+        store_id:
+          type: string
+          description: ID of the persistent store instance
+      required:
+        - name
+        - identifier
+        - provider
+        - proving_scheme
+        - curve
     ProveRequest:
       title: Prove request
       type: object
@@ -3107,8 +3111,6 @@ components:
           $ref: '#/components/schemas/Witness'
     Secret:
       title: Secret
-      description: |-
-        The information or parameter that is used to encrypt and decrypt messages in a symmetric, or secret-key, encryption
       required:
         - description
         - name
@@ -3150,9 +3152,9 @@ components:
         created_at: '2021-04-17T20:35:34.062+0000'
         vault_id: 22e48752-7bff-4daa-89b3-91053bd509f2
         type: sample secret
-        name: 'Secret 1'
+        name: 'secret #1'
         description: This secret is being stored for demonstration purposes
-        value: '0x'
+        value: 0x
     State:
       title: State
       description: The account state of an `Organization`, which must only be changed as a result of a valid transaction (i.e., a successful `Workstep` execution) by way of a `StateClaim`.
@@ -3179,10 +3181,10 @@ components:
           type: integer
           description: Nonce of associated `Account`.
           readOnly: false
-        circuit_id:
+        prover_id:
           type: string
           format: UUID
-          description: ID of the associated `Circuit`. _UUID as specified by RFC4122_
+          description: ID of the associated `prover`. _UUID as specified by RFC4122_
           readOnly: false  
         epoch: 
           type: string
@@ -3521,11 +3523,10 @@ components:
           description: The hex-formatted proof to verify
         store:
           type: boolean
-          description: 'When true, the proof hash is written to the configured circuit store'
+          description: 'When true, the proof hash is written to the configured prover store'
       example:
         witness:
           {}
-        proof: '0x'
     Wallet:
       title: Wallet
       type: object
@@ -3588,7 +3589,7 @@ components:
       type: object
       properties: {}
       description: |- 
-        Public and private inputs used to generate the `Proof`. Payload can be delivered as a JSON object or chunked and streamed. Example is dependent on `Circuit` parameters. 
+        Public and private inputs used to generate the `Proof`. Payload can be delivered as a JSON object or chunked and streamed. Example is dependent on `Prover` parameters. 
     Workgroup:
       title: Workgroup
       description: |-
@@ -3693,7 +3694,7 @@ components:
     Workstep:
       title: Workstep
       description: |-
-        One stepwise state transition in a `Workflow` represented by a `Circuit`. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.
+        One stepwise state transition in a `Workflow` represented by a `Prover`. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.
       type: object
       properties:
         id:
@@ -3702,10 +3703,10 @@ components:
           description: ID of `Workstep`. _UUID as specifed by RFC4122_
           example: '2fffec13-590e-41eb-9a84-69ed881e0036'
           readOnly: true
-        circuit_id:
+        prover_id:
           type: string
           format: UUID
-          description: ID of the associated `Circuit`. _UUID as specifed by RFC4122_
+          description: ID of the associated `Prover`. _UUID as specifed by RFC4122_
           example: 'dd615561-83e6-4f53-ac0f-aaf1749df139'
           readOnly: false
         participants:
@@ -3729,7 +3730,7 @@ components:
             $ref: '#/components/schemas/StateClaim'
       example: 
         id: '2fffec13-590e-41eb-9a84-69ed881e0036'
-        circuit_id: 'dd615561-83e6-4f53-ac0f-aaf1749df139'
+        prover_id: 'dd615561-83e6-4f53-ac0f-aaf1749df139'
         participants:
           - $ref: '#/components/schemas/Participant'
         require_finality: true
