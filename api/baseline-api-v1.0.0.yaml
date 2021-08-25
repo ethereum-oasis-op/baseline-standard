@@ -6,7 +6,7 @@ info:
     name: CC0 1.0 Universal License
     url: 'https://raw.githubusercontent.com/ethereum-oasis/baseline-standard/main/LICENSE'
   version: v1.0.0
-servers:
+servers: 
   - url: 'https://baseline.provide.network'
     description: Provide Baseline Operator
   - url: 'http://localhost:8080'
@@ -17,9 +17,9 @@ security:
   - bearerAuth: []
 tags:
   - name: Baseline
-    description: Baseline provides internal integration middleware interfaces for baselining systems of record.
+    description: Baseline provides internal integration middleware interfaces for baselining systems of record. 
   - name: CCSM
-    description: Baseline core CCSM API provides interfaces for general interaction with the underlying mainnet.
+    description: Baseline core CCSM API package provides interfaces for general interaction with the underlying mainnet.
   - name: Privacy
     description: Baseline core privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
   - name: Registry
@@ -33,10 +33,7 @@ paths:
       tags:
         - CCSM
       summary: List accounts
-      description: |-
-        'Retrieves a list of `Account` instances used for storing cryptocurrency or tokens on behalf of users managing cryptographic material (i.e., for signing transactions). 
-      
-        An `Account` is an arbitrary keypair capable of storing value on the underlying `Network`.
+      description: Returns a list of `Account` instances in the authorized scope
       operationId: listAccounts
       parameters:
         - $ref: '#/components/parameters/page'
@@ -77,10 +74,7 @@ paths:
         - CCSM
       summary: Create account
       description: |-
-        Creates an `Account` (also referred to as a signing identity) capable of storing cryptocurrencies and tokens native to a specific `Network`.  
-
-        An `Account` may be setup as custodial or non-custodial, and may be derived from a `Wallet`. If the `Account` is custodial then the platform will sign and broadcast transactions to the
-        network on behalf of an authorized `User` or `Workgroup`.
+        Creates an `Account` per the parameters provided in the request body
       operationId: createAccount
       parameters: []
       requestBody:
@@ -90,7 +84,7 @@ paths:
               $ref: '#/components/schemas/Account'
       responses:
         '201':
-          description: The request was successful and a new `Account` was created.
+          description: The request was successful and a new account has been created.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -119,18 +113,18 @@ paths:
       tags:
         - CCSM
       summary: Get account details
-      description: Returns details for the specified `Account`
+      description: Retrieves details for a given `Account`
       operationId: getAccountDetails
       parameters:
         - name: id
           in: path
-          description: ID of the target `Account`. _UUID as specified by RFC4122_
+          description: ID of a specific `Account` for which detailed information is desired; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: OK
+          description: The request was successful and detailed information for the specified account has been returned.
           content:
             application/json:
               schema:
@@ -159,14 +153,14 @@ paths:
       tags:
         - CCSM
       summary: List contracts
-      description: Returns a list of smart contracts visible to an authorized `User`, `Organization` or `Workgroup`
+      description: Returns a list of smart contracts in the authorized scope
       operationId: listContracts
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
         - name: filter_tokens
           in: query
-          description: Flag to indicate if Token contracts should be filtered from the response. Default is true
+          description: Flag to indicate if token contracts should be filtered from the response; default is true
           required: false
           style: form
           explode: true
@@ -174,7 +168,7 @@ paths:
             type: boolean
         - name: sort
           in: query
-          description: 'Indicate how the response should be sorted; currently, recent is the only supported option and returns by accessed_at descending.'
+          description: 'Indicates how the response should be sorted; currently, recent is the only supported option and returns by accessed_at descending.'
           required: false
           style: form
           explode: true
@@ -182,7 +176,7 @@ paths:
             type: string
       responses:
         '200':
-          description: The request was successful.
+          description: The request was successful and a list of contracts has been returned.
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -215,7 +209,7 @@ paths:
       tags:
         - CCSM
       summary: Deploy contract
-      description: Deploys a smart contract to the specified `Network`
+      description: Deploys a smart contract per the parameters provided in the request body
       operationId: deployContract
       parameters: []
       requestBody:
@@ -226,7 +220,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new `Contract` was created
+          description: The request was successful and a new contract has been deployed.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -249,18 +243,19 @@ paths:
       tags:
         - CCSM
       summary: Get contract detail
-      description: Returns details for the specified `Contract`. The path parameter {id} can be substituted with the address of the desired `Contract`.
+      description: Retrieves details for a given `Contract`
       operationId: getContractDetail
       parameters:
         - name: id
           in: path
-          description: ID of target `Contract`.  _UUID as specified by RFC4122_
+          description: |-
+            ID of a specific `Contract` for which detailed information is desired; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful.
+          description: The request was successful and detailed information about the specified contract has been returned.
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -292,12 +287,12 @@ paths:
       tags:
         - CCSM
       summary: Execute contract
-      description: Construct and execute a specific method in a smart contract
+      description: Constructs and executes a specific method in a given smart contract
       operationId: executeContract
       parameters:
         - name: id
           in: path
-          description: ID of contract being executed. _UUID as specified by RFC4122_
+          description: ID of a specific `Contract` to be executed; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -309,20 +304,18 @@ paths:
             example:
               method: broadcast
               params:
-                - hello world
+                - Example 
               value: 0
               account_id: 8a1f4492-9a73-4e3d-bafe-6a3794b1320e
         required: true
       responses:
         '202':
-          description: |
-            The request was successfully accepted and processing will complete
-            asynchronously.
+          description: |-
+            The request was successful and processing will complete asynchronously.
 
             The API returns 202 Accepted if the contract execution will
-            broadcast a Transaction to the network and returns a ref, which is
-            an identifier you may use to ask for the execution status of the
-            Transaction.
+            broadcast a transaction to the network and returns a ref, which is an identifier you may use to ask for the execution status of the transaction.
+          content:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/ExecuteContract'
@@ -344,7 +337,7 @@ paths:
       tags:
         - CCSM
       summary: List networks
-      description: Retrives a list of available peer-to-peer `Network` instances and related configuration details
+      description: Returns a list of available peer-to-peer `Network` instances
       operationId: listNetworks
       parameters:
         - $ref: '#/components/parameters/page'
@@ -352,7 +345,7 @@ paths:
         - $ref: '#/components/parameters/public'
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of networks has been returned.
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -380,7 +373,7 @@ paths:
         - CCSM
       summary: Create network
       description: |-
-        Configuring a new peer-to-peer network can be quite complex. Just how complex depends on the kind of network you intend to provision, and the clients and protocols you plan to support (both now, and in the future). Creating the configuration for a new logical network involves having deep understanding of your goals for the network and the underlying consensus and governance protocols. 
+        Creates a `Network` per the parameters provided in the request body
       operationId: createNetwork
       requestBody:
         content:
@@ -390,7 +383,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new Network was created
+          description: The request was successful and a new network has been created.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -413,12 +406,12 @@ paths:
       tags:
         - CCSM
       summary: Update network
-      description: Updates a specified `Network`
+      description: Updates a given `Network` per the parameters provided in the request body
       operationId: updateNetwork
       parameters:
         - name: id
           in: path
-          description: ID of the `Network` to be updated. _UUID as specified by RFC4122_
+          description: ID of a specific `Network` to be updated; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -429,7 +422,7 @@ paths:
               $ref: '#/components/schemas/Network'
       responses:
         '204':
-          description: The request was successful but did not return a response
+          description: The request was successful and the specified network has been updated.
           content:
             application/json:
               schema:
@@ -452,18 +445,18 @@ paths:
       tags:
         - CCSM
       summary: Get network status
-      description: 'Retrieve the syncing status and, if fully-synced, real-time network-specific metrics and metadata.'
+      description: Retrieves the syncing status and, if fully-synced, real-time metrics and metadata of a given `Network`
       operationId: getNetworkStatus
       parameters:
         - name: id
           in: path
-          description: ID of the desired `Network`. _UUID as specified by RFC4122_
+          description: ID of a specific `Network` for which the status is desired; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful.
+          description: The request was successful and the status of the specified network has been returned. 
           content:
             application/json; charset=UTF-8:
               schema:
@@ -492,14 +485,14 @@ paths:
       tags:
         - Registry
       summary: List organizations
-      description: Retrieves a list of `Organization` instances in the authorized scope
+      description: Returns a list of `Organization` instances in the authorized scope
       operationId: listOrganizations
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of organizations has been returned.
           content:
             application/json:
               schema:
@@ -523,7 +516,7 @@ paths:
       tags:
         - Registry
       summary: Create organization
-      description: Creates a new `Organization`
+      description: Creates an `Organization` per the parameters provided in the request body
       operationId: createOrganization
       requestBody:
         content:
@@ -533,7 +526,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new Organization was created.
+          description: The request was successful and a new organization has been created.
           content:
             application/json:
               schema:
@@ -556,18 +549,18 @@ paths:
       tags:
         - Registry
       summary: Get organization details
-      description: Retrieves `Organization` details
+      description: Retrieves details for a given `Organization` 
       operationId: getOrganizationDetails
       parameters:
         - name: id
           in: path
-          description: ID of Organization. _UUID as specified by RFC4122_
+          description: ID of a specific Organization for which detailed information is desired; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful.
+          description: The request was successful and the details of the specified organization has been returned.
           content:
             application/json:
               schema:
@@ -590,13 +583,13 @@ paths:
     put:
       tags:
         - Registry
-      summary: Update organization details
-      description: Updates specifed `Organization`
+      summary: Update organization details 
+      description: Updates a given `Organization` per the parameters provided in the request body
       operationId: updateOrganizationDetails
       parameters:
         - name: id
           in: path
-          description: ID of the `Organization` being updated. _UUID as specified by RFC4122_
+          description: ID of a specific `Organization` to bw updated; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -608,7 +601,7 @@ paths:
         required: true
       responses:
         '204':
-          description: The request was successful but did not return a response
+          description: The request was successful and the specified organization has been updated.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -627,7 +620,7 @@ paths:
       tags:
         - CCSM
       summary: List transactions
-      description: Retrieves a list of `Transaction` records scoped to the authorized `User` or `Workgroup`
+      description: Returns a list of `Transaction` instances in the authorized scope
       operationId: listTransactions
       parameters:
         - $ref: '#/components/parameters/page'
@@ -650,7 +643,7 @@ paths:
             type: string
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of transactions has been returned. 
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -678,7 +671,7 @@ paths:
         - CCSM
       summary: Create transaction
       description: |
-        Creates and broadcast a transaction in a chain- and protocol-agnostic manner.
+        Creates and broadcast a transaction in a chain- and protocol-agnostic manner per the parameters provided in the request body
 
         This API provides an asynchronous, fault-tolerant mechanism for providing some guarantees about how a well-formed transaction will become eventually-consistent with the underlying target Network. Currently, transactions are guaranteed to be successfully broadcast to the target network or timeout within 5 minutes. If a transaction is unable to be broadcast to the network for any reason (i.e., network reachability, invalid nonce etc.) it is retried every 60 seconds. It is likely these retry and timeout constraints will be made more configurable in a future release.
 
@@ -693,7 +686,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new transaction was created
+          description: The request was successful and a new transaction has been created.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -716,17 +709,18 @@ paths:
       tags:
         - CCSM
       summary: Get transaction details
-      description: Returns details for the target `Transaction`
+      description: Retrieves details for a given `Transaction`
       operationId: getTransactionDetails
       parameters:
         - name: id
           in: path
+          description: ID of a specific `Transaction` for which detailed information is desired; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and detailed information about the specified transaction has been returned.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -750,7 +744,7 @@ paths:
         - Vault
       summary: Unseal vault
       description: |
-        Unseals a `Vault` and  enables additional interaction within authorized scope. 
+        Unseals a `Vault` and enables additional interaction within the authorized scope. 
 
         One sealing key is valid for all vaults within a single instance. The SEAL_UNSEAL_VALIDATION_HASH  environment variable contains a SHA-256 hash of the 256-bit entropy BIP39 seed phrase used for the seal/unseal key. When a valid sealing key is presented to the vault (i.e. one that has the same SHA-256 hash value as the SEAL_UNSEAL_VALIDATION_HASH environment variable), the seal/unseal key will then be cloaked (i.e., encrypted with a random, ephemeral, in-memory cloaking key) in memory and decrypted only when required for operations by the cloaking key.
       operationId: unsealVault
@@ -763,9 +757,7 @@ paths:
         required: true
       responses:
         '204':
-          description: The request was successful but did not return a response
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+          description: The request was successful and the corresponding vault has been unsealed.
         '403':
           $ref: '#/components/responses/Forbidden'
         '404':
@@ -782,14 +774,14 @@ paths:
       tags:
         - Vault
       summary: List vaults
-      description: Retrieves a list of Vaults for the authorized context
+      description: Returns a list of `Vault` instances in the authorized scope
       operationId: listVaults
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of vaults has been returned.
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -815,8 +807,8 @@ paths:
     post:
       tags:
         - Vault
-      summary: Create a vault
-      description: Create a `Vault` for authorized context
+      summary: Create vault
+      description: Creates a `Vault` instance per the parameters provided in the request body
       operationId: createVault
       parameters: []
       requestBody:
@@ -827,7 +819,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new Vault was created
+          description: The request was successful and a new vault has been created.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -851,19 +843,19 @@ paths:
         - Vault
       summary: List keys
       operationId: listkeys
-      description: Retrieves a list of Keys in target `Vault`
+      description: Returns a list of keys in a given `Vault`
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
         - name: id
           in: path
-          description: ID of target `Vault`. _UUID as specified by RFC4122_
+          description: ID of a specific `Vault` that contains the desired keys ; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of keys for the specified vault has been returned.
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -891,11 +883,11 @@ paths:
         - Vault
       summary: Create a key
       operationId: createKey
-      description: Creates a `Key` in the specified `Vault`
+      description: Creates a `Key` in a given `Vault`
       parameters:
         - name: id
           in: path
-          description: ID of target `Vault`. _UUID as specified by RFC4122_
+          description: ID of a specific `Vault` in which a desired `Key` is to be created; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -907,7 +899,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new Key was created
+          description: The request was successful and a new key has been created.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -929,19 +921,19 @@ paths:
     post:
       tags:
         - Vault
-      summary: Derive a key
-      description: Derives the referenced `Key`
+      summary: Creates a derived key
+      description: Creates a derived key for a given `Key` in a given `Vault`
       operationId: deriveaKeyRequest
       parameters:
         - name: id
           in: path
-          description: ID of host `Vault`. _UUID as specified by RFC4122_
+          description: ID of a specific `Vault` in which a derived key is to be created; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
         - name: key_id
           in: path
-          description: ID of `Key`
+          description: ID of a specific `Key` to be used to create derived key; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -953,7 +945,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new entity was created.
+          description: The request was successful and a new key has been derived. 
           content:
             application/json; charset=UTF-8:
               schema:
@@ -976,24 +968,24 @@ paths:
       tags:
         - Vault
       summary: Delete a key
-      description: 'Delete target `Key`'
+      description: Deletes a given `Key` in a given `Vault`
       operationId: deleteKey
       parameters:
         - name: id
           in: path
-          description: ID of host `Vault`. _UUID as specified by RFC4122_
+          description: ID of a specific `Vault` that contains the `Key` to be deleted; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
         - name: key_id
           in: path
-          description: ID of target `Key`. _UUID as specified by RFC4122_
+          description: ID of a specific `Key` to be deleted; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '204':
-          description: The request was successful but did not return a response. 
+          description: The request was successful and the specified key has been deleted.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1013,19 +1005,19 @@ paths:
         - Vault
       summary: List secrets
       operationId: listSecrets
-      description: Returns a list of secrets store in a specified `Vault`
+      description: Returns a list of secrets stored in a given `Vault`
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
         - name: id
           in: path
-          description: ID of `Vault` containing at least one `Secret`. _UUID as specified by RFC4122_
+          description: ID of a specific `Vault` in which the desired secrets are stored; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of secrets has been returned.
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -1053,10 +1045,10 @@ paths:
         - Vault
       summary: Store secret
       operationId: storeSecret
-      description: Stores a `Secret` in a specified `Vault`
+      description: Stores a `Secret` in a given `Vault`
       parameters:
         - name: id
-          description: ID of target `Vault`. _UUID as specified by RFC4122_
+          description: ID of a specific `Vault` in which to store a given `Secret`; _UUID as specified by RFC4122_
           in: path
           required: true
           schema:
@@ -1069,7 +1061,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new entity was created
+          description: The request was successful and the secret has been stored.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -1093,23 +1085,23 @@ paths:
         - Vault
       summary: Retrieve secret
       operationId: retrieveSecret
-      description: Retrieves a previously created `Secret` from host `Vault`.
+      description: Retrieves a given `Secret` from a given `Vault`
       parameters:
         - name: id
-          description: ID of host `Vault` containing target `Secret`. _UUID as specified by RFC4122_
+          description: ID of a specific `Vault` in which a desired `Secret` is stored; _UUID as specified by RFC4122_
           in: path
           required: true
           schema:
             type: string
         - name: secret_id
-          description: ID of target `Secret`. _UUID as specified by RFC4122_
+          description: ID of a specific `Secret` to be retrieved; _UUID as specified by RFC4122_
           in: path
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and the specified secret has been returned.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -1132,23 +1124,23 @@ paths:
         - Vault
       summary: Delete secret
       operationId: deleteSecret
-      description: Delete target `Secret` from host `Vault`
+      description: Deletes a given `Secret` from a given `Vault`
       parameters:
         - name: id
           in: path
-          description: ID of `Vault` containing target `Secret`. _UUID as specified by RFC4122_
+          description: ID of a specific `Vault` that contains a `Secret` to be deleted; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
         - name: secret_id
           in: path
-          description: ID of target `Secret`. _UUID as specified by RFC4122_
+          description: ID of a specific `Secret` to be deleted; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '204':
-          description: The request was successful but did not return a response.
+          description: The request was successful and the specified secret has been deleted.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -1171,14 +1163,14 @@ paths:
       tags:
         - CCSM
       summary: List wallets
-      description: Retrieves a list of `Wallet` instances
+      description: Returns a list of `Wallet` instances
       operationId: listWallets
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of wallets has been returned.
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -1206,7 +1198,7 @@ paths:
         - CCSM
       summary: Create wallet
       description: |
-        Creates a `Wallet`. A `Wallet` may be setup as custodial or non-custodial. If the Wallet is custodial then the platform will derive addresses and securely persist an `Account` for each of those derived addresses
+        Creates a `Wallet` per the parameters provided in the request body. A `Wallet` may be setup as custodial or non-custodial. If the Wallet is custodial then the platform will derive addresses and securely persist an `Account` for each of those derived addresses
       operationId: createWallet
       parameters: []
       requestBody:
@@ -1217,7 +1209,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new entity was created.
+          description: The request was successful and a new wallet has been created.
           content:
             application/json:
               schema:
@@ -1241,18 +1233,18 @@ paths:
         - CCSM
       summary: List wallet accounts
       operationId: listWalletAccounts
-      description: Retrieves a list of `Account` instances for a target `Wallet`.
+      description: Returns a list of `Account` instances for a given `Wallet`
       parameters:
         - $ref: '#/components/parameters/results-per-page'
         - name: id
           in: path
-          description: ID of `Wallet` containing `Account` records. _UUID as specified by RFC4122_
+          description: ID of a specific `Wallet` containing `Account` instances; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of accounts has been returned.
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -1281,14 +1273,14 @@ paths:
         - Baseline
         - Registry
       summary: List workgroups
-      description: Retrieves a list of `Workgroup` instances in the authorized `scope`
+      description: Returns a list of `Workgroup` instances in the authorized scope
       operationId: listWorkgroups
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of workgroup instances has been returned.
           content:
             application/json:
               schema:
@@ -1313,7 +1305,7 @@ paths:
         - Baseline
         - Registry
       summary: Create workgroup
-      description: Creates a `Workgroup` with the details provided in the request body
+      description: Creates a `Workgroup` per the parameters provided in the request body
       operationId: createWorkgroup
       requestBody:
         content:
@@ -1323,7 +1315,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new Workgroup was created
+          description: The request was successful and a new workgroup was created.
           content:
             application/json:
               schema:
@@ -1347,18 +1339,18 @@ paths:
         - Baseline
         - Registry
         summary: Get workgroup details
-        description: Returns details for the specified `Workgroup`
+        description: Retrieves details for a given `Workgroup`
         operationId: getWorkgroupDetails
         parameters:
           - name: id
             in: path
-            description: ID of target `Workgroup`. _UUID as specified by RFC4122_
+            description: ID of a specific `Workgroup` for which detailed information is desired; _UUID as specified by RFC4122_
             required: true
             schema:
               type: string
         responses:
           '200':
-            description: The request was successful
+            description: The request was successful and detailed information about the specified workgroup has been returned.
             content:
               application/json:
                 schema:
@@ -1380,11 +1372,11 @@ paths:
         - Baseline
         - Registry
         summary: Update workgroup
-        description: Updates the target `Workgroup`
+        description: Updates a given `Workgroup` per the parameters provided in the request body
         operationId: updateWorkgroup
         parameters:
           - name: id
-            description: ID of target `Workgroup`. _UUID as specified by RFC4122_
+            description: ID of a specific `Workgroup` to be updated; _UUID as specified by RFC4122_
             in: path
             required: true
             schema:
@@ -1396,7 +1388,7 @@ paths:
                 $ref: '#/components/schemas/Workgroup'
         responses:
           '204':
-            description: The request was successful but did not return a response
+            description: The request was successful and the specified workgroup has been updated.
           '401':
             $ref: '#/components/responses/Unauthorized'
           '403':
@@ -1416,20 +1408,20 @@ paths:
         - Baseline
         - Registry
       summary: List workgroup users
-      description: Retrieves a list of `Organization` records associated with a specified `Workgroup`.
+      description: Returns a list of `Organization` instances associated with a given `Workgroup`
       operationId: listWorkgroupUsers
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
         - name: id
           in: path
-          description: ID of target `Workgroup`. _UUID as specified by RFC4122_
+          description: ID of a specific `Workgroup`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of organizations has been returned.
           content:
             application/json:
               schema:
@@ -1453,13 +1445,13 @@ paths:
       tags:
         - Baseline
         - Registry
-      summary: Associate workgroup Organization
-      description: Associates an `Organization` to a specified `Workgroup`
+      summary: Associate workgroup organization
+      description: Associates an `Organization` to a given `Workgroup`
       operationId: associateWorkgroupOrganization
       parameters:
         - name: id
           in: path
-          description: ID of target `Workgroup`. _UUID as specified by RFC4122_
+          description: ID of a specific `Workgroup` for which a specific `Organization` is to be associated; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -1471,7 +1463,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and the specified Organization has been associated with the specified Workgroup. 
+          description: The request was successful and the specified organization has been associated with the specified workgroup. 
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1490,14 +1482,14 @@ paths:
       tags:
         - Baseline
       summary: List workflow instances
-      description: Retrieves a list of `Workflow` instances
+      description: Returns a list of `Workflow` instances in the authorized scope
       operationId: listWorkflows
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of workflows has been returned.
           content:
             application/json:
               schema:
@@ -1519,8 +1511,8 @@ paths:
     post:
       tags:
         - Baseline
-      summary: Create `Workflow` instance
-      description: Creates a `Workflow` instance
+      summary: Create workflow instance
+      description: Creates a `Workflow` instance per the parameters provided in the request body
       operationId: createWorkflow
       requestBody:
         content:
@@ -1529,7 +1521,7 @@ paths:
               $ref: '#/components/schemas/Workflow'
       responses:
         '201':
-          description: The request was successful and a new Workflow was created
+          description: The request was successful and a new workflow has been created.
           content:
             application/json:
               schema:
@@ -1553,18 +1545,18 @@ paths:
       tags:
         - Baseline
       summary: Get workflow details
-      description: Returns details for a specified `Workflow`
+      description: Retrieves details for a given `Workflow`
       operationId: getWorkflowDetails
       parameters:
         - name: id
           in: path
-          description: ID of target `Workflow`. _UUID as specified by RFC4122_
+          description: ID of a specific `Workflow`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and detailed information about the specified workflow has been returned.
           content:
             application/json:
               schema:
@@ -1586,18 +1578,18 @@ paths:
       tags:
         - Baseline
       summary: List workstep instances
-      description: Retrieves a list of `Workstep` instances contained within a specified `Workflow` instance
+      description: Returns a list of `Workstep` instances in a given `Workflow` instance
       operationId: listWorksteps
       parameters:
         - name: id
           in: path
-          description: ID of host `Workflow`. _UUID as specified by RFC4122_
+          description: ID of a specific `Workflow`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string   
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of workstep instances has been returned.
           content:
             application/json:
               schema:
@@ -1619,13 +1611,13 @@ paths:
     post:
       tags:
         - Baseline
-      summary: Create a `Workstep` instance
-      description: Creates a `Workstep` instance
+      summary: Create workstep instance
+      description: Creates a `Workstep` instance per the parameters in the request body
       operationId: createWorkstep
       parameters:
         - name: id
           in: path
-          description: ID of host `Workflow`. _UUID as specified by RFC4122_
+          description: ID of a specific `Workflow`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string   
@@ -1636,7 +1628,7 @@ paths:
               $ref: '#/components/schemas/Workstep'
       responses:
         '201':
-          description: The request was successful and a new Workstep was created
+          description: The request was successful and a new workstep was created.
           content:
             application/json:
               schema:
@@ -1658,24 +1650,24 @@ paths:
       tags:
         - Baseline
       summary: Get workstep details
-      description: Returns details for a specified `Workstep`
+      description: Retrieves details for a given `Workstep` in a given `Workflow`
       operationId: getWorkstepDetails
       parameters:
         - name: id
           in: path
-          description: ID of host `Workflow`. _UUID as specified by RFC4122_
+          description: ID of a specific `Workflow`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
         - name: workstep_id
           in: path
-          description: ID of target `Workstep`. _UUID as specified by RFC4122_
+          description: ID of a specific `Workstep`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string      
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and detailed information about the specified workstep has been returned.
           content:
             application/json:
               schema:
@@ -1699,7 +1691,7 @@ paths:
       tags:
         - Baseline
       summary: Create a Baseline object
-      description: Creates a Baseline object.
+      description: Creates a Baseline object per the parameters provided in the request body
       operationId: createBaselineObject
       parameters: []
       requestBody:
@@ -1710,7 +1702,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new Object was created
+          description: The request was successful and a new object was created.
           content:
             application/json:
               schema:
@@ -1734,13 +1726,13 @@ paths:
     put:
       tags:
         - Baseline
-      summary: Update Object
-      description: Updates a specified `Object`
+      summary: Update object
+      description: Updates a given `Object` with the parameters provided in the request body
       operationId: updateObject
       parameters:
         - name: id
           in: path
-          description: ID of target `Object`. _UUID as specified by RFC4122_
+          description: ID of a specific `Object`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -1752,7 +1744,7 @@ paths:
         required: true
       responses:
         '204':
-          description: The request was successful and the specified Object was updated
+          description: The request was successful and the specified object has been updated.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1773,14 +1765,14 @@ paths:
       tags:
         - Baseline
       summary: List state objects
-      description: Retrieves a list of `State` objects
+      description: Returns a list of `State` objects in the authorized scope
       operationId: listStates
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
       responses:
         '200':
-          description: The request was successful.
+          description: The request was successful and a list of state objects has been returned.
           content:
             application/json:
               schema:
@@ -1807,18 +1799,24 @@ paths:
       tags:
         - Baseline
       summary: Get state details
-      description: Returns details for the specified `State`
+      description: Retrieves details for a given `State`
       operationId: getStateDetails
       parameters:
         - name: id
           in: path
-          description: ID of the target `State`. _UUID as specified by RFC4122_
+          description: ID of a specific `State`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
       responses:
         '200':
-          $ref: '#/components/schemas/State'
+          description: The request was successful and detailed information about the specified state haws been returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/State'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1838,10 +1836,8 @@ paths:
     get:
       tags:
         - Privacy
-      summary: List Provers
-      description: |-
-        Retrieves a list of `Prover` instances. A `Prover` is a state synchronization and consistency mechanism for completing on- and off-chain state transitions.
-        
+      summary: List provers
+      description: Returns a list of `Prover` instances in the authorized scope        
       operationId: listProvers
       parameters:
         - name: curve
@@ -1886,7 +1882,7 @@ paths:
             type: string
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a list of provers has been returned.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -1910,11 +1906,16 @@ paths:
       tags:
         - Privacy
       summary: Create prover
-      description: |
-        Creates a baseline `Prover`.
-
-        You must provision a prover before it can be used to generate and verify proofs. The foregoing holds true regardless of which provider, proving_scheme, curve and prover identifier you specify (or source, if the raw source code of the `Prover` is provided instead of an identifier).
-
+      description: |-
+        Creates a baseline `Prover` per the parameters provided in the request body
+        
+        Creating a prover entails compiling the prover from source, performing the appropriate setup or multiparty key ceremony and securely persist resulting artifacts.
+        
+        You must provision a `Prover` before it can be used to generate and verify proofs. The foregoing holds true regardless of which provider, proving_scheme, curve and prover identifier you specify (or source, if the raw source code of the `Prover` is provided instead of an identifier).
+       
+        A persistent store is implicitly initialized upon the creation of a new prover unless an existing store_id is provided and the referenced store is valid in the context of the prover and authorized scope.
+        
+        The parameters required to provision a `Prover` vary slightly across providers and proving schemes. Ensure you are using the `source` or `identifier` parameter properly for the selected `provider` and `proving_scheme`.
       operationId: createProver
       requestBody:
         content:
@@ -1924,7 +1925,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful and a new `Prover` was created.
+          description: The request was successful and a new prover has been created.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1943,19 +1944,19 @@ paths:
       tags:
         - Privacy
       summary: Get prover details
-      description: Returns details of a specified `Prover`
+      description: Retrieves details for a given `Prover`
       operationId: getProverDetails
       parameters:
         - name: id
           in: path
-          description: ID of target `Prover`. _UUID as specified by RFC4122_
+          description: ID of a specific `Prover`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
             format: UUID
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and detailed information about the specified prover has been returned.
           content:
             application/json; charset=UTF-8:
               schema:
@@ -1978,12 +1979,15 @@ paths:
       tags:
         - Privacy
       summary: Prove prover
-      description: 'Once you have provisioned a prover, this API can be used to generate a proof given valid witness parameters. Calling this API has an implicit side-effect of writing the hash of generated proof to the persistent store associated with the `Prover`.'
+      description: |- 
+        Creates a proof given valid witness parameters
+        
+        Calling this API has an implicit side-effect of writing the hash of generated proof to the persistent store associated with the `Prover`.
       operationId: proveProver
       parameters:
         - name: id
           in: path
-          description: ID of `Prover` requiring proof. _UUID as specified by RFC4122_
+          description: ID of a specific `Prover`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -1991,11 +1995,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProveRequest'
+              $ref: '#/components/schemas/Proof'
         required: true
       responses:
         '200':
-          description: The request was successful
+          description: The request was successful and a new proof has been created.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -2016,12 +2020,12 @@ paths:
       tags:
         - Privacy
       summary: Verify
-      description: Verifies a `Proof` using the given `Witness` parameters
+      description: Verifies a `Proof` using the `Witness` parameters provided in the request body
       operationId: verify
       parameters:
         - name: id
           in: path
-          description: ID of target `Prover`. _UUID as specified by RFC4122_
+          description: ID of a specific `Prover`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
@@ -2033,7 +2037,7 @@ paths:
         required: true
       responses:
         '201':
-          description: The request was successful 
+          description: The request was successful and a verification result has been returned.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -2052,24 +2056,24 @@ paths:
       tags:
         - Privacy
       summary: Retrieve store value
-      description: Returns the store value of the specified `Prover`. The store value is a hash of the proof.
+      description: Retrieves the store value of a given `Prover`; the store value is a hash of the proof.
       operationId: getStoreValue
       parameters:
         - name: id
           in: path
-          description: ID of target `Prover`. _UUID as specified by RFC4122_
+          description: ID of a specific `Prover`; _UUID as specified by RFC4122_
           required: true
           schema:
             type: string
         - name: index
           in: path
-          description: The index of the leaf in the Merkle tree for the underlying data structure.
+          description: The index of the leaf in the Merkle tree for the underlying data structure
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: The request was successful.
+          description: The request was successful and the store value for the given prover has been returned.
           content:
             application/json:
               schema:
@@ -2092,9 +2096,13 @@ components:
     Account:
       title: Account
       type: object
+      description: |- 
+        An arbitrary keypair capable of storing value on the underlying `Network`; also referred to as a signing identity.
+        
+        An `Account` may be setup as custodial or non-custodial, and may be derived from a `Wallet`. If the `Account` is custodial then the platform will sign and broadcast transactions to the network on behalf of an authorized `User` or `Workgroup`.        
       properties:
         id:
-          description: ID of the desired `Account`. _UUID as specified by RFC4122_
+          description: ID of a specific `Account`; _UUID as specified by RFC4122_
           type: string
           format: UUID
           readOnly: true
@@ -2107,24 +2115,24 @@ components:
           example: '2021-02-27T14:26:06.864Z'
         network_id:
           type: string
-          description: ID of host `Network`. _UUID as specified by RFC4122_
+          description: ID of host `Network`; _UUID as specified by RFC4122_
           format: UUID
           example: '819a2b92-e867-49e0-ad07-823562ca4603'
         user_id:
           type: string
-          description: ID of `User` or `Organization` that created the `Account`. _UUID as specified by RFC4122_
+          description: ID of `User` or `Organization` that created the `Account`; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: '35e90d71-6caa-45bb-86f3-39042d525287'
         vault_id:
           type: string
-          description: ID of the `Vault` that houses `Account` key. _UUID as specified by RFC4122_
+          description: ID of the `Vault` that houses `Account` key; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: 'd8d448a8-19cd-4696-8469-2b9ff76e22eb'
         key_id:
           type: string
-          description: ID of the `Key` used to sign the `Account`. _UUID as specified by RFC4122_
+          description: ID of the `Key` used to sign the `Account`; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: '6f261ee8-114f-489c-bd1e-7bb3185ff607'
@@ -2138,9 +2146,9 @@ components:
           description: |-
             Address of the `Account`
             
-              Implementations should consider how to support an increase from a 20-byte address to a 32-byte address.
-              
-              The following illustrates the schema of a 32-byte address:
+            Implementations should consider how to support an increase from a 20-byte address to a 32-byte address.
+            
+            The following illustrates the schema of a 32-byte address:
 
               Byte 0: Version byte (8-bit padding; reserved for future)
               Byte 1-2: Reserved (16-bit reserved)
@@ -2169,7 +2177,7 @@ components:
         user_id:
           type: string
           format: UUID
-          description: ID of `Organization` to be associated with `Workgroup`. _UUID as specified by RFC4122_
+          description: ID of `Organization` to be associated with `Workgroup`; _UUID as specified by RFC4122_
           example: '794c9e17-f9ac-4f35-927a-f7481099f929'
     BaselineContext:
       title: Baseline Context
@@ -2178,7 +2186,7 @@ components:
       properties:
         baseline_id:
           type: string
-          description: ID of the target Baseline instance. _UUID as specified by RFC4122_
+          description: ID of the given Baseline instance; _UUID as specified by RFC4122_
           readOnly: false
           example: 'ed509f33-cbe4-4e3d-86ff-e508e6496f85'
         type:
@@ -2189,7 +2197,7 @@ components:
         workflow_id:
           type: string
           format: UUID
-          description: ID of associated `Workflow`. _UUID as specified by RFC4122_ 
+          description: ID of associated `Workflow`; _UUID as specified by RFC4122_ 
           readOnly: false
           example: '538e8eeb-4772-4685-a283-15d4060762e4'
         workflow:
@@ -2207,7 +2215,7 @@ components:
       properties:
         id:
           type: string
-          description: ID of the `BaselineContext`. _UUID as specified by RFC4122_
+          description: ID of the `BaselineContext`; _UUID as specified by RFC4122_
           readOnly: true
           example: 'bc16c008-1270-470b-8fdb-a9c7c75785fa'
         baseline_id:
@@ -2227,6 +2235,102 @@ components:
         baseline_context: 
           $ref: '#/components/schemas/BaselineContext'
         type: baseline
+    Circuit:
+      title: Circuit
+      description: |-
+        A type of `Prover` that utilizes zero-knowledge proofs for maintaining consistency. The lifecycle of a zero-knowledge circuit depends largely on the chosen `proving_scheme`. For example, zkSNARK proving schemes (i.e., `groth16`) require a trusted setup whereas more modern schemes (i.e., `plonk`) do not. 
+        You must provision a circuit before it can be used to generate and verify proofs. The foregoing holds true regardless of which provider, proving_scheme, curve and circuit identifier you specify (or source, if the raw source code of the circuit is provided instead of an identifier).
+      
+        **Lifecycle**
+        _________
+        
+        |Status|Description   |
+        |------|-----------------------|
+        |init|default status value for all newly-initialized provers|
+        |compiling|prover is currently being compiled|
+        |compiled|prover has been successfully compiled|
+        |pending_setup|trusted setup will begin asynchronously|
+        |running_setup|trusted setup is running asynchronously|
+        |deploying_artifacts|on-chain shield/verifier contract artifacts are being deployed|
+        |provisioned|prover is ready for use|
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ID for the `Circuit`; _UUID as specified by RFC4122_
+          readOnly: true
+          example: 'ce0319c8-ddc8-4d46-a16c-c506f5dae9a0'
+        created_at:
+          type: string
+          description: Date and time of `Circuit` creation
+          format: date-time
+          readOnly: true
+          example: '2021-02-27T14:26:06.864Z'
+        vault_id:
+          type: string
+          format: uuid
+          description: ID of host `Vault`. _UUID as specified by RFC4122_
+          readOnly: false
+          example: '0ca9331a-d3fb-401c-b00b-5ada557c1056'
+        proving_key_id:
+          type: string
+          format: uuid
+          description: ID of a specific `Key` used for proving the given `Circuit`. _UUID as specified by RFC4122_
+          readOnly: false
+          example: 'f2a9e144-79c1-4379-bee8-006f3401f4df'
+        verifying_key_id:
+          type: string
+          format: uuid
+          description: ID of a specific `Key` used for verifying the given `Circuit`. _UUID as specified by RFC4122_
+          readOnly: false
+          example: '2268935e-c21e-4891-88cc-d877cf496faf'
+        name:
+          type: string
+          description: User-defined name of `Circuit`
+          readOnly: false
+          example: 'Circuit example name'
+        description:
+          type: string
+          description: User-defined descriptor of the `Circuit`
+          readOnly: false
+          example: 'Circuit example description'
+        identifier:
+          type: string
+          description: Circuit identifier
+          example: Cubic
+        provider:
+          type: string
+          description: Circuit provider
+          example: gnark
+        proving_scheme:
+          type: string
+          description: Proving scheme to be used
+          example: groth16
+        curve:
+          type: string
+          description: Pairing-friendly elliptic curve
+          example: BN256
+        status:
+          type: string
+          description: Status of `Circuit`
+          enum: 
+            - init
+              compiling
+              compiled
+              pending_setup
+              running_setup
+              deploying_artifacts
+              provisioned
+        store_id:
+          type: string
+          description: Identifier of the persistent store instance
+      required:
+        - name
+        - identifier
+        - provider
+        - proving_scheme
+        - curve
     CompiledArtifact:
       title: Compiled Artifact
       type: object
@@ -2284,14 +2388,15 @@ components:
             type: string 
         network_id:
           type: string
-          description: ID of the host network. _UUID as specified by RFC4122_
+          description: ID of the host network; _UUID as specified by RFC4122_
         organization_address:
           type: string
         organization_id:
           type: string
-          description: ID of the host `Organization`. _UUID as specified by RFC4122_
+          description: ID of the host `Organization`; _UUID as specified by RFC4122_
         organization_refresh_token:
           type: string
+          description: Refresh token for the associated `Organization`
         registry_contract_address:
           type: string
     Contract:
@@ -2301,7 +2406,7 @@ components:
         id:
           type: string
           readOnly: true
-          description: ID of the target `Contract`. _UUID as specified by RFC4122_
+          description: ID of the given `Contract`; _UUID as specified by RFC4122_
           example: 'd2267891-4626-4b04-9613-3f41e2ab61ca'
         created_at:
           type: string
@@ -2312,30 +2417,30 @@ components:
           type: string
           format: UUID
           readOnly: false
-          description: ID of target `Workgroup`._UUID as specified by RFC4122_
+          description: ID of a specific `Workgroup`._UUID as specified by RFC4122_
           example: 'f59c04e3-3a2f-4e3c-b04b-b6eda05a16ec'
         organization_id:
           type: string
           nullable: true
           readOnly: true
-          description: ID of `Organization` associated with reference `Contract`. _UUID as specified by RFC4122_
+          description: ID of `Organization` associated with the given `Contract`; _UUID as specified by RFC4122_
           example: '96ea3010-d05c-4d75-aa60-577666468ae4'
         network_id:
           type: string
           readOnly: false
-          description: ID of target `Network`. _UUID as specified by RFC4122_
+          description: ID of a specific `Network` on which the given `Contract` resides; _UUID as specified by RFC4122_
           example: '3d77e7f6-62f6-4bb9-94a5-371f336dde16'
         contract_id:
           type: string
           nullable: true
           readOnly: true
-          description: ID of the parent `Contract`. _UUID as specified by RFC4122_
+          description: ID of the given `Contract`; _UUID as specified by RFC4122_
           example: '7bfe016b-73d8-4d28-ba01-d879c852a17b'
         transaction_id:
           type: string
           nullable: true
           readOnly: true
-          description: ID of the `Transaction`. _UUID as specified by RFC4122_
+          description: ID of the `Transaction` associated with the contracts creation; _UUID as specified by RFC4122_
           example: '6596e78b-98c4-4689-bd25-1eac13171568'
         name:
           type: string
@@ -2401,7 +2506,7 @@ components:
       properties:
         account_id:
           type: string
-          description: ID of target `Account`. _UUID as specified by RFC4122_
+          description: ID of a specific `Account`; _UUID as specified by RFC4122_
           example: 0267e902-913e-426e-bfc1-0670171657e0
         CompiledArtifact:
           $ref: '#/components/schemas/CompiledArtifact'
@@ -2513,14 +2618,15 @@ components:
         nonce:
           type: integer
           format: int32
+          description: Pseudo-random number that authentication protocols attach to communications
         context:
           type: string
         name:
           type: string
-          description: Name of derived `Key`
+          description: User-defined name of derived `Key`
         description:
           type: string
-          description: Description of derived `Key`
+          description: User-defined description of derived `Key`
       example:
         nonce: 4512
         context: channel-6852386c-8a3d-41c6-aa0e-766a31a8faaf
@@ -2534,11 +2640,13 @@ components:
       type: object
       properties:
         code:
-          type: string
+          type: integer
+          description: Number corresponding to a specific error
         message:
           type: string
+          description: A human-readable description of an error
       example:
-        code: '500'
+        code: 500
         message: The request resulted in an internal error during processing
     ExecuteContract:
       title: Execute Contract
@@ -2551,6 +2659,7 @@ components:
       properties:
         method:
           type: string
+          description: ''
         params:
           type: array
           items:
@@ -2560,7 +2669,7 @@ components:
           format: int32
         account_id:
           type: string
-          description: ID of the required `Account`. _UUID as specified by RFC4122_
+          description: ID of the required `Account`; _UUID as specified by RFC4122_
       example:
         method: broadcast
         params:
@@ -2573,15 +2682,16 @@ components:
         - name
         - spec
       type: object
+      description: A string of data that is used to lock or unlock cryptographic functions
       readOnly: true
       properties:
         id: 
           type: string
-          description: ID of referenced `Key`. _UUID as specifed by RFC4122_
+          description: ID of the given `Key`. _UUID as specified by RFC4122_
           readOnly: true
         vault_id:
           type: string
-          description: ID of `Vault` in which the referenced `Key` resides. _UUID as specifed by RFC4122_
+          description: ID of a specific `Vault` in which the given `Key` is stored. _UUID as specified by RFC4122_
           readOnly: true
         type:
           type: string
@@ -2603,12 +2713,12 @@ components:
           example: BIP39
         name:
           type: string
-          description: Name of `Key` to be generated
-          example: 'Sample name'
+          description: User-defined name of `Key` to be generated
+          example: 'Example name'
         description:
           type: string
-          description: Description of `Key` to be generated
-          example: 'Sample description'
+          description: User-defined description of `Key` to be generated
+          example: 'Example description'
         public_key:
           type: string
           readOnly: true
@@ -2755,7 +2865,7 @@ components:
         workgroup_id:
           type: string
           readOnly: true
-          description: ID of `Workgroup` that created the `Network`. _UUID as specifed by RFC4122_
+          description: ID of `Workgroup` that created the `Network`. _UUID as specified by RFC4122_
         name:
           type: string
           readOnly: false
@@ -2771,7 +2881,7 @@ components:
         chain_id:
           type: string
           format: UUID
-          description: ID of assocated blockchain network. _UUID as specified by RFC4122_
+          description: ID of associated blockchain network; _UUID as specified by RFC4122_
         is_production:
           type: boolean
           description: Denotes that `Network` is stable and ready for use in production environment. 
@@ -2811,6 +2921,7 @@ components:
         block:
           type: integer
           format: int32
+          description: ''
         chain_id:
           type: string
           format: UUID
@@ -2856,12 +2967,12 @@ components:
         id:
           type: string
           format: UUID
-          description: ID of the `Object`. _UUID as specified by RFC4122_
+          description: ID of the given `Object`; _UUID as specified by RFC4122_
           readOnly: true
         baseline_id: 
           type: string
           format: UUID
-          description: Globally unique UUID used to map the record to the `BaselineContext`. _UUID as specified by RFC4122_
+          description: ID used to map the record to the `BaselineContext`; _UUID as specified by RFC4122_
         opcode:
           type: string
           description: Specifies the operation to be performed
@@ -2914,19 +3025,19 @@ components:
           example: 'ACME Inc.'
         description:
           type: string
-          description: Description of `Organization` being created
+          description: User-defined description of `Organization` being created
           readOnly: false
           example: 'Organization for testing'
         id:
           type: string
           format: UUID
-          description: ID of referenced `Organization`. _UUID as specifed by RFC4122_
+          description: ID of the given `Organization`; _UUID as specified by RFC4122_
           readOnly: true
           example: a7e165dd-2d91-4f1e-b025-6ef2c5514603
         user_id:
           type: string
           format: UUID
-          description: ID of `User` that created `Organization`. _UUID as specifed by RFC4122_
+          description: ID of `User` that created the given `Organization`; _UUID as specified by RFC4122_
           readOnly: true
           example: 'ce69ea1c-7f0a-418b-9ecf-28ce7eca09e8'
         created_at:
@@ -2952,11 +3063,11 @@ components:
       properties:
         address:
           type: string
-          description: Wallet address of associated `Organization`
+          description: '`Wallet` address of associated `Organization`'
           example: '0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e'
         metadata:
           type: object
-          description: ''
+          description: 'Arbitraty data as needed for external interfaces'
         api_endpoint:
           type: string
           description: URL of the baseline API, which may not be exposed to the WAN
@@ -2970,6 +3081,13 @@ components:
           metadata: {}
           api_endpoint: https://api_endpoint/api/v1/endpoint
           messaging_endpoint: https://api_endpoint/api/v1/messaging
+    Proof:
+      title: Proof
+      type: object
+      description: ''
+      properties:
+        witness:
+          $ref: '#/components/schemas/Witness'
     ProtocolMessage:
       title: Protocol Message
       type: object
@@ -3017,7 +3135,21 @@ components:
           $ref: '#/components/schemas/Witness'
     Prover:
       title: Prover
-      description: 'A state synchronization and consistency mechanism for completing on- and off-chain state transitions.'
+      description: |-
+        A state synchronization and consistency mechanism for completing on- and off-chain state transitions.
+          
+        **Lifecycle**
+        _________
+        
+        |Status|Description   |
+        |------|-----------------------|
+        |init|default status value for all newly-initialized provers|
+        |compiling|prover is currently being compiled|
+        |compiled|prover has been successfully compiled|
+        |pending_setup|trusted setup will begin asynchronously|
+        |running_setup|trusted setup is running asynchronously|
+        |deploying_artifacts|on-chain sheild/verifier contract artifacts are being deployed|
+        |provisioned|prover is ready for use|
       type: object
       properties:
         created_at:
@@ -3031,22 +3163,21 @@ components:
           description: Pairing-friendly elliptic curve
           readOnly: false
           example: BN256
-          default: 
         description:
           type: string
-          description: User-defined descriptor of the `Prover`
+          description: User-defined description of the `Prover`
           readOnly: false
           example: 'Prover example description'
         id:
           type: string
           format: UUID
-          description: ID for the `Prover`. _UUID as specified by RFC4122_
+          description: ID for the `Prover`; _UUID as specified by RFC4122_
           readOnly: true
           example: 'ce0319c8-ddc8-4d46-a16c-c506f5dae9a0'
         identifier:
           type: string
           description: Prover identifier
-          example: Cubic
+          example: 'Cubic'
         name:
           type: string
           description: User-defined name of `Prover`
@@ -3056,23 +3187,23 @@ components:
           type: string
           description: Kind of `Prover`
           readOnly: false
-          example: 'circuit'
+          example: 'Circuit'
         proving_key_id:
           type: string
           format: UUID
-          description: ID of `Key` used for proving the `Prover`. _UUID as specified by RFC4122_
+          description: ID of `Key` used for proving the `Prover` instance; _UUID as specified by RFC4122_
           readOnly: false
           example: 'f2a9e144-79c1-4379-bee8-006f3401f4df'
         vault_id:
           type: string
           format: UUID
-          description: ID of host `Vault`. _UUID as specified by RFC4122_
+          description: ID of host `Vault`; _UUID as specified by RFC4122_
           readOnly: false
           example: '0ca9331a-d3fb-401c-b00b-5ada557c1056'
         verifying_key_id:
           type: string
           format: UUID
-          description: ID of `Key` used for verifying the `Prover`. _UUID as specified by RFC4122_
+          description: ID of `Key` used for verifying the given `Prover`; _UUID as specified by RFC4122_
           readOnly: false
           example: '2268935e-c21e-4891-88cc-d877cf496faf'
         provider:
@@ -3097,18 +3228,14 @@ components:
         store_id:
           type: string
           description: ID of the persistent store instance
+          readOnly: false
+          
       required:
         - name
         - identifier
         - provider
         - proving_scheme
         - curve
-    ProveRequest:
-      title: Prove request
-      type: object
-      properties:
-        witness:
-          $ref: '#/components/schemas/Witness'
     Secret:
       title: Secret
       required:
@@ -3123,7 +3250,7 @@ components:
           type: string
           format: UUID
           readOnly: true
-          description: ID of `Secret`. _UUID as specified by RFC4122_
+          description: ID of `Secret`; _UUID as specified by RFC4122_
         created_at:
           type: string
           readOnly: true
@@ -3131,7 +3258,7 @@ components:
         vault_id:
           type: string
           readOnly: false
-          description: ID of `Vault` associated with reference `Secret`. _UUID as specified by RFC4122_
+          description: ID of `Vault` in which the given `Secret` is stored; _UUID as specified by RFC4122_
         type:
           type: string
           readOnly: false
@@ -3143,7 +3270,7 @@ components:
         description:
           type: string
           readOnly: false
-          description: User-defined descriptor of reference `Secret`
+          description: User-defined descriptor of given `Secret`
         value:
           type: string
           readOnly: false
@@ -3151,13 +3278,13 @@ components:
         id: e9138dd7-b429-410a-bfa8-2a506d9e4297
         created_at: '2021-04-17T20:35:34.062+0000'
         vault_id: 22e48752-7bff-4daa-89b3-91053bd509f2
-        type: sample secret
-        name: 'secret #1'
+        type: ed25519
+        name: 'Example secret'
         description: This secret is being stored for demonstration purposes
         value: 0x
     State:
       title: State
-      description: The account state of an `Organization`, which must only be changed as a result of a valid transaction (i.e., a successful `Workstep` execution) by way of a `StateClaim`.
+      description: The account state of an `Organization`, which must only be changed as a result of a valid transaction (i.e., a successful `Workstep` execution) by way of a `StateClaim`
       type: object
       required:
         - id
@@ -3166,25 +3293,25 @@ components:
         id:
           type: string
           format: UUID
-          description: ID of referenced `State`. _UUID as specified by RFC4122_
+          description: ID of referenced `State`; _UUID as specified by RFC4122_
           readOnly: true
         account_id:
           type: string
           format: UUID
-          description: ID of the `Account`. _UUID as specified by RFC4122_
+          description: ID of the `Account`; _UUID as specified by RFC4122_
           readOnly: false
         address: 
           type: string
-          description: Address of the state account. By default this is the anonymous on-chain address of the `Organization`. 
+          description: Address of the state account; by default this is the anonymous on-chain address of the `Organization`. 
           example: '0x391a38d6cca800e28c6b83f3aff4bebb9c0dab00'
         nonce:
           type: integer
-          description: Nonce of associated `Account`.
+          description: Pseudo-random number that authentication protocols attach to communications
           readOnly: false
         prover_id:
           type: string
           format: UUID
-          description: ID of the associated `prover`. _UUID as specified by RFC4122_
+          description: ID of the associated `Prover`; _UUID as specified by RFC4122_
           readOnly: false  
         epoch: 
           type: string
@@ -3198,7 +3325,7 @@ components:
             $ref: '#/components/schemas/StateClaim'
     StateClaim:
       title: State Claim
-      description: Representation of a valid state as claimed by a workgroup participant.
+      description: Representation of a valid state as claimed by a workgroup participant
       type: object
       properties:
         cardinality: 
@@ -3222,7 +3349,7 @@ components:
       properties:
         id:
           type: string
-          description: ID of `Token` issued. _UUID as specified by RFC4122_
+          description: ID of `Token` issued; _UUID as specified by RFC4122_
           readOnly: true
         scope:
           type: string
@@ -3260,12 +3387,12 @@ components:
           readOnly: true
         organization_id:
           type: string
-          description: ID of `Organization` requiring authorization. _UUID as specified by RFC4122_
+          description: ID of `Organization` requiring authorization; _UUID as specified by RFC4122_
           nullable: true
           writeOnly: true
         application_id:
           type: string
-          description: ID of `Workgroup` requiring authorization. _UUID as specified by RFC4122_
+          description: ID of `Workgroup` requiring authorization; _UUID as specified by RFC4122_
           nullable: true
           writeOnly: true
       example:
@@ -3281,63 +3408,63 @@ components:
       properties:
         id:
           type: string
-          description: ID for a specific `Transaction`. _UUID as specified by RFC4122_
+          description: ID for the given `Transaction`; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: bb0e8038-8e72-46db-a08d-204f804a24c1
         created_at:
           type: string
-          description: Date and time of `Transaction` creation
+          description: Date and time for the creation of the given `Transaction`
           format: date-time
           readOnly: true
           example: '2021-04-21T02:12:11.158Z'
         network_id:
           type: string
-          description: ID of the `Network` on which the Transaction will be broadcast. _UUID as specified by RFC4122_
+          description: ID of the `Network` on which the transaction will be broadcast; _UUID as specified by RFC4122_
           format: UUID
           readOnly: false
           example: 'bddbc2ac-8531-4f19-962c-f19d93b68fbb'
         user_id:
           type: string
-          description: ID for the `User` that created `Transaction`. _UUID as specified by RFC4122_
+          description: ID for the `User` that created the given `Transaction`; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: '52fe9407-5115-43ce-9115-5fcbcd0457f1'
         wallet_id:
           type: string
-          description: ID of `Wallet` to be used for signing the `Transaction`. _UUID as specified by RFC4122_
+          description: ID of `Wallet` used for signing the given `Transaction`; _UUID as specified by RFC4122_
           format: UUID
           readOnly: false
           example: '9c193c18-db84-4506-8462-9e604d1620b9'
         key_id:
           type: string
-          description: ID of the Vault Key which will be used to sign the `Transaction`; required in the absence of a `signer`. _UUID as specified by RFC4122_
+          description: ID of the vault key which will be used to sign the `Transaction`; required in the absence of a signer; _UUID as specified by RFC4122_
           format: UUID
           example: 'dcb00685-6434-4f4b-b9df-e929bb90d421'
         account_id:
           type: string
-          description: ID of `Account` to be used for `Transaction` creation. _UUID as specified by RFC4122_
+          description: ID of `Account` to be used for `Transaction` creation; _UUID as specified by RFC4122_
           example: '5479b170-b8aa-4ac3-94a6-afec5d2eb6b6'
         hd_derivation_path:
           type: string
         to:
           type: string
-          description: 'Public network address of the recipient of the `Transaction`., if applicable'
+          description: 'Public network address of the recipient of the `Transaction`; if applicable'
           example: '0x1f4a6f3bfdea8fe1539ad538421cba0668bf8edf'
         value:
           type: number
-          description: 'Total amount of value, represented in the smallest standard denomination of native currency for the target Network (i.e., wei), to be transferred by the sender to the recipient'
+          description: 'Total amount of value, represented in the smallest standard denomination of native currency for a specific Network (i.e., wei), to be transferred by the sender to the recipient'
         data:
           type: object
           description: ''
           nullable: true
         hash:
           type: string
-          description: ''
+          description: 'A unique string of characters that is given to every transaction on a given `Network`; also referred to as transaction ID'
           readOnly: true
         status:
           type: string
-          description: ''
+          description: 'Current status of the given transaction'
           readOnly: true
         ref:
           type: object
@@ -3347,43 +3474,46 @@ components:
         description:
           type: object
           nullable: true
+          description: A user-defined summary of the transaction
         block:
           type: number
-          description: ''
+          description: 'Block height for the given `Transaction`'
           readOnly: true
+          format: integer
+          example: 5464
         block_timestamp:
           type: string
-          description: ''
+          description: 'Date and time of block creation for the given `Transaction`'
           readOnly: true
           example: '2021-04-21T02:12:11.158Z'
         broadcast_at:
           type: string
-          description: ''
+          description: 'Date and time that the `Transaction` was broadcast to the intended `Network`'
           format: date-time
           readOnly: true
           example: '2021-04-21T02:12:11.158Z'
         finalized_at:
           type: string
-          description: ''
+          description: 'Date and time that the given `Transaction` was finalized on the intended `Network`'
           format: date-time
           readOnly: true
           example: '2021-04-21T02:12:11.158Z'
         published_at:
           type: string
-          description: ''
+          description: Date and time that the given `Transaction` was published to the intended `Network`
           format: date-time
           readOnly: true
           example: '2021-04-21T02:12:11.158Z'
         queue_latency:
-          description: ''
+          description: 'Latency from initial request to network broadcast'
           type: integer
           readOnly: true
         network_latency:
-          description: ''
+          description: 'Latency from network broadcast to finalization on a destination `Network`'
           type: integer
           readOnly: true
         e2e_latency:
-          description: ''
+          description: 'End-to-end latency of the entire transaction'
           type: integer
           readOnly: true
       example:
@@ -3402,14 +3532,14 @@ components:
         finalized_at: '2021-04-21T02:12:14.277Z'
     UnsealVault:
       title: Unseal Vault
-      description: Unseals the specified `Vault`
+      description: Unseals a given `Vault`
       required:
         - key
       type: object
       properties:
         key:
           type: string
-          description: Private key required for unsealing the target `Vault`
+          description: Private key required for unsealing a specific `Vault`
       example:
         key: quantum mirror summer general keep west promote satisfy limit butter mother oyster lazy whip earn spot ticket protect mean play script peace parent intact
     User:
@@ -3419,11 +3549,12 @@ components:
         - first_name
         - last_name
       type: object
-      description: An individual participant in the baseline process. Can be virtual or non-virtual. A virtual user acts as a placeholder account that grants access to a specified `Organization` or `Workgroup`. 
+      description: |-
+        An individual participant in the baseline process. Can be virtual or non-virtual. A virtual user acts as a placeholder account that grants access to a specified `Organization` or `Workgroup`. 
       properties:
         id:
           type: string
-          description: ID for the reference `User`. Expressed as a _UUID as specified by RFC4122_
+          description: ID for the given `User`; _UUID as specified by RFC4122_
           readOnly: true
           example: 7r19e831-43fd-237e-8b43-12af828ba3e3
         created_at:
@@ -3433,22 +3564,22 @@ components:
           example: '2021-01-27T03:19:33.349Z'
         name:
           type: string
-          description: Full name of `User`
+          description: Full name of the given `User`
           example: Joe User
           readOnly: true
         first_name:
           type: string
-          description: First name of `User`
+          description: First name of the given `User`
           example: Joe
           readOnly: false
         last_name:
           type: string
-          description: Last name of `User`
+          description: Last name of the given `User`
           example: User
           readOnly: false
         email:
           type: string
-          description: Email address for `User`
+          description: Email address for the given `User`
           example: joeusr@baseline.local
           readOnly: false
         password:
@@ -3458,7 +3589,7 @@ components:
           example: s3cr37
         permissions:
           type: integer
-          description: Authorized privileges for `User`
+          description: Authorized privileges for the given `User`
           readOnly: true
           example: 415
         privacy_policy_agreed_at:
@@ -3477,7 +3608,7 @@ components:
         name: Joe User
         first_name: Joe
         last_name: User
-        email: joeusr@baseline.local
+        email: joeuser@baseline.local
         permissions: 415
         privacy_policy_agreed_at: '2021-01-27T03:19:33.349Z'
         terms_of_service_agreed_at: '2021-01-27T03:19:33.349Z'
@@ -3488,7 +3619,7 @@ components:
       properties:
         id:
           type: string
-          description: ID for a specific `Vault` instance. _UUID as specified by RFC4122_
+          description: ID for the given `Vault` instance; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: f1f29322-b8fe-4adf-95ad-af1585e823c5
@@ -3500,12 +3631,12 @@ components:
           example: '2021-04-21T02:12:11.158Z'
         name:
           type: string
-          description: User-defined identifier for a specific `Vault` instance
+          description: User-defined identifier for the given `Vault` instance
           readOnly: false
-          example: 'Demo vault name'
+          example: 'Example vault name'
         description:
           type: string
-          description: User-defined summary of a specific `Vault`  instance
+          description: User-defined descriptor for the given `Vault` instance
           readOnly: false
           example: 'Sample vault description'
     VerifyProof:
@@ -3521,10 +3652,13 @@ components:
         proof:
           type: string
           description: The hex-formatted proof to verify
+          readOnly: false
         store:
           type: boolean
           description: 'When true, the proof hash is written to the configured prover store'
+          readOnly: false
       example:
+        proof: ''
         witness:
           {}
     Wallet:
@@ -3533,7 +3667,7 @@ components:
       properties:
         id:
           type: string
-          description: ID for a unique `Wallet`. _UUID as specified by RFC4122_
+          description: ID for the given `Wallet`; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: 4ee831ae-327f-4a79-bd74-7e9f56ce40fa
@@ -3546,22 +3680,22 @@ components:
           type: string
           format: UUID
           readOnly: false
-          description: ID for the target `Network`. _UUID as specified by RFC4122_
+          description: ID for a specific `Network` for which the given `Wallet` is intended; _UUID as specified by RFC4122_
           example: 84a139c0-2e20-476c-91d0-618f7332189e
         user_id:
           type: string
-          description: ID for the `User` that created a `Wallet`. _UUID as specified by RFC4122_
+          description: ID for a specific `User` that created the given `Wallet`; _UUID as specified by RFC4122_
           readOnly: true
           example: 8136f2d5-a993-4ec7-88af-45a01e85feaa
         vault_id:
           type: string
-          description: ID for the `Vault` that created a `Wallet`. _UUID as specified by RFC4122_
+          description: ID for a specific `Vault` in which the given `Wallet` is stored; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: aa1b60d4-4f77-438d-8fca-cb514596e6c3
         key_id:
           type: string
-          description: ID of private key used to create `Wallet`. _UUID as specified by RFC4122_
+          description: ID of a specific private key used to create the given `Wallet`; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: 5c928a43-9897-417a-9851-768e19b3cecd
@@ -3573,7 +3707,7 @@ components:
           example: 44
         public_key:
           type: string
-          description: Public signing key of referenced `Wallet`
+          description: Public signing key of the given `Wallet`
           readOnly: true
           example: xpub661MyMwAqRbcGdYXwwnwcnrH51AxyF3kkTeEt6iZfNDXsg4MLPgV7bEZ2v4uCx9djAboy6vSv3VbHPc6hf4Do8wb7FpJCuG7aMBwH2QgLJu
       example:
@@ -3601,37 +3735,39 @@ components:
       properties:
         id:
           type: string
-          description: ID for the `Workgroup`. _UUID as specified by RFC4122_
+          description: ID for the given `Workgroup`; _UUID as specified by RFC4122_
           format: UUID
           readOnly: true
           example: bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6
         created_at:
           minLength: 1
           type: string
-          description: Date and time of record creation
+          description: Date and time of `Workgroup` creation
           format: date-time
           readOnly: true
           example: '2021-05-21T12:36:52.977Z'
         network_id:
           type: string
-          description: ID for the host `Network` of the `Workgroup`. _UUID as specified by RFC4122_
+          description: ID for a specific `Network` host of the given `Workgroup`; _UUID as specified by RFC4122_
           format: UUID
           example: 07102258-5e49-480e-86af-6d0c3260827d
         user_id:
           maxLength: 36
           minLength: 1
           type: string
-          description: ID for the `User` that created the `Workgroup`. _UUID as specifed by RFC4122_
+          description: ID for a specific `User` that created the given `Workgroup`; _UUID as specified by RFC4122_
           format: UUID
           example: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
         name:
           minLength: 1
           type: string
           description: User-defined name of the `Workgroup`
+          maxLength: 255
         description:
           type: string
           description: User-defined `Workgroup` descriptor
-          example: Sample workgroup description
+          example: Example workgroup description
+          maxLength: 255
         type:
           minLength: 1
           type: string
@@ -3642,12 +3778,13 @@ components:
           $ref: '#/components/schemas/WorkgroupConfig'
         hidden:
           type: boolean
+          description: When true, the given `Workgroup` is not visible to the public
       example:
         id: bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6
         created_at: '2021-05-21T12:36:52.977Z'
         network_id: 07102258-5e49-480e-86af-6d0c3260827d
         user_id: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
-        name: Demo Workgroup
+        name: Example Workgroup
         description: Workgroup intended for demonstration purposes
         type: baseline
         config:
@@ -3662,20 +3799,21 @@ components:
         webhook_secret:
           minLength: 1
           type: string
+          description: Secret necessary to access an integrated service webhook
         network_id:
           type: string
           readOnly: false
-          description: ID of parent `Network`. _UUID as specifed by RFC4122_
+          description: ID of a specific `Network` for which the `Workgroup` is intended; _UUID as specified by RFC4122_
           example: b521e245-6391-4d7a-9e9e-a786157fa0a3
     Workflow:
       title: Workflow
       type: object
-      description: Baseline `Workflow` context containing a subset of `Workgroup` participants and series of `Workstep` instances.
+      description: Baseline `Workflow` context containing a subset of `Workgroup` participants and series of `Workstep` instances
       properties:
         id:
           type: string
           format: UUID
-          description: ID of `Workflow`. _UUID as specified by RFC4122_
+          description: ID of the given `Workflow`; _UUID as specified by RFC4122_
           example: 4f818bf4-ef2a-4d0b-b4e7-1367f8c71a02
         identifier:
           type: string
@@ -3683,46 +3821,47 @@ components:
           type: array
           items:
             type: string
-            description: List of `Organization` instances authorized to participate in the referenced `Workflow`.
+            description: List of `Organization` instances authorized to participate in the given `Workflow`
         shield:
           type: string
         worksteps:
-          description: List of `Workstep` instances. 
+          description: List of `Workstep` instances 
           type: array
           items:
             $ref: '#/components/schemas/Workstep'
     Workstep:
       title: Workstep
       description: |-
-        One stepwise state transition in a `Workflow` represented by a `Prover`. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.
+        One stepwise state transition in a `Workflow` represented by a `Prover` instance. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.
       type: object
       properties:
         id:
           type: string
           format: UUID
-          description: ID of `Workstep`. _UUID as specifed by RFC4122_
+          description: ID of the given `Workstep`; _UUID as specified by RFC4122_
           example: '2fffec13-590e-41eb-9a84-69ed881e0036'
           readOnly: true
         prover_id:
           type: string
           format: UUID
-          description: ID of the associated `Prover`. _UUID as specifed by RFC4122_
+          description: ID of the associated `Prover` instance; _UUID as specified by RFC4122_
           example: 'dd615561-83e6-4f53-ac0f-aaf1749df139'
           readOnly: false
         participants:
-          description: List of `Organization` instances authorized to participate in the referenced `Workstep`.
+          description: List of `Organization` entities authorized to participate in the given `Workstep`
           type: array
           items:
             $ref: '#/components/schemas/Participant'
         require_finality:
           type: boolean
           default: false
-          description: When true, the resulting proof from the referenced `Workstep` will be written to the underlying mainnet.
+          description: |-
+            When true, the resulting proof from the referenced `Workstep` will be written to the underlying mainnet.
           example: true
         workflow_id:
           type: string
           format: UUID
-          description: ID of associated `Workflow`. _UUID as specifed by RFC4122_
+          description: ID of a specific `Workflow` that the given `Workstep` is part of; _UUID as specified by RFC4122_
           example: f9227803-5541-4c13-a554-f6980f03362a
         state_claims:
           type: array
@@ -3864,7 +4003,7 @@ components:
       bearerFormat: JWT
     OAuth2:
       type: oauth2
-      description: 'OAuth2 support. In accordance with the OAuth 2.0 specification, when an entity (`User`, `Organization`, `Workgroup`) is authorized and the requested `scope` includes `offline_access`, a refresh token is vended and returned on behalf of the caller. This refresh token is long-lived and can be used to authorize short-lived access tokens using the `refresh_token `grant type on subsequent authorization requests. This pattern is useful for machine-to-machine applications; a secure practice is to store the long-lived refresh token in a Vault instance (i.e., as a secret), read it into application memory during container initialization and then use it to authorize a short-lived access token. If the container remains running long enough for the access token to expire, the refresh token should once again be used to seamlessly authorize a new access token.'
+      description: 'In accordance with the OAuth 2.0 specification, when an entity (`User`, `Organization`, `Workgroup`) is authorized and the requested `scope` includes `offline_access`, a refresh token is vended and returned on behalf of the caller. This refresh token is long-lived and can be used to authorize short-lived access tokens using the `refresh_token `grant type on subsequent authorization requests. This pattern is useful for machine-to-machine applications; a secure practice is to store the long-lived refresh token in a Vault instance (i.e., as a secret), read it into application memory during container initialization and then use it to authorize a short-lived access token. If the container remains running long enough for the access token to expire, the refresh token should once again be used to seamlessly authorize a new access token.'
       flows:
         implicit:
           authorizationUrl: 'https://ident.provide.services/api/v1/oauth/authorize'
