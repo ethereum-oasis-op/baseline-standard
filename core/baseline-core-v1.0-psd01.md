@@ -20,7 +20,7 @@ N/A
 
 #### Latest stage:
 https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.md (Authoritative) \
-https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html \
+https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html \block
 https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.pdf
 
 URI list end (commented out except during publication by OASIS TC Admin) -->
@@ -152,9 +152,12 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[7.5 BPI-Internal Storage](#75-BPI-Internal-Storage) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.1 BPI Storage: Centralized Deployment](#751-BPI-Storage-Centralized-Deployment) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.2 BPI Storage: Decentralized Deployment](#752-BPI-Storage-Decentralized-Deployment) \
-[8 Data Inputs (Oracles)](#8-Data-Inputs) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.1 Data Trustworthiness](#81-Data-Trustworthiness) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Data Variance](#82-Data-Variance) \
+[8 Data Inputs](#8-Data-Inputs) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.1 Internal Authoritative Data](#81-Internal-Authoritative-Data) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.2 External Authoritative Data](#82-External-Authoritative-Data) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.3 Non-Deterministic Data (Oracles)](#83-Non-Deterministic-Data-Oracles) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.3.1 Data Trustworthiness](#831-Data-Trustworthiness) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.3.2 Data Variance](#832-Data-Variance) \
 [9 Conformance](#9-conformance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.1 Conformance Targets](#81-conformance-targets) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.2 Conformance Levels](#82-Conformance-Levels)\
@@ -2368,38 +2371,51 @@ Non-normative examples are conflict-free replicated data types [(CRDTs)](#CRDT) 
 
 -------
 
-# 8: Data Inputs (Oracles)
-This section covers the handling of data inputs from off-chain for the purpose of on-chain proof generation. In blockchain parlance, the mechanisms which handle this data input are referred to as "oracles". Blockchains, by design, omit oracles from their features since the problem set oracles solve is separate from that of blockchains. Off-chain data handling requires some different considerations vs on-chain. Achieving consensus on the validity of a signed transaction is a different problem than coming to consensus on a response to a request such as "What was the temperature at time X for shipping container Y?". Oracle data, unlike blockchain data, may be subject to a degree of variation which needs to be eliminated before being committed to the deterministic blockchain. The requirements set forth here aim to remove this variability, ensure data inputs are synchronized, trustworthy and generate deterministic results.
+# 8: Data Inputs
+This section covers the handling of data inputs from off-chain for the purpose of on-chain proof generation. Specifically, there are three categories of data inputs with different design concerns, data which comes from a single authoritative internal source (i.e. internal systems of record), data from external authoritative sources (i.e. government record), and data from non-authoritative, non-deterministic sources (i.e. IoT sensor data, time, etc). Each of these input situations have their own considerations.
 
-## 8.1 Data Trustworthiness
-Oracle data, since it resides off-chain, is subject to manipulation risks that on-chain publicly auditable data is not subject to. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in the data reporting and error checking, either cross-party, by a neutral party or an honesty incentivized party. Effectively, the principles of decentralization securing blockchains should be carried over where possible for off-chain data.
+## 8.1 Internal Authoritative Data
+Internal authoritative data is the base case, there exists only one authoritative version of the input data in some system of record, making it the only choice for input into a BPI workstep. 
 
-**[R319]**	Input data MAY, by necessity, come from a single endpoint.
+**[O10]**	Input data to a BPI workstep MAY, by necessity, come from a single source.
 
-**[R320]**	Where possible, it is RECOMMENDED to source data from multiple endpoints.
+**[CR36]>[10]**		If input data to a BPI workstep is single-sourced, that source MUST be authoritative and deterministic.
 
-**[R321]**	While input data MAY reside at a single endpoint, it MAY NOT be reported by a single entity.
+## 8.2 External Authoritative Data
+External authoritative data is similar to the internal case in that there exists an authoritative data source but in this case, the data is located external to the proof generation, held in some authoritative 3rd party database, such as government records. Unlike internal data where there is only one source, external data may have multiple sources.
 
-**[R322]**	Reporting entities MAY only be composed of cross-party, neutral party and/or incentivized members to produce honest results.
+**[R319]**	BPI users MUST agree upon the same source for inputs to a BPI workstep.
 
-**[R323]**	Reporting SHALL be halted if a threshold majority of reporting entities are unresponsive.
+## 8.3 Non-Deterministic Data (Oracles)
+When data is needed for proof generation but there does not exist an authoritative, deterministic source, a mechanism known as an oracle is needed to account for potential discrepancies. The entities themselves which report external data into CCSMs may also be referred to as oracles. CCSMs, by design, omit oracles from their features since the problem set oracles solve is separate from that of CCSMs. Off-chain data handling requires some different considerations vs on-chain. Achieving consensus on the validity of a signed transaction is a different problem than coming to consensus on a response to a request such as "What was the temperature at time X for shipping container Y?". Oracle data, unlike CCSM data, may be subject to a degree of variation which needs to be eliminated before being committed to the deterministic CCSM. The requirements set forth here aim to remove this variability, ensure data inputs are synchronized, trustworthy and generate deterministic results.
 
-**[R324]**	Reported data MAY be signed to further ensure source provenance.
+## 8.3.1 Data Trustworthiness
+Oracle data, since it resides off-chain and outside of authoritative record, is subject to manipulation risks that other data is not subject to. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in the data reporting and error checking, either cross-party, by a neutral party or an honesty incentivized party. Effectively, the principles of decentralization securing CCSMs should be carried over where possible for off-chain data.
 
-**[R325]**	Cryptographic mechanisms such as Threshold Signatures/Secret Sharing and TEEs MAY be utilized if data obfuscation from the reporters is required.
+**[D34]**	Where possible, it is RECOMMENDED to source data from multiple endpoints.
 
-## 8.2 Data Variance
-Off-chain data is subject to variations such as time or fluctuations in precision. Party A may read the temperature of a shipment as 77.1F while party B reads it as 77.3F. Small variance in timing can also produce mismatched inputs. These variations may lead to failed proof verification if proof inputs are not identical between prover and verifier. In order for proofs to be deterministic, the inputs must also uphold determinism by removing these variances through a chosen variance removal algorithm (VRA) across the disparate data points such as mean, median, etc which generates a single golden truth from the aggregate data.
+**[R320]**	While external input data to a BPI workstep may reside at a single endpoint, it MAY NOT be reported by a single entity.
 
-**[R326]**	Given that inputs MUST be reported by multiple entities, a mechanism MUST exist between entities to equalize variance between these reports.
+**[D35]**	Oracles SHOULD only be composed of cross-party, neutral party and/or incentivized members to produce honest results.
 
-**[R327]**	Reporting entities MUST adhere to a shared data format.
+**[R321]**	Data reporting SHALL be halted if a threshold majority of oracles are unresponsive.
 
-**[R328]**	In the case of multiple data endpoints, the VRA SHOULD be executed upon each individual reporting entity's data set.
+**[O11]**	Reported data MAY be signed to further ensure source provenance.
 
-**[R329]**	The VRA MUST be executed between reporting entities such that the multiple entities generate a single shared response, the proof input.
+**[O12]**	Cryptographic mechanisms such as Threshold Signatures/Secret Sharing and TEEs MAY be utilized if data obfuscation from the oracle providers is required.
 
-**[R330]**	The implemented VRA MUST account for (remove) data from an outlier reporting entity.
+## 8.3.2 Data Variance
+Off-chain data is subject to variations such as time or fluctuations in precision. Party A may read the temperature of a shipment as 77.1F while party B reads it as 77.3F. Small variance in timing can also produce mismatched inputs. These variations may lead to failed proof verification if proof inputs are not identical between prover and verifier. In order for proofs to be deterministic, the inputs must also uphold determinism by removing these variances through a chosen variance removal algorithm (VRA) across the disparate data points such as mean, median, etc which aggregates the data into a single golden truth.
+
+**[R322]**	A mechanism MUST exist between oracles to equalize variance between oracle data inputs to a BPI workstep, dependent on the business rules of the BPI Workstep.
+
+**[R323]**	The set of oracles providing data to a BPI workstep MUST adhere to a shared data format.
+
+**[D36]**	In the case of multiple data endpoints, the VRA SHOULD be executed upon each individual oracle's data set.
+
+**[R324]**	The VRA MUST be executed between oracles such that multiple oracles generate a single shared response, the BPI workstep input.
+
+**[R325]**	The implemented VRA MUST account for (remove) data from an outlier oracle.
 
 -------
 
