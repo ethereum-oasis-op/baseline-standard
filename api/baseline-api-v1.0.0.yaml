@@ -1,3 +1,4 @@
+openapi: 3.0.2
 info:
   description: OASIS standard API specification for the Baseline Protocol
   license:
@@ -5,7 +6,26 @@ info:
     url: https://raw.githubusercontent.com/ethereum-oasis/baseline-standard/main/LICENSE
   title: Baseline API
   version: v1.0.0
-openapi: 3.0.2
+servers:
+  - description: Provide Baseline Operator
+    url: https://baseline.provide.network
+  - description: Local Baseline Integration Stack
+    url: http://localhost:8080
+  - description: Local BRI-1 Stack
+    url: http://localhost:9999
+tags:
+  - description: Baseline provides internal integration middleware interfaces for baselining systems of record.
+    name: Baseline
+  - description: Baseline core CCSM API package provides interfaces for general interaction with the underlying mainnet.
+    name: CCSM
+  - description: Baseline core privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
+    name: Privacy
+  - description: Baseline core registry API provides interfaces for the organization registry.
+    name: Registry
+  - description: 'Baseline core vault API provides tools and methods for managing digital authentication credentials for `User`, `Organization` and `Workgroup` instances. '
+    name: Vault
+security:
+  - bearerAuth: []
 paths:
   /accounts:
     get:
@@ -1306,7 +1326,7 @@ paths:
         content:
           application/json:
             example:
-              description: Example vaultdescription
+              description: Example vault description
               name: Example vault name
             schema:
               $ref: '#/components/schemas/Vault'
@@ -2923,7 +2943,7 @@ components:
           type: string
         description:
           description: User-defined description of derived `Key`
-          example: Example descripiton for example name
+          example: Example description for example name
           readOnly: false
           type: string
         name:
@@ -3266,7 +3286,7 @@ components:
           description: When true, `Network` is available for use to all provisioned to do so.
           type: boolean
         id:
-          description: ID of a specific `Network`; _UUID as speciied by RFC4122_
+          description: ID of a specific `Network`; _UUID as specified by RFC4122_
           format: uuid
           maxLength: 36
           minLength: 1
@@ -3464,7 +3484,7 @@ components:
           example: https://api_endpoint/api/v1/messaging
           type: string
         metadata:
-          description: Arbitray data as needed for external interfaces
+          description: Arbitrary data as needed for external interfaces
           type: object
       title: Participant
       type: object
@@ -3479,7 +3499,7 @@ components:
       description: Baseline protocol message internal to BPI
       properties:
         baseline_id:
-          description: ID of associated baseline
+          description: ID of associated baseline instance; _UUID as specified by RFC4122_
           format: uuid
           readOnly: false
           type: string
@@ -4269,23 +4289,3 @@ components:
 externalDocs:
   description: Privacy Policy
   url: https://provide.services/privacy-policy
-security:
-  - bearerAuth: []
-servers:
-  - description: Provide Baseline Operator
-    url: https://baseline.provide.network
-  - description: Local Baseline Integration Stack
-    url: http://localhost:8080
-  - description: Local BRI-1 Stack
-    url: http://localhost:9999
-tags:
-  - description: Baseline provides internal integration middleware interfaces for baselining systems of record.
-    name: Baseline
-  - description: Baseline core CCSM API package provides interfaces for general interaction with the underlying mainnet.
-    name: CCSM
-  - description: Baseline core privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
-    name: Privacy
-  - description: Baseline core registry API provides interfaces for the organization registry.
-    name: Registry
-  - description: 'Baseline core vault API provides tools and methods for managing digital authentication credentials for `User`, `Organization` and `Workgroup` instances. '
-    name: Vault
