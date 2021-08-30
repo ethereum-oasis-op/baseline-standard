@@ -6,6 +6,18 @@ info:
     url: https://raw.githubusercontent.com/ethereum-oasis/baseline-standard/main/LICENSE
   title: Baseline API
   version: v1.0.0
+tags:
+  - name: Baseline
+    description: Baseline core Baseline provides internal integration middleware interfaces for baselining systems of record.
+  - name: CCSM
+    description: Baseline core CCSM API provides interfaces for general interaction with the underlying mainnet.
+  - name: Privacy
+    description: Baseline core privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
+  - name: Registry
+    description: Baseline core registry API provides interfaces for the organization registry.
+  - name: Vault
+    description: |- 
+      Baseline core vault API provides tools and methods for managing digital authentication credentials for `User`, `Organization` and `Workgroup` instances. 
 paths:
   /accounts:
     get:
@@ -4456,7 +4468,7 @@ components:
       type: oauth2
     bearerAuth:
       bearerFormat: JWT
-      description: 'The presence of a `bearer` API token is required to authorize most Baseline API calls. A `bearer` API token is an encoded JWT which contains a subject claim (`sub`) which references an authorized entity (i.e., the `User`, `Application` or `Organization`). The authorized entity uses a signed `bearer` authorization Token to access one or more resources for which the Token was authorized.  Unless otherwise noted, all API requests must include a header such as `Authorization: bearer <jwt>`'
+      description: 'The presence of a `bearer` API token is required to authorize most Baseline API calls. A `bearer` API token is an encoded JWT which contains a subject claim (`sub`) which references an authorized entity (i.e., the `User`, `Application` or `Organization`). The authorized entity uses a signed `bearer` authorization Token xto access one or more resources for which the Token was authorized.  Unless otherwise noted, all API requests must include a header such as `Authorization: bearer <jwt>`'
       scheme: bearer
       type: http
 externalDocs:
