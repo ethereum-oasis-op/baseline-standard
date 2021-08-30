@@ -6,31 +6,11 @@ info:
     url: https://raw.githubusercontent.com/ethereum-oasis/baseline-standard/main/LICENSE
   title: Baseline API
   version: v1.0.0
-servers:
-  - description: Provide Baseline Operator
-    url: https://baseline.provide.network
-  - description: Local Baseline Integration Stack
-    url: http://localhost:8080
-  - description: Local BRI-1 Stack
-    url: http://localhost:9999
-tags:
-  - description: Baseline provides internal integration middleware interfaces for baselining systems of record.
-    name: Baseline
-  - description: Baseline core CCSM API package provides interfaces for general interaction with the underlying mainnet.
-    name: CCSM
-  - description: Baseline core privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
-    name: Privacy
-  - description: Baseline core registry API provides interfaces for the organization registry.
-    name: Registry
-  - description: 'Baseline core vault API provides tools and methods for managing digital authentication credentials for `User`, `Organization` and `Workgroup` instances. '
-    name: Vault
-security:
-  - bearerAuth: []
 paths:
   /accounts:
     get:
       deprecated: false
-      description: Returns a list of `Account` instances in the authorized scope
+      description: 'Returns a list of `Account` instances in the authorized scope'
       operationId: listAccounts
       parameters:
         - $ref: '#/components/parameters/page'
@@ -43,7 +23,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Account'
                 type: array
-          description: The request was successful and a list of accounts has been returned.
+          description: 'The request was successful and a list of accounts has been returned.'
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -70,17 +50,17 @@ paths:
         - CCSM
     post:
       deprecated: false
-      description: Creates an `Account` using the parameters provided in the request body
+      description: 'Creates an `Account` using the parameters provided in the request body'
       operationId: createAccount
       parameters: []
       requestBody:
         content:
           application/json:
             example:
-              key_id: 331156fb-fa5c-4557-ac39-69ae34c72c18
-              network_id: 66d44f30-9092-4182-a3c4-bc02736d6ae5
-              user_id: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
-              vault_id: 190822c9-62f5-4caf-a419-df735a793b2f
+              key_id: '331156fb-fa5c-4557-ac39-69ae34c72c18'
+              network_id: '66d44f30-9092-4182-a3c4-bc02736d6ae5'
+              user_id: '7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
+              vault_id: '190822c9-62f5-4caf-a419-df735a793b2f'
             schema:
               $ref: '#/components/schemas/Account'
       responses:
@@ -117,7 +97,7 @@ paths:
       description: Retrieves details for a specified `Account`
       operationId: getAccountDetails
       parameters:
-        - description: ID of a specific `Account` for which detailed information is desired; _UUID as specified by RFC4122_
+        - description: 'ID of a specific `Account` for which detailed information is desired; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -159,7 +139,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
-        - description: Flag to indicate if token contracts should be filtered from the response; default is true
+        - description: 'Flag to indicate if token contracts should be filtered from the response; default is true'
           explode: true
           in: query
           name: filter_tokens
@@ -167,7 +147,7 @@ paths:
           schema:
             type: boolean
           style: form
-        - description: Indicates how the response should be sorted; currently, recent is the only supported option and returns by accessed_at descending.
+        - description: 'Indicates how the response should be sorted; currently, recent is the only supported option and returns by accessed_at descending.'
           explode: true
           in: query
           name: sort
@@ -210,7 +190,7 @@ paths:
         - CCSM
     post:
       deprecated: false
-      description: Deploys a contract using the parameters provided in the request body
+      description: 'Deploys a contract using the parameters provided in the request body'
       operationId: deployContract
       parameters: []
       requestBody:
@@ -218,7 +198,7 @@ paths:
           application/json:
             example:
               name: Shuttle
-              network_id: 07102258-5e49-480e-86af-6d0c3260827d
+              network_id: '07102258-5e49-480e-86af-6d0c3260827d'
               params:
                 abi:
                   anonymous: false
@@ -229,16 +209,16 @@ paths:
                     type: bytes
                   name: Ekho
                   type: event
-                account_id: df83bcbb-ff5b-4c4c-b1f5-8ca6a61fe460
+                account_id: 'df83bcbb-ff5b-4c4c-b1f5-8ca6a61fe460'
                 bytecode: 0x
                 contract_name: Ekho
                 outputs: []
                 source: 0x
-                state_mutability: nonpayable
-                type: function
-              pubsub_prefix: 57478604c134ef20b94dff84e52c0fd562ddae56cd50431339766819a7523d09
-              type: registry
-              workgroup_id: dc767890-0bbc-4c1d-bc04-f5842330018f
+                state_mutability: 'nonpayable'
+                type: 'function'
+              pubsub_prefix: '57478604c134ef20b94dff84e52c0fd562ddae56cd50431339766819a7523d09'
+              type: 'registry'
+              workgroup_id: 'dc767890-0bbc-4c1d-bc04-f5842330018f'
             schema:
               $ref: '#/components/schemas/Contract'
         required: true
@@ -267,10 +247,10 @@ paths:
   /contracts/{id}:
     get:
       deprecated: false
-      description: Retrieves details for a specified `Contract`
+      description: 'Retrieves details for a specified `Contract`'
       operationId: getContractDetail
       parameters:
-        - description: ID of a specific `Contract` for which detailed information is desired; _UUID as specified by RFC4122_
+        - description: 'ID of a specific `Contract` for which detailed information is desired; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -310,10 +290,10 @@ paths:
   /contracts/{id}/execute:
     post:
       deprecated: false
-      description: Constructs and executes a specific method in a specific smart contract
+      description: 'Constructs and executes a specific method in a specific smart contract'
       operationId: executeContract
       parameters:
-        - description: ID of a specific `Contract` containing the method to be executed; _UUID as specified by RFC4122_
+        - description: 'ID of a specific `Contract` containing the method to be executed; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -323,7 +303,7 @@ paths:
         content:
           application/json:
             example:
-              account_id: 8a1f4492-9a73-4e3d-bafe-6a3794b1320e
+              account_id: '8a1f4492-9a73-4e3d-bafe-6a3794b1320e'
               method: broadcast
               params:
                 - Example
@@ -395,21 +375,21 @@ paths:
         - CCSM
     post:
       deprecated: false
-      description: Creates a `Network` using the parameters provided in the request body
+      description: 'Creates a `Network` using the parameters provided in the request body'
       operationId: createNetwork
       requestBody:
         content:
           application/json:
             example:
-              chain_id: 8aaf1468-9cc1-4735-8975-aa3909178482
+              chain_id: '4'
               config:
-                block_explorer_url: https://etherscan.io
-                chainspec_url: https://gist.githubusercontent.com/kthomas/3ac2e29ee1b2fb22d501ae7b52884c24/raw/161c6a9de91db7044fb93852aed7b0fa0e78e55f/mainnet.chainspec.json
+                block_explorer_url: 'https://etherscan.io'
+                chainspec_url: 'https://gist.githubusercontent.com/kthomas/3ac2e29ee1b2fb22d501ae7b52884c24/raw/161c6a9de91db7044fb93852aed7b0fa0e78e55f/mainnet.chainspec.json'
                 engine_id: ethash
                 is_ethereum_network: true
-                json_rpc_url: https://mainnet.infura.io/v3/fde5e81d5d3141a093def423db3eeb33
+                json_rpc_url: 'https://mainnet.infura.io/v3/fde5e81d5d3141a093def423db3eeb33'
                 native_currency: ETH
-                network_id: 324cf211-6d67-4cae-b26c-c424308eabfa
+                network_id: '324cf211-6d67-4cae-b26c-c424308eabfa'
                 platform: evm
                 protocol_id: pow
                 security:
@@ -422,8 +402,8 @@ paths:
                         - 30300
                       udp:
                         - 30300
-                websocket_url: wss://mainnet.infura.io/ws/v3/egt7a93h1s2118n779lpp193dc2fwb69
-              description: A mainnet to serve an as example
+                websocket_url: 'wss://mainnet.infura.io/ws/v3/egt7a93h1s2118n779lpp193dc2fwb69'
+              description: 'A mainnet to serve an as example'
               enabled: true
               name: Example mainnet
             schema:
@@ -454,10 +434,10 @@ paths:
   /networks/{id}:
     put:
       deprecated: false
-      description: Updates a specified `Network` using the parameters provided in the request body
+      description: 'Updates a specified `Network` using the parameters provided in the request body'
       operationId: updateNetwork
       parameters:
-        - description: ID of a specific `Network` to be updated; _UUID as specified by RFC4122_
+        - description: 'ID of a specific `Network` to be updated; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -493,10 +473,10 @@ paths:
   /networks/{id}/status:
     get:
       deprecated: false
-      description: Retrieves the syncing status and, if fully-synced, real-time metrics and metadata of a specified `Network`
+      description: 'Retrieves the syncing status and, if fully-synced, real-time metrics and metadata of a specified `Network`'
       operationId: getNetworkStatus
       parameters:
-        - description: ID of a specific `Network` for which the status is desired; _UUID as specified by RFC4122_
+        - description: 'ID of a specific `Network` for which the status is desired; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -533,7 +513,7 @@ paths:
   /objects:
     post:
       deprecated: false
-      description: Creates a Baseline object using the parameters provided in the request body
+      description: 'Creates a Baseline object using the parameters provided in the request body'
       operationId: createBaselineObject
       parameters: []
       requestBody:
@@ -543,7 +523,7 @@ paths:
               baseline_id: af96a1bb-0c6d-4b6d-9b18-801d1db07a9d
               opcode: BLINE
               payload:
-                proof: 8d8f7498db7aee910428c737d8427ac4add98353f981ca70db07697a091d8c23972b55b0b20fc0eebc1ac6c2ae427d783291c7fcb2e3f7417d279fea78ce1eac2d2293e53579abbef4960a1e290bd023e2999d8ff423d01080d449ce5d14ca89c94e277e8e0bb14fb91a0b71129920ae4411e77685287611f4d2aaf66b8fc5dc
+                proof: '8d8f7498db7aee910428c737d8427ac4add98353f981ca70db07697a091d8c23972b55b0b20fc0eebc1ac6c2ae427d783291c7fcb2e3f7417d279fea78ce1eac2d2293e53579abbef4960a1e290bd023e2999d8ff423d01080d449ce5d14ca89c94e277e8e0bb14fb91a0b71129920ae4411e77685287611f4d2aaf66b8fc5dc'
                 type: general_consistency
                 witness: {}
               type: general_consistency
@@ -570,17 +550,17 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       servers:
-        - url: https://baseline.proxy/api/v1
-      summary: Create a Baseline object
+        - url: 'https://baseline.proxy/api/v1'
+      summary: 'Create a Baseline object'
       tags:
         - Baseline
   /objects/{id}:
     put:
       deprecated: false
-      description: Updates a specific `Object` with the parameters provided in the request body
+      description: 'Updates a specific `Object` with the parameters provided in the request body'
       operationId: updateObject
       parameters:
-        - description: ID of a specific `Object`; _UUID as specified by RFC4122_
+        - description: 'ID of a specific `Object`; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -608,14 +588,14 @@ paths:
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
       servers:
-        - url: https://baseline.proxy/api/v1
+        - url: 'https://baseline.proxy/api/v1'
       summary: Update object
       tags:
         - Baseline
   /organizations:
     get:
       deprecated: false
-      description: Returns a list of `Organization` instances in the authorized scope
+      description: 'Returns a list of `Organization` instances in the authorized scope'
       operationId: listOrganizations
       parameters:
         - $ref: '#/components/parameters/page'
@@ -646,7 +626,7 @@ paths:
         - Registry
     post:
       deprecated: false
-      description: Creates an `Organization` using the parameters provided in the request body
+      description: 'Creates an `Organization` using the parameters provided in the request body'
       operationId: createOrganization
       requestBody:
         content:
@@ -679,10 +659,10 @@ paths:
   /organizations/{id}:
     get:
       deprecated: false
-      description: Retrieves details for a specified `Organization`
+      description: 'Retrieves details for a specified `Organization`'
       operationId: getOrganizationDetails
       parameters:
-        - description: ID of a specific `Organization` for which detailed information is desired; _UUID as specified by RFC4122_
+        - description: 'ID of a specific `Organization` for which detailed information is desired; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -714,10 +694,10 @@ paths:
         - Registry
     put:
       deprecated: false
-      description: Updates a specified `Organization` using the parameters provided in the request body
+      description: 'Updates a specified `Organization` using the parameters provided in the request body'
       operationId: updateOrganizationDetails
       parameters:
-        - description: ID of a specific `Organization` to be updated; _UUID as specified by RFC4122_
+        - description: 'ID of a specific `Organization` to be updated; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -750,10 +730,10 @@ paths:
   /provers:
     get:
       deprecated: false
-      description: Returns a list of `Prover` instances in the authorized scope
+      description: 'Returns a list of `Prover` instances in the authorized scope'
       operationId: listProvers
       parameters:
-        - description: Filter the response by elliptic curve
+        - description: 'Filter the response by elliptic curve'
           explode: false
           in: query
           name: curve
@@ -761,7 +741,7 @@ paths:
           schema:
             type: string
           style: form
-        - description: Filter the response by identifier
+        - description: 'Filter the response by identifier'
           explode: false
           in: query
           name: identifier
@@ -769,7 +749,7 @@ paths:
           schema:
             type: string
           style: form
-        - description: Filter the response by provider
+        - description: 'Filter the response by provider'
           explode: false
           in: query
           name: provider
@@ -777,7 +757,7 @@ paths:
           schema:
             type: string
           style: form
-        - description: Filter the response by proving scheme
+        - description: 'Filter the response by proving scheme'
           explode: false
           in: query
           name: proving_scheme
@@ -785,7 +765,7 @@ paths:
           schema:
             type: string
           style: form
-        - description: Filter the response by the status
+        - description: 'Filter the response by the status'
           explode: false
           in: query
           name: status
@@ -857,10 +837,10 @@ paths:
   /provers/{id}:
     get:
       deprecated: false
-      description: Retrieves details for a specific `Prover`
+      description: 'Retrieves details for a specific `Prover`'
       operationId: getProverDetails
       parameters:
-        - description: ID of a specific `Prover`; _UUID as specified by RFC4122_
+        - description: 'ID of a specific `Prover`; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -892,16 +872,16 @@ paths:
   /provers/{id}/notes/{index}:
     get:
       deprecated: false
-      description: Retrieves the note at the given index within the dense merkle tree note store associated with the `Prover`
+      description: 'Retrieves the note at the given index within the dense merkle tree note store associated with the `Prover`'
       operationId: getNotesValue
       parameters:
-        - description: ID of a specific `Prover`; _UUID as specified by RFC4122_
+        - description: .
           in: path
           name: id
           required: true
           schema:
             type: string
-        - description: The index of the leaf in the dense merkle tree for the underlying data structure
+        - description: 'The index of the leaf in the dense merkle tree for the underlying data structure'
           in: path
           name: index
           required: true
@@ -932,7 +912,7 @@ paths:
   /provers/{id}/nullifiers/{index}:
     get:
       deprecated: false
-      description: Retrieves the nullified note if one exists at the given index within the sparse merkle tree nullifier store associated with the `Prover`
+      description: 'Retrieves the nullified note if one exists at the given index within the sparse merkle tree nullifier store associated with the `Prover`'
       operationId: getNullifierNote
       parameters:
         - description: ID of a specific `Prover`; _UUID as specified by RFC4122_
@@ -973,10 +953,8 @@ paths:
     post:
       deprecated: false
       description: |-
-        Creates a proof specific valid witness parameter
-
-        Calling this API has an implicit side-effect of writing the hash of generated proof to the persistent store associated with the `Prover`.
-      operationId: proveProver
+        Generates a cryptographic proof given a valid witness parameter; calling this API has an implicit side-effect of writing to the configured `Store`.
+      operationId: generateProof
       parameters:
         - description: ID of a specific `Prover`; _UUID as specified by RFC4122_
           in: path
@@ -989,10 +967,32 @@ paths:
           application/json:
             schema:
               properties:
-                proof:
-                  description: The hex-encoded proof to verify
+                identifier:
+                  type: string
+                proving_scheme:
+                  description: Proving scheme to be used
+                  example: groth16
                   readOnly: false
                   type: string
+                curve:
+                  description: Pairing-friendly elliptic curve
+                  example: BN254
+                  readOnly: false
+                  type: string                
+                provider:
+                  description: Circuit provider
+                  example: gnark
+                  readOnly: false
+                  type: string
+                name:
+                  type: string
+                  description: 'User-defined name for proof'
+                store_id: 
+                  description: 'ID of `Store` that will accept the generate proof'
+                  format: uuid
+                  type: string
+                witness:
+                  $ref: '#/components/schemas/Witness'
               type: object
         required: true
       responses:
@@ -1012,7 +1012,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-      summary: Prove prover
+      summary: Generate Proof
       tags:
         - Privacy
   /provers/{id}/verify:
@@ -2411,6 +2411,12 @@ components:
           minLength: 1
           readOnly: false
           type: string
+        nonce:
+          description: Random 32-bit integer or incrementing counter which must only be used once to avoid exposing the underlying secret; if not provided, a random 32-bit integer is used
+          example: 4512
+          format: int32
+          readOnly: false
+          type: integer
         organization_id:
           description: ID of a specific `Organization` that created a specific `Account`; _UUID as specified by RFC4122_
           example: 35e90d71-6caa-45bb-86f3-39042d525287
@@ -2482,22 +2488,22 @@ components:
           readOnly: false
           type: string
         baselineRecord_id:
-          description: List of IDs containing the specific `BaselineRecord` instances associated with the specific `BaselineContext`
+          description: 'List of IDs containing the specific `BaselineRecord` instances associated with the specific `BaselineContext`'
           example:
           items:
             $ref: '#/components/schemas/BaselineRecord'
           readOnly: false
           type: array
         type:
-          description: Type of `BaselineContext`
+          description: 'Type of `BaselineContext`'
           example: Purchase order
           readOnly: false
           type: string
         workflow:
           $ref: '#/components/schemas/Workflow'
         workflow_id:
-          description: ID of a specific `Workflow` for which the context is intended; _UUID as specified by RFC4122_
-          example: 538e8eeb-4772-4685-a283-15d4060762e4
+          description: 'ID of a specific `Workflow` for which the context is intended; _UUID as specified by RFC4122_'
+          example: '538e8eeb-4772-4685-a283-15d4060762e4'
           format: uuid
           maxLength: 36
           minLength: 1
@@ -2512,12 +2518,12 @@ components:
       title: Baseline Context
       type: object
     BaselineRecord:
-      description: The link between an object or document in an internal system of record and a `BaselineContext`
+      description: 'The link between an object or document in an internal system of record and a `BaselineContext`'
       example:
         baseline_context:
           $ref: '#/components/schemas/BaselineContext'
-        baseline_id: a24dd3cc-9822-4a6c-8216-822b9effb0db
-        id: 24ac3268-9778-419e-9bb5-e4e382cd1ad4
+        baseline_id: 'a24dd3cc-9822-4a6c-8216-822b9effb0db'
+        id: '24ac3268-9778-419e-9bb5-e4e382cd1ad4'
         type: baseline
       properties:
         baseline_id:
@@ -2531,19 +2537,48 @@ components:
         context:
           $ref: '#/components/schemas/BaselineContext'
         id:
-          description: ID of a specific `BaselineRecord`; _UUID as specified by RFC4122_
-          example: bc16c008-1270-470b-8fdb-a9c7c75785fa
+          description: 'ID of a specific `BaselineRecord`; _UUID as specified by RFC4122_'
+          example: 'bc16c008-1270-470b-8fdb-a9c7c75785fa'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: true
           type: string
         type:
-          description: Type of `BaselineRecord`
+          description: 'Type of `BaselineRecord`'
           example: Baseline
           readOnly: false
           type: string
       title: Baseline Record
+      type: object
+    BPIAccount:
+      description: 'Associates authorized participants with an account-based state '
+      example: []
+      properties:
+        authorization_condition:
+          description: 'Condition necessary for authorization'
+          readOnly: false
+          type: object
+        policies:
+          $ref: '#/components/schemas/Policy'
+        nonce:
+          description: 'Random 32-bit integer or incrementing counter which must only be used once to avoid exposing the underlying secret; if not provided, a random 32-bit integer is used'
+          example: 4512
+          format: int32
+          readOnly: false
+          type: integer
+        metadata:
+          description: 'Arbitrary metadata'
+          readOnly: false
+          type: object
+        recovery_policy:
+          $ref: '#/components/schemas/RecoveryPolicy'
+      required:
+        - policies
+          nonce
+          metadata
+          recovery_policy
+      title: 'BPI Account'
       type: object
     Circuit:
       description: |-
@@ -2571,7 +2606,7 @@ components:
           type: string
         curve:
           description: Pairing-friendly elliptic curve
-          example: BN256
+          example: BN254
           readOnly: false
           type: string
         description:
@@ -3392,22 +3427,22 @@ components:
             - SYNC
           type: string
         payload:
-          description: Arbitrary data object that holds the intended message
+          description: 'Arbitrary data object that holds the intended message'
           example: {}
           properties:
             proof:
-              description: The hex-encoded proof to verify
+              description: 'The hex-encoded proof to verify'
               readOnly: false
               type: string
             type:
-              description: Type of `Object` being created
+              description: 'Type of `Object` being created'
               readOnly: false
               type: string
             witness:
               $ref: '#/components/schemas/Witness'
           type: object
         payload_url:
-          description: The URL of the payload on a Content Delivery Network (CDN)
+          description: 'The URL of the payload on a Content Delivery Network (CDN)'
           type: string
         type:
           description: Type of `Object`
@@ -3417,26 +3452,26 @@ components:
     Organization:
       example:
         created_at: '2021-04-16T15:05:23.130Z'
-        description: Organization for testing
-        id: a7e165dd-2d91-4f1e-b025-6ef2c5514603
+        description: 'Organization for testing'
+        id: 'a7e165dd-2d91-4f1e-b025-6ef2c5514603'
         metadata: {}
-        name: ACME Inc.
-        user_id: ce69ea1c-7f0a-418b-9ecf-28ce7eca09e8
+        name: 'ACME Inc.'
+        user_id: 'ce69ea1c-7f0a-418b-9ecf-28ce7eca09e8'
       properties:
         created_at:
-          description: Timestamp indicating date and time of `Organization` creation
+          description: 'Timestamp indicating date and time of `Organization` creation'
           example: '2021-04-16T15:05:23.130Z'
           format: Date-time
           readOnly: true
           type: string
         description:
-          description: User-defined description of `Organization` being created
+          description: 'User-defined description of `Organization` being created'
           example: Organization for testing
           readOnly: false
           type: string
         id:
-          description: ID of a specific `Organization`; _UUID as specified by RFC4122_
-          example: a7e165dd-2d91-4f1e-b025-6ef2c5514603
+          description: 'ID of a specific `Organization`; _UUID as specified by RFC4122_'
+          example: 'a7e165dd-2d91-4f1e-b025-6ef2c5514603'
           format: uuid
           maxLength: 36
           minLength: 1
@@ -3446,13 +3481,13 @@ components:
           nullable: true
           type: object
         name:
-          description: Name of `Organization` being created
-          example: ACME Inc.
+          description: 'Name of `Organization` being created'
+          example: 'ACME Inc.'
           readOnly: false
           type: string
         user_id:
-          description: ID of `User` that created a specific `Organization`; _UUID as specified by RFC4122_
-          example: ce69ea1c-7f0a-418b-9ecf-28ce7eca09e8
+          description: 'ID of `User` that created a specific `Organization`; _UUID as specified by RFC4122_'
+          example: 'ce69ea1c-7f0a-418b-9ecf-28ce7eca09e8'
           format: uuid
           maxLength: 36
           minLength: 1
@@ -3461,14 +3496,14 @@ components:
       required:
         - description
         - name
-      title: Organization
+      title: 'Organization'
       type: object
     Participant:
-      description: Party to a Baseline `Workgroup` or `Workflow` context.
+      description: 'Party to a Baseline `Workgroup` or `Workflow` context'
       example:
         address: '0x1f4a6f3bfdea8fe1539ad538421cba0668bf8edf'
-        api_endpoint: https://api_endpoint/api/v1/endpoint
-        messaging_endpoint: https://api_endpoint/api/v1/messaging
+        api_endpoint: 'https://api_endpoint/api/v1/endpoint'
+        messaging_endpoint: 'https://api_endpoint/api/v1/messaging'
         metadata: {}
       properties:
         address:
@@ -3476,30 +3511,39 @@ components:
           example: '0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e'
           type: string
         api_endpoint:
-          description: URL of the baseline API, which may not be exposed to the WAN
-          example: https://api_endpoint/api/v1/endpoint
+          description: 'URL of the baseline API, which may not be exposed to the WAN'
+          example: 'https://api_endpoint/api/v1/endpoint'
           type: string
         messaging_endpoint:
-          description: Publicly-accessible TCP endpoint where the `Participant` receives inbound protocol messages
-          example: https://api_endpoint/api/v1/messaging
+          description: 'Publicly-accessible TCP endpoint where the `Participant` receives inbound protocol messages'
+          example: 'https://api_endpoint/api/v1/messaging'
           type: string
         metadata:
-          description: Arbitrary data as needed for external interfaces
+          description: 'Arbitrary data as needed for external interfaces'
           type: object
-      title: Participant
+      title: 'Participant'
       type: object
-    Proof:
-      description: The hex-encoded proof to verify
+    Policy:
+      description: 'Ruleset that defines authorization privleges'
       properties:
-        witness:
-          $ref: '#/components/schemas/Witness'
-      title: Proof
+        metadata:
+          type: object
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        scope:
+          description: 'Space-delimited list of scopes'
+          example: 'email profile bpi'
+          readOnly: false
+          type: string
+      title: Policy
       type: object
     ProtocolMessage:
-      description: Baseline protocol message internal to BPI
+      description: 'Baseline protocol message internal to BPI'
       properties:
         baseline_id:
-          description: ID of associated baseline instance; _UUID as specified by RFC4122_
+          description: 'ID of associated baseline instance; _UUID as specified by RFC4122_'
           format: uuid
           readOnly: false
           type: string
@@ -3525,22 +3569,40 @@ components:
           type: string
         type:
           type: string
-      title: Protocol Message
+      title: 'Protocol Message'
       type: object
     ProtocolMessagePayload:
-      description: Baseline protocol message payload
+      description: 'Baseline protocol message payload'
+      example: 
+        object: {}
+        proof: |-
+          cd50a3d7436610d3ba8e60d7e1be147a
+          65f915326c4debed565fa9f58eac399b
+          36871252fec8852f579ab24bb7e8f35e
+          6e9b14d69ba7c2fa893c4c890d2d68ff
+          fad6ac9a54e291b24b9d86d590d096df
+        type: 'proof'
+        witness: {}
+          
       properties:
         object:
           $ref: '#/components/schemas/Object'
         proof:
-          description: The hex-encoded proof to verify
+          description: 'The hex-encoded proof to verify'
+          example: |- 
+            cd50a3d7436610d3ba8e60d7e1be147a
+            65f915326c4debed565fa9f58eac399b
+            36871252fec8852f579ab24bb7e8f35e
+            6e9b14d69ba7c2fa893c4c890d2d68ff
+            fad6ac9a54e291b24b9d86d590d096df'
           type: string
         type:
-          description: ''
+          description: 'Type of protocol message payload'
+          example: 'proof'
           type: string
         witness:
           $ref: '#/components/schemas/Witness'
-      title: Protocol Message Payload
+      title: 'Protocol Message Payload'
     Prover:
       description: |-
         A state synchronization and consistency mechanism for completing on- and off-chain state transitions.
@@ -3557,77 +3619,64 @@ components:
         |running_setup|trusted setup is running asynchronously|
         |deploying_artifacts|on-chain shield/verifier contract artifacts are being deployed|
         |provisioned|prover is ready for use|
+      example:
+        created_at: '2021-02-27T14:26:06.864Z'
+        description: 'Example circuit-type prover'
+        id: '584877fd-6a18-4950-9917-1dd0da26e249'
+        identifier: 'cubic'
+        store_id: 'f39a4b7a-2e4f-496b-a4f1-8a9635da10e7'
+        type: 'circuit'
       properties:
         created_at:
-          description: Date and time of `Prover` creation
+          description: 'Date and time of `Prover` creation'
           example: '2021-02-27T14:26:06.864Z'
           format: date-time
           readOnly: true
-          type: string
-        curve:
-          description: Pairing-friendly elliptic curve
-          example: BN256
-          readOnly: false
-          type: string
         description:
-          description: User-defined description of the `Prover`
-          example: Prover example description
+          description: 'User-defined description of the `Prover`'
+          example: 'Prover example description'
           readOnly: false
           type: string
         id:
-          description: ID for a specific `Prover`; _UUID as specified by RFC4122_
-          example: ce0319c8-ddc8-4d46-a16c-c506f5dae9a0
+          description: 'ID for a specific `Prover`; _UUID as specified by RFC4122_'
+          example: 'ce0319c8-ddc8-4d46-a16c-c506f5dae9a0'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: true
           type: string
         identifier:
-          description: Prover identifier
-          example: Cubic
+          description: 'Prover identifier'
+          example: 'Cubic'
           type: string
         name:
-          description: User-defined name of `Prover`
-          example: Prover example name
+          description: 'User-defined name of `Prover`'
+          example: 'Prover example name'
           readOnly: false
-          type: string
-        provider:
-          description: Prover provider
-          example: gnark
-          type: string
-        proving_key_id:
-          description: ID of `Key` used for proving the `Prover` instance; _UUID as specified by RFC4122_
-          example: f2a9e144-79c1-4379-bee8-006f3401f4df
-          format: uuid
-          readOnly: false
-          type: string
-        proving_scheme:
-          description: Proving scheme to be used
-          example: groth16
           type: string
         status:
-          description: Status of `Prover`
+          description: 'Status of `Prover`'
           enum:
-            - init compiling compiled pending_setup running_setup deploying_artifacts provisioned
+            - init
+              compiling
+              compiled
+              pending_setup
+              running_setup
+              deploying_artifacts
+              provisioned
           type: string
         store_id:
-          description: ID of the persistent store instance
+          description: 'ID of the persistent store instance; _UUID as specified by RFC4122_'
           readOnly: false
           type: string
         type:
-          description: Kind of `Prover`
-          example: Circuit
+          description: 'Type of `Prover`'
+          example: circuit
           readOnly: false
           type: string
         vault_id:
           description: ID of host `Vault`; _UUID as specified by RFC4122_
           example: 0ca9331a-d3fb-401c-b00b-5ada557c1056
-          format: uuid
-          readOnly: false
-          type: string
-        verifying_key_id:
-          description: ID of `Key` used for verifying a specific `Prover`; _UUID as specified by RFC4122_
-          example: 2268935e-c21e-4891-88cc-d877cf496faf
           format: uuid
           readOnly: false
           type: string
@@ -3637,16 +3686,96 @@ components:
         - provider
         - proving_scheme
         - curve
+        - type
       title: Prover
+      type: object
+    RecoveryPolicy:
+      description: 'Defined policy that outlines the recovery process'
+      properties:
+        description:
+          description: 'User-defined description for a specific recovery policy'
+          example: 'Recovery policy that uses a password reset'
+          readOnly: false
+          type: string
+        name:
+          description: 'Name for a specific recovery policy'
+          example: 'Password recovery policy'
+          readOnly: false
+          type: string
+        policy:
+          $ref: '#/components/schemas/Policy'
+      required:
+        - name
+        - policy
+      title: 'Recovery Policy'
+      type: object
+    Role:
+      description: 'Defined service entitlements to person entities within the system'
+      example:
+        description: 'Example role description'
+        name: 'Example role name'
+        organization_id: 799b1265-e114-4ba3-94bd-a00f072bec7c
+        permission: []
+        scope: 'email profile bpi'
+      properties:
+        created_at:
+          description: 'Date and time of `Role` creation'
+          example: 2021-04-21T02:12:11.158
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: 'User-defined description of a specific `Role`'
+          example: 'Example role description'
+          format: uuid
+          readOnly: false
+          type: string
+        organization_id:
+          description: 'ID of a specific `Organization` associated with the `Role`. _UUID as specified by RFC4122_'
+          example: '799b1265-e114-4ba3-94bd-a00f072bec7c'
+          format: uuid
+          readOnly: false
+          type: string
+        name:
+          description: 'User-define name of the `Role`'
+          example: 'BPI account owner'
+          readOnly: false
+          type: string
+        permission:
+          description: 'Abstract object describing specific permissions of the bearer'
+          readOnly: false
+          type: object
+        scope:
+          description: 'Space-delimited list of scopes'
+          example: 'email profile bpi'
+          readOnly: false
+          type: string
+        user_id:
+          description: 'ID of a specific `User` associated with  the specified `Role`'
+          example: 2b682899-91fa-458a-9af7-667f16ab8455
+          format: uuid
+          readOnly: false
+          type: string
+        vault_id: 
+          description: 'ID of `Vault` associated with a specific `Role`'
+          example: 1c552c2c-1a12-4e6f-9330-fd8ed0a77d1b
+          readOnly: false
+          type: string
+      required:
+        - name
+          permission
+          scope
+          vault_id
+      title: Role
       type: object
     Secret:
       example:
         created_at: 2021-04-17T20:35:34.062+0000
-        description: This secret is being stored for demonstration purposes
-        id: e9138dd7-b429-410a-bfa8-2a506d9e4297
-        name: Example secret
-        type: ed25519
-        value: 0x
+        description: 'This secret is being stored for demonstration purposes'
+        id: 'e9138dd7-b429-410a-bfa8-2a506d9e4297'
+        name: 'Example secret'
+        type: 'ed25519'
+        value: 0x1
         vault_id: 22e48752-7bff-4daa-89b3-91053bd509f2
       properties:
         created_at:
@@ -3755,6 +3884,46 @@ components:
           type: array
       title: State Claim
       type: object
+    Store:
+      description: 'Abstract storage provider to house `State`'
+      example:
+        description: 'dmt encrypted note store'
+        curve: BN254
+        name: Encrypted note store
+        provider: dmt
+      properties:
+        description:
+          description: 'User-defined description of the `Store`'
+          example: 'Note store encrypted via BN254 '
+          readOnly: false
+          type: string
+        curve:
+          description: Pairing-friendly elliptic curve
+          example: BN254
+          readOnly: false
+          type: string
+        id:
+          description: 'ID of a specific `Store`; _UUID as specified by RFC4122_'
+          example: '6e1e289f-5355-46ef-834f-93d3ddac0430'
+          format: uuid
+          readOnly: true
+          type: string
+        name:
+          description: 'User-defined name of the `Store`'
+          example: 'Encrypted note store'
+          readOnly: false
+          type: string
+        provider:
+          description: 'Store provider'
+          example: 'dmt'
+          readOnly: false
+          type: string
+      required:
+        - curve
+          name
+          provider
+      title: Store    
+      type: object
     Transaction:
       description: Record of exchange of data between two entities
       example:
@@ -3762,85 +3931,85 @@ components:
         block_timestamp: '2021-04-21T02:12:05.000Z'
         created_at: '2021-04-21T02:12:11.158Z'
         finalized_at: '2021-04-21T02:12:14.277Z'
-        hash: 698465416514684984piouhygiuytfruytdcghbkjhbvjyhdc
+        hash: '84f8525882f3bb24cd2d3cbdf0264115e03932b927f928f9e70b72bf90dd54f1'
         hd_derivation_path: m/44'/60'/0'/0/0
-        id: 99a61ee5-73ea-46d1-a434-b6a2a908bc51
-        network_id: 66d44f30-9092-4182-a3c4-bc02736d6ae5
-        status: success
-        to: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
-        user_id: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
+        id: '99a61ee5-73ea-46d1-a434-b6a2a908bc51'
+        network_id: '66d44f30-9092-4182-a3c4-bc02736d6ae5'
+        status: 'success'
+        to: '7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
+        user_id: '7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
         value: 0
-        wallet_id: 0fda2f96-d957-4f65-9e92-fa5092c51751
+        wallet_id: '0fda2f96-d957-4f65-9e92-fa5092c51751'
       properties:
         account_id:
-          description: ID of the `Account` signing identity to use for the request; _UUID as specified by RFC4122_
-          example: 6bb23e2b-07ed-4562-8afb-73955f8f17c5
+          description: 'ID of the `Account` signing identity to use for the request; _UUID as specified by RFC4122_'
+          example: '6bb23e2b-07ed-4562-8afb-73955f8f17c5'
           format: uuid
           readOnly: true
           type: string
         block:
-          description: Block height for a specific `Transaction`
+          description: 'Block height for a specific `Transaction`'
           example: '5464'
           format: integer
           readOnly: true
           type: number
         block_timestamp:
-          description: Date and time of block creation for a specific `Transaction`
+          description: 'Date and time of block creation for a specific `Transaction`'
           example: '2021-04-21T02:12:11.158Z'
           readOnly: true
           type: string
         broadcast_at:
-          description: Date and time that the `Transaction` was broadcast to the intended `Network`
+          description: 'Date and time that the `Transaction` was broadcast to the intended `Network`'
           example: '2021-04-21T02:12:11.158Z'
           format: date-time
           readOnly: true
           type: string
         created_at:
-          description: Date and time for the creation of a specific `Transaction`
+          description: 'Date and time for the creation of a specific `Transaction`'
           example: '2021-04-21T02:12:11.158Z'
           format: date-time
           readOnly: true
           type: string
         data:
-          description: Transaction data
+          description: 'Transaction data'
           nullable: true
           type: object
         description:
-          description: A user-defined summary of the transaction
+          description: 'A user-defined summary of the transaction'
           nullable: true
           type: object
         e2e_latency:
-          description: Amount of time, in milliseconds, of the full transaction lifecycle
+          description: 'Amount of time, in milliseconds, of the full transaction lifecycle'
           readOnly: true
           type: integer
         finalized_at:
-          description: Date and time that a specific `Transaction` was finalized on the intended `Network`
+          description: 'Date and time that a specific `Transaction` was finalized on the intended `Network`'
           example: '2021-04-21T02:12:11.158Z'
           format: date-time
           readOnly: true
           type: string
         hash:
-          description: A unique string of characters that is specific to every transaction on a specific `Network`; also referred to as transaction ID
+          description: 'A unique string of characters that is specific to every transaction on a specific `Network`; also referred to as transaction ID'
           readOnly: true
           type: string
         hd_derivation_path:
           type: string
         id:
-          description: ID for a specific `Transaction`; _UUID as specified by RFC4122_
-          example: bb0e8038-8e72-46db-a08d-204f804a24c1
+          description: 'ID for a specific `Transaction`; _UUID as specified by RFC4122_'
+          example: 'bb0e8038-8e72-46db-a08d-204f804a24c1'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: true
           type: string
         key_id:
-          description: ID of the vault key which will be used to sign the `Transaction`; required in the absence of a signer; _UUID as specified by RFC4122_
-          example: dcb00685-6434-4f4b-b9df-e929bb90d421
+          description: 'ID of the vault key which will be used to sign the `Transaction`; required in the absence of a signer; _UUID as specified by RFC4122_'
+          example: 'dcb00685-6434-4f4b-b9df-e929bb90d421'
           format: uuid
           type: string
         network_id:
-          description: ID of a specific `Network` on which the `Transaction` will be broadcast; _UUID as specified by RFC4122_
-          example: bddbc2ac-8531-4f19-962c-f19d93b68fbb
+          description: 'ID of a specific `Network` on which the `Transaction` will be broadcast; _UUID as specified by RFC4122_'
+          example: 'bddbc2ac-8531-4f19-962c-f19d93b68fbb'
           format: uuid
           readOnly: false
           type: string
@@ -3849,118 +4018,118 @@ components:
           readOnly: true
           type: integer
         published_at:
-          description: Date and time that a specific `Transaction` was published to the intended `Network`
+          description: 'Date and time that a specific `Transaction` was published to the intended `Network`'
           example: '2021-04-21T02:12:11.158Z'
           format: date-time
           readOnly: true
           type: string
         queue_latency:
-          description: Amount of time, in milliseconds, the transaction was queued for async processing
+          description: 'Amount of time, in milliseconds, the transaction was queued for async processing'
           readOnly: true
           type: integer
         ref:
-          description: Alternate identifier by which this `Transaction` is indexed; `ref` exists to optimize client-side throughput and parallel processing/nonce management _UUID as specified by RFC4122_
+          description: 'Alternate identifier by which this `Transaction` is indexed; `ref` exists to optimize client-side throughput and parallel processing/nonce management _UUID as specified by RFC4122_'
           format: uuid
           nullable: true
           type: string
         status:
-          description: Current status of a specific transaction
+          description: 'Current status of a specific transaction'
           readOnly: true
           type: string
         to:
-          description: Public network address of the recipient of the `Transaction`; if applicable
+          description: 'Public network address of the recipient of the `Transaction`; if applicable'
           example: '0x1f4a6f3bfdea8fe1539ad538421cba0668bf8edf'
           type: string
         user_id:
-          description: ID for a specific `User` that created a specific `Transaction`; _UUID as specified by RFC4122_
-          example: 52fe9407-5115-43ce-9115-5fcbcd0457f1
+          description: 'ID for a specific `User` that created a specific `Transaction`; _UUID as specified by RFC4122_'
+          example: '52fe9407-5115-43ce-9115-5fcbcd0457f1'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: true
           type: string
         value:
-          description: Total amount of value, represented in the smallest standard denomination of native currency for a specific Network (i.e., wei), to be transferred by the sender to the recipient
+          description: 'Total amount of value, represented in the smallest standard denomination of native currency for a specific Network (i.e., wei), to be transferred by the sender to the recipient'
           type: number
         wallet_id:
-          description: ID of a specific `Wallet` used for signing a specific `Transaction`; _UUID as specified by RFC4122_
-          example: 9c193c18-db84-4506-8462-9e604d1620b9
+          description: 'ID of a specific `Wallet` used for signing a specific `Transaction`; _UUID as specified by RFC4122_'
+          example: '9c193c18-db84-4506-8462-9e604d1620b9'
           format: uuid
           readOnly: false
           type: string
-      title: Transaction
+      title: 'Transaction'
     UnsealVault:
-      description: Unseals a specified `Vault`
+      description: 'Unseals a specified `Vault`'
       example:
-        key: quantum mirror summer general keep west promote satisfy limit butter mother oyster lazy whip earn spot ticket protect mean play script peace parent intact
+        key: 'quantum mirror summer general keep west promote satisfy limit butter mother oyster lazy whip earn spot ticket protect mean play script peace parent intact'
       properties:
         key:
-          description: Private key required for unsealing a specific `Vault`
+          description: 'Private key required for unsealing a specific `Vault`'
           type: string
       required:
         - key
-      title: Unseal Vault
+      title: 'Unseal Vault'
       type: object
     User:
       description: 'An individual participant in the baseline process. Can be virtual or non-virtual. A virtual user acts as a placeholder account that grants access to a specified `Organization` or `Workgroup`. '
       example:
         created_at: '2021-01-27T03:19:33.349Z'
-        email: joeuser@baseline.local
-        first_name: Joe
-        id: 7r19e831-43fd-237e-8b43-12af828ba3e3
-        last_name: User
-        name: Joe User
+        email: 'joeuser@baseline.local'
+        first_name: 'Joe'
+        id: '7r19e831-43fd-237e-8b43-12af828ba3e3'
+        last_name: 'User'
+        name: 'Joe User'
         permissions: 415
         privacy_policy_agreed_at: '2021-01-27T03:19:33.349Z'
         terms_of_service_agreed_at: '2021-01-27T03:19:33.349Z'
       properties:
         created_at:
-          description: Date and time of `User` creation
+          description: 'Date and time of `User` creation'
           example: '2021-01-27T03:19:33.349Z'
           readOnly: true
           type: string
         email:
-          description: Email address for a specific `User`
-          example: joeusr@baseline.local
+          description: 'Email address for a specific `User`'
+          example: 'joeusr@baseline.local'
           readOnly: false
           type: string
         first_name:
-          description: First name of a specific `User`
-          example: Joe
+          description: 'First name of a specific `User`'
+          example: 'Joe'
           readOnly: false
           type: string
         id:
-          description: ID for a specific `User`; _UUID as specified by RFC4122_
-          example: 7r19e831-43fd-237e-8b43-12af828ba3e3
+          description: 'ID for a specific `User`; _UUID as specified by RFC4122_'
+          example: '7r19e831-43fd-237e-8b43-12af828ba3e3'
           readOnly: true
           type: string
         last_name:
-          description: Last name of a specific `User`
-          example: User
+          description: 'Last name of a specific `User`'
+          example: 'User'
           readOnly: false
           type: string
         name:
-          description: Full name of a specific `User`
-          example: Joe User
+          description: 'Full name of a specific `User`'
+          example: 'Joe User'
           readOnly: true
           type: string
         password:
-          example: s3cr37
-          format: password
-          type: string
+          example: 's3cr37'
+          format: 'password'
+          type: 'string'
           writeOnly: true
         permissions:
-          description: Authorized privileges for a specific `User`
+          description: 'Authorized privileges for a specific `User`'
           example: 415
           readOnly: true
           type: integer
         privacy_policy_agreed_at:
-          description: Date and time of acceptance of the privacy policy
+          description: 'Date and time of acceptance of the privacy policy'
           example: '2021-01-27T03:19:33.349Z'
           readOnly: true
           type: string
         terms_of_service_agreed_at:
-          description: Date and time of acceptance of the terms of service
+          description: 'Date and time of acceptance of the terms of service'
           example: '2021-01-27T03:19:33.349Z'
           readOnly: true
           type: string
@@ -3971,45 +4140,50 @@ components:
       title: User
       type: object
     Vault:
-      description: Provides key management with a focus on providing advanced privacy and messaging capabilities (i.e., zero-knowledge proofs, SNARK-friendly hash functions, double-ratchet algorithm, etc.)
+      description: 'Provides key management with a focus on providing advanced privacy and messaging capabilities (i.e., zero-knowledge proofs, SNARK-friendly hash functions, double-ratchet algorithm, etc.)'
       example:
         created_at: '2021-08-23T05:40:11.047741Z'
-        description: Example Vault for testing and documentation purposes
-        id: 02093d35-61fd-42c3-b70e-44f5312f5187
+        description: 'Example Vault for testing and documentation purpose'
+        id: '02093d35-61fd-42c3-b70e-44f5312f5187'
         name: Example vault
       properties:
         created_at:
-          description: Date and time of `Vault` creation
+          description: 'Date and time of `Vault` creation'
           example: '2021-04-21T02:12:11.158Z'
           format: date-time
           readOnly: true
           type: string
         description:
-          description: User-defined descriptor for a specific `Vault` instance
-          example: Sample vault description
+          description: 'User-defined descriptor for a specific `Vault` instance'
+          example: 'Sample vault description'
           readOnly: false
           type: string
         id:
-          description: ID for a specific `Vault` instance; _UUID as specified by RFC4122_
-          example: f1f29322-b8fe-4adf-95ad-af1585e823c5
+          description: 'ID for a specific `Vault` instance; _UUID as specified by RFC4122_'
+          example: 'f1f29322-b8fe-4adf-95ad-af1585e823c5'
           format: uuid
           readOnly: true
           type: string
         name:
-          description: User-defined name for a specific `Vault` instance
-          example: Example vault name
+          description: 'User-defined name for a specific `Vault` instance'
+          example: 'Example vault name'
           readOnly: false
           type: string
       title: Vault
       type: object
     VerifyProof:
       example:
-        proof: '00010000011'
+        proof: |- 
+          cd50a3d7436610d3ba8e60d7e1be147a
+          65f915326c4debed565fa9f58eac399b
+          36871252fec8852f579ab24bb7e8f35e
+          6e9b14d69ba7c2fa893c4c890d2d68ff
+          fad6ac9a54e291b24b9d86d590d096df
         store: true
         witness: {}
       properties:
         proof:
-          description: The hex-encoded proof to verify
+          description: 'The hex-encoded proof to verify'
           example: |-
             cd50a3d7436610d3ba8e60d7e1be147a
             65f915326c4debed565fa9f58eac399b
@@ -4019,7 +4193,7 @@ components:
           readOnly: false
           type: string
         store:
-          description: When true, the proof hash is written to the configured prover store
+          description: 'When true, the proof hash is written to the configured prover store'
           example: true
           readOnly: false
           type: boolean
@@ -4028,18 +4202,18 @@ components:
       required:
         - proof
         - witness
-      title: Verify Proof
+      title: 'Verify Proof'
       type: object
     Wallet:
-      description: Hierarchical deterministic (HD) wallet in accordance with BIP44
+      description: 'Hierarchical deterministic (HD) wallet in accordance with BIP44'
       example:
         created_at: '2021-03-30T02:50:17.155Z'
-        id: bbc1195e-d131-4b2f-b1a8-1b6f34b55d3e
-        key_id: db9e6e21-23b0-497d-a02c-8a8813f8bf2d
-        public_key: xpub661MyMwAqRbcGdYXwwnwcnrH51AxyF3kkTeEt6iZfNDXsg4MLPgV7bEZ2v4uCx9djAboy6vSv3VbHPc6hf4Do8wb7FpJCuG7aMBwH2QgLJu
+        id: 'bbc1195e-d131-4b2f-b1a8-1b6f34b55d3e'
+        key_id: 'db9e6e21-23b0-497d-a02c-8a8813f8bf2d'
+        public_key: 'xpub661MyMwAqRbcGdYXwwnwcnrH51AxyF3kkTeEt6iZfNDXsg4MLPgV7bEZ2v4uCx9djAboy6vSv3VbHPc6hf4Do8wb7FpJCuG7aMBwH2QgLJu'
         purpose: 44
-        user_id: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
-        vault_id: 190822c9-62f5-4caf-a419-df735a793b2f
+        user_id: '7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
+        vault_id: '190822c9-62f5-4caf-a419-df735a793b2f'
       properties:
         created_at:
           description: Date and time of `Wallet` creation
@@ -4047,67 +4221,68 @@ components:
           readOnly: true
           type: string
         id:
-          description: ID for a specific `Wallet`; _UUID as specified by RFC4122_
-          example: 4ee831ae-327f-4a79-bd74-7e9f56ce40fa
+          description: 'ID for a specific `Wallet`; _UUID as specified by RFC4122_'
+          example: '4ee831ae-327f-4a79-bd74-7e9f56ce40fa'
           format: uuid
           readOnly: true
           type: string
         key_id:
-          description: ID of a specific private key used to sign a specific `Wallet`; _UUID as specified by RFC4122_
-          example: 5c928a43-9897-417a-9851-768e19b3cecd
+          description: 'ID of a specific private key used to sign a specific `Wallet`; _UUID as specified by RFC4122_'
+          example: '5c928a43-9897-417a-9851-768e19b3cecd'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: true
           type: string
         network_id:
-          description: ID for a specific `Network` for which a specific `Wallet` is intended; _UUID as specified by RFC4122_
-          example: 84a139c0-2e20-476c-91d0-618f7332189e
+          description: 'ID for a specific `Network` for which a specific `Wallet` is intended; _UUID as specified by RFC4122_'
+          example: '84a139c0-2e20-476c-91d0-618f7332189e'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: false
           type: string
         public_key:
-          description: Public signing key of a specific `Wallet`
-          example: xpub661MyMwAqRbcGdYXwwnwcnrH51AxyF3kkTeEt6iZfNDXsg4MLPgV7bEZ2v4uCx9djAboy6vSv3VbHPc6hf4Do8wb7FpJCuG7aMBwH2QgLJu
+          description: 'Public signing key of a specific `Wallet`'
+          example: 'xpub661MyMwAqRbcGdYXwwnwcnrH51AxyF3kkTeEt6iZfNDXsg4MLPgV7bEZ2v4uCx9djAboy6vSv3VbHPc6hf4Do8wb7FpJCuG7aMBwH2QgLJu'
           readOnly: true
           type: string
         purpose:
-          description: Purpose is a constant set to 44' (or 0x8000002C) following the BIP43 recommendation. It indicates that the subtree of this node is used according to this specification. Hardened derivation is used at this level
+          description: 'Purpose is a constant set to 44 (or 0x8000002C) following the BIP43 recommendation. It indicates that the subtree of this node is used according to this specification. Hardened derivation is used at this level'
           example: 44
           format: string
           readOnly: false
           type: integer
         user_id:
-          description: ID for a specific `User` that created a specific `Wallet`; _UUID as specified by RFC4122_
-          example: 8136f2d5-a993-4ec7-88af-45a01e85feaa
+          description: 'ID for a specific `User` that created a specific `Wallet`; _UUID as specified by RFC4122_'
+          example: '8136f2d5-a993-4ec7-88af-45a01e85feaa'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: true
           type: string
         vault_id:
-          description: ID for a specific `Vault` in which a specific `Wallet` is stored; _UUID as specified by RFC4122_
-          example: aa1b60d4-4f77-438d-8fca-cb514596e6c3
+          description: 'ID for a specific `Vault` in which a specific `Wallet` is stored; _UUID as specified by RFC4122_'
+          example: 'aa1b60d4-4f77-438d-8fca-cb514596e6c3'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: true
           type: string
-      title: Wallet
+      title: 'Wallet'
       type: object
     Witness:
       description: 'Public and private inputs used to generate the `Proof`. Payload can be delivered as a JSON object or chunked and streamed. Example is dependent on `Prover` parameters. '
+      example: {}
       properties: {}
       title: Witness
       type: object
     Workflow:
-      description: Baseline `Workflow` context containing a subset of `Workgroup` participants and series of `Workstep` instances
+      description: 'Baseline `Workflow` context containing a subset of `Workgroup` participants and series of `Workstep` instances'
       properties:
         id:
-          description: ID of a specific `Workflow`; _UUID as specified by RFC4122_
-          example: 4f818bf4-ef2a-4d0b-b4e7-1367f8c71a02
+          description: 'ID of a specific `Workflow`; _UUID as specified by RFC4122_'
+          example: '4f818bf4-ef2a-4d0b-b4e7-1367f8c71a02'
           format: uuid
           maxLength: 36
           minLength: 1
@@ -4118,78 +4293,78 @@ components:
             $ref: '#/components/schemas/Organization'
           type: array
         shield:
-          description: Address of the shield contract
+          description: 'Address of the shield contract'
           example: '0x1'
           readOnly: false
           type: string
         worksteps:
-          description: List of specific `Workstep` instances included in a specific `Workflow`
+          description: 'List of specific `Workstep` instances included in a specific `Workflow`'
           items:
             $ref: '#/components/schemas/Workstep'
           type: array
-      title: Workflow
+      title: 'Workflow'
       type: object
     Workgroup:
-      description: A `Workgroup` represents a logical collection of resources provisioned within the baseline containerized microservices architecture. A `Workgroup` is immutably configured upon initialization with support for a primary 'Network' (or "mainnet").
+      description: 'A `Workgroup` represents a logical collection of resources provisioned within the baseline containerized microservices architecture. A `Workgroup` is immutably configured upon initialization with support for a primary `Network` (or "mainnet").'
       example:
         config:
           baselined: true
-          webhook_secret: 1dfd34519a06420d8a6ed18afdffe932
+          webhook_secret: '1dfd34519a06420d8a6ed18afdffe932'
         created_at: '2021-05-21T12:36:52.977Z'
-        description: Workgroup intended for demonstration purposes
+        description: 'Workgroup intended for demonstration purposes'
         hidden: false
-        id: bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6
-        name: Example Workgroup
-        network_id: 07102258-5e49-480e-86af-6d0c3260827d
-        type: baseline
-        user_id: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
+        id: 'bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6'
+        name: 'Example Workgroup'
+        network_id: '07102258-5e49-480e-86af-6d0c3260827d'
+        type: 'baseline'
+        user_id: '7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
       properties:
         config:
           $ref: '#/components/schemas/WorkgroupConfig'
         created_at:
-          description: Date and time of `Workgroup` creation
+          description: 'Date and time of `Workgroup` creation'
           example: '2021-05-21T12:36:52.977Z'
           format: date-time
           minLength: 1
           readOnly: true
           type: string
         description:
-          description: User-defined `Workgroup` descriptor
-          example: Example workgroup description
+          description: 'User-defined `Workgroup` descriptor'
+          example: 'Example workgroup description'
           maxLength: 255
           type: string
         hidden:
-          description: When true, a specific `Workgroup` is not visible to the public
+          description: 'When true, a specific `Workgroup` is not visible to the public'
           type: boolean
         id:
-          description: ID for a specific `Workgroup`; _UUID as specified by RFC4122_
-          example: bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6
+          description: 'ID for a specific `Workgroup`; _UUID as specified by RFC4122_'
+          example: 'bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: true
           type: string
         name:
-          description: User-defined name of the `Workgroup`
+          description: 'User-defined name of the `Workgroup`'
           maxLength: 255
           minLength: 1
           type: string
         network_id:
-          description: ID for a specific `Network` host of a specific `Workgroup`; _UUID as specified by RFC4122_
-          example: 07102258-5e49-480e-86af-6d0c3260827d
+          description: 'ID for a specific `Network` host of a specific `Workgroup`; _UUID as specified by RFC4122_'
+          example: '07102258-5e49-480e-86af-6d0c3260827d'
           format: uuid
           maxLength: 36
           minLength: 1
           type: string
         type:
           default: baseline
-          description: Designates `Workgroup` type. In a Baseline `Workgroup`, will always be `baseline`
+          description: 'Designates `Workgroup` type. In a Baseline `Workgroup`, will always be `baseline`'
           example: baseline
           minLength: 1
           type: string
         user_id:
-          description: ID for a specific `User` that created a specific `Workgroup`; _UUID as specified by RFC4122_
-          example: 7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c
+          description: 'ID for a specific `User` that created a specific `Workgroup`; _UUID as specified by RFC4122_'
+          example: '7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
           format: uuid
           maxLength: 36
           minLength: 1
@@ -4201,48 +4376,48 @@ components:
       title: Workgroup
       type: object
     WorkgroupConfig:
-      description: Configuration object intended for use by integrated services
+      description: 'Configuration object intended for use by integrated services'
       properties:
         network_id:
-          description: ID of a specific `Network` for which a specific `Workgroup` is intended; _UUID as specified by RFC4122_
-          example: b521e245-6391-4d7a-9e9e-a786157fa0a3
+          description: 'ID of a specific `Network` for which a specific `Workgroup` is intended; _UUID as specified by RFC4122_'
+          example: 'b521e245-6391-4d7a-9e9e-a786157fa0a3'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: false
           type: string
         webhook_secret:
-          description: Secret necessary to access an integrated service webhook
+          description: 'Secret necessary to access an integrated service webhook'
           minLength: 1
           type: string
       title: Workgroup Config
       type: object
     Workstep:
-      description: One stepwise state transition in a `Workflow` represented by a `Prover` instance. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.
+      description: 'One stepwise state transition in a `Workflow` represented by a `Prover` instance. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.'
       example:
         id: 2fffec13-590e-41eb-9a84-69ed881e0036
         participants:
           - $ref: '#/components/schemas/Participant'
-        prover_id: dd615561-83e6-4f53-ac0f-aaf1749df139
+        prover_id: 'dd615561-83e6-4f53-ac0f-aaf1749df139'
         require_finality: true
-        workflow_id: f9227803-5541-4c13-a554-f6980f03362a
+        workflow_id: 'f9227803-5541-4c13-a554-f6980f03362a'
       properties:
         id:
-          description: ID of a specific `Workstep`; _UUID as specified by RFC4122_
-          example: 2fffec13-590e-41eb-9a84-69ed881e0036
+          description: 'ID of a specific `Workstep`; _UUID as specified by RFC4122_'
+          example: '2fffec13-590e-41eb-9a84-69ed881e0036'
           format: uuid
           maxLength: 36
           minLength: 1
           readOnly: true
           type: string
         participants:
-          description: List of `Organization` entities authorized to participate in a specific `Workstep`
+          description: 'List of `Organization` entities authorized to participate in a specific `Workstep`'
           items:
             $ref: '#/components/schemas/Participant'
           type: array
         prover_id:
-          description: ID of the a specific `Prover` instance that is represented in a specific `Workstep`; _UUID as specified by RFC4122_
-          example: dd615561-83e6-4f53-ac0f-aaf1749df139
+          description: 'ID of the a specific `Prover` instance that is represented in a specific `Workstep`; _UUID as specified by RFC4122_'
+          example: 'dd615561-83e6-4f53-ac0f-aaf1749df139'
           format: uuid
           maxLength: 36
           minLength: 1
@@ -4250,7 +4425,7 @@ components:
           type: string
         require_finality:
           default: false
-          description: When true, the resulting proof from the referenced `Workstep` will be written to the underlying mainnet.
+          description: 'When true, the resulting proof from the referenced `Workstep` will be written to the underlying mainnet.'
           example: true
           type: boolean
         state_claims:
@@ -4258,7 +4433,7 @@ components:
             $ref: '#/components/schemas/StateClaim'
           type: array
         workflow_id:
-          description: ID of a specific `Workflow` that a specific `Workstep` is part of; _UUID as specified by RFC4122_
+          description: 'ID of a specific `Workflow` that a specific `Workstep` is part of; _UUID as specified by RFC4122_'
           example: f9227803-5541-4c13-a554-f6980f03362a
           format: uuid
           maxLength: 36
@@ -4278,8 +4453,6 @@ components:
           scopes:
             email: email and password
             offline_access: access/refresh token authorization model
-            openid: ''
-            profile: ''
       type: oauth2
     bearerAuth:
       bearerFormat: JWT
@@ -4289,3 +4462,12 @@ components:
 externalDocs:
   description: Privacy Policy
   url: https://provide.services/privacy-policy
+security:
+  - bearerAuth: []
+servers:
+  - description: Provide Baseline Operator
+    url: https://baseline.provide.network
+  - description: Local Baseline Integration Stack
+    url: http://localhost:8080
+  - description: Local BRI-1 Stack
+    url: http://localhost:9999
