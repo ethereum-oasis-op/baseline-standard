@@ -159,9 +159,10 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 &nbsp;&nbsp;&nbsp;&nbsp;[7.5 BPI-Internal Storage](#75-bpi-internal-storage) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.1 BPI Storage: Centralized Deployment](#751-bpi-storage-centralized-deployment) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.2 BPI Storage: Decentralized Deployment](#752-bpi-storage-decentralized-deployment) \
-[8 Conformance](#8-conformance) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.1 Conformance Targets](#81-conformance-targets) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.2 Conformance Levels](#82-Conformance-levels)\
+[8 BPI External Data Inputs](#8-bpi-external-data-inputs) \
+[9 Conformance](#9-conformance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[9.1 Conformance Targets](#91-conformance-targets) \
+&nbsp;&nbsp;&nbsp;&nbsp;[9.2 Conformance Levels](#92-conformance-levels)\
 [Appendix A - Security Considerations](#appendix-a---security-considerations)\
 [Appendix B - Acknowledgments](#appendix-b---acknowledgments) \
 [Appendix C - Revision History](#appendix-c---revision-history) \
@@ -2455,17 +2456,20 @@ Non-normative examples are conflict-free replicated data types [(CRDTs)](https:/
 **[CR35]>[O9]**	Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
 
 -------
-# 8 Conformance
+# 8 BPI External Data Inputs
+
+-------
+# 9 Conformance
 
 Describes the conformance clauses and tests required to achieve an implementation that is provably conformant with the requirements in this document.
 
-## 8.1 Conformance Targets
+## 9.1 Conformance Targets
 
 This document does not yet define a standardized set of test-fixtures with test inputs for all MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements. 
 
 A standardized set of test-fixtures with test inputs for all MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements is intended to be published with the next version of the spec.
 
-## 8.2 Conformance Levels
+## 9.2 Conformance Levels
 
 This section specifies the conformance levels of this standard. The conformance levels aim to enable implementers several levels of conformance to establish competitive differentiation.
 
