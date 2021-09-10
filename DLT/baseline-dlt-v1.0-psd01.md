@@ -156,32 +156,15 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 ## 1.3 Non-Normative References
 
-#### [1] 
-ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO
-
-#### [2]
-Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3.
-
-#### [3]
-"The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982
-
-#### [4]
-Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518
-
-#### [5]
-J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os
-
-#### [6]
-OpenID Connect Federation 1.0, (2019) 
-
-#### [7]
-“Directory System Agent". MSDN Library. Microsoft. (2018). 
-
-#### [8]
-"What's the Difference b/w SSO (Single Sign On) & LDAP?". JumpCloud. (2019)
-
-#### [9]
-Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
+**[1][ISO-IEC-27033]** ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO \
+**[2][Zero-Knowledge Proofs (ZKPs)]** Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3  \
+**[3][Byzantine Fault Tolerant (BFT)]** "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982 \
+**[4][OAuth-2.0]** Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518 \
+**[5][SAML]** J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os \
+**[6][OIDC]** OpenID Connect Federation 1.0, (2019) \
+**[7][ActiveDirectory]** “Directory System Agent". MSDN Library. Microsoft. (2018) \
+**[8][SSO]**"What's the Difference b/w SSO (Single Sign On) & LDAP?". JumpCloud. (2019) \
+**[9][Hardware Security Modules (HSMs)]** Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
 
 
 ## 1.4 Glossary
@@ -260,7 +243,7 @@ Note, a TEE is a secure area of a main processor. It guarantees code and data lo
 
 Network attacks typically take the form of Distributed Denial of Service (DDOS) attacks, attacks from groups of malicious CCSM nodes performing CCSM reorganizations, front running of transactions through transaction injections, and censoring of transactions. This includes game theoretic attacks such as discouragement, extortion, value-extraction, or random oracle attacks.
 
-**[R6]**	The CCSM utilized in a BPI MUST support a secure consensus algorithm as explained in [Section 8](#8-Virtual-State-Machine).
+**[R6]**	The CCSM utilized in a BPI MUST support a secure consensus algorithm as explained in section [8 Virtual State Machine](#8-virtual-state-machine).
 
 Note that secure in this context refers to the security of a consensus algorithm against attacks against its three main characteristics – consistency, availability, and fault tolerance. Therefore, a consensus algorithm is considered secure for a given set of operating assumptions:
 * if all nodes produce the same valid output, according to the protocol rules, for the same message broadcast to the network (consistency/safety),
@@ -269,7 +252,7 @@ Note that secure in this context refers to the security of a consensus algorithm
 
 **[R7]**	A CCSM utilized in a BPI MUST have one or more secure-by-construction or Verifiably Secure execution frameworks.
 
-See the glossary for a definition of Verifiably Secure and more details about CCSM supported execution frameworks in section 9.
+See the glossary for a definition of Verifiably Secure and more details about CCSM supported execution frameworks in section [9 Data Integrity and Transaction Completeness ](#9-data-integrity-and-transaction-completeness).
 
 # 3. Privacy
 CCSMs range in the level of privacy they support. One approach ensures that the contents of a CCSM transaction or storage are meaningless to parties not participating in an interaction. Another more stringent approach is to use a CCSM that precludes the accessibility of such information to non-participating parties. This standard sets the minimum requirement to the first approach, but the parties can agree to require that the BPI supports the second approach.

@@ -228,7 +228,7 @@ Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, 
 **[CA]** NIST SP 800-56B Rev. 2, March 2019, https://doi.org/10.6028/NIST.SP.800-56Br2 \
 **[How-to-Explain-Zero-Knowledge-Protocols-to-Your-Children]** Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3. \
 **[The-Byzantine-Generals-Problem]** "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982 \
-**[OAuth-20]** Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518 \
+**[OAuth-2.0]** Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518 \
 **[SAML]** J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os \
 **[OIDC]** OpenID Connect Federation 1.0, (2019)  \
 **[ActiveDirectory]** “Directory System Agent". MSDN Library. Microsoft. (2018).  \
