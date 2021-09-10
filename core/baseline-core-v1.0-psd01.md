@@ -26,7 +26,7 @@ https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.pdf
 URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Open Project:
-[Baseline, part of the Ethereum OASIS Open Project](https://www.baseline-protocol.org/)
+[Baseline](https://www.baseline-protocol.org/), an initiative of [EEA Community Projects](https://entethalliance.org/eeacommunityprojects/)
 
 #### Project Chair:
 John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/) 
