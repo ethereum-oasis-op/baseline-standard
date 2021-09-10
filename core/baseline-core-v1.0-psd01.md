@@ -191,18 +191,19 @@ The following documents are referenced in such a way that some or all of their c
 
 **[NIST-SP-800-32]** NIST SP 800-32, 2001, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf \
 **[W3C-DID]** W3C Recommended Specification "Decentralized Identifiers (DIDs) v1.0", June 2021, https://www.w3.org/TR/did-core/ \
-**[W3C-VC]** W3C Specification "Verifiable Credentials Data Model 1.0", October 2019, https://www.w3.org/TR/vc-data-model/ \
+**[W3C-VC]** Verifiable Credentials Data Model 1.0, Manu Sporny, Dave Longley, David Chadwick , W3C Recommendation, November 2019, https://www.w3.org/TR/2019/REC-vc-data-model-20191119/. Latest version available at https://www.w3.org/TR/vc-data-model/. \
 **[ISO-IEC-27033]** ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO \
-**[RFC3339]** IETF RFC 3339, (2002), https://datatracker.ietf.org/doc/html/rfc3339#page-8 \
-**[TLS12]** IETF RFC5246, (2008) ,https://datatracker.ietf.org/doc/html/rfc5246 \
-**[TLS13]** IETF RFC8446, (2018), https://datatracker.ietf.org/doc/html/rfc8446 \
-**[HTTPS]** IETF RFC 2818, (2000), https://datatracker.ietf.org/doc/html/rfc2818 \
-**[RFC7516]** IETF RFC 7516, (2015), https://datatracker.ietf.org/doc/html/rfc7516 \
-**[RFC7515]** IETF RFC 7515, (2015), https://datatracker.ietf.org/doc/html/rfc7515 \
-**[TLS12]** IETF RFC5246, (2008) ,https://datatracker.ietf.org/doc/html/rfc5246 \
-**[TLS13]** IETF RFC8446, (2018), https://datatracker.ietf.org/doc/html/rfc8446 \
-**[JSON]** IETF RFC7159, (2014), https://www.rfc-editor.org/rfc/rfc7159.html \
-**[JSONLD]** W3C, JSON-LD 1.1, (2020), https://www.w3.org/TR/json-ld11/
+**[RFC3339]** Klyne, G. and C. Newman, "Date and Time on the Internet: Timestamps", RFC 3339, DOI 10.17487/RFC3339, July 2002, <https://www.rfc-editor.org/info/rfc3339>. \
+**[RFC5246]** Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, DOI 10.17487/RFC5246, August 2008, <https://www.rfc-editor.org/info/rfc5246>. \
+**[RFC8446]** Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <https://www.rfc-editor.org/info/rfc8446>.\
+**[RFC2818]** Rescorla, E., "HTTP Over TLS", RFC 2818, DOI 10.17487/RFC2818, May 2000, <https://www.rfc-editor.org/info/rfc2818>.\
+**[RFC7516]** Jones, M. and J. Hildebrand, "JSON Web Encryption (JWE)", RFC 7516, DOI 10.17487/RFC7516, May 2015, <https://www.rfc-editor.org/info/rfc7516>.\
+**[RFC7515]** Jones, M., Bradley, J., and N. Sakimura, "JSON Web Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May 2015, <https://www.rfc-editor.org/info/rfc7515>.\
+**[RFC8446]** Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <https://www.rfc-editor.org/info/rfc8446>.\
+**[RFC7159]** Bray, T., Ed., "The JavaScript Object Notation (JSON) Data Interchange Format", RFC 7159, DOI 10.17487/RFC7159, March 2014, <https://www.rfc-editor.org/info/rfc7159>. \
+**[JSONLD]** JSON-LD 1.1, M. Sporny, D. Longley, G. Kellogg, M. Lanthaler, Pierre-Antoine Champin, N. Lindström, W3C Recommendation, July 2020 , https://www.w3.org/TR/2020/REC-json-ld11-20200716/. Latest version available at https://www.w3.org/TR/json-ld11/. 
+
+
 
 <!-- 
 ###### [OpenC2-HTTPS-v1.0]
