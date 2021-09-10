@@ -164,7 +164,7 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 &nbsp;&nbsp;&nbsp;&nbsp;[8.2 Conformance Levels](#82-Conformance-levels)\
 [Appendix A - Security Considerations](#appendix-a---security-considerations)\
 [Appendix B - Acknowledgments](#appendix-b---acknowledgments) \
-[Appendix C - Revision History](#appendix-c---revision-history]) \
+[Appendix C - Revision History](#appendix-c---revision-history) \
 [Appendix D - Notices](#appendix-d---notices)
 
 
@@ -241,7 +241,8 @@ Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, 
 **[DANE]** Barnes, Richard (October 6, 2011). "DANE: Taking TLS Authentication to the Next Level Using DNSSEC", IETF Journal \
 **[Shamir]** Shamir, Adi (1979), "How to share a secret", Communications of the ACM, 22 (11): 612–613, doi:10.1145/359168.359176, S2CID 16321225. \
 **[NATS]** NATS, version 2.2 (2021), https://docs.nats.io/nats-concepts/intro \
-**[AMQP]** OASIS, AMQP Version 1.0 (2012), http://docs.oasis-open.org/amqp/core/v1.0/amqp-core-complete-v1.0.pdf \
+**[amqp-core-complete-v1.0]** OASIS Advanced Message Queuing Protocol (AMQP) Version 1.0. 29 October 2012. OASIS Standard.
+http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf \
 **[DIDCOMM]** Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://identity.foundation/didcomm-messaging/spec/ \
 **[SIOP]** Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
 
