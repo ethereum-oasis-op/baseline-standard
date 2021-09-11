@@ -106,7 +106,9 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 Terminology](#11-terminology) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Normative References](#12-normative-references) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Non-Normative References](#13-non-normative-references) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Glossary](#14-glossary) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Typographical Conventions](#14-typographical-conventions) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.4.1	Requirement Ids](#141-requirement-ids) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.5 Glossary](#15-glossary) \
 [2 Security](#2-security) \
 [3 Privacy](#3-privacy) \
 [4 Scalability](#4-scalability) \
@@ -166,8 +168,22 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 **[8][SSO]**"What's the Difference b/w SSO (Single Sign On) & LDAP?". JumpCloud. (2019) \
 **[9][Hardware Security Modules (HSMs)]** Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
 
+## 1.4 Typographical Conventions
 
-## 1.4 Glossary
+
+### 1.4.1 Requirement Ids
+
+A requirement is uniquely identified by an unique ID composed of its requirement level followed by a requirement number, following the convention **[RequirementLevelRequirementNumber]** - for instance [R50]. 
+There are four requirement levels that are coded in requirement ids as per below convention: 
+
+**[R]** - The requirement level for requirements which IDs start with the letter _R_ is to be interpreted as **MUST** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
+**[D]** - The requirement level for requirements which IDs start with the letter _D_ is to be interpreted as **SHOULD** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
+**[O]** - The requirement level for requirements which IDs start with the letter _O_ is to be interpreted as **MAY** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). 
+
+Note that requirements are uniquely numbered in ascending order within each requirement level.
+
+
+## 1.5 Glossary
 
 **Baseline Protocol:**
 

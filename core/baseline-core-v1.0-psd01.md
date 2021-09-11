@@ -105,8 +105,11 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 Terminology](#11-terminology) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Normative References](#12-normative-references) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Non-Normative References](#13-non-normative-references) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Overview](#14-overview) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.5 Glossary](#15-glossary) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Typographical Conventions](#14-typographical-conventions) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.4.1	Requirement Ids](#141-requirement-ids) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.4.2	Conditional Requirements](#142-conditional-requirements) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.5 Overview](#15-overview) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.6 Glossary](#16-glossary) \
 [2 Design and Architecture](#2-design-and-architecture) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-agreement) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-state-object) \
@@ -248,8 +251,29 @@ http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf \
 **[DIDCOMM]** Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://identity.foundation/didcomm-messaging/spec/ \
 **[SIOP]** Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
 
+## 1.4 Typographical Conventions
 
-## 1.4 Overview
+
+### 1.4.1 Requirement Ids
+
+A requirement is uniquely identified by an unique ID composed of its requirement level followed by a requirement number, following the convention **[RequirementLevelRequirementNumber]** - for instance [R50]. 
+There are four requirement levels that are coded in requirement ids as per below convention: 
+
+**[R]** - The requirement level for requirements which IDs start with the letter _R_ is to be interpreted as **MUST** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
+**[D]** - The requirement level for requirements which IDs start with the letter _D_ is to be interpreted as **SHOULD** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
+**[O]** - The requirement level for requirements which IDs start with the letter _O_ is to be interpreted as **MAY** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
+**[CR]** - A requirement which ID start with the letter _CR_ is to be interpreted as conditional to another stated requirement. As per convention in section [1.4.2	Conditional Requirements](#142-conditional-requirements).
+
+Note that requirements are uniquely numbered in ascending order within each requirement level.
+
+### 1.4.2 Conditional Requirements
+
+Conditional requirements are expressed as per convention **[ConditionalRequirementID] < [ControllingRequirementID]**. \
+A conditional requirement becomes required if and only if its controlling requirement is implemented. \
+For instance [CR1]< [D3] means that if recommended requirement [D3] is implemented then it is required to also implement requirement [CR1].
+
+
+## 1.5 Overview
 
 An illustrative example of the use of a BPI is a Buyer placing an order to a Seller. Normally a Buyer system creates an Order and transmits it to the Seller system through some preestablished messaging system without providing any proof that the Order created is correct, forcing the Seller systems to validate the order, and more often than not, finding data inconsistencies between the Seller system and the Order. This then leads to a time-consuming and often expensive back and forth between Seller and Buyer to rectify the issue. 
 
@@ -304,7 +328,7 @@ tests for each requirement and definitions of the different levels of conformanc
     * Conformance Targets
     * Conformance Levels
 
-## 1.5 Glossary
+## 1.6 Glossary
 
 **Anti-Money Laundering:**
 
