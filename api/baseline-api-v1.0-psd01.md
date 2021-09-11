@@ -136,14 +136,17 @@ For information on whether any patents have been disclosed that may be essential
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
 ## 1.2 Normative References
+
+**[RFC4122]** Leach, P., Mealling, M., and R. Salz, "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, DOI 10.17487/RFC4122, July 2005, <https://www.rfc-editor.org/info/rfc4122>.
+
+
 ## 1.3 Non-Normative References
+
 ## 1.4 Typographical Conventions
 
 -------
 
 # 2 API Overview
-
-This section defines the key concepts and architectural principles of the API and Data model(s).
 
 
 -------
@@ -229,6 +232,8 @@ This section defines the key concepts and architectural principles of the API an
 -------
 
 # 4 CCSM
+
+The CCSM interfaces enable interaction with an underlying mainnet or layer-2 distributed solution. 
 
 | URL | Methods  |  Resource Type | 
 | :--- | :--- | :--- |
@@ -463,6 +468,7 @@ This section defines the key concepts and architectural principles of the API an
 
 # 8 Schemas
 
+## 8.1 - 43
 
 
 -------
