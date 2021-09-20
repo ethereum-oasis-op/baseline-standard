@@ -2775,7 +2775,7 @@ components:
         id: 'did:prvd:a7e165dd-2d91-4f1e-b025-6ef2c5514603'
         metadata: {}
         name: 'ACME Inc.'
-        type: 'Orgnization'
+        type: 'Organization'
       description: |- 
         A Subject is a key component of a BPI because it is the anchor point for all 
         important BPI functions; authentication and authorization, messages, workgroups, workflow instances, workstep instances, 
