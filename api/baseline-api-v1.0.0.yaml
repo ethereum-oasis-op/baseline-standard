@@ -797,9 +797,11 @@ paths:
               $ref: '#/components/schemas/Subject'
             example:
               account_id: '99c404e9-fe10-4ca7-b787-d5943d03591c'
-              account_credential: []
-              account_security_policies: []
-              account_recovery_policy: []
+              credentials: []
+              security_policies: []
+              recovery_policy:
+                type: 'JRP'
+                policy_reference: {}
               description: Organization for testing
               metadata: {}
               name: ACME Inc.
@@ -886,9 +888,11 @@ paths:
               $ref: '#/components/schemas/Subject'
             example:
               account_id: 99c404e9-fe10-4ca7-b787-d5943d03591c
-              account_credential: []
-              account_security_policies: []
-              account_recovery_policy: []
+              credentials: []
+              security_policies: []
+              recovery_policy:
+                policy_reference: {}
+                type: 'JRP'
               created_at: '2021-04-16T15:05:23.130Z'
               description: Organization for testing
               metadata: {}
@@ -2214,19 +2218,18 @@ components:
     BPIAccount:
       description: The account associated with the (commercial) state of an agreement between counterparties, which must only be changed as a result of a valid transaction (i.e., a successful `Workstep` execution) by way of a `StateClaim`
       properties:
-        id:
-          description: ID of the `BPI Account`; _UUID as specified by RFC4122_
-          example: 6bb23e2b-07ed-4562-8afb-73955f8f17c5
-          format: uuid
-          readOnly: true
-          type: string
+        '@context':
+          description: Context Reference file for BPI Subject Account schema validation.
+          example: []
+          type: object
+          readOnly: false
         created_at:
           description: Date and time of BPI Account creation
           example: '2021-02-27T14:26:06.864Z'
           format: date-time
           readOnly: true
           type: string
-        bpi_account_owners:
+        owners:
           description: Must be an array of either a DID or another resolvable unique identifier of the Subject
           example: 
             - 'did:prvd:7cb23e2b-07ed-4562-8afb-73955f8f17c5'
@@ -2238,7 +2241,7 @@ components:
                 description: ID of a specific `Subject`
                 type: string
           readOnly: false
-        bpi_account_security_policies:
+        security_policies:
           description: Security policies attached to a BPI account typically connected to the roles of the account owners but may be independent 
           example: 
             - policy_type: 'AuthenticationPolicy'
@@ -2260,23 +2263,80 @@ components:
                 type: string
                 format: URI
           readOnly: false
+        subject_id:
+          description: must be either a DID or another resolvable unique identifier of the BPI Subject
+          example: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+          maxLength: 1024
+          type: string
+          format: URI
+          readOnly: false        
+        subject_metadata:
+          description: Metadata useful for BPI operations and UI implementations such as names or API and messaging endpoints
+          example: '$ref: #/components/schemas/BPISubject'
+          type: object
+          readOnly: false
+        subject_role:
+          description: Role of the BPI Subject. Implementation specific.
+          example: 
+            name: Organization
+            role_reference: 'https://example.com/roles/organization.json'
+          type: object
+          required:
+            - role_name
+            - role_reference
+          properties:
+              role_name:
+                description: name of role
+                example: 'Organization'
+                type: string
+              role_reference:
+                description: resolvable reference link to the role object, avoids duplicating role objects
+                example: 'https://example.com/roles/organization.json'
+                type: string
+                format: URI
+          readOnly: false
+        account_recovery_policy:
+          description: recovery policy attached to a BPI Subject account typically connected to a role but may be independent 
+          example: 
+            recovery_policy_type: 'recoveryKeyPolicy'
+            recovery_policy_reference: ''
+          type: object
+          required:
+            - recovery_policy_type
+            - recovery_policy_reference
+          properties:
+            recovery_policy_type:
+              description: type of recovery policy
+              example: 'RecoveryKeyPolicy'
+              type: string
+            recovery_policy_reference:
+              description: resolvable reference link to the recovery policy object, avoids duplicating policy objects
+              example: 'https://example.com/policies/recoverykeypolicy.json'
+              type: string
+              format: URI
+          readOnly: false
+        id:
+          description: ID of the `BPI Account`; _UUID as specified by RFC4122_
+          example: 6bb23e2b-07ed-4562-8afb-73955f8f17c5
+          format: uuid
+          readOnly: true
+          type: string       
         nonce:
           description: incrementing deterministic counter starting at zero
           example: 4512
           format: int32
           readOnly: false
           type: integer
-        prover_id:
-          description: ID of the associated `Prover`; _UUID as specified by RFC4122_
-          example: '72f84b01-90ce-432c-91e8-781f21284214'
-          format: uuid
-          readOnly: false
-          type: string
         state_claims:
           description: List of `StateClaim` objects required to verify the `BPIAccount`
           items:
             $ref: '#/components/schemas/StateClaim'
           type: array
+        type: 
+          description: Type of BPI Subject Account
+          example: 'ImplementerNameBPISubjectAccount'
+          type: string
+          readOnly: false
       required:
         - id
         - bpi_account_owners
@@ -2767,9 +2827,11 @@ components:
     Subject:
       example:
         account_id: '99c404e9-fe10-4ca7-b787-d5943d03591c'
-        account_credential: []
-        account_security_policies: []
-        account_recovery_policy: []
+        credentials: []
+        security_policies: []
+        recovery_policy:
+          policy_reference: {}
+          type: 'JRP'
         created_at: '2021-04-16T15:05:23.130Z'
         description: 'Organization for testing'
         id: 'did:prvd:a7e165dd-2d91-4f1e-b025-6ef2c5514603'
@@ -2785,9 +2847,9 @@ components:
       type: object
       required:
           - account_id
-          - account_credential
-          - account_security_policies
-          - account_recovery_policy
+          - credentials
+          - security_policies
+          - recovery_policy
       properties:
         '@context':
           description: Context Reference file for BPI Subject schema validation.
@@ -2849,11 +2911,18 @@ components:
                 type: string
                 format: URI
           readOnly: false
-        account_credential:
-          description: A cryptographically verifiable credential establishing the (legal) identity of a BPI Subject, and utilized by a BPI in the creation of the BPI User Account
+        credentials:
+          description: A list of cryptographically verifiable credentials establishing the (legal) identity of a BPI Subject and utilized by a BPI in the creation of the BPI User Account
           example: 
-            credential_type: 'GLEIFCompanyCredential'
-            credential: ''
+            credential_type: 'JWS'
+            credential: 
+              id: 'https://example.com/issuer/123#ovsDKYBjFemIy8DVhc-w2LSi8CvXMw2AYDzHj04yxkc'
+              type: JsonWebKey2020
+              controller: 'https://example.com/issuer/123'
+              publicKeyJwk:
+                kty: OKP
+                crv: Ed25519
+                x: CV-aGlld3nVdgnhoZK0D36Wk-9aIMlZjZOK2XhPMnkQ
           type: array
           items:
             type: object
@@ -2863,7 +2932,7 @@ components:
             properties:
               credential_type:
                 description: Type of credential associated with account
-                example: 'GLEIFCompanyCredential'
+                example: 'JWS'
                 type: string
               credential:
                 description: credential associated with the account. Should be a W3C Verifiable Credential
@@ -2894,19 +2963,18 @@ components:
         recovery_policy:
           description: recovery policy attached to a BPI Subject typically connected to a role but may be independent 
           example: 
-            recovery_policy_type: 'recoveryKeyPolicy'
-            recovery_policy_reference: ''
+            type: 'recoveryKeyPolicy'
+            reference: ''
           type: object
           required:
-            - recovery_policy_type
-            - recovery_policy_reference
+            - type
+            - policy_reference
           properties:
-            recovery_policy_type:
+            type:
               description: type of recovery policy
               example: 'RecoveryKeyPolicy'
               type: string
-            recovery_policy_reference:
-              description: resolvable reference link to the recovery policy object, avoids duplicating policy objects
+            recovery_policy:
               example: 'https://example.com/policies/recoverykeypolicy.json'
               type: string
               format: URI
