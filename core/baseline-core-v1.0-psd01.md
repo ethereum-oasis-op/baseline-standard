@@ -33,7 +33,8 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/)
 
 #### Editors:
 Andreas Freund (a.freundhaskel@gmail.com) \
-Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/) 
+Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/)  \
+Kyle Thomas (kyle@provide.services), [Provide Technologies ](https://provide.services/)
 
 <!--
 #### Additional artifacts:
@@ -51,11 +52,11 @@ This specification replaces or supersedes:
 * Specifications replaced by this specification (include hyperlink, preferably to HTML format)
  -->
 
-This specification is related to: \    
+This specification is related to:    
 **[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Kyle Thomas, Daven Jones, Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md.\
+_Baseline API and Data Model Version 1.0_. Edited by Kyle Thomas, Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md.\
 **[baseline-dlt-v1.0]**
-_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
+_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
 
 
 #### Abstract:
@@ -75,7 +76,7 @@ When referencing this specification the following citation format should be used
 
 **[baseline-core-v1.0]**
 
-_Baseline Core Specification Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 17 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.
+_Baseline Core Specification Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.
 
 -------
 
@@ -181,19 +182,19 @@ The Baseline Protocol is an open-source initiative that combines advances in cry
 
 ## 1.0 IPR Policy
 
-The Baseline Protocol Core Specification is provided under the [RF on Limited Terms](https://www.oasis-open.org/policies-guidelines/ipr/#RF-on-Limited-Mode) Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established.
+The Baseline Protocol Core Specification is provided under the RF on Limited Terms Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established.
 
-For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC’s web page (https://www.oasis-open.org/committees/legalruleml/ipr.php).
+For information, please refer to the Intellectual Property Rights section of the Oasis IPR Policy: .
 
 ## 1.1 Terminology
 
-The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119).
+The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC2119.
 
 ## 1.2 Normative References
 
 The following documents are referenced in such a way that some or all of their content constitute requirements of this document.
 
-**[RFC2119]** S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997.
+**[RFC2119]** S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997 \
 **[NIST-SP-800-32]** NIST SP 800-32, 2001, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf \
 **[W3C-DID]** Decentralized Identifiers (DIDs) v1.0, M. Sporny, D. Longley, M. Sabadello, D. Reed, O. Steele, C. Allen, W3C Proposed Recommendation, August 2021, https://www.w3.org/TR/2021/PR-did-core-20210803/. Latest version available at https://www.w3.org/TR/did-core/ \
 **[W3C-VC]** Verifiable Credentials Data Model 1.0, Manu Sporny, Dave Longley, David Chadwick , W3C Recommendation, November 2019, https://www.w3.org/TR/2019/REC-vc-data-model-20191119/. Latest version available at https://www.w3.org/TR/vc-data-model/ \

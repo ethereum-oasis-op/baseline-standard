@@ -33,7 +33,9 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/)
 
 #### Editors:
 Andreas Freund (a.freundhaskel@gmail.com) \
-Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/) 
+Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/)  \
+Kyle Thomas (kyle@provide.services), [Provide Technologies ](https://provide.services/)
+
 
 <!--
 #### Additional artifacts:
@@ -53,9 +55,9 @@ This specification replaces or supersedes:
 
 This specification is related to: \
 **[baseline-core-v1.0]**
-_Baseline Core Specification Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.  \
+_Baseline Core Specification Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.  \
 **[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Kyle Thomas, Daven Jones, Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md .
+_Baseline API and Data Model Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md .
 
 
 
@@ -76,7 +78,7 @@ When referencing this specification the following citation format should be used
 
 **[baseline-dlt-v1.0]**
 
-_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
+_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
 
 -------
 
