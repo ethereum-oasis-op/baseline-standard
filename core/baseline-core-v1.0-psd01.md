@@ -102,15 +102,15 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 
 # Table of Contents
 [1 Introduction](#1-introduction) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.0 IPR Policy](#10-ipr-policy) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.1 Terminology](#11-terminology) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Normative References](#12-normative-references) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.3 Non-Normative References](#13-non-normative-references) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Typographical Conventions](#14-typographical-conventions) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.4.1	Requirement Ids](#141-requirement-ids) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.4.2	Conditional Requirements](#142-conditional-requirements) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.5 Overview](#15-overview) \
-&nbsp;&nbsp;&nbsp;&nbsp;[1.6 Glossary](#16-glossary) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.1 IPR Policy](#11-ipr-policy) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.2 Terminology](#12-terminology) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3 Normative References](#13-normative-references) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.4 Non-Normative References](#14-non-normative-references) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.5 Typographical Conventions](#15-typographical-conventions) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.5.1	Requirement Ids](#151-requirement-ids) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.5.2	Conditional Requirements](#152-conditional-requirements) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.6 Overview](#16-overview) \
+&nbsp;&nbsp;&nbsp;&nbsp;[1.7 Glossary](#17-glossary) \
 [2 Design and Architecture](#2-design-and-architecture) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-agreement) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-state-object) \
@@ -166,6 +166,11 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.1 BPI Storage: Centralized Deployment](#751-bpi-storage-centralized-deployment) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.2 BPI Storage: Decentralized Deployment](#752-bpi-storage-decentralized-deployment) \
 [8 BPI External Data Inputs](#8-bpi-external-data-inputs) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.1 Internal Authoritative Data for BPIs](#81-internal-authoritative-data-for-bpis) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.2 External Authoritative Data for BPIs](#82-External Authoritative Data for BPIs) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.3 External Non-authoritative, Non-deterministic for BPIs (Oracles)](#83-External Non-authoritative, Non-deterministic for BPIs (Oracles)) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.1 Data Trustworthiness](#831-Data Trustworthiness) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.2 External Non-authoritative BPI Input Data Variance](#832-External Non-authoritative BPI Input Data Variance) \
 [9 Conformance](#9-conformance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.1 Conformance Targets](#91-conformance-targets) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.2 Conformance Levels](#92-conformance-levels)\
@@ -180,17 +185,17 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 
 The Baseline Protocol is an open-source initiative that combines advances in cryptography, messaging, and consensus-controlled state machines often referred to as blockchains or distributed ledger technology (DLT) to deliver secure and private business processes at low cost -- event ordering, data consistency, and workflow integrity. The Baseline Protocol provides a framework that allows Baseline Protocol Implementations (BPIs) to establish a common (business) frame of reference enabling confidential and complex (business) collaborations between enterprises without moving any sensitive data between traditional Systems of Record. The work is a [Ethereum Community Project](https://github.com/ethereum/oasis-open-project), which is managed by [OASIS](https://oasis-open-projects.org/).
 
-## 1.0 IPR Policy
+## 1.1 IPR Policy
 
 The Baseline Protocol Core Specification is provided under the RF on Limited Terms Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established.
 
 For information, please refer to the Intellectual Property Rights section of the Oasis IPR Policy: .
 
-## 1.1 Terminology
+## 1.2 Terminology
 
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC2119.
 
-## 1.2 Normative References
+## 1.3 Normative References
 
 The following documents are referenced in such a way that some or all of their content constitute requirements of this document.
 
@@ -222,7 +227,7 @@ Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP 14,
 Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017, http://www.rfc-editor.org/info/rfc8174. 
 -->
 
-## 1.3 Non-Normative References
+## 1.4 Non-Normative References
 
 **[CVMP]** NIST CVMP, https://csrc.nist.gov/projects/cryptographic-module-validation-program \
 **[FIPS]** FIPS, https://www.nist.gov/itl/current-fips \
@@ -252,10 +257,10 @@ http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf \
 **[DIDCOMM]** Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://identity.foundation/didcomm-messaging/spec/ \
 **[SIOP]** Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
 
-## 1.4 Typographical Conventions
+## 1.5 Typographical Conventions
 
 
-### 1.4.1 Requirement Ids
+### 1.5.1 Requirement Ids
 
 A requirement is uniquely identified by an unique ID composed of its requirement level followed by a requirement number, as per convention **[RequirementLevelRequirementNumber]**. 
 There are four requirement levels that are coded in requirement ids as per below convention: 
@@ -268,14 +273,14 @@ Note that requirements are uniquely numbered in ascending order within each requ
 
 Example : It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation and [O1] is truly optional.
 
-### 1.4.2 Conditional Requirements
+### 1.5.2 Conditional Requirements
 
 Conditional requirements are expressed as per convention **[ConditionalRequirementID] < [ControllingRequirementID]**. \
 A conditional requirement becomes required if and only if its controlling requirement is implemented. \
 For instance [CR1]< [D3] means that if recommended requirement [D3] is implemented then it is required to also implement requirement [CR1].
 
 
-## 1.5 Overview
+## 1.6 Overview
 
 An illustrative example of the use of a BPI is a Buyer placing an order to a Seller. Normally a Buyer system creates an Order and transmits it to the Seller system through some preestablished messaging system without providing any proof that the Order created is correct, forcing the Seller systems to validate the order, and more often than not, finding data inconsistencies between the Seller system and the Order. This then leads to a time-consuming and often expensive back and forth between Seller and Buyer to rectify the issue. 
 
@@ -298,13 +303,13 @@ In the following, this document lays out the requirements on a BPI to achieve ab
     * Baseline Protocol Instance
     * High-Level Functional Requirements
     * Baseline Protocol Reference Architecture
-* **Section 3: Identifiers, Identity and Credential Management** with definitions, key concepts, and overviews of identifiers, identities, and credentials necessary in a complaint Baseline Protocol Implementation as delineated in the following subsections 
+* **Section 3: Identifiers, Identity and Credential Management** with definitions, key concepts, and overviews of identifiers, identities, and credentials necessary in a compliant Baseline Protocol Implementation as delineated in the following subsections: 
     * Introduction and high-level Requirements
     * BPI Identifiers, Identities and Credentials, and their Management 
-* **Section 4: BPI Abstraction Layers** with definitions, concepts, scope, and security considerations for BPI Abstraction Layers
+* **Section 4: BPI Abstraction Layers** with definitions, concepts, scope, and security considerations for BPI Abstraction Layers:
     * BPI Abstraction Scope and Components
     * BPI Abstraction Layer Security and Integration
-* **Section 5: Middleware, Communication, and Interoperability** with definitions, key concepts, and overviews of BPI Subject Capabilities and Accounts, service orchestration, communication, BPI Interoperability with its APIs, and Transport Security  
+* **Section 5: Middleware, Communication, and Interoperability** with definitions, key concepts, and overviews of BPI Subject Capabilities and Accounts, service orchestration, communication, BPI Interoperability with its APIs, and Transport Security:  
     * BPI Subject Capabilities
     * BPI Subject Account
     * BPI Service Orchestration
@@ -312,14 +317,14 @@ In the following, this document lays out the requirements on a BPI to achieve ab
     * BPI Integration
     * Standardized Set of BPI Interoperability APIs
     * BPI Interoperability: Discoverable Standard Transport Security
-* **Section 6: Agreement Execution** with definitions, key concepts, and overviews of the BPI Processing Layer components necessary in a compliant Baseline Protocol Implementation as delineated in the following subsections
+* **Section 6: Agreement Execution** with definitions, key concepts, and overviews of the BPI Processing Layer components necessary in a compliant Baseline Protocol Implementation as delineated in the following subsections:
     * BPI Workstep
     * BPI Workflow
     * BPI Workgroup
     * BPI Account
     * BPI Transactions
     * BPI Transaction Lifecycle
-* **Section 7: General BPI Storage Capabilities** with definitions, key concepts, and overviews of BPI Storage components applicable to all BPI layers and necessary in a compliant Baseline Protocol Implementation as delineated in the following subsections 
+* **Section 7: General BPI Storage Capabilities** with definitions, key concepts, and overviews of BPI Storage components applicable to all BPI layers and necessary in a compliant Baseline Protocol Implementation as delineated in the following subsections: 
     * BPI Storage Security
     * BPI Storage Privacy
     * BPI Data Orchestration
@@ -330,13 +335,13 @@ tests for each requirement and definitions of the different levels of conformanc
     * Conformance Targets
     * Conformance Levels
 
-## 1.6 Glossary
+## 1.7 Glossary
 
 **Anti-Money Laundering:**
 
 Anti-money laundering (AML) refers to a set of laws, regulations, and procedures intended to prevent criminals from disguising illegally obtained funds as legitimate income.  
 
-International Monetary Fund, Reference Guide to Anti-Money Laundering and Combating the Financing of Terrorism Second Edition and Supplement on Special Recommendation IX, 2006
+International Monetary Fund, Reference Guide to Anti-Money Laundering and Combating the Financing of Terrorism Second Edition and Supplement on Special Recommendation IX, 2006.
 
 **Baseline Protocol:**
 
@@ -345,7 +350,7 @@ The Baseline Protocol is a set of methods that enable two or more state machines
 **Baseline-Bridge:**
 
 A mechanism for one Workflow to use the proof generated by a different Workflow.
-to use a proof generated in a Workflow executed by Workgroup A as input to a Workflow executed by Workgroup B.
+For instance a proof generated in a Workflow executed by Workgroup A to be used as input to a Workflow executed by Workgroup B.
 
 **Baseline-Connector:**
 
@@ -357,7 +362,7 @@ Given a network or system of n components, t of which are dishonest, and assumin
 * If A is honest, then all honest components agree on the value x.
 * If A is dishonest, all honest components agree on the common value y.
 
-"The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982
+"The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982.
 
 **Circuit Breaker:**
 
@@ -369,7 +374,7 @@ A Common Frame of Reference as used in this document refers to achieving and mai
 
 **Consensus Controlled State Machine:**
 
-A Consensus Controlled State Machine is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage.
+A Consensus Controlled State Machine (CCSM) is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage.
 
 **Electronic Record:**
 
@@ -413,7 +418,7 @@ The ability of a Party to migrate and re-baseline its existing Workflows and dat
 
 **Privacy Assurance Mechanism:**
 
-A way of ensuring the privacy of Workflow data represented on a public Mainnet. - permissionless vs public - to discuss and review.
+A way of ensuring the privacy of Workflow data represented on a distributed ledger technology (CCSM) network.
 
 **Proof of Correctness:**
 
@@ -427,7 +432,7 @@ Print ISBN: 9780471377375| Online ISBN: 9780471028956| DOI: 10.1002/0471028959,
 
 The integrity of the data in data architecture is established by what can be called the “system of record.” The system of record is the one place where the value of data is definitively established. Note that the system of record applies only to detailed granular data. The system of record does not apply to summarized or derived data.
 
-W.H. Inmon, Daniel Linstedt and Mary Levins, "Data Architecture", 2019, Academic Press, ISBN: 978-0-12-816916-2
+W.H. Inmon, Daniel Linstedt and Mary Levins, "Data Architecture", 2019, Academic Press, ISBN: 978-0-12-816916-2.
 
 **Trust Model:**
 
@@ -439,7 +444,7 @@ Marsh S. (1994). "Formalizing Trust as a Computational Concept". Ph.D. thesis, U
 
 Verifiable computing that can be described as verifiably secure enables a computer to offload the computation of some function to other perhaps untrusted clients, while maintaining verifiable, and thus secure results. The other clients evaluate the function and return the result with proof that the computation of the function was carried out correctly. The proof is not absolute but is dependent on the validity of the security assumptions used in the proof. For example, a blockchain consensus algorithm where the proof of computation is the nonce of a block. Someone inspecting the block can assume with virtual certainty that the results are correct because the number of computational nodes that agreed on the outcome of the same computation is defined as sufficient for the consensus outcome to be secure in the consensus algorithm’s mathematical proof of security. 
 
-Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive Verifiable Computing: Outsourcing Computation to Untrusted Workers. CRYPTO 2010. doi:10.1007/978-3-642-14623-7_25 
+Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive Verifiable Computing: Outsourcing Computation to Untrusted Workers. CRYPTO 2010. doi:10.1007/978-3-642-14623-7_25. 
 
 **Workflow:**
 
@@ -453,7 +458,7 @@ A workstep is characterized by input, the deterministic application of a set of 
 
 # 2 Design and Architecture
 
-This section provides definitions, key concepts, and overviews of the components of a Baseline Protocol Implementation compliant with the requirements of this document. This section intends to provide implementers with guidance to be able to build and operate implementations of the Baseline Protocol not only in an informal context but also in a very formal, highly regulated context. The latter context in particulars requires implementers to prove that compliance with this standard not only does not violate regulatory frameworks but rather enables meeting regulatory requirements throughout the entire stack.
+This section provides definitions, key concepts, and overviews of the components of a Baseline Protocol Implementation compliant with the requirements of this document. This section intends to provide implementers with guidance to be able to build and operate implementations of the Baseline Protocol not only in an informal context but also in a very formal, highly regulated context. The latter context in particular requires implementers to prove that compliance with this standard not only does not violate regulatory frameworks but rather enables meeting regulatory requirements throughout the entire stack.
 
 The key concepts, definitions, and associated requirements underpinning a Baseline Protocol Implementation (BPI) which will be discussed in this section are:
 * Agreement
@@ -510,7 +515,7 @@ A contract will typically govern all commercial transactions between its parties
 
 **[R3]**	There MUST be a legally binding contract, however simple and temporary, before a commercial transaction — such as an order — between parties takes place. 
 
-For example, the contract and the order can be combined into a single document for a single transaction. However, there must be a legal framework in place to provide context for monies that are exchanged and settled. The functional part of the contract forms the basis of a Baseline Protocol Implementation (BPI) defined in section 2.6. The requirements below are to be understood solely within the context of this document. They are not meant to be generalized beyond this context.
+For example, the contract and the order can be combined into a single document for a single transaction. However, there must be a legal framework in place to provide context for monies that are exchanged and settled. The functional part of the contract forms the basis of a Baseline Protocol Implementation (BPI) defined in section [2.6 Baseline Protocol Instance](#26-baseline-protocol-instance). The requirements below are to be understood solely within the context of this document. They are not meant to be generalized beyond this context.
 
 **[D1]**   The contract SHOULD be in an electronic form.
 
@@ -542,13 +547,13 @@ Commercial Documents, a category of commercial State Objects, refer to the state
 
 **[R8]**	A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
 
-**[D4]**	The definition of a commercial document authorization SHOULD be stated in the legal contract underlying the commercial document.
+**[D5]**	The definition of a commercial document authorization SHOULD be stated in the legal contract underlying the commercial document.
 
 Authorizations for commercial transactions are a foundational element in the context of this document, as they are in paper based agreements. Therefore, any legal authorization agreements relevant to the commercial agreement between commercial counterparties, and thus to commercial transactions between them, are important to be represented in a BPI to ensure mitigating the risk of unauthorized signatures.
 
-**[R9]**	The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
+**[D6]**	The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
 
-**[R10]**	A commercial document MUST be non-repudiable.
+**[R9]**	A commercial document MUST be non-repudiable.
 
 Note that while non-repudiation in the physical world is most often tied to a physical signature of an individual on a legal document, in the digital world a digital signature over a digital legal document such as an Order or an Invoice belonging to a known and verifiable digital identity of a counterparty serves the same purpose.
 
@@ -575,7 +580,7 @@ Abstractly, a BPI consists of
 
 BPIs are strongly dependent on the security and privacy capabilities of the CCSM used to implement a BPI.
 
-**[R11]**	A BPI MUST utilize a CCSM.
+**[R10]**	A BPI MUST utilize a CCSM.
 
 Security and Privacy requirements of a BPI are key and are strongly dependent on the security and privacy assurances of the CCSM on which the BPI is implemented can provide. BPIs need to take great care to avoid the following two situations:
 
@@ -584,35 +589,35 @@ Security and Privacy requirements of a BPI are key and are strongly dependent on
 	
 Hence, this document enumerates the following requirements below:
 
-**[R12]**	A BPI MUST have the same security assurances as to the CCSM it utilizes.
+**[R11]**	A BPI MUST have the same security assurances as to the CCSM it utilizes.
 
-**[R13]**	A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
+**[R12]**	A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
-The usage of cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [(CMVP)](https://www.nist.gov/programs-projects/cryptographic-module-validation-program-cmvp).
+For information, please refer to section [1.4 Non-Normative References](#14-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program (CMVP).
 
-**[R14]**	If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
+**[R13]**	If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
-**[R15]**	A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips) or [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html).
+**[R14]**	A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips) or [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html). See section [1.4 Non-Normative References](#14-non-normative-references).
 
-**[R16]**	(Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
+**[R15]**	(Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
 Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a (commercial) State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.
 
-**[R17]**	A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
+**[D7]**	A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
 
 Liveness means that if a CCSM does not require (commercial) counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.
 
-**[R18]**	A BPI MUST be censorship-resistant.
+**[R16]**	A BPI MUST be censorship-resistant.
 
 Censorship-resistant means that a (commercial) counterparty can terminate a (commercial) transaction at any time without another counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the (commercial) transaction.
 
-**[R19]**	A BPI MUST be able to provide privacy of the (commercial) counterparties' data concerning any party outside of the BPI.
+**[R17]**	A BPI MUST be able to provide privacy of the (commercial) counterparties' data concerning any party outside of the BPI.
 
-**[R20]** A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339).
+**[R18]** A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](https://www.rfc-editor.org/info/rfc3339). See section [1.3 Normative References](#13-normative-references)
 
 ## 2.7 High-Level Functional Requirements
 
-This section describes the prerequisites and high-level general operational framework requirements 
+This section describes the prerequisites and high-level general operational framework requirements: 
 * Functional Requirements on commercial counterparties
 * CCSM-based Lifecycle Processes
 
@@ -620,25 +625,25 @@ This section describes the prerequisites and high-level general operational fram
 
 This section states the commercial and operational functionalities required from commercial counterparties.
 
-**[R21]**	Commercial Counterparties MUST have the ability to meet all required legal, compliance, and business reporting requirements. 
+**[R19]**	Commercial Counterparties MUST have the ability to meet all required legal, compliance, and business reporting requirements. 
 
 This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.
 
-**[R22]**	Commercial Counterparties MUST support the Reference Architecture defined in this section.
+**[R20]**	Commercial Counterparties MUST support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
 
-**[R23]**	Commercial Counterparties MUST use the BPI APIs to transact on a commercial State Object.
+**[R21]**	Commercial Counterparties MUST use the BPI APIs to transact on a commercial State Object.
 
 An ability of a Requester to request products, services, or assets, in other words, commercial State Objects, through an instance of the Baseline Protocol's APIs do not necessarily imply the ability to provide products, services, and assets through an instance of the Baseline Protocol APIs and vice versa.
 
 Commercial counterparties need to know the level of conformity other commercial counterparties have with the Baseline Protocol Standard.
 
-**[R24]**	Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol standard in a publicly accessible manner.
+**[R22]**	Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
 
 ### 2.7.2 CCSM Lifecycle Processes
 
 Commercial Counterparties must comply efficiently and effectively with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard.
 
-**[R25]**	If required to meet particular third party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
+**[R23]**	If required to meet particular third party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
 
 Note, that in principal every product, service, or asset, or sets thereof has a supply chain. This requirement aims at situations where the product, service, or asset or sets thereof cannot be solely supplied by the Provider without sourcing components from other Providers.
 
@@ -650,7 +655,7 @@ This allows enforcement of conformance with regulations, additional legal and te
 
 ## 2.8 Baseline Protocol Reference Architecture
 
-This section describes the components of the Baseline Reference Architecture 
+This section describes the components of the Baseline Reference Architecture: 
 * (Commercial) State Synchronization
 * CCSMs and BPI/CCSM Abstraction Layers
 * External Applications
@@ -2484,6 +2489,44 @@ Non-normative examples are conflict-free replicated data types [(CRDTs)](https:/
 
 -------
 # 8 BPI External Data Inputs
+
+This section of the document focuses on the requirements and considerations related to the input of external data into a BPI workstep. Specifically, it addresses:
+
+- internal authoritative data - data sourced from a single authoritative source, internal to one of the BPI participants to a BPI workstep(i.e. internal systems of record)
+- external authoritative data - data sourced from external authoritative sources (i.e. government record) and
+- external non-authoritative, non-deterministic data sourced from external non-authoritative, non-deterministic sources (i.e. IoT sensor data, time, etc).
+
+
+## 8.1 Internal Authoritative Data for BPIs
+
+Internal authoritative data means that there exists only one authoritative version of the input data in some system of record of a BPI participant, making it the only choice for input into a BPI workstep. Authoritative in this context, means that BPI participants involved in a BPI workstep have agreed that the source is the accurate and reliable truth for that particular data point.
+[O10] Internal authoritative input data to a BPI workstep MAY come from a single source.
+[CR36]>[O10] If the internal authoritative input data to a BPI workstep is single-sourced, that source MUST be authoritative.
+
+## 8.2 External Authoritative Data for BPIs
+
+External authoritative data means that the input data to a BPI workstep is held in some authoritative 3rd party database, such as government records. Unlike internal authoritative data where there is only one source, external authoritative data input to a BPI workstep may have multiple sources.
+[R319] BPI participants MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
+
+
+## 8.3 External Non-authoritative, Non-deterministic for BPIs (Oracles)
+
+External non-authoritative, non-deterministic data means that there does not exist an authoritative, deterministic source for the data used as input to a BPI workstep. In that case, a mechanism known as an oracle is needed to account for potential discrepancies. The entities themselves which report external non-authoritative, non-deterministic into a BPI worksteps may also be referred to as oracles.
+
+### 8.3.1 Data Trustworthiness
+
+External non-authoritative, non-deterministic data for BPIs resides outside of an authoritative source and is subject to manipulation risks. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in the data reporting and error checking, either cross-party, by a neutral party or an honesty incentivized party.
+[D34] External non authoritative BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
+[R320] External non-authoritative BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
+Authoritative entities in the context of this document are entities that have been delegated authority by the participants of a BPI workstep to validate an external non-authoritative source of input data into a BPI workstep.
+[R321] BPI participants MUST agree upon a standard validation method for external non-authoritative data input to a BPI workstep.
+[R322] A BPI workstep participant MUST be able to validate that the validation criteria of an external non-authoritative data input to the BPI workstep has been met.
+Appropriate data validation methods vary on a case-by-case basis depending upon the data types, sources and formats. As such, it is up to the BPI participants to agree upon the optimal validation method for their implementation. This includes design decisions such as what threshold of unresponsive oracles leads to a rejected input, how to aggregate the oracle responses and remove outliers, signing data to ensure provenance, implementing cryptographic mechanisms such as threshold signatures/secret sharing and TEEs to obfuscate data from the oracle providers.
+
+
+### 8.3.2 External Non-authoritative BPI Input Data Variance
+
+External non-authoritative BPI input data can be subject to variations from lack of time synchronicity, fluctuations in precision or reporting error. Party A may read the temperature of a shipment as 77.1F while party B reads it as 77.3F. Small variance in timing can also produce mismatched BPI data inputs. These variations may lead to failed proof verification if proof inputs are not identical between prover and verifier. In order for proofs to be deterministic, the inputs to a BPI workstep must also uphold determinism by removing these variances through a chosen variance removal algorithm across the disparate data points such as mean, median, etc which aggregates the data into a single golden truth. As an extension of data validation, it's up to the BPI participants to agree upon their algorithmic approach to removing variance and outlier data. This agreed-upon method should have a clearly defined standard with all oracles involved adhering to the same data format. In the case where there are multiple data endpoints, there's both the variance for each oracle's internal data set and the variance between their aggregated answers to consider.
 
 -------
 # 9 Conformance
