@@ -165,7 +165,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 **[Byzantine Fault Tolerant (BFT)]** "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982 \
 **[OAuth-2.0]** Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518 \
 **[SAML]** J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os \
-**[OIDC]** OpenID Connect Federation 1.0, (2019) \
+**[OIDC]** OpenID Connect Federation 1.0, https://openid.net/developers/specs/ (2019) \
 **[ActiveDirectory]** “Directory System Agent". MSDN Library. Microsoft. (2018) \
 **[SSO]**"What's the Difference b/w SSO (Single Sign On) & LDAP?". JumpCloud. (2019) \
 **[Hardware Security Modules (HSMs)]** Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
