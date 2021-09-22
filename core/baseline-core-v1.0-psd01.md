@@ -26,7 +26,7 @@ https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.pdf
 URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Open Project:
-[Baseline, part of the EEA Community Projects](https://www.baseline-protocol.org/)
+[Baseline](https://www.baseline-protocol.org/), an initiative of [EEA Community Projects](https://entethalliance.org/eeacommunityprojects/)
 
 #### Project Chair:
 John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/) 
@@ -53,9 +53,9 @@ This specification replaces or supersedes:
 
 This specification is related to: \    
 **[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Kyle Thomas, Daven Jones, Andreas Freund and Anais Ofranc. 17 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md.\
+_Baseline API and Data Model Version 1.0_. Edited by Kyle Thomas, Daven Jones, Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md.\
 **[baseline-dlt-v1.0]**
-_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 17 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
+_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
 
 
 #### Abstract:
@@ -256,15 +256,16 @@ http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf \
 
 ### 1.4.1 Requirement Ids
 
-A requirement is uniquely identified by an unique ID composed of its requirement level followed by a requirement number, following the convention **[RequirementLevelRequirementNumber]** - for instance [R50]. 
+A requirement is uniquely identified by an unique ID composed of its requirement level followed by a requirement number, as per convention **[RequirementLevelRequirementNumber]**. 
 There are four requirement levels that are coded in requirement ids as per below convention: 
 
-**[R]** - The requirement level for requirements which IDs start with the letter _R_ is to be interpreted as **MUST** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
-**[D]** - The requirement level for requirements which IDs start with the letter _D_ is to be interpreted as **SHOULD** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
-**[O]** - The requirement level for requirements which IDs start with the letter _O_ is to be interpreted as **MAY** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
-**[CR]** - A requirement which ID start with the letter _CR_ is to be interpreted as conditional to another stated requirement. As per convention in section [1.4.2	Conditional Requirements](#142-conditional-requirements).
+**[R]** - The requirement level for requirements which IDs start with the letter _R_ is to be interpreted as **MUST** as described in RFC2119. \
+**[D]** - The requirement level for requirements which IDs start with the letter _D_ is to be interpreted as **SHOULD** as described in RFC2119. \
+**[O]** - The requirement level for requirements which IDs start with the letter _O_ is to be interpreted as **MAY** as described in RFC2119. 
 
 Note that requirements are uniquely numbered in ascending order within each requirement level.
+
+Example : It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation and [O1] is truly optional.
 
 ### 1.4.2 Conditional Requirements
 
@@ -285,7 +286,7 @@ At a high level a BPI's benefits and characteristics can be summarized as follow
 * Service request validation such as that of an order against the service request receiver's System of Record is no longer unnecessary.
 
 In the following, this document lays out the requirements on a BPI to achieve above described benefits and characteristics in several sections:
-* **Section 2: Design and Architecture** with definitions, key concepts, and overviews of the components of a complaint Baseline Protocol Implementation as delineated in the following subsections:
+* **Section 2: Design and Architecture** with definitions, key concepts, and overviews of the components of a compliant Baseline Protocol Implementation as delineated in the following subsections:
     * Agreement
     * State Object
     * Transacting Counterparties

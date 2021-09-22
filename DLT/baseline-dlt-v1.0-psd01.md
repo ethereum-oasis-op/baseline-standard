@@ -6,7 +6,7 @@
 
 ## Project Specification Working Draft
 
-## 17 September 2021
+## 22 September 2021
 
 <!-- URI list start (commented out except during publication by OASIS TC Admin)
 
@@ -26,7 +26,7 @@ https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.pdf
 URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Open Project:
-[Baseline, part of the EEA Community Projects](https://www.baseline-protocol.org/)
+[Baseline](https://www.baseline-protocol.org/), an initiative of [EEA Community Projects](https://entethalliance.org/eeacommunityprojects/)
 
 #### Project Chair:
 John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/) 
@@ -53,9 +53,9 @@ This specification replaces or supersedes:
 
 This specification is related to: \
 **[baseline-core-v1.0]**
-_Baseline Core Specification Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 17 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.  \
+_Baseline Core Specification Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.  \
 **[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Kyle Thomas, Daven Jones, Andreas Freund and Anais Ofranc. 17 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md .
+_Baseline API and Data Model Version 1.0_. Edited by Kyle Thomas, Daven Jones, Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md .
 
 
 
@@ -76,7 +76,7 @@ When referencing this specification the following citation format should be used
 
 **[baseline-dlt-v1.0]**
 
-_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 17 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
+_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
 
 -------
 
@@ -129,7 +129,7 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 
 # 1 Introduction
 
-Distributed Ledger Technology (CCSM) is the foundational enabler of a Baseline Protocol Instance (BPI) with no or limited trust assumptions. The requirements that a CCSM must satisfy for it to be used in a BPI as defined in the Baseline Standard fall in the following categories:
+Distributed Ledger Technology (CCSM) is the foundational enabler of a Baseline Protocol Instance (BPI) with no or limited trust assumptions. The requirements that a CCSM must satisfy for it to be used in a BPI as defined in the Baseline Protocol Standard fall in the following categories:
 1. Security
 2. Privacy
 3. Scalability
@@ -144,44 +144,44 @@ In the requirements below we will refer to "The CCSM" to mean a CCSM chosen by t
 
 ## 1.0 IPR Policy
 
-The Baseline Protocol Core Specification is provided under the [RF on Limited Terms](https://www.oasis-open.org/policies-guidelines/ipr/#RF-on-Limited-Mode) Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established.
+The Baseline Protocol CCSM Specification is provided under the [RF on Limited Terms](https://www.oasis-open.org/policies-guidelines/ipr/#RF-on-Limited-Mode) Mode of the OASIS IPR Policy, the mode chosen when the Technical Committee was established.
 
-For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the Intellectual Property Rights section of the TC’s web page (https://www.oasis-open.org/committees/legalruleml/ipr.php).
+For information, please refer to the Intellectual Property Rights section of the Oasis IPR Policy:  .
 
 ## 1.1 Terminology
 
-The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119).
+The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC2119.
 
 ## 1.2 Normative References
 
-**[RFC2119]** S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997.
+**[RFC2119]** S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997.\
+**[ISO-IEC-27033]** ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO. 
 
 ## 1.3 Non-Normative References
 
-**[1][ISO-IEC-27033]** ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO \
-**[2][Zero-Knowledge Proofs (ZKPs)]** Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3  \
-**[3][Byzantine Fault Tolerant (BFT)]** "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982 \
-**[4][OAuth-2.0]** Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518 \
-**[5][SAML]** J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os \
-**[6][OIDC]** OpenID Connect Federation 1.0, (2019) \
-**[7][ActiveDirectory]** “Directory System Agent". MSDN Library. Microsoft. (2018) \
-**[8][SSO]**"What's the Difference b/w SSO (Single Sign On) & LDAP?". JumpCloud. (2019) \
-**[9][Hardware Security Modules (HSMs)]** Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
+**[Zero-Knowledge Proofs (ZKPs)]** Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3  \
+**[Byzantine Fault Tolerant (BFT)]** "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982 \
+**[OAuth-2.0]** Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518 \
+**[SAML]** J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os \
+**[OIDC]** OpenID Connect Federation 1.0, (2019) \
+**[ActiveDirectory]** “Directory System Agent". MSDN Library. Microsoft. (2018) \
+**[SSO]**"What's the Difference b/w SSO (Single Sign On) & LDAP?". JumpCloud. (2019) \
+**[Hardware Security Modules (HSMs)]** Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
 
 ## 1.4 Typographical Conventions
 
 
 ### 1.4.1 Requirement Ids
 
-A requirement is uniquely identified by an unique ID composed of its requirement level followed by a requirement number, following the convention **[RequirementLevelRequirementNumber]** - for instance [R50]. 
+A requirement is uniquely identified by an unique ID composed of its requirement level followed by a requirement number, as per convention **[RequirementLevelRequirementNumber]**. 
 There are four requirement levels that are coded in requirement ids as per below convention: 
 
-**[R]** - The requirement level for requirements which IDs start with the letter _R_ is to be interpreted as **MUST** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
-**[D]** - The requirement level for requirements which IDs start with the letter _D_ is to be interpreted as **SHOULD** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). \
-**[O]** - The requirement level for requirements which IDs start with the letter _O_ is to be interpreted as **MAY** as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119). 
+**[R]** - The requirement level for requirements which IDs start with the letter _R_ is to be interpreted as **MUST** as described in RFC2119. \
+**[D]** - The requirement level for requirements which IDs start with the letter _D_ is to be interpreted as **SHOULD** as described in RFC2119. 
 
 Note that requirements are uniquely numbered in ascending order within each requirement level.
 
+Example : It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation.
 
 ## 1.5 Glossary
 
@@ -191,7 +191,7 @@ The Baseline Protocol is a set of methods that enable two or more state machines
 
 **Byzantine Fault Tolerant (BFT):**
 
-Given a network or system of n components, t of which are dishonest, and assuming only point-to-point channels between all the components, then whenever a component A tries to broadcast a value x such as a block of transactions, the other components are permit-ted to discuss with each other and verify the consistency of A's broadcast, and eventually settle on a common value y. The system is then considered to resist Byzantine faults if a component A can broadcast a value x, and then:
+Given a network or system of n components, t of which are dishonest, and assuming only point-to-point channels between all the components, then whenever a component A tries to broadcast a value x such as a block of transactions, the other components are permitted to discuss with each other and verify the consistency of A's broadcast, and eventually settle on a common value y. The system is then considered to resist Byzantine faults if a component A can broadcast a value x, and then:
 * If A is honest, then all honest components agree on the value x.
 * If A is dishonest, all honest components agree on the common value y.
 
@@ -211,7 +211,8 @@ A Consensus Controlled State Machine is a network of replicated, shared, and syn
 
 The ability of a Party operating Workflows on a baseline-compliant implementation A to instantiate and operate one or more Workflows with one or more Party on a baseline-compliant implementation B without the Party on either implementation A or B having to know anything of the other Party’s implementation.
 
-**Liveness:**
+**Liveness:**  
+
 In concurrent computing, liveness refers to a set of properties of concurrent systems, that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
 
 Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
@@ -221,6 +222,7 @@ Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
 A set of Parties participating in the execution of one or more given Workflows. A Workgroup is set up and managed by one Party that invites other Parties to join as workgroup members. 
 
 **Proof of Correctness:**
+
 A Proof of Correctness is a mathematical proof that a computer program or a part thereof will, when executed, yield correct results, i.e. results fulfilling specific requirements. Before proving a program correct, the theorem to be proved must, of course, be formulated. The hypothesis of such a correctness theorem is typically a condition that the relevant program variables must satisfy immediately before the program is executed. This condition is called the precondition. The thesis of the correctness theorem is typically a condition that the relevant program variables must satisfy immediately after execution of the program. This latter condition is called the postcondition. The thesis of a correctness theorem may be a statement that the final values of the program variables are a particular function of their initial values.
 
 "Encyclopedia of Software Engineering",
@@ -251,11 +253,11 @@ The usage of cryptographic libraries that successfully passed the National Insti
 
 Note, economic security assurances such as used in Proof-of-Stake consensus algorithms are designed to provide additional security assurances beyond those of cryptography in distributed systems. The security assurances are based on a system of economic incentives and disincentives for distributed system participants with the expressed goal that honest behavior of distributed system participants which enhances system security is in their economic self-interest. This is akin to determining if a cryptographic algorithm is secure or not, and what the level of security of said algorithm is, the security of a system of economic incentives and disincentives must be proven through a game theoretic security analysis.
 
-**[D1]**	The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE)
+**[D1]**	The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE).
 
 Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing with the TEE, along with confidentiality of their assets.
 
-**[R5]**	The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033 [[1]](####[1])
+**[R5]**	The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033.
 
 Network attacks typically take the form of Distributed Denial of Service (DDOS) attacks, attacks from groups of malicious CCSM nodes performing CCSM reorganizations, front running of transactions through transaction injections, and censoring of transactions. This includes game theoretic attacks such as discouragement, extortion, value-extraction, or random oracle attacks.
 
@@ -285,7 +287,7 @@ Privacy-preserving means in this context that at least the content of a message,
 
 **[D3]**	The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verification (if not generation) at the protocol level.
 
-Zero-Knowledge Proofs (ZKPs) [[2]](####2) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
+Zero-Knowledge Proofs (ZKPs) (see section [1.3 Non-Normative References](#13-non-normative-references)) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
 
 # 4. Scalability
 To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce Block space. 
@@ -313,15 +315,17 @@ It is important that Peer-to-Peer (P2P) message protocols are used that do not r
 
 **[R11]**	A CCSM utilized in a BPI MUST support a P2P message protocol that does not require network leader nodes.
 
-The network requirements on the consensus algorithms are even more stringent than on the P2P protocol. Additional requirements on the consensus algorithm of the CCSM are discussed in the next section, section 7.
+The network requirements on the consensus algorithms are even more stringent than on the P2P protocol. Additional requirements on the consensus algorithm of the CCSM are discussed in the next section, section [7. Consensus](#7-consensus).
 
-**[R12]** The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT) [[3]](####[3]).
+**[R12]** The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT).
+
+See [1.3 Non-Normative References](#13-non-normative-references) for reference paper.
 
 **[R13]** The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
 
 Weak synchrony in this context means, 
 1. 	that all messages will eventually reach their intended recipients and 
-2. that after a certain, yet unknown, time the network will become synchronous again.
+2. that after a certain, yet unknown time, the network will become synchronous again.
 
 # 7. Consensus
 The consensus algorithm is the most important component of a CCSM as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
@@ -362,13 +366,13 @@ This requirement means that there cannot be infinite computational loops in a di
 # 9. Data Integrity and Transaction Completeness
 Data integrity over time, in other words the inability to alter data once it has been committed to the state of the CCSM, is one of the key features of typical CCSMs.
 
-**[R20]**	If the CCSM utilized in a BPI is strongly consistent (as defined in section 7), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7).
+**[R20]**	If the CCSM utilized in a BPI is strongly consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7).
 
-**[R21]**	If the CCSM utilized in a BPI is eventually consistent (as defined in section 7), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7). 
+**[R21]**	If the CCSM utilized in a BPI is eventually consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7). 
 
 Besides data integrity, the notion of censorship-resistance, or the inability of anyone participant in a CCSM to stop any other participant’s transaction to be eventually included in the CCSM state, is another key feature of typical CCSMs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
 
-**[R22]**	The CCSM utilized in a BPI MUST guarantee that a transaction compliant with the CCSM protocol rules is eventually included in the state of the CCSM, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section 6 for details on the security assumptions of consensus algorithms).
+**[R22]**	The CCSM utilized in a BPI MUST guarantee that a transaction compliant with the CCSM protocol rules is eventually included in the state of the CCSM, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section [6. Network](#6-network) for details on the security assumptions of consensus algorithms).
 
 The reason why the reference to the consensus algorithm is important is as follows: To guarantee processing of a transaction, one needs only one honest CCSM node in the network. However, this is not sufficient to guarantee consensus. Therefore, and to include a submitted transaction in the CCSM state, there needs to be an honest majority of CCSM nodes to reach consensus on the submitted transaction.
 
@@ -378,17 +382,21 @@ Depending on the CCSM employed in the implementation of a BPI, the security requ
 
 **[R23]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM  MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH [[4]](####[4]), SAML [[5]](####[5]), [[6]](####[6]), AD/LDAP [[7]](####[7]).
+Non-normative examples of such authentication technologies are OAUTH, SAML, OIDC, AD/LDAP. Please refer to section [1.3 Non-Normative References](#13-non-normative-references).
 
-**[R23]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
+**[R24]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
 
-**[R24]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support policy management.
+**[R25]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support policy management.
 
-**[R25]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO) [[8]](####[8]).
+**[R26]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO).
 
-**[R26]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication.
+Please refer to section [1.3 Non-Normative References](#13-non-normative-references) for documentation.
 
-**[R27]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules (HSMs)[[9]](####9).
+**[R27]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication.
+
+**[R28]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules (HSMs).
+
+See [1.3 Non-Normative References](#13-non-normative-references) for reference paper.
 
 # 11 Conformance
 
