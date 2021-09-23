@@ -442,7 +442,7 @@ Nick Kritikos, ConsenSys
 
 # Appendix C - Revision History
 
-Revisions made since the initial stage of this numbered Version of this document have been tracked on [Github](https://github.com/eea-oasis/baseline-standard/blob/main/DLT/baseline-dlt-v1.0-psd01.md) .
+Revisions made since the initial stage of this numbered Version of this document have been tracked on [Github](https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-dlt-v1.0-psd01.md) .
 
 -------
 
