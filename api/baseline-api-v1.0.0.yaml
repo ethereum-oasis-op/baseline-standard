@@ -19,136 +19,10 @@ tags:
     description: |- 
       Baseline core vault API provides tools and methods for managing digital authentication credentials for Subjects based on roles and `Workgroup` instances. 
 paths:
-  /accounts:
-    get:
-      deprecated: false
-      description: 'Returns a list of `Account` instances in the authorized scope'
-      operationId: listAccounts
-      parameters:
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/results-per-page'
-      responses:
-        '200':
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Account'
-                type: array
-          description: 'The request was successful and a list of accounts has been returned.'
-          headers:
-            X-Total-Results-Count:
-              $ref: '#/components/headers/X-Total-Results-Count'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Unexpected error
-      servers:
-        - url: http://localhost:8080
-      summary: List accounts
-      tags:
-        - CCSM
-    post:
-      deprecated: false
-      description: 'Creates an `Account` using the parameters provided in the request body'
-      operationId: createAccount
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            example:
-              key_id: '331156fb-fa5c-4557-ac39-69ae34c72c18'
-              network_id: '66d44f30-9092-4182-a3c4-bc02736d6ae5'
-              subject_id: 'did:prvd:7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
-              vault_id: '190822c9-62f5-4caf-a419-df735a793b2f'
-            schema:
-              $ref: '#/components/schemas/Account'
-      responses:
-        '201':
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                $ref: '#/components/schemas/Account'
-          description: The request was successful and a new account has been created.
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unexpected error
-      summary: Create account
-      tags:
-        - CCSM
-  /accounts/{id}:
-    get:
-      deprecated: false
-      description: Retrieves details for a specified `Account`
-      operationId: getAccountDetails
-      parameters:
-        - description: 'ID of a specific `Account` for which detailed information is desired; _UUID as specified by RFC4122_'
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Account'
-          description: The request was successful and detailed information for the specified account has been returned.
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: unexpected error
-      summary: Get account details
-      tags:
-        - CCSM
   /bpi_accounts:
     get:
       deprecated: false
-      description: Returns a list of `BPIAccount` objects in the authorized scope
+      description: Returns a list of `BPIAccount` objects in the authorized scope; _normative_
       operationId: listBPIAccounts
       parameters:
         - $ref: '#/components/parameters/page'
@@ -181,7 +55,7 @@ paths:
         - Baseline
     post:
       deprecated: false
-      description: 'Creates a `BPIAccount` using the parameters provided in the request body'
+      description: 'Creates a `BPIAccount` using the parameters provided in the request body; _normative_'
       operationId: createBPIAccount
       requestBody:
         content:
@@ -225,7 +99,7 @@ paths:
   /bpi_accounts/{id}:
     get:
       deprecated: false
-      description: Retrieves details for a specific `BPIAccount`
+      description: Retrieves details for a specific `BPIAccount`; _normative_
       operationId: getBPIAccountDetails
       parameters:
         - description: ID of a specific `BPIAccount`; _UUID as specified by RFC4122_
@@ -264,7 +138,7 @@ paths:
   /protocol_message:
     post:
       summary: Create a Baseline protocol message
-      description: Creates a Baseline protocol message per the parameters provided in the request body
+      description: Creates a Baseline protocol message per the parameters provided in the request body; _normative_
       operationId: createProtocolMessage
       parameters: []
       requestBody:
@@ -294,12 +168,12 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
       deprecated: false
       servers:
-         - url: http://localhost:8080    
+        - url: http://localhost:8080    
       tags:
         - Baseline
   /resolve/{did}:
     get:
-      description: DID document endpoint for `Subject` instances
+      description: DID document endpoint for `Subject` instances; _non-normative_
       operationId: resolveDID
       parameters: 
         - description: ID of a specific DID to be resolved
@@ -410,7 +284,7 @@ paths:
   /contracts:
     get:
       deprecated: false
-      description: Returns a list of smart contracts in the authorized scope
+      description: Returns a list of smart contracts in the authorized scope; _non-normative_
       operationId: listContracts
       parameters:
         - $ref: '#/components/parameters/page'
@@ -464,7 +338,7 @@ paths:
         - CCSM
     post:
       deprecated: false
-      description: 'Deploys a contract using the parameters provided in the request body'
+      description: 'Deploys a contract using the parameters provided in the request body; _non-normative_'
       operationId: deployContract
       parameters: []
       requestBody:
@@ -498,7 +372,7 @@ paths:
   /contracts/{id}:
     get:
       deprecated: false
-      description: 'Retrieves details for a specified `Contract`'
+      description: 'Retrieves details for a specified `Contract`; _non-normative_'
       operationId: getContractDetail
       parameters:
         - description: 'ID of a specific `Contract` for which detailed information is desired; _UUID as specified by RFC4122_'
@@ -541,7 +415,7 @@ paths:
   /networks:
     get:
       deprecated: false
-      description: Returns a list of available peer-to-peer CCSM `Network` instances
+      description: Returns a list of available peer-to-peer CCSM `Network` instances; _non-normative_
       operationId: listNetworks
       parameters:
         - $ref: '#/components/parameters/page'
@@ -577,7 +451,7 @@ paths:
   /networks/{id}/status:
     get:
       deprecated: false
-      description: 'Retrieves the syncing status and, if fully-synced, real-time metrics and metadata of a specified CCSM `Network`'
+      description: 'Retrieves the syncing status and, if fully-synced, real-time metrics and metadata of a specified CCSM `Network`; _non-normative_'
       operationId: getNetworkStatus
       parameters:
         - description: 'ID of a specific CCSM `Network` for which the status is desired; _UUID as specified by RFC4122_'
@@ -617,7 +491,7 @@ paths:
   /provers:
     get:
       deprecated: false
-      description: 'Returns a list of `Prover` instances in the authorized scope'
+      description: 'Returns a list of `Prover` instances in the authorized scope; _normative_'
       operationId: listProvers
       parameters:
         - description: 'Filter the response by elliptic curve'
@@ -690,7 +564,7 @@ paths:
 
         A persistent store is implicitly initialized upon the creation of a new prover unless an existing store_id is provided and the referenced store is valid in the context of the prover and authorized scope.
 
-        The parameters required to provision a `Prover` vary slightly across providers and proving schemes. Ensure you are using the `source` or `identifier` parameter properly for the selected `provider` and `proving_scheme`.
+        The parameters required to provision a `Prover` vary slightly across providers and proving schemes. Ensure you are using the `source` or `identifier` parameter properly for the selected `provider` and `proving_scheme`. _normative_
       operationId: createProver
       requestBody:
         content:
@@ -719,7 +593,7 @@ paths:
   /provers/{id}:
     get:
       deprecated: false
-      description: 'Retrieves details for a specific `Prover`'
+      description: 'Retrieves details for a specific `Prover`; _normative_'
       operationId: getProverDetails
       parameters:
         - description: 'ID of a specific `Prover`; _UUID as specified by RFC4122_'
@@ -755,7 +629,7 @@ paths:
     post:
       deprecated: false
       description: |-
-        Generates a cryptographic proof given a valid witness parameter; calling this API has an implicit side-effect of writing to the configured `Store`.
+        Generates a cryptographic proof given a valid witness parameter; calling this API has an implicit side-effect of writing to the configured `Store`. _normative_
       operationId: generateProof
       parameters:
         - description: ID of a specific `Prover`; _UUID as specified by RFC4122_
@@ -820,7 +694,7 @@ paths:
   /provers/{id}/verify:
     post:
       deprecated: false
-      description: Verifies a `Proof` using the `Witness` parameters provided in the request body
+      description: Verifies a `Proof` using the `Witness` parameters provided in the request body; _normative_
       operationId: verify
       parameters:
         - description: ID of a specific `Prover`; _UUID as specified by RFC4122_
@@ -856,7 +730,7 @@ paths:
   /subjects:
     get:
       deprecated: false
-      description: 'Returns a list of BPI `Subject` instances in the authorized scope'
+      description: 'Returns a list of BPI `Subject` instances in the authorized scope; _normative_'
       operationId: listSubjects
       parameters:
         - $ref: '#/components/parameters/page'
@@ -889,7 +763,7 @@ paths:
         - Baseline
     post:
       deprecated: false
-      description: 'Creates a BPI `Subject` using the parameters provided in the request body'
+      description: 'Creates a BPI `Subject` using the parameters provided in the request body; _normative_'
       operationId: createSubject
       requestBody:
         content:
@@ -897,7 +771,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Subject'
             example:
-              account_id: '99c404e9-fe10-4ca7-b787-d5943d03591c'
+              wallet_id: '99c404e9-fe10-4ca7-b787-d5943d03591c'
               credentials: []
               description: Organization for testing
               metadata: {}
@@ -931,7 +805,7 @@ paths:
   /subjects/{id}:
     get:
       deprecated: false
-      description: 'Retrieves details for a specified `Subject`'
+      description: 'Retrieves details for a specified BPI `Subject`; _normative_'
       operationId: getSubjectDetails
       parameters:
         - description: 'ID of a specific `Subject` for which detailed information is desired'
@@ -967,7 +841,7 @@ paths:
         - Baseline
     put:
       deprecated: false
-      description: 'Updates a specified `Subject` using the parameters provided in the request body'
+      description: 'Updates a specified BPI `Subject` using the parameters provided in the request body; _normative_'
       operationId: updateSubjectDetails
       parameters:
         - description: 'ID of a specific `Subject` to be updated; _UUID as specified by RFC4122_'
@@ -983,7 +857,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Subject'
             example:
-              account_id: '99c404e9-fe10-4ca7-b787-d5943d03591c'
+              wallet_id: '99c404e9-fe10-4ca7-b787-d5943d03591c'
               credentials: []
               description: Organization for testing
               metadata: {}
@@ -1013,7 +887,7 @@ paths:
   /subjects/{id}/accounts:
     get:
       deprecated: false
-      description: 'Returns a list of `SubjectAccount` for a specified `Subject`'
+      description: 'Returns a list of BPI `SubjectAccount` for a specified BPI `Subject`; _normative_'
       operationId: listSubjectAccounts
       parameters:
         - description: 'ID of a specific `Subject` for which a list of  `SubjectAccount` objects is desired; _UUID as specified by RFC4122_'
@@ -1051,7 +925,7 @@ paths:
         - Baseline
     post:
       deprecated: false
-      description: 'Creates a `SubjectAccount` for a specified `Subject`'
+      description: 'Creates a BPI `SubjectAccount` for a specified BPI `Subject`; _normative_'
       operationId: createSubjectAccount
       parameters:
         - description: 'ID of a specific `Subject` to which the `SubjectAccount` is to be associated'
@@ -1094,7 +968,7 @@ paths:
   /subjects/{subject_id}/accounts/{id}:
     get:
       deprecated: false
-      description: 'Returns details for a specific `SubjectAccount` for a specified `Subject`'
+      description: 'Returns details for a specific BPI `SubjectAccount` for a specified BPI `Subject`; _normative_'
       operationId: getSubjectAccountDetails
       parameters:
         - description: 'ID of a specific `SubjectAccount` for which a list of  `SubjectAccount` objects is desired'
@@ -1140,7 +1014,7 @@ paths:
   /transactions:
     get:
       deprecated: false
-      description: Returns a list of `Transaction` instances in the authorized scope
+      description: Returns a list of BPI `Transaction` instances in the authorized scope; _normative_
       operationId: listTransactions
       parameters:
         - $ref: '#/components/parameters/page'
@@ -1189,11 +1063,11 @@ paths:
     post:
       deprecated: false
       description: >
-        Creates and broadcast a transaction in a chain- and protocol-agnostic manner using the parameters provided in the request body
+        Creates and broadcast a BPI transaction in a chain- and protocol-agnostic manner using the parameters provided in the request body
 
         This API provides an asynchronous, fault-tolerant mechanism for providing some guarantees about how a well-formed transaction will become eventually-consistent with the underlying target Network. Currently, transactions are guaranteed to be successfully broadcast to the target network or timeout within 5 minutes. If a transaction is unable to be broadcast to the network for any reason (i.e., network reachability, invalid nonce etc.) it is retried every 60 seconds. It is likely these retry and timeout constraints will be made more configurable in a future release.
 
-        In addition to the asynchronous and resilient nature of broadcasting transactions using this API, instrumentation of the full transaction lifecycle is captured for each transaction.
+        In addition to the asynchronous and resilient nature of broadcasting transactions using this API, instrumentation of the full transaction lifecycle is captured for each transaction. _normative_
       operationId: createTransaction
       parameters: []
       requestBody:
@@ -1227,7 +1101,7 @@ paths:
   /transactions/{id}:
     get:
       deprecated: false
-      description: Retrieves details for a specified `Transaction`
+      description: Retrieves details for a specified BPI `Transaction`; _normative_
       operationId: getTransactionDetails
       parameters:
         - description: ID of a specific `Transaction` for which detailed information is desired; _UUID as specified by RFC4122_
@@ -1265,7 +1139,7 @@ paths:
         Unseals a `Vault` and enables additional interaction within the authorized scope. 
 
         One sealing key is valid for all vaults within a single instance. The SEAL_UNSEAL_VALIDATION_HASH environment variable contains a SHA-256 hash of the 256-bit entropy BIP39 seed phrase used for the seal/unseal key. When a valid sealing key is presented to the vault (i.e. one that has the same SHA-256 hash value as the SEAL_UNSEAL_VALIDATION_HASH environment variable), the seal/unseal key will then be cloaked (i.e., encrypted with a random, ephemeral, in-memory cloaking key) in memory and
-        decrypted only when required for operations by the cloaking key.
+        decrypted only when required for operations by the cloaking key. _non-normative_
       operationId: unsealVault
       parameters: []
       requestBody:
@@ -1293,7 +1167,7 @@ paths:
   /vaults:
     get:
       deprecated: false
-      description: Returns a list of `Vault` instances in the authorized scope
+      description: Returns a list of `Vault` instances in the authorized scope; _non-normative_
       operationId: listVaults
       parameters:
         - $ref: '#/components/parameters/page'
@@ -1364,7 +1238,7 @@ paths:
   /vaults/{id}/keys:
     get:
       deprecated: false
-      description: Returns a list of keys in a specific `Vault`
+      description: Returns a list of keys in a specific `Vault`; _non-normative_
       operationId: listkeys
       parameters:
         - $ref: '#/components/parameters/page'
@@ -1404,7 +1278,7 @@ paths:
         - Vault
     post:
       deprecated: false
-      description: Creates a `Key` in a specific `Vault`
+      description: Creates a `Key` in a specific `Vault`; _non-normative_
       operationId: createKey
       parameters:
         - description: ID of a specific `Vault` in which a desired `Key` is to be created; _UUID as specified by RFC4122_
@@ -1451,7 +1325,7 @@ paths:
   /vaults/{id}/keys/{key_id}:
     delete:
       deprecated: false
-      description: Deletes a specific `Key` in a specific `Vault`
+      description: Deletes a specific `Key` in a specific `Vault`; _non-normative_
       operationId: deleteKey
       parameters:
         - description: ID of a specific `Vault` that contains a specific `Key` to be deleted; _UUID as specified by RFC4122_
@@ -1487,7 +1361,7 @@ paths:
   /vaults/{id}/keys/{key_id}/derive:
     post:
       deprecated: false
-      description: Creates a derived key from a specific `Key` in a specific `Vault`
+      description: Creates a derived key from a specific `Key` in a specific `Vault`; _non-normative_
       operationId: deriveKeyRequest
       parameters:
         - description: ID of a specific `Vault` in which a derived key is to be created; _UUID as specified by RFC4122_
@@ -1533,7 +1407,7 @@ paths:
   /vaults/{id}/secrets:
     get:
       deprecated: false
-      description: Returns a list of secrets stored in a specific `Vault`
+      description: Returns a list of secrets stored in a specific `Vault`; _non-normative_
       operationId: listSecrets
       parameters:
         - $ref: '#/components/parameters/page'
@@ -1573,7 +1447,7 @@ paths:
         - Vault
     post:
       deprecated: false
-      description: Stores a `Secret` in a specific `Vault`
+      description: Stores a `Secret` in a specific `Vault`; _non-normative_
       operationId: storeSecret
       parameters:
         - description: ID of a specific `Vault` in which to store a specific `Secret`; _UUID as specified by RFC4122_
@@ -1613,7 +1487,7 @@ paths:
   /vaults/{id}/secrets/{secret_id}:
     delete:
       deprecated: false
-      description: Deletes a specific `Secret` from a specific `Vault`
+      description: Deletes a specific `Secret` from a specific `Vault`; _non-normative_
       operationId: deleteSecret
       parameters:
         - description: ID of a specific `Vault` that contains a `Secret` to be deleted; _UUID as specified by RFC4122_
@@ -1652,7 +1526,7 @@ paths:
         - Vault
     get:
       deprecated: false
-      description: Retrieves a specific `Secret` from a specific `Vault`
+      description: Retrieves a specific `Secret` from a specific `Vault`; _non-normative_
       operationId: retrieveSecret
       parameters:
         - description: ID of a specific `Vault` in which a specific `Secret` is stored; _UUID as specified by RFC4122_
@@ -1692,7 +1566,7 @@ paths:
   /wallets:
     get:
       deprecated: false
-      description: Returns a list of `Wallet` instances
+      description: Returns a list of `Wallet` instances; _non-normative_
       operationId: listWallets
       parameters:
         - $ref: '#/components/parameters/page'
@@ -1727,7 +1601,7 @@ paths:
     post:
       deprecated: false
       description: |
-        Creates a `Wallet` using the parameters provided in the request body. A `Wallet` may be setup as custodial or non-custodial. If the Wallet is custodial then the platform will derive addresses and securely persist an `Account` for each of those derived addresses
+        Creates a `Wallet` using the parameters provided in the request body. A `Wallet` may be setup as custodial or non-custodial. If the Wallet is custodial then the platform will derive addresses and securely persist an `Account` for each of those derived addresses. _non-normative_
       operationId: createWallet
       parameters: []
       requestBody:
@@ -1761,7 +1635,7 @@ paths:
   /wallets/{id}/accounts:
     get:
       deprecated: false
-      description: Returns a list of `Account` instances for a specific `Wallet`
+      description: Returns a list of `Account` instances for a specific `Wallet`; _non-normative_
       operationId: listWalletAccounts
       parameters:
         - $ref: '#/components/parameters/results-per-page'
@@ -1800,7 +1674,7 @@ paths:
         - CCSM
   /workflows:
     get:
-      description: Returns a list of `Workflow` instances in the authorized scope
+      description: Returns a list of BPI `Workflow` instances in the authorized scope; _normative_
       operationId: listWorkflows
       parameters:
         - $ref: '#/components/parameters/page'
@@ -1832,7 +1706,7 @@ paths:
       tags:
         - Baseline
     post:
-      description: Creates a `WorkflowInstance` using the parameters provided in the request body
+      description: Creates a BPI `WorkflowInstance` using the parameters provided in the request body; _normative_
       operationId: createWorkflow
       requestBody:
         content:
@@ -1870,7 +1744,7 @@ paths:
         - Baseline
   /workflows/{id}:
     get:
-      description: Retrieves details for a specific `WorkflowInstance`
+      description: Retrieves details for a specific BPI `WorkflowInstance`; _normative_
       operationId: getWorkflowDetails
       parameters:
         - description: ID of a specific `WorkflowInstance`; _UUID as specified by RFC4122_
@@ -1906,7 +1780,7 @@ paths:
         - Baseline
   /workflows/{id}/worksteps:
     get:
-      description: Returns a list of `Workstep` instances in a specific `Workflow` instance
+      description: Returns a list of BPI `Workstep` instances in a specific `Workflow` instance; _normative_
       operationId: listWorksteps
       parameters:
         - description: ID of a specific `WorkflowInstance`; _UUID as specified by RFC4122_
@@ -1943,7 +1817,7 @@ paths:
         - Baseline
   /workflows/{id}/worksteps/{workstep_id}:
     get:
-      description: Retrieves details for a specific workstep instance in a specific `WorkflowInstance`
+      description: Retrieves details for a specific BPI workstep instance in a specific BPI `WorkflowInstance`; _normative_
       operationId: getWorkstepDetails
       parameters:
         - description: ID of a specific `WorkflowInstance`; _UUID as specified by RFC4122_
@@ -1996,7 +1870,7 @@ paths:
   /workgroups:
     get:
       deprecated: false
-      description: Returns a list of `Workgroup` instances in the authorized scope
+      description: Returns a list of BPI `Workgroup` instances in the authorized scope; _normative_
       operationId: listWorkgroups
       parameters:
         - $ref: '#/components/parameters/page'
@@ -2027,7 +1901,7 @@ paths:
         - Baseline
     post:
       deprecated: false
-      description: Creates a `Workgroup` using the parameters provided in the request body
+      description: Creates a BPI `Workgroup` using the parameters provided in the request body; _normative_
       operationId: createWorkgroup
       requestBody:
         content:
@@ -2068,7 +1942,7 @@ paths:
         - Baseline
   /workgroups/{id}:
     get:
-      description: Retrieves details for a specific `Workgroup`
+      description: Retrieves details for a specific BPI `Workgroup`; _normative_
       operationId: getWorkgroupDetails
       parameters:
         - description: ID of a specific `Workgroup` for which detailed information is desired; _UUID as specified by RFC4122_
@@ -2101,7 +1975,7 @@ paths:
         - Baseline
     put:
       deprecated: false
-      description: Updates a specific `Workgroup` using the parameters provided in the request body
+      description: Updates a specific `Workgroup` using the parameters provided in the request body; _normative_
       operationId: updateWorkgroup
       parameters:
         - description: ID of a specific `Workgroup` to be updated; _UUID as specified by RFC4122_
@@ -2145,7 +2019,7 @@ paths:
   /workgroups/{id}/subjects:
     get:
       deprecated: false
-      description: Returns a list of `Subject` instances associated with a specific `Workgroup`
+      description: Returns a list of BPI `Subject` instances associated with a specific BPI `Workgroup`; _normative_
       operationId: listWorkgroupSubjects
       parameters:
         - $ref: '#/components/parameters/page'
@@ -2186,7 +2060,7 @@ paths:
     post:
       deprecated: false
       description: |-
-        Associates a specified `Subject` with a specific `Workgroup`; the bearer JWT used for authorization should be scoped to the `Workgroup` in which the `Subject` is to be included. Associates a `Subject` to a specific `Workgroup`.
+        Associates a specified BPI `Subject` with a specific BPI `Workgroup`; authorization should be scoped to the BPI `Workgroup` in which the BPI `Subject` is to be included. Associates a BPI `Subject` to a specific BPI `Workgroup`. _normative_
       operationId: associateWorkgroupSubject
       parameters:
         - description: ID of a specific `Workgroup` for which a specific subject is to be associated; _UUID as specified by RFC4122_
@@ -2344,97 +2218,8 @@ components:
             type: object
       description: Unauthorized
   schemas:
-    Account:
-      description: |-
-        An arbitrary keypair capable of storing value on the underlying `Network`; also referred to as a signing identity.
-
-        An `Account` may be setup as custodial or non-custodial, and may be derived from a `Wallet`. If the `Account` is custodial then the platform will sign and broadcast transactions to the specified network on behalf of an authorized `Subject`.        
-      example:
-        address: '0x4A252b7e30f6cD6a85d20476Bb291Ef7f3a05293'
-        created_at: '2021-06-15T00:50:40.475580742Z'
-        id: 99c404e9-fe10-4ca7-b787-d5943d03591c
-        key_id: 331156fb-fa5c-4557-ac39-69ae34c72c18
-        network_id: 66d44f30-9092-4182-a3c4-bc02736d6ae5
-        public_key: '0x04f4c6bc6d79b727f2034ffaa7958a84d3bf88142a9d81b5baa18dc81f162c97c273f7acf8132a6a5aa9a81dcd3c485d6d17277a993334575d136f18171053792b'
-        subject_id: 'did:prvd:7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
-        vault_id: 190822c9-62f5-4caf-a419-df735a793b2f
-      properties:
-        address:
-          description: |-
-            Address of the `Account`
-
-            Implementations should consider how to support an increase from a 20-byte address to a 32-byte address.
-
-            The following illustrates the schema of a 32-byte address:
-
-              Byte 0: Version byte (8-bit padding; reserved for future)
-              Byte 1-2: Reserved (16-bit reserved)
-              Byte 3-5: Epoch (0 <= e <= 16777215)
-              Byte 6-31: 26 byte hash
-              
-              See https://ethereum-magicians.org/t/increasing-address-size-from-20-to-32-bytes/5485
-          example: '0x4A252b7e30f6cD6a85d20476Bb291Ef7f3a05293'
-          readOnly: true
-          type: string
-        created_at:
-          description: Timestamp of `Account` creation
-          example: '2021-02-27T14:26:06.864Z'
-          format: date-time
-          readOnly: true
-          type: string
-        id:
-          description: ID of a specific `Account`; _UUID as specified by RFC4122_
-          example: eea3f9eb-97e9-406d-80fb-471a6540a265
-          format: uuid
-          maxLength: 36
-          minLength: 1
-          readOnly: true
-          type: string
-        key_id:
-          description: ID of a specific vault key that will be used to sign the `Account`; required in the absence of a signer; _UUID as specified by RFC4122_
-          example: dcb00685-6434-4f4b-b9df-e929bb90d421
-          format: uuid
-          maxLength: 36
-          minLength: 1
-          type: string
-        network_id:
-          description: ID of a specific `Network` to serve as host to a specific `Account`; _UUID as specified by RFC4122_
-          example: 819a2b92-e867-49e0-ad07-823562ca4603
-          format: uuid
-          maxLength: 36
-          minLength: 1
-          readOnly: false
-          type: string
-        nonce:
-          description: Random 32-bit integer or incrementing counter which must only be used once to avoid exposing the underlying secret; if not provided, a random 32-bit integer is used
-          example: 4512
-          format: int32
-          readOnly: false
-          type: integer
-        public_key:
-          description: Public key of a specific `Account`
-          example: '0x04f4c6bc6d79b727f2034ffaa7958a84d3bf88142a9d81b5baa18dc81f162c97c273f7acf8132a6a5aa9a81dcd3c485d6d17277a993334575d136f18171053792b'
-          readOnly: true
-          type: string
-        subject_id:
-          description: ID of a specific `Subject` that created a specific `Account`; _UUID as specified by RFC4122_
-          example: 'did:prvd:7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
-          readOnly: true
-          type: string
-        vault_id:
-          description: ID of a specific `Vault` that houses a specific `Account` key; _UUID as specified by RFC4122_
-          example: d8d448a8-19cd-4696-8469-2b9ff76e22eb
-          format: uuid
-          maxLength: 36
-          minLength: 1
-          readOnly: false
-          type: string
-      required:
-        - network_id
-      title: Account
-      type: object
     BPIAccount:
-      description: The account associated with the (commercial) state of an agreement between counterparties, which must only be changed as a result of a valid transaction (i.e., a successful `Workstep` execution) by way of a `StateClaim`; _normative_
+      description: The account associated with the (commercial) state of an agreement between counterparties, which must only be changed as a result of a valid BPI transaction (i.e., a successful BPI `Workstep` execution) by way of a `StateClaim`as the new (commercial) state; _normative_
       properties:
         '@context':
           description: Context reference file for SubjectAccount schema validation
@@ -2523,7 +2308,7 @@ components:
       title: BPI Account
       type: object
     Contract:
-      description: Smart contract object; _normative_
+      description: Smart contract object; _non-normative_
       example:
         compiled_artifact: {}
         accessed_at: '2021-02-28T00:41:44.506+0000'
@@ -2542,7 +2327,7 @@ components:
               type: bytes
             name: Ekho
             type: event
-          account_id: df83bcbb-ff5b-4c4c-b1f5-8ca6a61fe460
+          wallet_id: df83bcbb-ff5b-4c4c-b1f5-8ca6a61fe460
           bytecode: 0x
           contract_name: Ekho
           outputs: []
@@ -2698,7 +2483,7 @@ components:
       title: Key
       type: object
     Network:
-      description: CCSM Network object; _normative_
+      description: CCSM Network object; _non-normative_
       example:
         type: Provide Network
         specification: ''
@@ -2765,7 +2550,7 @@ components:
       title: Network Status
       type: object
     ProtocolMessage:
-      description: 'Normative: Baseline protocol message internal to BPI'
+      description: 'Baseline protocol message internal to a BPI; _normative_'
       required:
         - identifier
         - payload
@@ -2807,7 +2592,7 @@ components:
       type: object
     ProtocolMessagePayload:
       title: Protocol Message Payload
-      description: Baseline protocol message payload
+      description: Baseline protocol message payload; _normative_
       properties:
         proof:
           type: string
@@ -2832,7 +2617,7 @@ components:
         |pending_setup|trusted setup will begin asynchronously|
         |running_setup|trusted setup is running asynchronously|
         |deploying_artifacts|on-chain shield/verifier contract artifacts are being deployed|
-        |provisioned|prover is ready for use|
+        |provisioned|prover is ready for use|; ; _normative_
       example:
         created_at: '2021-02-27T14:26:06.864Z'
         curve: 'BN254'
@@ -3011,6 +2796,7 @@ components:
       title: State Claim
       type: object
     StateProof:
+      description: 'Proposed (commercial) state transition of a BPI State Object via a BPI Transaction; _normative_'
       example:
         proof: |- 
           cd50a3d7436610d3ba8e60d7e1be147a
@@ -3120,7 +2906,10 @@ components:
           - credentials
           - id
           - security_policies
+          - recovery_policy
           - subject_id
+          - role
+          - bpi_account_ids
       properties:
         '@context':
           description: Context reference file for BPI `SubjectAccount` schema validation
@@ -3235,31 +3024,37 @@ components:
                   format: URI
           readOnly: false
     Transaction:
-      description: Finalized transaction between two or more subjects to be submitted to a CCSM `Network`; _normative_
+      description:  BPI transaction between two or more subjects to be submitted to a CCSM `Network`; _normative_
       example:
-        id: '99a61ee5-73ea-46d1-a434-b6a2a908bc51'
-        block: 10079406
-        block_timestamp: '2021-04-21T02:12:05.000Z'
-        broadcast_at: '2021-04-21T02:12:05.000Z'
+        context: {workstep_id: '88b50dd4-73ea-46d1-a434-b6a2a908bc51'}
         created_at: '2021-04-21T02:12:11.158Z'
-        finalized_at: '2021-04-21T02:12:14.277Z'
-        hash: '84f8525882f3bb24cd2d3cbdf0264115e03932b927f928f9e70b72bf90dd54f1'
-        hd_derivation_path: m/44'/60'/0'/0/0
-        network_id: '66d44f30-9092-4182-a3c4-bc02736d6ae5'
-        status: 'success'
-        to: '7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
-        value: 0
-        wallet_id: '0fda2f96-d957-4f65-9e92-fa5092c51751'
+        id: '99a61ee5-73ea-46d1-a434-b6a2a908bc51'
+        data:
+          block: 10079406
+          block_timestamp: '2021-04-21T02:12:05.000Z'
+          broadcast_at: '2021-04-21T02:12:05.000Z'
+          finalized_at: '2021-04-21T02:12:14.277Z'
+          hash: '84f8525882f3bb24cd2d3cbdf0264115e03932b927f928f9e70b72bf90dd54f1'
+          hd_derivation_path: m/44'/60'/0'/0/0
+          network_id: '66d44f30-9092-4182-a3c4-bc02736d6ae5'
+          status: 'success'
+          to: '7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
+          value: 0
+          wallet_id: '0fda2f96-d957-4f65-9e92-fa5092c51751'
       properties:
         context:
-          description: ''
-          type: array
+          description: 'Establishes the context of the transaction either within a BPI `Workstep` or `Workflow` instance'
+          type: object
           items:
-            type: string
-          anyOf:
-            - required:
-                - workflow_id
-                - workstep_id
+            properties:
+              workflow_id:
+                type: string
+              workstep_id:
+                type: string
+            anyOf:
+              - required:
+                  - workflow_id
+                  - workstep_id
         created_at:
           description: 'Date and time for the creation of a specific `Transaction`'
           example: '2021-04-21T02:12:11.158Z'
@@ -3400,7 +3195,7 @@ components:
       title: Witness
       type: object
     WorkflowInstance:
-      description: 'A `WorkflowInstance` consisting of a set of stepwise workstep instances; _normative_'
+      description: 'A BPI `WorkflowInstance` consisting of a set of stepwise BPI workstep instances; _normative_ '
       example:
         id: 'ed509f33-cbe4-4e3d-86ff-e508e6496f85'
         name: Procure to Pay
@@ -3410,7 +3205,7 @@ components:
           - 'eg922g62-ghr6-1c2c-09cc-f601e5715g28'
       properties:
         id:
-          description: ID of a specific baseline `WorkflowInstance`; _UUID as specified by RFC4122_
+          description: 'ID of a specific baseline `WorkflowInstance`; _UUID as specified by RFC4122_'
           example: ed509f33-cbe4-4e3d-86ff-e508e6496f85
           format: uuid
           maxLength: 36
@@ -3440,8 +3235,7 @@ components:
       type: object
     Workgroup:
       description: |-
-        'A `Workgroup` represents a logical collection of resources provisioned within the baseline containerized 
-        microservices architecture. A `Workgroup` is immutably configured upon initialization with support for a primary CCSM `Network` (or "mainnet"). _normative_'
+        'A BPI `Workgroup` represents a logical collection of resources provisioned within a BPI. A BPI `Workgroup` is immutably configured upon initialization with support for a primary CCSM `Network`. _normative_'
       example:
         subject_id: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
         config:
@@ -3625,7 +3419,7 @@ components:
     OAuth2:
       description: |-
         In accordance with the OAuth 2.0 specification, when a `Subject` is authorized and the requested `scope` includes `offline_access`, a refresh token is vended and returned on behalf of the caller. This refresh token is long-lived and can be used to authorize short-lived access tokens using the `refresh_token `grant type on subsequent authorization requests. This pattern is useful for machine-to-machine applications; a secure practice is to store the
-        long-lived refresh token in a Vault instance (i.e., as a secret), read it into application memory during container initialization and then use it to authorize a short-lived access token. If the container remains running long enough for the access token to expire, the refresh token should once again be used to seamlessly authorize a new access token.
+        long-lived refresh token in a Vault instance (i.e., as a secret), read it into application memory during container initialization and then use it to authorize a short-lived access token. If the container remains running long enough for the access token to expire, the refresh token should once again be used to seamlessly authorize a new access token. _non-normative_
       flows:
         implicit:
           authorizationUrl: https://ca.example.com/api/v1/oauth/authorize
@@ -3636,7 +3430,7 @@ components:
     bearerAuth:
       bearerFormat: JWT
       description: |-
-        'The presence of a `bearer` API token is required to authorize most Baseline API calls. A `bearer` API token is an encoded JWT which contains a subject claim (`sub`) which references an authorized `Subject`. The authorized entity uses a signed `bearer` authorization Token xto access one or more resources for which the Token was authorized.  Unless otherwise noted, all API requests must include a header such as `Authorization: bearer <jwt>`'
+        'The presence of a `bearer` API token is required to authorize most Baseline API calls. A `bearer` API token is an encoded JWT which contains a subject claim (`sub`) which references an authorized `Subject`. The authorized entity uses a signed `bearer` authorization Token xto access one or more resources for which the Token was authorized.  Unless otherwise noted, all API requests must include a header such as `Authorization: bearer <jwt>` _normative_'
       scheme: bearer
       type: http
 externalDocs:
