@@ -19,189 +19,6 @@ tags:
     description: |- 
       Baseline core vault API provides tools and methods for managing digital authentication credentials for Subjects based on roles and `Workgroup` instances. 
 paths:
-  /bpi_accounts:
-    get:
-      deprecated: false
-      description: Returns a list of `BPIAccount` objects in the authorized scope
-      operationId: listBPIAccounts
-      parameters:
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/results-per-page'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/BPIAccount'
-                type: array
-          description: The request was successful and a list of BPI account objects has been returned.
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-      servers:
-        - url: http://localhost:8080
-      summary: List BPI account objects
-      tags:
-        - Baseline
-  /bpi_accounts/{id}:
-    get:
-      deprecated: false
-      description: Retrieves details for a specific `BPIAccount`
-      operationId: getBPIAccountDetails
-      parameters:
-        - description: ID of a specific `BPIAccount`; _UUID as specified by RFC4122_
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: '563cb9ed-01cb-49ec-9690-d779ea20f55f'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/BPIAccount'
-                type: array
-          description: The request was successful and detailed information about the specified BPI account has been returned.
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-      servers:
-        - url: http://localhost:8080
-      summary: Get BPI account details
-      tags:
-        - Baseline
-  /.well-known/resolve/{did}:
-    get:
-      description: DID document endpoint for `Subject` instances
-      operationId: resolveDID
-      parameters: 
-        - description: ID of a specific DID to be resolved
-          in: path
-          name: did
-          required: true
-          schema:
-            type: string
-          example: 'did:prvd:8def7853-245b-4743-b702-984417a8ba2f'
-      responses:
-        '200':
-          description: A resolved DID
-          content:
-            application/json; charset=UTF-8:
-              schema:
-                type: object
-                properties:
-                  '@context':
-                    type: array
-                    description: List of @contexts
-                    items: {}
-                  id:
-                    type: string
-                    description: ID of DID
-                  verificationMethod:
-                    type: array
-                    description: Details regarding the verification method used to resolve DID
-                    items:
-                      type: object
-                      properties:
-                        controller:
-                          type: string
-                          description: Id of DID controller
-                        id:
-                          type: string
-                          description: Id of DID
-                        publicKeyJWK:
-                          type: object
-                          description: Public key for JWK
-                          properties:
-                            kid:
-                              type: string
-                            n: 
-                              type: string
-                            e:
-                              type: string
-                            fingerprint:
-                              type: string
-                        public_key:
-                          type: string 
-                  type:
-                    type: string
-                    description: Type of DID context
-                  assertionMethod:
-                    type: string
-                    description: Assertion method used
-                  authentication:
-                    type: string
-                  capabilityInvocation:
-                    type: string
-                  capabilityDelegation:
-                    type: string
-                  keyAgreement:
-                    type: string
-              example: 
-                '@context':
-                  - 'https://www.w3.org/ns/did/v1'
-                  - 'https://w3id.org/security/suites/jws-2020/v1'
-                id: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
-                verificationMethod:
-                  - controller: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
-                    id: 'did:prvd:aasdfasdfasdf#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
-                    publicKeyJwk:
-                      kid: 'a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
-                      'n': >-
-                              861483997211088567986679229181848054089604638641344651799629411219132348016278717092102128681135611380326752098936363353495444063202162029673523557773782048024114883574432634108045249947154852742644555192210297230097245140428848581230277818343146223559594512475826760838877076266154044960265352746066723631764046840316942987769580553619014590812187691295364700040641787500269269399045832588373172593121687203191684140294108378584755314277325012894787853550357182542202120051794903430593790088728831567724495129050530806677080541218084315114228795876927064009879284573531870815708443412933965416303038891773876363479243549734042137128368669274726190909529704641365251977820965336530028317042370318858190049737976730950424571654404303776058323774989878709454832673621703315168343354939050427851085442751220892330674377060840075089494965206267742175926300979682121686578985916424314967542319047670046306072654213458712385294663342927553785567808885434950558955088305721767631170042743815215456801539616413473452207339467426842177647739317764485798830023496667390636938833319855298970928615645190825794520784096740427440910286686264656276871411041902304833534185654554399301291984087480695247759311118167876962745932311927957101815475731
-                      e: '10001'
-                      fingerprint: 'a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
-                      public_key: |-
-                        -----BEGIN PUBLIC KEY-----
-                        MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0yqdJMBej1X8WwMMkMZw
-                        DV6zZzup4RHLcln0xfGSm6dMPBDM1G96fuHhOwH5+uU5MQHJP7RqW71Bu5dLIG8Z
-                        RX+XyUtb0sxCV/7X27Nm/bKpDysaSWQ36reAmw5wVaB1SoFeN519FY5rhoCWmH3W
-                        auBAHTzpjg57p7uR0XynYXf8NSGXlysWHppkppqwrPH64G6UZaB7SMl1PFfkJeqZ
-                        zJpzBGYWsixdF1EjXn+Yz0mhUZO2OSPWifOuN7cpn3BuNqegg4iVdz5HDoQhJW7N
-                        uRhf3buKd/mjat8XA3e2Rkrr2h835GloScJkj7I4BZUNkzKQuEK6C9xW/zJtbPqQ
-                        RYEq84A1hMfSZ3G5HFe2JkqiyvXkFwS3qMc5Pur8tZSzBj6AYMoJJso/aOdphpR8
-                        6MaaWXWTwvwfpZbMRqehOcsmQcNLF2gLJPuHzR5WtVCnWrDgvjsWyeDD1WISKusi
-                        aOeHxZjS3Bjl4Imq48l1wi2eI/11F/Xg70F4FJaMYLVHJA2nsmBuuQ9UDYHHq876
-                        clKvIvgIItzJcv9lnmjl1Jks1DwCUF3qF2ugYcs9A3EoEcNzhMgZNJ2j5OUzfx1E
-                        bzVKkqoC9MQpZWXgqV0KQqKK4I3rMY+1hLqk4S4eF9ZAVlT33qfMzlf0qWTOcP1Z
-                        i2dsm0fy4NxWxknlEn5/LhMCAwEAAQ==
-                        -----END PUBLIC KEY-----
-                type: JsonWebKey2020
-                assertionMethod:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
-                authentication:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
-                capabilityInvocation:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
-                capabilityDelegation:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
-                keyAgreement:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
-      summary: Retrieve DID document
-      tags: 
-        - Registry
   /accounts:
     get:
       deprecated: false
@@ -328,6 +145,268 @@ paths:
       summary: Get account details
       tags:
         - CCSM
+  /bpi_accounts:
+    get:
+      deprecated: false
+      description: Returns a list of `BPIAccount` objects in the authorized scope
+      operationId: listBPIAccounts
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/results-per-page'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BPIAccount'
+                type: array
+          description: The request was successful and a list of BPI account objects has been returned.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      servers:
+        - url: http://localhost:8080
+      summary: List BPI account objects
+      tags:
+        - Baseline
+    post:
+      deprecated: false
+      description: 'Creates a `BPIAccount` using the parameters provided in the request body'
+      operationId: createBPIAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BPIAccount'
+            example:
+              owners: 
+                - 'did:prvd:7cb23e2b-07ed-4562-8afb-73955f8f17c5'
+              security_policies:
+                - type: AuthenticationPolicy
+                  reference: 'https://example.com/policies/authentication-policy.json'
+              nonce: 4114
+              workflows:
+                $ref: '#/components/schemas/WorkflowInstance'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BPIAccount'
+          description: The request was successful and a new BPI account has been created.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      servers:
+        - url: http://localhost:8080
+      summary: Create BPIAccount
+      tags:
+        - Baseline
+  /bpi_accounts/{id}:
+    get:
+      deprecated: false
+      description: Retrieves details for a specific `BPIAccount`
+      operationId: getBPIAccountDetails
+      parameters:
+        - description: ID of a specific `BPIAccount`; _UUID as specified by RFC4122_
+          in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          example: '563cb9ed-01cb-49ec-9690-d779ea20f55f'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BPIAccount'
+                type: array
+          description: The request was successful and detailed information about the specified BPI account has been returned.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      servers:
+        - url: http://localhost:8080
+      summary: Get BPI account details
+      tags:
+        - Baseline
+  /protocol_message:
+    post:
+      summary: Create a Baseline protocol message
+      description: Creates a Baseline protocol message per the parameters provided in the request body
+      operationId: createProtocolMessage
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProtocolMessagePayload'
+        required: true
+      responses:
+        '201':
+          description: The request was successful and a new protocol message was created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolMessage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      deprecated: false
+      servers:
+         - url: http://localhost:8080    
+      tags:
+        - Baseline
+  /resolve/{did}:
+    get:
+      description: DID document endpoint for `Subject` instances
+      operationId: resolveDID
+      parameters: 
+        - description: ID of a specific DID to be resolved
+          in: path
+          name: did
+          required: true
+          schema:
+            type: string
+          example: 'did:prvd:8def7853-245b-4743-b702-984417a8ba2f'
+      responses:
+        '200':
+          description: A resolved DID
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  '@context':
+                    type: array
+                    description: List of @contexts
+                    items: {}
+                  id:
+                    type: string
+                    description: ID of DID
+                  verificationMethod:
+                    type: array
+                    description: Details regarding the verification method used to resolve DID
+                    items:
+                      type: object
+                      properties:
+                        controller:
+                          type: string
+                          description: Id of DID controller
+                        id:
+                          type: string
+                          description: Id of DID
+                        publicKeyJWK:
+                          type: object
+                          description: Public key for JWK
+                          properties:
+                            kid:
+                              type: string
+                            n: 
+                              type: string
+                            e:
+                              type: string
+                            fingerprint:
+                              type: string
+                        public_key:
+                          type: string 
+                  type:
+                    type: string
+                    description: Type of DID context
+                  assertionMethod:
+                    type: string
+                    description: Assertion method used
+                  authentication:
+                    type: string
+                  capabilityInvocation:
+                    type: string
+                  capabilityDelegation:
+                    type: string
+                  keyAgreement:
+                    type: string
+              example: 
+                '@context':
+                  - 'https://www.w3.org/ns/did/v1'
+                  - 'https://w3id.org/security/suites/jws-2020/v1'
+                id: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
+                verificationMethod:
+                  - controller: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
+                    id: 'did:prvd:aasdfasdfasdf#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                    publicKeyJwk:
+                      kid: 'a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                      'n': >-
+                              861483997211088567986679229181848054089604638641344651799629411219132348016278717092102128681135611380326752098936363353495444063202162029673523557773782048024114883574432634108045249947154852742644555192210297230097245140428848581230277818343146223559594512475826760838877076266154044960265352746066723631764046840316942987769580553619014590812187691295364700040641787500269269399045832588373172593121687203191684140294108378584755314277325012894787853550357182542202120051794903430593790088728831567724495129050530806677080541218084315114228795876927064009879284573531870815708443412933965416303038891773876363479243549734042137128368669274726190909529704641365251977820965336530028317042370318858190049737976730950424571654404303776058323774989878709454832673621703315168343354939050427851085442751220892330674377060840075089494965206267742175926300979682121686578985916424314967542319047670046306072654213458712385294663342927553785567808885434950558955088305721767631170042743815215456801539616413473452207339467426842177647739317764485798830023496667390636938833319855298970928615645190825794520784096740427440910286686264656276871411041902304833534185654554399301291984087480695247759311118167876962745932311927957101815475731
+                      e: '10001'
+                      fingerprint: 'a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                      public_key: |-
+                        -----BEGIN PUBLIC KEY-----
+                        MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0yqdJMBej1X8WwMMkMZw
+                        DV6zZzup4RHLcln0xfGSm6dMPBDM1G96fuHhOwH5+uU5MQHJP7RqW71Bu5dLIG8Z
+                        RX+XyUtb0sxCV/7X27Nm/bKpDysaSWQ36reAmw5wVaB1SoFeN519FY5rhoCWmH3W
+                        auBAHTzpjg57p7uR0XynYXf8NSGXlysWHppkppqwrPH64G6UZaB7SMl1PFfkJeqZ
+                        zJpzBGYWsixdF1EjXn+Yz0mhUZO2OSPWifOuN7cpn3BuNqegg4iVdz5HDoQhJW7N
+                        uRhf3buKd/mjat8XA3e2Rkrr2h835GloScJkj7I4BZUNkzKQuEK6C9xW/zJtbPqQ
+                        RYEq84A1hMfSZ3G5HFe2JkqiyvXkFwS3qMc5Pur8tZSzBj6AYMoJJso/aOdphpR8
+                        6MaaWXWTwvwfpZbMRqehOcsmQcNLF2gLJPuHzR5WtVCnWrDgvjsWyeDD1WISKusi
+                        aOeHxZjS3Bjl4Imq48l1wi2eI/11F/Xg70F4FJaMYLVHJA2nsmBuuQ9UDYHHq876
+                        clKvIvgIItzJcv9lnmjl1Jks1DwCUF3qF2ugYcs9A3EoEcNzhMgZNJ2j5OUzfx1E
+                        bzVKkqoC9MQpZWXgqV0KQqKK4I3rMY+1hLqk4S4eF9ZAVlT33qfMzlf0qWTOcP1Z
+                        i2dsm0fy4NxWxknlEn5/LhMCAwEAAQ==
+                        -----END PUBLIC KEY-----
+                type: JsonWebKey2020
+                assertionMethod:
+                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                authentication:
+                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                capabilityInvocation:
+                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                capabilityDelegation:
+                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                keyAgreement:
+                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+      summary: Retrieve DID document
+      tags: 
+        - Registry
   /contracts:
     get:
       deprecated: false
@@ -462,7 +541,7 @@ paths:
   /networks:
     get:
       deprecated: false
-      description: Returns a list of available peer-to-peer `Network` instances
+      description: Returns a list of available peer-to-peer CCSM `Network` instances
       operationId: listNetworks
       parameters:
         - $ref: '#/components/parameters/page'
@@ -476,7 +555,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Network'
                 type: array
-          description: The request was successful and a list of networks has been returned.
+          description: The request was successful and a list of CCSM networks has been returned.
           headers:
             X-Total-Results-Count:
               $ref: '#/components/headers/X-Total-Results-Count'
@@ -492,16 +571,16 @@ paths:
           $ref: '#/components/responses/InternalServerError'
         '503':
           $ref: '#/components/responses/ServiceUnavailable'
-      summary: List networks
+      summary: List CCSM networks
       tags:
         - CCSM
   /networks/{id}/status:
     get:
       deprecated: false
-      description: 'Retrieves the syncing status and, if fully-synced, real-time metrics and metadata of a specified `Network`'
+      description: 'Retrieves the syncing status and, if fully-synced, real-time metrics and metadata of a specified CCSM `Network`'
       operationId: getNetworkStatus
       parameters:
-        - description: 'ID of a specific `Network` for which the status is desired; _UUID as specified by RFC4122_'
+        - description: 'ID of a specific CCSM `Network` for which the status is desired; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -513,7 +592,7 @@ paths:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/NetworkStatus'
-          description: The request was successful and the status of the specified network has been returned.
+          description: The request was successful and the status of the specified CCSM network has been returned.
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -532,7 +611,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: unexpected error
-      summary: Get network status
+      summary: Get CCSM network status
       tags:
         - CCSM
   /provers:
@@ -774,93 +853,10 @@ paths:
       summary: Verify proof
       tags:
         - Privacy
-  /objects:
-    post:
-      deprecated: false
-      description: 'Creates a Baseline object using the parameters provided in the request body'
-      operationId: createBaselineObject
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            example:
-              workflow_instance_id: af96a1bb-0c6d-4b6d-9b18-801d1db07a9d
-              opcode: BLINE
-              payload:
-                proof: '8d8f7498db7aee910428c737d8427ac4add98353f981ca70db07697a091d8c23972b55b0b20fc0eebc1ac6c2ae427d783291c7fcb2e3f7417d279fea78ce1eac2d2293e53579abbef4960a1e290bd023e2999d8ff423d01080d449ce5d14ca89c94e277e8e0bb14fb91a0b71129920ae4411e77685287611f4d2aaf66b8fc5dc'
-                type: general_consistency
-                witness: {}
-              type: general_consistency
-            schema:
-              $ref: '#/components/schemas/Object'
-        required: true
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Object'
-          description: The request was successful and a new object was created.
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-      servers:
-        - url: http://localhost:8080
-      summary: 'Create a baseline object'
-      tags:
-        - Baseline
-  /objects/{id}:
-    put:
-      deprecated: false
-      description: 'Updates a specific `Object` with the parameters provided in the request body'
-      operationId: updateObject
-      parameters:
-        - description: 'ID of a specific `Object`; _UUID as specified by RFC4122_'
-          in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          example: '563cb9ed-01cb-49ec-9690-d779ea20f55f'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Object'
-        required: true
-      responses:
-        '204':
-          description: The request was successful and the specified object has been updated.
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/InternalServerError'
-        '503':
-          $ref: '#/components/responses/ServiceUnavailable'
-      servers:
-        - url: http://localhost:8080
-      summary: Update object
-      tags:
-        - Baseline
   /subjects:
     get:
       deprecated: false
-      description: 'Returns a list of `Subject` instances in the authorized scope'
+      description: 'Returns a list of BPI `Subject` instances in the authorized scope'
       operationId: listSubjects
       parameters:
         - $ref: '#/components/parameters/page'
@@ -893,7 +889,7 @@ paths:
         - Baseline
     post:
       deprecated: false
-      description: 'Creates a `Subject` using the parameters provided in the request body'
+      description: 'Creates a BPI `Subject` using the parameters provided in the request body'
       operationId: createSubject
       requestBody:
         content:
@@ -1014,13 +1010,13 @@ paths:
       summary: Update subject details
       tags:
         - Baseline
-  /subjects/{id}/contexts:
+  /subjects/{id}/accounts:
     get:
       deprecated: false
-      description: 'Returns a list of `SubjectContext` for a specified `Subject`'
-      operationId: listSubjectContexts
+      description: 'Returns a list of `SubjectAccount` for a specified `Subject`'
+      operationId: listSubjectAccounts
       parameters:
-        - description: 'ID of a specific `Subject` for which a list of  `SubjectContext` objects is desired; _UUID as specified by RFC4122_'
+        - description: 'ID of a specific `Subject` for which a list of  `SubjectAccount` objects is desired; _UUID as specified by RFC4122_'
           in: path
           name: id
           required: true
@@ -1033,7 +1029,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/SubjectContext'
+                  $ref: '#/components/schemas/SubjectAccount'
                 type: array
           description: The request was successful and a list of subject context objects has been returned.
         '401':
@@ -1055,10 +1051,10 @@ paths:
         - Baseline
     post:
       deprecated: false
-      description: 'Creates a `SubjectContext` for a specified `Subject`'
-      operationId: createSubjectContext
+      description: 'Creates a `SubjectAccount` for a specified `Subject`'
+      operationId: createSubjectAccount
       parameters:
-        - description: 'ID of a specific `Subject` to which the `SubjectContext` is to be associated'
+        - description: 'ID of a specific `Subject` to which the `SubjectAccount` is to be associated'
           in: path
           name: id
           required: true
@@ -1069,14 +1065,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SubjectContext'
+              $ref: '#/components/schemas/SubjectAccount'
       responses:
         '200':
           content:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/SubjectContext'
+                  $ref: '#/components/schemas/SubjectAccount'
           description: The request was successful and a list of subject context objects has been returned.
         '401':
           $ref: '#/components/responses/Unauthorized'
@@ -1095,20 +1091,20 @@ paths:
       summary: List subject contexts
       tags:
         - Baseline
-  /subjects/{subject_id}/contexts/{id}:
+  /subjects/{subject_id}/accounts/{id}:
     get:
       deprecated: false
-      description: 'Returns details for a specific `SubjectContext` for a specified `Subject`'
-      operationId: getSubjectContextDetails
+      description: 'Returns details for a specific `SubjectAccount` for a specified `Subject`'
+      operationId: getSubjectAccountDetails
       parameters:
-        - description: 'ID of a specific `SubjectContext` for which a list of  `SubjectContext` objects is desired'
+        - description: 'ID of a specific `SubjectAccount` for which a list of  `SubjectAccount` objects is desired'
           in: path
           name: id
           required: true
           schema:
             type: string
           example: 'did:prvd:648142fb-fa5c-4557-ac39-69ae34c72c18'
-        - description: 'ID of a specific `Subject` for which a list of `SubjectContext` objects is desired'
+        - description: 'ID of a specific `Subject` for which a list of `SubjectAccount` objects is desired'
           in: path
           name: subject_id
           required: true
@@ -1121,7 +1117,7 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/SubjectContext'
+                  $ref: '#/components/schemas/SubjectAccount'
                 type: object
           description: The request was successful and detailed information about the specified subject context has been returned.
         '401':
@@ -2043,6 +2039,8 @@ paths:
               network_id: 07102258-5e49-480e-86af-6d0c3260827d
               type: baseline
               security_policies: []
+              admins: 
+                - 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
             schema:
               $ref: '#/components/schemas/Workgroup'
         required: true
@@ -2122,6 +2120,8 @@ paths:
               network_id: '07102258-5e49-480e-86af-6d0c3260827d'
               type: baseline
               security_policies: []
+              admins:
+                - 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
             schema:
               $ref: '#/components/schemas/Workgroup'
       responses:
@@ -2417,13 +2417,13 @@ components:
           readOnly: true
           type: string
         subject_id:
-          description: ID of a specific `Subject` that created a specific `Account`
+          description: ID of a specific `Subject` that created a specific `Account`; _UUID as specified by RFC4122_
           example: 'did:prvd:7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
           readOnly: true
           type: string
         vault_id:
           description: ID of a specific `Vault` that houses a specific `Account` key; _UUID as specified by RFC4122_
-          example: 'd8d448a8-19cd-4696-8469-2b9ff76e22eb'
+          example: d8d448a8-19cd-4696-8469-2b9ff76e22eb
           format: uuid
           maxLength: 36
           minLength: 1
@@ -2434,13 +2434,18 @@ components:
       title: Account
       type: object
     BPIAccount:
-      description: The account associated with the (commercial) state of an agreement between counterparties, which must only be changed as a result of a valid transaction (i.e., a successful `Workstep` execution) by way of a `StateClaim`
+      description: The account associated with the (commercial) state of an agreement between counterparties, which must only be changed as a result of a valid transaction (i.e., a successful `Workstep` execution) by way of a `StateClaim`; _normative_
       properties:
         '@context':
-          description: Context reference file for SubjectContext schema validation
+          description: Context reference file for SubjectAccount schema validation
           example: []
           type: object
           readOnly: false
+        balances:
+          description: 'Balances for the specified `BPIAccount`'
+          type: object
+          example: {}
+          readOnly: true
         created_at:
           description: Date and time of `BPIAccount` creation
           example: '2021-02-27T14:26:06.864Z'
@@ -2464,13 +2469,47 @@ components:
           example: 6bb23e2b-07ed-4562-8afb-73955f8f17c5
           format: uuid
           readOnly: true
-          type: string       
+          type: string
+        metadata:
+          description: Metadata useful for BPI operations and UI implementations
+          example: {}
+          type: object
+          readOnly: false
         nonce:
           description: incrementing deterministic counter starting at zero
           example: 4512
-          format: int32
+          format: uint64
           readOnly: false
           type: integer
+        security_policies:
+          description: Security policies attached to a `BPIAccount` typically connected to a role but may be independent 
+          example: 
+            type: 'SecurityPolicy'
+            reference: ''
+          type: array
+          items:
+              type: object
+              required:
+                - type
+                - reference
+              properties:
+                type:
+                  description: Type of security policy
+                  example: 'AuthenticationPolicy'
+                  type: string
+                reference:
+                  description: Resolvable reference link to the security policy object, avoids duplicating policy objects
+                  example: 'https://example.com/policies/authentication-policy.json'
+                  type: string
+                  format: URI
+          readOnly: false          
+        state_claims:
+          description: '`StateClaim` instances associated with the `BPIAccount'
+          example:
+          readOnly: false
+          type: array
+          items:
+            $ref: "#/components/schemas/StateClaim"
         workflows:
           description: List of `WorkflowInstance` objects related to the specified `BPIAccount`
           example: []
@@ -2484,11 +2523,12 @@ components:
       title: BPI Account
       type: object
     Contract:
+      description: Smart contract object; _normative_
       example:
+        compiled_artifact: {}
         accessed_at: '2021-02-28T00:41:44.506+0000'
         address: '0xD3F14c012a8717FF7b5D5AC08C287de58C38D8ba'
         created_at: '2021-02-27T14:26:06.864Z'
-        compiled_artifact: {}
         id: 84a91108-70db-43c5-9f2f-e1655b9e0b03
         name: Shuttle
         network_id: 07102258-5e49-480e-86af-6d0c3260827d
@@ -2508,10 +2548,10 @@ components:
           outputs: []
           source: 0x
           state_mutability: nonpayable
-        pubsub_prefix: 57478604c134ef20b94dff84e52c0fd562ddae56cd50431339766819a7523d09
-        transaction_id: 4c388cca-f11c-4818-96a0-e8ad0b30553d
-        type: registry
+          pubsub_prefix: 57478604c134ef20b94dff84e52c0fd562ddae56cd50431339766819a7523d09
+          transaction_id: 4c388cca-f11c-4818-96a0-e8ad0b30553d
         workgroup_id: dc767890-0bbc-4c1d-bc04-f5842330018f
+        type: registry
       properties:
         type:
           description: Type of contract deployed
@@ -2523,13 +2563,18 @@ components:
           example: {}
           readOnly: true
           type: object
+        params:
+          type: object
+          description: Parameters associated with the `Contract`
+          example: {}
+          readOnly: false
       required:
           - type
           - compiled_artifact
       title: Contract
       type: object
     DerivedKey:
-      description: A cryptographic `Key` generated from a password or master key
+      description: A cryptographic `Key` generated from a password or master key; _non-normative_
       example:
         context: channel-6852386c-8a3d-41c6-aa0e-766a31a8faaf
         description: this is a secure channel
@@ -2584,7 +2629,7 @@ components:
       title: Error
       type: object
     Key:
-      description: A string of data that is used to lock or unlock cryptographic functions
+      description: A string of data that is used to lock or unlock cryptographic functions; _non-normative_
       example:
         created_at: '2021-04-17T21:07:16.098Z'
         description: Secure channel for messaging
@@ -2653,14 +2698,17 @@ components:
       title: Key
       type: object
     Network:
+      description: CCSM Network object; _normative_
       example:
+        type: Provide Network
+        specification: ''
         chain_id: 8aaf1468-9cc1-4735-8975-aa3909178482
-        config:
+        config: {}
         block_explorer_url: https://etherscan.io
         chainspec_url: https://gist.githubusercontent.com/kthomas/3ac2e29ee1b2fb22d501ae7b52884c24/raw/161c6a9de91db7044fb93852aed7b0fa0e78e55f/mainnet.chainspec.json
         engine_id: ethash
         is_ethereum_network: true
-        json_rpc_url: https://mainnet.infura.io/v3/fde5e81d5d3141a093def423db3eeb33
+        json_rpc_url: https://node.example.com
         native_currency: ETH
         network_id: 324cf211-6d67-4cae-b26c-c424308eabfa
         platform: evm
@@ -2675,12 +2723,25 @@ components:
                 - 30300
               udp:
                 - 30300
-        websocket_url: wss://mainnet.infura.io/ws/v3/egt7a93h1s2118n779lpp193dc2fwb69
+        websocket_url: wss://node.example.com
         created_at: '2018-01-13T22:00:47.947907Z'
         description: Ethereum mainnet
         enabled: true
         id: deca2436-21ba-4ff5-b225-ad1b0b2f5c59
-      properties: {}
+      required:
+        - type
+        - specification
+      properties:
+        type:
+          description: Type of CCSM `Network`
+          type: string
+          example: ''
+          readOnly: false
+        specification:
+          description: Specification used for CCSM `Network`
+          type: string
+          example: ''
+          readOnly: false
       title: Network
       type: object
     NetworkStatus:
@@ -2703,61 +2764,59 @@ components:
       properties: {}
       title: Network Status
       type: object
-    Object:
-      description: Wrapper for baseline message (payload) that includes payload context.
-      example:
-        workflow_instance_id: af96a1bb-0c6d-4b6d-9b18-801d1db07a9d
-        id: 27194de0-dbf5-4b93-8b51-b29bb28999cc
-        opcode: BLINE
-        payload:
-          proof: 8d8f7498db7aee910428c737d8427ac4add98353f981ca70db07697a091d8c23972b55b0b20fc0eebc1ac6c2ae427d783291c7fcb2e3f7417d279fea78ce1eac2d2293e53579abbef4960a1e290bd023e2999d8ff423d01080d449ce5d14ca89c94e277e8e0bb14fb91a0b71129920ae4411e77685287611f4d2aaf66b8fc5dc
-          type: general_consistency
-          witness: {}
-        type: general_consistency
+    ProtocolMessage:
+      description: 'Normative: Baseline protocol message internal to BPI'
+      required:
+        - identifier
+        - payload
+        - sender
+        - recipients
+        - signature
       properties:
-        claim:
-          $ref: '#/components/schemas/StateClaim'
-        id:
-          description: ID of a specific `Object`; _UUID as specified by RFC4122_
+        workflowinstance_id:
+          description: 'ID of associated workflow instance; _UUID as specified by RFC4122_'
           format: uuid
-          maxLength: 36
-          minLength: 1
+          readOnly: false
+          type: string
+        identifier:
+          description: unique identifier of a message
+          format: uuid
+          readOnly: true
+          type: string
+        messagethread_id:
+          description: unique identifier of a message thread in order to trace causally connected messages
+          format: uuid
           readOnly: true
           type: string
         opcode:
-          description: Specifies the operation to be performed
-          enum:
-            - BLINE
-            - JOIN
-            - SYNC
+          description: Type of BPI operation to be executed by the BPI
           type: string
         payload:
-          description: 'Arbitrary data object that holds the intended message'
-          example: {}
-          properties:
-            proof:
-              description: 'The hex-encoded proof to verify'
-              readOnly: false
-              type: string
-            type:
-              description: 'Type of `Object` being created'
-              readOnly: false
-              type: string
-            witness:
-              $ref: '#/components/schemas/Witness'
-          type: object
-        payload_url:
-          description: 'The URL of the payload on a Content Delivery Network (CDN)'
+          $ref: '#/components/schemas/ProtocolMessagePayload'
+        recipients:
+          type: array
+          items:
+            type: string
+        sender:
+          type: string
+        signature:
           type: string
         type:
-          description: Type of `Object`
           type: string
-        workflow_instance_id:
-          description: ID used to map the record to the `WorkflowInstance`; _UUID as specified by RFC4122_
-          format: uuid
-          type: string
-      title: Object
+      title: 'Protocol Message'
       type: object
+    ProtocolMessagePayload:
+      title: Protocol Message Payload
+      description: Baseline protocol message payload
+      properties:
+        proof:
+          type: string
+          description: Proof to verify
+        type:
+          type: string
+          description: 'Type of payload'
+        witness:
+          $ref: '#/components/schemas/Witness'
     Prover:
       description: |-
         A state synchronization and consistency mechanism for completing on- and off-chain state transitions.
@@ -2849,7 +2908,7 @@ components:
       title: Prover
       type: object
     RecoveryPolicy:
-      description: recovery policy attached to a `SubjectContext` typically connected to a role; may be independent 
+      description: 'Recovery policy attached to a BPI `SubjectAccount` typically connected to a role; may be independent; _normative_'
       example: 
         type: 'recoveryKeyPolicy'
         reference: ''
@@ -2870,6 +2929,7 @@ components:
       title: Recovery Policy
       type: object
     Secret:
+      description: 'Cryptographic secret; _non-normative_'
       example:
         created_at: '2021-04-17T20:35:34.062+0000'
         description: 'This secret is being stored for demonstration purposes'
@@ -2919,7 +2979,7 @@ components:
       title: Secret
       type: object
     StateClaim:
-      description: Representation of a valid state as claimed by a workgroup participant
+      description: Representation of a valid state as claimed by a workgroup participant; _normative_
       example:
         cardinality: '7'
         path: '0111111'
@@ -2986,26 +3046,102 @@ components:
     Subject:
       example:
         created_at: '2021-04-16T15:05:23.130Z'
-        credentials: []
         description: 'Organization for testing'
         id: 'did:prvd:a7e165dd-2d91-4f1e-b025-6ef2c5514603'
         metadata: {}
         name: 'ACME Inc.'
         type: 'Organization'
-        account_id: 'eea3f9eb-97e9-406d-80fb-471a6540a265'
       description: |- 
-        'Abstract identifier representing, e.g., an organization or user; a `Subject` interacts with its `BPIAccount` instances by way of a `SubjectContext`'
+        'Abstract identifier representing, e.g., an organization or user; a BPI `Subject` interacts with its `BPIAccount` instances by way of a BPI `SubjectAccount`; _normative_'
       type: object
-      required:
-          - account_id
       properties:
         '@context':
-          description: Context reference file for `Subject` schema validation
+          description: Context reference file for BPI `Subject` schema validation
           example: []
           type: object
           readOnly: false
         created_at:
-          description: Date and time of `Subject` creation
+          description: Date and time of BPI `Subject` creation
+          example: '2021-02-27T14:26:06.864Z'
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: 'User-defined description of BPI `Subject`'
+          example: Organization for testing
+          readOnly: false
+          type: string
+        id:
+          description: 'ID of a specific BPI `Subject`'
+          example: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+          readOnly: true
+          type: string
+        metadata:
+          nullable: true
+          type: object
+          properties:
+            address:
+              description: '`Wallet` address of associated BPI `Subject`'
+              example: '0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e'
+              type: string
+            api_endpoint:
+              description: 'URL of the baseline API, which may not be exposed to the WAN'
+              example: 'https://api_endpoint/api/v1/endpoint'
+              type: string
+            messaging_endpoint:
+              description: 'Publicly-accessible TCP endpoint where the `Subject` receives inbound protocol messages'
+              example: 'https://api_endpoint/api/v1/messaging'
+              type: string
+            interface_metadata:
+              description: 'Arbitrary data as needed for additional external interfaces'
+              type: object
+        name:
+          description: 'Name of `Subject`'
+          example: 'ACME Inc.'
+          readOnly: false
+          type: string
+        subject_id:
+          description: '`Subject` ID of `Subject` creator'
+          example: 
+          readOnly: false
+          type: string
+        type: 
+          description: Type of `Subject`
+          example: 'Organization'
+          type: string
+          readOnly: false
+      title: Subject
+    SubjectAccount:
+      description: |- 
+        A BPI `SubjectAccount` is the context of a `Subject`. _normative_
+      title: Subject Account
+      type: object
+      required:
+          - credentials
+          - id
+          - security_policies
+          - subject_id
+      properties:
+        '@context':
+          description: Context reference file for BPI `SubjectAccount` schema validation
+          example: []
+          type: object
+          readOnly: false
+        id:
+          description: Identifier of the specific BPI `SubjectAccount`
+          example: 'did:prvd:4A252b7e30f6cD6a85d20476Bb291Ef7f3a05293'
+          type: string
+          readOnly: true
+        bpi_account_ids:
+          type: array
+          description: IDs of `BPIAccount` instances associated with the specified BPI `SubjectAccount`
+          items:
+            type: string
+          example:
+            - 6bb23e2b-07ed-4562-8afb-73955f8f17c5
+            - 7cb11a1a-01ca-3421-6fbd-42651c1a32a1
+        created_at:
+          description: Date and time of BPI `SubjectAccount` creation
           example: '2021-02-27T14:26:06.864Z'
           format: date-time
           readOnly: true
@@ -3034,88 +3170,20 @@ components:
                 example: 'JWS'
                 type: string
               credential:
-                description: Credential associated with the account. Should be a W3C Verifiable Credential
+                description: Credential associated with the BPI `SubjectAccount`. Should be a W3C Verifiable Credential
                 type: object  
           readOnly: false
-        description:
-          description: 'User-defined description of `Subject`'
-          example: Organization for testing
-          readOnly: false
-          type: string
-        id:
-          description: 'ID of a specific `Subject`'
-          example: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
-          readOnly: true
-          type: string
-        metadata:
-          nullable: true
-          type: object
-          properties:
-            address:
-              description: '`Wallet` address of associated `Subject`'
-              example: '0x2f90A6D021db21e1B2A077c5a37B3C7E75D15b7e'
-              type: string
-            api_endpoint:
-              description: 'URL of the baseline API, which may not be exposed to the WAN'
-              example: 'https://api_endpoint/api/v1/endpoint'
-              type: string
-            messaging_endpoint:
-              description: 'Publicly-accessible TCP endpoint where the `Subject` receives inbound protocol messages'
-              example: 'https://api_endpoint/api/v1/messaging'
-              type: string
-            interface_metadata:
-              description: 'Arbitrary data as needed for additional external interfaces'
-              type: object
-        name:
-          description: 'Name of `Subject`'
-          example: 'ACME Inc.'
-          readOnly: false
-          type: string
-        type: 
-          description: Type of `Subject`
-          example: 'Organization'
-          type: string
-          readOnly: false
-      title: Subject
-    SubjectContext:
-      description: |- 
-        A `SubjectContext` is the context of a `Subject` 
-      title: Subject Context
-      type: object
-      required:
-          - bpi_account_id
-          - recovery_policies
-          - security_policies
-          - subject_id
-      properties:
-        '@context':
-          description: Context reference file for `SubjectContext` schema validation
-          example: []
-          type: object
-          readOnly: false
-        bpi_account_id:
-          description: Identifier of associated `BPIAccount`; implementation specific
-          example: 'did:prvd:4A252b7e30f6cD6a85d20476Bb291Ef7f3a05293'
-          type: string
-          readOnly: true
-        created_at:
-          description: Date and time of `SubjectContext` creation
-          example: '2021-02-27T14:26:06.864Z'
-          format: date-time
-          readOnly: true
-          type: string
         metadata:
           description: Metadata useful for BPI operations and UI implementations such as names or API and messaging endpoints
           example: {}
           type: object
           readOnly: false
         type: 
-          description: Type of `SubjectContext`
-          example: 'ProvideSubjectContext'
+          description: Type of BPI `SubjectAccount`
+          example: 'ProvideSubjectAccount'
           type: string
           readOnly: false
-        recovery_policies:
-          items:
+        recovery_policy:
             $ref: "#/components/schemas/RecoveryPolicy"
         role:
           description: Role of the `Subject`; implementation specific
@@ -3167,7 +3235,7 @@ components:
                   format: URI
           readOnly: false
     Transaction:
-      description: Finalized transaction between two or more subjects to be submitted to a network
+      description: Finalized transaction between two or more subjects to be submitted to a CCSM `Network`; _normative_
       example:
         id: '99a61ee5-73ea-46d1-a434-b6a2a908bc51'
         block: 10079406
@@ -3183,29 +3251,15 @@ components:
         value: 0
         wallet_id: '0fda2f96-d957-4f65-9e92-fa5092c51751'
       properties:
-        account_id:
-          description: 'ID of the `Account` transaction signing identity; _UUID as specified by RFC4122_'
-          example: '6bb23e2b-07ed-4562-8afb-73955f8f17c5'
-          format: uuid
-          readOnly: true
-          type: string
-        block:
-          description: 'Block height for a specific `Transaction`'
-          example: '5464'
-          format: integer
-          readOnly: true
-          type: number
-        block_timestamp:
-          description: 'Date and time of block creation for a specific `Transaction`'
-          example: '2021-04-21T02:12:11.158Z'
-          readOnly: true
-          type: string
-        broadcast_at:
-          description: 'Date and time that the `Transaction` was broadcast to the intended `Network`'
-          example: '2021-04-21T02:12:11.158Z'
-          format: date-time
-          readOnly: true
-          type: string
+        context:
+          description: ''
+          type: array
+          items:
+            type: string
+          anyOf:
+            - required:
+                - workflow_id
+                - workstep_id
         created_at:
           description: 'Date and time for the creation of a specific `Transaction`'
           example: '2021-04-21T02:12:11.158Z'
@@ -3220,22 +3274,6 @@ components:
           description: 'A user-defined summary of the transaction'
           nullable: true
           type: object
-        e2e_latency:
-          description: 'Amount of time, in milliseconds, of the full transaction lifecycle'
-          readOnly: true
-          type: integer
-        finalized_at:
-          description: 'Date and time that a specific `Transaction` was finalized on the intended `Network`'
-          example: '2021-04-21T02:12:11.158Z'
-          format: date-time
-          readOnly: true
-          type: string
-        hash:
-          description: 'A unique string of characters that is specific to every transaction on a specific `Network`; also referred to as transaction ID'
-          readOnly: true
-          type: string
-        hd_derivation_path:
-          type: string
         id:
           description: 'ID for a specific `Transaction`; _UUID as specified by RFC4122_'
           example: 'bb0e8038-8e72-46db-a08d-204f804a24c1'
@@ -3244,63 +3282,9 @@ components:
           minLength: 1
           readOnly: true
           type: string
-        key_id:
-          description: 'ID of the vault key which will be used to sign the `Transaction`; required in the absence of a signer; _UUID as specified by RFC4122_'
-          example: 'dcb00685-6434-4f4b-b9df-e929bb90d421'
-          format: uuid
-          type: string
-        network_id:
-          description: 'ID of a specific `Network` on which the `Transaction` will be broadcast; _UUID as specified by RFC4122_'
-          example: 'bddbc2ac-8531-4f19-962c-f19d93b68fbb'
-          format: uuid
-          readOnly: false
-          type: string
-        network_latency:
-          description: 'Amount of time, in milliseconds, the transaction was pending inclusion in a block '
-          readOnly: true
-          type: integer
-        published_at:
-          description: 'Date and time that a specific `Transaction` was published to the intended `Network`'
-          example: '2021-04-21T02:12:11.158Z'
-          format: date-time
-          readOnly: true
-          type: string
-        queue_latency:
-          description: 'Amount of time, in milliseconds, the transaction was queued for async processing'
-          readOnly: true
-          type: integer
-        ref:
-          description: 'Alternate identifier by which this `Transaction` is indexed; `ref` exists to optimize client-side throughput and parallel processing/nonce management _UUID as specified by RFC4122_'
-          format: uuid
-          nullable: true
-          type: string
-        status:
-          description: 'Current status of a specific transaction'
-          readOnly: true
-          type: string
-        to:
-          description: 'Public network address of the recipient of the `Transaction`; if applicable'
-          example: '0x1f4a6f3bfdea8fe1539ad538421cba0668bf8edf'
-          type: string
-        subject_id:
-          description: 'ID for a specific `Subject` that created a specific `Transaction`'
-          example: 'did:prvd:7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
-          maxLength: 36
-          minLength: 1
-          readOnly: true
-          type: string
-        value:
-          description: 'Total amount of value, represented in the smallest standard denomination of native currency for a specific Network (i.e., wei), to be transferred by the sender to the recipient'
-          type: number
-        wallet_id:
-          description: 'ID of a specific `Wallet` used for signing a specific `Transaction`; _UUID as specified by RFC4122_'
-          example: '9c193c18-db84-4506-8462-9e604d1620b9'
-          format: uuid
-          readOnly: false
-          type: string
       title: 'Transaction'
     UnsealVault:
-      description: 'Unseals a specified `Vault`'
+      description: 'Unseals a specified `Vault`; _non-normative_'
       example:
         key: 'quantum mirror summer general keep west promote satisfy limit butter mother oyster lazy whip earn spot ticket protect mean play script peace parent intact'
       properties:
@@ -3312,7 +3296,7 @@ components:
       title: 'Unseal Vault'
       type: object
     Vault:
-      description: 'Provides key management with a focus on providing advanced privacy and messaging capabilities (i.e., zero-knowledge proofs, SNARK-friendly hash functions, double-ratchet algorithm, etc.)'
+      description: 'Provides key management with a focus on providing advanced privacy and messaging capabilities (i.e., zero-knowledge proofs, SNARK-friendly hash functions, double-ratchet algorithm, etc.); _non-normative_'
       example:
         created_at: '2021-08-23T05:40:11.047741Z'
         description: 'Example Vault for testing and documentation purpose'
@@ -3344,7 +3328,7 @@ components:
       title: Vault
       type: object
     Wallet:
-      description: 'Hierarchical deterministic (HD) wallet in accordance with BIP44'
+      description: 'Hierarchical deterministic (HD) wallet in accordance with BIP44; _non-normative_'
       example:
         created_at: '2021-03-30T02:50:17.155Z'
         id: 'bbc1195e-d131-4b2f-b1a8-1b6f34b55d3e'
@@ -3410,13 +3394,13 @@ components:
       title: 'Wallet'
       type: object
     Witness:
-      description: 'Public and private inputs used to generate the `Proof`. Payload can be delivered as a JSON object or chunked and streamed. Example is dependent on `Prover` parameters.'
+      description: 'Public and private inputs used to generate the `Proof`. Payload can be delivered as a JSON object or chunked and streamed. Example is dependent on `Prover` parameters. _normative_'
       example: {}
       properties: {}
       title: Witness
       type: object
     WorkflowInstance:
-      description: A `WorkflowInstance` consisting of a set of stepwise workstep instances
+      description: 'A `WorkflowInstance` consisting of a set of stepwise workstep instances; _normative_'
       example:
         id: 'ed509f33-cbe4-4e3d-86ff-e508e6496f85'
         name: Procure to Pay
@@ -3438,23 +3422,18 @@ components:
           example: 'Test workflow'
           type: string
         type:
-          description: 'Type of `StateObject`'
+          description: 'Type of `WorkflowInstance'
           example: Purchase order
           readOnly: false
           type: string
         workstep_ids:
-          description: List of workstep instance ids included in the workflow
+          description: List of `WorkstepInstance` ids included in the `WorkflowInstance`
           example: 
             - 'ed509f33-cbe4-4e3d-86ff-e508e6496f85'
           readOnly: true
           type: array
-          items:
+          items: 
             type: string
-            properties:
-              workstep_id:
-                description: ID of specific `Workstep`
-                example: 'ed509f33-cbe4-4e3d-86ff-e508e6496f85'
-                type: string             
       required:
         - type
       title: Workflow Instance
@@ -3462,7 +3441,7 @@ components:
     Workgroup:
       description: |-
         'A `Workgroup` represents a logical collection of resources provisioned within the baseline containerized 
-        microservices architecture. A `Workgroup` is immutably configured upon initialization with support for a primary `Network` (or "mainnet").'
+        microservices architecture. A `Workgroup` is immutably configured upon initialization with support for a primary CCSM `Network` (or "mainnet"). _normative_'
       example:
         subject_id: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
         config:
@@ -3475,9 +3454,11 @@ components:
         network_id: '07102258-5e49-480e-86af-6d0c3260827d'
         type: 'baseline'
         security_policies: []
+        admins: 
+          - 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
       properties:
         config:
-          description: BPI specific workgroup data
+          description: BPI-specific workgroup data
           example: {}
           type: object
         created_at:
@@ -3517,7 +3498,7 @@ components:
           minLength: 1
           type: string
         participants:
-          description: 'Subject(s) that are workgroup participants'
+          description: '`Subject` identifiers that are `Workgroup` participants'
           minLength: 1
           readOnly: false
           type: array
@@ -3529,7 +3510,7 @@ components:
           description: 'Security policies attached to a Workgroup' 
           example: 
             type: AuthenticationPolicy
-            reference: https://example.com/policies/authenticationpolicy.json
+            reference: https://example.com/policies/authentication-policy.json
           minLength: 1
           type: array
           items:
@@ -3544,19 +3525,31 @@ components:
                   type: string
                 reference:
                   description: resolvable reference link to the security policy object, avoids duplicating policy objects
-                  example: 'https://example.com/policies/authenticationpolicy.json'
+                  example: 'https://example.com/policies/authentication-policy.json'
                   type: string
                   format: URI
           readOnly: false
+        subject_id:
+          description: ID of `Subject` that created `Workgroup`
+          example: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+          type: string
+        admins:
+          description: 'IDs of `Subject` instances with administrative control of `Workgroup`'
+          example:
+          type: array
+          minLength: 1
+          items:
+            type: string
       required:
         - name
         - type
         - subject_id
         - security_policies
+        - admins
       title: Workgroup
       type: object
     WorkstepInstance:
-      description: 'One stepwise state transition in a `WorkflowInstance` represented by a `Prover` instance. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.'
+      description: 'One stepwise state transition in a `WorkflowInstance` represented by a `Prover` instance. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`. _normative_'
       example:
         created_at: '2021-04-21T02:12:05.000Z'
         id: '2fffec13-590e-41eb-9a84-69ed881e0036'
@@ -3564,6 +3557,8 @@ components:
         require_finality: true
         workflow_id: 'f9227803-5541-4c13-a554-f6980f03362a'
         type: 'purchase_order'
+        participants: []
+        subject_id: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
       properties:
         id:
           description: 'ID of a specific `WorkstepInstance`; _UUID as specified by RFC4122_'
@@ -3580,6 +3575,11 @@ components:
           minLength: 1
           readOnly: true
           type: string
+        participants:
+          description: 'List of `Subject` instances that are associated with the `WorkstepInstance`'
+          type: array
+          items:
+            $ref: '#/components/schemas/Subject'
         prover_id:
           description: 'ID of the a specific `Prover` instance that is represented in a specific `WorkstepInstance`; _UUID as specified by RFC4122_'
           example: 'dd615561-83e6-4f53-ac0f-aaf1749df139'
@@ -3597,6 +3597,11 @@ components:
           items:
             $ref: '#/components/schemas/StateClaim'
           type: array
+        subject_id:
+          description: 'ID of associated `Subject'
+          type: string
+          readOnly: false
+          example: 
         type:
           description: 'Type of workstep'
           example: 'purchase_order'
@@ -3611,6 +3616,8 @@ components:
           readOnly: false
           type: string
       required:
+        - subject_id
+        - participants
         - workflow_id
       title: Workstep
       type: object
