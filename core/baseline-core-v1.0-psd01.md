@@ -54,7 +54,7 @@ This specification replaces or supersedes:
 
 This specification is related to:    
 **[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md.\
+_Baseline API and Data Model Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html.\
 **[baseline-dlt-v1.0]**
 _Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
 
@@ -971,17 +971,21 @@ The security requirements of this section are distinct from the security require
 
 **[R61]**	Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH, SAML, OIDC, AD/LDAP. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
+Non-normative examples of such authentication technologies are OAUTH [OAuth-2.0] , SAML [SAML] , OIDC [OIDC], AD/LDAP [ActiveDirectory]. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 **[R62]**	Abstraction Layers utilized in a BPI MUST support roles & access management.
 
 **[R63]**	Abstraction Layers utilized in a BPI MUST support policy management.
 
-**[R64]**	Abstraction Layers utilized in a BPI MUST support Single-Sign-On [SSO](https://en.wikipedia.org/wiki/Single_sign-on). For complementary information refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
+**[R64]**	Abstraction Layers utilized in a BPI MUST support Single-Sign-On (SSO) . 
+
+See [SSO] in appendix [A.2 Non-Normative References](#a2-non-normative-references) for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
 
 **[R65]**	Abstraction Layers utilized in a BPI MUST support multi-factor authentication [MFA](https://csrc.nist.gov/glossary/term/mfa). 
 
-**[R66]**	Abstraction Layers utilized in a BPI MUST support hardware security modules [HSMs](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). For complementary information refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
+**[R66]**	Abstraction Layers utilized in a BPI MUST support hardware security modules [HSM](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). 
+
+For further information, refer to [HSM] in appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 -------
 
@@ -1308,7 +1312,7 @@ Similar to a BPI itself, the interactions between BPIs through BPI Interoperabil
 
 **[R116]**	BPI Interoperability Services MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are [OAUTH](https://datatracker.ietf.org/doc/html/rfc6749), [SAML](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.html), [OIDC](https://openid.net/developers/specs/), [AD/LDAP](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/auth-ldap). Please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
+Non-normative examples of such authentication technologies are OAUTH [OAuth-2.0] , SAML [SAML] , OIDC [OIDC], AD/LDAP [ActiveDirectory]. Please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 **[R117]**	BPI Interoperability Services MUST support roles & access management.
 
@@ -2275,17 +2279,21 @@ This is also known as a secure connection.
 
 **[R282]**	BPI Storage MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH, SAML, OIDC, AD/LDAP. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
+Non-normative examples of such authentication technologies are OAUTH [OAuth-2.0] , SAML [SAML] , OIDC [OIDC], AD/LDAP [ActiveDirectory]. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 **[R283]**	BPI Storage MUST support roles & access management.
 
 **[R284]**	BPI Storage MUST support policy management.
 
-**[R285]**	BPI Storage MUST support Single-Sign-On SSO. For complementary information refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
+**[R285]**	BPI Storage MUST support Single-Sign-On (SSO).
+
+See [SSO] in appendix [A.2 Non-Normative References](#a2-non-normative-references) for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
 
 **[R286]**	BPI Storage MUST support multi-factor authentication [MFA](https://csrc.nist.gov/glossary/term/mfa).
 
-**[R287]**	BPI Storage MUST support hardware security modules [(HSMs)](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). For complementary information refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
+**[R287]**	BPI Storage MUST support hardware security modules [HSM](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). 
+
+For further information, refer to [HSM] in appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 
 ## 7.2. BPI Storage Privacy
