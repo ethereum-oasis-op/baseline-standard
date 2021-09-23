@@ -6,7 +6,7 @@
 
 ## Project Specification Working Draft
 
-## 29 April 2021
+## 22 September 2021
 
 <!-- URI list start (commented out except during publication by OASIS TC Admin)
 
@@ -26,17 +26,16 @@ https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.pdf
 URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Open Project:
-[Baseline, part of the Ethereum OASIS Open Project](https://www.baseline-protocol.org/)
+[Baseline](https://www.baseline-protocol.org/), an initiative of [EEA Community Projects](https://entethalliance.org/eeacommunityprojects/)
 
 #### Project Chair:
-John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/) 
+John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
 #### Editors:
-Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/) \
 Andreas Freund (a.freundhaskel@gmail.com) \
-Brian Chamberlain (brian.chamberlain@consensys.net), [ConsenSys](https://consensys.net/) \
-Charles ‘Chaals’ Nevile (charles.nevile@consensys.net), [ConsenSys](https://entethalliance.org/) \
-Daniel Norkin (daniel.norkin@envisionblockchain.com), [Envision Blockchain](https://envisionblockchain.com/)
+Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/)  \
+Kyle Thomas (kyle@provide.services), [Provide Technologies ](https://provide.services/)
+
 
 <!--
 #### Additional artifacts:
@@ -55,7 +54,11 @@ This specification replaces or supersedes:
  -->
 
 This specification is related to: \
-_Baseline CCSM Requirements version 1.0_ - https://github.com/ethereum-oasis/baseline/tree/master/docs/specs/dlt
+**[baseline-core-v1.0]**
+_Baseline Core Specification Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.  \
+**[baseline-api-v1.0]**
+_Baseline API and Data Model Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html .
+
 
 
 #### Abstract:
@@ -70,16 +73,13 @@ was last revised or approved by Baseline, part of the Ethereum OASIS Open Projec
 
 Comments on this work can be provided by opening issues in the project repository or by sending email to the project’s public comment list baseline@lists.oasis-open-projects.org.
 
-
-#### Key words:
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 [[RFC2119](#rfc2119)] and [[RFC8174](#rfc8174)] when, and only when, they appear in all capitals, as shown here.
+#### Keywords:
+The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](http://www.ietf.org/rfc/rfc2119.txt)] when, and only when, they appear in all capitals, as shown here.
 
 #### Citation format:
 When referencing this specification the following citation format should be used:
 
-**[baseline-dlt-v1.0]**
-
-_Baseline CCSM Requiements Version 1.0_. Edited by Anais Ofranc. 29 September 2020. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
+**[baseline-dlt-v1.0]** _Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
 
 -------
 
@@ -96,27 +96,31 @@ For complete copyright information please see the Notices section in the Appendi
 [1 Introduction](#1-introduction) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 Glossary](#11-glossary) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Typographical Conventions](#12-typographical-conventions) \
-[2 Security](#2-Security) \
-[3 Privacy](#3-Privacy) \
-[4 Scalability](#4-Scalability) \
-[5 Interoperability](#5-Interoperability) \
-[6 Network](#6-Network)  \
-[7 Consensus](#7-Consensus) \
-[8 Virtual State Machine](#8-Virtual-State-Machine) \
-[9 Data Integrity & Transaction Completeness ](#9-Data-Integrity-&-Transaction-Completeness) \
-[10 Integration to External Applications](#10-Integration-to-External-Applications) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.2.1	Requirement Ids](#121-requirement-ids) \
+[2 Security](#2-security) \
+[3 Privacy](#3-privacy) \
+[4 Scalability](#4-scalability) \
+[5 Interoperability](#5-interoperability) \
+[6 Network](#6-network)  \
+[7 Consensus](#7-consensus) \
+[8 Virtual State Machine](#8-virtual-state-machine) \
+[9 Data Integrity and Transaction Completeness ](#9-data-integrity-and-transaction-completeness) \
+[10 Integration Capabilities with External Systems](#10-integration-capabilities-with-external-systems) \
 [11 Conformance](#11-conformance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[11.1 Conformance Targets](#111-conformance-targets) \
-&nbsp;&nbsp;&nbsp;&nbsp;[11.2 Conformance Levels](#112-conformances-levels)\
-&nbsp;&nbsp;&nbsp;&nbsp;[11.3 Interoperability](#113-interoperability)\
-[Appendix A.        Acknowledgments]()\
-[Appendix B.        Revision History]()
+&nbsp;&nbsp;&nbsp;&nbsp;[11.2 Conformance Levels](#112-conformance-levels)\
+[Appendix A - References](#appendix-a---references)\
+&nbsp;&nbsp;&nbsp;&nbsp;[A.1 Normative References](#a1-normative-references) \
+&nbsp;&nbsp;&nbsp;&nbsp;[A.2 Non-Normative References](#a2-non-normative-references) \
+[Appendix B - Acknowledgments](#appendix-b---acknowledgments)\
+[Appendix C - Revision History](#appendix-c---revision-history)\
+[Appendix D - Notices](#appendix-d---notices)
 
 -------
 
 # 1 Introduction
 
-Distributed Ledger Technology (CCSM) is the foundational enabler of a Baseline Protocol Instance (BPI) with no or limited trust assumptions. The requirements that a CCSM must satisfy for it to be used in a BPI as defined in the Baseline Standard fall in the following categories:
+Distributed Ledger Technology (CCSM) is the foundational enabler of a Baseline Protocol Instance (BPI) with no or limited trust assumptions. The requirements that a CCSM must satisfy for it to be used in a BPI as defined in the Baseline Protocol Standard fall in the following categories:
 1. Security
 2. Privacy
 3. Scalability
@@ -129,8 +133,7 @@ Distributed Ledger Technology (CCSM) is the foundational enabler of a Baseline P
 
 In the requirements below we will refer to "The CCSM" to mean a CCSM chosen by the participants to implement a BPI.
 
-
-## 1.2 Glossary
+## 1.1 Glossary
 
 **Baseline Protocol:**
 
@@ -138,7 +141,7 @@ The Baseline Protocol is a set of methods that enable two or more state machines
 
 **Byzantine Fault Tolerant (BFT):**
 
-Given a network or system of n components, t of which are dishonest, and assuming only point-to-point channels between all the components, then whenever a component A tries to broadcast a value x such as a block of transactions, the other components are permit-ted to discuss with each other and verify the consistency of A's broadcast, and eventually settle on a common value y. The system is then considered to resist Byzantine faults if a component A can broadcast a value x, and then:
+Given a network or system of n components, t of which are dishonest, and assuming only point-to-point channels between all the components, then whenever a component A tries to broadcast a value x such as a block of transactions, the other components are permitted to discuss with each other and verify the consistency of A's broadcast, and eventually settle on a common value y. The system is then considered to resist Byzantine faults if a component A can broadcast a value x, and then:
 * If A is honest, then all honest components agree on the value x.
 * If A is dishonest, all honest components agree on the common value y.
 
@@ -158,7 +161,8 @@ A Consensus Controlled State Machine is a network of replicated, shared, and syn
 
 The ability of a Party operating Workflows on a baseline-compliant implementation A to instantiate and operate one or more Workflows with one or more Party on a baseline-compliant implementation B without the Party on either implementation A or B having to know anything of the other Party’s implementation.
 
-**Liveness:**
+**Liveness:**  
+
 In concurrent computing, liveness refers to a set of properties of concurrent systems, that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
 
 Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
@@ -168,6 +172,7 @@ Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
 A set of Parties participating in the execution of one or more given Workflows. A Workgroup is set up and managed by one Party that invites other Parties to join as workgroup members. 
 
 **Proof of Correctness:**
+
 A Proof of Correctness is a mathematical proof that a computer program or a part thereof will, when executed, yield correct results, i.e. results fulfilling specific requirements. Before proving a program correct, the theorem to be proved must, of course, be formulated. The hypothesis of such a correctness theorem is typically a condition that the relevant program variables must satisfy immediately before the program is executed. This condition is called the precondition. The thesis of the correctness theorem is typically a condition that the relevant program variables must satisfy immediately after execution of the program. This latter condition is called the postcondition. The thesis of a correctness theorem may be a statement that the final values of the program variables are a particular function of their initial values.
 
 "Encyclopedia of Software Engineering",
@@ -180,11 +185,20 @@ Verifiable computing that can be described as verifiably secure enables a comput
 
 Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive Verifiable Computing: Outsourcing Computation to Untrusted Workers. CRYPTO 2010. doi:10.1007/978-3-642-14623-7_25 
 
-## 1.3 Typographical Conventions
 
-- Naming conventions
-- Font colors and styles
-- Typographic conventions
+## 1.2 Typographical Conventions
+
+### 1.2.1 Requirement Ids
+
+A requirement is uniquely identified by an unique ID composed of its requirement level followed by a requirement number, as per convention **[RequirementLevelRequirementNumber]**. 
+There are four requirement levels that are coded in requirement ids as per below convention: 
+
+**[R]** - The requirement level for requirements which IDs start with the letter _R_ is to be interpreted as **MUST** as described in RFC2119. \
+**[D]** - The requirement level for requirements which IDs start with the letter _D_ is to be interpreted as **SHOULD** as described in RFC2119. 
+
+Note that requirements are uniquely numbered in ascending order within each requirement level.
+
+Example : It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation.
 
 
 -------
@@ -205,15 +219,15 @@ The usage of cryptographic libraries that successfully passed the National Insti
 
 Note, economic security assurances such as used in Proof-of-Stake consensus algorithms are designed to provide additional security assurances beyond those of cryptography in distributed systems. The security assurances are based on a system of economic incentives and disincentives for distributed system participants with the expressed goal that honest behavior of distributed system participants which enhances system security is in their economic self-interest. This is akin to determining if a cryptographic algorithm is secure or not, and what the level of security of said algorithm is, the security of a system of economic incentives and disincentives must be proven through a game theoretic security analysis.
 
-**[D1]**	The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE)
+**[D1]**	The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE).
 
 Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing with the TEE, along with confidentiality of their assets.
 
-**[R5]**	The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033 [[1]](####[1])
+**[R5]**	The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033.
 
 Network attacks typically take the form of Distributed Denial of Service (DDOS) attacks, attacks from groups of malicious CCSM nodes performing CCSM reorganizations, front running of transactions through transaction injections, and censoring of transactions. This includes game theoretic attacks such as discouragement, extortion, value-extraction, or random oracle attacks.
 
-**[R6]**	The CCSM utilized in a BPI MUST support a secure consensus algorithm as explained in [Section 8](#8-Virtual-State-Machine).
+**[R6]**	The CCSM utilized in a BPI MUST support a secure consensus algorithm as explained in section [8 Virtual State Machine](#8-virtual-state-machine).
 
 Note that secure in this context refers to the security of a consensus algorithm against attacks against its three main characteristics – consistency, availability, and fault tolerance. Therefore, a consensus algorithm is considered secure for a given set of operating assumptions:
 * if all nodes produce the same valid output, according to the protocol rules, for the same message broadcast to the network (consistency/safety),
@@ -222,7 +236,7 @@ Note that secure in this context refers to the security of a consensus algorithm
 
 **[R7]**	A CCSM utilized in a BPI MUST have one or more secure-by-construction or Verifiably Secure execution frameworks.
 
-See the glossary for a definition of Verifiably Secure and more details about CCSM supported execution frameworks in section 9.
+See the glossary for a definition of Verifiably Secure and more details about CCSM supported execution frameworks in section [9 Data Integrity and Transaction Completeness ](#9-data-integrity-and-transaction-completeness).
 
 # 3. Privacy
 CCSMs range in the level of privacy they support. One approach ensures that the contents of a CCSM transaction or storage are meaningless to parties not participating in an interaction. Another more stringent approach is to use a CCSM that precludes the accessibility of such information to non-participating parties. This standard sets the minimum requirement to the first approach, but the parties can agree to require that the BPI supports the second approach.
@@ -239,14 +253,14 @@ Privacy-preserving means in this context that at least the content of a message,
 
 **[D3]**	The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verification (if not generation) at the protocol level.
 
-Zero-Knowledge Proofs (ZKPs) [[2]](####2) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
+Zero-Knowledge Proofs (ZKPs) (see appendix [A.2 Non-Normative References](#a2-non-normative-references)) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
 
 # 4. Scalability
 To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce Block space. 
 
 Since forecasting future transaction volumes is difficult and could rapidly change based on adoption, the considered CCSMs should have some form of throughput future-proofing built in. Examples of such techniques include state channels, sidechains, rollup frameworks, state sharding, multiple execution frameworks and parallel process transaction support. This is not mandated in this standard and is considered a question of implementation to be addressed in an agreement by the users of a BPI.
 
-# 4. Interoperability
+# 5. Interoperability
 
 **[D4]**	The CCSM utilized in a BPI SHOULD support secure data sources.
 
@@ -267,15 +281,17 @@ It is important that Peer-to-Peer (P2P) message protocols are used that do not r
 
 **[R11]**	A CCSM utilized in a BPI MUST support a P2P message protocol that does not require network leader nodes.
 
-The network requirements on the consensus algorithms are even more stringent than on the P2P protocol. Additional requirements on the consensus algorithm of the CCSM are discussed in the next section, section 7.
+The network requirements on the consensus algorithms are even more stringent than on the P2P protocol. Additional requirements on the consensus algorithm of the CCSM are discussed in the next section, section [7. Consensus](#7-consensus).
 
-**[R12]** The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT) [[3]](####[3]).
+**[R12]** The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT).
+
+See [A.2 Non-Normative References](#a2-non-normative-references) for reference paper.
 
 **[R13]** The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
 
 Weak synchrony in this context means, 
 1. 	that all messages will eventually reach their intended recipients and 
-2. that after a certain, yet unknown, time the network will become synchronous again.
+2. that after a certain, yet unknown time, the network will become synchronous again.
 
 # 7. Consensus
 The consensus algorithm is the most important component of a CCSM as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
@@ -316,13 +332,13 @@ This requirement means that there cannot be infinite computational loops in a di
 # 9. Data Integrity and Transaction Completeness
 Data integrity over time, in other words the inability to alter data once it has been committed to the state of the CCSM, is one of the key features of typical CCSMs.
 
-**[R20]**	If the CCSM utilized in a BPI is strongly consistent (as defined in section 7), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7).
+**[R20]**	If the CCSM utilized in a BPI is strongly consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7).
 
-**[R21]**	If the CCSM utilized in a BPI is eventually consistent (as defined in section 7), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7). 
+**[R21]**	If the CCSM utilized in a BPI is eventually consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7). 
 
 Besides data integrity, the notion of censorship-resistance, or the inability of anyone participant in a CCSM to stop any other participant’s transaction to be eventually included in the CCSM state, is another key feature of typical CCSMs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
 
-**[R22]**	The CCSM utilized in a BPI MUST guarantee that a transaction compliant with the CCSM protocol rules is eventually included in the state of the CCSM, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section 6 for details on the security assumptions of consensus algorithms).
+**[R22]**	The CCSM utilized in a BPI MUST guarantee that a transaction compliant with the CCSM protocol rules is eventually included in the state of the CCSM, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section [6. Network](#6-network) for details on the security assumptions of consensus algorithms).
 
 The reason why the reference to the consensus algorithm is important is as follows: To guarantee processing of a transaction, one needs only one honest CCSM node in the network. However, this is not sufficient to guarantee consensus. Therefore, and to include a submitted transaction in the CCSM state, there needs to be an honest majority of CCSM nodes to reach consensus on the submitted transaction.
 
@@ -332,149 +348,107 @@ Depending on the CCSM employed in the implementation of a BPI, the security requ
 
 **[R23]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM  MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH [[4]](####[4]), SAML [[5]](####[5]), [[6]](####[6]), AD/LDAP [[7]](####[7]).
+Non-normative examples of such authentication technologies are OAUTH [OAuth-2.0] , SAML [SAML] , OIDC [OIDC], AD/LDAP [ActiveDirectory]. Please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
-**[R23]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
+**[R24]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
 
-**[R24]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support policy management.
+**[R25]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support policy management.
 
-**[R25]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO) [[8]](####[8]).
+**[R26]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO).
 
-**[R26]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication.
+See [SSO] in appendix [A.2 Non-Normative References](#a2-non-normative-references) for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
 
-**[R27]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules (HSMs)[[9]](####9).
+**[R27]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication.
+
+**[R28]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules [HSM](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). 
+
+For further information, refer to [HSM] in appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 # 11 Conformance
 
-Describes the conformance clauses and tests required to achieve baseline compliant implementations.
+
+This section describes the conformance clauses and tests required to achieve an implementation that is provably conformant with the requirements in this document.
 
 ## 11.1 Conformance Targets
 
-Defines entities and implementations subject to conformance.
+This document does not yet define a standardized set of test-fixtures with test inputs for all MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements. 
 
+A standardized set of test-fixtures with test inputs for all MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements is intended to be published with the next version of the standard.
 
 ## 11.2 Conformance Levels
 
-Defines conformance levels and their conformance clauses.
+This section specifies the conformance levels of this standard. The conformance levels aim to enable implementers several levels of conformance to establish competitive differentiation.
 
-## 11.3 Interoperability
+This document defines the conformance levels of a CCSM as follows:
+* **Level 1:** All MUST requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
+* **Level 2:** All MUST and SHOULD requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
+* **Level 3:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
+* **Level 4:** All MUST requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
+* **Level 5:** All MUST and SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
+* **Level 6:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
 
-<!--
 
-(Note: The [OASIS TC Process](https://www.oasis-open.org/policies-guidelines/tc-process#wpComponentsConfClause) requires that a specification approved by the OP for public review, or for publication at the Project Specification or OASIS Standard level must include a separate section, listing a set of numbered conformance clauses, to which any implementation of the specification must adhere in order to claim conformance to the specification (or any optional portion thereof). This is done by listing the conformance clauses here.
-
-For the definition of "conformance clause," see [OASIS Defined Terms](https://www.oasis-open.org/policies-guidelines/oasis-defined-terms-2017-05-26#dConformanceClause).
-
-See "Guidelines to Writing Conformance Clauses":  
-http://docs.oasis-open.org/templates/TCHandbook/ConformanceGuidelines.html.
-
-Remove this note before submitting for publication.)
-
--->
 
 -------
 
-# Appendix A. References
+# Appendix A - References
 
-This appendix contains the normative and informative references that are used in this document. Any normative work cited in the body of the text as needed to implement the work product must be listed in the Normative References section below. Each reference to a separate document or artifact in this work must be listed here and must be identified as either a Normative or an Informative Reference. Normative references are specific (identified by date of publication and/or edition number or version number) and Informative references are either specific or non-specific.
+This appendix contains the normative and non-normative references that are used in this document. 
 
 While any hyperlinks included in this appendix were valid at the time of publication, OASIS cannot guarantee their long-term validity.
 
 ## A.1 Normative References
 
-NA
+The following documents are referenced in such a way that some or all of their content constitute requirements of this document.
 
-## A.2 Informative References
+**[RFC2119]** S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997.\
+**[ISO-IEC-27033]** ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO. 
 
-#### [1] 
-ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO
+## A.2 Non-Normative References
 
-#### [2]
-Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3.
+**[Zero-Knowledge Proofs (ZKPs)]** Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3  \
+**[Byzantine Fault Tolerant (BFT)]** "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982 \
+**[OAuth-2.0]** Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518 \
+**[SAML]** J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os \
+**[OIDC]** OpenID Connect Federation 1.0, https://openid.net/developers/specs/ (2019) \
+**[ActiveDirectory]** “Directory System Agent". MSDN Library. Microsoft. (2018) \
+**[SSO]** Recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services). NIST SP 800-95, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-95.pdf  \
+**[HSM]** Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
 
-#### [3]
-"The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982
 
-#### [4]
-Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518
-
-#### [5]
-J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os
-
-#### [6]
-OpenID Connect Federation 1.0, (2019) 
-
-#### [7]
-“Directory System Agent". MSDN Library. Microsoft. (2018). 
-
-#### [8]
-"What's the Difference b/w SSO (Single Sign On) & LDAP?". JumpCloud. (2019)
-
-#### [9]
-Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
-
-## A.2 Informative References
-<!-- 
-###### [RFC3552]
-Rescorla, E. and B. Korver, "Guidelines for Writing RFC Text on Security Considerations", BCP 72, RFC 3552, DOI 10.17487/RFC3552, July 2003, https://www.rfc-editor.org/info/rfc3552.
--->
 -------
 
-# Appendix B. Acknowledgments
+# Appendix B - Acknowledgments
 <!--
 `(Note: A Work Product approved by the OP should include a list of people who participated in the development of the Work Product. This is generally done by collecting the list of names in this appendix. This list should be initially compiled by the Chair, and any Member of the OP may add or remove their names from the list by request. Remove this note before submitting for publication.)`
 -->
-## B.1 Special Thanks
 
-<!-- This is an optional subsection to call out contributions from OP members. If a OP wants to thank non-OP members then they should avoid using the term "contribution" and instead thank them for their "expertise" or "assistance". -->
+The following individuals have participated in the creation of this specification and are gratefully acknowledged.
 
-Substantial contributions to this document from the following individuals are gratefully acknowledged:
+**Participants**:
 
-Participant Name, Affiliation or "Individual Member"
+Andreas Freund \
+Anais Ofranc, Consianimis \
+Gage Mondok, Chainlink \
+Kyle Thomas, Provide Technologies Inc \
+Daven Jones, Provide Technologies Inc \
+Mehran Shakeri, SAP \
+Alessandro Gasch, SAP \
+John Wolpert, ConsenSys \
+Sam Stokes, ConsenSys \
+Nick Kritikos, ConsenSys
+ 
+-------
 
-## C.2 Participants
+# Appendix C - Revision History
 
-<!-- An OP can determine who they list here. It is common practice for OPs to list everyone that was part of the OP during the creation of the document, but this is ultimately an OP decision on who they want to list and not list. -->
-
-The following individuals have participated in the creation of this specification and are gratefully acknowledged:
-
-**Project-name OP Members:**
-
-| First Name | Last Name | Company |
-| :--- | :--- | :--- |
-x | x | Something Networks
-x | x | Company B
-x | x | Mini Micro
-x | x | Big Networks
+Revisions made since the initial stage of this numbered Version of this document have been tracked on [Github](https://github.com/eea-oasis/baseline-standard/blob/main/DLT/baseline-dlt-v1.0-psd01.md) .
 
 -------
 
-# Appendix D. Revision History
+# Appendix D - Notices
 
-Revisions made since the initial stage of this numbered Version of this document may be tracked here.
-
-If revision tracking is handled in another system like github, provide a link to it instead of using this table, if desired.
-
-| Revision | Date | Editor | Changes Made |
-| :--- | :--- | :--- | :--- |
-| baseline-core-v1.0-psd01 | 2020-09-29 | Anais Ofranc | Initial working draft |
-
--------
-<!--
-# Appendix E. Example Appendix with subsections
-
-## E.1 Subsection title
-
-### E.1.1 Sub-subsection
--->
--------
-
-# Appendix F. Notices
-
-<!-- This required section should not be altered, except to modify the license information in the second paragraph -->
-
-
-Copyright © OASIS Open 2020. All Rights Reserved.
+Copyright © OASIS Open 2021. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
 
@@ -484,7 +458,7 @@ All contributions made to this project have been made under the [OASIS Contribut
 
 For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the [Open Projects IPR Statements](https://github.com/oasis-open-projects/administration/blob/master/IPR_STATEMENTS.md) page.
 
-This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Open Project (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
+This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restrictions of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Open Project (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
 
 The limited permissions granted above are perpetual and will not be revoked by OASIS or its successors or assigns.
 
@@ -494,8 +468,11 @@ As stated in the OASIS IPR Policy, the following three paragraphs in brackets ap
 
 \[OASIS requests that any OASIS Party or any other party that believes it has patent claims that would necessarily be infringed by implementations of this OASIS Standards Final Deliverable, to notify OASIS TC Administrator and provide an indication of its willingness to grant patent licenses to such patent claims in a manner consistent with the IPR Mode of the OASIS Open Project that produced this deliverable.\]
 
-\[OASIS invites any party to contact the OASIS TC Administrator if it is aware of a claim of ownership of any patent claims that would necessarily be infringed by implementations of this OASIS Standards Final Deliverable by a patent holder that is not willing to provide a license to such patent claims in a manner consistent with the IPR Mode of the OASIS Open Project that produced this OASIS Standards Final Deliverable. OASIS may include such claims on its website, but disclaims any obligation to do so.\]
+\[OASIS invites any party to contact the OASIS TC Administrator if it is aware of a claim of ownership of any patent claims that would necessarily be infringed by implementations of this OASIS Standards Final Deliverable by a patent holder that is not willing to provide a license to such patent claims in a manner consistent with the IPR Mode of the OASIS Open Project that produced this OASIS Standards Final Deliverable. OASIS may include such claims on its website but disclaims any obligation to do so.\]
 
 \[OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this OASIS Standards Final Deliverable or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS' procedures with respect to rights in any document or deliverable produced by an OASIS Open Project can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Standards Final Deliverable, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.\]
 
-The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark for above guidance.
+The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation, and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark for the above guidance.
+
+![OASIS Logo](http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
+-------
