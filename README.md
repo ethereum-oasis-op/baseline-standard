@@ -25,7 +25,9 @@ OASIS Specification 1 - The Baseline CORE Specifications document: The document 
 
 OASIS Specification 2 - The Baseline API & Data Model Specifications document: The document describes the Baseline programming interface and expected behaviors of all instances of this interface together with the required programming interface data model.
 
-Specification - Permissionless DLT Requirements document: The document describes required and assumed properties and qualities of a permissionless singleton state machine and its operating environment for such a permissionless DLT to safely synchronize two or more enterprise systems of record.
+OASIS Specification 3 - Permissionless CCSM Requirements document: The document describes required and assumed properties and qualities of a singleton state machine and its operating environment for such a CCSM to safely synchronize two or more enterprise systems of record.
+
+[Link to latest working draft](https://github.com/ethereum-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md)
 
 ## License
 
