@@ -34,7 +34,7 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/)
 #### Editors:
 Andreas Freund (a.freundhaskel@gmail.com) \
 Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/)  \
-Kyle Thomas (kyle@provide.services), [Provide Technologies ](https://provide.services/)
+Kyle Thomas (kyle@provide.services), [Provide ](https://provide.services/)
 
 <!--
 #### Additional artifacts:
@@ -2595,8 +2595,8 @@ The following individuals have participated in the creation of this specificatio
 Andreas Freund \
 Anais Ofranc, Consianimis \
 Gage Mondok, Chainlink \
-Kyle Thomas, Provide Technologies Inc \
-Daven Jones, Provide Technologies Inc \
+Kyle Thomas, Provide \
+Daven Jones, Provide \
 Mehran Shakeri, SAP \
 Alessandro Gasch, SAP \
 John Wolpert, ConsenSys \
