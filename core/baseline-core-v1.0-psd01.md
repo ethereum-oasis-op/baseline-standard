@@ -29,7 +29,7 @@ URI list end (commented out except during publication by OASIS TC Admin) -->
 [Baseline](https://www.baseline-protocol.org/), an initiative of [EEA Community Projects](https://entethalliance.org/eeacommunityprojects/)
 
 #### Project Chair:
-John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/) 
+John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
 #### Editors:
 Andreas Freund (a.freundhaskel@gmail.com) \
@@ -698,7 +698,7 @@ Below this document lists and defines the components of each layer. The detailed
 
 ## 3.1 Introduction and High-Level Requirements
 
-Currently, 3rd parties such as [Domain Name Services (DNS) registrars](https://en.wikipedia.org/wiki/Domain_name_registrar), Internet Corporation for Assigned Names and Numbers [(ICANN)](https://www.icann.org/), X.509 Certificate Authorities (CAs), see Reference [[X.509](https://www.itu.int/rec/T-REC-X.509)] and Reference [[CA](https://csrc.nist.gov/glossary/term/certificate_authority)], or social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
+Currently, 3rd parties such as [Domain Name Services (DNS) registrars](https://www.icann.org/en/accredited-registrars?filter-letter=a&sort-direction=asc&sort-param=name&page=1), Internet Corporation for Assigned Names and Numbers [(ICANN)](https://www.icann.org/), X.509 Certificate Authorities (CAs), see Reference [[X.509](https://www.itu.int/rec/T-REC-X.509)] and Reference [[CA](https://csrc.nist.gov/glossary/term/certificate_authority)], or social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
 
 As evidenced over the last 20+ years, this design has demonstrated serious usability and security shortcomings.
 

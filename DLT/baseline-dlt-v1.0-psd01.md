@@ -29,7 +29,7 @@ URI list end (commented out except during publication by OASIS TC Admin) -->
 [Baseline](https://www.baseline-protocol.org/), an initiative of [EEA Community Projects](https://entethalliance.org/eeacommunityprojects/)
 
 #### Project Chair:
-John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/) 
+John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
 #### Editors:
 Andreas Freund (a.freundhaskel@gmail.com) \
