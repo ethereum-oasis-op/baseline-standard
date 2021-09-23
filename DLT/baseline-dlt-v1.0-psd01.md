@@ -253,7 +253,7 @@ Privacy-preserving means in this context that at least the content of a message,
 
 **[D3]**	The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verification (if not generation) at the protocol level.
 
-Zero-Knowledge Proofs (ZKPs) (see section [1.3 Non-Normative References](#13-non-normative-references)) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
+Zero-Knowledge Proofs (ZKPs) (see appendix [A.2 Non-Normative References](#a2-non-normative-references)) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
 
 # 4. Scalability
 To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce Block space. 
@@ -285,7 +285,7 @@ The network requirements on the consensus algorithms are even more stringent tha
 
 **[R12]** The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT).
 
-See [1.3 Non-Normative References](#13-non-normative-references) for reference paper.
+See [A.2 Non-Normative References](#a2-non-normative-references) for reference paper.
 
 **[R13]** The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
 
@@ -348,7 +348,7 @@ Depending on the CCSM employed in the implementation of a BPI, the security requ
 
 **[R23]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM  MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH, SAML, OIDC, AD/LDAP. Please refer to section [1.3 Non-Normative References](#13-non-normative-references).
+Non-normative examples of such authentication technologies are OAUTH, SAML, OIDC, AD/LDAP. Please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 **[R24]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
 
@@ -356,13 +356,13 @@ Non-normative examples of such authentication technologies are OAUTH, SAML, OIDC
 
 **[R26]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO).
 
-Please refer to section [1.3 Non-Normative References](#13-non-normative-references) for documentation.
+Please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for documentation.
 
 **[R27]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication.
 
 **[R28]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules (HSMs).
 
-See [1.3 Non-Normative References](#13-non-normative-references) for reference paper.
+See [A.2 Non-Normative References](#a2-non-normative-references) for reference paper.
 
 # 11 Conformance
 
@@ -393,7 +393,7 @@ This document defines the conformance levels of a CCSM as follows:
 
 # Appendix A - References
 
-This appendix contains the normative and informative references that are used in this document. Any normative work cited in the body of the text as needed to implement the work product must be listed in the Normative References section below. Each reference to a separate document or artifact in this work must be listed here and must be identified as either a Normative or an Informative Reference. Normative references are specific (identified by date of publication and/or edition number or version number) and Informative references are either specific or non-specific.
+This appendix contains the normative and non-normative references that are used in this document. 
 
 While any hyperlinks included in this appendix were valid at the time of publication, OASIS cannot guarantee their long-term validity.
 

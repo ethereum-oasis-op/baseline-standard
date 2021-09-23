@@ -515,11 +515,11 @@ Hence, this document enumerates the following requirements below:
 
 **[R12]**	A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
-For information, please refer to section [1.4 Non-Normative References](#14-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program (CMVP).
+For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program (CMVP).
 
 **[R13]**	If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
-**[R14]**	A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips) or [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html). See section [1.4 Non-Normative References](#14-non-normative-references).
+**[R14]**	A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips) or [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html). See appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 **[R15]**	(Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
@@ -535,7 +535,7 @@ Censorship-resistant means that a (commercial) counterparty can terminate a (com
 
 **[R17]**	A BPI MUST be able to provide privacy of the (commercial) counterparties' data concerning any party outside of the BPI.
 
-**[R18]** A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](https://www.rfc-editor.org/info/rfc3339). See section [1.3 Normative References](#13-normative-references)
+**[R18]** A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](https://www.rfc-editor.org/info/rfc3339). See appendix [A.1 Normative References](#a1-normative-references).
 
 ## 2.7 High-Level Functional Requirements
 
@@ -811,7 +811,7 @@ Uniqueness and security of BPI identifiers are very important to unambiguously i
 
 **[R42]** A unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
-**[D12]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](https://www.w3.org/TR/did-core/)]. See section [1.3 Normative References](#13-normative-references).
+**[D12]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](https://www.w3.org/TR/did-core/)]. See appendix [A.1 Normative References](#a1-normative-references).
 
 ### 3.2.2 BPI Identities and Credentials
 
@@ -842,7 +842,7 @@ Note that credentials utilized within one or more BPIs may be self-issued. The a
 
 **[R44]** The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
-**[D14]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [[W3C VC](https://www.w3.org/TR/vc-data-model/)]. See section [1.3 Normative References](#13-normative-references).
+**[D14]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [[W3C VC](https://www.w3.org/TR/vc-data-model/)]. See appendix [A.1 Normative References](#a1-normative-references).
 
 **[R45]** A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 
@@ -850,13 +850,13 @@ Note, that the unique and resolvable identifier of a credential does not have to
 
 **[R46]** If present, the status of a credential utilized within one or more BPIs MUST be discoverable by a party verifying the credential, the credential verifier.
 
-In the context of this document, a credential verifier is defined per the [W3C Verifiable Credential Standard](https://www.w3.org/TR/vc-data-model/). Refer to [1.3 Normative References](#13-normative-references).
+In the context of this document, a credential verifier is defined per the [W3C Verifiable Credential Standard](https://www.w3.org/TR/vc-data-model/). Refer to [A.1 Normative References](#a1-normative-references).
 
 **[D15]** A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
 
 **[R47]** The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the credential holder.
 
-See the [W3C Verifiable Credential Standard](https://www.w3.org/TR/vc-data-model/) in section [1.3 Normative References](#13-normative-references) for a definition of credential holder.
+See the [W3C Verifiable Credential Standard](https://www.w3.org/TR/vc-data-model/) in appendix [A.1 Normative References](#a1-normative-references) for a definition of credential holder.
 
 **[R48]** If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
 
@@ -873,7 +873,7 @@ As discussed in section [3.1 Introduction and High-Level Requirements](#31-intro
 
 As depicted in Figure 5 above, the accepted Entity identity credentials, or other credentials from Identity providers, that are presented by a BPI participant need to be verified by the BPI against the issuing providers. Once validated, credentials are stored in the BPI.
 
-[OpenId Connect Identity Provider](https://openid.net/developers/specs/) (see section [1.4 Non-Normative References](#14-non-normative-references)) is an example for a federated identity provider and a DID or Verifiable Credentials Registry which is typically built using a CCSM as an example of a decentralized identity provider.
+[OpenId Connect Identity Provider](https://openid.net/developers/specs/) (see appendix [A.2 Non-Normative References](#a2-non-normative-references)) is an example for a federated identity provider and a DID or Verifiable Credentials Registry which is typically built using a CCSM as an example of a decentralized identity provider.
 
 For a BPI to achieve these objectives, the following requirements need to be met:
 
@@ -885,7 +885,7 @@ For a BPI to achieve these objectives, the following requirements need to be met
 
 Note that proof of control might be performed by a relying party if authority has been delegated.
 
-In the context of this document, a relying party is defined per the [W3C Verifiable Credential Standard](https://www.w3.org/TR/vc-data-model/). Please refer to section section [1.3 Normative References](#13-normative-references).
+In the context of this document, a relying party is defined per the [W3C Verifiable Credential Standard](https://www.w3.org/TR/vc-data-model/). Please refer to appendix [A.1 Normative References](#a1-normative-references).
 
 **[D16]** A credential utilized in a BPI SHOULD be stored in the BPI.
 
@@ -895,7 +895,7 @@ This avoids the re-presentation of the credential after the initial presentation
 
 **[R53]** Every time a credential utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance, and that the credential holder is in control of said credential.
 
-Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an [OpenId Connect Identity Provider](https://openid.net/developers/specs/) (see section [1.4 Non-Normative References](#14-non-normative-references)).
+Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an [OpenId Connect Identity Provider](https://openid.net/developers/specs/) (see appendix [A.2 Non-Normative References](#a2-non-normative-references)).
 
 This document will discuss further, more detailed management requirements in the context of BPI participant account management in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability). 
 
@@ -971,17 +971,17 @@ The security requirements of this section are distinct from the security require
 
 **[R61]**	Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH, SAML, OIDC, AD/LDAP. See section [1.4 Non-Normative References](#14-non-normative-references).
+Non-normative examples of such authentication technologies are OAUTH, SAML, OIDC, AD/LDAP. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 **[R62]**	Abstraction Layers utilized in a BPI MUST support roles & access management.
 
 **[R63]**	Abstraction Layers utilized in a BPI MUST support policy management.
 
-**[R64]**	Abstraction Layers utilized in a BPI MUST support Single-Sign-On [SSO](https://en.wikipedia.org/wiki/Single_sign-on). For complementary information refer to section [1.4 Non-Normative References](#14-non-normative-references).
+**[R64]**	Abstraction Layers utilized in a BPI MUST support Single-Sign-On [SSO](https://en.wikipedia.org/wiki/Single_sign-on). For complementary information refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 **[R65]**	Abstraction Layers utilized in a BPI MUST support multi-factor authentication [MFA](https://csrc.nist.gov/glossary/term/mfa). 
 
-**[R66]**	Abstraction Layers utilized in a BPI MUST support hardware security modules [HSMs](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). For complementary information refer to section [1.4 Non-Normative References](#14-non-normative-references).
+**[R66]**	Abstraction Layers utilized in a BPI MUST support hardware security modules [HSMs](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). For complementary information refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 -------
 
@@ -1003,26 +1003,26 @@ This section describes the capabilities of a BPI Subject in the context of a BPI
 
 The minimal set of BPI Subject capabilities are as follows:
 
-**[R72]**	A BPI Subject MUST be capable of performing all of the following cryptographic key management functionalities:
+**[R67]**	A BPI Subject MUST be capable of performing all of the following cryptographic key management functionalities:
 * creation
 * derivation
 * storage
 * revocation/rotation
 * backup/ recovery
 
-**[R73]**	A BPI Subject MUST be capable of performing encryption and decryption operations based on BPI specified cryptographic algorithms.
+**[R68]**	A BPI Subject MUST be capable of performing encryption and decryption operations based on BPI specified cryptographic algorithms.
 
-**[R74]**	A BPI Subject MUST be capable of performing cryptographic hashing operations based on BPI specified cryptographic algorithms.
+**[R69]**	A BPI Subject MUST be capable of performing cryptographic hashing operations based on BPI specified cryptographic algorithms.
 
-**[R75]**	A BPI Subject MUST be capable of performing cryptographic digital signature creation and verification based on BPI specified cryptographic algorithms.
+**[R70]**	A BPI Subject MUST be capable of performing cryptographic digital signature creation and verification based on BPI specified cryptographic algorithms.
 
-**[R76]**	A BPI Subject MUST be capable of performing cryptographic multi-digital signature creation and verification based on BPI specified cryptographic algorithms.
+**[R71]**	A BPI Subject MUST be capable of performing cryptographic multi-digital signature creation and verification based on BPI specified cryptographic algorithms.
 
-**[R77]**	A BPI Subject MUST be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms.
+**[R72]**	A BPI Subject MUST be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms.
 
 An example of cryptographic secret sharing is called ["Shamir Secret Sharing"](https://dl.acm.org/doi/10.1145/359168.359176).
 
-**[R78]** An external BPI Subject MUST at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Subjects:
+**[R73]** An external BPI Subject MUST at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Subjects:
 * A BPI Account belonging to the BPI Subject. Note that a BPI Account as defined in section [6.4 BPI Account](#64-bpi-account) is different from a BPI Subject account as defined in section [5.2 BPI Subject Account](#52-bpi-subject-account).
 * A BPI Workgroup as defined in section [6.3 BPI Workgroup](#63-bpi-workgroup) . 
 * A BPI Workflow as defined in section [6.2 BPI Workflow](#62-bpi-workflow) .
@@ -1031,15 +1031,15 @@ An example of cryptographic secret sharing is called ["Shamir Secret Sharing"](h
 
 There may be other BPI components such as role definitions or security policies. The enablement of additional components in a BPI beyond this standard is left to each specific implementation.
 
-**[R79]** An internal BPI Subject MUST be able to create, read, update and delete all components of a BPI.
+**[R74]** An internal BPI Subject MUST be able to create, read, update and delete all components of a BPI.
 
-**[R80]** A BPI Subject MUST be able to send and receive BPI messages from other BPI subjects using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
+**[R75]** A BPI Subject MUST be able to send and receive BPI messages from other BPI subjects using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
-**[R81]** A BPI Subject MUST be able to create, read BPI messages from other BPI subjects using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
+**[R76]** A BPI Subject MUST be able to create, read BPI messages from other BPI subjects using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
 Note that when a BPI Subject executes these capabilities they are understood to be enabled by services under the direct custody of the BPI Subject. However, the BPI Subject may delegate these capabilities to the BPI in which the BPI subject operates.  
 
-**[R82]** A BPI Subject MUST be able to delegate one or more BPI Subject capabilities to a 3rd party that is also a BPI Subject.
+**[R77]** A BPI Subject MUST be able to delegate one or more BPI Subject capabilities to a 3rd party that is also a BPI Subject.
 
 ## 5.2 BPI Subject Account
 
@@ -1047,15 +1047,15 @@ A BPI Subject Account is a key component of a BPI because it is the anchor point
 
 The following requirements on a BPI Subject Account assume that all identifiers and credentials referring to a BPI Subject are compliant with the requirement in section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
-**[R83]** A BPI Subject Account MUST NOT contain any personal identifiable information (PII).
+**[R78]** A BPI Subject Account MUST NOT contain any personal identifiable information (PII).
 
 This requirement facilitates compliance with privacy laws in different jurisdictions.
 
-**[R84]** A BPI Subject Account MUST NOT be created by an external BPI Subject.
+**[R79]** A BPI Subject Account MUST NOT be created by an external BPI Subject.
 
 This requirement ensures that only a BPI operator can create a BPI Subject Account to avoid account creation spamming and implementation of KYC processes required in certain jurisdictions.
 
-**[R85]** A BPI Subject Account MUST have at least the following data properties:
+**[R80]** A BPI Subject Account MUST have at least the following data properties:
 1. A unique, resolvable, and cryptographically verifiable identifier
 2. One or more security policies including authentication and authorization policies
 3. A cryptographically verifiable credential establishing the (legal) identity of a BPI Subject, and utilized by a BPI in the creation of the BPI Subject Account
@@ -1063,89 +1063,89 @@ This requirement ensures that only a BPI operator can create a BPI Subject Accou
 5. A list of all BPI Accounts related to the BPI Subject Account
 
 This minimal set of requirements ensures:
-* that access to a BPI Subject account can be cryptographically verified (bullet 85.1),
-* that a BPI account can fine-grain access and authorization requirements for the BPI Subject (bullet 85.2),
-* that other BPI Subjects can independently verify the identity used to establish the BPI Subject Account (bullet 85.3),
-* that a BPI Subject can independently recover a BPI Subject Account even if their private key was compromised, and ensure forward security (bullet 85.4), and
-* that there is a provable relationship with BPI Accounts connected to BPI state objects connected to the BPI Subject Account owner (bullet 85.5).  
+* that access to a BPI Subject account can be cryptographically verified (bullet 80.1),
+* that a BPI account can fine-grain access and authorization requirements for the BPI Subject (bullet 80.2),
+* that other BPI Subjects can independently verify the identity used to establish the BPI Subject Account (bullet 80.3),
+* that a BPI Subject can independently recover a BPI Subject Account even if their private key was compromised, and ensure forward security (bullet 80.4), and
+* that there is a provable relationship with BPI Accounts connected to BPI state objects connected to the BPI Subject Account owner (bullet 80.5).  
 
-**[R86]** A BPI Subject Account MUST have a cryptographically verifiable audit trail from BPI Subject Account inception to its closure.
+**[R81]** A BPI Subject Account MUST have a cryptographically verifiable audit trail from BPI Subject Account inception to its closure.
 
 This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions.
 
-**[R87]** A BPI Subject Account MUST be encrypted to and decrypted by one or more cryptographic keys only known to the BPI Subject Account holder.
+**[R82]** A BPI Subject Account MUST be encrypted to and decrypted by one or more cryptographic keys only known to the BPI Subject Account holder.
 
-**[D13]** A BPI Subject Account SHOULD be re-encrypted after every BPI Subject session to one or more cryptographic keys only known to the BPI Subject Account holder.
+**[D19]** A BPI Subject Account SHOULD be re-encrypted after every BPI Subject session to one or more cryptographic keys only known to the BPI Subject Account holder.
 
-**[R87]** and **[D13]** ensure that a compromise of a BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.
+**[R82]** and **[D19]** ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.
 
-**[R88]** The BPI Subject Account owner MUST be able to perform the following operations on its BPI Subject Account: read, update and delete.
+**[R83]** The BPI Subject Account owner MUST be able to perform the following operations on its BPI Subject Account: read, update and delete.
 
-**[R89]** An internal BPI Subject MUST be able to perform the following operations on its BPI Subject Account: create, read, update and delete.
+**[R84]** An internal BPI Subject MUST be able to perform the following operations on its BPI Subject Account: create, read, update and delete.
 
-**[R90]** An internal BPI Subject MUST be able to perform the following operations on other BPI Subject Accounts: create, read, update and delete provided that there exist one or more security policies authorizing these capabilities to said internal BPI Subject.
+**[R85]** An internal BPI Subject MUST be able to perform the following operations on other BPI Subject Accounts: create, read, update and delete provided that there exist one or more security policies authorizing these capabilities to said internal BPI Subject.
 
-**[R91]** A BPI Subject Account owner MUST be notified by a BPI of any changes to a BPI Subject Account or BPI Accounts associated with a BPI Subject Account.
+**[R86]** A BPI Subject Account owner MUST be notified by a BPI of any changes to a BPI Subject Account or BPI Accounts associated with a BPI Subject Account.
 
 ## 5.3 BPI Service Orchestration
 
 BPI service orchestration is key to achieve a flexible, loosely-coupled architecture as described in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture). BPI service orchestration is geared towards high-volume, low latency environments with many data changes.
 
-**[R92]** BPI service orchestration utilized in a BPI MUST be semantically aware.
+**[R87]** BPI service orchestration utilized in a BPI MUST be semantically aware.
 
 Semantically aware means that BPI service orchestration can identify the actions to be completed by services based on message context and content, and successfully orchestrate the desired action. 
 
-**[R93]** BPI service orchestration utilized in a BPI MUST NOT introduce additional points of failure.
+**[R88]** BPI service orchestration utilized in a BPI MUST NOT introduce additional points of failure.
 
-**[R94]** BPI service orchestration utilized in a BPI MUST have source consistency preservation.
+**[R89]** BPI service orchestration utilized in a BPI MUST have source consistency preservation.
 
 This means that the content of a message/service request cannot be altered after it has been created by the BPI service orchestration capability. 
 
-**[R95]** BPI service orchestration utilized in a BPI MUST avoid having the orchestration consumers see partial and/or inconsistent data. 
+**[R90]** BPI service orchestration utilized in a BPI MUST avoid having the orchestration consumers see partial and/or inconsistent data. 
 
 Note that transaction boundaries i.e. a single service's action, may trigger atomic updates.
 
-**[R96]** BPI service orchestration utilized in a BPI MUST capture the exact order in which operations happened. 
+**[R91]** BPI service orchestration utilized in a BPI MUST capture the exact order in which operations happened. 
 
-**[R97]** BPI service orchestration utilized in a BPI MUST preserve a consistent state.
+**[R92]** BPI service orchestration utilized in a BPI MUST preserve a consistent state.
 
-**[R98]** BPI service orchestration utilized in a BPI MUST perform the computation triggered by the state change outside the state machine. 
+**[R93]** BPI service orchestration utilized in a BPI MUST perform the computation triggered by the state change outside the state machine. 
 
 This ensures that there is less load and more stability of the orchestration stack and that subscribers are decoupled from the state machine, such that they independently scale.
 
-**[R99]** BPI service orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
+**[R94]** BPI service orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
 
-**[R100]** BPI service orchestration utilized in a BPI MUST isolate between data source and data consumers.
+**[R95]** BPI service orchestration utilized in a BPI MUST isolate between data source and data consumers.
 
-**[R101]** BPI service orchestration utilized in a BPI MUST have low latency pipelines.
+**[R96]** BPI service orchestration utilized in a BPI MUST have low latency pipelines.
 
 Low latency in this context refers to a pipeline latency that does not impact the overall system latency of the BPI.
 
-**[R102]** BPI service orchestration utilized in a BPI MUST be scalable and highly available. 
+**[R97]** BPI service orchestration utilized in a BPI MUST be scalable and highly available. 
 
 This requirement ensures that overall system latency is not impacted when volume meaningfully and rapidly changes.
 
 ## 5.4 BPI Communication
 
-The BPI Communication capability is a foundational element of any BPI to facilitate complex workflows in workgroups. Therefore, it is supposed to meet 
+The BPI Communication capability is a foundational element of any BPI to facilitate complex workflows in workgroups. Therefore, it is supposed to meet: 
 * the semantically demanding workflow communication and workflow orchestration requirements between BPI Subjects, and
 * the complex and highly asynchronous nature of BPI transactions originating from such workflows. 
 
 This leads to the following core capability requirements:
 
-**[R103]** BPI communication protocols MUST be message-based.
+**[R98]** BPI communication protocols MUST be message-based.
 
-**[R104]** BPI communication protocols MUST be asynchronous.
+**[R99]** BPI communication protocols MUST be asynchronous.
 
-**[R105]** BPI communication protocols MUST be simplex. 
+**[R100]** BPI communication protocols MUST be simplex. 
 
 Simplex is a communication mode in which only one message is transmitted, and always going in the same direction.
 
 An example of the three requirements above is as follows: BPI Subject X sends a message over channel A at time T0 to BPI Subject Y. It may receive a response from BPI Subject Y over channel B at a later time T1.
 
-**[R106]** BPI communication protocols MUST be based on established communication protocol standards.
+**[R101]** BPI communication protocols MUST be based on established communication protocol standards.
 
-Non-normative examples include but are not limited to [NATS](https://docs.nats.io/nats-concepts/intro), [AMQP](https://www.oasis-open.org/standard/amqp/), and [DIDComm](https://identity.foundation/didcomm-messaging/spec/).
+Non-normative examples include but are not limited to NATS, AMQP, and DIDComm. Please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 Note that typically, and in the context of this document, a communication protocol encompasses four layers:
 *	Semantic layer
@@ -1155,23 +1155,23 @@ Note that typically, and in the context of this document, a communication protoc
 
 The layers are defined as follows:
 * Transport Layer
-  - **[R107]**	A BPI MUST utilize the well established TLS [1.2](https://datatracker.ietf.org/doc/html/rfc5246) or [1.3](https://datatracker.ietf.org/doc/html/rfc8446) protocol to transport messages between BPIs. 
-  - **[R108]**	For synchronous BPI messaging between BPIs, a BPI MUST utilize [HTTPS](https://datatracker.ietf.org/doc/html/rfc2818).
-  - **[R109]**	 For asynchronous BPI messaging between BPIs or messaging within a BPI, a BPI MUST utilize established asynchronous protocols such as Websockets or AMQP. 
+  - **[R102]**	A BPI MUST utilize the well established TLS 1.2 [RFC5246] or 1.3 [RFC8446] protocol to transport messages between BPIs. Please refer to appendix [A.1 Normative References](#a1-normative-references).
+  - **[R103]**	For synchronous BPI messaging between BPIs, a BPI MUST utilize HTTPS [RFC2818]. Please refer to appendix [A.1 Normative References](#a1-normative-references).
+  - **[R104]**	 For asynchronous BPI messaging between BPIs or messaging within a BPI, a BPI MUST utilize established asynchronous protocols such as Websockets or AMQP. 
 
 * Cryptographic Layer: This layer deals with the BPI message envelope and the BPI message payload authenticity. However, it does not deal with authorization. Authorization is assumed to be validated based on security policies in the BPI core components such as workgroups. 
-  - **[R110]**	All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R111]** and **[R112]**. 
-  - **[R111]**	The encrypted message formats MUST use an [Encrypted JSON Web Token (JWE)](https://datatracker.ietf.org/doc/html/rfc7516) structure.
-  - **[R112]** The signed unencrypted format MUST use a [Signed JSON Web Token (JWS)](https://datatracker.ietf.org/doc/html/rfc7515) structure. 
-  - **[D14]**	BPI messages SHOULD always use JWEs with the ciphertext containing a signed payload. 
+  - **[R105]**	All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. 
+  - **[R106]**	The encrypted message formats MUST use an [Encrypted JSON Web Token (JWE) structure [RFC7516]. Please refer to appendix [A.1 Normative References](#a1-normative-references).
+  - **[R107]** The signed unencrypted format MUST use a [Signed JSON Web Token (JWS) structure [RFC7515]. Please refer to appendix [A.1 Normative References](#a1-normative-references).
+  - **[D20]**	BPI messages SHOULD always use JWEs with the ciphertext containing a signed payload. 
 
 A	JWS may be used for establishing a secure tunnel between BPIs to reduce the number of messages required.
 
-  - **[D15]** The digital signature used for the JWS and JWE of a BPI Message SHOULD be based on the public keys associated with a W3C DID in the W3C DID document.
+  - **[D21]** The digital signature used for the JWS and JWE of a BPI Message SHOULD be based on the public keys associated with a W3C DID in the W3C DID document.
 
 This simplifies the authentication of the message without having to rely on a 3rd party identity provider to validate the digital certificate issued to the BPI Subject.
 
-  - **[R113]** BPI Message authenticity and proof of control of the private keys MUST be established through a cryptographic challenge-response scheme utilizing a shared secret and the public keys of the involved BPI Subject. 
+  - **[R108]** BPI Message authenticity and proof of control of the private keys MUST be established through a cryptographic challenge-response scheme utilizing a shared secret and the public keys of the involved BPI Subject. 
 
 An example of a challenge-response system is given in the figure below.
 
@@ -1186,25 +1186,25 @@ An example of a challenge-response system is given in the figure below.
 
 * Routing Layer:  A BPI is a “gated community”, hence, all BPI capabilities and BPI Subject services are known, or at least directly discoverable, and, therefore, directly addressable within a BPI. Therefore, there is no unknown path between sender and receiver, and, thus, routing is not required as it would be in a public network with an unknown number of participants of unknown identity. The scenario of a BPI Subject with an unknown communication endpoint will be addressed in Section 5.5, BPI Integration.
 
-  - **[R114]** Any BPI Capability addressable using a BPI Message MUST be discoverable by a BPI Subject utilizing resolvable URIs of said BPI capabilities.
+  - **[R109]** Any BPI Capability addressable using a BPI Message MUST be discoverable by a BPI Subject utilizing resolvable URIs of said BPI capabilities.
   
   An example of such a URI would be a BPI API endpoint.
 
-  - **[R115]** Any BPI Subject within a BPI MUST be discoverable by any other BPI Subject within a BPI.
+  - **[R110]** Any BPI Subject within a BPI MUST be discoverable by any other BPI Subject within a BPI.
 
   For example, a BPI Subject DID can be resolved to its DID document containing a BPI communication endpoint in its "service" section that is directly addressable through the BPI communication capability. 
 
 * Semantic Layer: The semantic layer specifies how a message payload needs to be structured to be both BPI capability/service and BPI Subject friendly. Note that the content level refers to the content and message inside the message envelope. For the semantic layer, this document specifies how messages are identified and processed.
 
-  - **[R116]**	Every BPI message MUST contain a message type that allows the context of the message to be established, the content structure to be verified against the context, and the content to be correctly processed.
+  - **[R111]**	Every BPI message MUST contain a message type that allows the context of the message to be established, the content structure to be verified against the context, and the content to be correctly processed.
 
   A message identification does not merely identify the message. The message type also identifies the associated processing protocol to use such as the specification for a particular zero-knowledge prover scheme. A processing protocol is essentially a group of related messages that are required to achieve a multi-step business process.
 
-  - **[R117]**	A BPI message MUST contain a unique message-id that is generated by the sender.
+  - **[R112]**	A BPI message MUST contain a unique message-id that is generated by the sender.
 
   This allows unique identification of the message through its lifecycle.
 
-  - **[D15]**	A BPI message SHOULD contain one or more message decorators.
+  - **[D22]**	A BPI message SHOULD contain one or more message decorators.
 
   In general, decorators in messages at a content level allow for the support of reusable conventions that are present across multiple messages to handle the same functionality consistently. A relevant analogy for decorators is that they are like HTTP headers in an HTTP request. The same HTTP header is often reused as a convention across multiple requests to achieve cross-cutting functionality.
 
@@ -1213,9 +1213,9 @@ An example of a challenge-response system is given in the figure below.
   *	~timing: timestamps, expiration, elapsed time
   *	~l10n: localization support
 
-  - **[R118]**	All content level BPI messages MUST be represented in [JSON format](https://datatracker.ietf.org/doc/html/rfc7159). 
+  - **[R113]**	All content level BPI messages MUST be represented in JSON format [RFC7159]. Please refer to appendix [A.1 Normative References](#a1-normative-references).
 
-  - **[R119]**	BPI Messages MUST be [JSON-LD format](https://w3c.github.io/json-ld-syntax/) sympathetic.
+  - **[R114]**	BPI Messages MUST be JSON-LD format sympathetic [JSONLD]. Please refer to appendix [A.1 Normative References](#a1-normative-references).
 
   Note that BPI Messages may fully, and directly support JSON-LD.
 
@@ -1300,21 +1300,21 @@ Because the state advancement in the state channel is strictly deterministic and
 
 Resolvable identifiers utilized within a BPI are of equivalent importance for interactions between BPIs. 
 
-**[R120]** Identifiers and Credentials utilized in BPI Interoperability MUST satisfy all requirements in section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management). 
+**[R115]** Identifiers and Credentials utilized in BPI Interoperability MUST satisfy all requirements in section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management). 
 
 ### 5.5.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services
 
 Similar to a BPI itself, the interactions between BPIs through BPI Interoperability services must follow a similar, albeit slightly reduced set of requirements around BPI Subject authentication and authorization as a BPI.
 
-**[R121]**	BPI Interoperability Services MUST be compatible with widely used external authentication services. 
+**[R116]**	BPI Interoperability Services MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are [OAUTH](https://datatracker.ietf.org/doc/html/rfc6749), [SAML](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.html), [OIDC](https://openid.net/developers/specs/), [AD/LDAP](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/auth-ldap).
+Non-normative examples of such authentication technologies are [OAUTH](https://datatracker.ietf.org/doc/html/rfc6749), [SAML](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.html), [OIDC](https://openid.net/developers/specs/), [AD/LDAP](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/auth-ldap). Please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
-**[R122]**	BPI Interoperability Services MUST support roles & access management.
+**[R117]**	BPI Interoperability Services MUST support roles & access management.
 
 Role and Access Management in this context refers to the required roles of BPI Subjects and their authority to access and execute BPI functionality across multiple BPIs.
 
-**[R123]**	BPI Interoperability Services MUST support policy management.
+**[R118]**	BPI Interoperability Services MUST support policy management.
 
 Policy Management in this context refers to the management of authentication and authorization rules to access and execute BPI functionality for roles of BPI Subjects across multiple BPIs.
 
@@ -1326,11 +1326,11 @@ To facilitate ease of discoverability, a BPI may publish a verifiable and non-re
 
 A minimal requirement on the resolvable identifier is to list service endpoints that allow for further BPI service discovery and the establishment of a secure communication channel between either BPIs or BPI Subjects.
 
-**[R124]**	The service endpoint specification of the resolvable BPI identifier MUST list BPI service endpoints that allow for further BPI service discovery and the establishment of a secure channel between either BPIs or BPI Subjects.
+**[R119]**	The service endpoint specification of the resolvable BPI identifier MUST list BPI service endpoints that allow for further BPI service discovery and the establishment of a secure channel between either BPIs or BPI Subjects.
 
-**[D16]** Each BPI service SHOULD be defined by an identifier that corresponds to the resolvable BPI identifier and its associated signing key(s) that offer this BPI service. 
+**[D23]** Each BPI service SHOULD be defined by an identifier that corresponds to the resolvable BPI identifier and its associated signing key(s) that offer this BPI service. 
 
-**[D17]** Each BPI service SHOULD be described by the following elements:
+**[D24]** Each BPI service SHOULD be described by the following elements:
 * a BPI service domain such as “BPIStateProcessing”
 * a BPI service description
 * a BPI service version,
@@ -1340,15 +1340,15 @@ A minimal requirement on the resolvable identifier is to list service endpoints 
 * the Cryptographic Prover system,
 * the Cryptographic Prover system specification. 
 
-**[R125]**	To ensure a BPI service specification timeline, the BPI service specification MUST include “created” and “updated” date stamps.
+**[R120]**	To ensure a BPI service specification timeline, the BPI service specification MUST include “created” and “updated” date stamps.
 
-**[R126]**	After a BPI service endpoint has been discovered by a BPI or BPI Subject, the exact specification of the BPI service endpoint MUST be negotiated between the different BPIs and their BPI Subjects. 
+**[R121]**	After a BPI service endpoint has been discovered by a BPI or BPI Subject, the exact specification of the BPI service endpoint MUST be negotiated between the different BPIs and their BPI Subjects. 
 
 Negotiation in the context of this document is the process of two or more BPIs presenting each other with and then agreeing to a way to fulfill BPI service requests amongst each other.   
 
 Based upon published BPI service capabilities, a BPI service requester may present the BPI service provider with one or more service requests expressed using one of the published specifications of the requested BPI service. Such requirements may include BPI Service Version, List of BPIs offering a BPI service, etc.
 
-**[R127]**	A BPI service requester MUST present the BPI service provider with one or more service requirements expressed using one of the published specifications of the requested BPI service.
+**[R122]**	A BPI service requester MUST present the BPI service provider with one or more service requirements expressed using one of the published specifications of the requested BPI service.
 
 **[O2]**	The service provider MAY respond to one of the requirements.
 
@@ -1364,45 +1364,45 @@ First, the document lists the requirements common to mono-directional BPI servic
 
 **Requirements common to mono-directional and bi-/multi-directional BPI Services**
 
-**[R128]** Each state object utilized in one or more mono-directional and bi-/multi-directional BPI Services MUST have a cryptographic zero-knowledge proof of correctness.
+**[R123]** Each state object utilized in one or more mono-directional and bi-/multi-directional BPI Services MUST have a cryptographic zero-knowledge proof of correctness.
 
 More details on cryptographic zero-knowledge proofs of correctness in the context of a BPI are given in section [6 Agreement Execution](#6-agreement-execution) when discussing worksteps. Also, note that the requirements below are very similar to the ones given in section [6.1 BPI Workstep](#61-bpi-workstep).
 
-**[R129]** The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be succinct.
+**[R124]** The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be succinct.
 
-**[R130]** Each zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
+**[R125]** Each zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
 
 The zero-knowledge proof of correctness can be a cryptographic aggregator of proofs of correctness that would allow multiple proofs to be represented and provable within one proof. 
 
-**[R131]** The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
+**[R126]** The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
 
-**[R132]** The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST NOT be able to be used in more than one mono-directional and/or bi-/multi-directional BPI Services event at any time.
+**[R127]** The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST NOT be able to be used in more than one mono-directional and/or bi-/multi-directional BPI Services event at any time.
 
 This requirement is necessary to avoid the usage of the same output as collateral in more than one state-altering event, such as tokenization.
 
 A state object will have to be included in a cryptographic commitment that the state object is locked on the BPI. Note that this only restricts the usage of pledged outputs to the CCSM utilized in a given BPI.
 
-**[R133]** A BPI MUST lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct, efficient, non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). Note that a lock can contain more than one state object.
+**[R128]** A BPI MUST lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct, efficient, non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). Note that a lock can contain more than one state object.
 
-**[R134]** The lock commitment MUST be committed to the CCSM utilized by the BPI (Liveness).
+**[R129]** The lock commitment MUST be committed to the CCSM utilized by the BPI (Liveness).
 
-**[R135]** The lock commitment MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant proof verifiability).
+**[R130]** The lock commitment MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant proof verifiability).
 
-**[R136]** The lock commitment MUST be updatable.
+**[R131]** The lock commitment MUST be updatable.
 
 State objects are normally imported back into a BPI and which point the lock commitment on the CCSM needs to be updated. Also, for scalability reasons, the lock commitment should represent more than one locked asset on a CCSM, while individual lock commitments can remain on a BPI.
 
-**[R137]** The lock commitment MUST only be updated by the owners of the state object.
+**[R132]** The lock commitment MUST only be updated by the owners of the state object.
 
 The requirements below will specify public URIs for BPI Interoperability services. Therefore, we have additional requirements for those public URIs.
 
-**[R138]** A public validation URI for BPI Interoperability services MUST be resolvable to the underlying target resource.
+**[R133]** A public validation URI for BPI Interoperability services MUST be resolvable to the underlying target resource.
 
-**[D18]** A public validation URI for BPI Interoperability services SHOULD be independent of the originating BPI.
+**[D25]** A public validation URI for BPI Interoperability services SHOULD be independent of the originating BPI.
 
-**[R139]** The system processing the BPI Interoperability service MUST notify the requesting BPI Subject with human-readable reasoning about either success or failure.
+**[R134]** The system processing the BPI Interoperability service MUST notify the requesting BPI Subject with human-readable reasoning about either success or failure.
 
-**[R140]** All BPI Interoperability services MUST be cryptographically secured and privacy-preserving.
+**[R135]** All BPI Interoperability services MUST be cryptographically secured and privacy-preserving.
 
 “Cryptographically secured” in this context means that all communications follow a common authentication and authorization framework, as previously discussed. Privacy-preserving in this context means that all communications are end-to-end encrypted independent of the security properties of the transportation layer.
 
@@ -1410,9 +1410,9 @@ The requirements below will specify public URIs for BPI Interoperability service
 
 Mono-directional BPI services in the context of BPI interoperability, not regular BPI transactions as specified in section [6.5 BPI Transactions](#65-bpi-transactions) and section [6.6 BPI Transaction Lifecycle](#66-bpi-transaction-lifecycle) need only to perform two operations -- export and import. These operations have to encompass cryptographic material and URIs that allow independent verification of the cryptographic material presented to 3rd parties such as an auditor or another BPI.
 
-**[R141]** Mono-directional BPI services in the context of BPI interoperability MUST support at least two operations -- export and import.
+**[R136]** Mono-directional BPI services in the context of BPI interoperability MUST support at least two operations -- export and import.
 
-**[R142]** In the context of BPI interoperability, the BPI export operation MUST provide at least the following elements to the invoking BPI Subject:
+**[R137]** In the context of BPI interoperability, the BPI export operation MUST provide at least the following elements to the invoking BPI Subject:
 * Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * All public input data to the Zero-Knowledge Proof(s) of Correctness of the state object and its history required to validate the proofs
 * All private input data to the Zero-Knowledge Proof(s) of Correctness of the current state object
@@ -1426,7 +1426,7 @@ Mono-directional BPI services in the context of BPI interoperability, not regula
 * Specification of the prover system of the lock commitment
 * A validation URI of the originating BPI that allows a 3rd party to independently verify the lock commitment
 
-**[R143]** In the context of BPI interoperability, the BPI import operation MUST provide at least the following elements to the invoking BPI Subject:
+**[R138]** In the context of BPI interoperability, the BPI import operation MUST provide at least the following elements to the invoking BPI Subject:
 * Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * All public input data to the Zero-Knowledge Proof(s) of Correctness of the state object and its history required to validate the proofs
 * All private input data to the Zero-Knowledge Proof(s) of Correctness of the current state object
@@ -1446,7 +1446,7 @@ Bi- and Multi-directional BPI services in the context of BPI Interoperability en
 
 In the following, the standard introduces the concept of a State Synchronization and Advancement Predicate for BPI Interoperability (processes). A predicate in the context of this document is understood as an assertion that may be true or false, depending on the values of the variables that occur in it and the logical, well-formed connections between those variables. A State Synchronization and Advancement Predicate is a definition of an Interoperability Virtual State Machine (IVSM) based on a set of agreed-upon business rules and business data that is deterministic. It synchronizes and advances the state of committed state objects of participants in the BPI Interoperability process. An IVSM is an implementation of a State Synchronization and Advancement Predicate. One can think of an IVSM as a stripped-down version of a BPI with a single workgroup that can process only one workstep.
 
-**[R144]** Bi- or Multi-directional BPI services in the context of BPI interoperability MUST support at least the following operations:
+**[R139]** Bi- or Multi-directional BPI services in the context of BPI interoperability MUST support at least the following operations:
 * Create State Synchronization and Advancement Predicate
 * Update State Synchronization and Advancement Predicate
 * Launch IVSM
@@ -1470,9 +1470,9 @@ In the different sections below, this document defines the requirements for each
 **Create State Synchronization and Advancement Predicate**
 As mentioned above, a State Synchronization and Advancement Predicate defines and provides an implementation of an enforcement mechanism of the required rules and data to synchronize multiple state objects from different BPIs, and if required, advance this synchronized, joint state to a new joined state. The joint state is subsequently usable in the BPI workflows in the different participating BPIs. 
 
-**[R145]** A State Synchronization and Advancement Predicate MUST be a mathematically well-formed, deterministic formula that can be evaluated to true or false as one or more functions of the values of the variables that occur in it.
+**[R140]** A State Synchronization and Advancement Predicate MUST be a mathematically well-formed, deterministic formula that can be evaluated to true or false as one or more functions of the values of the variables that occur in it.
 
-**[R146]** A State Synchronization and Advancement Predicate MUST at least contain the following elements:
+**[R141]** A State Synchronization and Advancement Predicate MUST at least contain the following elements:
 * A unique identifier for the predicate which may be resolvable
 * The unique identifier of the BPI Subject within the context of the originating BPI who creates the predicate
 * A creation date
@@ -1492,40 +1492,40 @@ As mentioned above, a State Synchronization and Advancement Predicate defines an
 
 The unique predicate identifier allows for the disambiguation of predicates in case a system is processing more than one predicate at a time. The BPI Subject identifier assures the assignability of the originator for audit and disambiguation purposes. A human-readable format ensures that in the case of business-sensitive operations both business owners and auditors can understand and analyze the intent of the predicate. For a system to be able to process the predicate, the rules as well as input and output data for both state synchronization and advancement, together with the processing program, state storage, and output validation, need to be specified such that they can be implemented in a system through an automated process. The last element ensures predicate non-repudiability in case of disputes.
 
-**[R147]** The output objects of the application of the State Synchronization and Advancement Predicate MUST be cryptographic assertions in zero-knowledge that evaluate to either true or false by a verifying party.
+**[R142]** The output objects of the application of the State Synchronization and Advancement Predicate MUST be cryptographic assertions in zero-knowledge that evaluate to either true or false by a verifying party.
 
-**[R148]** For BPI Interoperability, the "Create State Synchronization and Advancement Predicate" operation a BPI invokes MUST create an object conformant to the requirements **[R145]** - **[R147]**.
+**[R143]** For BPI Interoperability, the "Create State Synchronization and Advancement Predicate" operation a BPI invokes MUST create an object conformant to the requirements **[R140]** - **[R142]**.
 
-**[R149]** The input data to the "Create State Synchronization and Advancement Predicate" operation MUST enable a BPI to generate a State Synchronization and Advancement Predicate per **[R146]**.
+**[R144]** The input data to the "Create State Synchronization and Advancement Predicate" operation MUST enable a BPI to generate a State Synchronization and Advancement Predicate per **[R141]**.
 
-**[R150]** A "Create State Synchronization and Advancement Predicate" operation MUST satisfy the following conditions to be valid:
+**[R145]** A "Create State Synchronization and Advancement Predicate" operation MUST satisfy the following conditions to be valid:
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* A State Synchronization and Advancement Predicate conformant with **[R146]**.
+* A State Synchronization and Advancement Predicate conformant with **[R141]**.
 
 **Update State Synchronization and Advancement Predicate**
 
 In case requirements change, a State Synchronization and Advancement Predicate may have to be updated. Such an update process needs to be conformant to the following requirements.
 
-**[R151]** A State Synchronization and Advancement Predicate MUST NOT be updated when the predicate is used in an active IVSM.
+**[R146]** A State Synchronization and Advancement Predicate MUST NOT be updated when the predicate is used in an active IVSM.
 
-**[R152]** An update operation to a State Synchronization and Advancement Predicate MUST be conformant to **[R145]** - **[R147]**.
+**[R147]** An update operation to a State Synchronization and Advancement Predicate MUST be conformant to **[R140]** - **[R142]**.
 
-**[R153]** For BPI Interoperability, the "Update State Synchronization and Advancement Predicate" operation a BPI invokes MUST create an object conformant to the requirements **[R145]** - **[R147]**.
+**[R148]** For BPI Interoperability, the "Update State Synchronization and Advancement Predicate" operation a BPI invokes MUST create an object conformant to the requirements **[R140]** - **[R142]**.
 
-**[R154]** The input data to the "Update State Synchronization and Advancement Predicate" operation MUST enable a BPI to generate a State Synchronization and Advancement Predicate per **[R146]**.
+**[R149]** The input data to the "Update State Synchronization and Advancement Predicate" operation MUST enable a BPI to generate a State Synchronization and Advancement Predicate per **[R141]**.
 
-**[R155]** A "Update State Synchronization and Advancement Predicate" operation MUST satisfy the following conditions to be valid:
+**[R150]** A "Update State Synchronization and Advancement Predicate" operation MUST satisfy the following conditions to be valid:
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* A State Synchronization and Advancement Predicate conformant with **[R146]**.
+* A State Synchronization and Advancement Predicate conformant with **[R141]**.
 
 **Launch IVSM**
 
 As mentioned above, the IVSM represents an implementation of the State Synchronization and Advancement Predicate.
 To properly implement an IVSM, the standard defines the following requirements.
 
-**[R156]** The "Launch IVSM" operation a BPI invokes MUST contain the following elements:
+**[R151]** The "Launch IVSM" operation a BPI invokes MUST contain the following elements:
 * A unique identifier for the IVSM
 * The unique identifier of the BPI Subject within the context of the originating BPI invoking the operation
 * A creation date
@@ -1533,14 +1533,14 @@ To properly implement an IVSM, the standard defines the following requirements.
 * A list of BPI Subject unique identifiers authorized to invoke the IVSM operations.
 * A digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation
 
-**[R157]** A "Launch IVSM" operation MUST satisfy the following conditions to be valid:
+**[R152]** A "Launch IVSM" operation MUST satisfy the following conditions to be valid:
 * The BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The submitted State Synchronization and Advancement Predicate is conformant to **[R145]** - **[R147]**.
+* The submitted State Synchronization and Advancement Predicate is conformant to **[R140]** - **[R142]**.
 
-**[R158]** An IVSM MUST implement a State Synchronization and Advancement Predicate conformant to **[R145]** - **[R147]**.
+**[R153]** An IVSM MUST implement a State Synchronization and Advancement Predicate conformant to **[R140]** - **[R142]**.
 
-**[R159]** An IVSM MUST implement the following BPI Interoperability operations that can be invoked by BPI Subjects conformant to the requirements of said operations
+**[R154]** An IVSM MUST implement the following BPI Interoperability operations that can be invoked by BPI Subjects conformant to the requirements of said operations
 * Commit State
 * Add/Remove BPI Subject
 * Verify State
@@ -1552,45 +1552,45 @@ To properly implement an IVSM, the standard defines the following requirements.
 
 This represents the minimal set of operations required to synchronize or advance joint state objects by an IVSM.
 
-**[R160]** For BPI Interoperability, a  valid "Launch IVSM" operation a BPI invokes MUST 
-* instantiate an operational IVSM conformant to **[R158]** and **[R159]**
+**[R155]** For BPI Interoperability, a  valid "Launch IVSM" operation a BPI invokes MUST 
+* instantiate an operational IVSM conformant to **[R153]** and **[R154]**
 * include the list of BPI Subjects as part of the IVSM joint state object
 * commit the initial state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the initial state on the CCSM together with its public input and verification key
-* return a list of IVSM endpoints as URIs for the operations listed in **[R159]**
+* return a list of IVSM endpoints as URIs for the operations listed in **[R154]**
 * return a cryptographically secured and masked secret for the invoking BPI Subject.
 
 In the context of this document, cryptographically secured and masked means that an attacker cannot unmask the secret without the cryptographic material used to secure and mask the secret, such as a cryptographic secret used in a key exchange protocol.
 
-**[R161]** The valid zero-knowledge proof of correctness of the initial joint state MUST be publicly verifiable on the CCSM the IVSM utilizes. 
+**[R156]** The valid zero-knowledge proof of correctness of the initial joint state MUST be publicly verifiable on the CCSM the IVSM utilizes. 
 
 **Remove IVSM**
 
 Once the IVSM has met the defined finalization criteria of the joint state it can be stopped, and removed, but not before.
 
-**[R162]** An IVSM MUST NOT be stopped unless the finalization criteria of the joint state have been met.
+**[R157]** An IVSM MUST NOT be stopped unless the finalization criteria of the joint state have been met.
 
-**[R163]** An IVSM MUST NOT be able to be removed until all participants in the BPI Interoperability process have successfully invoked the "Exit BPI Interoperability" operation.
+**[R158]** An IVSM MUST NOT be able to be removed until all participants in the BPI Interoperability process have successfully invoked the "Exit BPI Interoperability" operation.
 
-**[R164]** A "Remove IVSM" operation a BPI invokes MUST contain the following properties:
+**[R159]** A "Remove IVSM" operation a BPI invokes MUST contain the following properties:
 * The unique identifier for the IVSM
 * The unique identifier of the invoking BPI Subject
 * A digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation
 * The cryptographically secured and masked secret of the invoking BPI Subject  
 
-**[R165]** A "Remove IVSM" operation MUST satisfy the following conditions to be valid:
+**[R160]** A "Remove IVSM" operation MUST satisfy the following conditions to be valid:
 * The provided IVSM identifier matches the identifier of the target IVSM
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The invoking BPI Subject must be an authorized BPI Subject for the IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject  
 
-**[R166]** For BPI Interoperability, a valid "Remove IVSM" operation that a BPI invokes MUST remove the IVSM as identified by its unique identifier and conformant to **[R158]** and **[R159]**.
+**[R161]** For BPI Interoperability, a valid "Remove IVSM" operation that a BPI invokes MUST remove the IVSM as identified by its unique identifier and conformant to **[R153]** and **[R154]**.
 
 **Commit State**
 
 Once an IVSM is instantiated, a BPI Subject can commit a BPI Interoperability state object to the IVSM through the "Commit State" operation to start or contribute to the BPI Interoperability state and process.
 
-**[R167]** A BPI Interoperability state object utilized in the "Commit State" operation to the IVSM MUST have the following properties:
+**[R162]** A BPI Interoperability state object utilized in the "Commit State" operation to the IVSM MUST have the following properties:
 * The unique identifier for the State Synchronization and Advancement Predicate of the state to be committed is based on
 * The unique identifier of the BPI Subject within the context of the originating BPI who commits the state
 * The cryptographically secured and masked secret of the invoking BPI Subject
@@ -1607,7 +1607,7 @@ Once an IVSM is instantiated, a BPI Subject can commit a BPI Interoperability st
 
 This operation is de-facto equivalent to the Mono-Directional service of BPI Import because it serves the same purpose.
 
-**[R168]** An IVSM processing a "Commit State" operation MUST satisfy the following conditions to be valid
+**[R163]** An IVSM processing a "Commit State" operation MUST satisfy the following conditions to be valid
 * The submitted state object is conformant with the defined State Synchronization and Advancement Predicate.
 * The submitted predicate unique identifier matches the predicate identifier the IVSM is based on.
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
@@ -1615,18 +1615,18 @@ This operation is de-facto equivalent to the Mono-Directional service of BPI Imp
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject 
 
-**[R169]** For BPI Interoperability, a valid "Commit State" operation a BPI invokes MUST 
+**[R164]** For BPI Interoperability, a valid "Commit State" operation a BPI invokes MUST 
 * update the joint state object in its state storage according to the rules of the State Synchronization and Advancement Predicate
 * commit the new state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the new state on the CCSM together with its public input and verification key
 * send that cryptographic proof of correctness of the new state on the IVSM to the invoking BPI Subject.
 
-**[R170]** The valid zero-knowledge proof of correctness of the new joint state MUST be publicly verifiable on the CCSM upon which the IVSM was instantiated.
+**[R165]** The valid zero-knowledge proof of correctness of the new joint state MUST be publicly verifiable on the CCSM upon which the IVSM was instantiated.
 
 **Invite Participants to BPI Interoperability Process**
 
 Once an IVSM has been launched, the initiating BPI Subject can invite the initially specified, authorized BPI Subject from other BPIs.
 
-**[R171]** A "Invite Participants to BPI Interoperability Process" operation MUST have the following properties:
+**[R166]** A "Invite Participants to BPI Interoperability Process" operation MUST have the following properties:
 * A unique message number
 * The unique identifier of the inviting BPI Subject
 * The State Synchronization and Advancement Predicate utilized in the IVSM for which the invitation was issued.
@@ -1634,123 +1634,123 @@ Once an IVSM has been launched, the initiating BPI Subject can invite the initia
 * An object containing all of the IVSM's endpoints as URIs
 * A digital signature of the inviting BPI Subject over the content of the invitation
 
-**[R172]** A "Invite Participants to BPI Interoperability Process" operation MUST satisfy the following conditions to be valid:
+**[R167]** A "Invite Participants to BPI Interoperability Process" operation MUST satisfy the following conditions to be valid:
 * The digital signature over the invitation content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The submitted State Synchronization and Advancement Predicate is conformant to **[R145]** - **[R147]**.
+* The submitted State Synchronization and Advancement Predicate is conformant to **[R140]** - **[R142]**.
 
 **Accept/Reject Invite**
 
 To accept an invitation, a BPI Subject must invoke the endpoint provided by the invitation operation.
 
-**[R173]** A "Accept/Reject Invite" operation MUST have the following properties:
+**[R168]** A "Accept/Reject Invite" operation MUST have the following properties:
 * The unique identifier of the IVSM
 * The unique identifier of the invited BPI Subject
 * An accept or reject value
 * The digital signature over the content of the operation
 
-**[R174]** A "Accept/Reject Invite" operation MUST satisfy the following conditions to be valid:
+**[R169]** A "Accept/Reject Invite" operation MUST satisfy the following conditions to be valid:
 * The digital signature over the invitation content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
 * The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the IVSM.
 
-**[R175]** For BPI Interoperability, a valid "Accept/Reject Invite" operation a BPI invokes MUST return from the IVSM a cryptographically secured and masked secret for the accepting BPI Subject if the invitation is accepted and no value if the invitation is rejected.
+**[R170]** For BPI Interoperability, a valid "Accept/Reject Invite" operation a BPI invokes MUST return from the IVSM a cryptographically secured and masked secret for the accepting BPI Subject if the invitation is accepted and no value if the invitation is rejected.
 
 **Add/Remove BPI Subject**
 
 Adding to and removing from an IVSM one or more BPI Subjects is expected to be a typical operation given that, for example, joint state finalization requirements may change during processing requiring BPI Subjects to be added or removed. Given that this is a sensitive business operation concerning, in particular, audits, care has to be taken to ensure proper controls. 
 
-**[R176]** The "Add BPI Subject" operation a BPI invokes MUST be initiated only by an authorized BPI on the IVSM.
+**[R171]** The "Add BPI Subject" operation a BPI invokes MUST be initiated only by an authorized BPI on the IVSM.
 
-**[R177]** An authorized BPI Subject on an IVSM MUST only be able to remove itself through the "Remove API User" operation.
+**[R172]** An authorized BPI Subject on an IVSM MUST only be able to remove itself through the "Remove API User" operation.
 
-**[R178]** The IVSM MUST NOT be able to prevent a BPI Subject from removing itself from the IVSM.
+**[R173]** The IVSM MUST NOT be able to prevent a BPI Subject from removing itself from the IVSM.
 
-**[R179]** The "Add BPI Subject" or "Remove BPI Subject" Operation MUST have the following properties:
+**[R174]** The "Add BPI Subject" or "Remove BPI Subject" Operation MUST have the following properties:
 * The unique identifier of the IVSM
 * The unique identifier of the invoking BPI Subject
 * The unique identifier of the added or removed BPI Subject
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
-**[R180]** The "Add BPI Subject" or "Remove BPI Subject" Operation MUST satisfy the following conditions to be valid:
+**[R175]** The "Add BPI Subject" or "Remove BPI Subject" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject
 * The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the IVSM.
 
-**[R181]** A newly added BPI Subject MUST be approved by a quorum of authorized BPI Subjects on the IVSM.
+**[R176]** A newly added BPI Subject MUST be approved by a quorum of authorized BPI Subjects on the IVSM.
 
-**[R182]** The quorum required to add a new BPI Subject to an IVSM MUST be defined in the State Synchronization and Advancement Predicate of the IVSM.
+**[R177]** The quorum required to add a new BPI Subject to an IVSM MUST be defined in the State Synchronization and Advancement Predicate of the IVSM.
 
-**[R183]** The "Add BPI Subject" operation approved on the IVSM MUST add the BPI Subject listed in the operation to the IVSM.
+**[R178]** The "Add BPI Subject" operation approved on the IVSM MUST add the BPI Subject listed in the operation to the IVSM.
 
-**[R184]** The "Remove BPI Subject" operation MUST remove the BPI Subject listed in the operation to the IVSM.
+**[R179]** The "Remove BPI Subject" operation MUST remove the BPI Subject listed in the operation to the IVSM.
 
 
 **Verify State**
 
 Verification of the joint state on the IVSM is a critical operation to validate the correctness of any joint state changes before these changes are finalized on the IVSM. From an audit point of view, the verification of joint state changes is critical, especially for regulatory compliance of business-sensitive operations.
 
-**[R185]** Any authorized BPI Subject on an IVSM MUST be able to verify the joint state on an IVSM.
+**[R180]** Any authorized BPI Subject on an IVSM MUST be able to verify the joint state on an IVSM.
 
-**[R186]** The proof of correctness of any joint state on the IVSM MUST be verifiable on the IVSM by an authorized BPI Subject.
+**[R181]** The proof of correctness of any joint state on the IVSM MUST be verifiable on the IVSM by an authorized BPI Subject.
 
-**[R187]** The proof of correctness of the initial joint state after the "Commit State" operation is completed on the IVSM MUST be publicly verifiable on the chosen CCSM of the IVSM.
+**[R182]** The proof of correctness of the initial joint state after the "Commit State" operation is completed on the IVSM MUST be publicly verifiable on the chosen CCSM of the IVSM.
 
-**[R188]** The proof of correctness of the final joint state after the "Finalize State" operation is completed on the IVSM MUST be publicly verifiable on the chosen CCSM of the IVSM.
+**[R183]** The proof of correctness of the final joint state after the "Finalize State" operation is completed on the IVSM MUST be publicly verifiable on the chosen CCSM of the IVSM.
 
 Initial and final state commitments must be anchored on the CCSM to ensure that the committed or finalized state cannot be utilized in fraudulent transactions on a BPI on the anchoring CCSM. Note, that this last statement holds only for the CCSM utilized by the IVSM. Any other CCSMs and BPIs operating on them are typically not aware of any state commitment by BPIs on other CCSMs.
 
-**[R189]** The "Verify State" Operation MUST have the following properties:
+**[R184]** The "Verify State" Operation MUST have the following properties:
 * The unique identifier of the IVSM
 * The unique identifier of the invoking BPI Subject
 * The cryptographic proof of correctness of the last joint state
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
-**[R190]** The "Verify State" Operation MUST satisfy the following conditions to be valid:
+**[R185]** The "Verify State" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject
 * The cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject matches the cryptographic proof of correctness of the last joint state of the IVSM.
 
-**[R191]** For BPI Interoperability, a valid "Verify State" operation which a BPI invokes MUST return from either the IVSM or the CCSM a value of true or false.
+**[R186]** For BPI Interoperability, a valid "Verify State" operation which a BPI invokes MUST return from either the IVSM or the CCSM a value of true or false.
 
 **Verify Lock Commitment**
 
 A participating BPI Subject needs to know that the initial state commitment from the participating BPI Subject is locked and cannot be altered while the BPI Interoperability process is occurring, verifying the lock commitment of the initial state commit is crucial.
 
-**[R192]** Any authorized BPI subject on an IVSM MUST be able to verify the lock commitment of the initial state commit of a participating BPI Subject to the joint initial state of the BPI Interoperability process. 
+**[R187]** Any authorized BPI subject on an IVSM MUST be able to verify the lock commitment of the initial state commit of a participating BPI Subject to the joint initial state of the BPI Interoperability process. 
 
-**[R193]** The proof of correctness of the lock commitment after the "Commit State" operation is completed on the IVSM MUST be publicly verifiable on the chosen CCSM of the IVSM.
+**[R188]** The proof of correctness of the lock commitment after the "Commit State" operation is completed on the IVSM MUST be publicly verifiable on the chosen CCSM of the IVSM.
 
-**[R194]** The "Verify Lock Commitment State" Operation MUST have the following properties:
+**[R189]** The "Verify Lock Commitment State" Operation MUST have the following properties:
 * The unique identifier of the IVSM
 * The unique identifier of the invoking BPI Subject
 * A lock commitment of one of the initial joint state contributions
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
-**[R195]** The "Verify Lock Commitment State" Operation MUST satisfy the following conditions to be valid:
+**[R190]** The "Verify Lock Commitment State" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject
 * The lock commitment of an initial joint state contribution provided by the invoking BPI Subject matches the lock commitment of one of the initial joint state contributions of the IVSM.
 
-**[R196]** For the purpose of BPI Interoperability, a valid "Verify Lock Commitment State" operation which a BPI invokes MUST return from the CCSM a value of true or false.
+**[R191]** For the purpose of BPI Interoperability, a valid "Verify Lock Commitment State" operation which a BPI invokes MUST return from the CCSM a value of true or false.
 
 **Update State**
 
 Once an IVSM is instantiated and all required initial states committed, a BPI Subject can update the joint state on the IVSM through the "Update State" operation to contribute to the BPI Interoperability state and process.
 
-**[R197]** Any authorized BPI subject on an IVSM MUST be able to update a joint state on an IVSM.
+**[R192]** Any authorized BPI subject on an IVSM MUST be able to update a joint state on an IVSM.
 
-**[R198]** A BPI Interoperability state object utilized in the "Update State" operation to the IVSM MUST have the following properties:
+**[R193]** A BPI Interoperability state object utilized in the "Update State" operation to the IVSM MUST have the following properties:
 * The unique identifier for the State Synchronization and Advancement Predicate of the state to be updated	
 * The cryptographic proof of correctness of the last joint state
 * The unique identifier of the BPI Subject within the context of the originating BPI who updates the state
@@ -1760,7 +1760,7 @@ Once an IVSM is instantiated and all required initial states committed, a BPI Su
 * All public input data to the program updating the joint state object and creating a zero-knowledge proof of correctness of the updated state object
 * A digital signature over the state content tied to a public key associated with the BPI Subject committing the state
 
-**[R199]** An IVSM processing an "Update State" operation MUST satisfy the following conditions to be valid
+**[R194]** An IVSM processing an "Update State" operation MUST satisfy the following conditions to be valid
 * The submitted state object is conformant with the defined State Synchronization and Advancement Predicate
 * The submitted predicate unique identifier matches the predicate identifier the IVSM is based on
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
@@ -1769,58 +1769,58 @@ Once an IVSM is instantiated and all required initial states committed, a BPI Su
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject 
 
-**[R200]** For BPI Interoperability, a valid "Update State" operation that a BPI invokes MUST update the IVSM state storage according to the rules of the State Synchronization and Advancement Predicate and return the updated joint state, and its cryptographic zero-knowledge proof of correctness.
+**[R195]** For BPI Interoperability, a valid "Update State" operation that a BPI invokes MUST update the IVSM state storage according to the rules of the State Synchronization and Advancement Predicate and return the updated joint state, and its cryptographic zero-knowledge proof of correctness.
 
 **Accept/Reject State Update**
 
 An updated joint state can only be finalized or further advanced if a pre-defined quorum of all participating BPI Subjects agrees on this new joint state on the IVSM.
 
-**[R201]** An IVSM after a joint state update operation has been completed MUST generate a notification to all authorized BPI Subjects with an endpoint as a URI to accept/reject a joint state update as well as the complete new joint state object.
+**[R196]** An IVSM after a joint state update operation has been completed MUST generate a notification to all authorized BPI Subjects with an endpoint as a URI to accept/reject a joint state update as well as the complete new joint state object.
 
-**[R202]** A quorum of authorized BPI Subjects MUST accept the new joint state before it is finalized by the IVSM.
+**[R197]** A quorum of authorized BPI Subjects MUST accept the new joint state before it is finalized by the IVSM.
 
-**[R203]** The quorum required to accept or reject a joint state update on an IVSM MUST be defined in the State Synchronization and Advancement Predicate of the IVSM.
+**[R198]** The quorum required to accept or reject a joint state update on an IVSM MUST be defined in the State Synchronization and Advancement Predicate of the IVSM.
 
-**[R204]** The joint state object on the IVSM MUST be updated on the IVSM based on each received BPI Subject vote, either accept or reject.
+**[R199]** The joint state object on the IVSM MUST be updated on the IVSM based on each received BPI Subject vote, either accept or reject.
 
-**[R205]** Once the updated joint state is either accepted or rejected, the IVSM MUST 
+**[R200]** Once the updated joint state is either accepted or rejected, the IVSM MUST 
 * notify all BPI al result, and if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the IVSM
 * cryptographically seal the joint state such that no further updates to the joint state can be processed.
 
-**[R206]** The "Accept/Reject State Update" Operation MUST have the following properties:
+**[R201]** The "Accept/Reject State Update" Operation MUST have the following properties:
 * The unique identifier of the IVSM
 * The unique identifier of the invoking BPI Subject
 * An accept or reject value 
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
-**[R207]** The "Accept/Reject State Update" Operation MUST satisfy the following conditions to be valid:
+**[R202]** The "Accept/Reject State Update" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject
 
-**[R208]** For the purpose of BPI Interoperability, a valid "Accept/Reject State Update" operation that a BPI invokes MUST return a value of joint state processing success or failure, and if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the IVSM.
+**[R203]** For the purpose of BPI Interoperability, a valid "Accept/Reject State Update" operation that a BPI invokes MUST return a value of joint state processing success or failure, and if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the IVSM.
 
 **Exit BPI Interoperability**
 
 The exit operation can be invoked at any time during the lifecycle of an IVSM if a BPI Subject determines that something is occurring that puts their business at risk, or if the joint state has been finalized according to rules of the State Synchronization and Advancement Predicate of the IVSM.  
 
-**[R209]** Each BPI Subject MUST be able to invoke the "Exit BPI Interoperability" operation at any point in time after the IVSM has been instantiated.
+**[R204]** Each BPI Subject MUST be able to invoke the "Exit BPI Interoperability" operation at any point in time after the IVSM has been instantiated.
 
-**[R210]** The "Exit BPI Interoperability" Operation MUST have the following properties:
+**[R205]** The "Exit BPI Interoperability" Operation MUST have the following properties:
 * The unique identifier of the IVSM
 * The unique identifier of the invoking BPI Subject 
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
-**[R211]** The "Exit BPI Interoperability" Operation MUST satisfy the following conditions to be valid:
+**[R206]** The "Exit BPI Interoperability" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject
 
-**[R212]** For BPI Interoperability, a valid "Exit BPI Interoperability" operation that a BPI invokes MUST return
+**[R207]** For BPI Interoperability, a valid "Exit BPI Interoperability" operation that a BPI invokes MUST return
 * a value of processing success or failure, and if successful 
 * the current joint state object 
 * the proof of correctness of the last joint state 
@@ -1832,15 +1832,15 @@ This completes the specification of the Bi- and Multi-directional BPI interopera
 
 ## 5.6 Standardized Set of BPI Interoperability APIs
 
-The detailed API specification of the Mono-directional and Bi-/Multi-directional BPI Interoperability operations are be given in the [Baseline Protocol API specification](https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-api-v1.0.md).
+The detailed API specification of the Mono-directional and Bi-/Multi-directional BPI Interoperability operations are be given in the Baseline Protocol API specification. Please refer to the Related Work section.
 
-**[R213]** There MUST be a set of BPI APIs supporting the BPI Interoperability operations enumerated in requirements **[141]** and **[R144]**.
+**[R208]** There MUST be a set of BPI APIs supporting the BPI Interoperability operations enumerated in requirements **[136]** and **[R139]**.
 
 ## 5.7 BPI Interoperability: Discoverable Standard Transport Security
 
-**[R214]** Data in transit between BPIs MUST be encrypted.
+**[R209]** Data in transit between BPIs MUST be encrypted.
 
-**[R215]**  BPI Communication for BPI Interoperability services MUST satisfy all requirements in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
+**[R210]**  BPI Communication for BPI Interoperability services MUST satisfy all requirements in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
 -------
 
@@ -1863,15 +1863,15 @@ Note that a deterministic state transition in the context of this document is fa
 
 First, this document will discuss the requirements for worksteps that will be implemented in the Virtual State Machine of the BPI Processing Layer. Note that strictly speaking one needs to differentiate between the workstep as a logical construct, and its instantiation within a BPI which is called a workstep instance. In the following, and unless required for disambiguation, this document shall use workstep also to mean workstep instance. 
 
-**[R216]** A workstep MUST have an input, one or more process steps, and an output.
+**[R211]** A workstep MUST have an input, one or more process steps, and an output.
 
 This is just a well-known convention from business process management frameworks.
 
-**[R217]** The input of a workstep MUST represent a new, proposed state of a state object compliant with the agreement between the agreement counterparties.
+**[R212]** The input of a workstep MUST represent a new, proposed state of a state object compliant with the agreement between the agreement counterparties.
 
-**[R218]** The process steps in a workstep MUST represent a verification system comprised of the set, or subset, of agreement rules and agreement data such that an input can be validated to comply with the agreement rules and agreement data, or not.
+**[R213]** The process steps in a workstep MUST represent a verification system comprised of the set, or subset, of agreement rules and agreement data such that an input can be validated to comply with the agreement rules and agreement data, or not.
 
-**[R219]** The output of a workstep MUST represent the verifiable validation result of an input into a workstep as a correct new agreement state.
+**[R214]** The output of a workstep MUST represent the verifiable validation result of an input into a workstep as a correct new agreement state.
 
 Note that a new agreement state after a correct workstep execution is defined as 
 ```
@@ -1880,39 +1880,39 @@ New Agreement State = Old Agreement State + Agreed upon New State Object + Works
 
 See sections 6.4 and 6.5 below on BPI accounts associated with state objects and BPI transactions for details.
 
-**[R220]** A workstep instance MUST be associated with only one BPI workgroup.
+**[R215]** A workstep instance MUST be associated with only one BPI workgroup.
 
-**[R221]** A workstep instance MUST inherit the security and privacy policies of its associated workgroup.
+**[R216]** A workstep instance MUST inherit the security and privacy policies of its associated workgroup.
 
 See the details of workgroups and their security and privacy policies below.
 
-**[R222]** A workstep MUST have a unique identifier within a BPI.
+**[R217]** A workstep MUST have a unique identifier within a BPI.
 
-**[R223]** A workstep MUST be updatable.
+**[R218]** A workstep MUST be updatable.
 
-**[R224]** A workstep instance MUST NOT be updated while the workstep is being executed by the BPI.
+**[R219]** A workstep instance MUST NOT be updated while the workstep is being executed by the BPI.
 
 This ensures that no breaking changes with potentially significant negative business impact are introduced while a workstep instance is being executed.
 
-**[R225]** A workstep MUST be versioned within a BPI.
+**[R220]** A workstep MUST be versioned within a BPI.
 
 Note that versions of the same workstep do not have to be compatible with one another. 
 
-**[R226]** A workstep MUST be executed by a BPI.
+**[R221]** A workstep MUST be executed by a BPI.
 
-**[R227]** The input of a workstep MUST be submitted by an authorized member of the workgroup attached to that workstep.
+**[R222]** The input of a workstep MUST be submitted by an authorized member of the workgroup attached to that workstep.
 
 Note, that this allows for delegation of authorization from the authorization bearing Entity A to Entity B, akin to a power-of-attorney. This concept is also known as attenuated authorization.
 
-**[R228]** A workstep MUST be deterministic.
+**[R223]** A workstep MUST be deterministic.
 
 This means that for a given input, there can be only one valid output from the workstep generated by the BPI.
 
-**[R229]** The output from a workstep execution MUST be finalized through an agreed-upon quorum of cryptographic signatures of the workgroup participants associated with the workstep.
+**[R224]** The output from a workstep execution MUST be finalized through an agreed-upon quorum of cryptographic signatures of the workgroup participants associated with the workstep.
 
 This means that the output of a workstep execution must be verified and agreed upon by a previously defined number of the workgroup participants. This naturally extends to the input as well. 
 
-**[R230]** The output from a workstep execution MUST be a valid zero-knowledge proof of correctness of the input generated by the BPI executing the workstep (privacy preservation).
+**[R225]** The output from a workstep execution MUST be a valid zero-knowledge proof of correctness of the input generated by the BPI executing the workstep (privacy preservation).
 
 A Zero-Knowledge Proof is defined as having to satisfy the following three properties:
 
@@ -1920,41 +1920,41 @@ A Zero-Knowledge Proof is defined as having to satisfy the following three prope
 * **Soundness:** if the statement is false, no cheating prover can convince an honest verifier that it is true, except with some small probability.
 * **Zero-Knowledge:** if the statement is true, no verifier learns anything other than the fact that the statement is true. In other words, just knowing the statement (not the secret) is sufficient t construct a scenario that shows that the prover knows the secret. This is formalized by showing that every verifier has some simulator that, given only the statement to be proved (and no access to the prover), can produce a transcript that "looks like" an interaction between the honest prover and the verifier.
 
-**[R231]** A zero-knowledge proof of correctness of an input MUST be non-interactive.
+**[R226]** A zero-knowledge proof of correctness of an input MUST be non-interactive.
 
 Non-interactive in this context means that there is no interaction between the prover (generating the proof) and the verifier.
 
-**[R232]** An input that does not represent a new, valid agreement state of a state object MUST NOT generate a valid zero-knowledge proof of correctness of the input. 
+**[R227]** An input that does not represent a new, valid agreement state of a state object MUST NOT generate a valid zero-knowledge proof of correctness of the input. 
 
-**[R233]** A zero-knowledge proof of correctness of an input MUST be verifiable by any 3rd party in a time at most proportional to the size of the prover system that generated the proof.
+**[R228]** A zero-knowledge proof of correctness of an input MUST be verifiable by any 3rd party in a time at most proportional to the size of the prover system that generated the proof.
 
 The time requirement means that any 3rd party verifier must be able to verify the proof representing a prover system of O(10) in time of O(10) e.g. a Merkle-proof of a Merkle-trie branch of 10 tuples can be verified in 10 computational steps. It also means that the zero-knowledge proof of correctness of input does not have to be succinct. Succinct means that the proofs are short (smaller than the size of the prover circuit) and that the verification is fast.
 
-**[D19]** The zero-knowledge proof of correctness of an input SHOULD be succinct.
+**[D26]** The zero-knowledge proof of correctness of an input SHOULD be succinct.
 
-**[D20]** The zero-knowledge proof of correctness of an input SHOULD be efficient.
+**[D27]** The zero-knowledge proof of correctness of an input SHOULD be efficient.
 
 Efficient in this context means that the size of the proof does not grow with the size of the prover system(s). This is a highly desirable feature when it comes to both data on a CCSM and verification time. 
 
-**[D21]** The zero-knowledge proof of correctness of an input SHOULD be based on modular constructions.
+**[D28]** The zero-knowledge proof of correctness of an input SHOULD be based on modular constructions.
 
 Modular in this context means that the proof system can represent multiple statements, in other words, multiple proofs together, in one proof. For example, "I have an invoice with a face value of over $10,000, payable within 30 days, and the payee has never missed a payment in 10 years of doing business with me". This is also highly desirable, especially when having to combine various proofs as in the previous statement.
 
-**[R234]** A zero-knowledge proof of correctness of an input MUST be committed to the CCSM utilized by the BPI using a compact cryptographic proof after it has been finalized on the BPI.
+**[R229]** A zero-knowledge proof of correctness of an input MUST be committed to the CCSM utilized by the BPI using a compact cryptographic proof after it has been finalized on the BPI.
 
 Such a commitment can represent more than one zero-knowledge proof of correctness of an input. Compact in this context means that the CCSM commitment is smaller in size than the totality of the proof(s) represented by the commitment. This is desirable because it reduces the data footprint of the BPI which should be one of the implementation goals of a BPI.
 
-**[R235]** The cryptographic proof of the CCSM commitment MUST be verifiable by any 3rd party at any time in a time at most proportional to the size of the prover system. 
+**[R230]** The cryptographic proof of the CCSM commitment MUST be verifiable by any 3rd party at any time in a time at most proportional to the size of the prover system. 
 
 Note, that the requirement does not state that the proof has to be verifiable on the CCSM itself, that it does not need to be succinct, and that it does not need to be efficient.
 
-**[D22]** The cryptographic proof of the CCSM commitment SHOULD be verifiable by any 3rd party at any time on the CCSM utilized by the BPI.
+**[D29]** The cryptographic proof of the CCSM commitment SHOULD be verifiable by any 3rd party at any time on the CCSM utilized by the BPI.
 
-**[D23]** The cryptographic proof of the CCSM commitment SHOULD be succinct.
+**[D30]** The cryptographic proof of the CCSM commitment SHOULD be succinct.
 
-**[D24]** The cryptographic proof of the CCSM commitment SHOULD be efficient.
+**[D31]** The cryptographic proof of the CCSM commitment SHOULD be efficient.
 
-**[D25]** The cryptographic proof of the CCSM commitment SHOULD be based on modular constructions.
+**[D32]** The cryptographic proof of the CCSM commitment SHOULD be based on modular constructions.
 
 In specific situations, the above SHOULD requirements become MUST.
 
@@ -1995,27 +1995,27 @@ Note that there are many ways this can be achieved. Note, also that the ownershi
 ## 6.2 BPI Workflow
 After specifying a workstep, this document will now turn to a workflow.
 
-**[R236]** A workflow MUST contain at least one workstep.
+**[R231]** A workflow MUST contain at least one workstep.
 
-**[R237]** All requirements for a workstep MUST also be applied to a workflow.
+**[R232]** All requirements for a workstep MUST also be applied to a workflow.
 
 This means that requirements such as determinism, updatabillity, versioning, characteristics of zero-knowledge proofs, etc. also apply to a workflow.
 
-**[R238]** If there is more than one workstep in a workflow, the worksteps in a workflow MUST be causally connected.
+**[R233]** If there is more than one workstep in a workflow, the worksteps in a workflow MUST be causally connected.
 
 This means that the output of a workstep in a workflow is a required input into the subsequent workstep. 
 
-**[D26]** If there is more than one workstep in a workflow, the zero-knowledge proof of correctness of the input to the last workstep in the workflow SHOULD be a proof that accumulates the valid proofs for all previous inputs.
+**[D33]** If there is more than one workstep in a workflow, the zero-knowledge proof of correctness of the input to the last workstep in the workflow SHOULD be a proof that accumulates the valid proofs for all previous inputs.
 
 Such proofs are known as inductive proof chains as each proof accumulates the previous proof, with further local inputs, in the causal chain of worksteps. The verifier, therefore, does not have to verify all proofs and hold all inputs but rather only the final one with the final public input to prove the validity of the entire computational chain. 
 
-**[D27]** The prover system in a workflow with more than one workstep SHOULD be the same for all worksteps.
+**[D34]** The prover system in a workflow with more than one workstep SHOULD be the same for all worksteps.
 
-**[CR25]>[D27]** The prover system in a workflow MUST be the same for all worksteps.
+**[CR25]>[D34]** The prover system in a workflow MUST be the same for all worksteps.
 
-**[R239]** A workflow with more than one workstep MUST have a unique identifier within a BPI. 
+**[R234]** A workflow with more than one workstep MUST have a unique identifier within a BPI. 
 
-**[R240]** A workflow with more than one workstep and a given set of inputs MUST be sequentially executed by a BPI.
+**[R235]** A workflow with more than one workstep and a given set of inputs MUST be sequentially executed by a BPI.
 
 This simply means that for a given set of inputs there is only one process path through a given workflow.
 
@@ -2023,23 +2023,23 @@ This simply means that for a given set of inputs there is only one process path 
 
 In this section, the document will discuss the requirements for a BPI workgroup. Note that which BPI subjects may or may not be able to create a workgroup is up to the individual implementations. However,
 
-**[R241]** There MUST be at least one BPI subject role that has the authorization to create a workgroup.
+**[R236]** There MUST be at least one BPI subject role that has the authorization to create a workgroup.
 
-**[R242]** A workgroup MUST consist of at least one participant.
+**[R237]** A workgroup MUST consist of at least one participant.
 
 Note that a workgroup participant may be a user of another BPI than the BPI the workgroup is defined in. The appropriate authentication and authorization policies to enable such a scenario are up to implementers and beyond the scope of this document.
 
-**[R243]** A workgroup MUST have at least one administrator.
+**[R238]** A workgroup MUST have at least one administrator.
 
-**[R244]** A workgroup MUST have at least one security policy.
+**[R239]** A workgroup MUST have at least one security policy.
 
 Note that a security policy consists of authentication and authorization rules for the workgroup participants. Note also that one or more workgroup administrators define the workgroup security policy.
 
-**[R245]** A workgroup MUST have at least one privacy policy.
+**[R240]** A workgroup MUST have at least one privacy policy.
 
 A privacy policy the data visibility rules for each participant.
 
-**[R246]** A workgroup administrator MUST be able to perform at minimum the following functions:
+**[R241]** A workgroup administrator MUST be able to perform at minimum the following functions:
 * add or remove one or more participants
 * create, update and delete both security and privacy policies.
 * delete or archive a workgroup
@@ -2055,15 +2055,15 @@ A privacy policy the data visibility rules for each participant.
 ## 6.4 BPI Account
 Before moving on to the requirements on the individual components in the processing layer required for agreement execution, this document needs to define and specify the prerequisites. Since this document has been defining and discussing state objects in the context of a BPI, it needs to define stateful object processing. This necessitates an account-based model for both BPI subjects and BPI state objects. This is analogous to the Ethereum model using accounts for individual participants and smart contracts -- both are stateful objects.
 
-**[R247]** Each BPI subject MUST be associated with an account.
+**[R242]** Each BPI subject MUST be associated with an account.
 
-**[R248]** Each BPI state object MUST be associated with an account.
+**[R243]** Each BPI state object MUST be associated with an account.
 
 An account itself is defined through the following requirements:
 
-**[R249]** An account MUST have a unique account number.
+**[R244]** An account MUST have a unique account number.
 
-**[R250]** An account MUST have at least one account owner.
+**[R245]** An account MUST have at least one account owner.
 
 **[O6]** An account MAY have more than one account owner.
 
@@ -2071,29 +2071,29 @@ An account itself is defined through the following requirements:
 
 An account authorization condition is a condition which has to be met by the account owners to authorize a BPI transaction from that account.
 
-**[R251]** Account ownership and associated authorizations MUST be cryptographically provable.
+**[R246]** Account ownership and associated authorizations MUST be cryptographically provable.
 
 This may be achieved through for example a cryptographic digital signature.
 
-**[R252]** An account MUST have a deterministic nonce.
+**[R247]** An account MUST have a deterministic nonce.
 
 This ensures that transactions originating from an account are processed in the correct order.
 
-**[D28]** An account SHOULD have one or more units of value-accounting balances.
+**[D35]** An account SHOULD have one or more units of value-accounting balances.
 
 Also often known as tokens, these units of value-accounting allow the usage of state objects in financial transactions requiring units of accounting.
 
-**[R253]** The state of an account MUST be represented by a cryptographic vector commitment scheme.
+**[R248]** The state of an account MUST be represented by a cryptographic vector commitment scheme.
 
-**[R254]** Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
+**[R249]** Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
 
 These last two requirements ensure the structural integrity and cryptographic verifiability of the account at all times.
 
-**[R255]** The history of the state of an account MUST be represented by a cryptographic vector commitment.
+**[R250]** The history of the state of an account MUST be represented by a cryptographic vector commitment.
 
 This is required because not only does each state have to have structural integrity at all times but also its history with the causal connection between states.
 
-**[R256]** The state of an account MUST be minimally comprised of the following elements:
+**[R251]** The state of an account MUST be minimally comprised of the following elements:
 * Account Number
 * Owner(s)
 * Authorization Condition (if more than one owner)
@@ -2102,16 +2102,16 @@ This is required because not only does each state have to have structural integr
 * State Object Prover System representation (if an account is associated with a state object)
 * State object storage (if an account is associated with a state object)
 
-**[R257]** The state of a BPI subject account MUST only be changed based on a valid transaction originating from the BPI subject account owner. 
+**[R252]** The state of a BPI subject account MUST only be changed based on a valid transaction originating from the BPI subject account owner. 
 
-**[R258]** The state of a BPI state object account MUST only be changed based on valid a transaction originating from a BPI subject account or another BPI state object account.
+**[R253]** The state of a BPI state object account MUST only be changed based on valid a transaction originating from a BPI subject account or another BPI state object account.
 
 This document will discuss the requirements of a transaction and what constitutes a valid transaction in the next section. Note, that an account may be associated with the state of a workstep instance.
 
 ## 6.5 BPI Transactions
 Account states, and therefore, the state of BPI subjects, BPI state objects, and, thus, agreement states are altered through BPI transactions submitted by requesters of (commercial) state changes from their accounts. In the following, this document specifies requirements for the structure and characteristics of transactions.
 
-**[R259]** Each transaction MUST have minimally the following identifiers:
+**[R254]** Each transaction MUST have minimally the following identifiers:
 * Workflow ID (UID)
 * Workflow Instance ID (UID) 
 * Workstep ID (UID)
@@ -2120,23 +2120,23 @@ Account states, and therefore, the state of BPI subjects, BPI state objects, and
 
 Note that the Workflow ID may be the same as Workstep ID if the workflow has only one workstep. 
 
-**[R260]** The Workflow Instance ID MUST be derivable from the Workflow ID.
+**[R255]** The Workflow Instance ID MUST be derivable from the Workflow ID.
 
-**[R261]** The Workstep Instance ID MUST be derivable from the Workstep ID.
+**[R256]** The Workstep Instance ID MUST be derivable from the Workstep ID.
 
-**[D29]** Each Transaction ID SHOULD be generated by the transaction originator/sender.
+**[D36]** Each Transaction ID SHOULD be generated by the transaction originator/sender.
 
-**[R262]** Each transaction MUST have a `From` (Sender) and a `To` (Receiver) element each containing the respective Sender and Receiver account numbers.
+**[R257]** Each transaction MUST have a `From` (Sender) and a `To` (Receiver) element each containing the respective Sender and Receiver account numbers.
 
-**[R263]** Each transaction MUST have a deterministic nonce based on the account of the sender.
+**[R258]** Each transaction MUST have a deterministic nonce based on the account of the sender.
 
-**[R264]** Each transaction MUST contain a representation of the (commercial) document as a state object constituting the suggested new agreement state, such that it can be validated by the prover system associated with the account of the state object representing the agreement state to be altered.  
+**[R259]** Each transaction MUST contain a representation of the (commercial) document as a state object constituting the suggested new agreement state, such that it can be validated by the prover system associated with the account of the state object representing the agreement state to be altered.  
 
-**[R265]** If there is more than one prover system associated with the receiver account, the transaction MUST unambiguously identify which prover system the transaction is targeting.
+**[R260]** If there is more than one prover system associated with the receiver account, the transaction MUST unambiguously identify which prover system the transaction is targeting.
 
-**[R266]** Each transaction MUST contain the cryptographic digital signature of the owner(s) of the Sender account.
+**[R261]** Each transaction MUST contain the cryptographic digital signature of the owner(s) of the Sender account.
 
-**[R267]** A transaction MUST be considered invalid if one of the following conditions is met:
+**[R262]** A transaction MUST be considered invalid if one of the following conditions is met:
 * The transaction nonce is not equal to the account nonce plus 1.
 * The cryptographic signature of the account owner(s) on the transaction cannot be verified
 * The transaction does not have an existing Workflow ID, Workflow Instance ID, Workstep ID, Workstep Instance ID
@@ -2150,63 +2150,64 @@ In the following, this document will discuss the transaction lifecycle and its r
 ## 6.6 BPI Transaction Lifecycle
 
 The figure below showcases at a high level the flow of a transaction through a BPI. In the subsequent discussion on transaction lifecycle characteristics and requirements, this document will focus on the BPI Processing Layer and the steps indicated in blue.
-
+<div align="center">
 <figure>
   <img
   src="./images/Baseline-Fig-6.2-High-Level Baseline-Transaction-Lifecycle.png"
   >
   <figcaption>Figure 9: High Level Transaction Lifecycle Flow through the BPI</figcaption>
 </figure>
+</div>
 
 A prerequisite for transaction lifecycle step 4 where the BPI Processing Layer Transaction Pool pulls a transaction from BPI Middleware Layer's Messaging is that there is at least one transaction in the Messaging Capability waiting to be processed by the BPI Processing Layer.
 
 The requirements for the subsequent step (5) are as follows:
 
-**[R268]** The Transaction Pool MUST be able to validate all transaction requirements for a valid transaction in section [6.5 BPI Transactions](#65-bpi-transactions).
+**[R263]** The Transaction Pool MUST be able to validate all transaction requirements for a valid transaction in section [6.5 BPI Transactions](#65-bpi-transactions).
 
-**[R269]** The Transaction Pool MUST order transactions for processing based on the order of their unique messaging ID and their account nonces.
+**[R264]** The Transaction Pool MUST order transactions for processing based on the order of their unique messaging ID and their account nonces.
 
-**[R270]** If the order of two or more transactions from the same account in the Transaction Pool is in contradiction to the order of the deterministic account nonce, the transactions are first ordered by their account nonces and then by their message IDs.
+**[R265]** If the order of two or more transactions from the same account in the Transaction Pool is in contradiction to the order of the deterministic account nonce, the transactions are first ordered by their account nonces and then by their message IDs.
 
 Note, that this is required to avoid a BPI operator ordering transactions maliciously, or injecting malicious transactions ahead of other transactions.
 
-**[R271]** The Transaction Pool MUST create a batch of a fixed number of transactions after a given time to be processed by the Virtual State Machine.
+**[R266]** The Transaction Pool MUST create a batch of a fixed number of transactions after a given time to be processed by the Virtual State Machine.
 
 The number of transactions per batch and the time period covered by each batch while fixed can be freely chosen by an implementer. Recommendations as to batch size and time frame will be given in an implementers guide and is beyond the scope of this document.
 
-**[R272]** The Transaction Pool MUST process an invalid transaction by assigning the transaction an error code and an easily human readable error message and issuing a message minimally consisting of the tuple `(Sender Account, Error Code, Error Message, Transaction)` to the Messaging Capability of the BPI to inform the sender of the transaction failure and its reason.
+**[R267]** The Transaction Pool MUST process an invalid transaction by assigning the transaction an error code and an easily human readable error message and issuing a message minimally consisting of the tuple `(Sender Account, Error Code, Error Message, Transaction)` to the Messaging Capability of the BPI to inform the sender of the transaction failure and its reason.
 
 In the following, this document will discuss the requirements on the Virtual State Machine of the BPI Processing Layer.
 
 Since BPIs are used to verify the correctness of state transitions (see step (6) in Fig. 6.2. above), BPIs will utilize a Virtual State Machine (VSM) for its computations to validate state transitions of state objects; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework. 
 
-**[R273]**	The Execution Framework of a VSM MUST be deterministic.
+**[R268]**	The Execution Framework of a VSM MUST be deterministic.
 
 Any BPI running the same Execution Framework on the same state object with the same input data needs to arrive at the same result, in other words, deterministic outcomes. This is only guaranteed if the Execution Framework either does not allow instructions to be executed in parallel, but only strictly sequential, or if the Execution Framework has methods in place that allow the identification and prevention of transactions that would cause state conflicts if processed in parallel. 
 
 For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet processed. This means that if the transaction of Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending on which transaction is executed first.
 
-**[R274]**	The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or abort in finite time, where what is deemed to be a suitable finite time is determined by the (commercially) allowable duration of a (commercial) transaction.
+**[R269]**	The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or abort in finite time, where what is deemed to be a suitable finite time is determined by the (commercially) allowable duration of a (commercial) transaction.
 
 This requirement means that infinite computational loops cannot be allowed in a BPI. 
 
-**[R275]**	The Execution Framework of a VSM MUST support widely cryptographic primitives for zero-knowledge proofs natively, e.g., hashing, commitments, accumulators, or zero-knowledge proof verification.
+**[R270]**	The Execution Framework of a VSM MUST support widely cryptographic primitives for zero-knowledge proofs natively, e.g., hashing, commitments, accumulators, or zero-knowledge proof verification.
 
-**[D29]**	The Execution Framework of a VSM SHOULD have a mathematical proof of correctness and security.
+**[D37]**	The Execution Framework of a VSM SHOULD have a mathematical proof of correctness and security.
 
-**[R276]**	The Execution Framework of a VSM MUST be Verifiably Secure. 
+**[R271]**	The Execution Framework of a VSM MUST be Verifiably Secure. 
 
-**[R277]** If a VSM can generate a valid Proof-of-Correctness for a transaction, it MUST update the state and the state history of the state object the transaction targeted based on the transaction data.
+**[R272]** If a VSM can generate a valid Proof-of-Correctness for a transaction, it MUST update the state and the state history of the state object the transaction targeted based on the transaction data.
 
-**[R278]** If a VSM can generate a valid Proof-of-Correctness for a transaction and the targeted state object is not the state object of the complete (commercial) agreement state, it MUST update the state object of the (commercial) agreement and its state history besides the state object and its history targeted by the transaction.
+**[R273]** If a VSM can generate a valid Proof-of-Correctness for a transaction and the targeted state object is not the state object of the complete (commercial) agreement state, it MUST update the state object of the (commercial) agreement and its state history besides the state object and its history targeted by the transaction.
 
-**[R279]** A VSM MUST store all proofs, state objects, their associated data, and their histories in the Storage capability of the BPI Processing Layer.
+**[R274]** A VSM MUST store all proofs, state objects, their associated data, and their histories in the Storage capability of the BPI Processing Layer.
 
-**[R280]** The integrity of Proofs, transactions, state objects, and their data and histories MUST be cryptographically verifiable by the owners of the accounts associated with the proofs, transactions, state objects, and their data and history.
+**[R275]** The integrity of Proofs, transactions, state objects, and their data and histories MUST be cryptographically verifiable by the owners of the accounts associated with the proofs, transactions, state objects, and their data and history.
 
-**[R281]** All updates to an agreement state and their associated accounts by a VSM MUST be communicated to all agreement counterparties through the Message capability in the BPI Middleware layer. 
+**[R276]** All updates to an agreement state and their associated accounts by a VSM MUST be communicated to all agreement counterparties through the Message capability in the BPI Middleware layer. 
 
-**[R282]** The Proof-of-Correctness of a state transition and associated data required for proof verification a VSM generated MUST be communicated to the CCSM Abstraction Layer for subsequent commitment to the CCSM utilized by the BPI through the Message capability in the BPI Middleware layer. 
+**[R277]** The Proof-of-Correctness of a state transition and associated data required for proof verification a VSM generated MUST be communicated to the CCSM Abstraction Layer for subsequent commitment to the CCSM utilized by the BPI through the Message capability in the BPI Middleware layer. 
 
 Note, see the BPI transaction lifecycle management flow in Fig 9, in particular step (8).
 
@@ -2216,7 +2217,7 @@ The following requirements are addressing the operating scenario where a BPI con
 
 This document will call such a structure a BPI network.
 
-**[CR29]>[O7]** If there is a BPI network to execute and finalize transactions, it MUST utilize a consensus algorithm fulfilling all requirements described in the [Baseline CCSM Specification](https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-dlt-v1.0.md).
+**[CR29]>[O7]** If there is a BPI network to execute and finalize transactions, it MUST utilize a consensus algorithm fulfilling all requirements described in the Baseline CCSM Specification. Please refer to the Related Work section.
 
 **[CR30]>[O7]** If there is a BPI network to execute and finalize transactions, the consensus algorithm employed MUST have a time to consensus that is smaller than the time to consensus of the CCSM utilized by the BPI network.
 
@@ -2237,9 +2238,9 @@ The key discussion on the Storage capability is full data persistency (write man
 
 In the case of a BPI, this document needs to distinguish between proof, transaction, and state data and its history and metadata associated with state objects, etc. Given the need to maintain consistency between state data on the CCSM utilized by the BPI and state data in the BPI, the following requirement is key.
 
-**[R283]** Proof, transaction, and state object data and their histories together with their integrity proofs MUST be stored as partially persistent data in the storage capability.
+**[R278]** Proof, transaction, and state object data and their histories together with their integrity proofs MUST be stored as partially persistent data in the storage capability.
 
-**[D30]** All other data SHOULD be stored as fully persistent data in the storage capability.
+**[D38]** All other data SHOULD be stored as fully persistent data in the storage capability.
 
 This is a consequence of step (7) in Fig. 9 above.
 
@@ -2252,7 +2253,7 @@ BPI storage is a key enabler to scale BPI stacks that are either data-intensive 
 
 This document defines BPI data storage -- outside of a CCSM -- as the storing of information in a digital, machine-readable medium where the data stored is relevant for the proper functioning of the BPI stack.
 
-The document defines storage capability requirements in the following areas 
+The document defines storage capability requirements in the following areas: 
 * Security
 * Privacy
 * Integration
@@ -2264,100 +2265,100 @@ The document defines storage capability requirements in the following areas
 
 As has been done throughout this document, there are BPI layer-specific security requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI security requirements in [2 Design and Architecture](#2-design-and-architecture). 
 
-**[R284]** Data in transit in a BPI MUST be encrypted.
+**[R279]** Data in transit in a BPI MUST be encrypted.
 
-**[R285]** Data at rest in a BPI MUST be encrypted.
+**[R280]** Data at rest in a BPI MUST be encrypted.
 
-**[R286]**	BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
+**[R281]**	BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
 
 This is also known as a secure connection.
 
-**[R287]**	BPI Storage MUST be compatible with widely used external authentication services. 
+**[R282]**	BPI Storage MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are [OAUTH](https://datatracker.ietf.org/doc/html/rfc6749), [SAML](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0-cd-02.html), [OIDC](https://openid.net/developers/specs/), [AD/LDAP](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/auth-ldap).
+Non-normative examples of such authentication technologies are OAUTH, SAML, OIDC, AD/LDAP. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
-**[R288]**	BPI Storage MUST support roles & access management.
+**[R283]**	BPI Storage MUST support roles & access management.
 
-**[R289]**	BPI Storage MUST support policy management.
+**[R284]**	BPI Storage MUST support policy management.
 
-**[R290]**	BPI Storage MUST support Single-Sign-On [SSO](https://en.wikipedia.org/wiki/Single_sign-on).
+**[R285]**	BPI Storage MUST support Single-Sign-On SSO. For complementary information refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
-**[R291]**	BPI Storage MUST support multi-factor authentication [MFA](https://csrc.nist.gov/glossary/term/mfa).
+**[R286]**	BPI Storage MUST support multi-factor authentication [MFA](https://csrc.nist.gov/glossary/term/mfa).
 
-**[R292]**	BPI Storage MUST support hardware security modules [(HSMs)](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm).
+**[R287]**	BPI Storage MUST support hardware security modules [(HSMs)](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). For complementary information refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 
 ## 7.2. BPI Storage Privacy
 
 As has been done throughout this document, there are BPI layer-specific privacy requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI privacy requirements in section [2 Design and Architecture](#2-design-and-architecture).
 
-**[R293]**	Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
+**[R288]**	Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 
-**[D31]**	BPI Storage arranged in a network SHOULD utilize privacy-preserving P2P message protocols.
+**[D39]**	BPI Storage arranged in a network SHOULD utilize privacy-preserving P2P message protocols.
 
 ## 7.3. BPI Data Orchestration
 
 To accommodate a high-volume, low latency environment with many data changes, BPI Data Orchestration has the following requirements:
 
-**[R294]**	Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
+**[R289]**	Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
 
-**[R295]**	Data Orchestration utilized in a BPI MUST preserve source consistency. 
+**[R290]**	Data Orchestration utilized in a BPI MUST preserve source consistency. 
 
 To avoid subscribers seeing partial and/or inconsistent data, BPI Data Orchestration has the following requirements:
 
-**[R296]**	Data Orchestration utilized in a BPI MUST implement transaction boundaries such that a single user's action can trigger atomic updates.
+**[R291]**	Data Orchestration utilized in a BPI MUST implement transaction boundaries such that a single user's action can trigger atomic updates.
 
-**[R297]**	Data Orchestration utilized in a BPI MUST Commit the exact order in which operations happened on the primary database.
+**[R292]**	Data Orchestration utilized in a BPI MUST Commit the exact order in which operations happened on the primary database.
 
-**[R298]**	Data Orchestration utilized in a BPI MUST support a consistent state.
+**[R293]**	Data Orchestration utilized in a BPI MUST support a consistent state.
 
-**[R299]**	Data Orchestration utilized in a BPI MUST support User-space processing 
+**[R294]**	Data Orchestration utilized in a BPI MUST support User-space processing 
 
 In the context of this document, this requirement establishes a capability that allows for one or more computations outside a database to be triggered by a data change in the data storage system.
 
-**[R300]**	Data Orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
+**[R295]**	Data Orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
 
-**[R301]**	Data Orchestration utilized in a BPI MUST isolate data source and consumers.
+**[R296]**	Data Orchestration utilized in a BPI MUST isolate data source and consumers.
 
-**[R302]**	Data Orchestration utilized in a BPI MUST support low latency of its pipeline.
+**[R297]**	Data Orchestration utilized in a BPI MUST support low latency of its pipeline.
 
 Low latency in this context refers to a pipeline latency that does not impact the overall system latency of the BPI.
 
-**[R303]**	Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes.
+**[R298]**	Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes.
 
 The BPI Data Orchestration must include the following four components:
 
-**[R304]**	The Data Orchestration Layer utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
+**[R299]**	The Data Orchestration Layer utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
 
-**[R305]**	The Data Orchestration Layer utilized in a BPI MUST include a log store that caches the generated data change stream.
+**[R300]**	The Data Orchestration Layer utilized in a BPI MUST include a log store that caches the generated data change stream.
 
-**[R306]**	The Data Orchestration Layer utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
+**[R301]**	The Data Orchestration Layer utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
 
-**[R307]**	The Data Orchestration Layer utilized in a BPI MUST include a subscription client pulling change events seamlessly across various components and servicing them to an application in a BPI.
+**[R302]**	The Data Orchestration Layer utilized in a BPI MUST include a subscription client pulling change events seamlessly across various components and servicing them to an application in a BPI.
 
 ## 7.4 BPI-External Storage: Edge Storage
 
 There are operating scenarios where it could be necessary that BPI data is replicated outside of a BPI such as to avoid having to rebase the state of a system or record due to an accidental data update if the correct state is not readily accessible to enforce system-of-record access policies. 
 
-**[R308]**	BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
+**[R303]**	BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
 
 Weak synchrony in this context means, 
 * that all messages will eventually reach their intended recipients and 
 * that after a certain, yet unknown, time the network will become synchronous again.
 
-**[R309]**	Replication conflicts MUST be automatically detectable 
+**[R304]**	Replication conflicts MUST be automatically detectable. 
 
-**[R310]** Replication conflicts MUST be resolvable either automatically or manually.
+**[R305]** Replication conflicts MUST be resolvable either automatically or manually.
 
-**[R311]**	BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
+**[R306]**	BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
 
-**[D32]**	BPI Edge Storage SHOULD be able to cryptographically sign messages.
+**[D40]**	BPI Edge Storage SHOULD be able to cryptographically sign messages.
 
-**[D33]**	BPI Edge Storage SHOULD be discoverable by BPI Worgroup members or their delegates within a BPI.
+**[D41]**	BPI Edge Storage SHOULD be discoverable by BPI Worgroup members or their delegates within a BPI.
 
-**[R34]**	BPI Edge Storage MUST support BPI identifiers and identity as define in this document.
+**[R307]**	BPI Edge Storage MUST support BPI identifiers and identity as define in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
-**[R312]**	BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data (see section [7.5 BPI-Internal Storage](#75-bpi-internal-storage)) requirements for security, privacy, and integration.
+**[R308]**	BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data (see section [7.5 BPI-Internal Storage](#75-bpi-internal-storage)) requirements for security, privacy, and integration.
 
 ## 7.5 BPI-Internal Storage 
 
@@ -2369,11 +2370,11 @@ There are two storage types BPI storage system can utilize, fully or partially p
 
 There are two deployment options -- centralized or distributed/decentralized deployment.
 
-Below this document will list the requirements for either option and indicate the differences between partially and fully persistent data storage where required.		
+This document lists the requirements for either option and indicate the differences between partially and fully persistent data storage where required.		
 
 ### 7.5.1 BPI Storage: Centralized Deployment
 
-**[R313]** BPI Storage  MUST support characteristics of commonly utilized enterprise-grade database solutions. 
+**[R309]** BPI Storage  MUST support characteristics of commonly utilized enterprise-grade database solutions. 
 
 **[O8]** Centralized BPI Storage MAY be partially persistent. 
 
@@ -2383,27 +2384,27 @@ Non-normative examples of such data bases are but not limited to OracleDB, Mongo
 
 ### 7.5.2 BPI Storage: Decentralized Deployment
 
-**[R314]**	BPI Storage  MUST support authenticated naming systems.
+**[R310]**	BPI Storage  MUST support authenticated naming systems.
 
-An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [(DANE)](https://datatracker.ietf.org/doc/html/rfc7671).   
+An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [DANE].   
 
-Non-normative examples include but are not limited to certificate authorities or a self-certifying PKI namespace.
+Non-normative examples include but are not limited to certificate authorities or a self-certifying PKI namespace. 
 
-**[R315]**	BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
+**[R311]**	BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
 
-**[R316]**	BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
+**[R312]**	BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
 
-Non-normative examples are [libp2p](https://libp2p.io/) or distributed hash tables [(DHTs)](https://en.wikipedia.org/wiki/Distributed_hash_table).
+Non-normative examples are [libp2p] or distributed hash tables [DHT]. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
-**[R317]**	BPI Storage  MUST support a Network Protocol that handles:
+**[R313]**	BPI Storage  MUST support a Network Protocol that handles:
 * NAT traversal such as hole punching, port mapping, and relay
 * Multiple transport protocols
 * Encryption, signing, or clear communications
 * Multi-multiplexes such as Multiplex connections, streams, protocols, peers.
 
-**[R318]**	Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
+**[R314]**	Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
-Non-normative examples are conflict-free replicated data types [(CRDTs)](https://crdt.tech/) or Interval Tree Clocks [(ITC)](https://www.researchgate.net/publication/235246938_Interval_Tree_Clocks_A_Logical_Clock_for_Dynamic_Systems) to ensure eventual data consistency.
+Non-normative examples are conflict-free replicated data types [CRDT] or Interval Tree Clocks [ITC] to ensure eventual data consistency. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
 
 **[O9]** Decentralized BPI Storage MAY be partially persistent.
 
@@ -2414,7 +2415,7 @@ Non-normative examples are conflict-free replicated data types [(CRDTs)](https:/
 
 This section of the document focuses on the requirements and considerations related to the input of external data into a BPI workstep. Specifically, it addresses:
 
-- internal authoritative data - data sourced from a single authoritative source, internal to one of the BPI participants to a BPI workstep(i.e. internal systems of record)
+- internal authoritative data - data sourced from a single authoritative source, internal to one of the BPI participants to a BPI workstep (i.e. internal systems of record)
 - external authoritative data - data sourced from external authoritative sources (i.e. government record) and
 - external non-authoritative, non-deterministic data sourced from external non-authoritative, non-deterministic sources (i.e. IoT sensor data, time, etc).
 
@@ -2422,13 +2423,16 @@ This section of the document focuses on the requirements and considerations rela
 ## 8.1 Internal Authoritative Data for BPIs
 
 Internal authoritative data means that there exists only one authoritative version of the input data in some system of record of a BPI participant, making it the only choice for input into a BPI workstep. Authoritative in this context, means that BPI participants involved in a BPI workstep have agreed that the source is the accurate and reliable truth for that particular data point.
-[O10] Internal authoritative input data to a BPI workstep MAY come from a single source.
-[CR36]>[O10] If the internal authoritative input data to a BPI workstep is single-sourced, that source MUST be authoritative.
+
+**[O10]** Internal authoritative input data to a BPI workstep MAY come from a single source.
+
+**[CR36]>[O10]** If the internal authoritative input data to a BPI workstep is single-sourced, that source MUST be authoritative.
 
 ## 8.2 External Authoritative Data for BPIs
 
 External authoritative data means that the input data to a BPI workstep is held in some authoritative 3rd party database, such as government records. Unlike internal authoritative data where there is only one source, external authoritative data input to a BPI workstep may have multiple sources.
-[R319] BPI participants MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
+
+**[R315]** BPI participants MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
 
 
 ## 8.3 External Non-authoritative, Non-deterministic for BPIs (Oracles)
@@ -2438,17 +2442,25 @@ External non-authoritative, non-deterministic data means that there does not exi
 ### 8.3.1 Data Trustworthiness
 
 External non-authoritative, non-deterministic data for BPIs resides outside of an authoritative source and is subject to manipulation risks. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in the data reporting and error checking, either cross-party, by a neutral party or an honesty incentivized party.
-[D34] External non authoritative BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
-[R320] External non-authoritative BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
+
+**[D42]** External non authoritative BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
+
+**[R316]** External non-authoritative BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
+
 Authoritative entities in the context of this document are entities that have been delegated authority by the participants of a BPI workstep to validate an external non-authoritative source of input data into a BPI workstep.
-[R321] BPI participants MUST agree upon a standard validation method for external non-authoritative data input to a BPI workstep.
-[R322] A BPI workstep participant MUST be able to validate that the validation criteria of an external non-authoritative data input to the BPI workstep has been met.
+
+**[R317]** BPI participants MUST agree upon a standard validation method for external non-authoritative data input to a BPI workstep.
+
+**[R318]** A BPI workstep participant MUST be able to validate that the validation criteria of an external non-authoritative data input to the BPI workstep has been met.
+
 Appropriate data validation methods vary on a case-by-case basis depending upon the data types, sources and formats. As such, it is up to the BPI participants to agree upon the optimal validation method for their implementation. This includes design decisions such as what threshold of unresponsive oracles leads to a rejected input, how to aggregate the oracle responses and remove outliers, signing data to ensure provenance, implementing cryptographic mechanisms such as threshold signatures/secret sharing and TEEs to obfuscate data from the oracle providers.
 
 
 ### 8.3.2 External Non-authoritative BPI Input Data Variance
 
-External non-authoritative BPI input data can be subject to variations from lack of time synchronicity, fluctuations in precision or reporting error. Party A may read the temperature of a shipment as 77.1F while party B reads it as 77.3F. Small variance in timing can also produce mismatched BPI data inputs. These variations may lead to failed proof verification if proof inputs are not identical between prover and verifier. In order for proofs to be deterministic, the inputs to a BPI workstep must also uphold determinism by removing these variances through a chosen variance removal algorithm across the disparate data points such as mean, median, etc which aggregates the data into a single golden truth. As an extension of data validation, it's up to the BPI participants to agree upon their algorithmic approach to removing variance and outlier data. This agreed-upon method should have a clearly defined standard with all oracles involved adhering to the same data format. In the case where there are multiple data endpoints, there's both the variance for each oracle's internal data set and the variance between their aggregated answers to consider.
+External non-authoritative BPI input data can be subject to variations from lack of time synchronicity, fluctuations in precision or reporting error. Party A may read the temperature of a shipment as 77.1F while party B reads it as 77.3F. Small variance in timing can also produce mismatched BPI data inputs. These variations may lead to failed proof verification if proof inputs are not identical between prover and verifier. In order for proofs to be deterministic, the inputs to a BPI workstep must also uphold determinism by removing these variances through a chosen variance removal algorithm across the disparate data points such as mean, median, etc which aggregates the data into a single golden truth. 
+
+As an extension of data validation, it is for the BPI participants to agree upon their algorithmic approach to removing variance and outlier data. This agreed-upon method should have a clearly defined standard with all oracles involved adhering to the same data format. In the case where there are multiple data endpoints, there's both the variance for each oracle's internal data set and the variance between their aggregated answers to consider.
 
 -------
 # 9 Conformance
@@ -2480,7 +2492,7 @@ Note that BPI Integration requirements in section [5.5.4 Bi- and Multi-direction
 
 # Appendix A - References
 
-This appendix contains the normative and informative references that are used in this document. Any normative work cited in the body of the text as needed to implement the work product must be listed in the Normative References section below. Each reference to a separate document or artifact in this work must be listed here and must be identified as either a Normative or an Informative Reference. Normative references are specific (identified by date of publication and/or edition number or version number) and Informative references are either specific or non-specific.
+This appendix contains the normative and non-normative references that are used in this document. 
 
 While any hyperlinks included in this appendix were valid at the time of publication, OASIS cannot guarantee their long-term validity.
 
@@ -2523,7 +2535,7 @@ The following documents are referenced in such a way that some or all of their c
 **[libp2p]** libp2p, https://docs.ipfs.io/concepts/libp2p/  \
 **[CRDT]** Shapiro, Marc; Preguiça, Nuno; Baquero, Carlos; Zawirski, Marek (2011), "Conflict-Free Replicated Data Types", Lecture Notes in Computer Science, 6976, Grenoble, France: Springer Berlin Heidelberg, pp. 386–400, doi:10.1007/978-3-642-24550-3_29 \
 **[ITC]** Almeida P.S., Baquero C., Fonte V. (2008) Interval Tree Clocks. In: Baker T.P., Bui A., Tixeuil S. (eds) Principles of Distributed Systems. OPODIS 2008. Lecture Notes in Computer Science, vol 5401. Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-540-92221-6_18 \
-**[DHT]** Liz, Crowcroft; et al. (2005). "A survey and comparison of peer-to-peer overlay network schemes" (PDF). IEEE Communications Surveys & Tutorials. 7 (2): 72–93. doi:10.1109/COMST.2005.1610546
+**[DHT]** Liz, Crowcroft; et al. (2005). "A survey and comparison of peer-to-peer overlay network schemes" (PDF). IEEE Communications Surveys & Tutorials. 7 (2): 72–93. doi:10.1109/COMST.2005.1610546  \
 **[FPDS]** Driscoll JR, Sarnak N, Sleator DD, Tarjan RE (1986). "Making data structures persistent". Proceedings of the eighteenth annual ACM symposium on Theory of computing - STOC '86. Proceeding STOC '86. Proceedings of the Eighteenth Annual ACM Symposium on Theory of Computing. pp. 109–121. CiteSeerX 10.1.1.133.4630. doi:10.1145/12130.12142. ISBN 978-0-89791-193-1. \
 **[PPDS]** Conchon, Sylvain; Filliâtre, Jean-Christophe (2008), "Semi-persistent Data Structures", Programming Languages and Systems, Lecture Notes in Computer Science, 4960, Springer Berlin Heidelberg, pp. 322–336, doi:10.1007/978-3-540-78739-6_25, ISBN 9783540787389 . \
 **[DANE]** Barnes, Richard (October 6, 2011). "DANE: Taking TLS Authentication to the Next Level Using DNSSEC", IETF Journal \
@@ -2547,7 +2559,7 @@ The standard does not set any requirements for compliance to jurisdiction legisl
 
 ## B.2 Production Readiness 
 
-The standard does not set any requirements for the use of specific applications/tools/libraries etc. Examples included in the standard to be non-normative. The implementer should perform due diligence when selecting tools, libraries, etc.
+The standard does not set any requirements for the use of specific applications/tools/libraries etc. The implementer should perform due diligence when selecting specific applications/tools/libraries.
 
 <!--
 
