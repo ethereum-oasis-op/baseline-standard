@@ -6,7 +6,7 @@
 
 ## Project Specification Working Draft
 
-## 17 September 2021
+## 23 September 2021
 
 <!-- URI list start (commented out except during publication by OASIS TC Admin)
 
@@ -54,13 +54,13 @@ This specification replaces or supersedes:
 
 This specification is related to:    
 **[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Kyle Thomas, Andreas Freund and Anais Ofranc. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md.\
+_Baseline API and Data Model Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md.\
 **[baseline-dlt-v1.0]**
-_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
+_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
 
 
 #### Abstract:
-This document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Distributed Ledger Technology (DLT) network.
+This document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Distributed Ledger Technology (CCSM) network.
 
 #### Status:
 This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline TC team.
@@ -77,7 +77,7 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 #### Citation format:
 When referencing this specification the following citation format should be used:
 
-**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.
+**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.
 
 -------
 
@@ -153,10 +153,10 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[7.5.2 BPI Storage: Decentralized Deployment](#752-bpi-storage-decentralized-deployment) \
 [8 BPI External Data Inputs](#8-bpi-external-data-inputs) \
 &nbsp;&nbsp;&nbsp;&nbsp;[8.1 Internal Authoritative Data for BPIs](#81-internal-authoritative-data-for-bpis) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.2 External Authoritative Data for BPIs](#82-External Authoritative Data for BPIs) \
-&nbsp;&nbsp;&nbsp;&nbsp;[8.3 External Non-authoritative, Non-deterministic for BPIs (Oracles)](#83-External Non-authoritative, Non-deterministic for BPIs (Oracles)) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.1 Data Trustworthiness](#831-Data Trustworthiness) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.2 External Non-authoritative BPI Input Data Variance](#832-External Non-authoritative BPI Input Data Variance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.2 External Authoritative Data for BPIs](#82-external-authoritative-data-for-bpis) \
+&nbsp;&nbsp;&nbsp;&nbsp;[8.3 External Non-authoritative Non-deterministic for BPIs](#83-external-non-authoritative-non-deterministic-for-bpis) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.1 Data Trustworthiness](#831-data-trustworthiness) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.2 External Non-authoritative BPI Input Data Variance](#832-external-non-authoritative-bpi-input-data-variance) \
 [9 Conformance](#9-conformance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.1 Conformance Targets](#91-conformance-targets) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.2 Conformance Levels](#92-conformance-levels)\
@@ -2435,7 +2435,7 @@ External authoritative data means that the input data to a BPI workstep is held 
 **[R315]** BPI participants MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
 
 
-## 8.3 External Non-authoritative, Non-deterministic for BPIs (Oracles)
+## 8.3 External Non-authoritative Non-deterministic for BPIs
 
 External non-authoritative, non-deterministic data means that there does not exist an authoritative, deterministic source for the data used as input to a BPI workstep. In that case, a mechanism known as an oracle is needed to account for potential discrepancies. The entities themselves which report external non-authoritative, non-deterministic into a BPI worksteps may also be referred to as oracles.
 
