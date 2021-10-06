@@ -1938,7 +1938,7 @@ Non-interactive in this context means that there is no interaction between the p
 
 **[R228]** A zero-knowledge proof of correctness of an input MUST be verifiable by any 3rd party in a time at most proportional to the size of the prover system that generated the proof.
 
-The time requirement means that any 3rd party verifier must be able to verify the proof representing a prover system of O(10) in time of O(10) e.g. a Merkle-proof of a Merkle-trie branch of 10 tuples can be verified in 10 computational steps. It also means that the zero-knowledge proof of correctness of input does not have to be succinct. Succinct means that the proofs are short (smaller than the size of the prover circuit) and that the verification is fast.
+The time requirement means that any 3rd party verifier must be able to verify the proof representing a prover system of size n in time O(n), e.g., a Merkle-proof of a Merkle-trie branch of 10 tuples can be verified in 10 computational steps. It also means that the zero-knowledge proof of correctness of input does not have to be succinct. Succinct means that the proofs are short (smaller than the size of the prover circuit) and that the verification is fast.
 
 **[D26]** The zero-knowledge proof of correctness of an input SHOULD be succinct.
 
