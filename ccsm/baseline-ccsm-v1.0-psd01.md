@@ -32,7 +32,7 @@ URI list end (commented out except during publication by OASIS TC Admin) -->
 John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
 #### Editors:
-Andreas Freund (a.freundhaskel@gmail.com) \
+Dr. Andreas Freund (a.freundhaskel@gmail.com) \
 Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/)  \
 Kyle Thomas (kyle@provide.services), [Provide ](https://provide.services/)
 
@@ -55,14 +55,14 @@ This specification replaces or supersedes:
 
 This specification is related to: \
 **[baseline-core-v1.0]**
-_Baseline Core Specification Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.  \
+_Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.  \
 **[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html .
+_Baseline API and Data Model Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html .
 
 
 
 #### Abstract:
-The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements for a Distributed Ledger Technology (CCSM) network that when utilized ensures that two or more systems of record can synchronize their system state over said CCSM securely and privately.
+The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements for a Consensus Controlled State Machine (CCSM) network that when utilized ensures that two or more systems of record can synchronize their system state over said CCSM securely and privately.
 
 #### Status:
 This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline TC team.
@@ -120,7 +120,7 @@ For complete copyright information please see the Notices section in the Appendi
 
 # 1 Introduction
 
-Distributed Ledger Technology (CCSM) is the foundational enabler of a Baseline Protocol Instance (BPI) with no or limited trust assumptions. The requirements that a CCSM must satisfy for it to be used in a BPI as defined in the Baseline Protocol Standard fall in the following categories:
+A Consensus Controlled State Machine (CCSM) is the foundational enabler of a Baseline Protocol Implementation (BPI) with no or limited trust assumptions. The requirements that a CCSM must satisfy for it to be used in a BPI as defined in the Baseline Protocol Standard fall in the following categories:
 1. Security
 2. Privacy
 3. Scalability
@@ -221,7 +221,7 @@ Note, economic security assurances such as used in Proof-of-Stake consensus algo
 
 **[D1]**	The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE).
 
-Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing with the TEE, along with confidentiality of their assets.
+Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing within the TEE, along with confidentiality of their assets.
 
 **[R5]**	The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033.
 
@@ -229,7 +229,7 @@ Network attacks typically take the form of Distributed Denial of Service (DDOS) 
 
 **[R6]**	The CCSM utilized in a BPI MUST support a secure consensus algorithm as explained in section [8 Virtual State Machine](#8-virtual-state-machine).
 
-Note that secure in this context refers to the security of a consensus algorithm against attacks against its three main characteristics – consistency, availability, and fault tolerance. Therefore, a consensus algorithm is considered secure for a given set of operating assumptions:
+Note that secure in this context refers to the security of a consensus algorithm against attacks directed towards its three main characteristics – consistency, availability, and fault tolerance. Therefore, a consensus algorithm is considered secure for a given set of operating assumptions:
 * if all nodes produce the same valid output, according to the protocol rules, for the same message broadcast to the network (consistency/safety),
 * if all non-faulty participating nodes produce an output indicating the termination, and subsequent restart, of the protocol upon reaching consensus (availability/liveness), and
 * if the network exhibits the capability to perform as intended if network nodes fail, either unintentionally or intentionally (fault tolerance).
@@ -249,16 +249,16 @@ CCSMs range in the level of privacy they support. One approach ensures that the 
 
 **[D2]**	The CCSM utilized in a BPI SHOULD support a privacy-preserving P2P message protocol.
 
-Privacy-preserving means in this context that at least the content of a message, and ideally, also the sender and recipient, is opaque to all participants of the P2P network except sender and recipient.
+Privacy-preserving in this context means that at least the content of a message, and ideally, also the sender and recipient, is opaque to all participants of the P2P network except sender and recipient.
 
 **[D3]**	The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verification (if not generation) at the protocol level.
 
 Zero-Knowledge Proofs (ZKPs) (see appendix [A.2 Non-Normative References](#a2-non-normative-references)) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
 
 # 4. Scalability
-To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce Block space. 
+To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce CCSM processing and storage resources. 
 
-Since forecasting future transaction volumes is difficult and could rapidly change based on adoption, the considered CCSMs should have some form of throughput future-proofing built in. Examples of such techniques include state channels, sidechains, rollup frameworks, state sharding, multiple execution frameworks and parallel process transaction support. This is not mandated in this standard and is considered a question of implementation to be addressed in an agreement by the users of a BPI.
+Since forecasting future transaction volumes is difficult and could rapidly change based on adoption, the considered CCSMs should have some form of throughput future-proofing built in. Examples of such techniques include state channels, sidechains, rollup frameworks, state sharding, multiple execution frameworks and parallel process transaction support. This is not mandated in this standard and is considered a question of implementation to be addressed in an agreement between BPI participants.
 
 # 5. Interoperability
 
@@ -266,11 +266,11 @@ Since forecasting future transaction volumes is difficult and could rapidly chan
 
 This requirement means that a CCSM has a mechanism to securely connect its state through for example a smart contract with a data source which has certain security assurances in such a way that a) the security of the data source is not compromised by the CCSM and b) the security assurances of the CCSM are not compromised by the secure data source.
 
-**[D5]**	When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use the same CCSM Protocol, the CCSMs utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
+**[D5]**	When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use the same CCSM Protocol, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
-An example of such techniques is a two-phase lock relay bridge. Two-phase locking (2PL) is a concurrency control method that guarantees serializability. The protocol utilizes locks, applied by a CCSM transaction to data/assets, which may block other CCSM transactions from accessing the same data/assets during the transaction's life. This protocol requires support for CCSM transaction receipts signaling CCSM transaction lifecycle completeness. This approach requires a relay server (network) between the two CCSMs which interacts with the locking/unlocking smart contracts on each of the CCSMs. Since both CCSMs operate the same CCSM protocol the relay server can be a node on both networks which does not introduce further security assumptions.
+An example of such techniques is a two-phase lock relay bridge. Two-phase locking (2PL) is a concurrency control method that guarantees serializability. The protocol utilizes locks, applied by a CCSM transaction to data/assets, which may block other CCSM transactions from accessing the same data/assets during the lifecycle of a transaction impacting said data/asset(s). This protocol requires support for CCSM transaction receipts signaling CCSM transaction lifecycle completeness. This approach requires a relay server (network) between the two CCSMs which interacts with the locking/unlocking smart contracts on each of the CCSMs. Since both CCSMs operate the same CCSM protocol the relay server can be a node on both networks which does not introduce further security assumptions.
 
-**[D6]**	When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use different CCSM Protocols, the CCSMs utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
+**[D6]**	When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use different CCSM Protocols, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
 An example of such techniques are Atomic Swap protocols. An atomic swap is a CCSM smart contract technology that enables the exchange of one CCSM asset for another without using centralized intermediaries, such as exchanges.
 
@@ -285,20 +285,20 @@ The network requirements on the consensus algorithms are even more stringent tha
 
 **[R12]** The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT).
 
-See [A.2 Non-Normative References](#a2-non-normative-references) for reference paper.
+See [A.2 Non-Normative References](#a2-non-normative-references) for a reference paper.
 
 **[R13]** The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
 
 Weak synchrony in this context means, 
-1. 	that all messages will eventually reach their intended recipients and 
+1. that all messages will eventually reach their intended recipients and 
 2. that after a certain, yet unknown time, the network will become synchronous again.
 
 # 7. Consensus
 The consensus algorithm is the most important component of a CCSM as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
 
-**[R14]**	The CCSM utilized in a BPI MUST be able to support more than one BFT consensus algorithm, also known as plugable consensus.
+**[R14]**	The CCSM utilized in a BPI MUST be able to support more than one BFT consensus algorithm.
 
-Note, that deterministic BFT consensus algorithms lead to strong consistency, and, thus, immediate finality. Probabilistic BFT consensus algorithms lead to eventual consistency, and, thus, eventual finality.
+This is also known as plugable consensus. Note, that deterministic BFT consensus algorithms lead to strong consistency, and, thus, immediate finality. Probabilistic BFT consensus algorithms lead to eventual consistency, and, thus, eventual finality.
 
 **[R15]**	Consensus algorithms employed in the CCSM utilized in a BPI MUST have a mathematical proof of security.
 
@@ -319,9 +319,9 @@ All CCSM nodes need to arrive at the same result based on the same input and exe
 
 For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet confirmed by CCSM consensus. This means that if the transaction of the Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending which transaction is executed first.
 
-**[R17]**	The Execution Framework of the CCSM utilized in a BPI MUST ensure that state transition computations are either completed or abort in finite time, where what is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction.
+**[R17]**	The Execution Framework of the CCSM utilized in a BPI MUST ensure that state transition computations are either completed or abort in finite time.
 
-This requirement means that there cannot be infinite computational loops in a distributed computational system with consensus, as this would not allow the CCSM network to reach consensus anymore and bring the CCSM network itself to a halt. Note also, that when a CCSM node is offline, the virtual state machine’s Execution Framework does not perform computations; when a CCSM node comes back online, and synchronizes with the state of the CCSM network, it only validates the last available state - either a global state or specific to that node. 
+What is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction. This requirement means that there cannot be infinite computational loops in a distributed computational system with consensus, as this would not allow the CCSM network to reach consensus anymore and bring the CCSM network itself to a halt. Note also, that when a CCSM node is offline, the virtual state machine’s Execution Framework does not perform computations; when a CCSM node comes back online, and synchronizes with the state of the CCSM network, it only validates the last available state - either a global state or specific to that node. 
 
 **[R18]**	The Execution Framework of the CCSM utilized in a BPI MUST support widely used cryptographic operations natively, e.g., hashing, digital signatures, or zero-knowledge proof verification.
 
@@ -366,7 +366,6 @@ For further information, refer to [HSM] in appendix [A.2 Non-Normative Reference
 
 # 11 Conformance
 
-
 This section describes the conformance clauses and tests required to achieve an implementation that is provably conformant with the requirements in this document.
 
 ## 11.1 Conformance Targets
@@ -386,8 +385,6 @@ This document defines the conformance levels of a CCSM as follows:
 * **Level 4:** All MUST requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
 * **Level 5:** All MUST and SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
 * **Level 6:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
-
-
 
 -------
 
@@ -427,7 +424,7 @@ The following individuals have participated in the creation of this specificatio
 
 **Participants**:
 
-Andreas Freund \
+Dr. Andreas Freund \
 Anais Ofranc, Consianimis \
 Gage Mondok, Chainlink \
 Kyle Thomas, Provide \
