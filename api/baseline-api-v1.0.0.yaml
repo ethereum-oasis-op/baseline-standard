@@ -93,7 +93,7 @@ paths:
           $ref: '#/components/responses/ServiceUnavailable'
       servers:
         - url: http://localhost:8080
-      summary: Create BPIAccount
+      summary: Create BPI account
       tags:
         - Baseline
   /bpi_accounts/{id}:
@@ -135,7 +135,7 @@ paths:
       summary: Get BPI account details
       tags:
         - Baseline
-  /protocol_message:
+  /protocol_messages:
     post:
       summary: Create a Baseline protocol message
       description: Creates a Baseline protocol message per the parameters provided in the request body; _normative_
@@ -206,10 +206,10 @@ paths:
                       properties:
                         controller:
                           type: string
-                          description: Id of DID controller
+                          description: ID of DID controller
                         id:
                           type: string
-                          description: Id of DID
+                          description: ID of DID
                         publicKeyJWK:
                           type: object
                           description: Public key for JWK
@@ -245,7 +245,7 @@ paths:
                 id: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
                 verificationMethod:
                   - controller: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
-                    id: 'did:prvd:aasdfasdfasdf#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                    id: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
                     publicKeyJwk:
                       kid: 'a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
                       'n': >-
@@ -1239,7 +1239,7 @@ paths:
     get:
       deprecated: false
       description: Returns a list of keys in a specific `Vault`; _non-normative_
-      operationId: listkeys
+      operationId: listKeys
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
