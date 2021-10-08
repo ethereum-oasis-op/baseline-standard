@@ -15,7 +15,7 @@ In addition to describing the current state of th Baseline protocol, the specs f
 
 ## Status
 
-The Baseline protocol specifications are currently work in progress.
+The Baseline protocol specifications are currently in draft status.
 
 ## Specifications
 
@@ -27,10 +27,11 @@ OASIS Specification 1 - The Baseline CORE Specifications document: The document 
 
 OASIS Specification 2 - The Baseline API & Data Model Specifications document: The document describes the Baseline programming interface and expected behaviors of all instances of this interface together with the required programming interface data model.
 
+[Link to latest working draft](https://github.com/ethereum-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md)
+
 OASIS Specification 3 - Permissionless CCSM Requirements document: The document describes required and assumed properties and qualities of a singleton state machine and its operating environment for such a CCSM to safely synchronize two or more enterprise systems of record.
 
 [Link to latest working draft](https://github.com/ethereum-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md)
-
 
 ## License
 
