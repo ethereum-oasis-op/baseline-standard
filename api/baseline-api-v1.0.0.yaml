@@ -135,7 +135,7 @@ paths:
       summary: Get BPI account details
       tags:
         - Baseline
-  /protocol_message:
+  /protocol_messages:
     post:
       summary: Create a Baseline protocol message
       description: Creates a Baseline protocol message per the parameters provided in the request body; _normative_
@@ -1239,7 +1239,7 @@ paths:
     get:
       deprecated: false
       description: Returns a list of keys in a specific `Vault`; _non-normative_
-      operationId: listkeys
+      operationId: listKeys
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/results-per-page'
