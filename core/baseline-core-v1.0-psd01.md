@@ -1300,6 +1300,15 @@ Furthermore, and for the simplicity of the example here, it is assumed that the 
 
 Because the state advancement in the state channel is strictly deterministic and dependent on the defined exit criteria, each workflow has now properly synchronized inputs for their next worksteps in their respective workflows.
 
+<div align="center">
+<figure>
+  <img
+  src="./images/BPI-integration-5.5.drawio.png"
+  >
+  <figcaption>Figure 8: Illustrative example of BPI Interoperability Workflow.</figcaption>
+</figure>
+</div>
+
 ### 5.5.1 Resolvable Identifiers for BPI Interoperability Services
 
 Resolvable identifiers utilized within a BPI are of equivalent importance for interactions between BPIs. 
@@ -1852,14 +1861,14 @@ The detailed API specification of the Mono-directional and Bi-/Multi-directional
 
 Agreement execution within the context of this document is the deterministic state transition from state A to state B of a state object in a BPI, and where the state object represents a valid agreement state between agreement counterparties. A valid agreement state represents a data set that has been obtained from the correct application by a BPI of the agreement rules and data to a set of input data, the output of which has been agreed upon by the counterparties to the agreement. Agreement execution occurs in the processing layer of the BPI Processing Layer as defined in section [2 Design and Architecture](#2-design-and-architecture).
 
-Note that a deterministic state transition in the context of this document is facilitated by the combination of one or more worksteps grouped within a workflow. Also, note that a workflow is the execution of a series of causally connected and deterministic BPI Worksteps where the agreement counterparties are grouped into one or more BPI Workgroups that are attached to the worksteps of the workflow. A BPI Workstep, a BPI Workflow, and a BPI Workgroup will be referred to as workstep, workflow and workgroup subsequently. See Figure 8 below for a conceptual view of the relationship between workflow, workgroups, and worksteps, and BPI processing.
+Note that a deterministic state transition in the context of this document is facilitated by the combination of one or more worksteps grouped within a workflow. Also, note that a workflow is the execution of a series of causally connected and deterministic BPI Worksteps where the agreement counterparties are grouped into one or more BPI Workgroups that are attached to the worksteps of the workflow. A BPI Workstep, a BPI Workflow, and a BPI Workgroup will be referred to as workstep, workflow and workgroup subsequently. See Figure 9 below for a conceptual view of the relationship between workflow, workgroups, and worksteps, and BPI processing.
 
 <div align="center">
 <figure>
   <img
   src="./images/Baseline-Fig-6.1-Workflow-Agreement-Execution.png"
   >
-  <figcaption>Figure 8: Conceptual View of Workflow, Workstep and Workgroup</figcaption>
+  <figcaption>Figure 9: Conceptual View of Workflow, Workstep and Workgroup</figcaption>
 </figure>
 </div>
 
@@ -2159,7 +2168,7 @@ The figure below showcases at a high level the flow of a transaction through a B
   <img
   src="./images/Baseline-Fig-6.2-High-Level Baseline-Transaction-Lifecycle.png"
   >
-  <figcaption>Figure 9: High Level Transaction Lifecycle Flow through the BPI</figcaption>
+  <figcaption>Figure 10: High Level Transaction Lifecycle Flow through the BPI</figcaption>
 </figure>
 </div>
 
