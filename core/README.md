@@ -7,7 +7,7 @@
 
 ## The Baseline CORE Specification
 
-The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Distributed Ledger Technology (CCSM) network.
+The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Consensus Controlled State Machine (CCSM) network.
 
 ## Status
 
