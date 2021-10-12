@@ -21,7 +21,7 @@ The Baseline protocol specifications are currently in draft status.
 
 There are currently three specifications in development:
 
-OASIS Specification 1 - The Baseline CORE Specifications document: The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Distributed Ledger Technology (CCSM) network.
+OASIS Specification 1 - The Baseline CORE Specifications document: The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Consensus Controlled State Machine (CCSM) network.
 
 [Link to latest working draft](https://github.com/ethereum-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md)
 
