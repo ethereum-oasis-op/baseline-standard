@@ -15,7 +15,7 @@ In addition to describing the current state of the Baseline protocol, the specs 
 
 ## Status
 
-The Baseline protocol specifications are currently in draft status.
+The Baseline protocol specifications are currently in draft status. The Baseline Specification 1.0 has been ratified by the Baseline Protocol Technical Steering Committee on the 30th of September 2021 via a unianimous vote on a recorded meeting. The standard has not been submitted to OASIS for review and ratification.
 
 ## Specifications
 
