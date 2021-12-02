@@ -405,7 +405,8 @@ The key concepts, definitions, and associated requirements underpinning a Baseli
 
 An agreement is a manifestation of mutual assent by two or more parties to one another see [Cornell Law School](https://www.law.cornell.edu/wex/agreement). An Agreement between two or more Counterparties allows for transactions between them dealing with, for example, commercial items such as products. An Agreement, therefore, governs and defines all transactions between counterparties.
 
-**[R1]**	Transacting counterparties  MUST have a corresponding agreement.
+#### [R1]
+Transacting counterparties  MUST have a corresponding agreement.
 
 ## 2.2 State Object
 
@@ -437,6 +438,8 @@ Such legal, commercial documents may be presented as a combination of one or mor
 * an Order.
 
 **[R2]**	The parties to a Commercial Agreement MUST sign commercially and legally binding documents with each other.
+
+[R1](####[R1])
 
 ### 2.4.1 Contract
 
