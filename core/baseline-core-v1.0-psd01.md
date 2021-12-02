@@ -2159,7 +2159,7 @@ Note that a Workflow (Instance) ID may be the same as a Workstep (Instance) ID, 
 **[R261]** A transaction MUST contain the cryptographic digital signature of one or more of the owner(s) of the Sender account compliant with the account's authorization condition.
 
 **[R262]** A transaction MUST be considered invalid if one of the following conditions is met:
-* The transaction nonce is not equal to the account nonce plus 1.
+* The transaction nonce is not equal to the next deterministic value of the account nonce.
 * The cryptographic signature of the account owner(s) on the transaction cannot be verified
 * The account authorization condition for the Sender account is not met.
 * The transaction does not have an existing Workflow (Instance) ID, Workstep (Instance) ID
