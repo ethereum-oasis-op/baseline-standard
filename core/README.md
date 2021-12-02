@@ -7,7 +7,7 @@
 
 ## The Baseline CORE Specification
 
-The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Consensus Controlled State Machine (CCSM) network.
+The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a public Consensus Controlled State Machine (CCSM) network.
 
 ## Status
 
@@ -21,28 +21,32 @@ The Baseline CORE specification is currently work in progress.
     <th>Component Description</th>
   </tr>
   <tr>
-    <td>Baseline API</td>
-    <td>Reference Baseline API Spec</td>
+    <td>Design and Architecture</td>
+    <td>Definitions, key concepts, and overviews of the components of a compliant Baseline Protocol Implementation.</td>
   </tr>
   <tr>
-    <td>Communication</td>
-    <td>Describes communication between systems of record and systems of record and public common frame of reference through message queues.</td>
+    <td>Identifiers, Identity and Credential Management</td>
+    <td>Definitions, key concepts, and overviews of identifiers, identities, and credentials necessary in a compliant Baseline Protocol Implementation.</td>
   </tr>
   <tr>
-    <td>Privacy & Confidentiality</td>
-    <td>Describes mechanisms to ensure counterparties confidentiality and shielded private transactions.</td>
+    <td>BPI Abstraction Layers</td>
+    <td>Definitions, concepts, scope, and security considerations for BPI Abstraction Layers.</td>
   </tr>
   <tr>
-    <td>Agreement Execution</td>
-    <td>Describes the functionalities, events and terms required for baselining.</td>
+    <td>Middleware, Communication, and Interoperability</td>
+    <td>Definitions, key concepts, and overviews of BPI Subject Capabilities and Accounts, service orchestration, communication, BPI Interoperability with its APIs, and Transport Security.</td>
   </tr>
   <tr>
-    <td>Governance</td>
-    <td>Describes the required functionalities to implement governance processes at every functional layer of the Baseline specification such as software change control.</td>
+    <td> Agreement Execution</td>
+    <td>Definitions, key concepts, and overviews of the BPI Processing Layer components necessary in a compliant Baseline Protocol Implementation.</td>
   </tr>
   <tr>
-    <td>Securitiy Considerations</td>
-    <td>Describes security topics that should be important in Baseline implementations but that are NOT requirements. </td>
+    <td>General BPI Storage Capabilities</td>
+    <td>Definitions, key concepts, and overviews of BPI Storage components applicable to all BPI layers and necessary in a compliant Baseline Protocol Implementation. </td>
+   </tr>
+  <tr>
+    <td>BPI External Data Inputs</td>
+    <td>Definitions, key concepts, and overviews of BPI External Data Input components necessary in a compliant Baseline Protocol Implementation. </td>
    </tr>
   <tr>
     <td>Conformance</td>
