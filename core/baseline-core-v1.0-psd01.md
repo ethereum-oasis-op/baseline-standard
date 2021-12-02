@@ -405,7 +405,7 @@ The key concepts, definitions, and associated requirements underpinning a Baseli
 
 An agreement is a manifestation of mutual assent by two or more parties to one another see [Cornell Law School](https://www.law.cornell.edu/wex/agreement). An Agreement between two or more Counterparties allows for transactions between them dealing with, for example, commercial items such as products. An Agreement, therefore, governs and defines all transactions between counterparties.
 
-#### [R1]
+#### **[R1]**
 Transacting counterparties  MUST have a corresponding agreement.
 
 ## 2.2 State Object
@@ -437,9 +437,8 @@ Such legal, commercial documents may be presented as a combination of one or mor
 * Specific Terms and Conditions and 
 * an Order.
 
-**[R2]**	The parties to a Commercial Agreement MUST sign commercially and legally binding documents with each other.
-
-[R1](####[R1])
+#### **[R2]**	
+The parties to a Commercial Agreement MUST sign commercially and legally binding documents with each other.
 
 ### 2.4.1 Contract
 
@@ -447,25 +446,31 @@ This section details the prerequisites required to be fulfilled by a legal contr
 
 A contract will typically govern all commercial transactions between its parties and includes, but is not limited to, sections defining the Governing Law, the Legal Jurisdiction, Indemnity, Liability, Force Majeure, Charges and Taxes, Term, Obligations, definitions of commercially relevant elements such as locations, equipment, and products, as well as any other terms and conditions that apply to the entire scope of commercial and legal relations between the parties. Other legal documents, such as an order, typically reference the contract for its general terms and conditions and might contain more specific terms and conditions, such as rates and discounts and other commercial information, relevant for the specific context of the legal document. These specific terms and conditions can expand or override the original contract and are intentionally not specified in the original contract. The contract is the legal document from which specific commercial documents, such as a Quote or an Order, are derived.
 
-**[R3]**	There MUST be a legally binding contract, however simple and temporary, before a commercial transaction — such as an order — between parties takes place. 
+#### **[R3]**	
+There MUST be a legally binding contract, however simple and temporary, before a commercial transaction — such as an order — between parties takes place. 
 
 For example, the contract and the order can be combined into a single document for a single transaction. However, there must be a legal framework in place to provide context for monies that are exchanged and settled. The functional part of the contract forms the basis of a Baseline Protocol Implementation (BPI) defined in section [2.6 Baseline Protocol Instance](#26-baseline-protocol-instance). The requirements below are to be understood solely within the context of this document. They are not meant to be generalized beyond this context.
 
-**[D1]**   The contract SHOULD be in an electronic form.
+#### **[D1]**  
+The contract SHOULD be in an electronic form.
 
-**[D2]**   The functional terms of the contract SHOULD be represented on a BPI between the counterparties.
+#### **[D2]**   
+The functional terms of the contract SHOULD be represented on a BPI between the counterparties.
 
-**[D3]**	 The contract SHOULD be an MSA between the contract parties. 
+#### **[D3]**	 
+The contract SHOULD be an MSA between the contract parties. 
 
 An MSA is preferable since it allows a proliferation of contract-based BPI (commercial) workflows and worksteps between the parties reducing complexity and potential errors.
 
-**[CR1]< [D3]** 	There MUST be only one MSA between contract parties covering commercial transactions for a given set of products, services, or assets.
+#### **[CR1]<[D3]** 	
+There MUST be only one MSA between contract parties covering commercial transactions for a given set of products, services, or assets.
 
 This requirement is intended to disambiguate which terms cover which part of a commercial relationship between parties.
 
 Specific Terms and Conditions (“Specific T&Cs”) defines the terms and conditions governing a specific product, service, or asset or set thereof offered and delivered by Provider(s) to Requester(s).
 
-**[D4]**	Each specific product, service, or asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its Specific T&C document.
+#### **[D4]**	
+Each specific product, service, or asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its Specific T&C document.
 
 This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.
 
@@ -473,23 +478,31 @@ This would allow the fine-graining and consistent application of commercial Stat
 
 Commercial Documents, a category of commercial State Objects, refer to the state of a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments based on a legally binding contract.
 
-**[R4]**	A commercial State Object to be transacted on MUST be based on a specific commercial document.
+#### **[R4]**	
+A commercial State Object to be transacted on MUST be based on a specific commercial document.
 
-**[R5]**  A commercial document MUST be derived from a legally binding contract.
+#### **[R5]**  
+A commercial document MUST be derived from a legally binding contract.
 
-**[R6]**	A commercial document MUST be represented as an electronic record.
+#### **[R6]**	
+A commercial document MUST be represented as an electronic record.
 
-**[R7]**  A commercial document MUST be represented on a BPI between the counterparties.
+#### **[R7]**  
+A commercial document MUST be represented on a BPI between the counterparties.
 
-**[R8]**	A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
+#### **[R8]**	
+A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
 
-**[D5]**	The definition of a commercial document authorization SHOULD be stated in the legal contract underlying the commercial document.
+#### **[D5]**	
+The definition of a commercial document authorization SHOULD be stated in the legal contract underlying the commercial document.
 
 Authorizations for commercial transactions are a foundational element in the context of this document, as they are in paper based agreements. Therefore, any legal authorization agreements relevant to the commercial agreement between commercial counterparties, and thus to commercial transactions between them, are important to be represented in a BPI to ensure mitigating the risk of unauthorized signatures.
 
-**[D6]**	The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
+#### **[D6]**	
+The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
 
-**[R9]**	A commercial document MUST be non-repudiable.
+#### **[R9]**	
+A commercial document MUST be non-repudiable.
 
 Note that while non-repudiation in the physical world is most often tied to a physical signature of a legal entity on a legal document, in the digital world a digital signature over a digital legal document such as an Order or an Invoice belonging to a known and verifiable digital identity of a counterparty serves the same purpose.
 
@@ -525,31 +538,40 @@ Since security and privacy requirements of a BPI are key, and are strongly depen
 	
 Hence, this document enumerates the following requirements below:
 
-**[R11]**	A BPI MUST have the same security assurances as to the CCSM it utilizes.
+#### **[R11]**	
+A BPI MUST have the same security assurances as to the CCSM it utilizes.
 
-**[R12]**	A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
+#### **[R12]**	
+A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
-For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program (CMVP).
+For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [[CMVP]](#CMVP).
 
-**[R13]**	If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
+#### **[R13]**	
+If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
-**[R14]**	A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips) or [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html). See appendix [A.2 Non-Normative References](#a2-non-normative-references).
+#### **[R14]**	
+A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001).
 
-**[R15]**	(Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
+#### **[R15]**	
+(Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
 Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a (commercial) State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.
 
-**[D7]**	A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
+#### **[D7]**	
+A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
 
 Liveness means that if a CCSM does not require (commercial) counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.
 
-**[R16]**	A BPI MUST be censorship-resistant.
+#### **[R16]**	
+A BPI MUST be censorship-resistant.
 
 Censorship-resistant means that a (commercial) counterparty can terminate a (commercial) transaction at any time without another counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the (commercial) transaction.
 
-**[R17]**	A BPI MUST be able to provide privacy of the (commercial) counterparties' data concerning any party outside of the BPI.
+#### **[R17]**	
+A BPI MUST be able to provide privacy of the (commercial) counterparties' data concerning any party outside of the BPI.
 
-**[R18]** A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](https://www.rfc-editor.org/info/rfc3339). See appendix [A.1 Normative References](#a1-normative-references).
+#### **[R18]** 
+A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#ISOIEC27033).
 
 ## 2.7 High-Level Functional Requirements
 
@@ -561,25 +583,30 @@ This section describes the prerequisites and high-level general operational fram
 
 This section states the commercial and operational functionalities required from commercial counterparties.
 
-**[R19]**	Commercial Counterparties MUST have the ability to meet all required legal, compliance, and business reporting requirements. 
+#### **[R19]**	
+Commercial Counterparties MUST have the ability to meet all required legal, compliance, and business reporting requirements. 
 
 This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.
 
-**[R20]**	Commercial Counterparties MUST support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
+#### **[R20]**	
+Commercial Counterparties MUST support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
 
-**[R21]**	Commercial Counterparties MUST use the BPI APIs to transact on a commercial State Object -- see the [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml).
+#### **[R21]**	
+Commercial Counterparties MUST use the BPI APIs to transact on a commercial State Object -- see the [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml).
 
 An ability of a Requester to request products, services, or assets, in other words, commercial State Objects, through an instance of the Baseline Protocol's APIs do not necessarily imply the ability to provide products, services, and assets through an instance of the Baseline Protocol APIs and vice versa.
 
 Commercial counterparties need to know the level of conformity other commercial counterparties have with the Baseline Protocol Standard.
 
-**[R22]**	Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
+#### **[R22]**	
+Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
 
 ### 2.7.2 CCSM Lifecycle Processes
 
 Commercial Counterparties must comply efficiently and effectively with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard.
 
-**[R23]**	If required to meet particular third party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
+#### **[R23]**	
+If required to meet particular third party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
 
 Note, that in principle every product, service, or asset, or sets thereof has a supply chain. This requirement aims at situations where the product, service, or asset or sets thereof cannot be solely supplied by the Provider without sourcing components from other Providers.
 
@@ -617,17 +644,23 @@ The figure below visually demonstrates high-level Buyer and Seller Order generat
 
 Without a BPI, both Buyer and Seller must assume that the MSA between them and all its values are correctly represented in the other party’s respective Systems-of-Record. If an order is created based upon the MSA but does not comply with the MSA, it will likely result in extensive manual interactions between Seller and Buyer at one stage or another to resolve the problem to their mutual satisfaction.  
 
-**[R24]**	The (commercial) counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
+#### **[R24]**	
+The (commercial) counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
 
-**[R25]** 	The (commercial) counterparties MUST validate the correctness of a (commercial) State Object based on a (commercial) state change against the transaction business logic in the applicable BPI workflow and workstep.
+#### **[R25]** 	
+The (commercial) counterparties MUST validate the correctness of a (commercial) State Object based on a (commercial) state change against the transaction business logic in the applicable BPI workflow and workstep.
 
-**[R26]** 	The (commercial) counterparties MUST generate a Proof of Correctness of a (commercial) State Object based on a (commercial) state change that can be validated against the BPI transaction business logic.
+#### **[R26]** 	
+The (commercial) counterparties MUST generate a Proof of Correctness of a (commercial) State Object based on a (commercial) state change that can be validated against the BPI transaction business logic.
 
-**[R27]** 	Any new (commercial) state between counterparties MUST be recorded on the BPI between them.
+#### **[R27]** 	
+Any new (commercial) state between counterparties MUST be recorded on the BPI between them.
 
-**[R28]** 	Any counterparty having received a Proof of Correctness of a (commercial) state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
+#### **[R28]** 	
+Any counterparty having received a Proof of Correctness of a (commercial) state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
 
-**[R29]** 	A (commercial) counterparty MUST include a Proof of Correctness of the (commercial) State Object generated by the (commercial) state change in the BPI Messages between the transacting counterparties.
+#### **[R29]** 	
+A (commercial) counterparty MUST include a Proof of Correctness of the (commercial) State Object generated by the (commercial) state change in the BPI Messages between the transacting counterparties.
 
 ### 2.8.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer
 
@@ -644,11 +677,14 @@ To maintain modularity in the reference architecture, this document introduces t
 
 The Client CCSM API as an external BPI API is implementation-specific and will not be discussed further.
 
-**[R30]**	CCSMs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of legal contracts.
+#### **[R30]**	
+CCSMs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of legal contracts.
 
-**[D8]**	A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM instance.
+#### **[D8]**	
+A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM instance.
 
-**[D9]** A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM type.
+#### **[D9]** 
+A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM type.
 
 This approach avoids lengthy discussions about which CCSM protocol to utilize for a BPI, simplifying the decision-making process considerably if most common CCSMs are incorporated.
 
@@ -656,11 +692,13 @@ Note that irrespective of whether one is in a public or private CCSM scenario, t
 
 The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.
 
-**[R31]**	The (commercial) counterparties MUST agree on the BPI.
+#### **[R31]**	
+The (commercial) counterparties MUST agree on the BPI.
 
 ### 2.8.3 External Applications
 
-**[R32]**	Application/s providing (commercial) transaction functionality such as billing to (commercial) counterparties, and are, therefore, external concerning the BPI, MUST be independent of any BPI.
+#### **[R32]**	
+Application/s providing (commercial) transaction functionality such as billing to (commercial) counterparties, and are, therefore, external concerning the BPI, MUST be independent of any BPI.
 
 Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
 
@@ -2535,52 +2573,129 @@ While any hyperlinks included in this appendix were valid at the time of publica
 
 The following documents are referenced in such a way that some or all of their content constitute requirements of this document.
 
-[RFC2119]: S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997 \
+#### **[RFC2119]**
+ S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997.
 
-**[NIST-SP-800-32]** NIST SP 800-32, 2001, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf \
-**[W3C-DID]** Decentralized Identifiers (DIDs) v1.0, M. Sporny, D. Longley, M. Sabadello, D. Reed, O. Steele, C. Allen, W3C Proposed Recommendation, August 2021, https://www.w3.org/TR/2021/PR-did-core-20210803/. Latest version available at https://www.w3.org/TR/did-core/ \
-**[W3C-VC]** Verifiable Credentials Data Model 1.0, Manu Sporny, Dave Longley, David Chadwick , W3C Recommendation, November 2019, https://www.w3.org/TR/2019/REC-vc-data-model-20191119/. Latest version available at https://www.w3.org/TR/vc-data-model/ \
-**[ISO-IEC-27033]** ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO \
-**[RFC3339]** Klyne, G. and C. Newman, "Date and Time on the Internet: Timestamps", RFC 3339, DOI 10.17487/RFC3339, July 2002, <https://www.rfc-editor.org/info/rfc3339> \
-**[RFC5246]** Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, DOI 10.17487/RFC5246, August 2008, <https://www.rfc-editor.org/info/rfc5246> \
-**[RFC8446]** Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <https://www.rfc-editor.org/info/rfc8446>\
-**[RFC2818]** Rescorla, E., "HTTP Over TLS", RFC 2818, DOI 10.17487/RFC2818, May 2000, <https://www.rfc-editor.org/info/rfc2818> \
-**[RFC7516]** Jones, M. and J. Hildebrand, "JSON Web Encryption (JWE)", RFC 7516, DOI 10.17487/RFC7516, May 2015, <https://www.rfc-editor.org/info/rfc7516> \
-**[RFC7515]** Jones, M., Bradley, J., and N. Sakimura, "JSON Web Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May 2015, <https://www.rfc-editor.org/info/rfc7515> \
-**[RFC8446]** Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <https://www.rfc-editor.org/info/rfc8446> \
-**[RFC7159]** Bray, T., Ed., "The JavaScript Object Notation (JSON) Data Interchange Format", RFC 7159, DOI 10.17487/RFC7159, March 2014, <https://www.rfc-editor.org/info/rfc7159> \
-**[JSONLD]** JSON-LD 1.1, M. Sporny, D. Longley, G. Kellogg, M. Lanthaler, Pierre-Antoine Champin, N. Lindström, W3C Recommendation, July 2020 , https://www.w3.org/TR/2020/REC-json-ld11-20200716/. Latest version available at https://www.w3.org/TR/json-ld11/ 
+#### **[NIST-SP-800-32]** 
+NIST SP 800-32, 2001, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf.
+
+#### **[W3C-DID]** 
+Decentralized Identifiers (DIDs) v1.0, M. Sporny, D. Longley, M. Sabadello, D. Reed, O. Steele, C. Allen, W3C Proposed Recommendation, August 2021, https://www.w3.org/TR/2021/PR-did-core-20210803/. Latest version available at https://www.w3.org/TR/did-core/.
+
+#### **[W3C-VC]** 
+Verifiable Credentials Data Model 1.0, Manu Sporny, Dave Longley, David Chadwick , W3C Recommendation, November 2019, https://www.w3.org/TR/2019/REC-vc-data-model-20191119/. Latest version available at https://www.w3.org/TR/vc-data-model/.
+
+#### **[ISO-IEC-27033]** 
+ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO.
+
+#### **[RFC3339]** 
+Klyne, G. and C. Newman, "Date and Time on the Internet: Timestamps", RFC 3339, DOI 10.17487/RFC3339, July 2002, <https://www.rfc-editor.org/info/rfc3339>.
+
+#### **[RFC5246]** 
+Dierks, T. and E. Rescorla, "The Transport Layer Security (TLS) Protocol Version 1.2", RFC 5246, DOI 10.17487/RFC5246, August 2008, <https://www.rfc-editor.org/info/rfc5246>.
+
+#### **[RFC8446]** 
+Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <https://www.rfc-editor.org/info/rfc8446>.
+
+#### **[RFC2818]** 
+Rescorla, E., "HTTP Over TLS", RFC 2818, DOI 10.17487/RFC2818, May 2000, <https://www.rfc-editor.org/info/rfc2818>.
+
+#### **[RFC7516]** 
+Jones, M. and J. Hildebrand, "JSON Web Encryption (JWE)", RFC 7516, DOI 10.17487/RFC7516, May 2015, <https://www.rfc-editor.org/info/rfc7516>.
+
+#### **[RFC7515]** 
+Jones, M., Bradley, J., and N. Sakimura, "JSON Web Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May 2015, <https://www.rfc-editor.org/info/rfc7515>.
+
+#### **[RFC8446]** 
+Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <https://www.rfc-editor.org/info/rfc8446>.
+
+#### **[RFC7159]** 
+Bray, T., Ed., "The JavaScript Object Notation (JSON) Data Interchange Format", RFC 7159, DOI 10.17487/RFC7159, March 2014, <https://www.rfc-editor.org/info/rfc7159>.
+
+#### **[JSONLD]** 
+JSON-LD 1.1, M. Sporny, D. Longley, G. Kellogg, M. Lanthaler, Pierre-Antoine Champin, N. Lindström, W3C Recommendation, July 2020 , https://www.w3.org/TR/2020/REC-json-ld11-20200716/. Latest version available at https://www.w3.org/TR/json-ld11/. 
 
 
 ## A.2 Non-Normative References
 
-**[CVMP]** NIST CVMP, https://csrc.nist.gov/projects/cryptographic-module-validation-program \
-**[FIPS]** FIPS, https://www.nist.gov/itl/current-fips \
-**[ISO27001]** ISO/IEC 27001:2013, https://www.iso.org/standard/54534.html \
-**[whois]** ICANN, Domain Name Registration, https://whois.icann.org/en/domain-name-registration-process \
-**[X509]** International Telecommunications Union, October 2019, https://www.itu.int/rec/T-REC-X.509-201910-I/en \
-**[CA]** NIST SP 800-56B Rev. 2, March 2019, https://doi.org/10.6028/NIST.SP.800-56Br2 \
-**[How-to-Explain-Zero-Knowledge-Protocols-to-Your-Children]** Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3. \
-**[The-Byzantine-Generals-Problem]** "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982 \
-**[OAuth-2.0]** Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518 \
-**[SAML]** J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os \
-**[OIDC]** OpenID Connect Federation 1.0, https://openid.net/developers/specs/ (2019)  \
-**[ActiveDirectory]** “Directory System Agent". MSDN Library. Microsoft. (2018).  \
-**[SSO]** Recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services). NIST SP 800-95, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-95.pdf  \
-**[HSM]** Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279. \
-**[libp2p]** libp2p, https://docs.ipfs.io/concepts/libp2p/  \
-**[CRDT]** Shapiro, Marc; Preguiça, Nuno; Baquero, Carlos; Zawirski, Marek (2011), "Conflict-Free Replicated Data Types", Lecture Notes in Computer Science, 6976, Grenoble, France: Springer Berlin Heidelberg, pp. 386–400, doi:10.1007/978-3-642-24550-3_29 \
-**[ITC]** Almeida P.S., Baquero C., Fonte V. (2008) Interval Tree Clocks. In: Baker T.P., Bui A., Tixeuil S. (eds) Principles of Distributed Systems. OPODIS 2008. Lecture Notes in Computer Science, vol 5401. Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-540-92221-6_18 \
-**[DHT]** Liz, Crowcroft; et al. (2005). "A survey and comparison of peer-to-peer overlay network schemes" (PDF). IEEE Communications Surveys & Tutorials. 7 (2): 72–93. doi:10.1109/COMST.2005.1610546  \
-**[FPDS]** Driscoll JR, Sarnak N, Sleator DD, Tarjan RE (1986). "Making data structures persistent". Proceedings of the eighteenth annual ACM symposium on Theory of computing - STOC '86. Proceeding STOC '86. Proceedings of the Eighteenth Annual ACM Symposium on Theory of Computing. pp. 109–121. CiteSeerX 10.1.1.133.4630. doi:10.1145/12130.12142. ISBN 978-0-89791-193-1. \
-**[PPDS]** Conchon, Sylvain; Filliâtre, Jean-Christophe (2008), "Semi-persistent Data Structures", Programming Languages and Systems, Lecture Notes in Computer Science, 4960, Springer Berlin Heidelberg, pp. 322–336, doi:10.1007/978-3-540-78739-6_25, ISBN 9783540787389 . \
-**[DANE]** Barnes, Richard (October 6, 2011). "DANE: Taking TLS Authentication to the Next Level Using DNSSEC", IETF Journal \
-**[Shamir]** Shamir, Adi (1979), "How to share a secret", Communications of the ACM, 22 (11): 612–613, doi:10.1145/359168.359176, S2CID 16321225. \
-**[NATS]** NATS, version 2.2 (2021), https://docs.nats.io/nats-concepts/intro \
-**[amqp-core-complete-v1.0]** OASIS Advanced Message Queuing Protocol (AMQP) Version 1.0. 29 October 2012. OASIS Standard.
-http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf \
-**[DIDCOMM]** Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://identity.foundation/didcomm-messaging/spec/ \
-**[SIOP]** Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
+#### **[CVMP]** 
+NIST CVMP, https://csrc.nist.gov/projects/cryptographic-module-validation-program.
+
+#### **[FIPS]** 
+FIPS, https://www.nist.gov/itl/current-fips.
+
+#### **[ISO27001]** 
+ISO/IEC 27001:2013, https://www.iso.org/standard/54534.html.
+
+#### **[whois]** 
+ICANN, Domain Name Registration, https://whois.icann.org/en/domain-name-registration-process
+
+#### **[X509]** 
+International Telecommunications Union, October 2019, https://www.itu.int/rec/T-REC-X.509-201910-I/en.
+
+#### **[CA]** 
+NIST SP 800-56B Rev. 2, March 2019, https://doi.org/10.6028/NIST.SP.800-56Br2.
+
+#### **[How-to-Explain-Zero-Knowledge-Protocols-to-Your-Children]** 
+Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3.
+
+#### **[The-Byzantine-Generals-Problem]** 
+"The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982.
+
+#### **[OAuth-2.0]** 
+Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518.
+
+#### **[SAML]** 
+J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os.
+
+#### **[OIDC]** 
+OpenID Connect Federation 1.0, https://openid.net/developers/specs/ (2019).
+
+#### **[ActiveDirectory]** 
+“Directory System Agent". MSDN Library. Microsoft. (2018).
+
+#### **[SSO]** 
+Recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services). NIST SP 800-95, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-95.pdf.
+
+#### **[HSM]** 
+Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
+
+#### **[libp2p]** 
+libp2p, https://docs.ipfs.io/concepts/libp2p/
+
+#### **[CRDT]** 
+Shapiro, Marc; Preguiça, Nuno; Baquero, Carlos; Zawirski, Marek (2011), "Conflict-Free Replicated Data Types", Lecture Notes in Computer Science, 6976, Grenoble, France: Springer Berlin Heidelberg, pp. 386–400, doi:10.1007/978-3-642-24550-3_29.
+
+#### **[ITC]** 
+Almeida P.S., Baquero C., Fonte V. (2008) Interval Tree Clocks. In: Baker T.P., Bui A., Tixeuil S. (eds) Principles of Distributed Systems. OPODIS 2008. Lecture Notes in Computer Science, vol 5401. Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-540-92221-6_18
+
+#### **[DHT]** 
+Liz, Crowcroft; et al. (2005). "A survey and comparison of peer-to-peer overlay network schemes" (PDF). IEEE Communications Surveys & Tutorials. 7 (2): 72–93. doi:10.1109/COMST.2005.1610546
+
+#### **[FPDS]** 
+Driscoll JR, Sarnak N, Sleator DD, Tarjan RE (1986). "Making data structures persistent". Proceedings of the eighteenth annual ACM symposium on Theory of computing - STOC '86. Proceeding STOC '86. Proceedings of the Eighteenth Annual ACM Symposium on Theory of Computing. pp. 109–121. CiteSeerX 10.1.1.133.4630. doi:10.1145/12130.12142. ISBN 978-0-89791-193-1.
+
+#### **[PPDS]** 
+Conchon, Sylvain; Filliâtre, Jean-Christophe (2008), "Semi-persistent Data Structures", Programming Languages and Systems, Lecture Notes in Computer Science, 4960, Springer Berlin Heidelberg, pp. 322–336, doi:10.1007/978-3-540-78739-6_25, ISBN 9783540787389.
+
+#### **[DANE]** 
+Barnes, Richard (October 6, 2011). "DANE: Taking TLS Authentication to the Next Level Using DNSSEC", IETF Journal.
+
+#### **[Shamir]** 
+Shamir, Adi (1979), "How to share a secret", Communications of the ACM, 22 (11): 612–613, doi:10.1145/359168.359176, S2CID 16321225.
+
+#### **[NATS]** 
+NATS, version 2.2 (2021), https://docs.nats.io/nats-concepts/intro
+
+#### **[amqp-core-complete-v1.0]** 
+OASIS Advanced Message Queuing Protocol (AMQP) Version 1.0. 29 October 2012. OASIS Standard.
+http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf
+
+#### **[DIDCOMM]** 
+Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://identity.foundation/didcomm-messaging/spec/
+
+#### **[SIOP]** 
+Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
 
 
 # Appendix B - Security Considerations
