@@ -2404,6 +2404,12 @@ This document lists the requirements for either option and indicate the differen
 
 **[R309]** BPI Storage  MUST support characteristics of commonly utilized enterprise-grade database solutions. 
 
+Characteristics of enterprise-grade database solutions are but not limited to:
+* support for large number (> 1,000) of Parallel Queries
+* multi-process support where several processes can be handled by splitting work load between them.
+* support for database clustering to process high data volumes in short periods of time (sub second processing).
+* security features that adhere to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips) or [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html). See appendix [A.2 Non-Normative References](#a2-non-normative-references).  
+
 **[O8]** Centralized BPI Storage MAY be partially persistent. 
 
 **[CR34]>[O8]** Partially Persistent BPI Storage  MUST be append-only.

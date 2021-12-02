@@ -14,7 +14,7 @@ tags:
   - name: Privacy
     description: Baseline core privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
   - name: Registry
-    description: Utilities for resolving DID documents for arbitrary subjects
+    description: Utilities for resolving DID documents for arbitrary subjects.
   - name: Vault
     description: |- 
       Baseline core vault API provides tools and methods for managing digital authentication credentials for Subjects based on roles and `Workgroup` instances. 
