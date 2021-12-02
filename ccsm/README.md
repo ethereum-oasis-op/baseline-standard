@@ -7,11 +7,11 @@
 
 ## The Baseline CORE Specification
 
-The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements for a Distributed Ledger Technology (CCSM) network that when utilized ensures that two or more systems of record can synchronize their system state over said CCSM securely and privately.
+The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements for a Consensus Controlled State Machine (CCSM) network with little or no trust assumptions that when utilized ensures that two or more systems of record can synchronize their system state over said CCSM securely and privately.
 
 ## Status
 
-The Baseline CCSM specification is currently work in progress.
+The Baseline CCSM specification is currently in its first release as a draft specification (V0.1).
 
 ## Components
 
@@ -42,11 +42,11 @@ The Baseline CCSM specification is currently work in progress.
   </tr>
   <tr>
     <td>Network</td>
-    <td>Describes the requirements on the network characteritics and performance suitable for a Baseline implementation.</td>
+    <td>Describes the requirements on the network characteristics and performance suitable for a Baseline implementation.</td>
    </tr>
   <tr>
     <td>Consensus</td>
-    <td>Describes the requirements on consistency/safety, availability/liveness and fault tolerance for consensus alogrithms utilized in a CCSM and suitable for a Baseline implementation</td>
+    <td>Describes the requirements on consistency/safety, availability/liveness and fault tolerance for consensus algorithms utilized in a CCSM and suitable for a Baseline implementation</td>
   </tr>
   <tr>
     <td>Virtual State Machine</td>
@@ -58,7 +58,7 @@ The Baseline CCSM specification is currently work in progress.
   </tr>
   <tr>
     <td>Integration to External Applications</td>
-    <td>Describes the requirements on a CCSM utilized in a Baseline implementation such that it can best intergate into an enterprise IT environment.</td>
+    <td>Describes the requirements on a CCSM utilized in a Baseline implementation such that it can best integrate into an enterprise IT environment.</td>
   </tr>
 </table>
 

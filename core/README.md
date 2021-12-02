@@ -7,11 +7,11 @@
 
 ## The Baseline CORE Specification
 
-The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a public Consensus Controlled State Machine (CCSM) network.
+The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a Consensus Controlled State Machine (CCSM) network with little or no trust assumptions.
 
 ## Status
 
-The Baseline CORE specification is currently work in progress.
+The Baseline CORE specification is currently in its first release as a draft specification (V0.1).
 
 ## Components
 
