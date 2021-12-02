@@ -4,9 +4,9 @@
 
 # Baseline API and Data Model Version 1.0
 
-## Project Specification Draft 01
+## Project Specification Draft (V0.1)
 
-## 17 September 2021
+## 23 September 2021, Final Editor's Draft Version 11 October 2021, First Release as Draft Specification on 17 November 2021
 
 <!-- URI list start (commented out except during publication by OASIS TC Admin)
 
@@ -105,7 +105,7 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Normative References](#12-normative-references) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Non-Normative References](#13-non-normative-references) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.4 Typographical Conventions](#14-typographical-conventions) \
-[2 API Overview](#2-design-and-architecture) \
+[2 API Overview](#2-API-Overview) \
 [3 Baseline](#3-api) \
 &nbsp;&nbsp;&nbsp;&nbsp;[3.1 Create Objects](#31-create-objects) \
 [4 CCSM](#4-ccsm) \
@@ -123,7 +123,7 @@ The name "OASIS" is a trademark of OASIS, the owner and developer of this specif
 
 # 1 Introduction
 
-The Baseline Protocol is an open-source initiative that combines advances in cryptography, messaging, and consensus-controlled state machines often referred to as blockchains or distributed ledger technology (DLT) to deliver secure and private business processes at low cost -- event ordering, data consistency, and workflow integrity. The Baseline Protocol provides a framework that allows Baseline Protocol Implementations (BPIs) to establish a common (business) frame of reference enabling confidential and complex (business) collaborations between enterprises without moving any sensitive data between traditional Systems of Record. The work is a [Ethereum Community Project](https://github.com/ethereum/oasis-open-project), which is managed by [OASIS](https://oasis-open-projects.org/).
+The Baseline Protocol is an open-source initiative that combines advances in cryptography, messaging, and Consensus Controlled State Machines (CCSMs) often referred to as blockchains or distributed ledger technology (DLT) to deliver secure and private business processes at low cost -- event ordering, data consistency, and workflow integrity. The Baseline Protocol provides a framework that allows Baseline Protocol Implementations (BPIs) to establish a common (business) frame of reference enabling confidential and complex (business) collaborations between enterprises without moving any sensitive data between traditional Systems of Record. The work is an [Ethereum Community Project](https://github.com/ethereum/oasis-open-project), which is managed by [OASIS](https://oasis-open-projects.org/).
 
 ## 1.0 IPR Policy
 
@@ -137,8 +137,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 ## 1.2 Normative References
 
-**[RFC4122]** Leach, P., Mealling, M., and R. Salz, "A Universally Unique IDentifier (UUID) URN Namespace", RFC 4122, DOI 10.17487/RFC4122, July 2005, <https://www.rfc-editor.org/info/rfc4122>.
-
+**[RFC4122]** Leach, P., Mealling, M., and R. Salz, "A Universally Unique Identifier (UUID) URN Namespace", RFC 4122, DOI 10.17487/RFC4122, July 2005, <https://www.rfc-editor.org/info/rfc4122>.
 
 ## 1.3 Non-Normative References
 

@@ -53,10 +53,11 @@ This specification replaces or supersedes:
  -->
 
 This specification is related to:    
-**[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html.\
-**[baseline-dlt-v1.0]**
-_Baseline CCSM Requiements Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
+
+**[baseline-api-v1.0]** _Baseline API and Data Model Version 0.1_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 17 November 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. [**FIX LINKS**]
+
+
+**[baseline-dlt-v1.0]** _Baseline CCSM Requirements Version 0.1_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 17 November 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html. [**FIX LINKS**]
 
 
 #### Abstract:
@@ -77,7 +78,7 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 #### Citation format:
 When referencing this specification the following citation format should be used:
 
-**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.
+**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html. [**FIX LINKS**]
 
 -------
 
@@ -364,7 +365,7 @@ A workstep is characterized by input, the deterministic application of a set of 
 A requirement is uniquely identified by a unique ID composed of its requirement level followed by a requirement number, as per convention **[RequirementLevelRequirementNumber]**. 
 There are four requirement levels that are coded in requirement ids as per below convention: 
 
-**[R]** - The requirement level for requirements which IDs start with the letter _R_ is to be interpreted as **MUST** as described in RFC2119. \
+**[R]** - The requirement level for requirements which IDs start with the letter _R_ is to be interpreted as **MUST** as described in [RFC2119](#RFC2119). \
 **[D]** - The requirement level for requirements which IDs start with the letter _D_ is to be interpreted as **SHOULD** as described in RFC2119. \
 **[O]** - The requirement level for requirements which IDs start with the letter _O_ is to be interpreted as **MAY** as described in RFC2119. 
 
@@ -2521,7 +2522,8 @@ While any hyperlinks included in this appendix were valid at the time of publica
 
 The following documents are referenced in such a way that some or all of their content constitute requirements of this document.
 
-**[RFC2119]** S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997 \
+### **[RFC2119]** S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997 \
+
 **[NIST-SP-800-32]** NIST SP 800-32, 2001, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf \
 **[W3C-DID]** Decentralized Identifiers (DIDs) v1.0, M. Sporny, D. Longley, M. Sabadello, D. Reed, O. Steele, C. Allen, W3C Proposed Recommendation, August 2021, https://www.w3.org/TR/2021/PR-did-core-20210803/. Latest version available at https://www.w3.org/TR/did-core/ \
 **[W3C-VC]** Verifiable Credentials Data Model 1.0, Manu Sporny, Dave Longley, David Chadwick , W3C Recommendation, November 2019, https://www.w3.org/TR/2019/REC-vc-data-model-20191119/. Latest version available at https://www.w3.org/TR/vc-data-model/ \
