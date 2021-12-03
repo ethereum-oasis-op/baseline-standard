@@ -1010,39 +1010,50 @@ The Abstraction layers define common standards and processes such as Information
 
 This document defines an Abstraction Layer within the context of a BPI as a set of functions and procedures allowing the interaction of BPI-enabled applications that access the features or data of an operating system, application, or other services with BPI capabilities.
 
-**[R54]**	BPI Abstraction Layers MUST support Operational Monitoring of an API system.
+#### **[R54]**	
+BPI Abstraction Layers MUST support Operational Monitoring of an API system.
 
 In the context of this document, an operational monitoring system of BPI APIs refers to the practice of monitoring APIs, most commonly in production, to gain visibility into performance, availability, and functional correctness. These types of systems are designed to help a BPI operator analyze the performance of BPI applications and improve performance. Examples are measurements of how long a service takes to execute, how often it is called, where it is called from, and how much of the total time is spent executing the service.
 
-**[R55]**	BPI Abstraction Layers MUST support an API Portal for provisioning.
+#### **[R55]**	
+BPI Abstraction Layers MUST support an API Portal for provisioning.
 
 A BPI API portal in the context of this document is defined as a visual or a programmatic presentation that provides information about an API at every stage of its lifecycle. A BPI API portal allows operators to expose, document, provision access, and otherwise enable their APIs, and users of those APIs to register applications, reset credentials,  provide API feedback, report bugs, etc.
 
-**[R56]**	BPI Abstraction Layers MUST support an API Gateway with a low latency cache where low latency refers to a cache latency that does not impact the overall BPI system latency. 
+#### **[R56]**	
+BPI Abstraction Layers MUST support an API Gateway with a low latency cache where low latency refers to a cache latency that does not impact the overall BPI system latency. 
 
 In the context of this document, an API gateway is an application or software pattern that sits in front of an API or a collection of microservices, facilitating requests and delivery of data and services. Its main function is to act as a single entry point and standardized process for interactions between a BPI and its data and services and external/internal users. An API gateway may perform various other functions to support and manage API usage, from authentication to rate limiting to analytics.
 
-**[D17]**	BPI Abstraction Layers SHOULD support Virtualized APIs.
+#### **[D17]**	
+BPI Abstraction Layers SHOULD support Virtualized APIs.
 
 In the context of this document, virtualized APIs are defined as a production sandbox for continuous integration testing and continuous deployment of APIs.
 
-**[D18]**	A BPI Abstraction Layer SHOULD support a content delivery network (CDN) (not applicable for a CCSM Abstraction Layer).
+#### **[D18]**	
+A BPI Abstraction Layer SHOULD support a content delivery network (CDN) (not applicable for a CCSM Abstraction Layer).
 
 In the context of a BPI, a content delivery network is a geographically distributed proxy server network providing high availability and delivery performance of content such as large data files or video streams.
 
-**[CR13]>[D18]** A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support BPI subject-specific and time-based content access control. 
+#### **[CR13]>[D18]** 
+A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support BPI subject-specific and time-based content access control. 
 
-**[CR14]>[D18]** A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support time-based, automated content removal.
+#### **[CR14]>[D18]** 
+A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support time-based, automated content removal.
 
-**[R57]**	BPI Abstraction Layers MUST support integration with internal, as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability), and/or external BPI Subject identity access management (IAM) or identity provider (IdP) systems. 
+#### **[R57]**	
+BPI Abstraction Layers MUST support integration with internal, as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability), and/or external BPI Subject identity access management (IAM) or identity provider (IdP) systems. 
 
 See Figure 4 as to the meaning of an IdP in a BPI context, and Figure 5 in this document as to the meaning of external IAM and its interplay with BPI IAM discussed in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
 
-**[R58]**	BPI Abstraction Layers MUST support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
+#### **[R58]**	
+BPI Abstraction Layers MUST support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
 
-**[R59]**	BPI Abstraction Layers MUST support facilitating the discovery and negotiation of capabilities and subsequent integration between a BPI and Legacy Systems/other BPIs as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability) (for BPI Abstraction Layer only).
+#### **[R59]**	
+BPI Abstraction Layers MUST support facilitating the discovery and negotiation of capabilities and subsequent integration between a BPI and Legacy Systems/other BPIs as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability) (for BPI Abstraction Layer only).
 
-**[R60]**	BPI Abstraction Layers MUST support the integration of CCSM specific transaction interfaces, transaction crafting, and CCSM specific smart contract management. 
+#### **[R60]**	
+BPI Abstraction Layers MUST support the integration of CCSM specific transaction interfaces, transaction crafting, and CCSM specific smart contract management. 
 
 Smart Contract management comprises full lifecycle management from testing, initial deployment, updates, and deactivation (for CCSM Abstraction Layer only). 
 
@@ -1061,23 +1072,30 @@ Figure 6 below shows the reference architecture for a BPI or CCSM Abstraction La
 
 The security requirements of this section are distinct from the security requirements of the other BPI layers or any custom APIs because the external systems which are invoking services exposed by the BPI or CCSM Abstraction Layer should not be assumed to be a trusted service without authentication. This is because this standard does not define the operating model of external systems or a BPI or any of the BPI layers, and, therefore, must necessarily prescribe requirements assuming a 100% adversarial environment.
 
-**[R61]**	Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
+#### **[R61]**	
+Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH [OAuth-2.0] , SAML [SAML] , OIDC [OIDC], AD/LDAP [ActiveDirectory]. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
+Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML ][SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].
 
-**[R62]**	Abstraction Layers utilized in a BPI MUST support roles & access management.
+#### **[R62]**	
+Abstraction Layers utilized in a BPI MUST support roles & access management.
 
-**[R63]**	Abstraction Layers utilized in a BPI MUST support policy management.
+#### **[R63]**	
+Abstraction Layers utilized in a BPI MUST support policy management.
 
-**[R64]**	Abstraction Layers utilized in a BPI MUST support Single-Sign-On (SSO) . 
+#### **[R64]**	
+Abstraction Layers utilized in a BPI MUST support Single-Sign-On (SSO). 
 
-See [SSO] in appendix [A.2 Non-Normative References](#a2-non-normative-references) for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
+See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
 
-**[R65]**	Abstraction Layers utilized in a BPI MUST support multi-factor authentication [MFA](https://csrc.nist.gov/glossary/term/mfa). 
+#### **[R65]**	
+Abstraction Layers utilized in a BPI MUST support multi-factor authentication.
 
-**[R66]**	Abstraction Layers utilized in a BPI MUST support hardware security modules [HSM](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). 
+See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa). 
 
-For further information, refer to [HSM] in appendix [A.2 Non-Normative References](#a2-non-normative-references).
+**[R66]**	Abstraction Layers utilized in a BPI MUST support hardware security modules (HSM)
+
+For the NIST definition adopted in this document see this [link](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm] and for further information, refer to [[HSM](#hsm)].
 
 -------
 
