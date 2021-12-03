@@ -1095,7 +1095,7 @@ See the link here for the NIST definition adopted in this document [MFA](https:/
 
 **[R66]**	Abstraction Layers utilized in a BPI MUST support hardware security modules (HSM)
 
-For the NIST definition adopted in this document see this [link](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm] and for further information, refer to [[HSM](#hsm)].
+For the NIST definition adopted in this document see this [link](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].
 
 -------
 
