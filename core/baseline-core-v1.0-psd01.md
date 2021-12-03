@@ -544,7 +544,7 @@ A BPI MUST have the same security assurances as to the CCSM it utilizes.
 #### **[R12]**	
 A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
-For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [[CMVP]](#CMVP).
+For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [[CVMP]](#cvmp).
 
 #### **[R13]**	
 If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
@@ -749,11 +749,11 @@ Below this document lists and defines the components of each layer. The detailed
 
 ## 3.1 Introduction and High-Level Requirements
 
-Currently, 3rd parties such as [Domain Name Services (DNS) registrars](https://www.icann.org/en/accredited-registrars?filter-letter=a&sort-direction=asc&sort-param=name&page=1), Internet Corporation for Assigned Names and Numbers [(ICANN)](https://www.icann.org/), X.509 Certificate Authorities (CAs), see Reference [[X.509](https://www.itu.int/rec/T-REC-X.509)] and Reference [[CA](https://csrc.nist.gov/glossary/term/certificate_authority)], or social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
+Currently, 3rd parties such as [Domain Name Services (DNS) registrars](https://www.icann.org/en/accredited-registrars?filter-letter=a&sort-direction=asc&sort-param=name&page=1), Internet Corporation for Assigned Names and Numbers [[ICANN]](#whois), X.509 Certificate Authorities (see [[X.509]](#x509) and [[CA]](#ca)), or social media companies are responsible for the creation and management of online identifiers and the secure communication between them. 
 
 As evidenced over the last 20+ years, this design has demonstrated serious usability and security shortcomings.
 
-When DNS and X.509 Public Key Infrastructure (PKIX) [[NIST SP 800-32](https://csrc.nist.gov/publications/detail/sp/800-32/final)] was designed, the internet did not have a way to reliably agree upon the state of a registry (or database) with no trust assumptions. Consequently, standard bodies designated trusted 3rd parties (TTP) to manage identifiers and public keys. Today, virtually all Internet software relies on these authorities. These trusted 3rd parties, however, are central points of failure, where each is capable of compromising the integrity and security of large portions of the Internet. Therefore, once a TTP has been compromised, the usability of the identifiers it manages is also compromised. 
+When DNS and X.509 Public Key Infrastructure (PKIX) [[NIST SP 800-32](#nist-sp-800-32)] was designed, the internet did not have a way to reliably agree upon the state of a registry (or database) with no trust assumptions. Consequently, standard bodies designated trusted 3rd parties (TTP) to manage identifiers and public keys. Today, virtually all Internet software relies on these authorities. These trusted 3rd parties, however, are central points of failure, where each is capable of compromising the integrity and security of large portions of the Internet. Therefore, once a TTP has been compromised, the usability of the identifiers it manages is also compromised. 
 
 As a result, companies spend significant resources fighting security breaches caused by CAs, and public internet communications that are both truly secure and user-friendly are still out of reach for most.
 
@@ -770,15 +770,18 @@ where associated data refers to data describing the characteristics of the ident
 
 This approach requires a decentralized, or at least strongly federated, infrastructure as expressed in the requirements below. 
 
-**[D10]**	The Public Key Infrastructure (PKI) of a BPI SHOULD be decentralized.
+#### **[D10]**	
+The Public Key Infrastructure (PKI) of a BPI SHOULD be decentralized.
 
 Decentralized in this context means that there is no single point of failure in the PKI where possibly no participants are known to one another.
 
-**[R33]**	The PKI of a BPI MUST be strongly federated.
+#### **[R33]**	
+The PKI of a BPI MUST be strongly federated.
 
 Strongly federated in this context means that there is a known, finite number of participants, without a single point of failure in the PKI. However, collusion of a limited number of participants in the federated infrastructure may still lead to a compromised PKI. The consensus thresholds required for a change in the infrastructure are out of scope for this document. 
 
-**[R34]**	The identifiers and identity utilized in a BPI MUST be controlled by its Principal Owner.
+#### **[R34]**	
+The identifiers and identity utilized in a BPI MUST be controlled by its Principal Owner.
 
 For a BPI to properly operate, communication must be trusted and secure. Communications are secured through the safe delivery of public keys tied to identities. The Principal Owner of the identity uses a corresponding secret private key to both decrypt messages sent to them, and to prove they sent a message by signing it with its private key.
 
@@ -794,49 +797,65 @@ Within DPKI, a Principal Owner can be given direct control and ownership of a gl
 
 Furthermore, DPKI requires a public registry of identifiers and their associated public keys that can be read by anyone but cannot be compromised. As long as this registration remains valid, and the Principal Owner can maintain control of their private key, no 3rd party can take ownership of that identifier without resorting to direct coercion of the Principal Owner.
 
-**[D11]** A BPI SHOULD utilize a DPKI.
+#### **[D11]** A
+BPI SHOULD utilize a DPKI.
 
-**[CR1]>[D11]**	Any Principal Owner in a DPKI system utilized by a BPI MUST be able to broadcast a message if it is well-formed within the context of the DPKI.
+#### **[CR1]>[D11]**	
+Any Principal Owner in a DPKI system utilized by a BPI MUST be able to broadcast a message if it is well-formed within the context of the DPKI.
 
 Other peers in the system do not require admission control. This implies a decentralized consensus mechanism naturally leading to the utilization of systems such as CCSMs.
 
-**[CR2]>[D11]**	Given two or more histories of DPKI updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
+#### **[CR2]>[D11]**	
+Given two or more histories of DPKI updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
 
 This implies the existence of a method of ascertaining the level of resources backing a DPKI history such as the hash power in Bitcoin based on difficulty level and nonce.
 
 Requirements of Identifier registration in DPKI are handled differently from DNS. Although registrars may exist in DPKI, these registrars must adhere to several requirements that ensure that identities belong to the entities they represent. This is achieved the following way:
 
-**[CR3]>[D11]**	Private keys utilized in a BPI MUST be generated in a manner that ensures they remain under the Principal Owner’s control. 
+#### **[CR3]>[D11]**	
+Private keys utilized in a BPI MUST be generated in a manner that ensures they remain under the Principal Owner’s control. 
 
-**[CR4]>[D11]** Generating key pairs in a BPI on behalf of the Principal Owner MUST NOT be allowed.
+#### **[CR4]>[D11]** 
+Generating key pairs in a BPI on behalf of the Principal Owner MUST NOT be allowed.
 
-**[CR5]>[D11]**	Principal Owners in a BPI MUST always be in control of their identifiers and the corresponding public keys. 
+#### **[CR5]>[D11]**	
+Principal Owners in a BPI MUST always be in control of their identifiers and the corresponding public keys. 
 
-**[O1]**	Principal Owners MAY extend control of their identifier to third parties.
+#### **[O1]**	
+Principal Owners MAY extend control of their identifier to third parties.
 
 For example for recovery purposes.
 
-**[CR6]<[O1]** Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifier.
+#### **[CR6]<[O1]** 
+Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifier.
 
-**[R35]**	Private keys MUST be stored and/or transmitted securely.
+#### **[R35]**	
+Private keys MUST be stored and/or transmitted securely.
 
 No mechanism should exist that would allow a single entity to deprive a Principal Owner of their identifier without their consent. This implies that:
 
-**[CR7]<[D11]**	Once a namespace is created within the context of a BPI, it MUST NOT be possible to destroy it.
+#### **[CR7]<[D11]**	
+Once a namespace is created within the context of a BPI, it MUST NOT be possible to destroy it.
 
-**[CR8]<[D11]**	Namespaces in a DPKI utilized by a BPI MUST NOT contain blacklisting mechanisms that would allow anyone to invalidate identifiers that do not belong to them.
+#### **[CR8]<[D11]**	
+Namespaces in a DPKI utilized by a BPI MUST NOT contain blacklisting mechanisms that would allow anyone to invalidate identifiers that do not belong to them.
 
-**[CR9]<[D11]**	The rules for registering and renewing identifiers in a DPKI utilized by a BPI MUST be transparent and expressed in simple terms.
+#### **[CR9]<[D11]**	
+The rules for registering and renewing identifiers in a DPKI utilized by a BPI MUST be transparent and expressed in simple terms.
 
-**[R36]**	If registration is used as security to an expiration policy, the Principal Owner MUST be explicitly and timely warned that failure to renew the registration on time could result in the Principal Owner losing control of the identifier.
+#### **[R36]**	
+If registration is used as security to an expiration policy, the Principal Owner MUST be explicitly and timely warned that failure to renew the registration on time could result in the Principal Owner losing control of the identifier.
 
-**[CR10]>[D11]**	Once set, namespace rules within a DPKI utilized by a BPI MUST NOT be altered to introduce any new restrictions for renewing or updating identifiers.
+#### **[CR10]>[D11]**	
+Once set, namespace rules within a DPKI utilized by a BPI MUST NOT be altered to introduce any new restrictions for renewing or updating identifiers.
 
 Otherwise, it would be possible to take control of identifiers away from Principal Owners without their consent.
 
-**[CR11]>[D11]**	Within a DPKI utilized by a BPI, processes for renewing or updating identifiers MUST NOT be modified to introduce new restrictions for updating or renewing an identifier, once issued.
+#### **[CR11]>[D11]**	
+Within a DPKI utilized by a BPI, processes for renewing or updating identifiers MUST NOT be modified to introduce new restrictions for updating or renewing an identifier, once issued.
 
-**[CR12]>[D11]**	Within a DPKI utilized by a BPI, all network communications for creating, updating, renewing, or deleting identifiers MUST be sent via a non-centralized mechanism.
+#### **[CR12]>[D11]**	
+Within a DPKI utilized by a BPI, all network communications for creating, updating, renewing, or deleting identifiers MUST be sent via a non-centralized mechanism.
 
 This is necessary to ensure that a single entity cannot prevent identifiers from being updated or renewed.
 
@@ -850,19 +869,26 @@ In the following, this document will use Requester and Provider as established i
 
 Uniqueness and security of BPI identifiers are very important to unambiguously identify entities interacting with and through one or more BPIs and keep those interactions secure. Furthermore, to facilitate automation and real-time interactions within and through a BPI, the discovery of identifiers and an ability to resolve them to the underlying public keys that secure them is also critical. 
 
-**[R37]** Requester and Provider interacting with and through a BPI, as well as any BPI Operator, MUST each have a unique identifier.
+#### **[R37]** 
+Requester and Provider interacting with and through a BPI, as well as any BPI Operator, MUST each have a unique identifier.
 
-**[R38]** Any unique identifier utilized within a BPI MUST be associated with a set of public keys.
+#### **[R38]** 
+Any unique identifier utilized within a BPI MUST be associated with a set of public keys.
 
-**[R39]** Any unique identifier utilized within a BPI MUST be discoverable by any 3rd party within said BPI.
+#### **[R39]** 
+Any unique identifier utilized within a BPI MUST be discoverable by any 3rd party within said BPI.
 
-**[R40]** Any unique identifier utilized within a BPI MUST be resolvable to its associated public keys used for cryptographic authentication of the unique identifier.
+#### **[R40]** 
+Any unique identifier utilized within a BPI MUST be resolvable to its associated public keys used for cryptographic authentication of the unique identifier.
 
-**[R41]** Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that identifies the Baseline Protocol Standard as a supported protocol including the supported version(s).
+#### **[R41]** 
+Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that identifies the Baseline Protocol Standard as a supported protocol including the supported version(s).
 
-**[R42]** Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
+#### **[R42]** 
+Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
-**[D12]** Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](https://www.w3.org/TR/did-core/)]. See appendix [A.1 Normative References](#a1-normative-references).
+#### **[D12]** 
+Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#w3c-did)].
 
 ### 3.2.2 BPI Identities and Credentials
 
@@ -883,33 +909,42 @@ In the figure below, this document establishes the context and scope of identity
 
 As depicted, identities and credentials are established outside of the context, and, therefore, the scope of a BPI. Hence, it is incumbent on BPI participants -- Requesters, Providers, and, if distinct, Operators -- to establish the trust context of acceptable identities and credentials for a BPI. This statement also applies to a network of BPIs which are to interoperate with one another.
 
-**[D13]** A unique identifier utilized within one or more BPIs SHOULD be linked to an (Legal) Entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
+#### **[D13]** 
+A unique identifier utilized within one or more BPIs SHOULD be linked to an (Legal) Entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
 
 In the context of this document, a Legal Entity is an individual, organization, or company that has legal rights and obligations.
 
 Note that credentials utilized within one or more BPIs may be self-issued. The acceptance of self-issued credentials is up to the BPI participants that need to rely on the claim(s) within a self-issued credential.
 
-**[R43]** The unique identifier of the (Legal) Entity MUST be the subject of the credential.
+#### **[R43]** 
+The unique identifier of the (Legal) Entity MUST be the subject of the credential.
 
-**[R44]** The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
+#### **[R44]** 
+The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
-**[D14]** A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential specification [[W3C VC](https://www.w3.org/TR/vc-data-model/)]. See appendix [A.1 Normative References](#a1-normative-references).
+#### **[D14]** 
+A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential Standard [[W3C VC](#w3c-vc)].
 
-**[R45]** A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
+#### **[R45]** 
+A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 
 Note, that the unique and resolvable identifier of a credential does not have to be associated with any cryptographic keys.
 
-**[R46]** If present, the status of a credential utilized within one or more BPIs MUST be discoverable by a party verifying the credential, the credential verifier.
+#### **[R46]** 
+If present, the status of a credential utilized within one or more BPIs MUST be discoverable by a party verifying the credential, the credential verifier.
 
-In the context of this document, a credential verifier is defined per the [W3C Verifiable Credential Standard](https://www.w3.org/TR/vc-data-model/). Refer to [A.1 Normative References](#a1-normative-references).
+In the context of this document, a credential verifier is defined per the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc).
 
-**[D15]** A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
+#### **[D15]** 
+A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
 
-**[R47]** The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the credential holder.
+#### **[R47]** 
+The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the credential holder.
 
-See the [W3C Verifiable Credential Standard](https://www.w3.org/TR/vc-data-model/) in appendix [A.1 Normative References](#a1-normative-references) for a definition of credential holder.
+See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder.
 
-**[R48]** If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
+#### **[R48]** 
+If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
 
 As discussed in section [3.1 Introduction and High-Level Requirements](#31-introduction-and-high-level-requirements), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.  
 
@@ -924,29 +959,35 @@ As discussed in section [3.1 Introduction and High-Level Requirements](#31-intro
 
 As depicted in Figure 5 above, the accepted Entity identity credentials, or other credentials from Identity providers, that are presented by a BPI participant need to be verified by the BPI against the issuing providers. Once validated, credentials are stored in the BPI.
 
-[OpenId Connect Identity Provider](https://openid.net/developers/specs/) (see appendix [A.2 Non-Normative References](#a2-non-normative-references)) is an example for a federated identity provider and a DID or Verifiable Credentials Registry which is typically built using a CCSM as an example of a decentralized identity provider.
+OpenId Connect Identity Provider [[OIDC]](#oidc) is an example for a federated identity provider and a DID or Verifiable Credentials Registry which is typically built using a CCSM as an example of a decentralized identity provider.
 
 For a BPI to achieve these objectives, the following requirements need to be met:
 
-**[R49]** A unique identifier utilized in a BPI MUST be stored by the BPI.
+#### **[R49]** 
+A unique identifier utilized in a BPI MUST be stored by the BPI.
 
-**[R50]** The Principal Owner or their delegates MUST prove control over a unique identifier utilized in a BPI every time said unique identifier is used in the BPI by the Principal Owner or their delegates.
+#### **[R50]** 
+The Principal Owner or their delegates MUST prove control over a unique identifier utilized in a BPI every time said unique identifier is used in the BPI by the Principal Owner or their delegates.
 
-**[R51]** Every time a unique identifier utilized in a BPI is used in the BPI by the Principal Owner or their delegates, the BPI MUST verify that the Principal Owner or their delegates are in control of said unique identifier.
+#### **[R51]** 
+Every time a unique identifier utilized in a BPI is used in the BPI by the Principal Owner or their delegates, the BPI MUST verify that the Principal Owner or their delegates are in control of said unique identifier.
 
 Note that proof of control might be performed by a relying party if authority has been delegated.
 
-In the context of this document, a relying party is defined per the [W3C Verifiable Credential Standard](https://www.w3.org/TR/vc-data-model/). Please refer to appendix [A.1 Normative References](#a1-normative-references).
+In the context of this document, a relying party is defined per the W3C Verifiable Credential Standard] [[W3C VC]](#w3c-vc).
 
-**[D16]** A credential utilized in a BPI SHOULD be stored in the BPI.
+#### **[D16]** 
+A credential utilized in a BPI SHOULD be stored in the BPI.
 
 This avoids the re-presentation of the credential after the initial presentation.
 
-**[R52]** A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
+#### **[R52]** 
+A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
 
-**[R53]** Every time a credential utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance, and that the credential holder is in control of said credential.
+#### **[R53]** 
+Every time a credential utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance, and that the credential holder is in control of said credential.
 
-Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an [OpenId Connect Identity Provider](https://openid.net/developers/specs/) (see appendix [A.2 Non-Normative References](#a2-non-normative-references)).
+Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an OpenId Connect Identity Provider [[OIDC]](#oidc).
 
 This document will discuss further, more detailed management requirements in the context of BPI participant account management in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability). 
 
