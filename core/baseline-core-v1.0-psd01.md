@@ -1396,7 +1396,7 @@ A BPI East-West interoperability solution in the context of this document has bu
 
 * Resolvable, public key controlled identifiers for all participants following established standards such as W3C DIDs to enable portability across BPIs. Resolvable refers to the identifier being used to discover its controlling keys and other control, authorization, and service attributes of an identifier. For example, an Ethereum address can function as a resolvable public key controlled identifier. See for example the specification of an Ethereum based DID method (did:ethr).
 
-* Discoverable authentication/authorization capabilities based on common, well-established frameworks such as OAuth2, OpenIDConnect (OIDC), SIOP DID AuthN (OIDC compatible DID Auth) to avoid reinventing the wheel and also signaling openness to enterprises.
+* Discoverable authentication/authorization capabilities based on common, well-established frameworks such as OAuth2 [[OAUTH-2.0](#oauth-20)], OpenIDConnect [[OIDC](#oidc)], SIOP DID AuthN (OIDC compatible DID Auth) [[SIOP](#siop)] to avoid reinventing the wheel and also signaling openness to enterprises.
 
 * Discoverable and negotiable services such as Authentication and Authorization endpoints, a price oracle endpoint, etc. In this context, a service has consumers, providers, input and output parameters, and associated business logic that transforms the input into the output parameters. Discoverable in this context means that a Service Consumer can find a Service Provider and what the capabilities of the service are as well as the required input and output parameters. Negotiable in this context means that the Service Consumer and Provider can negotiate how the service is delivered. This is required to be able to automate interoperability processes between BPIs.
 
@@ -2643,106 +2643,140 @@ The document defines storage capability requirements in the following areas:
 
 As has been done throughout this document, there are BPI layer-specific security requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI security requirements in [2 Design and Architecture](#2-design-and-architecture). 
 
-**[R279]** Data in transit in a BPI MUST be encrypted.
+#### **[R279]** 
+Data in transit in a BPI MUST be encrypted.
 
-**[R280]** Data at rest in a BPI MUST be encrypted.
+#### **[R280]** 
+Data at rest in a BPI MUST be encrypted.
 
-**[R281]**	BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
+#### **[R281]**	
+BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
 
 This is also known as a secure connection.
 
-**[R282]**	BPI Storage MUST be compatible with commonly used external authentication services. 
+#### **[R282]**	
+BPI Storage MUST be compatible with commonly used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH [OAuth-2.0] , SAML [SAML] , OIDC [OIDC], AD/LDAP [ActiveDirectory]. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
+Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].
 
-**[R283]**	BPI Storage MUST support roles & access management.
+#### **[R283]**	
+BPI Storage MUST support roles & access management.
 
-**[R284]**	BPI Storage MUST support policy management.
+#### **[R284]**	
+BPI Storage MUST support policy management.
 
-**[R285]**	BPI Storage MUST support Single-Sign-On (SSO).
+#### **[R285]**	
+BPI Storage MUST support Single-Sign-On (SSO).
 
-See [SSO] in appendix [A.2 Non-Normative References](#a2-non-normative-references) for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
+See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
 
-**[R286]**	BPI Storage MUST support multi-factor authentication [MFA](https://csrc.nist.gov/glossary/term/mfa).
+#### **[R286]**	
+BPI Storage MUST support multi-factor authentication (MFA)
 
-**[R287]**	BPI Storage MUST support hardware security modules [HSM](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). 
+See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa). 
 
-For further information, refer to [HSM] in appendix [A.2 Non-Normative References](#a2-non-normative-references).
+#### **[R287]**	
+BPI Storage MUST support hardware security modules (HSM). 
 
+This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].
 
 ## 7.2. BPI Storage Privacy
 
 As has been done throughout this document, there are BPI layer-specific privacy requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI privacy requirements in section [2 Design and Architecture](#2-design-and-architecture).
 
-**[R288]**	Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
+#### **[R288]**	
+Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 
-**[D39]**	BPI Storage arranged in a network SHOULD utilize privacy-preserving P2P message protocols.
+#### **[D39]**	
+BPI Storage arranged in a network SHOULD utilize privacy-preserving P2P message protocols.
 
 ## 7.3. BPI Data Orchestration
 
 To accommodate a high-volume, low latency environment with many data changes, BPI Data Orchestration has the following requirements:
 
-**[R289]**	Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
+#### **[R289]**	
+Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
 
-**[R290]**	Data Orchestration utilized in a BPI MUST preserve source consistency. 
+#### **[R290]**	
+Data Orchestration utilized in a BPI MUST preserve source consistency. 
 
 To avoid subscribers seeing partial and/or inconsistent data, BPI Data Orchestration has the following requirements:
 
-**[R291]**	Data Orchestration utilized in a BPI MUST implement transaction boundaries.
+#### **[R291]**	
+Data Orchestration utilized in a BPI MUST implement transaction boundaries.
 
 This means that a single user's action can trigger atomic updates.
 
-**[R292]**	Data Orchestration utilized in a BPI MUST Commit the exact order in which operations happened on the primary database.
+#### **[R292]**	
+Data Orchestration utilized in a BPI MUST Commit the exact order in which operations happened on the primary database.
 
-**[R293]**	Data Orchestration utilized in a BPI MUST support a consistent state.
+#### **[R293]**	
+Data Orchestration utilized in a BPI MUST support a consistent state.
 
-**[R294]**	Data Orchestration utilized in a BPI MUST support User-space processing 
+#### **[R294]**	
+Data Orchestration utilized in a BPI MUST support User-space processing 
 
 In the context of this document, this requirement establishes a capability that allows for one or more computations outside a database to be triggered by a data change in the data storage system.
 
-**[R295]**	Data Orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
+#### **[R295]**	
+Data Orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
 
-**[R296]**	Data Orchestration utilized in a BPI MUST isolate data source and consumers.
+#### **[R296]**	
+Data Orchestration utilized in a BPI MUST isolate data source and consumers.
 
-**[R297]**	Data Orchestration utilized in a BPI MUST support low latency.
+#### **[R297]**	
+Data Orchestration utilized in a BPI MUST support low latency.
 
 Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.
 
-**[R298]**	Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes at any point in time.
+#### **[R298]**	
+Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes at any point in time.
 
 The BPI Data Orchestration must include the following four components:
 
-**[R299]**	The Data Orchestration Layer utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
+#### **[R299]**	
+The Data Orchestration Layer utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
 
-**[R300]**	The Data Orchestration Layer utilized in a BPI MUST include a log store that caches the generated data change stream.
+#### **[R300]**	
+The Data Orchestration Layer utilized in a BPI MUST include a log store that caches the generated data change stream.
 
-**[R301]**	The Data Orchestration Layer utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
+#### **[R301]**	
+The Data Orchestration Layer utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
 
-**[R302]**	The Data Orchestration Layer utilized in a BPI MUST include a subscription client pulling change events seamlessly across various components and servicing them to a service in a BPI.
+#### **[R302]**	
+The Data Orchestration Layer utilized in a BPI MUST include a subscription client pulling change events seamlessly across various components and servicing them to a service in a BPI.
 
 ## 7.4 BPI-External Storage: Edge Storage
 
 There are operating scenarios where it could be necessary that BPI data is replicated outside of a BPI such as to avoid having to rebase the state of a system or record due to an accidental data update if the correct state is not readily accessible to enforce system-of-record access policies. 
 
-**[R303]**	BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
+#### **[R303]**	
+BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
 
 Weak synchrony in this context means, 
 * that all messages will eventually reach their intended recipients and 
 * that after a certain, yet unknown, time the network will become synchronous again.
 
-**[R304]**	Replication conflicts MUST be automatically detectable. 
+#### **[R304]**	
+Replication conflicts MUST be automatically detectable. 
 
-**[R305]** Replication conflicts MUST be resolvable either automatically or manually.
+#### **[R305]** 
+Replication conflicts MUST be resolvable either automatically or manually.
 
-**[R306]**	BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
+#### **[R306]**	
+BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
 
-**[D40]**	BPI Edge Storage SHOULD be able to cryptographically sign messages.
+#### **[D40]**	
+BPI Edge Storage SHOULD be able to cryptographically sign messages.
 
-**[D41]**	BPI Edge Storage SHOULD be discoverable by BPI Worgroup members or their delegates within a BPI.
+#### **[D41]**	
+BPI Edge Storage SHOULD be discoverable by BPI Worgroup members or their delegates within a BPI.
 
-**[R307]**	BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
+#### **[R307]**	
+BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
-**[R308]**	BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data (see section [7.5 BPI-Internal Storage](#75-bpi-internal-storage)) requirements for security, privacy, and integration.
+#### **[R308]**	
+BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data (see section [7.5 BPI-Internal Storage](#75-bpi-internal-storage)) requirements for security, privacy, and integration.
 
 ## 7.5 BPI-Internal Storage 
 
@@ -2764,41 +2798,50 @@ Characteristics of enterprise-grade database solutions are but not limited to:
 * support for large number (> 1,000) of Parallel Queries
 * multi-process support where several processes can be handled by splitting work load between them.
 * support for database clustering to process high data volumes in short periods of time (sub second processing).
-* security features that adhere to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](https://www.nist.gov/standardsgov/compliance-faqs-federal-information-processing-standards-fips) or [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html). See appendix [A.2 Non-Normative References](#a2-non-normative-references).  
+* security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)].  
 
-**[O8]** Centralized BPI Storage MAY be partially persistent. 
+#### **[O8]** 
+Centralized BPI Storage MAY be partially persistent. 
 
-**[CR34]>[O8]** Partially Persistent BPI Storage  MUST be append-only.
+#### **[CR34]>[O8]** 
+Partially Persistent BPI Storage  MUST be append-only.
 
 Non-normative examples of such data bases are but not limited to OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.
 
 ### 7.5.2 BPI Storage: Decentralized Deployment
 
-**[R310]**	BPI Storage  MUST support authenticated naming systems.
+#### **[R310]**	
+BPI Storage  MUST support authenticated naming systems.
 
-An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [DANE].   
+An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [[DANE](#dane)].   
 
 Non-normative examples include but are not limited to certificate authorities or a self-certifying PKI namespace. 
 
-**[R311]**	BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
+#### **[R311]**	
+BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
 
-**[R312]**	BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
+#### **[R312]**	
+BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
 
-Non-normative examples are [libp2p] or distributed hash tables [DHT]. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
+Non-normative examples are [libp2p](#libp2p) or distributed hash tables [[DHT]](#dht).
 
-**[R313]**	BPI Storage  MUST support a Network Protocol that handles:
+#### **[R313]**	
+BPI Storage  MUST support a Network Protocol that handles:
 * NAT traversal such as hole punching, port mapping, and relay
 * Multiple transport protocols
 * Encryption, signing, or clear communications
 * Multi-multiplexes such as Multiplex connections, streams, protocols, peers.
 
-**[R314]**	Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
+#### **[R314]**	
+Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
-Non-normative examples are conflict-free replicated data types [CRDT] or Interval Tree Clocks [ITC] to ensure eventual data consistency. See appendix [A.2 Non-Normative References](#a2-non-normative-references).
+Non-normative examples are conflict-free replicated data types [[CRDT](#crdt)] or Interval Tree Clocks [[ITC](#itc)] to ensure eventual data consistency.
 
-**[O9]** Decentralized BPI Storage MAY be partially persistent.
+#### **[O9]** 
+Decentralized BPI Storage MAY be partially persistent.
 
-**[CR35]>[O9]**	Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
+#### **[CR35]>[O9]**	
+Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
 
 -------
 # 8 BPI External Data Inputs
