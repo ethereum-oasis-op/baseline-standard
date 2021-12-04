@@ -2857,15 +2857,18 @@ This section of the document focuses on the requirements and considerations rela
 
 Internal authoritative data means that there exists only one authoritative version of the input data in some system of record of a BPI participant, making it the only choice for input into a BPI workstep. Authoritative in this context means that BPI participants involved in a BPI workstep have agreed that the authoritative source is the accurate and reliable truth for that particular type of data.
 
-**[O10]** Internal authoritative input data to a BPI workstep MAY come from a single source.
+#### **[O10]** 
+Internal authoritative input data to a BPI workstep MAY come from a single source.
 
-**[CR36]>[O10]** If the internal authoritative input data to a BPI workstep is single-sourced, that source MUST be authoritative.
+#### **[CR36]>[O10]** 
+If the internal authoritative input data to a BPI workstep is single-sourced, that source MUST be authoritative.
 
 ## 8.2 External Authoritative Data for BPIs
 
 External authoritative data means that the input data to a BPI workstep is held in some authoritative 3rd party database, such as government records. Unlike internal authoritative data where there is only one source, external authoritative data input to a BPI workstep may have multiple sources.
 
-**[R315]** BPI participants MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
+#### **[R315]** 
+BPI Subjects participating in a workstep MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
 
 
 ## 8.3 External Non-authoritative, Non-deterministic Data for BPIs
@@ -2876,18 +2879,21 @@ External non-authoritative, non-deterministic data means that there does not exi
 
 External non-authoritative, non-deterministic data for BPIs resides outside of an authoritative source and is subject to manipulation. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in data reporting and error checking, either cross-party, or by an appropriately incentivized 3rd party.
 
-**[D42]** External non authoritative non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
+#### **[D42]** 
+External non authoritative non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
 
-**[R316]** External non-authoritative non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
+#### **[R316]** 
+External non-authoritative non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
 
 Authoritative entities in the context of this document are entities that have been delegated authority by the participants of a BPI workstep to validate an external non-authoritative, non-deterministic source of input data into a BPI workstep.
 
-**[R317]** BPI participants MUST agree upon a standard validation method for external non-authoritative,  non-deterministic input data to a BPI workstep.
+#### **[R317]** 
+BPI participants MUST agree upon a standard validation method for external non-authoritative,  non-deterministic input data to a BPI workstep.
 
-**[R318]** A BPI workstep participant MUST be able to validate that the validation criteria of external non-authoritative,  non-deterministic input data to the BPI workstep has been met.
+#### **[R318]** 
+A BPI workstep participant MUST be able to validate that the validation criteria of external non-authoritative,  non-deterministic input data to the BPI workstep has been met.
 
 Appropriate data validation methods vary on a case-by-case basis depending upon the data types, sources and formats. As such, it is up to the BPI participants to agree upon the optimal validation method for their implementation. This includes design decisions such as what threshold of unresponsive oracles leads to a rejected input, how to aggregate the oracle responses and remove outliers, signing data to ensure provenance, implementing cryptographic mechanisms such as threshold signatures/secret sharing and TEEs such as Intel SGX or AMD SEV to obfuscate data from oracle providers.
-
 
 ### 8.3.2 External Non-authoritative, non-deterministic BPI Input Data Variance
 
