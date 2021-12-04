@@ -73,7 +73,7 @@ was last revised or approved by Baseline, part of the Ethereum OASIS Open Projec
 Comments on this work can be provided by opening issues in the project repository or by sending an email to the project’s public comment list baseline@lists.oasis-open-projects.org.
 
 #### Keywords:
-The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](http://www.ietf.org/rfc/rfc2119.txt)] when, and only when, they appear in all capitals, as shown here.
+The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] when, and only when, they appear in all capitals, as shown here.
 
 #### Citation format:
 When referencing this specification the following citation format should be used:
@@ -571,7 +571,7 @@ Censorship-resistant means that a (commercial) counterparty can terminate a (com
 A BPI MUST be able to provide privacy of the (commercial) counterparties' data concerning any party outside of the BPI.
 
 #### **[R18]** 
-A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#ISOIEC27033).
+A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#rfc3339).
 
 ## 2.7 High-Level Functional Requirements
 
@@ -1075,7 +1075,7 @@ The security requirements of this section are distinct from the security require
 #### **[R61]**	
 Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML ][SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].
+Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].
 
 #### **[R62]**	
 Abstraction Layers utilized in a BPI MUST support roles & access management.
@@ -2782,9 +2782,9 @@ BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Dat
 
 There are two storage types BPI storage system can utilize, fully or partially persistent storage.
 
-[Fully Persistent Data storage](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-851-advanced-data-structures-spring-2012/lecture-videos/session-1-persistent-data-structures/) as one possible option for BPI storage can be characterized as Write many, Read many. 
+[Fully Persistent Data storage](#fpds) as one possible option for BPI storage can be characterized as Write many, Read many. 
 
-[Partially Persistent Data storage](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-851-advanced-data-structures-spring-2012/lecture-videos/session-1-persistent-data-structures/) as one possible option for BPI storage can characterized as Write once, Read many.
+[Partially Persistent Data storage](#ppds) as one possible option for BPI storage can characterized as Write once, Read many.
 
 There are two deployment options -- centralized or distributed/decentralized deployment.
 
@@ -2925,7 +2925,6 @@ This document defines the conformance levels of a BPI as follows:
 Note that BPI Integration requirements in section [5.5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#554-bi--and-multi-directional-and-mono-directional-bpi-interoperability-services) and section [5.6 Standardized Set of BPI Interoperability APIs](#56-standardized-set-of-bpi-interoperability-apis) are not mandatory for meeting conformance until there are at least two implementations conformant to Level 1 of this standards' requirements.
 
 -------
-[RFC2119]: S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997 \
 
 # Appendix A - References
 
