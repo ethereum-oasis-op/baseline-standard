@@ -1673,6 +1673,7 @@ In the different sections below, this document defines the requirements for each
 * operation execution requirements 
 
 **Create State Synchronization and Advancement Predicate**
+
 As mentioned above, a State Synchronization and Advancement Predicate defines and provides an implementation of an enforcement mechanism of the required rules and data to synchronize multiple state objects from different BPIs, and if required, advance this synchronized, joint state to a new joined state. The joint state is subsequently usable in the BPI workflows in the different participating BPIs. 
 
 #### **[R140]** 
