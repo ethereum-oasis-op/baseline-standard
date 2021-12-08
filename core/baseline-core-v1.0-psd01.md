@@ -529,7 +529,8 @@ Abstractly, a BPI consists of
 
 BPIs are strongly dependent on the security and privacy capabilities of the CCSM used to implement a BPI because BPIs without a CCSM are a single point of failure, whereas with a CCSM, there is no longer a single point of failure for the state of a BPI because a CCSM has no single-point-of-failure by its very definition.
 
-**[R10]**	A BPI MUST utilize a CCSM.
+#### **[R10]**	
+A BPI MUST utilize a CCSM.
 
 Since security and privacy requirements of a BPI are key, and are strongly dependent on the security and privacy assurances the CCSM on which the BPI is implemented can provide, BPIs need to take great care to avoid the following two situations:
 
