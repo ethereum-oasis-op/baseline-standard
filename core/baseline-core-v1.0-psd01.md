@@ -2272,7 +2272,7 @@ This means that the output of a workstep can be used to represent a unit of valu
 A cryptographic proof of correctness of a BPI state transition used in a commercial value-creation MUST be succinct.
 
 #### **[CR17]<[O3]** 
-Each A cryptographic proof of correctness of a BPI state transition MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
+A cryptographic proof of correctness of a BPI state transition MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
 
 The zero-knowledge proof of correctness can be a cryptographic aggregator of proofs of workstep input correctness that would allow multiple proofs to be represented and provable within one proof. 
 
