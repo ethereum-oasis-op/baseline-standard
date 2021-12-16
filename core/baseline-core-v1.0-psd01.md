@@ -97,24 +97,22 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 Glossary](#12-glossary) \
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Typographical Conventions](#13-typographical-conventions) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.3.1	Requirement Ids](#131-requirement-ids) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.3.2	Conditional Requirements](#132-conditional-requirements) \
 [2 Design and Architecture](#2-design-and-architecture) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-agreement) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-state-object) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](#23-transacting-counterparties) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercially and Legally Binding Documents](#24-commercially-and-legally-binding-documents) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1	Contract](#241-contract) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-commercial-documents) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Consensus Controlled State Machine](#25-consensus-controlled-state-machine) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](#26-baseline-protocol-instance) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](#27-high-level-functional-requirements) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 Functional Requirements on commercial counterparties](#271-functional-requirements-on-commercial-counterparties) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 CCSM Lifecycle Processes](#272-ccsm-lifecycle-processes) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.1 (Commercial) State Synchronization](#281-commercial-state-synchronization) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer](#282-considerations-on-bPI-and-ccsm-abstraction-layers-and-the-ccsm-layer) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3	External Applications](#283-external-applications) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-baseline-protocol-stack-detailed-reference-architecture-layers-and-components) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.1 State Object](#22-state-object) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Transacting Counterparties](#23-transacting-counterparties) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Commercially and Legally Binding Documents](#24-commercially-and-legally-binding-documents) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3.1	Contract](#241-contract) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3.2 Commercial Documents](#242-commercial-documents) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Consensus Controlled State Machine](#25-consensus-controlled-state-machine) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Baseline Protocol Instance](#26-baseline-protocol-instance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.6 High-Level Functional Requirements](#27-high-level-functional-requirements) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6.1 Functional Requirements on commercial counterparties](#271-functional-requirements-on-commercial-counterparties) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6.2 CCSM Lifecycle Processes](#272-ccsm-lifecycle-processes) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.7 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 (Commercial) State Synchronization](#281-commercial-state-synchronization) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer](#282-considerations-on-bPI-and-ccsm-abstraction-layers-and-the-ccsm-layer) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.3	External Applications](#283-external-applications) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-baseline-protocol-stack-detailed-reference-architecture-layers-and-components) \
 [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management) \
 &nbsp;&nbsp;&nbsp;&nbsp;[3.1 Introduction and High-Level Requirements](#31-introduction-and-high-level-requirements) \
 &nbsp;&nbsp;&nbsp;&nbsp;[3.2 BPI Identifiers, Identities and Credentials, and their Management](#32-bpi-identifiers-identities-and-credentials-and-their-management) \
@@ -182,7 +180,7 @@ The Baseline Protocol is an open-source initiative that combines advances in cry
 
 An illustrative example of the use of a BPI is a Buyer placing an order to a Seller. Normally a Buyer system creates an Order and transmits it to the Seller system through some preestablished messaging system without providing any proof that the Order created is correct, forcing the Seller's systems to validate the order, and more often than not, finding data inconsistencies between the Seller system and the Order. This then leads to a time-consuming, and often expensive, back and forth between Seller and Buyer to rectify the issue. 
 
-In the case that a BPI is used, the Buyer action of creating an order and submitting it to the BPI creates a cryptographic proof on the BPI that the order conforms (or not) to the agreed-upon commercial contract terms and current contract state between Buyer and Seller stored on the BPI, whereupon verification, the commercial contract state on the BPI is updated based on the order details. Subsequently, the cryptographic proof of order correctness is attached to the order and sent to the Seller using either established integrations or the BPI. The Seller can then directly validate the proof without having to check the correctness of the Order against its System of Record anymore. A valid cryptographic proof ensures that the order will be correctly formulated the first time avoiding errors, and thus saving time and money -- a more detailed example is provided in section [2.8.1 (Commercial) State Synchronization](#281-commercial-state-synchronization). A BPI, therefore, enforces the synchronization of Systems of Record between Buyer and Seller. 
+In the case that a BPI is used, the Buyer action of creating an order and submitting it to the BPI creates a cryptographic proof on the BPI that the order conforms (or not) to the agreed-upon commercial contract terms and current contract state between Buyer and Seller stored on the BPI, whereupon verification, the commercial contract state on the BPI is updated based on the order details. Subsequently, the cryptographic proof of order correctness is attached to the order and sent to the Seller using either established integrations or the BPI. The Seller can then directly validate the proof without having to check the correctness of the Order against its System of Record anymore. A valid cryptographic proof ensures that the order will be correctly formulated the first time avoiding errors, and thus saving time and money -- a more detailed example is provided in section [2.7.1 (Commercial) State Synchronization](#281-commercial-state-synchronization). A BPI, therefore, enforces the synchronization of Systems of Record between Buyer and Seller. 
 
 At a high level a BPI's benefits and characteristics can be summarized as follows:
 * BPI usage avoids rework between contract counterparties due to improperly applied business logic because cryptographic proofs of correctness ensure that Systems of Record remain synchronized, and that rework is minimized or even completely avoided.
@@ -191,7 +189,6 @@ At a high level a BPI's benefits and characteristics can be summarized as follow
 
 In the following, this document lays out the requirements on a BPI to achieve above described benefits and characteristics in several sections:
 * **Section 2: Design and Architecture** with definitions, key concepts, and overviews of the components of a compliant Baseline Protocol Implementation as delineated in the following subsections:
-    * Agreement
     * State Object
     * Transacting Counterparties
     * Commercially and Legally Binding Documents
@@ -377,13 +374,6 @@ Note that requirements are uniquely numbered in ascending order within each requ
 
 Example : It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation and [O1] is truly optional.
 
-### 1.3.2 Conditional Requirements
-
-Conditional requirements are expressed as per convention **[ConditionalRequirementID] < [ControllingRequirementID]**. \
-A conditional requirement becomes required if and only if its controlling requirement is implemented. \
-For instance [CR1]< [D3] means that if recommended requirement [D3] is implemented then it is required to also implement requirement [CR1].
-
-
 
 -------
 
@@ -392,7 +382,6 @@ For instance [CR1]< [D3] means that if recommended requirement [D3] is implement
 This section provides definitions, key concepts, and overviews of the components of a Baseline Protocol Implementation compliant with the requirements of this document. This section intends to provide implementers with guidance to be able to build and operate implementations of the Baseline Protocol not only in an informal but also in a very formal, highly regulated context. The latter context in particular requires implementers to prove that compliance with this standard not only does not violate regulatory frameworks but rather enables meeting regulatory requirements throughout the entire stack.
 
 The key concepts, definitions, and associated requirements underpinning a Baseline Protocol Implementation (BPI) which will be discussed in this section are:
-* Agreement
 * State Object
 * Transacting Counterparties
 * Commercially and Legally Binding Documents
@@ -420,7 +409,7 @@ Examples include but are not limited to a
   * Physical Products
   * Financial Assets
  
-## 2.3 Transacting Counterparties
+## 2.2 Transacting Counterparties
 
 A transacting counterparty, or simply counterparty, that requests one or more State Objects from another counterparty is the Requester concerning the State Object.  The Requester can also be the final recipient of one or more State Objects.
 
@@ -428,7 +417,9 @@ A counterparty that provides one or more State Object to another counterparty is
 
 A Requester may request State Objects from multiple Providers, and in the context of a supply chain of State Objects, a Provider of one State Object may also play the role of a Requester of other State Objects.
 
-## 2.4 Commercially and Legally Binding Documents
+**[R1]**	Transacting counterparties  MUST have a corresponding agreement.
+
+## 2.3 Commercially and Legally Binding Documents
 
 If transacting counterparties, also being referred to as Requester(s) and Provider(s) (“the parties”) in this document, intend to establish a business and operational environment for commercial transactions, they will sign one or more agreements that commercially and legally bind the parties, also known as Commercial Agreements. The aforementioned is only to be understood within the context of this document. 
 
@@ -440,7 +431,7 @@ Such legal, commercial documents may be presented as a combination of one or mor
 #### **[R2]**	
 The parties to a Commercial Agreement MUST sign commercially and legally binding documents with each other.
 
-### 2.4.1 Contract
+### 2.3.1 Contract
 
 This section details the prerequisites required to be fulfilled by a legal contract, also referred to as a Commercial Agreement in this document, between the parties, and defines the general terms and conditions in the legal contract governing commercial transactions between these parties. These prerequisites are to be understood only within the context of this document and are meant to be general and not specific to particular legal and regulatory frameworks.
 
@@ -474,7 +465,7 @@ Each specific product, service, or asset, or set thereof offered and delivered b
 
 This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.
 
-### 2.4.2 Commercial Documents 
+### 2.3.2 Commercial Documents 
 
 Commercial Documents, a category of commercial State Objects, refer to the state of a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments based on a legally binding contract.
 
@@ -509,7 +500,7 @@ Note that while non-repudiation in the physical world is most often tied to a ph
 Example:
 A Buyer ("Requester") and Seller ("Provider") may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.
 
-## 2.5 Consensus Controlled State Machine
+## 2.4 Consensus Controlled State Machine
 
 A Consensus Controlled State Machine (CCSM) is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage. 
 
@@ -517,7 +508,7 @@ A CCSM with no or limited trust assumptions is the foundational enabler of a BPI
 
 For specificity, the popular words "Blockchain" or "DLT" are a particular form of CCSM design.
 
-## 2.6 Baseline Protocol Instance
+## 2.5 Baseline Protocol Instance
 
 Baseline Protocol Instances or Implementations (BPIs) are logical constructs shared between (commercial) counterparties of Requesters and Providers and implemented on a CCSM. They are used to either validate or reconcile, (commercial) transactions between Requesters and Providers related to all (commercial) State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may (commercially) transact to/from each other interchangeably. 
 
@@ -574,13 +565,13 @@ A BPI MUST be able to provide privacy of the (commercial) counterparties' data c
 #### **[R18]** 
 A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#rfc3339).
 
-## 2.7 High-Level Functional Requirements
+## 2.6 High-Level Functional Requirements
 
 This section describes the prerequisites and high-level general operational framework requirements: 
 * Functional Requirements on commercial counterparties
 * CCSM-based Lifecycle Processes
 
-### 2.7.1 Functional Requirements on commercial counterparties
+### 2.6.1 Functional Requirements on commercial counterparties
 
 This section states the commercial and operational functionalities required from commercial counterparties.
 
@@ -602,7 +593,7 @@ Commercial counterparties need to know the level of conformity other commercial 
 #### **[R22]**	
 Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
 
-### 2.7.2 CCSM Lifecycle Processes
+### 2.6.2 CCSM Lifecycle Processes
 
 Commercial Counterparties must comply efficiently and effectively with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard.
 
@@ -617,7 +608,7 @@ Therefore, a pseudonymous map of a supply chain is a cryptographically connected
 
 This allows enforcement of conformance with regulations, additional legal and technical requirements without disclosure of confidential information.
 
-## 2.8 Baseline Protocol Reference Architecture
+## 2.7 Baseline Protocol Reference Architecture
 
 This section describes the components of the Baseline Reference Architecture: 
 * (Commercial) State Synchronization
@@ -625,7 +616,7 @@ This section describes the components of the Baseline Reference Architecture:
 * External Applications
 * Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
-### 2.8.1 (Commercial) State Synchronization
+### 2.7.1 (Commercial) State Synchronization
 
 A BPI can be used as a common frame of reference for business processes that can be used in a complementary way to existing System-of-Record integrations.
 
@@ -663,7 +654,7 @@ Any counterparty having received a Proof of Correctness of a (commercial) state 
 #### **[R29]** 	
 A (commercial) counterparty MUST include a Proof of Correctness of the (commercial) State Object generated by the (commercial) state change in the BPI Messages between the transacting counterparties.
 
-### 2.8.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer
+### 2.7.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer
 
 <div align="center">
 <figure>
@@ -696,14 +687,14 @@ The agreement on the governance entity, its rules, and its method of achieving i
 #### **[R31]**	
 The (commercial) counterparties MUST agree on the BPI.
 
-### 2.8.3 External Applications
+### 2.7.3 External Applications
 
 #### **[R32]**	
 Application/s providing (commercial) transaction functionality such as billing to (commercial) counterparties, and are, therefore, external concerning the BPI, MUST be independent of any BPI.
 
 Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
 
-### 2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components
+### 2.7.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
 <div align="center">
 <figure>
@@ -1226,7 +1217,7 @@ A BPI Subject Account owner MUST be notified by a BPI of any changes to a BPI Su
 
 ## 5.3 BPI Service Orchestration
 
-BPI service orchestration is key to achieve a flexible, loosely-coupled architecture as described in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture). BPI service orchestration is geared towards high-volume, low latency environments with many data changes.
+BPI service orchestration is key to achieve a flexible, loosely-coupled architecture as described in section [2.7 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture). BPI service orchestration is geared towards high-volume, low latency environments with many data changes.
 
 #### **[R87]** 
 BPI service orchestration utilized in a BPI MUST be semantically aware.
