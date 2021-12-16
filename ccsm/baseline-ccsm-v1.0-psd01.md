@@ -4,9 +4,9 @@
 
 # Baseline CCSM Specification Version 1.0
 
-## Project Specification Working Draft
+## Project Specification Draft (V0.1)
 
-## 22 September 2021
+## 23 September 2021, Final Editor's Draft Version 11 October 2021, First Release as Draft Specification on 17 November 2021
 
 <!-- URI list start (commented out except during publication by OASIS TC Admin)
 
@@ -53,11 +53,13 @@ This specification replaces or supersedes:
 * Specifications replaced by this specification (include hyperlink, preferably to HTML format)
  -->
 
-This specification is related to: \
+This specification is related to:
+
 **[baseline-core-v1.0]**
-_Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html.  \
+_Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html. **FIX Link**
+
 **[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html .
+_Baseline API and Data Model Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. **FIX link**
 
 
 
@@ -74,12 +76,13 @@ was last revised or approved by Baseline, part of the Ethereum OASIS Open Projec
 Comments on this work can be provided by opening issues in the project repository or by sending email to the project’s public comment list baseline@lists.oasis-open-projects.org.
 
 #### Keywords:
-The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](http://www.ietf.org/rfc/rfc2119.txt)] when, and only when, they appear in all capitals, as shown here.
+The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] when, and only when, they appear in all capitals, as shown here.
 
 #### Citation format:
 When referencing this specification the following citation format should be used:
 
 **[baseline-dlt-v1.0]** _Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
+**FIX link**
 
 -------
 
@@ -207,53 +210,66 @@ Example : It should be read that [R1] is an absolute requirement of the specific
 
 CCSM security is one of the most, if not the most important characteristic of a CCSM. Therefore, great care has to be taken in its definition, starting with the utilized cryptographic algorithms and their implementations. 
 
-**[R1]**	A CCSM utilized in a BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
+#### **[R1]**	
+A CCSM utilized in a BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
 The usage of cryptographic libraries that successfully passed the National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program (CMVP) is recommended.
 
-**[R2]**	If the CCSM utilized in a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
+#### **[R2]**	
+If the CCSM utilized in a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
-**[R3]**	The CCSM utilized in a BPI MUST support CCSM Node Key Management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard (FIPS) or ISO 27001.
+#### **[R3]**	
+The CCSM utilized in a BPI MUST support CCSM Node Key Management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or ISO 27001 [[ISO27001](#iso27001)].
 
-**[R4]**	The CCSM utilized in a BPI SHOULD support programmatic economic security assurances.
+#### **[R4]**	
+The CCSM utilized in a BPI SHOULD support programmatic economic security assurances.
 
 Note, economic security assurances such as used in Proof-of-Stake consensus algorithms are designed to provide additional security assurances beyond those of cryptography in distributed systems. The security assurances are based on a system of economic incentives and disincentives for distributed system participants with the expressed goal that honest behavior of distributed system participants which enhances system security is in their economic self-interest. This is akin to determining if a cryptographic algorithm is secure or not, and what the level of security of said algorithm is, the security of a system of economic incentives and disincentives must be proven through a game theoretic security analysis.
 
-**[D1]**	The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE).
+#### **[D1]**	
+The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE).
 
 Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing within the TEE, along with confidentiality of their assets.
 
-**[R5]**	The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033.
+#### **[R5]**	
+The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033 [ISO-IEC-27033](#iso-iec-27033).
 
 Network attacks typically take the form of Distributed Denial of Service (DDOS) attacks, attacks from groups of malicious CCSM nodes performing CCSM reorganizations, front running of transactions through transaction injections, and censoring of transactions. This includes game theoretic attacks such as discouragement, extortion, value-extraction, or random oracle attacks.
 
-**[R6]**	The CCSM utilized in a BPI MUST support a secure consensus algorithm as explained in section [8 Virtual State Machine](#8-virtual-state-machine).
+#### **[R6]**	
+The CCSM utilized in a BPI MUST support a secure consensus algorithm as explained in section [8 Virtual State Machine](#8-virtual-state-machine).
 
 Note that secure in this context refers to the security of a consensus algorithm against attacks directed towards its three main characteristics – consistency, availability, and fault tolerance. Therefore, a consensus algorithm is considered secure for a given set of operating assumptions:
 * if all nodes produce the same valid output, according to the protocol rules, for the same message broadcast to the network (consistency/safety),
 * if all non-faulty participating nodes produce an output indicating the termination, and subsequent restart, of the protocol upon reaching consensus (availability/liveness), and
 * if the network exhibits the capability to perform as intended if network nodes fail, either unintentionally or intentionally (fault tolerance).
 
-**[R7]**	A CCSM utilized in a BPI MUST have one or more secure-by-construction or Verifiably Secure execution frameworks.
+#### **[R7]**	
+A CCSM utilized in a BPI MUST have one or more secure-by-construction or Verifiably Secure execution frameworks.
 
 See the glossary for a definition of Verifiably Secure and more details about CCSM supported execution frameworks in section [9 Data Integrity and Transaction Completeness ](#9-data-integrity-and-transaction-completeness).
 
 # 3. Privacy
 CCSMs range in the level of privacy they support. One approach ensures that the contents of a CCSM transaction or storage are meaningless to parties not participating in an interaction. Another more stringent approach is to use a CCSM that precludes the accessibility of such information to non-participating parties. This standard sets the minimum requirement to the first approach, but the parties can agree to require that the BPI supports the second approach.
 
-**[R8]**	The CCSM utilized in a BPI MUST support privacy preservation such that the contents of a CCSM transaction or CCSM storage does not carry meaning to parties not participating in a CCSM based interaction.
+#### **[R8]**	
+The CCSM utilized in a BPI MUST support privacy preservation such that the contents of a CCSM transaction or CCSM storage does not carry meaning to parties not participating in a CCSM based interaction.
 
-**[R9]**	The CCSM utilized in a BPI MUST support privacy preservation of transactions and their execution.
+#### **[R9]**	
+The CCSM utilized in a BPI MUST support privacy preservation of transactions and their execution.
 
-**[R10]**	The CCSM utilized in a BPI MUST support segregation between public and private state/data.
+#### **[R10]**	
+The CCSM utilized in a BPI MUST support segregation between public and private state/data.
 
-**[D2]**	The CCSM utilized in a BPI SHOULD support a privacy-preserving P2P message protocol.
+#### **[D2]**	
+The CCSM utilized in a BPI SHOULD support a privacy-preserving P2P message protocol.
 
 Privacy-preserving in this context means that at least the content of a message, and ideally, also the sender and recipient, is opaque to all participants of the P2P network except sender and recipient.
 
-**[D3]**	The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verification (if not generation) at the protocol level.
+#### **[D3]**	
+The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verification (if not generation) at the protocol level.
 
-Zero-Knowledge Proofs (ZKPs) (see appendix [A.2 Non-Normative References](#a2-non-normative-references)) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
+Zero-Knowledge Proofs (ZKPs) (see reference [[ZKP](#how-to-explain-zero-knowledge-protocols-to-your-children)]) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
 
 # 4. Scalability
 To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce CCSM processing and storage resources. 
@@ -262,15 +278,18 @@ Since forecasting future transaction volumes is difficult and could rapidly chan
 
 # 5. Interoperability
 
-**[D4]**	The CCSM utilized in a BPI SHOULD support secure data sources.
+#### **[D4]**	
+The CCSM utilized in a BPI SHOULD support secure data sources.
 
 This requirement means that a CCSM has a mechanism to securely connect its state through for example a smart contract with a data source which has certain security assurances in such a way that a) the security of the data source is not compromised by the CCSM and b) the security assurances of the CCSM are not compromised by the secure data source.
 
-**[D5]**	When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use the same CCSM Protocol, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
+#### **[D5]**	
+When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use the same CCSM Protocol, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
 An example of such techniques is a two-phase lock relay bridge. Two-phase locking (2PL) is a concurrency control method that guarantees serializability. The protocol utilizes locks, applied by a CCSM transaction to data/assets, which may block other CCSM transactions from accessing the same data/assets during the lifecycle of a transaction impacting said data/asset(s). This protocol requires support for CCSM transaction receipts signaling CCSM transaction lifecycle completeness. This approach requires a relay server (network) between the two CCSMs which interacts with the locking/unlocking smart contracts on each of the CCSMs. Since both CCSMs operate the same CCSM protocol the relay server can be a node on both networks which does not introduce further security assumptions.
 
-**[D6]**	When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use different CCSM Protocols, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
+#### **[D6]**	
+When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use different CCSM Protocols, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
 An example of such techniques are Atomic Swap protocols. An atomic swap is a CCSM smart contract technology that enables the exchange of one CCSM asset for another without using centralized intermediaries, such as exchanges.
 
@@ -279,15 +298,16 @@ Network in this context refers to the nodes of a CCSM that form the CCSM network
 
 It is important that Peer-to-Peer (P2P) message protocols are used that do not require network nodes which act as message distribution hubs, e.g., leader nodes because network attacks on leader nodes can either cause unwanted network partitions or even network collapse.
 
-**[R11]**	A CCSM utilized in a BPI MUST support a P2P message protocol that does not require network leader nodes.
+#### **[R11]**	
+A CCSM utilized in a BPI MUST support a P2P message protocol that does not require network leader nodes.
 
 The network requirements on the consensus algorithms are even more stringent than on the P2P protocol. Additional requirements on the consensus algorithm of the CCSM are discussed in the next section, section [7. Consensus](#7-consensus).
 
-**[R12]** The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT).
+#### **[R12]** 
+The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT) [[BFT](#the-byzantine-generals-problem)].
 
-See [A.2 Non-Normative References](#a2-non-normative-references) for a reference paper.
-
-**[R13]** The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
+#### **[R13]** 
+The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
 
 Weak synchrony in this context means, 
 1. that all messages will eventually reach their intended recipients and 
@@ -296,49 +316,61 @@ Weak synchrony in this context means,
 # 7. Consensus
 The consensus algorithm is the most important component of a CCSM as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
 
-**[R14]**	The CCSM utilized in a BPI MUST be able to support more than one BFT consensus algorithm.
+#### **[R14]**	
+The CCSM utilized in a BPI MUST be able to support more than one BFT consensus algorithm.
 
 This is also known as plugable consensus. Note, that deterministic BFT consensus algorithms lead to strong consistency, and, thus, immediate finality. Probabilistic BFT consensus algorithms lead to eventual consistency, and, thus, eventual finality.
 
-**[R15]**	Consensus algorithms employed in the CCSM utilized in a BPI MUST have a mathematical proof of security.
+#### **[R15]**	
+Consensus algorithms employed in the CCSM utilized in a BPI MUST have a mathematical proof of security.
 
 A mathematical proof of security is a collection of mathematically provable theorems that make security statements about the three characteristics of a consensus algorithm -- consistency/safety, availability/liveness and fault tolerance and is based on specific operating assumptions of the protocol.
 
-**[D7]**	Consensus algorithms employed in the CCSM utilized in a BPI SHOULD include economic security assurances with game theoretic security proofs.
+#### **[D7]**	
+Consensus algorithms employed in the CCSM utilized in a BPI SHOULD include economic security assurances with game theoretic security proofs.
 
-**[D8]**	Consensus algorithms employed in the CCSM utilized in a BPI SHOULD require not more than order N messages to reach consensus where N is the number of nodes in the network.
+#### **[D8]**	
+Consensus algorithms employed in the CCSM utilized in a BPI SHOULD require not more than order N messages to reach consensus where N is the number of nodes in the network.
 
 Note that the larger the number of nodes, the higher the level of security. Also, note that performance for certain consensus algorithms degrades quickly as the number of nodes increases because of the number of messages required to exchange between them to achieve consensus can grow very quickly. Therefore, algorithms that scale in the number of nodes without significant performance degradation are preferred. Also, note that network performance such as poor network latency can lead to severe issues such as consensus failure if an algorithm requires the exchange of large numbers of messages to reach consensus.
 
 # 8. Virtual State Machine
 CCSMs most often utilize a virtual state machine (VSM) for CCSM computations of CCSM state transitions; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework. 
 
-**[R16]**	The Execution Framework of the CCSM utilized in a BPI MUST be deterministic.
+#### **[R16]**	
+The Execution Framework of the CCSM utilized in a BPI MUST be deterministic.
 
 All CCSM nodes need to arrive at the same result based on the same input and execution instructions, in other words deterministic outcomes. This is only guaranteed if the Execution Framework either does not allow instructions to be executed in parallel, but only strictly sequential, or if the Execution Framework has methods in place that allow the identification and prevention of transactions that would cause CCSM state conflicts, if processed in parallel. 
 
 For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet confirmed by CCSM consensus. This means that if the transaction of the Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending which transaction is executed first.
 
-**[R17]**	The Execution Framework of the CCSM utilized in a BPI MUST ensure that state transition computations are either completed or abort in finite time.
+#### **[R17]**	
+The Execution Framework of the CCSM utilized in a BPI MUST ensure that state transition computations are either completed or abort in finite time.
 
 What is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction. This requirement means that there cannot be infinite computational loops in a distributed computational system with consensus, as this would not allow the CCSM network to reach consensus anymore and bring the CCSM network itself to a halt. Note also, that when a CCSM node is offline, the virtual state machine’s Execution Framework does not perform computations; when a CCSM node comes back online, and synchronizes with the state of the CCSM network, it only validates the last available state - either a global state or specific to that node. 
 
-**[R18]**	The Execution Framework of the CCSM utilized in a BPI MUST support widely used cryptographic operations natively, e.g., hashing, digital signatures, or zero-knowledge proof verification.
+#### **[R18]**	
+The Execution Framework of the CCSM utilized in a BPI MUST support widely used cryptographic operations natively, e.g., hashing, digital signatures, or zero-knowledge proof verification.
 
-**[D9]**	The Execution Framework of the CCSM utilized in a BPI SHOULD have a mathematical proof of correctness and security.
+#### **[D9]**	
+The Execution Framework of the CCSM utilized in a BPI SHOULD have a mathematical proof of correctness and security.
 
-**[R19]**	The Execution Framework of the CCSM utilized in a BPI MUST be Verifiably Secure. 
+#### **[R19]**	
+The Execution Framework of the CCSM utilized in a BPI MUST be Verifiably Secure. 
 
 # 9. Data Integrity and Transaction Completeness
 Data integrity over time, in other words the inability to alter data once it has been committed to the state of the CCSM, is one of the key features of typical CCSMs.
 
-**[R20]**	If the CCSM utilized in a BPI is strongly consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7).
+#### **[R20]**	
+If the CCSM utilized in a BPI is strongly consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7).
 
-**[R21]**	If the CCSM utilized in a BPI is eventually consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7). 
+#### **[R21]**	
+If the CCSM utilized in a BPI is eventually consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7). 
 
 Besides data integrity, the notion of censorship-resistance, or the inability of anyone participant in a CCSM to stop any other participant’s transaction to be eventually included in the CCSM state, is another key feature of typical CCSMs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
 
-**[R22]**	The CCSM utilized in a BPI MUST guarantee that a transaction compliant with the CCSM protocol rules is eventually included in the state of the CCSM, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section [6. Network](#6-network) for details on the security assumptions of consensus algorithms).
+#### **[R22]**	
+The CCSM utilized in a BPI MUST guarantee that a transaction compliant with the CCSM protocol rules is eventually included in the state of the CCSM, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section [6. Network](#6-network) for details on the security assumptions of consensus algorithms).
 
 The reason why the reference to the consensus algorithm is important is as follows: To guarantee processing of a transaction, one needs only one honest CCSM node in the network. However, this is not sufficient to guarantee consensus. Therefore, and to include a submitted transaction in the CCSM state, there needs to be an honest majority of CCSM nodes to reach consensus on the submitted transaction.
 
@@ -346,23 +378,31 @@ The reason why the reference to the consensus algorithm is important is as follo
 
 Depending on the CCSM employed in the implementation of a BPI, the security requirements around integration below need to be fulfilled either by the CCSM itself used for the implementation or, alternatively by the CCSM Abstraction Layer. Note that these requirements are distinct from the security requirements for the Baseline Protocol Standard APIs or any custom APIs for that matter because the BPI Processing Layer which is invoking services exposed by the CCSM Abstraction Layer or the CCSM itself should not be assumed to be a trusted service without authentication. This is because the standard does not define the operating model of a CCSM or a BPI or any of the BPI layers, and, therefore, must necessarily prescribe requirements for a 100% adversarial environment.
 
-**[R23]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM  MUST be compatible with widely used external authentication services. 
+#### **[R23]**	
+The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM  MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH [OAuth-2.0] , SAML [SAML] , OIDC [OIDC], AD/LDAP [ActiveDirectory]. Please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references).
+Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].
 
-**[R24]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
+#### **[R24]**	
+The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
 
-**[R25]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support policy management.
+#### **[R25]**	
+The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support policy management.
 
-**[R26]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO).
+#### **[R26]**	
+The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO).
 
-See [SSO] in appendix [A.2 Non-Normative References](#a2-non-normative-references) for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
+See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
 
-**[R27]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication.
+#### **[R27]**	
+The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication (MFA).
 
-**[R28]**	The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules [HSM](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm). 
+See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).
 
-For further information, refer to [HSM] in appendix [A.2 Non-Normative References](#a2-non-normative-references).
+#### **[R28]**	
+The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules (HSM). 
+
+This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].
 
 # 11 Conformance
 
@@ -398,19 +438,43 @@ While any hyperlinks included in this appendix were valid at the time of publica
 
 The following documents are referenced in such a way that some or all of their content constitute requirements of this document.
 
-**[RFC2119]** S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997.\
-**[ISO-IEC-27033]** ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO. 
+#### **[RFC2119]**
+ S. Bradner, Key words for use in RFCs to Indicate Requirement Levels, http://www.ietf.org/rfc/rfc2119.txt, IETF RFC 2119, March 1997.
+
+#### **[ISO-IEC-27033]** 
+ISO/IEC 27033: Information technology — Security techniques — Network security - Parts 1 through 6 published by ISO.
 
 ## A.2 Non-Normative References
 
-**[Zero-Knowledge Proofs (ZKPs)]** Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3  \
-**[Byzantine Fault Tolerant (BFT)]** "The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982 \
-**[OAuth-2.0]** Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518 \
-**[SAML]** J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os \
-**[OIDC]** OpenID Connect Federation 1.0, https://openid.net/developers/specs/ (2019) \
-**[ActiveDirectory]** “Directory System Agent". MSDN Library. Microsoft. (2018) \
-**[SSO]** Recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services). NIST SP 800-95, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-95.pdf  \
-**[HSM]** Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
+#### **[FIPS]** 
+FIPS, https://www.nist.gov/itl/current-fips.
+
+#### **[ISO27001]** 
+ISO/IEC 27001:2013, https://www.iso.org/standard/54534.html.
+
+#### **[How-to-Explain-Zero-Knowledge-Protocols-to-Your-Children]** 
+Quisquater, Jean-Jacques; Guillou, Louis C.; Berson, Thomas A. (1990). "How to Explain Zero-Knowledge Protocols to Your Children". Advances in Cryptology – CRYPTO '89: Proceedings. Lecture Notes in Computer Science. 435. pp. 628–631. doi:10.1007/0-387-34805-0_60. ISBN 978-0-387-97317-3.
+
+#### **[The-Byzantine-Generals-Problem]** 
+"The Byzantine Generals Problem", Leslie Lamport, Robert E. Shostak, Marshall Pease, ACM Transactions on Programming Languages and Systems, 1982.
+
+#### **[OAuth-2.0]** 
+Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518.
+
+#### **[SAML]** 
+J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os.
+
+#### **[OIDC]** 
+OpenID Connect Federation 1.0, https://openid.net/developers/specs/ (2019).
+
+#### **[ActiveDirectory]** 
+“Directory System Agent". MSDN Library. Microsoft. (2018).
+
+#### **[SSO]** 
+Recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services). NIST SP 800-95, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-95.pdf.
+
+#### **[HSM]** 
+Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
 
 
 -------

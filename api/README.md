@@ -11,7 +11,7 @@ The document describes the Baseline programming interface and expected behaviors
 
 ## Status
 
-The Baseline API & Data Model Specification is currently work in progress.
+The Baseline API & Data Model Specification is currently in its first release as a draft specification (V0.1).
 
 ## Components
 
@@ -21,24 +21,32 @@ The Baseline API & Data Model Specification is currently work in progress.
     <th>Component Description</th>
   </tr>
   <tr>
-    <td>IBaselineRPC</td>
-    <td>Describes interface that provide functions to interact with Agreement Execution Layer.</td>
+    <td>Baseline</td>
+    <td> Baseline core provides internal integration middleware interfaces for baselining systems of record.</td>
   </tr>
   <tr>
-    <td>IRegistry</td>
-    <td>Describes interface that provide functions to manage workgroups, organizations and users.</td>
+    <td>CCSM</td>
+    <td>Baseline core CCSM API provides interfaces for general interaction with the underlying CCSM.</td>
   </tr>
   <tr>
-    <td>IVault</td>
-    <td>Describes interface that provide functions to manage vaults and keys.</td>
+    <td>Privacy</td>
+    <td>Baseline core privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).</td>
   </tr>
   <tr>
-    <td>IBlockchainService</td>
-    <td>Describes interface that provide functions for Blockchain clients.</td>
+    <td>Registry</td>
+    <td>Utilities for resolving DID documents for arbitrary subjects.</td>
   </tr>
   <tr>
-    <td>Data Model</td>
-    <td>Describes all required data structures and elements at each functional layer such as API data models or account structures.</td>
+    <td>Vault</td>
+    <td>Baseline core vault API provides tools and methods for managing digital authentication credentials for Subjects based on roles and `Workgroup` instances.</td>
+  </tr>
+  <tr>
+    <td>Schemas</td>
+    <td>Baseline core data schemas used in the Baseline, CCSM, Privacy, Registry and Vault API modules.</td>
+  </tr>
+  <tr>
+    <td>Conformance</td>
+    <td>Describes the conformance clauses and tests required to achieve baseline compliant implementations.</td>
   </tr>
 </table>
 

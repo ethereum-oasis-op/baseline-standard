@@ -14,7 +14,7 @@ tags:
   - name: Privacy
     description: Baseline core privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
   - name: Registry
-    description: Utilities for resolving DID documents for arbitrary subjects
+    description: Utilities for resolving DID documents for arbitrary subjects.
   - name: Vault
     description: |- 
       Baseline core vault API provides tools and methods for managing digital authentication credentials for Subjects based on roles and `Workgroup` instances. 
@@ -2060,7 +2060,7 @@ paths:
     post:
       deprecated: false
       description: |-
-        Associates a specified BPI `Subject` with a specific BPI `Workgroup`; authorization should be scoped to the BPI `Workgroup` in which the BPI `Subject` is to be included. Associates a BPI `Subject` to a specific BPI `Workgroup`. _normative_
+        Associates a specified BPI `Subject` with a specific BPI `Workgroup`; authorization should be scoped to the BPI `Workgroup` in which the BPI `Subject` is to be included. _normative_
       operationId: associateWorkgroupSubject
       parameters:
         - description: ID of a specific `Workgroup` for which a specific subject is to be associated; _UUID as specified by RFC4122_
