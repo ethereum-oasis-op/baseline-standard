@@ -2060,7 +2060,7 @@ paths:
     post:
       deprecated: false
       description: |-
-        Associates a specified BPI `Subject` with a specific BPI `Workgroup`; authorization should be scoped to the BPI `Workgroup` in which the BPI `Subject` is to be included. Associates a BPI `Subject` to a specific BPI `Workgroup`. _normative_
+        Associates a specified BPI `Subject` with a specific BPI `Workgroup`; authorization should be scoped to the BPI `Workgroup` in which the BPI `Subject` is to be included. _normative_
       operationId: associateWorkgroupSubject
       parameters:
         - description: ID of a specific `Workgroup` for which a specific subject is to be associated; _UUID as specified by RFC4122_
