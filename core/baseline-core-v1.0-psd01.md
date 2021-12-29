@@ -394,9 +394,6 @@ The key concepts, definitions, and associated requirements underpinning a Baseli
 
 An agreement is a manifestation of mutual assent by two or more parties to one another see [Cornell Law School](https://www.law.cornell.edu/wex/agreement). An Agreement between two or more Counterparties allows for transactions between them dealing with, for example, commercial items such as products. An Agreement, therefore, governs and defines all transactions between counterparties.
 
-#### **[R1]**
-Transacting counterparties  MUST have a corresponding agreement.
-
 ## 2.2 State Object
 
 A State Object is an item that can be exchanged between counterparties to an agreement, the state of which the counterparties have agreed on, and which is defined in an agreement. In the context of this standard, a State Object is assumed to be a document derived from an agreement and representing a specific state of either an asset, a product offering or a service offering transacted between counterparties.
@@ -417,7 +414,8 @@ A counterparty that provides one or more State Object to another counterparty is
 
 A Requester may request State Objects from multiple Providers, and in the context of a supply chain of State Objects, a Provider of one State Object may also play the role of a Requester of other State Objects.
 
-**[R1]**	Transacting counterparties  MUST have a corresponding agreement.
+#### **[R1]**
+Transacting counterparties  MUST have a corresponding agreement.
 
 ## 2.3 Commercially and Legally Binding Documents
 
@@ -1201,7 +1199,7 @@ A BPI Subject Account MUST be encrypted to and decrypted by one or more cryptogr
 #### **[D19]** 
 A BPI Subject Account SHOULD be re-encrypted after every BPI Subject session to one or more cryptographic keys only known to the BPI Subject Account holder.
 
-[**[R82]**](#r82) and [**[D19]**](#d19) ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.
+**[R82](#r82)** and **[D19](#d19)** ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.
 
 #### **[R83]** 
 The BPI Subject Account owner MUST be able to perform the following operations on its BPI Subject Account: read, update and delete.
@@ -3093,6 +3091,7 @@ The following individuals have participated in the creation of this specificatio
 
 Andreas Freund \
 Anais Ofranc, Consianimis \
+Chaals Nevile, EEA \
 Gage Mondok, Chainlink \
 Kyle Thomas, Provide \
 Daven Jones, Provide \
