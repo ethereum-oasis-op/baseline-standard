@@ -1199,7 +1199,7 @@ A BPI Subject Account MUST be encrypted to and decrypted by one or more cryptogr
 #### **[D19]** 
 A BPI Subject Account SHOULD be re-encrypted after every BPI Subject session to one or more cryptographic keys only known to the BPI Subject Account holder.
 
-**[R82](#r82)** and **[D19](#d19)** ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.
+[**[R82]**](#r82) and [**[D19]**](#d19) ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.
 
 #### **[R83]** 
 The BPI Subject Account owner MUST be able to perform the following operations on its BPI Subject Account: read, update and delete.
