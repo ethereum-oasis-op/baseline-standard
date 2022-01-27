@@ -355,7 +355,7 @@ A workgroup is a set of Parties, also referred to as BPI Subjects, who are the a
 
 **Workstep:**
 
-A workstep is characterized by input, the deterministic application of a set of logic rules and data to that input, and the generation of a verifiably deterministic and verifiably correct output. A set of Worksteps used to synchronise the outcomes in two or more systems of record within a Workgroup is call a Workflow.
+A workstep is characterized by input, the deterministic application of a set of logic rules and data to that input, and the generation of a verifiably deterministic and verifiably correct output. A set of Worksteps used to synchronise the outcomes in two or more systems of record within a Workgroup is called a Workflow.
 
 
 ## 1.3 Typographical Conventions
