@@ -309,7 +309,7 @@ Refers to a situation where a statement's author cannot successfully dispute its
 
 **Party:**
 
-An entity participating in the execution of one or more given Workflows. A Workgroup is set up and managed by one Party that invites other entities as Parties to join as workgroup members. 
+An entity participating in the execution of one or more given Workflows within a Workgroup. A Workgroup is set up and managed by one Party that invites other entities as Parties to join as workgroup members. 
 
 **Portability:**
 
@@ -351,11 +351,11 @@ A process made up of a series of Worksteps between all or a subset of Parties in
 
 **Workgroup**
 
-A workgroup is defined through a set of authorized users of a BPI, referred to as BPI Subjects in this document, one or more security policies, a well-defined administrator role and its association with one or more worksteps through a workflow to achieve system of record synchronization of the workgroup participants. 
+A workgroup is a set of Parties, also referred to as BPI Subjects, who are the authorized users of a BPI. The Parties use Workflows to synchronize their systems of record through one or more worksteps in the workflow. 
 
 **Workstep:**
 
-A workstep is characterized by input, the deterministic application of a set of logic rules and data to that input, and the generation of a verifiably deterministic and verifiably correct output.
+A workstep is characterized by input, the deterministic application of a set of logic rules and data to that input, and the generation of a verifiably deterministic and verifiably correct output. A set of Worksteps used to synchronise the outcomes in two or more systems of record within a Workgroup is called a Workflow.
 
 
 ## 1.3 Typographical Conventions
