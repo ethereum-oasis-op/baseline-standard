@@ -309,7 +309,7 @@ Refers to a situation where a statement's author cannot successfully dispute its
 
 **Party:**
 
-An entity participating in the execution of one or more given Workflows within a Workgroup. A Workgroup is set up and managed by one Party that invites other entities as Parties to join as workgroup members. 
+An entity participating in the execution of one or more given Workflows within a Workgroup. A Workgroup is set up and managed by one Party that invites other entities as Parties to join as workgroup participants. 
 
 **Portability:**
 
