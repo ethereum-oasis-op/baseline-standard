@@ -474,10 +474,7 @@ A commercial State Object to be transacted on MUST be based on a specific commer
 A commercial document MUST be derived from a legally binding contract.
 
 #### **[R6]**	
-A commercial document MUST be represented as an electronic record.
-
-#### **[R7]**  
-A commercial document MUST be represented on a BPI between the counterparties.
+A commercial document MUST be represented as an electronic record on a BPI between the counterparties.
 
 #### **[R8]**	
 A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
