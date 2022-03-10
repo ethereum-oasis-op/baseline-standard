@@ -303,7 +303,7 @@ Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
 
 A legal contract that defines the general terms and conditions governing the entire scope of products commercially exchanged between the parties to the agreement.
 
-**Material impact**
+**Material Impact**
 
 In the context of certain requirements, such as [**[R96]**](#r96), something that causes the underlying business requirements of the BPI not to be met.
 For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, 
