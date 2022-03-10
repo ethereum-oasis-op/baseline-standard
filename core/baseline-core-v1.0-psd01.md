@@ -1259,7 +1259,7 @@ BPI service orchestration utilized in a BPI MUST NOT make assumptions about cons
 BPI service orchestration utilized in a BPI MUST isolate between data source and data consumers.
 
 #### **[R96]** 
-BPI service orchestration MUST not materially impact the overall system latency of the BPI.
+BPI service orchestration MUST not have a Material Impact on the overall system latency of the BPI.
 
 #### **[R97]** 
 BPI service orchestration utilized in a BPI MUST be scalable and highly available. 
