@@ -1171,9 +1171,9 @@ A BPI Subject Account MUST have at least the following data properties:
 5. A list of all BPI Accounts related to the BPI Subject Account
 
 *This minimal set of requirements ensures:*
-*- that access to a BPI Subject account can be cryptographically verified ([R80.1]),*
-** that a BPI account can fine-grain access and authorization requirements for the BPI Subject ([R80.2]),*
-<em>* that other BPI Subjects can independently verify the identity used to establish the BPI Subject Account ([R80.3]),</em>
+_*that access to a BPI Subject account can be cryptographically verified ([R80.1])_,
+**that a BPI account can fine-grain access and authorization requirements for the BPI Subject ([R80.2])*,
+* that other BPI Subjects can independently verify the identity used to establish the BPI Subject Account ([R80.3]),
 * that a BPI Subject can independently recover a BPI Subject Account even if their private key was compromised, and ensure forward security ([R80.4]), and
 * that there is a provable relationship with BPI Accounts connected to BPI state objects connected to the BPI Subject Account owner ([R80.5]).  
 
