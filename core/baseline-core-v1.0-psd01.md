@@ -449,20 +449,18 @@ The functional terms of the contract SHOULD be represented on a BPI between the 
 #### **[D3]**	 
 The contract SHOULD be an MSA between the contract parties. 
 
-An MSA is preferable since it allows a proliferation of contract-based BPI (commercial) workflows and worksteps between the parties reducing complexity and potential errors.
-
+*An MSA is preferable since it allows a proliferation of contract-based BPI (commercial) workflows and worksteps between the parties reducing complexity and potential errors.*
 #### **[CR1]<[D3]** 	
 There MUST be only one MSA between contract parties covering commercial transactions for a given set of products, services, or assets.
 
-This requirement is intended to disambiguate which terms cover which part of a commercial relationship between parties.
+*This requirement is intended to disambiguate which terms cover which part of a commercial relationship between parties.*
 
-Specific Terms and Conditions (“Specific T&Cs”) defines the terms and conditions governing a specific product, service, or asset or set thereof offered and delivered by Provider(s) to Requester(s).
+*Specific Terms and Conditions (“Specific T&Cs”) defines the terms and conditions governing a specific product, service, or asset or set thereof offered and delivered by Provider(s) to Requester(s).*
 
 #### **[D4]**	
 Each specific product, service, or asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its Specific T&C document.
 
-This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.
-
+*This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.*
 ### 2.3.2 Commercial Documents 
 
 Commercial Documents, a category of commercial State Objects, refer to the state of a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments based on a legally binding contract.
@@ -485,18 +483,16 @@ A commercial document MUST be authorized by legal representatives of the parties
 #### **[D5]**	
 The definition of a commercial document authorization SHOULD be stated in the legal contract underlying the commercial document.
 
-Authorizations for commercial transactions are a foundational element in the context of this document, as they are in paper based agreements. Therefore, any legal authorization agreements relevant to the commercial agreement between commercial counterparties, and thus to commercial transactions between them, are important to be represented in a BPI to ensure mitigating the risk of unauthorized signatures.
-
+*Authorizations for commercial transactions are a foundational element in the context of this document, as they are in paper based agreements. Therefore, any legal authorization agreements relevant to the commercial agreement between commercial counterparties, and thus to commercial transactions between them, are important to be represented in a BPI to ensure mitigating the risk of unauthorized signatures.*
 #### **[D6]**	
 The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
 
 #### **[R9]**	
 A commercial document MUST be non-repudiable.
 
-Note that while non-repudiation in the physical world is most often tied to a physical signature of a legal entity on a legal document, in the digital world a digital signature over a digital legal document such as an Order or an Invoice belonging to a known and verifiable digital identity of a counterparty serves the same purpose.
+*Note that while non-repudiation in the physical world is most often tied to a physical signature of a legal entity on a legal document, in the digital world a digital signature over a digital legal document such as an Order or an Invoice belonging to a known and verifiable digital identity of a counterparty serves the same purpose.*
 
-Example:
-A Buyer ("Requester") and Seller ("Provider") may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.
+*Example: A Buyer ("Requester") and Seller ("Provider") may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.*
 
 ## 2.4 Consensus Controlled State Machine
 
@@ -521,10 +517,9 @@ BPIs are strongly dependent on the security and privacy capabilities of the CCSM
 #### **[R10]**	
 A BPI MUST utilize a CCSM.
 
-Since security and privacy requirements of a BPI are key, and are strongly dependent on the security and privacy assurances the CCSM on which the BPI is implemented can provide, BPIs need to take great care to avoid the following two situations:
+*Since security and privacy requirements of a BPI are key, and are strongly dependent on the security and privacy assurances the CCSM on which the BPI is implemented can provide, BPIs need to take great care to avoid the following two situations:*
 
-1. Weaken the security assurances of the underlying CCSM by increasing the CCSM attack surface. Such an expansion of the attack surface can occur through, for example, the concentration of value-at-risk in one or more BPIs above the value used to economically secure the underlying CCSM. This situation would provide an economic incentive to attack, and subvert, the underlying CCSM to extract the value in one or more BPIs.
-2. Increase the existing attack surface of a CCSM such that the security assurances of the BPI become significantly weaker than the underlying CCSM. An example of such a situation can occur when a commercial State Object such as a Financing contract or an Order in BPI A is dependent on a commercial State Object such as an invoice as collateral in BPI B, and when BPI B has weaker transaction finality assurances than either BPI A or the underlying CCSM. In that scenario, the commercial State Object in BPI A cannot provably rely on the invoice as collateral in BPI B since the invoice might be reverted, and it would then no longer be suitable collateral.
+*1. Weaken the security assurances of the underlying CCSM by increasing the CCSM attack surface. Such an expansion of the attack surface can occur through, for example, the concentration of value-at-risk in one or more BPIs above the value used to economically secure the underlying CCSM. This situation would provide an economic incentive to attack, and subvert, the underlying CCSM to extract the value in one or more BPIs.* *2. Increase the existing attack surface of a CCSM such that the security assurances of the BPI become significantly weaker than the underlying CCSM. An example of such a situation can occur when a commercial State Object such as a Financing contract or an Order in BPI A is dependent on a commercial State Object such as an invoice as collateral in BPI B, and when BPI B has weaker transaction finality assurances than either BPI A or the underlying CCSM. In that scenario, the commercial State Object in BPI A cannot provably rely on the invoice as collateral in BPI B since the invoice might be reverted, and it would then no longer be suitable collateral.*
 	
 Hence, this document enumerates the following requirements below:
 
@@ -534,8 +529,7 @@ A BPI MUST have the same security assurances as to the CCSM it utilizes.
 #### **[R12]**	
 A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
 
-For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [[CVMP]](#cvmp).
-
+*For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [[CVMP]](#cvmp).*
 #### **[R13]**	
 If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
@@ -545,17 +539,17 @@ A BPI MUST support cryptographic key management incl. backup and recovery that a
 #### **[R15]**	
 (Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
-Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a (commercial) State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.
+*Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a (commercial) State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.*
 
 #### **[D7]**	
 A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
 
-Liveness means that if a CCSM does not require (commercial) counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.
+*Liveness means that if a CCSM does not require (commercial) counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.*
 
 #### **[R16]**	
 A BPI MUST be censorship-resistant.
 
-Censorship-resistant means that a (commercial) counterparty can terminate a (commercial) transaction at any time without another counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the (commercial) transaction.
+*Censorship-resistant means that a (commercial) counterparty can terminate a (commercial) transaction at any time without another counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the (commercial) transaction.*
 
 #### **[R17]**	
 A BPI MUST be able to provide privacy of the (commercial) counterparties' data concerning any party outside of the BPI.
@@ -576,17 +570,16 @@ This section states the commercial and operational functionalities required from
 #### **[R19]**	
 Commercial Counterparties MUST have the ability to meet all required legal, compliance, and business reporting requirements. 
 
-This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.
-
+*This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.*
 #### **[R20]**	
 Commercial Counterparties MUST support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
 
 #### **[R21]**	
 Commercial Counterparties MUST use the BPI APIs to transact on a commercial State Object -- see the [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml).
 
-An ability of a Requester to request products, services, or assets, in other words, commercial State Objects, through an instance of the Baseline Protocol's APIs do not necessarily imply the ability to provide products, services, and assets through an instance of the Baseline Protocol APIs and vice versa.
+*An ability of a Requester to request products, services, or assets, in other words, commercial State Objects, through an instance of the Baseline Protocol's APIs do not necessarily imply the ability to provide products, services, and assets through an instance of the Baseline Protocol APIs and vice versa.*
 
-Commercial counterparties need to know the level of conformity other commercial counterparties have with the Baseline Protocol Standard.
+*Commercial counterparties need to know the level of conformity other commercial counterparties have with the Baseline Protocol Standard.*
 
 #### **[R22]**	
 Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
@@ -598,13 +591,13 @@ Commercial Counterparties must comply efficiently and effectively with requireme
 #### **[R23]**	
 If required to meet particular third party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
 
-Note, that in principle every product, service, or asset, or sets thereof has a supply chain. This requirement aims at situations where the product, service, or asset or sets thereof cannot be solely supplied by the Provider without sourcing components from other Providers.
+*Note, that in principle every product, service, or asset, or sets thereof has a supply chain. This requirement aims at situations where the product, service, or asset or sets thereof cannot be solely supplied by the Provider without sourcing components from other Providers.*
 
-Requesters are only aware of the identity and commercial data of their Provider(s), but not of the other participants in the supply chain. However, Requesters can cryptographically verify that a given set of claims by Providers about the supply chain are true, for example, that all supply chain participants are not located in an embargoed country.
+*Requesters are only aware of the identity and commercial data of their Provider(s), but not of the other participants in the supply chain. However, Requesters can cryptographically verify that a given set of claims by Providers about the supply chain are true, for example, that all supply chain participants are not located in an embargoed country.*
 
-Therefore, a pseudonymous map of a supply chain is a cryptographically connected and verifiable list of proofs about the relationships of participants and integrity of supply chain events that does not disclose identifying details of Providers and their commercial data.
+*Therefore, a pseudonymous map of a supply chain is a cryptographically connected and verifiable list of proofs about the relationships of participants and integrity of supply chain events that does not disclose identifying details of Providers and their commercial data.*
 
-This allows enforcement of conformance with regulations, additional legal and technical requirements without disclosure of confidential information.
+*This allows enforcement of conformance with regulations, additional legal and technical requirements without disclosure of confidential information.*
 
 ## 2.7 Baseline Protocol Reference Architecture
 
@@ -676,11 +669,11 @@ A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM 
 #### **[D9]** 
 A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM type.
 
-This approach avoids lengthy discussions about which CCSM protocol to utilize for a BPI, simplifying the decision-making process considerably if most common CCSMs are incorporated.
+*This approach avoids lengthy discussions about which CCSM protocol to utilize for a BPI, simplifying the decision-making process considerably if most common CCSMs are incorporated.*
 
-Note that irrespective of whether one is in a public or private CCSM scenario, the protocol settings such as block time, consensus model, type of execution framework, etc. needs to be agreed upon by operating entities in some fashion either informally such as in [Ethereum](https://ethereum.org/en/) or formally such as in the Trade Finance consortium [Komgo](https://www.komgo.io/). 
+*Note that irrespective of whether one is in a public or private CCSM scenario, the protocol settings such as block time, consensus model, type of execution framework, etc. needs to be agreed upon by operating entities in some fashion either informally such as in [Ethereum](https://ethereum.org/en/) or formally such as in the Trade Finance consortium [Komgo](https://www.komgo.io/).*
 
-The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.
+*The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.*
 
 #### **[R31]**	
 The (commercial) counterparties MUST agree on the BPI.
@@ -690,7 +683,7 @@ The (commercial) counterparties MUST agree on the BPI.
 #### **[R32]**	
 Application/s providing (commercial) transaction functionality such as billing to (commercial) counterparties, and are, therefore, external concerning the BPI, MUST be independent of any BPI.
 
-Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
+*Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa.*
 
 ### 2.7.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
@@ -763,29 +756,29 @@ This approach requires a decentralized, or at least strongly federated, infrastr
 #### **[D10]**	
 The Public Key Infrastructure (PKI) of a BPI SHOULD be decentralized.
 
-Decentralized in this context means that there is no single point of failure in the PKI where possibly no participants are known to one another.
+*Decentralized in this context means that there is no single point of failure in the PKI where possibly no participants are known to one another.*
 
 #### **[R33]**	
 The PKI of a BPI MUST be strongly federated.
 
-Strongly federated in this context means that there is a known, finite number of participants, without a single point of failure in the PKI. However, collusion of a limited number of participants in the federated infrastructure may still lead to a compromised PKI. The consensus thresholds required for a change in the infrastructure are out of scope for this document. 
+*Strongly federated in this context means that there is a known, finite number of participants, without a single point of failure in the PKI. However, collusion of a limited number of participants in the federated infrastructure may still lead to a compromised PKI. The consensus thresholds required for a change in the infrastructure are out of scope for this document.*
 
 #### **[R34]**	
 The identifiers and identity utilized in a BPI MUST be controlled by its Principal Owner.
 
-For a BPI to properly operate, communication must be trusted and secure. Communications are secured through the safe delivery of public keys tied to identities. The Principal Owner of the identity uses a corresponding secret private key to both decrypt messages sent to them, and to prove they sent a message by signing it with its private key.
+*For a BPI to properly operate, communication must be trusted and secure. Communications are secured through the safe delivery of public keys tied to identities. The Principal Owner of the identity uses a corresponding secret private key to both decrypt messages sent to them, and to prove they sent a message by signing it with its private key.*
 
-PKI systems are responsible for the secure delivery of public keys. However, the commonly used X.509 PKI (PKIX) undermines both the creation and the secure delivery of these keys.
+*PKI systems are responsible for the secure delivery of public keys. However, the commonly used X.509 PKI (PKIX) undermines both the creation and the secure delivery of these keys.*
 
-In PKIX services are secured through the creation of keys signed by CAs. However, the complexity of generating and managing keys and certificates in PKIX has caused companies to manage the creation and signing of these keys themselves, rather than leaving them to their clients. This creates major security concerns from the outset, as it results in the accumulation of private keys at a central point of failure, making it possible for anyone with access to that repository of keys to compromise the security of connections in a virtually undetectable way.
+*In PKIX services are secured through the creation of keys signed by CAs. However, the complexity of generating and managing keys and certificates in PKIX has caused companies to manage the creation and signing of these keys themselves, rather than leaving them to their clients. This creates major security concerns from the outset, as it results in the accumulation of private keys at a central point of failure, making it possible for anyone with access to that repository of keys to compromise the security of connections in a virtually undetectable way.*
 
-The design of X.509 PKIX also permits any of the thousands of CAs to impersonate any website or web service. Therefore, entities cannot be certain that their communications are not being compromised by a fraudulent certificate allowing a PITM (Person-in-the-Middle) attack. While workarounds have been proposed, good ones do not exist.
+*The design of X.509 PKIX also permits any of the thousands of CAs to impersonate any website or web service. Therefore, entities cannot be certain that their communications are not being compromised by a fraudulent certificate allowing a PITM (Person-in-the-Middle) attack. While workarounds have been proposed, good ones do not exist.*
 
-Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative. The goal of DPKI is to ensure that, unlike PKIX, no single third party can compromise the integrity and security of a system employing DPKI as a whole. 
+*Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative. The goal of DPKI is to ensure that, unlike PKIX, no single third party can compromise the integrity and security of a system employing DPKI as a whole.* 
 
-Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the PITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier. In this design, control over the identifier is returned to the Principal Owner. Therefore, it is no longer trivial for any one entity to undermine the security of the entire DPKI system or to compromise an identifier that is not theirs, thus, overcoming the challenges of typical PKI.
+*Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the PITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier. In this design, control over the identifier is returned to the Principal Owner. Therefore, it is no longer trivial for any one entity to undermine the security of the entire DPKI system or to compromise an identifier that is not theirs, thus, overcoming the challenges of typical PKI.*
 
-Furthermore, DPKI requires a public registry of identifiers and their associated public keys that can be read by anyone but cannot be compromised. As long as this registration remains valid, and the Principal Owner can maintain control of their private key, no 3rd party can take ownership of that identifier without resorting to direct coercion of the Principal Owner.
+*Furthermore, DPKI requires a public registry of identifiers and their associated public keys that can be read by anyone but cannot be compromised. As long as this registration remains valid, and the Principal Owner can maintain control of their private key, no 3rd party can take ownership of that identifier without resorting to direct coercion of the Principal Owner.*
 
 #### **[D11]** A
 BPI SHOULD utilize a DPKI.
@@ -793,14 +786,14 @@ BPI SHOULD utilize a DPKI.
 #### **[CR1]>[D11]**	
 Any Principal Owner in a DPKI system utilized by a BPI MUST be able to broadcast a message if it is well-formed within the context of the DPKI.
 
-Other peers in the system do not require admission control. This implies a decentralized consensus mechanism naturally leading to the utilization of systems such as CCSMs.
+*Other peers in the system do not require admission control. This implies a decentralized consensus mechanism naturally leading to the utilization of systems such as CCSMs.*
 
 #### **[CR2]>[D11]**	
 Given two or more histories of DPKI updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
 
-This implies the existence of a method of ascertaining the level of resources backing a DPKI history such as the hash power in Bitcoin based on difficulty level and nonce.
+*This implies the existence of a method of ascertaining the level of resources backing a DPKI history such as the hash power in Bitcoin based on difficulty level and nonce.*
 
-Requirements of Identifier registration in DPKI are handled differently from DNS. Although registrars may exist in DPKI, these registrars must adhere to several requirements that ensure that identities belong to the entities they represent. This is achieved the following way:
+*Requirements of Identifier registration in DPKI are handled differently from DNS. Although registrars may exist in DPKI, these registrars must adhere to several requirements that ensure that identities belong to the entities they represent. This is achieved the following way:*
 
 #### **[CR3]>[D11]**	
 Private keys utilized in a BPI MUST be generated in a manner that ensures they remain under the Principal Owner’s control. 
@@ -814,7 +807,7 @@ Principal Owners in a BPI MUST always be in control of their identifiers and the
 #### **[O1]**	
 Principal Owners MAY extend control of their identifier to third parties.
 
-For example for recovery purposes.
+*For example for recovery purposes.*
 
 #### **[CR6]<[O1]** 
 Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifier.
@@ -822,7 +815,7 @@ Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit,
 #### **[R35]**	
 Private keys MUST be stored and/or transmitted securely.
 
-No mechanism should exist that would allow a single entity to deprive a Principal Owner of their identifier without their consent. This implies that:
+*No mechanism should exist that would allow a single entity to deprive a Principal Owner of their identifier without their consent. This implies that:*
 
 #### **[CR7]<[D11]**	
 Once a namespace is created within the context of a BPI, it MUST NOT be possible to destroy it.
@@ -839,7 +832,7 @@ If registration is used as security to an expiration policy, the Principal Owner
 #### **[CR10]>[D11]**	
 Once set, namespace rules within a DPKI utilized by a BPI MUST NOT be altered to introduce any new restrictions for renewing or updating identifiers.
 
-Otherwise, it would be possible to take control of identifiers away from Principal Owners without their consent.
+*Otherwise, it would be possible to take control of identifiers away from Principal Owners without their consent.*
 
 #### **[CR11]>[D11]**	
 Within a DPKI utilized by a BPI, processes for renewing or updating identifiers MUST NOT be modified to introduce new restrictions for updating or renewing an identifier, once issued.
@@ -847,7 +840,7 @@ Within a DPKI utilized by a BPI, processes for renewing or updating identifiers 
 #### **[CR12]>[D11]**	
 Within a DPKI utilized by a BPI, all network communications for creating, updating, renewing, or deleting identifiers MUST be sent via a non-centralized mechanism.
 
-This is necessary to ensure that a single entity cannot prevent identifiers from being updated or renewed.
+*This is necessary to ensure that a single entity cannot prevent identifiers from being updated or renewed.*
 
 ## 3.2 BPI Identifiers, Identities and Credentials, and their Management
 
@@ -902,9 +895,9 @@ As depicted, identities and credentials are established outside of the context, 
 #### **[D13]** 
 A unique identifier utilized within one or more BPIs SHOULD be linked to an (Legal) Entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
 
-In the context of this document, a Legal Entity is an individual, organization, or company that has legal rights and obligations.
+*In the context of this document, a Legal Entity is an individual, organization, or company that has legal rights and obligations.*
 
-Note that credentials utilized within one or more BPIs may be self-issued. The acceptance of self-issued credentials is up to the BPI participants that need to rely on the claim(s) within a self-issued credential.
+*Note that credentials utilized within one or more BPIs may be self-issued. The acceptance of self-issued credentials is up to the BPI participants that need to rely on the claim(s) within a self-issued credential.*
 
 #### **[R43]** 
 The unique identifier of the (Legal) Entity MUST be the subject of the credential.
@@ -918,12 +911,12 @@ A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable C
 #### **[R45]** 
 A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 
-Note, that the unique and resolvable identifier of a credential does not have to be associated with any cryptographic keys.
+*Note, that the unique and resolvable identifier of a credential does not have to be associated with any cryptographic keys.*
 
 #### **[R46]** 
 If present, the status of a credential utilized within one or more BPIs MUST be discoverable by a party verifying the credential, the credential verifier.
 
-In the context of this document, a credential verifier is defined per the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc).
+*In the context of this document, a credential verifier is defined per the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc).*
 
 #### **[D15]** 
 A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
@@ -931,12 +924,12 @@ A credential utilized within one or more BPIs SHOULD be discoverable by a partic
 #### **[R47]** 
 The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the credential holder.
 
-See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder.
+*See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder.*
 
 #### **[R48]** 
 If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
 
-As discussed in section [3.1 Introduction and High-Level Requirements](#31-introduction-and-high-level-requirements), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.  
+*As discussed in section [3.1 Introduction and High-Level Requirements](#31-introduction-and-high-level-requirements), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.*  
 
 <div align="center">
 <figure>
@@ -962,14 +955,14 @@ The Principal Owner or their delegates MUST prove control over a unique identifi
 #### **[R51]** 
 Every time a unique identifier utilized in a BPI is used in the BPI by the Principal Owner or their delegates, the BPI MUST verify that the Principal Owner or their delegates are in control of said unique identifier.
 
-Note that proof of control might be performed by a relying party if authority has been delegated.
+*Note that proof of control might be performed by a relying party if authority has been delegated.*
 
-In the context of this document, a relying party is defined per the W3C Verifiable Credential Standard] [[W3C VC]](#w3c-vc).
+*In the context of this document, a relying party is defined per the W3C Verifiable Credential Standard] [[W3C VC]](#w3c-vc).*
 
 #### **[D16]** 
 A credential utilized in a BPI SHOULD be stored in the BPI.
 
-This avoids the re-presentation of the credential after the initial presentation.
+*This avoids the re-presentation of the credential after the initial presentation.*
 
 #### **[R52]** 
 A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
@@ -977,9 +970,9 @@ A credential holder MUST prove control over a credential utilized in a BPI every
 #### **[R53]** 
 Every time a credential utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance, and that the credential holder is in control of said credential.
 
-Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an OpenId Connect Identity Provider [[OIDC]](#oidc).
+*Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an OpenId Connect Identity Provider [[OIDC]](#oidc).*
 
-This document will discuss further, more detailed management requirements in the context of BPI participant account management in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability). 
+*This document will discuss further, more detailed management requirements in the context of BPI participant account management in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).*
 
 -------
 
@@ -1003,27 +996,27 @@ This document defines an Abstraction Layer within the context of a BPI as a set 
 #### **[R54]**	
 BPI Abstraction Layers MUST support Operational Monitoring of an API system.
 
-In the context of this document, an operational monitoring system of BPI APIs refers to the practice of monitoring APIs, most commonly in production, to gain visibility into performance, availability, and functional correctness. These types of systems are designed to help a BPI operator analyze the performance of BPI applications and improve performance. Examples are measurements of how long a service takes to execute, how often it is called, where it is called from, and how much of the total time is spent executing the service.
+*In the context of this document, an operational monitoring system of BPI APIs refers to the practice of monitoring APIs, most commonly in production, to gain visibility into performance, availability, and functional correctness. These types of systems are designed to help a BPI operator analyze the performance of BPI applications and improve performance. Examples are measurements of how long a service takes to execute, how often it is called, where it is called from, and how much of the total time is spent executing the service.*
 
 #### **[R55]**	
 BPI Abstraction Layers MUST support an API Portal for provisioning.
 
-A BPI API portal in the context of this document is defined as a visual or a programmatic presentation that provides information about an API at every stage of its lifecycle. A BPI API portal allows operators to expose, document, provision access, and otherwise enable their APIs, and users of those APIs to register applications, reset credentials,  provide API feedback, report bugs, etc.
+*A BPI API portal in the context of this document is defined as a visual or a programmatic presentation that provides information about an API at every stage of its lifecycle. A BPI API portal allows operators to expose, document, provision access, and otherwise enable their APIs, and users of those APIs to register applications, reset credentials,  provide API feedback, report bugs, etc.*
 
 #### **[R56]**	
 BPI Abstraction Layers MUST support an API Gateway with a low latency cache where low latency refers to a cache latency that does not impact the overall BPI system latency. 
 
-In the context of this document, an API gateway is an application or software pattern that sits in front of an API or a collection of microservices, facilitating requests and delivery of data and services. Its main function is to act as a single entry point and standardized process for interactions between a BPI and its data and services and external/internal users. An API gateway may perform various other functions to support and manage API usage, from authentication to rate limiting to analytics.
+*In the context of this document, an API gateway is an application or software pattern that sits in front of an API or a collection of microservices, facilitating requests and delivery of data and services. Its main function is to act as a single entry point and standardized process for interactions between a BPI and its data and services and external/internal users. An API gateway may perform various other functions to support and manage API usage, from authentication to rate limiting to analytics.*
 
 #### **[D17]**	
 BPI Abstraction Layers SHOULD support Virtualized APIs.
 
-In the context of this document, virtualized APIs are defined as a production sandbox for continuous integration testing and continuous deployment of APIs.
+*In the context of this document, virtualized APIs are defined as a production sandbox for continuous integration testing and continuous deployment of APIs.*
 
 #### **[D18]**	
 A BPI Abstraction Layer SHOULD support a content delivery network (CDN) (not applicable for a CCSM Abstraction Layer).
 
-In the context of a BPI, a content delivery network is a geographically distributed proxy server network providing high availability and delivery performance of content such as large data files or video streams.
+*In the context of a BPI, a content delivery network is a geographically distributed proxy server network providing high availability and delivery performance of content such as large data files or video streams.*
 
 #### **[CR13]>[D18]** 
 A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support BPI subject-specific and time-based content access control. 
@@ -1034,7 +1027,7 @@ A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST suppo
 #### **[R57]**	
 BPI Abstraction Layers MUST support integration with internal, as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability), and/or external BPI Subject identity access management (IAM) or identity provider (IdP) systems. 
 
-See Figure 4 as to the meaning of an IdP in a BPI context, and Figure 5 in this document as to the meaning of external IAM and its interplay with BPI IAM discussed in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
+*See Figure 4 as to the meaning of an IdP in a BPI context, and Figure 5 in this document as to the meaning of external IAM and its interplay with BPI IAM discussed in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).*
 
 #### **[R58]**	
 BPI Abstraction Layers MUST support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
@@ -1045,7 +1038,7 @@ BPI Abstraction Layers MUST support facilitating the discovery and negotiation o
 #### **[R60]**	
 BPI Abstraction Layers MUST support the integration of CCSM specific transaction interfaces, transaction crafting, and CCSM specific smart contract management. 
 
-Smart Contract management comprises full lifecycle management from testing, initial deployment, updates, and deactivation (for CCSM Abstraction Layer only). 
+*Smart Contract management comprises full lifecycle management from testing, initial deployment, updates, and deactivation (for CCSM Abstraction Layer only).*
 
 Figure 6 below shows the reference architecture for a BPI or CCSM Abstraction Layer. 
 
@@ -1065,8 +1058,7 @@ The security requirements of this section are distinct from the security require
 #### **[R61]**	
 Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
 
-Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].
-
+*Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
 #### **[R62]**	
 Abstraction Layers utilized in a BPI MUST support roles & access management.
 
@@ -1076,17 +1068,17 @@ Abstraction Layers utilized in a BPI MUST support policy management.
 #### **[R64]**	
 Abstraction Layers utilized in a BPI MUST support Single-Sign-On (SSO). 
 
-See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
+*See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).*
 
 #### **[R65]**	
 Abstraction Layers utilized in a BPI MUST support multi-factor authentication.
 
-See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa). 
+*See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
 #### **[R66]**	
 Abstraction Layers utilized in a BPI MUST support hardware security modules (HSM)
 
-This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].
+*This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].*
 
 -------
 
@@ -1131,8 +1123,7 @@ A BPI Subject MUST be capable of performing cryptographic multi-digital-signatur
 #### **[R72]**	
 A BPI Subject MUST be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms.
 
-An example of cryptographic secret sharing is called "Shamir Secret Sharing" see [[Shamir](#shamir)].
-
+*An example of cryptographic secret sharing is called "Shamir Secret Sharing" see [[Shamir](#shamir)].*
 #### **[R73]** 
 An external BPI Subject MUST at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Subjects:
 * A BPI Account belonging to the BPI Subject. Note that a BPI Account as defined in section [6.4 BPI Account](#64-bpi-account) is different from a BPI Subject Account as defined in section [5.2 BPI Subject Account](#52-bpi-subject-account).
@@ -1141,8 +1132,7 @@ An external BPI Subject MUST at least be able to create, read, update and delete
 * A BPI Workstep as defined in section [6.1 BPI Workstep](#61-bpi-workstep).
 * A BPI Transaction as defined in section [6.5 BPI Transactions](#65-bpi-transactions). 
 
-There may be other BPI components such as role definitions or security policies. The enablement of additional components in a BPI beyond this standard is left to each specific implementation.
-
+*There may be other BPI components such as role definitions or security policies. The enablement of additional components in a BPI beyond this standard is left to each specific implementation.*
 #### **[R74]** 
 An internal BPI Subject MUST be able to create, read, update and delete all components of a BPI.
 
@@ -1152,8 +1142,7 @@ A BPI Subject MUST be able to send and receive BPI messages from other BPI subje
 #### **[R76]** 
 A BPI Subject MUST be able to create, read and BPI messages from other BPI subjects to said BPI Subject using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
-Note that when a BPI Subject executes these capabilities they are understood to be enabled by services under the direct custody of the BPI Subject. However, the BPI Subject may delegate these capabilities to the BPI in which the BPI subject operates.  
-
+*Note that when a BPI Subject executes these capabilities they are understood to be enabled by services under the direct custody of the BPI Subject. However, the BPI Subject may delegate these capabilities to the BPI in which the BPI subject operates.*
 #### **[R77]** 
 A BPI Subject MUST be able to delegate one or more BPI Subject capabilities to a 3rd party that is also a BPI Subject.
 
@@ -1166,12 +1155,12 @@ The following requirements on a BPI Subject Account assume that all identifiers 
 #### **[R78]** 
 A BPI Subject Account MUST NOT contain any personal identifiable information (PII).
 
-This requirement facilitates compliance with privacy laws in different jurisdictions.
+*This requirement facilitates compliance with privacy laws in different jurisdictions.*
 
 #### **[R79]** 
 A BPI Subject Account MUST NOT be created by an external BPI Subject.
 
-This requirement ensures that only a BPI operator can create a BPI Subject Account to avoid account creation spamming and implementation of KYC processes required in certain jurisdictions.
+*This requirement ensures that only a BPI operator can create a BPI Subject Account to avoid account creation spamming and implementation of KYC processes required in certain jurisdictions.*
 
 #### **[R80]** 
 A BPI Subject Account MUST have at least the following data properties:
@@ -1181,10 +1170,10 @@ A BPI Subject Account MUST have at least the following data properties:
 4. A BPI Subject Account recovery key that can be only derived by the BPI Subject owning the BPI Subject Account, and is independent of the private key(s) associated with the BPI Subject Account identifier.
 5. A list of all BPI Accounts related to the BPI Subject Account
 
-This minimal set of requirements ensures:
-* that access to a BPI Subject account can be cryptographically verified ([R80.1]),
-* that a BPI account can fine-grain access and authorization requirements for the BPI Subject ([R80.2]),
-* that other BPI Subjects can independently verify the identity used to establish the BPI Subject Account ([R80.3]),
+*This minimal set of requirements ensures:*
+*- that access to a BPI Subject account can be cryptographically verified ([R80.1]),*
+** that a BPI account can fine-grain access and authorization requirements for the BPI Subject ([R80.2]),*
+<em>* that other BPI Subjects can independently verify the identity used to establish the BPI Subject Account ([R80.3]),</em>
 * that a BPI Subject can independently recover a BPI Subject Account even if their private key was compromised, and ensure forward security ([R80.4]), and
 * that there is a provable relationship with BPI Accounts connected to BPI state objects connected to the BPI Subject Account owner ([R80.5]).  
 
