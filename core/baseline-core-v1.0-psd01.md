@@ -1173,14 +1173,14 @@ A BPI Subject Account MUST have at least the following data properties:
 *This minimal set of requirements ensures:*
 * *that access to a BPI Subject account can be cryptographically verified ([R80.1]),*
 * *that a BPI account can fine-grain access and authorization requirements for the BPI Subject ([R80.2]),*
-* that other BPI Subjects can independently verify the identity used to establish the BPI Subject Account ([R80.3]),
-* that a BPI Subject can independently recover a BPI Subject Account even if their private key was compromised, and ensure forward security ([R80.4]), and
-* that there is a provable relationship with BPI Accounts connected to BPI state objects connected to the BPI Subject Account owner ([R80.5]).  
+* *that other BPI Subjects can independently verify the identity used to establish the BPI Subject Account ([R80.3]),*
+* *that a BPI Subject can independently recover a BPI Subject Account even if their private key was compromised, and ensure forward security ([R80.4]), and*
+* *that there is a provable relationship with BPI Accounts connected to BPI state objects connected to the BPI Subject Account owner ([R80.5]).*  
 
 #### **[R81]** 
 A BPI Subject Account MUST have a cryptographically verifiable audit trail from BPI Subject Account inception to its closure.
 
-This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions.
+*This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions.*
 
 #### **[R82]** 
 A BPI Subject Account MUST be encrypted to and decrypted by one or more cryptographic keys only known to the BPI Subject Account holder.
@@ -1188,8 +1188,7 @@ A BPI Subject Account MUST be encrypted to and decrypted by one or more cryptogr
 #### **[D19]** 
 A BPI Subject Account SHOULD be re-encrypted after every BPI Subject session to one or more cryptographic keys only known to the BPI Subject Account holder.
 
-[**[R82]**](#r82) and [**[D19]**](#d19) ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.
-
+*[**[R82]**](#r82) and [**[D19]**](#d19) ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.*
 #### **[R83]** 
 The BPI Subject Account owner MUST be able to perform the following operations on its BPI Subject Account: read, update and delete.
 
@@ -1209,20 +1208,19 @@ BPI service orchestration is key to achieve a flexible, loosely-coupled architec
 #### **[R87]** 
 BPI service orchestration utilized in a BPI MUST be semantically aware.
 
-Semantically aware means that BPI service orchestration can identify the actions to be completed by services based on message context and content, and successfully orchestrate the desired action. 
-
+*Semantically aware means that BPI service orchestration can identify the actions to be completed by services based on message context and content, and successfully orchestrate the desired action.*
 #### **[R88]** 
 BPI service orchestration utilized in a BPI MUST NOT introduce additional points of failure.
 
 #### **[R89]** 
 BPI service orchestration utilized in a BPI MUST have source consistency preservation.
 
-This means that the content of a message/service request cannot be altered after it has been created by the BPI service orchestration capability. 
+*This means that the content of a message/service request cannot be altered after it has been created by the BPI service orchestration capability.* 
 
 #### **[R90]** 
 BPI service orchestration utilized in a BPI MUST avoid having the orchestration consumers see partial and/or inconsistent data. 
 
-Note that transaction boundaries, i.e., a single service's action, may trigger atomic updates.
+*Note that transaction boundaries, i.e., a single service's action, may trigger atomic updates.*
 
 #### **[R91]** 
 BPI service orchestration utilized in a BPI MUST capture the exact order in which operations happened. 
@@ -1233,7 +1231,7 @@ BPI service orchestration utilized in a BPI MUST preserve a consistent state.
 #### **[R93]** 
 BPI service orchestration utilized in a BPI MUST perform the computation triggered by the state change outside the state machine. 
 
-This ensures that there is less load and more stability of the orchestration stack and that subscribers are decoupled from the state machine, such that they can independently scale.
+*This ensures that there is less load and more stability of the orchestration stack and that subscribers are decoupled from the state machine, such that they can independently scale.*
 
 #### **[R94]** 
 BPI service orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
@@ -1244,12 +1242,12 @@ BPI service orchestration utilized in a BPI MUST isolate between data source and
 #### **[R96]** 
 BPI service orchestration utilized in a BPI MUST have low latency.
 
-Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.
+*Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.*
 
 #### **[R97]** 
 BPI service orchestration utilized in a BPI MUST be scalable and highly available. 
 
-This requirement ensures that overall system latency is not impacted when volume meaningfully and rapidly changes (scalable) at any given point in time (highly available).
+*This requirement ensures that overall system latency is not impacted when volume meaningfully and rapidly changes (scalable) at any given point in time (highly available).*
 
 ## 5.4 BPI Communication
 
@@ -1268,20 +1266,20 @@ BPI communication protocols MUST be asynchronous.
 #### **[R100]** 
 BPI communication protocols MUST be simplex. 
 
-Simplex is a communication mode in which only one message is transmitted, and always going in the same direction.
+*Simplex is a communication mode in which only one message is transmitted, and always going in the same direction.*
 
-An example of the three requirements above is as follows: BPI Subject X sends a message over channel A at time T0 to BPI Subject Y. It may receive a response from BPI Subject Y over channel B at a later time T1.
+*An example of the three requirements above is as follows: BPI Subject X sends a message over channel A at time T0 to BPI Subject Y. It may receive a response from BPI Subject Y over channel B at a later time T1.*
 
 #### **[R101]** 
 BPI communication protocols MUST be based on established communication protocol standards.
 
-Non-normative examples include but are not limited to NATS [[NATS](#nats)], AMQP [[AMQP](#amqp-core-complete-v10)], and DIDComm [[DIDCOMM](#didcomm)].
+*Non-normative examples include but are not limited to NATS [[NATS](#nats)], AMQP [[AMQP](#amqp-core-complete-v10)], and DIDComm [[DIDCOMM](#didcomm)].*
 
-Note that typically, and in the context of this document, a communication protocol encompasses four layers:
-*	Semantic layer
-*	Routing layer
-*	Cryptographic layer
-*	Transport layer
+*Note that typically, and in the context of this document, a communication protocol encompasses four layers:*
+*	*Semantic layer*
+*	*Routing layer*
+*	*Cryptographic layer*
+*	*Transport layer*
 
 The layers are defined as follows:
 * Transport Layer
@@ -1302,17 +1300,17 @@ The layers are defined as follows:
   - #### **[D20]**	
     BPI messages SHOULD always use JWEs with the ciphertext containing a signed payload. 
     
-      A	JWS may be used for establishing a secure tunnel between BPIs to reduce the number of messages required.
+      *A	JWS may be used for establishing a secure tunnel between BPIs to reduce the number of messages required.*
   - #### **[D21]** 
       The digital signature used for the JWS and JWE of a BPI Message SHOULD be based on the public keys associated with a W3C DID in the W3C DID document.
         
-      This simplifies the authentication of the message without having to rely on a 3rd party identity provider to validate the digital certificate issued to the BPI Subject.
+      *This simplifies the authentication of the message without having to rely on a 3rd party identity provider to validate the digital certificate issued to the BPI Subject.*
   - #### **[R108]** 
     BPI Message authenticity and proof of control of the private keys MUST be established through a cryptographic challenge-response scheme utilizing a shared secret and the public keys of the involved BPI Subject. 
 
 An example of a challenge-response system is given in the figure below.
 
-<div align="center">
+<div text-align="center">
 <figure>
   <img
   src="./images/10_did_auth_sign_up.png"
