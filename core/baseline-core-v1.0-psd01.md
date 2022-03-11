@@ -1310,14 +1310,16 @@ The layers are defined as follows:
 
 An example of a challenge-response system is given in the figure below.
 
-<p align="center">
+<div align="center">
 <figure>
+<p align="center">
   <img
   src="./images/10_did_auth_sign_up.png"
   >
+  </p>
   <figcaption>Figure 7: Example of a Challenge-Response system based on the DIDAuth protocol using a selective disclosure response (sdr) to the challenge; Source: RSKSmart at https://rsksmart.github.io/rif-identity-docs/ssi/specs/did-auth.html </figcaption>
 </figure>
-</p>
+</div>
 
 * Routing Layer:  A BPI is a “gated community”, hence, all BPI capabilities and BPI Subject services are known, or at least directly discoverable, and, therefore, directly addressable within a BPI. Therefore, there is no unknown path between sender and receiver, and, thus, routing is not required as it would be in a public network with an unknown number of participants of unknown identity. The scenario of a BPI Subject with an unknown communication endpoint will be addressed in Section 5.5 BPI Integration.
 
