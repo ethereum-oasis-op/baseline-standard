@@ -301,6 +301,12 @@ Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
 
 A legal contract that defines the general terms and conditions governing the entire scope of products commercially exchanged between the parties to the agreement.
 
+**Material Impact**
+
+In the context of certain requirements, such as [**[R96]**](#r96), something that causes the underlying business requirements of the BPI not to be met.
+For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, 
+while in other circumstances a 5-minute delay in processing makes no difference to the system as a whole.
+
 **Non-Repudiable:**
 
 Refers to a situation where a statement's author cannot successfully dispute its authorship or the validity of an associated contract. The term is often seen in a legal setting when the authenticity of a signature is being challenged. In such an instance, the authenticity is being "repudiated".
@@ -1251,9 +1257,7 @@ BPI service orchestration utilized in a BPI MUST NOT make assumptions about cons
 BPI service orchestration utilized in a BPI MUST isolate between data source and data consumers.
 
 #### **[R96]** 
-BPI service orchestration utilized in a BPI MUST have low latency.
-
-Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.
+BPI service orchestration MUST not have a Material Impact on the overall system latency of the BPI.
 
 #### **[R97]** 
 BPI service orchestration utilized in a BPI MUST be scalable and highly available. 
