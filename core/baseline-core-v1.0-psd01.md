@@ -109,7 +109,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6.1 Functional Requirements on commercial counterparties](#271-functional-requirements-on-commercial-counterparties) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6.2 CCSM Lifecycle Processes](#272-ccsm-lifecycle-processes) \
 &nbsp;&nbsp;&nbsp;&nbsp;[2.7 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 (Commercial) State Synchronization](#281-commercial-state-synchronization) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 State Synchronization](#281-state-synchronization) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer](#282-considerations-on-bPI-and-ccsm-abstraction-layers-and-the-ccsm-layer) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.3	External Applications](#283-external-applications) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-baseline-protocol-stack-detailed-reference-architecture-layers-and-components) \
@@ -180,7 +180,7 @@ The Baseline Protocol is an open-source initiative that combines advances in cry
 
 An illustrative example of the use of a BPI is a Buyer placing an order to a Seller. Normally a Buyer system creates an Order and transmits it to the Seller system through some preestablished messaging system without providing any proof that the Order created is correct, forcing the Seller's systems to validate the order, and more often than not, finding data inconsistencies between the Seller system and the Order. This then leads to a time-consuming, and often expensive, back and forth between Seller and Buyer to rectify the issue. 
 
-In the case that a BPI is used, the Buyer action of creating an order and submitting it to the BPI creates a cryptographic proof on the BPI that the order conforms (or not) to the agreed-upon commercial contract terms and current contract state between Buyer and Seller stored on the BPI, whereupon verification, the commercial contract state on the BPI is updated based on the order details. Subsequently, the cryptographic proof of order correctness is attached to the order and sent to the Seller using either established integrations or the BPI. The Seller can then directly validate the proof without having to check the correctness of the Order against its System of Record anymore. A valid cryptographic proof ensures that the order will be correctly formulated the first time avoiding errors, and thus saving time and money -- a more detailed example is provided in section [2.7.1 (Commercial) State Synchronization](#281-commercial-state-synchronization). A BPI, therefore, enforces the synchronization of Systems of Record between Buyer and Seller. 
+In the case that a BPI is used, the Buyer action of creating an order and submitting it to the BPI creates a cryptographic proof on the BPI that the order conforms (or not) to the agreed-upon commercial contract terms and current contract state between Buyer and Seller stored on the BPI, whereupon verification, the commercial contract state on the BPI is updated based on the order details. Subsequently, the cryptographic proof of order correctness is attached to the order and sent to the Seller using either established integrations or the BPI. The Seller can then directly validate the proof without having to check the correctness of the Order against its System of Record anymore. A valid cryptographic proof ensures that the order will be correctly formulated the first time avoiding errors, and thus saving time and money -- a more detailed example is provided in section [2.7.1 State Synchronization](#281-commercial-state-synchronization). A BPI, therefore, enforces the synchronization of Systems of Record between Buyer and Seller. 
 
 At a high level a BPI's benefits and characteristics can be summarized as follows:
 * BPI usage avoids rework between contract counterparties due to improperly applied business logic because cryptographic proofs of correctness ensure that Systems of Record remain synchronized, and that rework is minimized or even completely avoided.
@@ -192,8 +192,6 @@ In the following, this document lays out the requirements on a BPI to achieve ab
     * State Object
     * Transacting Counterparties
     * Commercially and Legally Binding Documents
-    * Contract
-    * Commercial Documents
     * Consensus Controlled State Machine (CCSM)
     * Baseline Protocol Instance
     * High-Level Functional Requirements
@@ -449,7 +447,7 @@ The functional terms of the contract SHOULD be represented on a BPI between the 
 #### **[D3]**	 
 The contract SHOULD be an MSA between the contract parties. 
 
-An MSA is preferable since it allows a proliferation of contract-based BPI (commercial) workflows and worksteps between the parties reducing complexity and potential errors.
+An MSA is preferable since it allows a proliferation of contract-based BPI workflows and worksteps between the parties reducing complexity and potential errors.
 
 #### **[CR1]<[D3]** 	
 There MUST be only one MSA between contract parties covering commercial transactions for a given set of products, services, or assets.
@@ -465,7 +463,7 @@ This would allow the fine-graining and consistent application of commercial Stat
 
 ### 2.3.2 Commercial Documents 
 
-Commercial Documents, a category of commercial State Objects, refer to the state of a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments based on a legally binding contract.
+Commercial documents, a category of commercial State Objects, refer to the state of a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments based on a legally binding contract.
 
 #### **[R4]**	
 A commercial State Object to be transacted on MUST be based on a specific commercial document.
@@ -508,13 +506,13 @@ For specificity, the popular words "Blockchain" or "DLT" are a particular form o
 
 ## 2.5 Baseline Protocol Instance
 
-Baseline Protocol Instances or Implementations (BPIs) are logical constructs shared between (commercial) counterparties of Requesters and Providers and implemented on a CCSM. They are used to either validate or reconcile, (commercial) transactions between Requesters and Providers related to all (commercial) State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may (commercially) transact to/from each other interchangeably. 
+Baseline Protocol Instances or Implementations (BPIs) are logical constructs shared between transacting counterparties of Requesters and Providers and implemented on a CCSM. They are used to either validate or reconcile, transactions between Requesters and Providers related to all State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may transact to/from each other interchangeably. 
 
 Abstractly, a BPI consists of
-* the private messaging between Agreement Counterparties about the state, or the requested or finalized state changes, of the (commercial) State Objects between them.
-* the representation of a (commercial) agreement and (commercial) documents and their business rules and data as distinct workflows and worksteps between Agreement Counterparties organized into workgroups based on the stipulations of the (commercial) agreement.
-* the deterministic processing and finalization of state change requests based on (commercial) documents between the Contract Counterparties as stipulated by the (commercial) agreement.
-* the preservation of the privacy of all Contract Counterparties and their (commercial) data from other 3rd parties.
+* the private messaging between Agreement Counterparties about the state, or the requested or finalized state changes, of the State Objects between them.
+* the representation of an agreement and documents and their business rules and data as distinct workflows and worksteps between transacting counterparties organized into workgroups based on the stipulations of the agreement.
+* the deterministic processing and finalization of state change requests based on documents between the transacting counterparties as stipulated by the agreement.
+* the preservation of the privacy of all transacting counterparties and their data from other 3rd parties.
 
 BPIs are strongly dependent on the security and privacy capabilities of the CCSM used to implement a BPI because BPIs without a CCSM are a single point of failure, whereas with a CCSM, there is no longer a single point of failure for the state of a BPI because a CCSM has no single-point-of-failure by its very definition.
 
@@ -543,22 +541,22 @@ If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST suppo
 A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001).
 
 #### **[R15]**	
-(Commercial) State changes of a BPI MUST be verifiable on the CCSM it utilizes.
+State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
-Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a (commercial) State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.
+Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.
 
 #### **[D7]**	
 A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
 
-Liveness means that if a CCSM does not require (commercial) counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.
+Liveness means that if a CCSM does not require counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.
 
 #### **[R16]**	
 A BPI MUST be censorship-resistant.
 
-Censorship-resistant means that a (commercial) counterparty can terminate a (commercial) transaction at any time without another counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the (commercial) transaction.
+Censorship-resistant means that a transacting counterparty can terminate a transaction at any time without another transacting counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the transaction.
 
 #### **[R17]**	
-A BPI MUST be able to provide privacy of the (commercial) counterparties' data concerning any party outside of the BPI.
+A BPI MUST be able to provide privacy of the transacting counterparties' data concerning any party outside of the BPI.
 
 #### **[R18]** 
 A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#rfc3339).
@@ -609,12 +607,12 @@ This allows enforcement of conformance with regulations, additional legal and te
 ## 2.7 Baseline Protocol Reference Architecture
 
 This section describes the components of the Baseline Reference Architecture: 
-* (Commercial) State Synchronization
+* State Synchronization
 * CCSMs and BPI/CCSM Abstraction Layers
 * External Applications
 * Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
-### 2.7.1 (Commercial) State Synchronization
+### 2.7.1 State Synchronization
 
 A BPI can be used as a common frame of reference for business processes that can be used in a complementary way to existing System-of-Record integrations.
 
@@ -635,22 +633,22 @@ The figure below visually demonstrates high-level Buyer and Seller Order generat
 Without a BPI, both Buyer and Seller must assume that the MSA between them and all its values are correctly represented in the other party’s respective Systems-of-Record. If an order is created based upon the MSA but does not comply with the MSA, it will likely result in extensive manual interactions between Seller and Buyer at one stage or another to resolve the problem to their mutual satisfaction.  
 
 #### **[R24]**	
-The (commercial) counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
+The transacting counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
 
 #### **[R25]** 	
-The (commercial) counterparties MUST validate the correctness of a (commercial) State Object based on a (commercial) state change against the transaction business logic in the applicable BPI workflow and workstep.
+The transacting counterparties MUST validate the correctness of a State Object based on a state change against the transaction business logic in the applicable BPI workflow and workstep.
 
 #### **[R26]** 	
-The (commercial) counterparties MUST generate a Proof of Correctness of a (commercial) State Object based on a (commercial) state change that can be validated against the BPI transaction business logic.
+The transacting counterparties MUST generate a Proof of Correctness of a State Object based on a state change that can be validated against the BPI transaction business logic.
 
 #### **[R27]** 	
-Any new (commercial) state between counterparties MUST be recorded on the BPI between them.
+Any new state between counterparties MUST be recorded on the BPI between them.
 
 #### **[R28]** 	
-Any counterparty having received a Proof of Correctness of a (commercial) state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
+Any transacting counterparty having received a Proof of Correctness of a state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
 
 #### **[R29]** 	
-A (commercial) counterparty MUST include a Proof of Correctness of the (commercial) State Object generated by the (commercial) state change in the BPI Messages between the transacting counterparties.
+A transacting counterparty MUST include a Proof of Correctness of the State Object generated by the state change in the BPI Messages between the transacting counterparties.
 
 ### 2.7.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer
 
@@ -683,12 +681,12 @@ Note that irrespective of whether one is in a public or private CCSM scenario, t
 The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.
 
 #### **[R31]**	
-The (commercial) counterparties MUST agree on the BPI.
+The transacting counterparties MUST agree on the BPI.
 
 ### 2.7.3 External Applications
 
 #### **[R32]**	
-Application/s providing (commercial) transaction functionality such as billing to (commercial) counterparties, and are, therefore, external concerning the BPI, MUST be independent of any BPI.
+Application/s providing transaction functionality such as billing to counterparties, and are, therefore, external concerning the BPI, MUST be independent of any BPI.
 
 Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa. 
 
@@ -717,13 +715,13 @@ Below this document lists and defines the components of each layer. The detailed
     * **API Gateway**: An API gateway that exposes all required functionality to the counterparties to an agreement and enforces all necessary authentication and authorization of API calls as well as properly directs the API calls within the Baseline Protocol Stack
     * **Application**: The application logic which manages the pre-processing and routing of all API requests, as well as the enforcement of authentication and authorization protocols and rules.
 * **Middleware Layer**
-    * **Workflows**: A Business Process Management engine that allows for the definition, management, and instantiation of workflows and worksteps and associated business rules and data based on (commercial) agreements between counterparties
+    * **Workflows**: A Business Process Management engine that allows for the definition, management, and instantiation of workflows and worksteps and associated business rules and data based on agreements between counterparties
     * **Identity/Accounts/Workgroups**: A capability that allows for the identification and management of counterparties and their delegates as well as members of workflows and worksteps organized in workgroups that are derived from the counterparties to an agreement. 
-    * **Messaging**: A messaging capability that allows the exchange of secure and privacy-preserving messages between counterparties to an agreement to communicate and coordinate an agreement on proposed (commercial) state changes. 
+    * **Messaging**: A messaging capability that allows the exchange of secure and privacy-preserving messages between counterparties to an agreement to communicate and coordinate an agreement on proposed state changes. 
 * **Processing Layer**
     * **Transaction Pool**: one or more transaction pools that hold, properly sequence, preprocess and batch for processing by the Virtual State Machine all requested state change transactions of a BPI.
     * **Virtual State Machine**: one or more Virtual State Machines which deterministically process and finalize in a privacy-preserving, cryptographically verifiable manner all state change request transactions.
-    * **Storage**: A storage system for the cryptographically linked current and historical state of all (commercial) agreements in a BPI.
+    * **Storage**: A storage system for the cryptographically linked current and historical state of all agreements in a BPI.
 * **CCSM Abstraction Layer** 
     * **API Gateway**: An API gateway that enables accessing all required BPI functions implemented on one or more CCSMs, and properly directs the requests within the CCSM Abstraction layer to the proper CCSM API application logic.
     * **Application**: The CCSM API application logic manages the pre-processing, as well as the proper usage of the underlying CCSM and BPI authentication and authorization.
@@ -2446,7 +2444,7 @@ The state of a state object MUST only be changed based on valid a transaction co
 This document will discuss the requirements of a transaction and what constitutes a valid transaction in the next section. Note, that an account is associated with a workstep instance through the shared state objects.
 
 ## 6.5 BPI Transactions
-Account states, and therefore, the state of BPI state objects, and, thus, agreement states are altered through BPI transactions submitted by requesters of (commercial) state changes from their accounts. In the following, this document specifies requirements for the structure and characteristics of transactions.
+Account states, and therefore, the state of BPI state objects, and, thus, agreement states are altered through BPI transactions submitted by requesters of state changes from their accounts. In the following, this document specifies requirements for the structure and characteristics of transactions.
 
 #### **[R254]** 
 Each transaction MUST have minimally the following identifiers:
@@ -2472,7 +2470,7 @@ A Transaction MUST have a `From` (Sender) and a `To` (Receiver) element each con
 Each transaction MUST have a deterministic nonce based on the account of the sender.
 
 #### **[R259]** 
-Each transaction MUST contain a representation of the (commercial) document as a state object constituting the suggested new agreement state, such that it can be validated by the prover system associated with the account associated with the state object representing the agreement state to be altered.  
+Each transaction MUST contain a representation of the document as a state object constituting the suggested new agreement state, such that it can be validated by the prover system associated with the account associated with the state object representing the agreement state to be altered.  
 
 #### **[R260]** 
 If there is more than one prover system associated with the receiver account, the transaction MUST unambiguously identify which prover system the transaction is targeting.
@@ -2542,7 +2540,7 @@ For example, the Buyer, also known as Requester, proposes a commercial state cha
 #### **[R269]**	
 The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or abort in finite time. 
 
-Note that what is deemed to be a suitable, finite time is determined by the (commercially) allowable duration of a (commercial) transaction. This requirement means that infinite computational loops cannot be allowed in a BPI. 
+Note that what is deemed to be a suitable, finite time is determined by the allowable duration of a transaction. This requirement means that infinite computational loops cannot be allowed in a BPI. 
 
 #### **[R270]**	
 The Execution Framework of a VSM MUST support commonly used cryptographic primitives for zero-knowledge proofs, e.g., hashing, commitments, accumulators, or zero-knowledge proof verification.
@@ -2557,7 +2555,7 @@ The Execution Framework of a VSM MUST be Verifiably Secure.
 If a VSM can generate a valid Proof-of-Correctness for a transaction, it MUST update the state and the state history of the state object the transaction targeted based on the transaction data.
 
 #### **[R273]** 
-If a VSM can generate a valid Proof-of-Correctness for a transaction and the targeted state object is not the state object of the complete (commercial) agreement state, it MUST update the state object of the (commercial) agreement and its state history besides the state object and its history targeted by the transaction.
+If a VSM can generate a valid Proof-of-Correctness for a transaction and the targeted state object is not the state object of the complete  agreement state, it MUST update the state object of the agreement and its state history besides the state object and its history targeted by the transaction.
 
 #### **[R274]** 
 A VSM MUST store all proofs, state objects, their associated data, and their histories in the Storage capability of the BPI Processing Layer.
