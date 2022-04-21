@@ -597,6 +597,8 @@ Commercial Counterparties MUST use the BPI APIs to transact on a commercial Stat
 #### **[R22]**	
 Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
 
+Publicly accessible in the context of this document means that there exists a URI or URL pointing to a publication specifying the level of conformity with this document that is accessible through the public internet. 
+
 ### 2.7.2 CCSM Lifecycle Processes
 
 Commercial Counterparties must comply with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard. This means BPI participants and BPI operators must be able to provide compliance reports to authorities derived from a BPI that demonstrate compliance with the applicable regulatory rules such as Suspicious Activity Reports as required by the US Bank Secrecy Act of 1970.  
@@ -686,7 +688,7 @@ To maintain modularity in the reference architecture, this document introduces t
 The Client CCSM API as an external BPI API is implementation-specific and will not be discussed further.
 
 #### **[R30]**	
-CCSMs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of legal contracts.
+CCSMs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of contracts as defined in [Section 2.4.1](#241-contract).
 
 #### **[D8]**	
 A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM instance.
@@ -987,7 +989,7 @@ Every time a unique identifier utilized in a BPI is used in the BPI by the Princ
 #### **[D16]** 
 A credential utilized in a BPI SHOULD be stored in the BPI.
 
-*This avoids the re-presentation of the credential after the initial presentation.*
+*This avoids the re-presentation of the credential after the initial presentation as long as those credentials are valid.*
 
 #### **[R52]** 
 A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
@@ -1089,8 +1091,19 @@ Abstraction Layers utilized in a BPI MUST be compatible with widely used externa
 #### **[R62]**	
 Abstraction Layers utilized in a BPI MUST support roles & access management.
 
+Roles management means the a BPI has the ability to define different roles and associated attributes for BPI Subjects, for example, the role of a "Workgroup Administrator" together with associated attributes such as "Add Workgroup Participant" or "Remove Workgroup Participant".
+
+This document utilizes the NIST definition of Access Management [[NIST SP 1800-21B](#-NIST-SP-1800-21B)]: The set of practices that enables only those permitted the ability to perform an action on a particular resource.
+
+The most common access management approaches are:
+- Role Based Access Management (RBAC) tying access rights to a system defined roles and its attributes.   
+- Access Control List (ACL) tying access rights to a table listing the permissions attached to computing resources.
+- Attribute Based Access Control (ABAC) tying access rights to an evaluation of a set of rules and policies to manage access rights according to specific attributes, such as environmental, system, object, or user information.
+
 #### **[R63]**	
-Abstraction Layers utilized in a BPI MUST support policy management.
+Abstraction Layers utilized in a BPI MUST support security policy management.
+
+Security policy is defined as a statement of required protection for (a set of) information objects [[NIST SP 800-192](#-NIST-SP-800-192)]. An example of a security policy is that only workgroup participants can initiate a workstep within a workflow that is associated with the workgroup.
 
 #### **[R64]**	
 Abstraction Layers utilized in a BPI MUST support Single-Sign-On (SSO). 
@@ -1148,9 +1161,10 @@ A BPI Subject MUST be capable of performing cryptographic digital signature crea
 A BPI Subject MUST be capable of performing cryptographic multi-digital-signature creation and verification based on BPI specified cryptographic algorithms.
 
 #### **[R72]**	
-A BPI Subject MUST be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms.
+A BPI Subject MUST be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms between two or more BPI Subjects.
 
 *An example of cryptographic secret sharing is called "Shamir Secret Sharing" see [[Shamir](#shamir)].*
+
 #### **[R73]** 
 An external BPI Subject MUST at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Subjects:
 * A BPI Account belonging to the BPI Subject. Note that a BPI Account as defined in section [6.4 BPI Account](#64-bpi-account) is different from a BPI Subject Account as defined in section [5.2 BPI Subject Account](#52-bpi-subject-account).
@@ -2957,6 +2971,12 @@ The following documents are referenced in such a way that some or all of their c
 
 #### **[NIST-SP-800-32]** 
 NIST SP 800-32, 2001, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf.
+
+#### **[NIST-SP-1800-21B]**
+NIST SP 1800-21B, 2020, https://doi.org/10.6028/NIST.SP.1800-21.
+
+#### **[NIST-SP-800-192]**
+NIST SP 800-192, 2017, https://doi.org/10.6028/NIST.SP.800-192.
 
 #### **[W3C-DID]** 
 Decentralized Identifiers (DIDs) v1.0, M. Sporny, D. Longley, M. Sabadello, D. Reed, O. Steele, C. Allen, W3C Proposed Recommendation, August 2021, https://www.w3.org/TR/2021/PR-did-core-20210803/. Latest version available at https://www.w3.org/TR/did-core/.
