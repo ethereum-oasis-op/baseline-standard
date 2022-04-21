@@ -61,7 +61,7 @@ This specification is related to:
 
 
 #### Abstract:
-This document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a Consensus Controlled State Machine (CCSM) network with little or no trust assumptions.
+This document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more Systems of Record can synchronize their system state over a Consensus Controlled State Machine (CCSM) network with little or no trust assumptions.
 
 #### Status:
 This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline TC team.
@@ -98,21 +98,22 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 Typographical Conventions](#13-typographical-conventions) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.3.1	Requirement Ids](#131-requirement-ids) \
 [2 Design and Architecture](#2-design-and-architecture) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.1 State Object](#22-state-object) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2 Transacting Counterparties](#23-transacting-counterparties) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Commercially and Legally Binding Documents](#24-commercially-and-legally-binding-documents) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3.1	Contract](#241-contract) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.3.2 Commercial Documents](#242-commercial-documents) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Consensus Controlled State Machine](#25-consensus-controlled-state-machine) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Baseline Protocol Instance](#26-baseline-protocol-instance) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.6 High-Level Functional Requirements](#27-high-level-functional-requirements) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6.1 Functional Requirements on commercial counterparties](#271-functional-requirements-on-commercial-counterparties) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.6.2 CCSM Lifecycle Processes](#272-ccsm-lifecycle-processes) \
-&nbsp;&nbsp;&nbsp;&nbsp;[2.7 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 State Synchronization](#281-state-synchronization) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer](#282-considerations-on-bPI-and-ccsm-abstraction-layers-and-the-ccsm-layer) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.3	External Applications](#283-external-applications) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-baseline-protocol-stack-detailed-reference-architecture-layers-and-components) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.1 Agreement](#21-agreement) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 State Object](#22-state-object) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.3 Transacting Counterparties](#23-transacting-counterparties) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.4 Commercial Agreements](#24-commercial-agreements) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.1	Contract](#241-contract) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.4.2 Commercial Documents](#242-commercial-documents) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.5 Consensus Controlled State Machine](#25-consensus-controlled-state-machine) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.6 Baseline Protocol Instance](#26-baseline-protocol-instance) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.7 High-Level Functional Requirements](#27-high-level-functional-requirements) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.1 Functional Requirements on commercial counterparties](#271-functional-requirements-on-commercial-counterparties) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.7.2 CCSM Lifecycle Processes](#272-ccsm-lifecycle-processes) \
+&nbsp;&nbsp;&nbsp;&nbsp;[2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.1 State Synchronization](#281-state-synchronization) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer](#282-considerations-on-bPI-and-ccsm-abstraction-layers-and-the-ccsm-layer) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.3	External Applications](#283-external-applications) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.8.4	Baseline Protocol Stack Detailed Reference Architecture Layers and Components](#284-baseline-protocol-stack-detailed-reference-architecture-layers-and-components) \
 [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management) \
 &nbsp;&nbsp;&nbsp;&nbsp;[3.1 Introduction and High-Level Requirements](#31-introduction-and-high-level-requirements) \
 &nbsp;&nbsp;&nbsp;&nbsp;[3.2 BPI Identifiers, Identities and Credentials, and their Management](#32-bpi-identifiers-identities-and-credentials-and-their-management) \
@@ -180,7 +181,7 @@ The Baseline Protocol is an open-source initiative that combines advances in cry
 
 An illustrative example of the use of a BPI is a Buyer placing an order to a Seller. Normally a Buyer system creates an Order and transmits it to the Seller system through some preestablished messaging system without providing any proof that the Order created is correct, forcing the Seller's systems to validate the order, and more often than not, finding data inconsistencies between the Seller system and the Order. This then leads to a time-consuming, and often expensive, back and forth between Seller and Buyer to rectify the issue. 
 
-In the case that a BPI is used, the Buyer action of creating an order and submitting it to the BPI creates a cryptographic proof on the BPI that the order conforms (or not) to the agreed-upon commercial contract terms and current contract state between Buyer and Seller stored on the BPI, whereupon verification, the commercial contract state on the BPI is updated based on the order details. Subsequently, the cryptographic proof of order correctness is attached to the order and sent to the Seller using either established integrations or the BPI. The Seller can then directly validate the proof without having to check the correctness of the Order against its System of Record anymore. A valid cryptographic proof ensures that the order will be correctly formulated the first time avoiding errors, and thus saving time and money -- a more detailed example is provided in section [2.7.1 State Synchronization](#281-commercial-state-synchronization). A BPI, therefore, enforces the synchronization of Systems of Record between Buyer and Seller. 
+In the case that a BPI is used, the Buyer action of creating an order and submitting it to the BPI creates a cryptographic proof on the BPI that the order conforms (or not) to the agreed-upon commercial contract terms and current contract state between Buyer and Seller stored on the BPI, whereupon verification, the commercial contract state on the BPI is updated based on the order details. Subsequently, the cryptographic proof of order correctness is attached to the order and sent to the Seller using either established integrations or the BPI. The Seller can then directly validate the proof without having to check the correctness of the Order against its System of Record anymore. A valid cryptographic proof ensures that the order will be correctly formulated the first time avoiding errors, and thus saving time and money -- a more detailed example is provided in section [2.8.1 State Synchronization](#281-commercial-state-synchronization). A BPI, therefore, enforces the synchronization of Systems of Record between Buyer and Seller. 
 
 At a high level a BPI's benefits and characteristics can be summarized as follows:
 * BPI usage avoids rework between contract counterparties due to improperly applied business logic because cryptographic proofs of correctness ensure that Systems of Record remain synchronized, and that rework is minimized or even completely avoided.
@@ -191,7 +192,7 @@ In the following, this document lays out the requirements on a BPI to achieve ab
 * **Section 2: Design and Architecture** with definitions, key concepts, and overviews of the components of a compliant Baseline Protocol Implementation as delineated in the following subsections:
     * State Object
     * Transacting Counterparties
-    * Commercially and Legally Binding Documents
+    * Commercial Agreements
     * Consensus Controlled State Machine (CCSM)
     * Baseline Protocol Instance
     * High-Level Functional Requirements
@@ -291,6 +292,10 @@ A concretization of the above used in this document: Identity is the combination
 
 The ability of a Party operating Workflows on a baseline-compliant implementation A to instantiate and operate one or more Workflows with one or more Parties on a baseline-compliant implementation B without the Parties on either implementation A or B having to know anything of the other Parties’ implementation.
 
+**Legal Entity:**
+
+An individual, organization, or company that has legal rights and obligations.
+
 **Liveness:**
 
 In concurrent computing, liveness refers to a set of properties of concurrent systems, that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
@@ -301,11 +306,9 @@ Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
 
 A legal contract that defines the general terms and conditions governing the entire scope of products commercially exchanged between the parties to the agreement.
 
-**Material Impact**
+**Material Impact:**
 
-In the context of certain requirements, such as [**[R96]**](#r96), something that causes the underlying business requirements of the BPI not to be met.
-For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, 
-while in other circumstances a 5-minute delay in processing makes no difference to the system as a whole.
+In the context of certain requirements, such as [**[R96]**](#r96), something that causes the underlying business requirements of the BPI not to be met. For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, while in other circumstances a 5-minute delay in processing makes no difference to the system as a whole.
 
 **Non-Repudiable:**
 
@@ -331,6 +334,10 @@ A Proof of Correctness is a mathematical proof that a computer program or a part
 Print ISBN: 9780471377375| Online ISBN: 9780471028956| DOI: 10.1002/0471028959,
 (2002), John Wiley & Sons, Inc.
 
+**Succinct:**
+
+Verification of a zero-knowledge proof by any 3rd party in a time that is sublinear to the size of the prover system that generated the proof.
+
 **System of Record:**
 
 The integrity of the data in data architecture is established by what can be called the “system of record.” The system of record is the one place where the value of data is definitively established. Note that the system of record applies only to detailed granular data. The system of record does not apply to summarized or derived data.
@@ -355,11 +362,11 @@ A process made up of a series of Worksteps between all or a subset of Parties in
 
 **Workgroup**
 
-A workgroup is a set of Parties, also referred to as BPI Subjects, who are the authorized users of a BPI. The Parties use Workflows to synchronize their systems of record through one or more worksteps in the workflow. 
+A workgroup is a set of Parties, also referred to as BPI Subjects, who are the authorized users of a BPI. The Parties use Workflows to synchronize their Systems of Record through one or more worksteps in the workflow. 
 
 **Workstep:**
 
-A workstep is characterized by input, the deterministic application of a set of logic rules and data to that input, and the generation of a verifiably deterministic and verifiably correct output. A set of Worksteps used to synchronise the outcomes in two or more systems of record within a Workgroup is called a Workflow.
+A workstep is characterized by input, the deterministic application of a set of logic rules and data to that input, and the generation of a verifiably deterministic and verifiably correct output. A set of Worksteps used to synchronize the outcomes in two or more Systems of Record within a Workgroup is called a Workflow.
 
 
 ## 1.3 Typographical Conventions
@@ -410,30 +417,32 @@ Examples include but are not limited to a
   * Physical Products
   * Financial Assets
  
-## 2.2 Transacting Counterparties
+## 2.3 Transacting Counterparties
 
-A transacting counterparty, or simply counterparty, that requests one or more State Objects from another counterparty is the Requester concerning the State Object.  The Requester can also be the final recipient of one or more State Objects.
+A transacting counterparty, or simply counterparty, that requests one or more State Objects from another counterparty is the Requester concerning the State Object. The Requester can also be the final recipient of one or more State Objects.
 
 A counterparty that provides one or more State Object to another counterparty is the Provider concerning the provided State Objects. The Provider is accountable to the Requester for all the State Objects it provides to the Requester. 
 
 A Requester may request State Objects from multiple Providers, and in the context of a supply chain of State Objects, a Provider of one State Object may also play the role of a Requester of other State Objects.
 
 #### **[R1]**
-Transacting counterparties  MUST have a corresponding agreement.
+Transacting counterparties MUST have an agreement specifying minimally the transactions to be performed between the transacting counterparties before a transactable state of an agreement can be instantiated within a BPI.
 
-## 2.3 Commercially and Legally Binding Documents
+Note, that an agreement in the context of this document may or may not be a commercial agreement as defined in (#24-Commercial-Agreements) below.
 
-If transacting counterparties, also being referred to as Requester(s) and Provider(s) (“the parties”) in this document, intend to establish a business and operational environment for commercial transactions, they will sign one or more agreements that commercially and legally bind the parties, also known as Commercial Agreements. The aforementioned is only to be understood within the context of this document. 
+## 2.4 Commercial Agreements
 
-Such legal, commercial documents may be presented as a combination of one or more of the following: 
+If transacting counterparties, also being referred to as Requester(s) and Provider(s) (“the parties”) in this document, intend to establish a business and operational environment for commercial transactions, they will sign one or more agreements that commercially bind the parties, also known as Commercial Agreements. The aforementioned is only to be understood within the context of this document. 
+
+Such commercial, and thus presumably legally enforceable, documents may be presented as a combination of one or more of the following: 
 * Master Services Agreement,
 * Specific Terms and Conditions and 
 * an Order.
 
 #### **[R2]**	
-The parties to a Commercial Agreement MUST sign commercially and legally binding documents with each other.
+The parties to a Commercial Agreement MUST have signed commercial documents with each other before a transactable state of a commercial agreement can be instantiated within a BPI.
 
-### 2.3.1 Contract
+### 2.4.1 Contract
 
 This section details the prerequisites required to be fulfilled by a legal contract, also referred to as a Commercial Agreement in this document, between the parties, and defines the general terms and conditions in the legal contract governing commercial transactions between these parties. These prerequisites are to be understood only within the context of this document and are meant to be general and not specific to particular legal and regulatory frameworks.
 
@@ -466,7 +475,7 @@ There MUST be only one MSA between contract parties covering commercial transact
 Each specific product, service, or asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its Specific T&C document.
 
 *This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.*
-### 2.3.2 Commercial Documents 
+### 2.4.2 Commercial Documents 
 
 Commercial documents, a category of commercial State Objects, refer to the state of a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments based on a legally binding contract.
 
@@ -492,11 +501,11 @@ The representatives and their authorized delegates who can perform commercial do
 #### **[R9]**	
 A commercial document MUST be non-repudiable.
 
-*Note that while non-repudiation in the physical world is most often tied to a physical signature of a legal entity on a legal document, in the digital world a digital signature over a digital legal document such as an Order or an Invoice belonging to a known and verifiable digital identity of a counterparty serves the same purpose.*
+*Note that while non-repudiation in the physical world is most often tied to a physical signature of a Legal Entity on a legal document, in the digital world a digital signature over a digital legal document such as an Order or an Invoice belonging to a known and verifiable digital identity of a counterparty serves the same purpose.*
 
 *Example: A Buyer ("Requester") and Seller ("Provider") may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.*
 
-## 2.4 Consensus Controlled State Machine
+## 2.5 Consensus Controlled State Machine
 
 A Consensus Controlled State Machine (CCSM) is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage. 
 
@@ -504,7 +513,7 @@ A CCSM with no or limited trust assumptions is the foundational enabler of a BPI
 
 For specificity, the popular words "Blockchain" or "DLT" are a particular form of CCSM design.
 
-## 2.5 Baseline Protocol Instance
+## 2.6 Baseline Protocol Instance
 
 Baseline Protocol Instances or Implementations (BPIs) are logical constructs shared between transacting counterparties of Requesters and Providers and implemented on a CCSM. They are used to either validate or reconcile, transactions between Requesters and Providers related to all State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may transact to/from each other interchangeably. 
 
@@ -529,9 +538,10 @@ Hence, this document enumerates the following requirements below:
 A BPI MUST have the same security assurances as to the CCSM it utilizes.
 
 #### **[R12]**	
-A BPI MUST support cryptographic algorithms based on commonly used and security-audited libraries.
+A BPI MUST support cryptographic algorithms that have public libraries with verifiable security audits and are recommended by public security authorities such as the US National Institute of Standards and Technology (NIST).
 
-*For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the US National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program [[CVMP]](#cvmp).*
+*For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the NIST Cryptographic Module Verification Program [[CVMP]](#cvmp).*
+
 #### **[R13]**	
 If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
@@ -554,25 +564,26 @@ A BPI MUST be censorship-resistant.
 *Censorship-resistant means that a transacting counterparty can terminate a transaction at any time without another transacting counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the transaction.*
 
 #### **[R17]**	
-A BPI MUST be able to provide privacy of the transacting counterparties' data concerning any party outside of the BPI.
+A BPI MUST be able to provide privacy of the transacting counterparties' data.
 
 #### **[R18]** 
 A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#rfc3339).
 
-## 2.6 High-Level Functional Requirements
+## 2.7 High-Level Functional Requirements
 
 This section describes the prerequisites and high-level general operational framework requirements: 
 * Functional Requirements on commercial counterparties
 * CCSM-based Lifecycle Processes
 
-### 2.6.1 Functional Requirements on commercial counterparties
+### 2.7.1 Functional Requirements on commercial counterparties
 
 This section states the commercial and operational functionalities required from commercial counterparties.
 
 #### **[R19]**	
-Commercial Counterparties MUST have the ability to meet all required legal, compliance, and business reporting requirements. 
+Commercial Counterparties MUST ensure that utilized BPIs allow them to meet all required legal, compliance, and business reporting requirements as it relates to the their BPI activities. 
 
 *This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.*
+
 #### **[R20]**	
 Commercial Counterparties MUST support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
 
@@ -586,9 +597,9 @@ Commercial Counterparties MUST use the BPI APIs to transact on a commercial Stat
 #### **[R22]**	
 Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
 
-### 2.6.2 CCSM Lifecycle Processes
+### 2.7.2 CCSM Lifecycle Processes
 
-Commercial Counterparties must comply efficiently and effectively with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard.
+Commercial Counterparties must comply with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard. This means BPI participants and BPI operators must be able to provide compliance reports to authorities derived from a BPI that demonstrate compliance with the applicable regulatory rules such as Suspicious Activity Reports as required by the US Bank Secrecy Act of 1970.  
 
 #### **[R23]**	
 If required to meet particular third party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
@@ -601,7 +612,19 @@ If required to meet particular third party requirements, (e.g., privacy or regul
 
 *This allows enforcement of conformance with regulations, additional legal and technical requirements without disclosure of confidential information.*
 
-## 2.7 Baseline Protocol Reference Architecture
+An example of a pseudonymous map is given in the figure below:
+<div align="center">
+<figure>
+  <img
+  src="./images/trace-bitcoin-address-thegem-blog-default.png"
+  >
+  <figcaption>Figure 0: Illustrative example of a pseudonymous map using the example of Bitcoin transactions. Source: [Bitquery](https://bitquery.io/blog/trace-bitcoin-transaction-and-address)</figcaption>
+</figure>
+</div>
+
+In the context of a supply chain in a BPI, the bitcoin values could be replaced by recursive zero-knowledge proofs. The map allows the BPI to validate the conformity of all the inputs and business rules of the supply chain that goes into a BPI State Object with a single proof.
+
+## 2.8 Baseline Protocol Reference Architecture
 
 This section describes the components of the Baseline Reference Architecture: 
 * State Synchronization
@@ -609,7 +632,7 @@ This section describes the components of the Baseline Reference Architecture:
 * External Applications
 * Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
-### 2.7.1 State Synchronization
+### 2.8.1 State Synchronization
 
 A BPI can be used as a common frame of reference for business processes that can be used in a complementary way to existing System-of-Record integrations.
 
@@ -647,7 +670,7 @@ Any transacting counterparty having received a Proof of Correctness of a state c
 #### **[R29]** 	
 A transacting counterparty MUST include a Proof of Correctness of the State Object generated by the state change in the BPI Messages between the transacting counterparties.
 
-### 2.7.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer
+### 2.8.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer
 
 <div align="center">
 <figure>
@@ -680,14 +703,14 @@ A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM 
 #### **[R31]**	
 The transacting counterparties MUST agree on the BPI.
 
-### 2.7.3 External Applications
+### 2.8.3 External Applications
 
 #### **[R32]**	
 Application/s providing transaction functionality such as billing to counterparties, and are, therefore, external concerning the BPI, MUST be independent of any BPI.
 
 *Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa.*
 
-### 2.7.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components
+### 2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
 <div align="center">
 <figure>
@@ -744,7 +767,7 @@ As a result, companies spend significant resources fighting security breaches ca
 
 Given the above, the Baseline Protocol Standard identity approach is as follows: Every identity is controlled by its Principal Owner and not by a 3rd party unless the Principal Owner has delegated control to a 3rd party. 
 
-A Principal Owner is defined as the entity controlling the public key(s) which control the identity and its identifiers upon inception of the identity.
+A Principal Owner is defined as the entity controlling the public key(s) which control the identity and its identifiers.
 
 The Baseline Protocol Standard defines identity in the context of this document to mean the following:
 
@@ -756,9 +779,7 @@ where associated data refers to data describing the characteristics of the ident
 This approach requires a decentralized, or at least strongly federated, infrastructure as expressed in the requirements below. 
 
 #### **[D10]**	
-The Public Key Infrastructure (PKI) of a BPI SHOULD be decentralized.
-
-*Decentralized in this context means that there is no single point of failure in the PKI where possibly no participants are known to one another.*
+The Public Key Infrastructure (PKI) of a BPI SHOULD have no single point of failure, and SHOULD NOT require pre-existing trust relationships between participants.*
 
 #### **[R33]**	
 The PKI of a BPI MUST be strongly federated.
@@ -895,9 +916,9 @@ In the figure below, this document establishes the context and scope of identity
 As depicted, identities and credentials are established outside of the context, and, therefore, the scope of a BPI. Hence, it is incumbent on BPI participants -- Requesters, Providers, and, if distinct, Operators -- to establish the trust context of acceptable identities and credentials for a BPI. This statement also applies to a network of BPIs which are to interoperate with one another.
 
 #### **[D13]** 
-A unique identifier utilized within one or more BPIs SHOULD be linked to an (Legal) Entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
+A unique identifier utilized within one or more BPIs SHOULD be linked to an entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
 
-*In the context of this document, a Legal Entity is an individual, organization, or company that has legal rights and obligations.*
+*An entity can be a Legal Entity where Legal Entity is an individual, organization, or company that has legal rights and obligations.*
 
 *Note that credentials utilized within one or more BPIs may be self-issued. The acceptance of self-issued credentials is up to the BPI participants that need to rely on the claim(s) within a self-issued credential.*
 
@@ -923,10 +944,12 @@ If present, the status of a credential utilized within one or more BPIs MUST be 
 #### **[D15]** 
 A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
 
-#### **[R47]** 
-The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the credential holder.
+Credential discoverability in the context of this document means that a BPI Subject can discover credentials of other BPI Subjects utilized within a BPI or across BPIs, if relevant for BPI interoperability. Note that discoverability can be restricted based on privacy and / or security rules within a given BPI. Discoverability could be achieved for example through a credential registry within a BPI or by listing a credential access endpoint in the DID document of a BPI Subject.  
 
-*See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder.*
+#### **[R47]** 
+The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the holder.
+
+*See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder [[Holder](#w3c-holder-definition)].*
 
 #### **[R48]** 
 If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
@@ -1003,12 +1026,14 @@ BPI Abstraction Layers MUST support Operational Monitoring of an API system.
 #### **[R55]**	
 BPI Abstraction Layers MUST support an API Portal for provisioning.
 
-*A BPI API portal in the context of this document is defined as a visual or a programmatic presentation that provides information about an API at every stage of its lifecycle. A BPI API portal allows operators to expose, document, provision access, and otherwise enable their APIs, and users of those APIs to register applications, reset credentials,  provide API feedback, report bugs, etc.*
+*A BPI API portal in the context of this document is defined as a visual or a programmatic presentation that provides information about an API at every stage of its lifecycle. A BPI API portal allows operators to expose, document, provision access, and otherwise enable their APIs, and users of those APIs to register applications, reset credentials,  provide API feedback, report bugs, etc. A non-normative example of a minimal set of functionalities can be found here [[API Portal Functionality](#-api-portal)]*
 
 #### **[R56]**	
-BPI Abstraction Layers MUST support an API Gateway with a low latency cache where low latency refers to a cache latency that does not impact the overall BPI system latency. 
+BPI Abstraction Layers MUST support an API Gateway that does not have Material Impact on BPI latency. 
 
 *In the context of this document, an API gateway is an application or software pattern that sits in front of an API or a collection of microservices, facilitating requests and delivery of data and services. Its main function is to act as a single entry point and standardized process for interactions between a BPI and its data and services and external/internal users. An API gateway may perform various other functions to support and manage API usage, from authentication to rate limiting to analytics.*
+
+*In the context this document, Material Impact refers to something that causes the underlying business requirements of the BPI not to be met. For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, while in other circumstances a 5-minute delay in processing makes no difference to the system as a whole.*
 
 #### **[D17]**	
 BPI Abstraction Layers SHOULD support Virtualized APIs.
@@ -1182,15 +1207,16 @@ A BPI Subject Account MUST have at least the following data properties:
 #### **[R81]** 
 A BPI Subject Account MUST have a cryptographically verifiable audit trail from BPI Subject Account inception to its closure.
 
-*This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions.*
+*This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions. Audit trail in the context of this document refers to the time sequenced capture of the state of a data structure within a BPI such as a BPI Subject Account from state instantiation to state deletion or archiving including all successful and unsuccessful state changes. An audit trail is said to be cryptographically verifiable if the audit trail includes auxiliary cryptographic information that allows 3rd parties to verify an audit trail as consistent. Creating a linked chain of hashes of each audit trail entry such as a Merkle proof is an example of such auxilliary cryptographic information.*
 
 #### **[R82]** 
-A BPI Subject Account MUST be encrypted to and decrypted by one or more cryptographic keys only known to the BPI Subject Account holder.
+A BPI Subject Account MUST be encrypted to and decrypted by a cryptographic key only known to the BPI Subject Account owner.
 
 #### **[D19]** 
-A BPI Subject Account SHOULD be re-encrypted after every BPI Subject session to one or more cryptographic keys only known to the BPI Subject Account holder.
+A BPI Subject Account SHOULD be encrypted when not in active use by the BPI Subject that owns the BPI Subject Account.
 
 *[**[R82]**](#r82) and [**[D19]**](#d19) ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.*
+
 #### **[R83]** 
 The BPI Subject Account owner MUST be able to perform the following operations on its BPI Subject Account: read, update and delete.
 
@@ -1205,14 +1231,17 @@ A BPI Subject Account owner MUST be notified by a BPI of any changes to a BPI Su
 
 ## 5.3 BPI Service Orchestration
 
-BPI service orchestration is key to achieve a flexible, loosely-coupled architecture as described in section [2.7 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture). BPI service orchestration is geared towards high-volume, low latency environments with many data changes.
+This document defines service orchestration as the sequence and conditions organized in an interaction pattern that one or more service agents must follow, and in which one service invokes other services to achieve its desired goal.
+
+BPI service orchestration is intended to operate in a business environment with high service volume (many BPI service requests), low system latency (fast completion of BPI service requests by a BPI required), and where BPI service requests change BPI data often. It is key to achieve a flexible, loosely-coupled architecture as described in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture). BPI service orchestration is geared towards high-volume, low latency environments with many data changes.
 
 #### **[R87]** 
-BPI service orchestration utilized in a BPI MUST be semantically aware.
+BPI service orchestration utilized in a BPI MUST be able to identify the actions to be completed by services based on message context and content, and successfully orchestrate the desired action.
 
-*Semantically aware means that BPI service orchestration can identify the actions to be completed by services based on message context and content, and successfully orchestrate the desired action.*
 #### **[R88]** 
 BPI service orchestration utilized in a BPI MUST NOT introduce additional points of failure.
+
+In the context of this document, a point of failure is defined as any non-redundant part of a BPI that, if not operational, would cause a BPI to fail.
 
 #### **[R89]** 
 BPI service orchestration utilized in a BPI MUST have source consistency preservation.
@@ -1226,6 +1255,8 @@ BPI service orchestration utilized in a BPI MUST avoid having the orchestration 
 
 #### **[R91]** 
 BPI service orchestration utilized in a BPI MUST capture the exact order in which operations happened. 
+
+In the context of this document, operations in a BPI service orchestration do not necessarily have to be causally connected to be ordered by the BPI service orchestration. For example, if operation 1, the creation of an invoice between Alice and Bob in a BPI, is received by the BPI service orchestration of a BPI before operation 2, the creation of a shipping notice of a purchase order between Bob and Claire, then the operation identifiers assigned to operation 1 and operation 2 must reflect that order through for example a deterministic nonce as the operation's identifier.
 
 #### **[R92]** 
 BPI service orchestration utilized in a BPI MUST preserve a consistent state.
@@ -1245,7 +1276,7 @@ BPI service orchestration utilized in a BPI MUST isolate between data source and
 BPI service orchestration MUST not have a Material Impact on the overall system latency of the BPI.
 
 #### **[R97]** 
-BPI service orchestration utilized in a BPI MUST be scalable and highly available. 
+BPI service orchestration utilized in a BPI MUST NOT have a Material Impact on BPI scalability and BPI availability. 
 
 *This requirement ensures that overall system latency is not impacted when volume meaningfully and rapidly changes (scalable) at any given point in time (highly available).*
 
@@ -1255,7 +1286,7 @@ The BPI Communication capability is a foundational element of any BPI to facilit
 * the workflow communication and workflow orchestration requirements between BPI Subjects, and
 * the highly asynchronous nature of BPI transactions originating from such workflows. 
 
-This leads to the following core capability requirements:
+This leads to the following core capability requirements within a BPI:
 
 #### **[R98]** 
 BPI communication protocols MUST be message-based.
@@ -1281,7 +1312,7 @@ BPI communication protocols MUST be based on established communication protocol 
 *	*Cryptographic layer*
 *	*Transport layer*
 
-The layers are defined as follows:
+The layers are defined as follows, and note that some requirements refer to communication between BPIs as noted within the relevant requirement:
 * Transport Layer
   - #### **[R102]**	
     - A BPI MUST utilize the well established TLS 1.2 [[RFC5246](#rfc5246)] or 1.3 [[RFC8446](#rfc8446)] protocol to transport messages between BPIs.
@@ -1290,21 +1321,23 @@ The layers are defined as follows:
   - #### **[R104]**	 
     - For asynchronous BPI messaging between BPIs or messaging within a BPI, a BPI MUST utilize established asynchronous protocols such as Websockets or AMQP. 
 
+Note that while messaging within a BPI must be asynchronous, the communication between two BPIs can be either synchronous to asynchronous depending on the use case.
+
 * Cryptographic Layer: This layer deals with the BPI message envelope and the BPI message payload authenticity. However, it does not deal with authorization. Authorization is assumed to be validated based on security policies in the BPI core components such as workgroups. 
   - #### **[R105]**	
-    All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. 
+    All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. Note that JOSE stands for JSON Object Signing and Encryption.
   - #### **[R106]**	
-    The encrypted message formats MUST use an [Encrypted JSON Web Token (JWE) structure [[RFC7516](#rfc7516)].
+    The encrypted message formats MUST use an Encrypted JSON Web Token (JWE) structure [[RFC7516](#rfc7516)].
   - #### **[R107]** 
-    The signed unencrypted format MUST use a Signed JSON Web Token (JWS) structure [[RFC7515](#rfc7515)].
+    The signed unencrypted format MUST use a Signed JSON Web Token (JWS) structure following [[RFC7519](#rfc7519)] and following [[RFC7515](#rfc7515)] for its digital signature. 
   - #### **[D20]**	
     BPI messages SHOULD always use JWEs with the ciphertext containing a signed payload. 
     
-      *A	JWS may be used for establishing a secure tunnel between BPIs to reduce the number of messages required.*
+      *A JWS may be used for initial authentication and authorization between BPIs.*
   - #### **[D21]** 
-      The digital signature used for the JWS and JWE of a BPI Message SHOULD be based on the public keys associated with a W3C DID in the W3C DID document.
+      The digital signature used for the JWS and JWE of a BPI Message SHOULD be based on the public keys associated with a W3C DID in the W3C DID document as defined in [[W3C DID](#W3C-DID)]. 
         
-      *This simplifies the authentication of the message without having to rely on a 3rd party identity provider to validate the digital certificate issued to the BPI Subject.*
+      *This simplifies the authentication of the message without having to rely on a 3rd party identity provider to validate the digital certificate issued to the BPI Subject. Non-normative examples of W3C DID Documents can be found in [[W3C DID](#W3C-DID)]*
   - #### **[R108]** 
     BPI Message authenticity and proof of control of the private keys MUST be established through a cryptographic challenge-response scheme utilizing a shared secret and the public keys of the involved BPI Subject. 
 
@@ -1479,8 +1512,6 @@ The discovery of BPI Interoperability services is facilitated through BPI identi
 
 To facilitate ease of discovery, a BPI may publish a verifiable and non-repudiable list of its BPI Subjects. Ideally, each entry consists of W3C verifiable credentials establishing the membership of a BPI Subject in a BPI with credential subjects resolvable to the offered BPI services. 
 
-A minimal requirement on the resolvable identifier is to list service endpoints that allow for further BPI service discovery and the establishment of a secure communication channel between either BPIs or BPI Subjects.
-
 #### **[R119]**	
 The service endpoint specification of the resolvable BPI identifier MUST list BPI service endpoints that allow for further BPI service discovery and the establishment of a secure channel between either BPIs or BPI Subjects.
 
@@ -1488,18 +1519,18 @@ The service endpoint specification of the resolvable BPI identifier MUST list BP
 Each BPI service SHOULD be defined by an identifier that corresponds to the resolvable BPI identifier and its associated signing key(s) that offer this BPI service. 
 
 #### **[D24]** 
-Each BPI service SHOULD be described by the following elements:
+Each BPI service SHOULD be minimally specified by the following elements:
 * a BPI service domain such as “BPIStateProcessing”
 * a BPI service description
 * a BPI service version,
 * the BPI service provider,
 * the BPI Service endpoint(s),
-* the BPI Service endpoint-specification endpoint,
+* the BPI Service endpoint-specification endpoint(s),
 * the Cryptographic Prover system,
 * the Cryptographic Prover system specification. 
 
 #### **[R120]**	
-To ensure a BPI service specification timeline, the BPI service specification MUST include “created” and “updated” date stamps.
+To ensure a BPI service specification timeline, the BPI service specification MUST include “created” and “updated” timestamps, and the full history of "updated" timestamps.
 
 #### **[R121]**	
 After a BPI service endpoint has been discovered by a BPI or BPI Subject, the exact specification of the BPI service endpoint MUST be negotiated between the different BPIs and their BPI Subjects. 
@@ -1534,6 +1565,8 @@ Each state object utilized in one or more mono-directional and bi-/multi-directi
 
 #### **[R124]** 
 The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be succinct.
+
+Succinct in the context of zero-knowledge proofs means that a zero-knowledge proof is verifiable by any 3rd party in a time that is sublinear to the size of the prover system that generated the proof.
 
 #### **[R125]** 
 The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
@@ -2349,6 +2382,8 @@ A workgroup administrator MUST be able to perform at minimum the following funct
 * create, update and delete both security and privacy policies.
 * delete or archive a workgroup
 
+Archiving a workgroup in the context of this document means, that a workgroup cannot be actively used anymore. However, the workgroup data structures and associated data are accessible at any time but only by the participants of the archived workgroup.
+
 #### **[O4]** 
 A workgroup MAY have more than one administrator.
 
@@ -2826,7 +2861,7 @@ Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consen
 
 This section of the document focuses on the requirements and considerations related to the input of external data into a BPI workstep. Specifically, it addresses:
 
-- internal authoritative data - data sourced from a single authoritative source, internal to one of the BPI participants to a BPI workstep (i.e. internal systems of record)
+- internal authoritative data - data sourced from a single authoritative source, internal to one of the BPI participants to a BPI workstep (i.e. internal Systems of Record)
 - external authoritative data - data sourced from external authoritative sources (i.e. government record) and
 - external non-authoritative, non-deterministic data sourced from external non-authoritative, non-deterministic sources (i.e. IoT sensor data, time, etc).
 
@@ -2950,6 +2985,9 @@ Jones, M. and J. Hildebrand, "JSON Web Encryption (JWE)", RFC 7516, DOI 10.17487
 #### **[RFC7515]** 
 Jones, M., Bradley, J., and N. Sakimura, "JSON Web Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May 2015, <https://www.rfc-editor.org/info/rfc7515>.
 
+#### **[RFC7519]**
+Jones, M., Bradley, J., and N. Sakimura, "JSON Web Token (JWT)", RFC 7519, DOI 10.17487/RFC7519, May 2015, <https://www.rfc-editor.org/info/rfc7519>.
+
 #### **[RFC8446]** 
 Rescorla, E., "The Transport Layer Security (TLS) Protocol Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018, <https://www.rfc-editor.org/info/rfc8446>.
 
@@ -2992,8 +3030,14 @@ Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518.
 #### **[SAML]** 
 J. Hughes et al. Profiles for the OASIS Security Assertion Markup Language (SAML) V2.0. OASIS Standard, March 2005. Document identifier: saml-profiles-2.0-os.
 
+#### **[w3c-holder-definition]**
+W3C Verfiable Credential Data Model: Holder Definition, https://www.w3.org/TR/2022/REC-vc-data-model-20220303/#dfn-holders (2022).
+
 #### **[OIDC]** 
 OpenID Connect Federation 1.0, https://openid.net/developers/specs/ (2019).
+
+#### **[api-portal]**
+https://github.com/api-evangelist/portal-minimum/blob/gh-pages/_config.yml (2018).
 
 #### **[ActiveDirectory]** 
 “Directory System Agent". MSDN Library. Microsoft. (2018).
