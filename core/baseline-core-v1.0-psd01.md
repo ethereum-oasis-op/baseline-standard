@@ -322,6 +322,10 @@ An entity participating in the execution of one or more given Workflows within a
 
 The ability of a Party to migrate and re-baseline its existing Workflows and data from one baseline-compliant implementation to another baseline-compliant implementation without any 3rd party being able to prevent the migration.
 
+**Principal Owner**
+
+An entity controlling the public key(s) which control the identity and its identifiers.
+
 **Privacy Assurance Mechanism:**
 
 A way of ensuring the privacy of Workflow data represented on a consensus controlled state machine (CCSM) network.
