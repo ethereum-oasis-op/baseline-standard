@@ -2783,7 +2783,7 @@ BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
 BPI Edge Storage SHOULD be able to cryptographically sign messages.
 
 #### **[D41]**	
-BPI Edge Storage SHOULD be discoverable by BPI Worgroup members or their delegates within a BPI.
+BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delegates within a BPI.
 
 #### **[R307]**	
 BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
