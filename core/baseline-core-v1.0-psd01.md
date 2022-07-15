@@ -156,7 +156,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[8.2 External Authoritative Data for BPIs](#82-external-authoritative-data-for-bpis) \
 &nbsp;&nbsp;&nbsp;&nbsp;[8.3 External Non-authoritative, Non-deterministic Data for BPIs](#83-external-non-authoritative-non-deterministic--data-for-bpis) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.1 Data Trustworthiness](#831-data-trustworthiness) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.2 External Non-authoritative, Non-determininistic BPI Input Data Variance](#832-external-non-authoritative-non-deterministic-bpi-input-data-variance) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.2 External Non-authoritative, Non-deterministic BPI Input Data Variance](#832-external-non-authoritative-non-deterministic-bpi-input-data-variance) \
 [9 Conformance](#9-conformance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.1 Conformance Targets](#91-conformance-targets) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.2 Conformance Levels](#92-conformance-levels)\
@@ -298,7 +298,7 @@ An individual, organization, or company that has legal rights and obligations.
 
 **Liveness:**
 
-In concurrent computing, liveness refers to a set of properties of concurrent systems, that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
+In concurrent computing, liveness refers to a set of properties of concurrent systems that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
 
 Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
 
@@ -328,7 +328,7 @@ A way of ensuring the privacy of Workflow data represented on a consensus contro
 
 **Proof of Correctness:**
 
-A Proof of Correctness is a mathematical proof that a computer program or a part thereof will when executed, yield correct results, i.e. results fulfilling specific requirements. Before proving a program correct, the theorem to be proved must, of course, be formulated. The hypothesis of such a correctness theorem is typically a condition that the relevant program variables must satisfy immediately before the program is executed. This condition is called the precondition. The thesis of the correctness theorem is typically a condition that the relevant program variables must satisfy immediately after the execution of the program. This latter condition is called the post-condition. The thesis of a correctness theorem may be a statement that the final values of the program variables are a particular function of their initial values.
+A Proof of Correctness is a mathematical proof that a computer program or a part thereof will, when executed, yield correct results, i.e. results fulfilling specific requirements. Before proving a program correct, the theorem to be proved must, of course, be formulated. The hypothesis of such a correctness theorem is typically a condition that the relevant program variables must satisfy immediately before the program is executed. This condition is called the precondition. The thesis of the correctness theorem is typically a condition that the relevant program variables must satisfy immediately after the execution of the program. This latter condition is called the post-condition. The thesis of a correctness theorem may be a statement that the final values of the program variables are a particular function of their initial values.
 
 "Encyclopedia of Software Engineering",
 Print ISBN: 9780471377375| Online ISBN: 9780471028956| DOI: 10.1002/0471028959,
@@ -421,7 +421,7 @@ Examples include but are not limited to a
 
 A transacting counterparty, or simply counterparty, that requests one or more State Objects from another counterparty is the Requester concerning the State Object. The Requester can also be the final recipient of one or more State Objects.
 
-A counterparty that provides one or more State Object to another counterparty is the Provider concerning the provided State Objects. The Provider is accountable to the Requester for all the State Objects it provides to the Requester. 
+A counterparty that provides one or more State Objects to another counterparty is the Provider concerning the provided State Objects. The Provider is accountable to the Requester for all the State Objects it provides to the Requester. 
 
 A Requester may request State Objects from multiple Providers, and in the context of a supply chain of State Objects, a Provider of one State Object may also play the role of a Requester of other State Objects.
 
@@ -515,7 +515,7 @@ For specificity, the popular words "Blockchain" or "DLT" are a particular form o
 
 ## 2.6 Baseline Protocol Instance
 
-Baseline Protocol Instances or Implementations (BPIs) are logical constructs shared between transacting counterparties of Requesters and Providers and implemented on a CCSM. They are used to either validate or reconcile, transactions between Requesters and Providers related to all State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may transact to/from each other interchangeably. 
+Baseline Protocol Instances or Implementations (BPIs) are logical constructs shared between transacting counterparties of Requesters and Providers and implemented on a CCSM. They are used to either validate or reconcile transactions between Requesters and Providers related to all State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may transact to/from each other interchangeably. 
 
 Abstractly, a BPI consists of
 * the private messaging between Agreement Counterparties about the state, or the requested or finalized state changes, of the State Objects between them.
@@ -580,7 +580,7 @@ This section describes the prerequisites and high-level general operational fram
 This section states the commercial and operational functionalities required from commercial counterparties.
 
 #### **[R19]**	
-Commercial Counterparties MUST ensure that utilized BPIs allow them to meet all required legal, compliance, and business reporting requirements as it relates to the their BPI activities. 
+Commercial Counterparties MUST ensure that utilized BPIs allow them to meet all required legal, compliance, and business reporting requirements as it relates to their BPI activities. 
 
 *This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.*
 
@@ -833,7 +833,7 @@ Principal Owners MAY extend control of their identifier to third parties.
 *For example for recovery purposes.*
 
 #### **[CR6]<[O1]** 
-Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifier.
+Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifiers.
 
 #### **[R35]**	
 Private keys MUST be stored and/or transmitted securely.
@@ -1033,7 +1033,7 @@ BPI Abstraction Layers MUST support an API Gateway that does not have Material I
 
 *In the context of this document, an API gateway is an application or software pattern that sits in front of an API or a collection of microservices, facilitating requests and delivery of data and services. Its main function is to act as a single entry point and standardized process for interactions between a BPI and its data and services and external/internal users. An API gateway may perform various other functions to support and manage API usage, from authentication to rate limiting to analytics.*
 
-*In the context this document, Material Impact refers to something that causes the underlying business requirements of the BPI not to be met. For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, while in other circumstances a 5-minute delay in processing makes no difference to the system as a whole.*
+*In the context of this document, Material Impact refers to something that causes the underlying business requirements of the BPI not to be met. For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, while in other circumstances a 5-minute delay in processing makes no difference to the system as a whole.*
 
 #### **[D17]**	
 BPI Abstraction Layers SHOULD support Virtualized APIs.
@@ -1207,7 +1207,7 @@ A BPI Subject Account MUST have at least the following data properties:
 #### **[R81]** 
 A BPI Subject Account MUST have a cryptographically verifiable audit trail from BPI Subject Account inception to its closure.
 
-*This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions. Audit trail in the context of this document refers to the time sequenced capture of the state of a data structure within a BPI such as a BPI Subject Account from state instantiation to state deletion or archiving including all successful and unsuccessful state changes. An audit trail is said to be cryptographically verifiable if the audit trail includes auxiliary cryptographic information that allows 3rd parties to verify an audit trail as consistent. Creating a linked chain of hashes of each audit trail entry such as a Merkle proof is an example of such auxilliary cryptographic information.*
+*This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions. Audit trail in the context of this document refers to the time sequenced capture of the state of a data structure within a BPI such as a BPI Subject Account from state instantiation to state deletion or archiving including all successful and unsuccessful state changes. An audit trail is said to be cryptographically verifiable if the audit trail includes auxiliary cryptographic information that allows 3rd parties to verify an audit trail as consistent. Creating a linked chain of hashes of each audit trail entry such as a Merkle proof is an example of such auxiliary cryptographic information.*
 
 #### **[R82]** 
 A BPI Subject Account MUST be encrypted to and decrypted by a cryptographic key only known to the BPI Subject Account owner.
@@ -2382,7 +2382,7 @@ A workgroup administrator MUST be able to perform at minimum the following funct
 * create, update and delete both security and privacy policies.
 * delete or archive a workgroup
 
-Archiving a workgroup in the context of this document means, that a workgroup cannot be actively used anymore. However, the workgroup data structures and associated data are accessible at any time but only by the participants of the archived workgroup.
+Archiving a workgroup in the context of this document means that a workgroup cannot be actively used anymore. However, the workgroup data structures and associated data are accessible at any time but only by the participants of the archived workgroup.
 
 #### **[O4]** 
 A workgroup MAY have more than one administrator.
@@ -2463,7 +2463,7 @@ The state of an account MUST be minimally comprised of the following elements:
 The state of an account MUST only be changed based on a valid transaction compliant with the account authorization condition(s).
 
 #### **[R253]** 
-The state of a state object MUST only be changed based on valid a transaction compliant with the authorization condition(s) of the account to which the state object belongs.
+The state of a state object MUST only be changed based on a valid transaction compliant with the authorization condition(s) of the account to which the state object belongs.
 
 *This document will discuss the requirements of a transaction and what constitutes a valid transaction in the next section. Note, that an account is associated with a workstep instance through the shared state objects.*
 
@@ -2562,7 +2562,7 @@ The Execution Framework of a VSM MUST be deterministic.
 *For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet processed. This means that if the transaction of Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending on which transaction is executed first.*
 
 #### **[R269]**	
-The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or abort in finite time. 
+The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or aborted in finite time. 
 
 *Note that what is deemed to be a suitable, finite time is determined by the allowable duration of a transaction. This requirement means that infinite computational loops cannot be allowed in a BPI.*
 
@@ -2793,15 +2793,15 @@ BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Dat
 
 ## 7.5 BPI-Internal Storage 
 
-There are two storage types BPI storage system can utilize, fully or partially persistent storage.
+There are two storage types BPI storage systems can utilize, fully or partially persistent storage.
 
 [Fully Persistent Data storage](#fpds) as one possible option for BPI storage can be characterized as Write many, Read many. 
 
-[Partially Persistent Data storage](#ppds) as one possible option for BPI storage can characterized as Write once, Read many.
+[Partially Persistent Data storage](#ppds) as one possible option for BPI storage can be characterized as Write once, Read many.
 
 There are two deployment options -- centralized or distributed/decentralized deployment.
 
-This document lists the requirements for either option and indicate the differences between partially and fully persistent data storage where required.		
+This document lists the requirements for either option and indicates the differences between partially and fully persistent data storage where required.		
 
 ### 7.5.1 BPI Storage: Centralized Deployment
 
@@ -2809,7 +2809,7 @@ This document lists the requirements for either option and indicate the differen
 
 *Characteristics of enterprise-grade database solutions are but not limited to:*
 * *support for large number (> 1,000) of Parallel Queries*
-* *multi-process support where several processes can be handled by splitting work load between them.*
+* *multi-process support where several processes can be handled by splitting workload between them.*
 * *support for database clustering to process high data volumes in short periods of time (sub second processing).*
 * *security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)].*  
 
