@@ -345,7 +345,7 @@ All CCSM nodes need to arrive at the same result based on the same input and exe
 For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet confirmed by CCSM consensus. This means that if the transaction of the Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending which transaction is executed first.
 
 #### **[R17]**	
-The Execution Framework of the CCSM utilized in a BPI MUST ensure that state transition computations are either completed or abort in finite time.
+The Execution Framework of the CCSM utilized in a BPI MUST ensure that state transition computations are either completed or aborted in finite time.
 
 What is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction. This requirement means that there cannot be infinite computational loops in a distributed computational system with consensus, as this would not allow the CCSM network to reach consensus anymore and bring the CCSM network itself to a halt. Note also, that when a CCSM node is offline, the virtual state machine’s Execution Framework does not perform computations; when a CCSM node comes back online, and synchronizes with the state of the CCSM network, it only validates the last available state - either a global state or specific to that node. 
 
