@@ -1345,7 +1345,9 @@ Note that while messaging within a BPI must be asynchronous, the communication b
 
 * Cryptographic Layer: This layer deals with the BPI message envelope and the BPI message payload authenticity. However, it does not deal with authorization. Authorization is assumed to be validated based on security policies in the BPI core components such as workgroups. 
   - #### **[R105]**	
-    All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. Note that JOSE stands for JSON Object Signing and Encryption.
+    All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. 
+    
+    *Note that JOSE stands for JSON Object Signing and Encryption.*
   - #### **[R106]**	
     The encrypted message formats MUST use an Encrypted JSON Web Token (JWE) structure [[RFC7516](#rfc7516)].
   - #### **[R107]** 
