@@ -623,6 +623,7 @@ An example of a pseudonymous map is given in the figure below:
 <figure>
   <img
   src="./images/trace-bitcoin-address-thegem-blog-default.png"
+       alt="A set of nodes each of which is connected to one, sometimes several and occaisionally many others, showing a bitcoin value for each connection. Most nodes are clustered around one of several maven nodes, that are connected to many others"
   >
   <figcaption>Figure 0: Illustrative example of a pseudonymous map using the example of Bitcoin transactions. Source: [Bitquery](https://bitquery.io/blog/trace-bitcoin-transaction-and-address)</figcaption>
 </figure>
@@ -651,8 +652,9 @@ The figure below visually demonstrates high-level Buyer and Seller Order generat
 <figure>
   <img
   src="./images/Baseline-Fig1-Illustrative-Example.png"
+       alt=""
   >
-  <figcaption>Figure 1: Illustrative example of how the commercial state between Buyer and Seller is synchronized and an Order created.</figcaption>
+  <figcaption>Figure 1: Schematic diagram illustrating how the commercial state between Buyer and Seller is synchronized and an Order created.</figcaption>
 </figure>
 </div>
 
