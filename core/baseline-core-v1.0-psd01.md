@@ -952,7 +952,9 @@ If present, the status of a credential utilized within one or more BPIs MUST be 
 #### **[D15]** 
 A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
 
-Credential discoverability in the context of this document means that a BPI Subject can discover credentials of other BPI Subjects utilized within a BPI or across BPIs, if relevant for BPI interoperability. Note that discoverability can be restricted based on privacy and / or security rules within a given BPI. Discoverability could be achieved for example through a credential registry within a BPI or by listing a credential access endpoint in the DID document of a BPI Subject.  
+*Credential discoverability in the context of this document means that a BPI Subject can discover credentials of other BPI Subjects utilized within a BPI or across BPIs, if relevant for BPI interoperability.*
+
+*Note that discoverability can be restricted based on privacy and / or security rules within a given BPI. Discoverability could be achieved for example through a credential registry within a BPI or by listing a credential access endpoint in the DID document of a BPI Subject.*  
 
 #### **[R47]** 
 The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the holder.
@@ -1345,7 +1347,9 @@ Note that while messaging within a BPI must be asynchronous, the communication b
 
 * Cryptographic Layer: This layer deals with the BPI message envelope and the BPI message payload authenticity. However, it does not deal with authorization. Authorization is assumed to be validated based on security policies in the BPI core components such as workgroups. 
   - #### **[R105]**	
-    All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. Note that JOSE stands for JSON Object Signing and Encryption.
+    All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. 
+    
+    *Note that JOSE stands for JSON Object Signing and Encryption.*
   - #### **[R106]**	
     The encrypted message formats MUST use an Encrypted JSON Web Token (JWE) structure [[RFC7516](#rfc7516)].
   - #### **[R107]** 
@@ -1604,7 +1608,9 @@ The zero-knowledge proof of correctness of a state object utilized in one or mor
 *A state object will have to be included in a cryptographic commitment that the state object is locked on the BPI. Note that this only restricts the usage of pledged outputs to the CCSM utilized in a given BPI.*
 
 #### **[R128]** 
-A BPI MUST lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct, efficient, non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). Note that a lock can contain more than one state object.
+A BPI MUST lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct, efficient, non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). 
+
+*Note that a lock can contain more than one state object.*
 
 #### **[R129]** 
 The lock commitment MUST be committed to the CCSM utilized by the BPI (Liveness).
