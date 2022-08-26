@@ -2474,7 +2474,7 @@ An account SHOULD have one or more units of value-accounting balances.
 The state of an account MUST be represented by a cryptographic vector commitment scheme.
 
 A cryptographic vector commitment scheme commits to an ordered sequence of q values (m1, . . . , mq) in such a way that one
-can later open the commitment at specific positions (e.g., prove that m_i is the i-th committed message). For security, Vector Commitments are required to satisfy position binding which states that an adversary should not be able to open a commitment to two different values at the same position.
+can later open the commitment at specific positions (e.g., prove that m_i is the i-th committed message). For security, Vector Commitments are required to satisfy position binding which states that an adversary should not be able to open a commitment to two different values at the same position. An example of such a scheme is a Merkle Trie.
 
 #### **[R249]** 
 Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
