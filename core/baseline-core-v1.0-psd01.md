@@ -684,6 +684,7 @@ A transacting counterparty MUST include a Proof of Correctness of the State Obje
 <figure>
   <img
   src="./images/Baseline-Fig2-CCSM-BPI-Abstractions.png"
+      alt="The figure depicts a multi-layer abstracted architecture for a BPI. At the top layer shwing from left to right is a squence of commercial transaction applications connecting party 1 to party 2 and then party 2 to party 3 through BPI Abstractions where each is accessed via BPI APIs. Each BPI Abstraction is connected through a BPI Internal API to the next layer, the Baseline Protocol Core Stack. This layer in turn is connected to the layer below, the CCSM Abstraction, again through BPI Internal APIs. Finally, the CCSM Abstraction layer is connected to the CCSM Layer where BPI Contracts between Party 1 and 2 and Party 2 and 3 respectively are stored and executed. The CCSM Abstraction layer is connected to the CCSM layer through external Clint CCSM APIs."
   >
   <figcaption>Figure 2: CCSM and BPI Abstraction Architecture</figcaption>
 </figure>
@@ -724,12 +725,13 @@ Application/s providing transaction functionality such as billing to counterpart
 <figure>
   <img
   src="./images/High-Level-Baseline-Architecture.png"
+      alt=""
   >
   <figcaption>Figure 3: Detailed Baseline Reference Architecture Layers and Components</figcaption>
 </figure>
 </div>
 
-A Baseline Protocol Stack Reference Architecture as depicted above in Figure 3 is comprised of the following layers:
+A Baseline Protocol Stack Reference Architecture as depicted above in Figure 3 is comprised of the following layers and in the following order:
 
 * **Baseline Protocol (BPI) Abstraction Layer**: This layer enables accessing all externally available BPI functions through APIs as defined in the Baseline Protocol API Standards document 
 * **Middleware Layer**: This layer manages all counterparties to an agreement and its associated workflows and worksteps with business rules and business data as well as all counterparty delegates. In addition, it manages all messaging between counterparties to an agreement and instantiation of processing layers based on newly created or updated agreements and their workflows, worksteps, business rules, and business data.  
@@ -737,7 +739,7 @@ A Baseline Protocol Stack Reference Architecture as depicted above in Figure 3 i
 * **CCSM Abstraction Layer**: This layer enables accessing all required BPI functions implemented on one or more CCSMs through APIs as defined in the Baseline Protocol API Standards document. 
 * **CCSM Layer**: This layer manages, properly sequences, and deterministically processes in a privacy-preserving, cryptographically verifiable manner all transactions from the Processing Layer as well as either deterministically or probabilistically finalizes on the CCSM all CCSM state transitions based on said transactions.
 
-Below this document lists and defines the components of each layer. The detailed requirements for each component will be discussed in later sections of this document.
+Below this document lists and defines the components of each layer as depicted in Figure 3. The detailed requirements for each component will be discussed in later sections of this document.
 
 * **BPI Abstraction layer**
     * **API Gateway**: An API gateway that exposes all required functionality to the counterparties to an agreement and enforces all necessary authentication and authorization of API calls as well as properly directs the API calls within the Baseline Protocol Stack
@@ -916,8 +918,9 @@ In the figure below, this document establishes the context and scope of identity
 <figure>
   <img
   src="./images/section-3-baseline-spec-identity-scope.png"
+      alt="The figure show how three components -- identity system, Operator Compnay A, and and an identity Registry, IREgistry are functionally connected. The IRegistry in the top part of the figure establishes a trust relationship with the identity system and the OPerat Company A can aa, update and delete identies from the IRestiry component. In the scetion od the figure labeled, Out of Scope (for the BPI), the Identity System component provides identity assertions to the Operator Company A, as well as to an individual operating on behalf of the Operator Company A. In addition, the Identity System provides configuration, authentication and authorization services to the service account of the Operator Company A with the Identity System."
   >
-  <figcaption>Figure 4: Delineation of the Identity and Credential scope of a BPI; Source: Oliver Terbu (ConsenSys)</figcaption>
+  <figcaption>Figure 4: Schematic delineation of the Identity and Credential scope of a BPI; Source: Oliver Terbu (ConsenSys)</figcaption>
 </figure>
 </div>  
 
@@ -970,6 +973,7 @@ If a credential holder is a BPI participant, the holder MUST have a unique ident
 <figure>
   <img
   src="./images/section-3-baseline-spec-identity-authorities.png"
+      alt="The figure depicts from ledt to right an Identity System that is using a Decentralized Identity comprised of a DID Registrar and a Verifiable Credentials Registrar, and a Federated Identity comprised of an OpenID Connect Provider. The depicted IRegistry to the right of the Identity System is using is dpecited as being both a Decentralizd Identity Verifier and an OpenID Connect Relying Party. "
   >
   <figcaption>Figure 5: Example of a Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID Connect Relying Party as examples; Source: Oliver Terbu (ConsenSys)</figcaption>
 </figure>
@@ -1083,6 +1087,7 @@ Figure 6 below shows the reference architecture for a BPI or CCSM Abstraction La
 <figure>
   <img
   src="./images/Baseline-Fig2-BPI-Abstraction-Layer.png"
+      alt="The figure shows the details of a BPI Abstraction layer and how it is connected to a CCSM, external application and the BPI Middleware Layer. The BPI Abstraction Layer has multiple components depicted. In the center is the API Gateway which is connected to the external components -- BPI Middleware Layer, CCSM and external applications. Furthermore, the API Gate is connected to the following componsnts that are part the BPI abstraction layer -- a Content Delivery Network component which itself is connect to external applications, an API Cache componant, an API Gateway Monitoring component, an External/Internal IdP/IAM Interface which is also connect to the outside, and, finally, to an API Portal component, a Virtualized Endpoint Conponent provided through the API Portal. The API Portal, and Virtualized Endpoint components are visually grouped with an Operational Monitoring component monitoring the API Portal and the Virtualized Endpoints."
   >
   <figcaption>Figure 6: High-Level Reference Architecture of a BPI Layer.</figcaption>
 </figure>
@@ -1371,8 +1376,9 @@ An example of a challenge-response system is given in the figure below.
 <figure>
   <img
   src="./images/10_did_auth_sign_up.png"
+      alt=""
   >
-  <figcaption>Figure 7: Example of a Challenge-Response system based on the DIDAuth protocol using a selective disclosure response (sdr) to the challenge; Source: RSKSmart at https://rsksmart.github.io/rif-identity-docs/ssi/specs/did-auth.html </figcaption>
+  <figcaption>Figure 7: Example of a cryptographic Challenge-Response system between a User, Web Client, Web Server, and a Data Vault based on the DIDAuth protocol using a selective disclosure response (sdr) to the challenge; Source: RSKSmart at https://rsksmart.github.io/rif-identity-docs/ssi/specs/did-auth.html </figcaption>
 </figure>
 </div>
 
@@ -1499,6 +1505,7 @@ Because the state advancement in the state channel is strictly deterministic and
 <figure>
   <img
   src="./images/BPI-integration-5.5.drawio.png"
+      alt=""
   >
   <figcaption>Figure 8: Illustrative example of BPI Interoperability Workflow. Source: Mehran Shakeri (SAP)</figcaption>
 </figure>
@@ -2167,6 +2174,7 @@ Note that a deterministic state transition in the context of this document is fa
 <figure>
   <img
   src="./images/Baseline-Fig-6.1-Workflow-Agreement-Execution.png"
+      alt="The figure depicts a workflow example comprised of two worksteps with two inputs and one output. The workflow is comprised of Workstep 1 managed by Workgroup A and receiving an input from a Workgroup A member and generating an output, and Workstep 2 managed by Workgroup B and receiving inputs from the ouput of Workstep 1 and a Workgroup B member, and generating an output itself."
   >
   <figcaption>Figure 9: Conceptual View of Workflow, Workstep and Workgroup</figcaption>
 </figure>
@@ -2465,6 +2473,9 @@ An account SHOULD have one or more units of value-accounting balances.
 #### **[R248]** 
 The state of an account MUST be represented by a cryptographic vector commitment scheme.
 
+A cryptographic vector commitment scheme commits to an ordered sequence of q values (m1, . . . , mq) in such a way that one
+can later open the commitment at specific positions (e.g., prove that m_i is the i-th committed message). For security, Vector Commitments are required to satisfy position binding which states that an adversary should not be able to open a commitment to two different values at the same position. An example of such a scheme is a Merkle Trie.
+
 #### **[R249]** 
 Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
 
@@ -2548,6 +2559,7 @@ The figure below showcases at a high level the flow of a transaction through a B
 <figure>
   <img
   src="./images/Baseline-Fig-6.2-High-Level Baseline-Transaction-Lifecycle.png"
+      alt="The figure shows a BPI transaction lifecycle: A transaction is prepared and submitted by an external application and flows through the different layers of the BPI stack -- in order, BPI Abstraction Layer, Middleware Layer, Processing Layer, CCSM Abstraction Layer, and CCSM Layer -- and interacts with the components of each layer. After the transaction has been finalized on the CCSM layer, the figure shows how the result of this submitted tranaction is again received by the external application after it reverse travsersed the layers of the BPI stack and interacted with the relevant components in each layer as required."
   >
   <figcaption>Figure 10: High Level Transaction Lifecycle Flow through the BPI</figcaption>
 </figure>
