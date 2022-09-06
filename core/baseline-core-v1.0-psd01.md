@@ -1578,7 +1578,7 @@ A BPI service requester MUST present the BPI service provider with one or more s
 #### **[O2]**	
 The service provider MAY respond to one of the requirements.
 
-*Example of this could be a JSON object with a response e.g. 200 or 403*
+*Example of this could be a JSON object with a response e.g. the standard HTTP response 200 or 403*
 
 #### **[CR15]<[O2]** 
 If the BPI service provider has not responded to any of the BPI service requests by a BPI, the BPI service provider MUST refuse the service request.
