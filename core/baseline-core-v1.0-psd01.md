@@ -1106,7 +1106,7 @@ Abstraction Layers utilized in a BPI MUST be compatible with widely used externa
 #### **[R62]**	
 Abstraction Layers utilized in a BPI MUST support roles & access management.
 
-Roles management means the a BPI has the ability to define different roles and associated attributes for BPI Subjects, for example, the role of a "Workgroup Administrator" together with associated attributes such as "Add Workgroup Participant" or "Remove Workgroup Participant".
+Roles management means that a BPI has the ability to define different roles and associated attributes for BPI Subjects, for example, the role of a "Workgroup Administrator" together with associated attributes such as "Add Workgroup Participant" or "Remove Workgroup Participant".
 
 This document utilizes the NIST definition of Access Management [[NIST SP 1800-21B](#-NIST-SP-1800-21B)]: The set of practices that enables only those permitted the ability to perform an action on a particular resource.
 
