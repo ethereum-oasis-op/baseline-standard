@@ -712,7 +712,7 @@ A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM 
 *The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.*
 
 #### **[R31]**	
-The transacting counterparties MUST agree on which BPI to be used.
+The transacting counterparties MUST agree on which BPI is to be used.
 
 ### 2.8.3 External Applications
 
