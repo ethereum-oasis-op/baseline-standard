@@ -156,7 +156,7 @@ For complete copyright information please see the Notices section in the Appendi
 &nbsp;&nbsp;&nbsp;&nbsp;[8.2 External Authoritative Data for BPIs](#82-external-authoritative-data-for-bpis) \
 &nbsp;&nbsp;&nbsp;&nbsp;[8.3 External Non-authoritative, Non-deterministic Data for BPIs](#83-external-non-authoritative-non-deterministic--data-for-bpis) \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.1 Data Trustworthiness](#831-data-trustworthiness) \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.2 External Non-authoritative, Non-determininistic BPI Input Data Variance](#832-external-non-authoritative-non-deterministic-bpi-input-data-variance) \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[8.3.2 External Non-authoritative, Non-deterministic BPI Input Data Variance](#832-external-non-authoritative-non-deterministic-bpi-input-data-variance) \
 [9 Conformance](#9-conformance) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.1 Conformance Targets](#91-conformance-targets) \
 &nbsp;&nbsp;&nbsp;&nbsp;[9.2 Conformance Levels](#92-conformance-levels)\
@@ -298,7 +298,7 @@ An individual, organization, or company that has legal rights and obligations.
 
 **Liveness:**
 
-In concurrent computing, liveness refers to a set of properties of concurrent systems, that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
+In concurrent computing, liveness refers to a set of properties of concurrent systems that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
 
 Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
 
@@ -322,13 +322,17 @@ An entity participating in the execution of one or more given Workflows within a
 
 The ability of a Party to migrate and re-baseline its existing Workflows and data from one baseline-compliant implementation to another baseline-compliant implementation without any 3rd party being able to prevent the migration.
 
+**Principal Owner**
+
+An entity controlling the public key(s) which control the identity and its identifiers.
+
 **Privacy Assurance Mechanism:**
 
 A way of ensuring the privacy of Workflow data represented on a consensus controlled state machine (CCSM) network.
 
 **Proof of Correctness:**
 
-A Proof of Correctness is a mathematical proof that a computer program or a part thereof will when executed, yield correct results, i.e. results fulfilling specific requirements. Before proving a program correct, the theorem to be proved must, of course, be formulated. The hypothesis of such a correctness theorem is typically a condition that the relevant program variables must satisfy immediately before the program is executed. This condition is called the precondition. The thesis of the correctness theorem is typically a condition that the relevant program variables must satisfy immediately after the execution of the program. This latter condition is called the post-condition. The thesis of a correctness theorem may be a statement that the final values of the program variables are a particular function of their initial values.
+A Proof of Correctness is a mathematical proof that a computer program or a part thereof will, when executed, yield correct results, i.e. results fulfilling specific requirements. Before proving a program correct, the theorem to be proved must, of course, be formulated. The hypothesis of such a correctness theorem is typically a condition that the relevant program variables must satisfy immediately before the program is executed. This condition is called the precondition. The thesis of the correctness theorem is typically a condition that the relevant program variables must satisfy immediately after the execution of the program. This latter condition is called the post-condition. The thesis of a correctness theorem may be a statement that the final values of the program variables are a particular function of their initial values.
 
 "Encyclopedia of Software Engineering",
 Print ISBN: 9780471377375| Online ISBN: 9780471028956| DOI: 10.1002/0471028959,
@@ -421,7 +425,7 @@ Examples include but are not limited to a
 
 A transacting counterparty, or simply counterparty, that requests one or more State Objects from another counterparty is the Requester concerning the State Object. The Requester can also be the final recipient of one or more State Objects.
 
-A counterparty that provides one or more State Object to another counterparty is the Provider concerning the provided State Objects. The Provider is accountable to the Requester for all the State Objects it provides to the Requester. 
+A counterparty that provides one or more State Objects to another counterparty is the Provider concerning the provided State Objects. The Provider is accountable to the Requester for all the State Objects it provides to the Requester. 
 
 A Requester may request State Objects from multiple Providers, and in the context of a supply chain of State Objects, a Provider of one State Object may also play the role of a Requester of other State Objects.
 
@@ -517,7 +521,7 @@ For specificity, the popular words "Blockchain" or "DLT" are a particular form o
 
 ## 2.6 Baseline Protocol Instance
 
-Baseline Protocol Instances or Implementations (BPIs) are logical constructs shared between transacting counterparties of Requesters and Providers and implemented on a CCSM. They are used to either validate or reconcile, transactions between Requesters and Providers related to all State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may transact to/from each other interchangeably. 
+Baseline Protocol Instances or Implementations (BPIs) are logical constructs shared between transacting counterparties of Requesters and Providers and implemented on a CCSM. They are used to either validate or reconcile transactions between Requesters and Providers related to all State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may transact to/from each other interchangeably. 
 
 Abstractly, a BPI consists of
 * the private messaging between Agreement Counterparties about the state, or the requested or finalized state changes, of the State Objects between them.
@@ -582,7 +586,7 @@ This section describes the prerequisites and high-level general operational fram
 This section states the commercial and operational functionalities required from commercial counterparties.
 
 #### **[R19]**	
-Commercial Counterparties MUST ensure that utilized BPIs allow them to meet all required legal, compliance, and business reporting requirements as it relates to the their BPI activities. 
+Commercial Counterparties MUST ensure that utilized BPIs allow them to meet all required legal, compliance, and business reporting requirements as it relates to their BPI activities. 
 
 *This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.*
 
@@ -598,6 +602,8 @@ Commercial Counterparties MUST use the BPI APIs to transact on a commercial Stat
 
 #### **[R22]**	
 Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
+
+Publicly accessible in the context of this document means that there exists a URI or URL pointing to a publication specifying the level of conformity with this document that is accessible through the public internet. 
 
 ### 2.7.2 CCSM Lifecycle Processes
 
@@ -619,6 +625,7 @@ An example of a pseudonymous map is given in the figure below:
 <figure>
   <img
   src="./images/trace-bitcoin-address-thegem-blog-default.png"
+       alt="A set of nodes each of which is connected to one, sometimes several and occaisionally many others, showing a bitcoin value for each connection. Most nodes are clustered around one of several maven nodes, that are connected to many others"
   >
   <figcaption>Figure 0: Illustrative example of a pseudonymous map using the example of Bitcoin transactions. Source: [Bitquery](https://bitquery.io/blog/trace-bitcoin-transaction-and-address)</figcaption>
 </figure>
@@ -647,8 +654,9 @@ The figure below visually demonstrates high-level Buyer and Seller Order generat
 <figure>
   <img
   src="./images/Baseline-Fig1-Illustrative-Example.png"
+       alt=""
   >
-  <figcaption>Figure 1: Illustrative example of how the commercial state between Buyer and Seller is synchronized and an Order created.</figcaption>
+  <figcaption>Figure 1: Schematic diagram illustrating how the commercial state between Buyer and Seller is synchronized and an Order created.</figcaption>
 </figure>
 </div>
 
@@ -678,6 +686,7 @@ A transacting counterparty MUST include a Proof of Correctness of the State Obje
 <figure>
   <img
   src="./images/Baseline-Fig2-CCSM-BPI-Abstractions.png"
+      alt="The figure depicts a multi-layer abstracted architecture for a BPI. At the top layer shwing from left to right is a squence of commercial transaction applications connecting party 1 to party 2 and then party 2 to party 3 through BPI Abstractions where each is accessed via BPI APIs. Each BPI Abstraction is connected through a BPI Internal API to the next layer, the Baseline Protocol Core Stack. This layer in turn is connected to the layer below, the CCSM Abstraction, again through BPI Internal APIs. Finally, the CCSM Abstraction layer is connected to the CCSM Layer where BPI Contracts between Party 1 and 2 and Party 2 and 3 respectively are stored and executed. The CCSM Abstraction layer is connected to the CCSM layer through external Clint CCSM APIs."
   >
   <figcaption>Figure 2: CCSM and BPI Abstraction Architecture</figcaption>
 </figure>
@@ -688,7 +697,7 @@ To maintain modularity in the reference architecture, this document introduces t
 The Client CCSM API as an external BPI API is implementation-specific and will not be discussed further.
 
 #### **[R30]**	
-CCSMs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of legal contracts.
+CCSMs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of contracts as defined in [Section 2.4.1](#241-contract).
 
 #### **[D8]**	
 A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM instance.
@@ -718,12 +727,13 @@ Application/s providing transaction functionality such as billing to counterpart
 <figure>
   <img
   src="./images/High-Level-Baseline-Architecture.png"
+      alt=""
   >
   <figcaption>Figure 3: Detailed Baseline Reference Architecture Layers and Components</figcaption>
 </figure>
 </div>
 
-A Baseline Protocol Stack Reference Architecture as depicted above in Figure 3 is comprised of the following layers:
+A Baseline Protocol Stack Reference Architecture as depicted above in Figure 3 is comprised of the following layers and in the following order:
 
 * **Baseline Protocol (BPI) Abstraction Layer**: This layer enables accessing all externally available BPI functions through APIs as defined in the Baseline Protocol API Standards document 
 * **Middleware Layer**: This layer manages all counterparties to an agreement and its associated workflows and worksteps with business rules and business data as well as all counterparty delegates. In addition, it manages all messaging between counterparties to an agreement and instantiation of processing layers based on newly created or updated agreements and their workflows, worksteps, business rules, and business data.  
@@ -731,7 +741,7 @@ A Baseline Protocol Stack Reference Architecture as depicted above in Figure 3 i
 * **CCSM Abstraction Layer**: This layer enables accessing all required BPI functions implemented on one or more CCSMs through APIs as defined in the Baseline Protocol API Standards document. 
 * **CCSM Layer**: This layer manages, properly sequences, and deterministically processes in a privacy-preserving, cryptographically verifiable manner all transactions from the Processing Layer as well as either deterministically or probabilistically finalizes on the CCSM all CCSM state transitions based on said transactions.
 
-Below this document lists and defines the components of each layer. The detailed requirements for each component will be discussed in later sections of this document.
+Below this document lists and defines the components of each layer as depicted in Figure 3. The detailed requirements for each component will be discussed in later sections of this document.
 
 * **BPI Abstraction layer**
     * **API Gateway**: An API gateway that exposes all required functionality to the counterparties to an agreement and enforces all necessary authentication and authorization of API calls as well as properly directs the API calls within the Baseline Protocol Stack
@@ -835,7 +845,7 @@ Principal Owners MAY extend control of their identifier to third parties.
 *For example for recovery purposes.*
 
 #### **[CR6]<[O1]** 
-Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifier.
+Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifiers.
 
 #### **[R35]**	
 Private keys MUST be stored and/or transmitted securely.
@@ -910,8 +920,9 @@ In the figure below, this document establishes the context and scope of identity
 <figure>
   <img
   src="./images/section-3-baseline-spec-identity-scope.png"
+      alt="The figure show how three components -- identity system, Operator Compnay A, and and an identity Registry, IREgistry are functionally connected. The IRegistry in the top part of the figure establishes a trust relationship with the identity system and the OPerat Company A can aa, update and delete identies from the IRestiry component. In the scetion od the figure labeled, Out of Scope (for the BPI), the Identity System component provides identity assertions to the Operator Company A, as well as to an individual operating on behalf of the Operator Company A. In addition, the Identity System provides configuration, authentication and authorization services to the service account of the Operator Company A with the Identity System."
   >
-  <figcaption>Figure 4: Delineation of the Identity and Credential scope of a BPI; Source: Oliver Terbu (ConsenSys)</figcaption>
+  <figcaption>Figure 4: Schematic delineation of the Identity and Credential scope of a BPI; Source: Oliver Terbu (ConsenSys)</figcaption>
 </figure>
 </div>  
 
@@ -946,7 +957,9 @@ If present, the status of a credential utilized within one or more BPIs MUST be 
 #### **[D15]** 
 A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
 
-Credential discoverability in the context of this document means that a BPI Subject can discover credentials of other BPI Subjects utilized within a BPI or across BPIs, if relevant for BPI interoperability. Note that discoverability can be restricted based on privacy and / or security rules within a given BPI. Discoverability could be achieved for example through a credential registry within a BPI or by listing a credential access endpoint in the DID document of a BPI Subject.  
+*Credential discoverability in the context of this document means that a BPI Subject can discover credentials of other BPI Subjects utilized within a BPI or across BPIs, if relevant for BPI interoperability.*
+
+*Note that discoverability can be restricted based on privacy and / or security rules within a given BPI. Discoverability could be achieved for example through a credential registry within a BPI or by listing a credential access endpoint in the DID document of a BPI Subject.*  
 
 #### **[R47]** 
 The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the holder.
@@ -962,6 +975,7 @@ If a credential holder is a BPI participant, the holder MUST have a unique ident
 <figure>
   <img
   src="./images/section-3-baseline-spec-identity-authorities.png"
+      alt="The figure depicts from ledt to right an Identity System that is using a Decentralized Identity comprised of a DID Registrar and a Verifiable Credentials Registrar, and a Federated Identity comprised of an OpenID Connect Provider. The depicted IRegistry to the right of the Identity System is using is dpecited as being both a Decentralizd Identity Verifier and an OpenID Connect Relying Party. "
   >
   <figcaption>Figure 5: Example of a Delineation of the Identity and Credential issuing authorities used in a BPI and their management within a BPI using Decentralized Identity Verifiers and OpenID Connect Relying Party as examples; Source: Oliver Terbu (ConsenSys)</figcaption>
 </figure>
@@ -989,7 +1003,7 @@ Every time a unique identifier utilized in a BPI is used in the BPI by the Princ
 #### **[D16]** 
 A credential utilized in a BPI SHOULD be stored in the BPI.
 
-*This avoids the re-presentation of the credential after the initial presentation.*
+*This avoids the re-presentation of the credential after the initial presentation as long as those credentials are valid.*
 
 #### **[R52]** 
 A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
@@ -1035,7 +1049,7 @@ BPI Abstraction Layers MUST support an API Gateway that does not have Material I
 
 *In the context of this document, an API gateway is an application or software pattern that sits in front of an API or a collection of microservices, facilitating requests and delivery of data and services. Its main function is to act as a single entry point and standardized process for interactions between a BPI and its data and services and external/internal users. An API gateway may perform various other functions to support and manage API usage, from authentication to rate limiting to analytics.*
 
-*In the context this document, Material Impact refers to something that causes the underlying business requirements of the BPI not to be met. For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, while in other circumstances a 5-minute delay in processing makes no difference to the system as a whole.*
+*In the context of this document, Material Impact refers to something that causes the underlying business requirements of the BPI not to be met. For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, while in other circumstances a 5-minute delay in processing makes no difference to the system as a whole.*
 
 #### **[D17]**	
 BPI Abstraction Layers SHOULD support Virtualized APIs.
@@ -1075,6 +1089,7 @@ Figure 6 below shows the reference architecture for a BPI or CCSM Abstraction La
 <figure>
   <img
   src="./images/Baseline-Fig2-BPI-Abstraction-Layer.png"
+      alt="The figure shows the details of a BPI Abstraction layer and how it is connected to a CCSM, external application and the BPI Middleware Layer. The BPI Abstraction Layer has multiple components depicted. In the center is the API Gateway which is connected to the external components -- BPI Middleware Layer, CCSM and external applications. Furthermore, the API Gate is connected to the following componsnts that are part the BPI abstraction layer -- a Content Delivery Network component which itself is connect to external applications, an API Cache componant, an API Gateway Monitoring component, an External/Internal IdP/IAM Interface which is also connect to the outside, and, finally, to an API Portal component, a Virtualized Endpoint Conponent provided through the API Portal. The API Portal, and Virtualized Endpoint components are visually grouped with an Operational Monitoring component monitoring the API Portal and the Virtualized Endpoints."
   >
   <figcaption>Figure 6: High-Level Reference Architecture of a BPI Layer.</figcaption>
 </figure>
@@ -1091,8 +1106,19 @@ Abstraction Layers utilized in a BPI MUST be compatible with widely used externa
 #### **[R62]**	
 Abstraction Layers utilized in a BPI MUST support roles & access management.
 
+Roles management means the a BPI has the ability to define different roles and associated attributes for BPI Subjects, for example, the role of a "Workgroup Administrator" together with associated attributes such as "Add Workgroup Participant" or "Remove Workgroup Participant".
+
+This document utilizes the NIST definition of Access Management [[NIST SP 1800-21B](#-NIST-SP-1800-21B)]: The set of practices that enables only those permitted the ability to perform an action on a particular resource.
+
+The most common access management approaches are:
+- Role Based Access Management (RBAC) tying access rights to a system defined roles and its attributes.   
+- Access Control List (ACL) tying access rights to a table listing the permissions attached to computing resources.
+- Attribute Based Access Control (ABAC) tying access rights to an evaluation of a set of rules and policies to manage access rights according to specific attributes, such as environmental, system, object, or user information.
+
 #### **[R63]**	
-Abstraction Layers utilized in a BPI MUST support policy management.
+Abstraction Layers utilized in a BPI MUST support security policy management.
+
+Security policy is defined as a statement of required protection for (a set of) information objects [[NIST SP 800-192](#-NIST-SP-800-192)]. An example of a security policy is that only workgroup participants can initiate a workstep within a workflow that is associated with the workgroup.
 
 #### **[R64]**	
 Abstraction Layers utilized in a BPI MUST support Single-Sign-On (SSO). 
@@ -1150,9 +1176,10 @@ A BPI Subject MUST be capable of performing cryptographic digital signature crea
 A BPI Subject MUST be capable of performing cryptographic multi-digital-signature creation and verification based on BPI specified cryptographic algorithms.
 
 #### **[R72]**	
-A BPI Subject MUST be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms.
+A BPI Subject MUST be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms between two or more BPI Subjects.
 
 *An example of cryptographic secret sharing is called "Shamir Secret Sharing" see [[Shamir](#shamir)].*
+
 #### **[R73]** 
 An external BPI Subject MUST at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Subjects:
 * A BPI Account belonging to the BPI Subject. Note that a BPI Account as defined in section [6.4 BPI Account](#64-bpi-account) is different from a BPI Subject Account as defined in section [5.2 BPI Subject Account](#52-bpi-subject-account).
@@ -1209,7 +1236,7 @@ A BPI Subject Account MUST have at least the following data properties:
 #### **[R81]** 
 A BPI Subject Account MUST have a cryptographically verifiable audit trail from BPI Subject Account inception to its closure.
 
-*This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions. Audit trail in the context of this document refers to the time sequenced capture of the state of a data structure within a BPI such as a BPI Subject Account from state instantiation to state deletion or archiving including all successful and unsuccessful state changes. An audit trail is said to be cryptographically verifiable if the audit trail includes auxiliary cryptographic information that allows 3rd parties to verify an audit trail as consistent. Creating a linked chain of hashes of each audit trail entry such as a Merkle proof is an example of such auxilliary cryptographic information.*
+*This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions. Audit trail in the context of this document refers to the time sequenced capture of the state of a data structure within a BPI such as a BPI Subject Account from state instantiation to state deletion or archiving including all successful and unsuccessful state changes. An audit trail is said to be cryptographically verifiable if the audit trail includes auxiliary cryptographic information that allows 3rd parties to verify an audit trail as consistent. Creating a linked chain of hashes of each audit trail entry such as a Merkle proof is an example of such auxiliary cryptographic information.*
 
 #### **[R82]** 
 A BPI Subject Account MUST be encrypted to and decrypted by a cryptographic key only known to the BPI Subject Account owner.
@@ -1327,7 +1354,9 @@ Note that while messaging within a BPI must be asynchronous, the communication b
 
 * Cryptographic Layer: This layer deals with the BPI message envelope and the BPI message payload authenticity. However, it does not deal with authorization. Authorization is assumed to be validated based on security policies in the BPI core components such as workgroups. 
   - #### **[R105]**	
-    All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. Note that JOSE stands for JSON Object Signing and Encryption.
+    All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. 
+    
+    *Note that JOSE stands for JSON Object Signing and Encryption.*
   - #### **[R106]**	
     The encrypted message formats MUST use an Encrypted JSON Web Token (JWE) structure [[RFC7516](#rfc7516)].
   - #### **[R107]** 
@@ -1349,8 +1378,9 @@ An example of a challenge-response system is given in the figure below.
 <figure>
   <img
   src="./images/10_did_auth_sign_up.png"
+      alt=""
   >
-  <figcaption>Figure 7: Example of a Challenge-Response system based on the DIDAuth protocol using a selective disclosure response (sdr) to the challenge; Source: RSKSmart at https://rsksmart.github.io/rif-identity-docs/ssi/specs/did-auth.html </figcaption>
+  <figcaption>Figure 7: Example of a cryptographic Challenge-Response system between a User, Web Client, Web Server, and a Data Vault based on the DIDAuth protocol using a selective disclosure response (sdr) to the challenge; Source: RSKSmart at https://rsksmart.github.io/rif-identity-docs/ssi/specs/did-auth.html </figcaption>
 </figure>
 </div>
 
@@ -1477,6 +1507,7 @@ Because the state advancement in the state channel is strictly deterministic and
 <figure>
   <img
   src="./images/BPI-integration-5.5.drawio.png"
+      alt=""
   >
   <figcaption>Figure 8: Illustrative example of BPI Interoperability Workflow. Source: Mehran Shakeri (SAP)</figcaption>
 </figure>
@@ -1586,7 +1617,9 @@ The zero-knowledge proof of correctness of a state object utilized in one or mor
 *A state object will have to be included in a cryptographic commitment that the state object is locked on the BPI. Note that this only restricts the usage of pledged outputs to the CCSM utilized in a given BPI.*
 
 #### **[R128]** 
-A BPI MUST lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct, efficient, non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). Note that a lock can contain more than one state object.
+A BPI MUST lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct, efficient, non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). 
+
+*Note that a lock can contain more than one state object.*
 
 #### **[R129]** 
 The lock commitment MUST be committed to the CCSM utilized by the BPI (Liveness).
@@ -2143,6 +2176,7 @@ Note that a deterministic state transition in the context of this document is fa
 <figure>
   <img
   src="./images/Baseline-Fig-6.1-Workflow-Agreement-Execution.png"
+      alt="The figure depicts a workflow example comprised of two worksteps with two inputs and one output. The workflow is comprised of Workstep 1 managed by Workgroup A and receiving an input from a Workgroup A member and generating an output, and Workstep 2 managed by Workgroup B and receiving inputs from the ouput of Workstep 1 and a Workgroup B member, and generating an output itself."
   >
   <figcaption>Figure 9: Conceptual View of Workflow, Workstep and Workgroup</figcaption>
 </figure>
@@ -2384,7 +2418,7 @@ A workgroup administrator MUST be able to perform at minimum the following funct
 * create, update and delete both security and privacy policies.
 * delete or archive a workgroup
 
-Archiving a workgroup in the context of this document means, that a workgroup cannot be actively used anymore. However, the workgroup data structures and associated data are accessible at any time but only by the participants of the archived workgroup.
+Archiving a workgroup in the context of this document means that a workgroup cannot be actively used anymore. However, the workgroup data structures and associated data are accessible at any time but only by the participants of the archived workgroup.
 
 #### **[O4]** 
 A workgroup MAY have more than one administrator.
@@ -2441,6 +2475,9 @@ An account SHOULD have one or more units of value-accounting balances.
 #### **[R248]** 
 The state of an account MUST be represented by a cryptographic vector commitment scheme.
 
+A cryptographic vector commitment scheme commits to an ordered sequence of q values (m1, . . . , mq) in such a way that one
+can later open the commitment at specific positions (e.g., prove that m_i is the i-th committed message). For security, Vector Commitments are required to satisfy position binding which states that an adversary should not be able to open a commitment to two different values at the same position. An example of such a scheme is a Merkle Trie.
+
 #### **[R249]** 
 Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
 
@@ -2465,7 +2502,7 @@ The state of an account MUST be minimally comprised of the following elements:
 The state of an account MUST only be changed based on a valid transaction compliant with the account authorization condition(s).
 
 #### **[R253]** 
-The state of a state object MUST only be changed based on valid a transaction compliant with the authorization condition(s) of the account to which the state object belongs.
+The state of a state object MUST only be changed based on a valid transaction compliant with the authorization condition(s) of the account to which the state object belongs.
 
 *This document will discuss the requirements of a transaction and what constitutes a valid transaction in the next section. Note, that an account is associated with a workstep instance through the shared state objects.*
 
@@ -2524,6 +2561,7 @@ The figure below showcases at a high level the flow of a transaction through a B
 <figure>
   <img
   src="./images/Baseline-Fig-6.2-High-Level Baseline-Transaction-Lifecycle.png"
+      alt="The figure shows a BPI transaction lifecycle: A transaction is prepared and submitted by an external application and flows through the different layers of the BPI stack -- in order, BPI Abstraction Layer, Middleware Layer, Processing Layer, CCSM Abstraction Layer, and CCSM Layer -- and interacts with the components of each layer. After the transaction has been finalized on the CCSM layer, the figure shows how the result of this submitted tranaction is again received by the external application after it reverse travsersed the layers of the BPI stack and interacted with the relevant components in each layer as required."
   >
   <figcaption>Figure 10: High Level Transaction Lifecycle Flow through the BPI</figcaption>
 </figure>
@@ -2564,7 +2602,7 @@ The Execution Framework of a VSM MUST be deterministic.
 *For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet processed. This means that if the transaction of Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending on which transaction is executed first.*
 
 #### **[R269]**	
-The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or abort in finite time. 
+The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or aborted in finite time. 
 
 *Note that what is deemed to be a suitable, finite time is determined by the allowable duration of a transaction. This requirement means that infinite computational loops cannot be allowed in a BPI.*
 
@@ -2785,7 +2823,7 @@ BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
 BPI Edge Storage SHOULD be able to cryptographically sign messages.
 
 #### **[D41]**	
-BPI Edge Storage SHOULD be discoverable by BPI Worgroup members or their delegates within a BPI.
+BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delegates within a BPI.
 
 #### **[R307]**	
 BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
@@ -2795,15 +2833,15 @@ BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Dat
 
 ## 7.5 BPI-Internal Storage 
 
-There are two storage types BPI storage system can utilize, fully or partially persistent storage.
+There are two storage types BPI storage systems can utilize, fully or partially persistent storage.
 
 [Fully Persistent Data storage](#fpds) as one possible option for BPI storage can be characterized as Write many, Read many. 
 
-[Partially Persistent Data storage](#ppds) as one possible option for BPI storage can characterized as Write once, Read many.
+[Partially Persistent Data storage](#ppds) as one possible option for BPI storage can be characterized as Write once, Read many.
 
 There are two deployment options -- centralized or distributed/decentralized deployment.
 
-This document lists the requirements for either option and indicate the differences between partially and fully persistent data storage where required.		
+This document lists the requirements for either option and indicates the differences between partially and fully persistent data storage where required.		
 
 ### 7.5.1 BPI Storage: Centralized Deployment
 
@@ -2811,7 +2849,7 @@ This document lists the requirements for either option and indicate the differen
 
 *Characteristics of enterprise-grade database solutions are but not limited to:*
 * *support for large number (> 1,000) of Parallel Queries*
-* *multi-process support where several processes can be handled by splitting work load between them.*
+* *multi-process support where several processes can be handled by splitting workload between them.*
 * *support for database clustering to process high data volumes in short periods of time (sub second processing).*
 * *security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)].*  
 
@@ -2959,6 +2997,12 @@ The following documents are referenced in such a way that some or all of their c
 
 #### **[NIST-SP-800-32]** 
 NIST SP 800-32, 2001, https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-32.pdf.
+
+#### **[NIST-SP-1800-21B]**
+NIST SP 1800-21B, 2020, https://doi.org/10.6028/NIST.SP.1800-21.
+
+#### **[NIST-SP-800-192]**
+NIST SP 800-192, 2017, https://doi.org/10.6028/NIST.SP.800-192.
 
 #### **[W3C-DID]** 
 Decentralized Identifiers (DIDs) v1.0, M. Sporny, D. Longley, M. Sabadello, D. Reed, O. Steele, C. Allen, W3C Proposed Recommendation, August 2021, https://www.w3.org/TR/2021/PR-did-core-20210803/. Latest version available at https://www.w3.org/TR/did-core/.
