@@ -463,7 +463,7 @@ The contract SHOULD be in an electronic form.
 #### **[D2]**   
 The functional terms of the contract SHOULD be represented on a BPI between the counterparties.
 
-*For example, a Payment Term such as N30, a discount value, agreed upon product numbers, SLAs etc.*
+*For example, a Payment Term such as N30, a discount value, agreed upon product numbers, Service Level Agreements (SLAs) etc.*
 
 #### **[D3]**	 
 The contract SHOULD be an MSA between the contract parties. 
