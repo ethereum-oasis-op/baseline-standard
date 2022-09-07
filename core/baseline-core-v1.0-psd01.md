@@ -463,6 +463,8 @@ The contract SHOULD be in an electronic form.
 #### **[D2]**   
 The functional terms of the contract SHOULD be represented on a BPI between the counterparties.
 
+*For example, a Payment Term such as N30, a discount value, agreed upon product numbers, Service Level Agreements (SLAs) etc.*
+
 #### **[D3]**	 
 The contract SHOULD be an MSA between the contract parties. 
 
@@ -608,7 +610,7 @@ Publicly accessible in the context of this document means that there exists a UR
 Commercial Counterparties must comply with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard. This means BPI participants and BPI operators must be able to provide compliance reports to authorities derived from a BPI that demonstrate compliance with the applicable regulatory rules such as Suspicious Activity Reports as required by the US Bank Secrecy Act of 1970.  
 
 #### **[R23]**	
-If required to meet particular third party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a requests commercial State Object (products, services or assets) transacted on a BPI.
+If required to meet particular third-party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a request's commercial State Object (products, services or assets) transacted on a BPI.
 
 *Note, that in principle every product, service, or asset, or sets thereof has a supply chain. This requirement aims at situations where the product, service, or asset or sets thereof cannot be solely supplied by the Provider without sourcing components from other Providers.*
 
@@ -710,7 +712,7 @@ A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM 
 *The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.*
 
 #### **[R31]**	
-The transacting counterparties MUST agree on the BPI.
+The transacting counterparties MUST agree on which BPI is to be used.
 
 ### 2.8.3 External Applications
 
@@ -807,7 +809,7 @@ The identifiers and identity utilized in a BPI MUST be controlled by its Princip
 
 *The design of X.509 PKIX also permits any of the thousands of CAs to impersonate any website or web service. Therefore, entities cannot be certain that their communications are not being compromised by a fraudulent certificate allowing a PITM (Person-in-the-Middle) attack. While workarounds have been proposed, good ones do not exist.*
 
-*Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative. The goal of DPKI is to ensure that, unlike PKIX, no single third party can compromise the integrity and security of a system employing DPKI as a whole.* 
+*Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative. The goal of DPKI is to ensure that, unlike PKIX, no single third-party can compromise the integrity and security of a system employing DPKI as a whole.* 
 
 *Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the PITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier. In this design, control over the identifier is returned to the Principal Owner. Therefore, it is no longer trivial for any one entity to undermine the security of the entire DPKI system or to compromise an identifier that is not theirs, thus, overcoming the challenges of typical PKI.*
 
@@ -851,7 +853,7 @@ Private keys MUST be stored and/or transmitted securely.
 *No mechanism should exist that would allow a single entity to deprive a Principal Owner of their identifier without their consent. This implies that:*
 
 #### **[CR7]<[D11]**	
-Once a namespace is created within the context of a BPI, it MUST NOT be possible to destroy it.
+Once a namespace is created within the context of a DPKI, it MUST NOT be possible to destroy it.
 
 #### **[CR8]<[D11]**	
 Namespaces in a DPKI utilized by a BPI MUST NOT contain blacklisting mechanisms that would allow anyone to invalidate identifiers that do not belong to them.
@@ -1040,7 +1042,7 @@ BPI Abstraction Layers MUST support Operational Monitoring of an API system.
 #### **[R55]**	
 BPI Abstraction Layers MUST support an API Portal for provisioning.
 
-*A BPI API portal in the context of this document is defined as a visual or a programmatic presentation that provides information about an API at every stage of its lifecycle. A BPI API portal allows operators to expose, document, provision access, and otherwise enable their APIs, and users of those APIs to register applications, reset credentials,  provide API feedback, report bugs, etc. A non-normative example of a minimal set of functionalities can be found here [[API Portal Functionality](#-api-portal)]*
+*A BPI API portal in the context of this document is defined as a visual or a programmatic presentation that provides information about an API at every stage of its lifecycle. A BPI API portal allows operators to expose, document, provision access, and otherwise enable their APIs, and users of those APIs to register applications, reset credentials,  provide API feedback, report bugs, etc. A non-normative example of a minimal set of functionalities can be found here [[API Portal Functionality](#api-portal)]*
 
 #### **[R56]**	
 BPI Abstraction Layers MUST support an API Gateway that does not have Material Impact on BPI latency. 
@@ -1104,7 +1106,7 @@ Abstraction Layers utilized in a BPI MUST be compatible with widely used externa
 #### **[R62]**	
 Abstraction Layers utilized in a BPI MUST support roles & access management.
 
-Roles management means the a BPI has the ability to define different roles and associated attributes for BPI Subjects, for example, the role of a "Workgroup Administrator" together with associated attributes such as "Add Workgroup Participant" or "Remove Workgroup Participant".
+Roles management means that a BPI has the ability to define different roles and associated attributes for BPI Subjects, for example, the role of a "Workgroup Administrator" together with associated attributes such as "Add Workgroup Participant" or "Remove Workgroup Participant".
 
 This document utilizes the NIST definition of Access Management [[NIST SP 1800-21B](#-NIST-SP-1800-21B)]: The set of practices that enables only those permitted the ability to perform an action on a particular resource.
 
@@ -1194,7 +1196,7 @@ An internal BPI Subject MUST be able to create, read, update and delete all comp
 A BPI Subject MUST be able to send and receive BPI messages from other BPI subjects using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
 #### **[R76]** 
-A BPI Subject MUST be able to create, read and BPI messages from other BPI subjects to said BPI Subject using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
+A BPI Subject MUST be able to create, read, and delete BPI messages from other BPI subjects to said BPI Subject using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
 *Note that when a BPI Subject executes these capabilities they are understood to be enabled by services under the direct custody of the BPI Subject. However, the BPI Subject may delegate these capabilities to the BPI in which the BPI subject operates.*
 #### **[R77]** 
@@ -1575,6 +1577,8 @@ A BPI service requester MUST present the BPI service provider with one or more s
 
 #### **[O2]**	
 The service provider MAY respond to one of the requirements.
+
+*Example of this could be a JSON object with a response e.g. the standard HTTP response 200 or 403*
 
 #### **[CR15]<[O2]** 
 If the BPI service provider has not responded to any of the BPI service requests by a BPI, the BPI service provider MUST refuse the service request.
