@@ -2142,12 +2142,13 @@ The "Exit BPI Interoperability" Operation MUST satisfy the following conditions 
 
 #### **[R207]** 
 For BPI Interoperability, a valid "Exit BPI Interoperability" operation that a BPI invokes MUST return
-* a value of processing success or failure, and if successful 
-* the current joint state object 
-* the proof of correctness of the last joint state 
-* the public input to the proof
-* the verification keys, and 
-* the verification program
+* A value of processing success or failure
+When successful:
+* The current joint state object 
+* The proof of correctness of the last joint state 
+* The public input to the proof
+* The verification keys
+* The verification program
 
 This completes the specification of the Bi- and Multi-directional BPI interoperability operations.
 
@@ -2156,7 +2157,7 @@ This completes the specification of the Bi- and Multi-directional BPI interopera
 The detailed API specification of the Mono-directional and Bi-/Multi-directional BPI Interoperability operations is out-of-scope for the current version of the Baseline Protocol standard, and will be given in a later version of the Baseline Protocol API specification.
 
 #### **[R208]** 
-There MUST be a set of BPI APIs supporting the BPI Interoperability operations enumerated in requirements [**[136]**](#r136) and [**[R139]**](#r139).
+There MUST be a set of BPI APIs supporting the BPI Interoperability operations enumerated in requirements [**[R136]**](#r136) and [**[R139]**](#r139).
 
 ## 5.7 BPI Interoperability: Discoverable Standard Transport Security
 
