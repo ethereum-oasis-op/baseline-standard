@@ -2143,6 +2143,7 @@ The "Exit BPI Interoperability" Operation MUST satisfy the following conditions 
 #### **[R207]** 
 For BPI Interoperability, a valid "Exit BPI Interoperability" operation that a BPI invokes MUST return
 * A value of processing success or failure
+
 When successful:
 * The current joint state object 
 * The proof of correctness of the last joint state 
