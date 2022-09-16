@@ -1807,7 +1807,7 @@ A "Launch IVSM" operation MUST satisfy the following conditions to be valid:
 An IVSM MUST implement a State Synchronization and Advancement Predicate conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
 
 #### **[R154]** 
-An IVSM MUST implement the following BPI Interoperability operations that can be invoked by BPI Subjects conformant to the requirements of said operations
+An IVSM MUST implement the following BPI Interoperability operations that can be invoked by BPI Subjects conformant to the requirements of said operations:
 * Commit State
 * Add/Remove BPI Subject
 * Verify State
@@ -2068,12 +2068,12 @@ A BPI Interoperability state object utilized in the "Update State" operation to 
 * A digital signature over the state content tied to a public key associated with the BPI Subject committing the state
 
 #### **[R194]** 
-An "Update State" operation MUST satisfy the following conditions to be valid
+An "Update State" operation MUST satisfy the following conditions to be valid:
 * The submitted state object is conformant with the target IVSM's defined State Synchronization and Advancement Predicate
 * The submitted predicate unique identifier matches the predicate identifier the target IVSM is based on
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
 * The cryptographic proof of correctness of the last joint state submitted matches the cryptographic proof of correctness of the last joint state on the target IVSM
-* The digital signature over the state content is valid
+* The digital signature over the state content is valid:
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject 
 
