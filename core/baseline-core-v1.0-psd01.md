@@ -439,9 +439,9 @@ Note, that an agreement in the context of this document may or may not be a comm
 If transacting counterparties, also being referred to as Requester(s) and Provider(s) (“the parties”) in this document, intend to establish a business and operational environment for commercial transactions, they will sign one or more agreements that commercially bind the parties, also known as Commercial Agreements. The aforementioned is only to be understood within the context of this document. 
 
 Such commercial, and thus presumably legally enforceable, documents may be presented as a combination of one or more of the following: 
-* Master Services Agreement,
-* Specific Terms and Conditions and 
-* an Order.
+* Master Services Agreement
+* Specific Terms and Conditions
+* Order
 
 #### **[R2]**	
 The parties to a Commercial Agreement MUST have signed commercial documents with each other before a transactable state of a commercial agreement can be instantiated within a BPI.
@@ -523,11 +523,11 @@ For specificity, the popular words "Blockchain" or "DLT" are a particular form o
 
 Baseline Protocol Instances or Implementations (BPIs) are logical constructs shared between transacting counterparties of Requesters and Providers and implemented on a CCSM. They are used to either validate or reconcile transactions between Requesters and Providers related to all State Objects transacted between them. The nature of bi- or multi-lateral transactions is such that two or more parties may transact to/from each other interchangeably. 
 
-Abstractly, a BPI consists of
-* the private messaging between Agreement Counterparties about the state, or the requested or finalized state changes, of the State Objects between them.
-* the representation of an agreement and documents and their business rules and data as distinct workflows and worksteps between transacting counterparties organized into workgroups based on the stipulations of the agreement.
-* the deterministic processing and finalization of state change requests based on documents between the transacting counterparties as stipulated by the agreement.
-* the preservation of the privacy of all transacting counterparties and their data from other 3rd parties.
+Abstractly, a BPI consists of:
+* The private messaging between Agreement Counterparties about the state, or the requested or finalized state changes, of the State Objects between them
+* The representation of an agreement and documents and their business rules and data as distinct workflows and worksteps between transacting counterparties organized into workgroups based on the stipulations of the agreement
+* The deterministic processing and finalization of state change requests based on documents between the transacting counterparties as stipulated by the agreement
+* The preservation of the privacy of all transacting counterparties and their data from other 3rd parties
 
 BPIs are strongly dependent on the security and privacy capabilities of the CCSM used to implement a BPI because BPIs without a CCSM are a single point of failure, whereas with a CCSM, there is no longer a single point of failure for the state of a BPI because a CCSM has no single-point-of-failure by its very definition.
 
@@ -1028,9 +1028,9 @@ Since a BPI has two abstraction layers -- the BPI and the CCSM Abstraction Layer
 ## 4.1 BPI Abstraction Scope and Components
 
 The Abstraction layers define common standards and processes such as Information Models, APIs and API formats, Process Flows, Roles, Responsibilities, Events, etc. for exposing and managing all BPI capabilities that represent individual steps of the BPI lifecycle processes. This includes but is not limited to:
-1. Specifying BPI functional capabilities aligned with already existing common API definitions.
+1. Specifying BPI functional capabilities aligned with already existing common API definitions
 2. Onboarding, publishing, upgrading, and retiring BPI APIs and BPI capabilities
-3. Coexistence and interoperability with legacy platforms and different BPI stacks.
+3. Coexistence and interoperability with legacy platforms and different BPI stacks
 
 This document defines an Abstraction Layer within the context of a BPI as a set of functions and procedures allowing the interaction of BPI-enabled applications that access the features or data of an operating system, application, or other services with BPI capabilities.
 
@@ -1111,9 +1111,9 @@ Roles management means that a BPI has the ability to define different roles and 
 This document utilizes the NIST definition of Access Management [[NIST SP 1800-21B](#-NIST-SP-1800-21B)]: The set of practices that enables only those permitted the ability to perform an action on a particular resource.
 
 The most common access management approaches are:
-- Role Based Access Management (RBAC) tying access rights to a system defined roles and its attributes.   
-- Access Control List (ACL) tying access rights to a table listing the permissions attached to computing resources.
-- Attribute Based Access Control (ABAC) tying access rights to an evaluation of a set of rules and policies to manage access rights according to specific attributes, such as environmental, system, object, or user information.
+- Role Based Access Management (RBAC) tying access rights to a system defined roles and its attributes
+- Access Control List (ACL) tying access rights to a table listing the permissions attached to computing resources
+- Attribute Based Access Control (ABAC) tying access rights to an evaluation of a set of rules and policies to manage access rights according to specific attributes, such as environmental, system, object, or user information
 
 #### **[R63]**	
 Abstraction Layers utilized in a BPI MUST support security policy management.
@@ -1149,7 +1149,7 @@ This section of the document focuses on the concepts and requirements that descr
 
 A BPI Subject is defined through the capability requirements of section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management). Note that there are two types of BPI Subjects:
 * An external BPI Subject that only consumes BPI capabilities
-* An internal BPI Subject that manages the provisioning of BPI capabilities to external BPI Subjects, and the integration with other BPIs. 
+* An internal BPI Subject that manages the provisioning of BPI capabilities to external BPI Subjects, and the integration with other BPIs
 
 This section describes the capabilities of a BPI Subject in the context of a BPI. Unless otherwise differentiated, this document refers to both external and internal BPI Subjects as a BPI Subject. 
 
@@ -1157,11 +1157,11 @@ The minimal set of BPI Subject capabilities are as follows:
 
 #### **[R67]**	
 A BPI Subject MUST be capable of performing all of the following cryptographic key management functionalities:
-* creation
-* derivation
-* storage
-* revocation / rotation
-* backup / recovery
+* Creation
+* Derivation
+* Storage
+* Revocation / rotation
+* Backup / recovery
 
 #### **[R68]**	
 A BPI Subject MUST be capable of performing encryption and decryption operations based on BPI specified cryptographic algorithms.
@@ -1182,11 +1182,11 @@ A BPI Subject MUST be capable of performing cryptographic secret sharing based o
 
 #### **[R73]** 
 An external BPI Subject MUST at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Subjects:
-* A BPI Account belonging to the BPI Subject. Note that a BPI Account as defined in section [6.4 BPI Account](#64-bpi-account) is different from a BPI Subject Account as defined in section [5.2 BPI Subject Account](#52-bpi-subject-account).
-* A BPI Workgroup as defined in section [6.3 BPI Workgroup](#63-bpi-workgroup) . 
-* A BPI Workflow as defined in section [6.2 BPI Workflow](#62-bpi-workflow) .
-* A BPI Workstep as defined in section [6.1 BPI Workstep](#61-bpi-workstep).
-* A BPI Transaction as defined in section [6.5 BPI Transactions](#65-bpi-transactions). 
+* A BPI Account belonging to the BPI Subject. Note that a BPI Account as defined in section [6.4 BPI Account](#64-bpi-account) is different from a BPI Subject Account as defined in section [5.2 BPI Subject Account](#52-bpi-subject-account)
+* A BPI Workgroup as defined in section [6.3 BPI Workgroup](#63-bpi-workgroup) 
+* A BPI Workflow as defined in section [6.2 BPI Workflow](#62-bpi-workflow) 
+* A BPI Workstep as defined in section [6.1 BPI Workstep](#61-bpi-workstep)
+* A BPI Transaction as defined in section [6.5 BPI Transactions](#65-bpi-transactions)
 
 *There may be other BPI components such as role definitions or security policies. The enablement of additional components in a BPI beyond this standard is left to each specific implementation.*
 #### **[R74]** 
@@ -1414,9 +1414,9 @@ An example of a challenge-response system is given in the figure below.
 *In general, decorators in messages at a content level allow for the support of reusable conventions that are present across multiple messages to handle the same functionality consistently. A relevant analogy for decorators is that they are like HTTP headers in an HTTP request. The same HTTP header is often reused as a convention across multiple requests to achieve cross-domain functionality.*
 
 *An initial set of useful message decorators that can be used are, but are not limited to:*
-  * *~thread: provide request/reply and threading semantics to allow for maintaining state within, and also across messages.*
-  *	*~timing: timestamps, expiration, elapsed time*
-  *	*~l10n: localization support*
+  * *~Thread: provide request/reply and threading semantics to allow for maintaining state within, and also across messages*
+  *	*~Timing: timestamps, expiration, elapsed time*
+  *	*~L10n: localization support*
 
   - #### **[R113]**	
     All content level BPI messages MUST be represented in JSON format [[RFC7159](#rfc7159)].
@@ -1553,14 +1553,14 @@ Each BPI service SHOULD be defined by an identifier that corresponds to the reso
 
 #### **[D24]** 
 Each BPI service SHOULD be minimally specified by the following elements:
-* a BPI service domain such as “BPIStateProcessing”
-* a BPI service description
-* a BPI service version,
-* the BPI service provider,
-* the BPI Service endpoint(s),
-* the BPI Service endpoint-specification endpoint(s),
-* the Cryptographic Prover system,
-* the Cryptographic Prover system specification. 
+* A BPI service domain such as “BPIStateProcessing”
+* A BPI service description
+* A BPI service version,
+* The BPI service provider,
+* The BPI Service endpoint(s),
+* The BPI Service endpoint-specification endpoint(s),
+* The Cryptographic Prover system,
+* The Cryptographic Prover system specification. 
 
 #### **[R120]**	
 To ensure a BPI service specification timeline, the BPI service specification MUST include “created” and “updated” timestamps, and the full history of "updated" timestamps.
@@ -1713,10 +1713,10 @@ Bi- or Multi-directional BPI services in the context of BPI interoperability MUS
 * Exit BPI Interoperability
 
 *In the different sections below, this document defines the requirements for each operation. Each section will have*
-* *prerequisites*
-* *required data properties of the operations*
-* *validity requirements of an operation's data properties*
-* *operation execution requirements* 
+* *Prerequisites*
+* *Required data properties of the operations*
+* *Validity requirements of an operation's data properties*
+* *Operation execution requirements* 
 
 **Create State Synchronization and Advancement Predicate**
 
@@ -1821,11 +1821,11 @@ An IVSM MUST implement the following BPI Interoperability operations that can be
 
 #### **[R155]** 
 For BPI Interoperability, a  valid "Launch IVSM" operation a BPI invokes MUST 
-* instantiate an operational IVSM conformant to [**[R153]**](#r153) and [**[R154]**](#r154)
-* include the list of BPI Subjects as part of the target IVSM joint state object
-* commit the initial state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the initial state on the CCSM together with its public input and verification key
-* return a list of target IVSM endpoints as URIs for the operations listed in [**[R154]**](#r154)
-* return a cryptographically secured and masked secret for the invoking BPI Subject.
+* Instantiate an operational IVSM conformant to [**[R153]**](#r153) and [**[R154]**](#r154)
+* Include the list of BPI Subjects as part of the target IVSM joint state object
+* Commit the initial state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the initial state on the CCSM together with its public input and verification key
+* Return a list of target IVSM endpoints as URIs for the operations listed in [**[R154]**](#r154)
+* Return a cryptographically secured and masked secret for the invoking BPI Subject
 
 *In the context of this document, cryptographically secured and masked means that an attacker cannot unmask the secret without the cryptographic material used to secure and mask the secret, such as a cryptographic secret used in a key exchange protocol.*
 
@@ -1894,9 +1894,9 @@ An IVSM processing a "Commit State" operation MUST satisfy the following conditi
 
 #### **[R164]** 
 For BPI Interoperability, a valid "Commit State" operation a BPI invokes MUST 
-* update the joint state object in its state storage according to the rules of the State Synchronization and Advancement Predicate
-* commit the new state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the new state on the CCSM together with its public input and verification key
-* send that cryptographic proof of correctness of the new state on the IVSM to the invoking BPI Subject.
+* Update the joint state object in its state storage according to the rules of the State Synchronization and Advancement Predicate
+* Commit the new state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the new state on the CCSM together with its public input and verification key
+* Send that cryptographic proof of correctness of the new state on the IVSM to the invoking BPI Subject
 
 #### **[R165]** 
 The valid zero-knowledge proof of correctness of the new joint state MUST be publicly verifiable on the CCSM upon which the IVSM was instantiated.
@@ -1936,7 +1936,7 @@ A "Accept/Reject Invite" operation MUST satisfy the following conditions to be v
 * The digital signature over the invitation content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
-* The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM.
+* The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM
 
 #### **[R170]** 
 For BPI Interoperability, a valid "Accept/Reject Invite" operation a BPI invokes MUST return from the IVSM a cryptographically secured and masked secret for the accepting BPI Subject if the invitation is accepted and no value if the invitation is rejected.
@@ -1968,7 +1968,7 @@ The "Add BPI Subject" or "Remove BPI Subject" Operation MUST satisfy the followi
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
-* The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM.
+* The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM
 
 #### **[R176]** 
 A newly added BPI Subject MUST be approved by a quorum of authorized BPI Subjects on the IVSM.
@@ -2015,7 +2015,7 @@ The "Verify State" Operation MUST satisfy the following conditions to be valid:
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
-* The cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject matches the cryptographic proof of correctness of the last joint state of the target IVSM.
+* The cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject matches the cryptographic proof of correctness of the last joint state of the target IVSM
 
 #### **[R186]** 
 For BPI Interoperability, a valid "Verify State" operation which a BPI invokes MUST return from either the IVSM or the CCSM a value of true or false.
@@ -2044,7 +2044,7 @@ The "Verify Lock Commitment State" Operation MUST satisfy the following conditio
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject
-* The lock commitment of an initial joint state contribution provided by the invoking BPI Subject matches the lock commitment of one of the initial joint state contributions of the target IVSM.
+* The lock commitment of an initial joint state contribution provided by the invoking BPI Subject matches the lock commitment of one of the initial joint state contributions of the target IVSM
 
 #### **[R191]** 
 For the purpose of BPI Interoperability, a valid "Verify Lock Commitment State" operation which a BPI invokes MUST return from the CCSM underlying the target IVSM a value of true or false.
@@ -2097,9 +2097,9 @@ The quorum required to accept or reject a joint state update on an IVSM MUST be 
 The joint state object on an IVSM MUST be updated on said IVSM based on each received BPI Subject vote, either accept or reject.
 
 #### **[R200]** 
-Once the updated joint state is either accepted or rejected based on the defined quorum, an IVSM MUST 
-* notify all BPI Subjects if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the IVSM
-* cryptographically seal the joint state such that no further updates to the joint state can be processed.
+Once the updated joint state is either accepted or rejected based on the defined quorum, an IVSM MUST: 
+* Notify all BPI Subjects if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the IVSM
+* Nryptographically seal the joint state such that no further updates to the joint state can be processed
 
 #### **[R201]** 
 The "Accept/Reject State Update" Operation MUST have the following properties:
@@ -2479,13 +2479,13 @@ An account SHOULD have one or more units of value-accounting balances.
 #### **[R248]** 
 The state of an account MUST be represented by a cryptographic vector commitment scheme.
 
-A cryptographic vector commitment scheme commits to an ordered sequence of q values (m1, . . . , mq) in such a way that one
-can later open the commitment at specific positions (e.g., prove that m_i is the i-th committed message). For security, Vector Commitments are required to satisfy position binding which states that an adversary should not be able to open a commitment to two different values at the same position. An example of such a scheme is a Merkle Trie.
+A cryptographic vector commitment scheme commits to an ordered sequence of q values (m<sub>1</sub>, . . . , m<sub>q</sub>) in such a way that one
+can later open the commitment at specific positions (e.g., prove that m<sub>i</sub> is the i<sup>th</sup> committed message). For security, Vector Commitments are required to satisfy position binding which states that an adversary should not be able to open a commitment to two different values at the same position. An example of such a scheme is a Merkle Trie.
 
 #### **[R249]** 
 Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
 
-*These last two requirements ensure the structural integrity and cryptographic verifiability of the account at all times.*
+*[R248] and [R249] ensure the structural integrity and cryptographic verifiability of the account at all times.*
 
 #### **[R250]** 
 The history of the state of an account MUST be represented by a cryptographic vector commitment.
