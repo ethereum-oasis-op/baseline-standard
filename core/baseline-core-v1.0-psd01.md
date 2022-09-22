@@ -2099,7 +2099,7 @@ The joint state object on an IVSM MUST be updated on said IVSM based on each rec
 #### **[R200]** 
 Once the updated joint state is either accepted or rejected based on the defined quorum, an IVSM MUST: 
 * Notify all BPI Subjects if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the IVSM
-* Nryptographically seal the joint state such that no further updates to the joint state can be processed
+* Cryptographically seal the joint state such that no further updates to the joint state can be processed
 
 #### **[R201]** 
 The "Accept/Reject State Update" Operation MUST have the following properties:
