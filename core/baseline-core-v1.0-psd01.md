@@ -2596,7 +2596,7 @@ A Transaction Pool MUST process an invalid transaction by assigning the transact
 
 In the following, this document will discuss the requirements on the Virtual State Machine of the BPI Processing Layer.
 
-Since BPIs are used to verify the correctness of state transitions (see step (6) in Fig. 6.2. above), BPIs will utilize a Virtual State Machine (VSM) for its computations to validate state transitions of state objects; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework.
+Since BPIs are used to verify the correctness of state transitions (see step (6) in Fig. 10 above), BPIs will utilize a Virtual State Machine (VSM) for its computations to validate state transitions of state objects; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework.
 
 #### **[R268]**	
 The Execution Framework of a VSM MUST be deterministic.
@@ -2623,7 +2623,7 @@ The Execution Framework of a VSM MUST be Verifiably Secure.
 If a VSM can generate a valid Proof-of-Correctness for a transaction, it MUST update the state and the state history of the state object the transaction targeted based on the transaction data.
 
 #### **[R273]** 
-If a VSM can generate a valid Proof-of-Correctness for a transaction and the targeted state object is not the state object of the complete  agreement state, it MUST update the state object of the agreement and its state history besides the state object and its history targeted by the transaction.
+If a VSM can generate a valid Proof-of-Correctness for a transaction and the targeted state object is not the state object of the complete  agreement state, it MUST update the state object of the agreement and its state history in addition to the state object and its history targeted by the transaction.
 
 #### **[R274]** 
 A VSM MUST store all proofs, state objects, their associated data, and their histories in the Storage capability of the BPI Processing Layer.
@@ -2677,7 +2677,7 @@ Proof, transaction, and state object data and their histories together with thei
 #### **[D38]** 
 All other data SHOULD be stored as fully persistent data in the storage capability.
 
-*This is a consequence of step (7) in Fig. 9 above.*
+*This is a consequence of step (7) in Fig. 10 above.*
 
 *The Storage capability must also meet all requirements defined in section [7 General BPI Storage Capabilities](#7-general-bpi-storage-capabilities).*
 
@@ -2771,7 +2771,7 @@ Data Orchestration utilized in a BPI MUST Commit the exact order in which operat
 Data Orchestration utilized in a BPI MUST support a consistent state.
 
 #### **[R294]**	
-Data Orchestration utilized in a BPI MUST support User-space processing 
+Data Orchestration utilized in a BPI MUST support User-space processing. 
 
 *In the context of this document, this requirement establishes a capability that allows for one or more computations outside a database to be triggered by a data change in the data storage system.*
 
