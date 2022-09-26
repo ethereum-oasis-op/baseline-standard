@@ -2852,10 +2852,10 @@ This document lists the requirements for either option and indicates the differe
 **[R309]** BPI Storage  MUST support characteristics of commonly utilized enterprise-grade database solutions. 
 
 *Characteristics of enterprise-grade database solutions are but not limited to:*
-* *support for large number (> 1,000) of Parallel Queries*
-* *multi-process support where several processes can be handled by splitting workload between them.*
-* *support for database clustering to process high data volumes in short periods of time (sub second processing).*
-* *security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)].*  
+* *Support for large number (> 1,000) of Parallel Queries*
+* *Multi-process support where several processes can be handled by splitting workload between them*
+* *Support for database clustering to process high data volumes in short periods of time (sub second processing)*
+* *Security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)]*  
 
 #### **[O8]** 
 Centralized BPI Storage MAY be partially persistent. 
@@ -2863,7 +2863,7 @@ Centralized BPI Storage MAY be partially persistent.
 #### **[CR34]>[O8]** 
 Partially Persistent BPI Storage  MUST be append-only.
 
-*Non-normative examples of such data bases are but not limited to OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.*
+*Non-normative examples of such data bases are, but not limited to, OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.*
 
 ### 7.5.2 BPI Storage: Decentralized Deployment
 
