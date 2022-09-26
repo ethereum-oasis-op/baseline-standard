@@ -2810,9 +2810,9 @@ There are operating scenarios where it could be necessary that BPI data is repli
 #### **[R303]**	
 BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
 
-*Weak synchrony in this context means,* 
-* *that all messages will eventually reach their intended recipients and* 
-* *that after a certain, yet unknown, time the network will become synchronous again.*
+*Weak synchrony in this context means:* 
+* *All messages will eventually reach their intended recipients* 
+* *After a certain, yet unknown, time the network will become synchronous again*
 
 #### **[R304]**	
 Replication conflicts MUST be automatically detectable. 
