@@ -2872,7 +2872,7 @@ BPI Storage  MUST support authenticated naming systems.
 
 *An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [[DANE](#dane)].*   
 
-*Non-normative examples include but are not limited to certificate authorities or a self-certifying PKI namespace.* 
+*Non-normative examples include, but are not limited to, certificate authorities or a self-certifying PKI namespace.* 
 
 #### **[R311]**	
 BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
