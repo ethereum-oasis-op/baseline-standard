@@ -413,7 +413,7 @@ An agreement is a manifestation of mutual assent by two or more parties to one a
 
 A State Object is an item that can be exchanged between counterparties to an agreement, the state of which the counterparties have agreed on, and which is defined in an agreement. In the context of this standard, a State Object is assumed to be a document derived from an agreement and representing a specific state of either an asset, a product offering or a service offering transacted between counterparties.
 
-Examples include but are not limited to a
+Examples include, but are not limited to, a:
 * Quote
 * Order
 * Invoice referencing for example:
@@ -1333,7 +1333,7 @@ BPI communication protocols MUST be simplex.
 #### **[R101]** 
 BPI communication protocols MUST be based on established communication protocol standards.
 
-*Non-normative examples include but are not limited to NATS [[NATS](#nats)], AMQP [[AMQP](#amqp-core-complete-v10)], and DIDComm [[DIDCOMM](#didcomm)].*
+*Non-normative examples include, but are not limited to, NATS [[NATS](#nats)], AMQP [[AMQP](#amqp-core-complete-v10)], and DIDComm [[DIDCOMM](#didcomm)].*
 
 *Note that typically, and in the context of this document, a communication protocol encompasses four layers:*
 *	*Semantic layer*
