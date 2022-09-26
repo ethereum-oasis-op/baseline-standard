@@ -2887,7 +2887,7 @@ BPI Storage  MUST support a Network Protocol that handles:
 * NAT traversal such as hole punching, port mapping, and relay
 * Multiple transport protocols
 * Encryption, signing, or clear communications
-* Multi-multiplexes such as Multiplex connections, streams, protocols, peers.
+* Multi-multiplexes such as Multiplex connections, streams, protocols, peers
 
 #### **[R314]**	
 Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
