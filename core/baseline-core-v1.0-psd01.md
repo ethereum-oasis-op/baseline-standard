@@ -2937,10 +2937,10 @@ External non-authoritative, non-deterministic data means that there does not exi
 External non-authoritative, non-deterministic data for BPIs resides outside of an authoritative source and is subject to manipulation. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in data reporting and error checking, either cross-party, or by an appropriately incentivized 3rd party.
 
 #### **[D42]** 
-External non authoritative non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
+External non-authoritative, non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
 
 #### **[R316]** 
-External non-authoritative non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
+External non-authoritative, non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
 
 *Authoritative entities in the context of this document are entities that have been delegated authority by the participants of a BPI workstep to validate an external non-authoritative, non-deterministic source of input data into a BPI workstep.*
 
