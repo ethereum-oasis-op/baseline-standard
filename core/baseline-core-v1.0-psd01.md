@@ -2977,10 +2977,10 @@ This document defines the conformance levels of a BPI as follows:
 * **Level 3:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
 
 #### **[D43]** 
-A claim that a BPI conforms to this specification SHOULD describe the testing procedure used to justify the claim.
+A claim that a BPI conforms to this specification at **level 1** SHOULD describe the testing procedure used to justify the claim.
 
 #### **[R319]** 
-A claim that a BPI conforms to this specification at **level 2** or higher MUST describe the testing procedure used to justify the claim.
+A claim that a BPI conforms to this specification at **level 2 or higher** MUST describe the testing procedure used to justify the claim.
 
 *Note that BPI Integration requirements in section [5.5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#554-bi--and-multi-directional-and-mono-directional-bpi-interoperability-services) and section [5.6 Standardized Set of BPI Interoperability APIs](#56-standardized-set-of-bpi-interoperability-apis) are not mandatory for meeting conformance until there are at least two implementations conformant to Level 1 of this standards' requirements.*
 
