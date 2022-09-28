@@ -388,7 +388,7 @@ There are four requirement levels that are coded in requirement ids as per below
 
 Note that requirements are uniquely numbered in ascending order within each requirement level.
 
-Example : It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation and [O1] is truly optional.
+Example: It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation and [O1] is truly optional.
 
 
 -------
@@ -433,7 +433,7 @@ A Requester may request State Objects from multiple Providers, and in the contex
 #### **[R1]**
 Transacting counterparties MUST have an agreement specifying minimally the transactions to be performed between the transacting counterparties before a transactable state of an agreement can be instantiated within a BPI.
 
-Note, that an agreement in the context of this document may or may not be a commercial agreement as defined in (#24-Commercial-Agreements) below.
+*Note, that an agreement in the context of this document may or may not be a commercial agreement as defined in (#24-Commercial-Agreements) below.*
 
 ## 2.4 Commercial Agreements
 

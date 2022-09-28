@@ -34,7 +34,8 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/)
 #### Editors:
 Dr. Andreas Freund (a.freundhaskel@gmail.com) \
 Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/)  \
-Kyle Thomas (kyle@provide.services), [Provide ](https://provide.services/)
+Kyle Thomas (kyle@provide.services), [Provide ](https://provide.services/)  \
+Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
 
 <!--
@@ -224,12 +225,12 @@ The CCSM utilized in a BPI MUST support CCSM Node Key Management incl. backup an
 #### **[R4]**	
 The CCSM utilized in a BPI SHOULD support programmatic economic security assurances.
 
-Note, economic security assurances such as used in Proof-of-Stake consensus algorithms are designed to provide additional security assurances beyond those of cryptography in distributed systems. The security assurances are based on a system of economic incentives and disincentives for distributed system participants with the expressed goal that honest behavior of distributed system participants which enhances system security is in their economic self-interest. This is akin to determining if a cryptographic algorithm is secure or not, and what the level of security of said algorithm is, the security of a system of economic incentives and disincentives must be proven through a game theoretic security analysis.
+*Note, economic security assurances such as those used in Proof-of-Stake consensus algorithms are designed to provide additional security assurances beyond those of cryptography in distributed systems. The security assurances are based on a system of economic incentives and disincentives for distributed system participants with the expressed goal that honest behavior of distributed system participants which enhances system security is in their economic self-interest. This is akin to determining if a cryptographic algorithm is secure or not, and what the level of security of said algorithm is, the security of a system of economic incentives and disincentives must be proven through a game theoretic security analysis.*
 
 #### **[D1]**	
 The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE).
 
-Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing within the TEE, along with confidentiality of their assets.
+*Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing within the TEE, along with confidentiality of their assets.*
 
 #### **[R5]**	
 The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033 [ISO-IEC-27033](#iso-iec-27033).
@@ -239,7 +240,7 @@ Network attacks typically take the form of Distributed Denial of Service (DDOS) 
 #### **[R6]**	
 The CCSM utilized in a BPI MUST support a secure consensus algorithm as explained in section [8 Virtual State Machine](#8-virtual-state-machine).
 
-Note that secure in this context refers to the security of a consensus algorithm against attacks directed towards its three main characteristics – consistency, availability, and fault tolerance. Therefore, a consensus algorithm is considered secure for a given set of operating assumptions:
+*Note that secure in this context refers to the security of a consensus algorithm against attacks directed towards its three main characteristics – consistency, availability, and fault tolerance. Therefore, a consensus algorithm is considered secure for a given set of operating assumptions:*
 * if all nodes produce the same valid output, according to the protocol rules, for the same message broadcast to the network (consistency/safety),
 * if all non-faulty participating nodes produce an output indicating the termination, and subsequent restart, of the protocol upon reaching consensus (availability/liveness), and
 * if the network exhibits the capability to perform as intended if network nodes fail, either unintentionally or intentionally (fault tolerance).
@@ -332,7 +333,7 @@ Consensus algorithms employed in the CCSM utilized in a BPI SHOULD include econo
 #### **[D8]**	
 Consensus algorithms employed in the CCSM utilized in a BPI SHOULD require not more than order N messages to reach consensus where N is the number of nodes in the network.
 
-Note that the larger the number of nodes, the higher the level of security. Also, note that performance for certain consensus algorithms degrades quickly as the number of nodes increases because of the number of messages required to exchange between them to achieve consensus can grow very quickly. Therefore, algorithms that scale in the number of nodes without significant performance degradation are preferred. Also, note that network performance such as poor network latency can lead to severe issues such as consensus failure if an algorithm requires the exchange of large numbers of messages to reach consensus.
+*Note that the larger the number of nodes, the higher the level of security. Also, note that performance for certain consensus algorithms degrades quickly as the number of nodes increases because of the number of messages required to exchange between them to achieve consensus can grow very quickly. Therefore, algorithms that scale in the number of nodes without significant performance degradation are preferred. Also, note that network performance such as poor network latency can lead to severe issues such as consensus failure if an algorithm requires the exchange of large numbers of messages to reach consensus.*
 
 # 8. Virtual State Machine
 CCSMs most often utilize a virtual state machine (VSM) for CCSM computations of CCSM state transitions; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework. 
@@ -497,7 +498,8 @@ Mehran Shakeri, SAP \
 Alessandro Gasch, SAP \
 John Wolpert, ConsenSys \
 Sam Stokes, ConsenSys \
-Nick Kritikos, ConsenSys
+Nick Kritikos, ConsenSys \
+Yoav Bittan, ConsenSys 
  
 -------
 
