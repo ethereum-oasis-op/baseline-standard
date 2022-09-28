@@ -35,7 +35,7 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/)
 Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/), \
 Daven Jones (daven@provide.services), [Provide](https://provide.services/), \
 Andreas Freund (a.freundhaskel@gmail.com) \
-Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/) 
+Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
 <!--
 #### Additional artifacts:
@@ -4164,7 +4164,8 @@ Mehran Shakeri, SAP \
 Alessandro Gasch, SAP \
 John Wolpert, ConsenSys \
 Sam Stokes, ConsenSys \
-Nick Kritikos, ConsenSys
+Nick Kritikos, ConsenSys \
+Yoav Bittan, ConsenSys
  
 -------
 

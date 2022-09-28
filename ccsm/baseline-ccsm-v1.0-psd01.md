@@ -33,7 +33,6 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/)
 
 #### Editors:
 Dr. Andreas Freund (a.freundhaskel@gmail.com) \
-Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/)  \
 Kyle Thomas (kyle@provide.services), [Provide ](https://provide.services/)  \
 Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
