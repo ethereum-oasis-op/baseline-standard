@@ -281,7 +281,7 @@ Since forecasting future transaction volumes is difficult and could rapidly chan
 #### **[D4]**	
 The CCSM utilized in a BPI SHOULD support secure data sources.
 
-This requirement means that a CCSM has a mechanism to securely connect its state through for example a smart contract with a data source which has certain security assurances in such a way that a) the security of the data source is not compromised by the CCSM and b) the security assurances of the CCSM are not compromised by the secure data source.
+This requirement means that a CCSM has a mechanism to securely connect its state through, for example, a smart contract with a data source which has certain security assurances in such a way that: a) the security of the data source is not compromised by the CCSM and b) the security assurances of the CCSM are not compromised by the secure data source.
 
 #### **[D5]**	
 When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use the same CCSM Protocol, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
