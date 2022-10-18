@@ -2498,7 +2498,6 @@ The state of an account MUST be minimally comprised of the following elements:
 * Owner(s)
 * Authorization Condition (if more than one owner)
 * Account Nonce
-* Value-Accounting Balance(s)
 * State Object Prover System representation (if an account is associated with a state object)
 * State Object storage (if an account is associated with a state object)
 
