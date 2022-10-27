@@ -4,6 +4,6 @@
 
 # These owners will be the default owners for everything in
 # the repo. Unless a later match takes precedence,
-# the following owers will be requested for
+# the following owners will be requested for
 # review when someone opens a pull request.
 *       @kthomas @Therecanbeonlyone1969 @humbitious @Ybittan @chaals
