@@ -33,8 +33,8 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/)
 
 #### Editors:
 Dr. Andreas Freund (a.freundhaskel@gmail.com) \
-Anais Ofranc (aofranc@consianimis.com), [Consianimis](https://www.consianimis.com/)  \
-Kyle Thomas (kyle@provide.services), [Provide ](https://provide.services/)
+Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/) \
+Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
 <!--
 #### Additional artifacts:
@@ -387,7 +387,7 @@ There are four requirement levels that are coded in requirement ids as per below
 
 Note that requirements are uniquely numbered in ascending order within each requirement level.
 
-Example : It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation and [O1] is truly optional.
+Example: It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation and [O1] is truly optional.
 
 
 -------
@@ -413,7 +413,7 @@ An agreement is a manifestation of mutual assent by two or more parties to one a
 
 A State Object is an item that can be exchanged between counterparties to an agreement, the state of which the counterparties have agreed on, and which is defined in an agreement. In the context of this standard, a State Object is assumed to be a document derived from an agreement and representing a specific state of either an asset, a product offering or a service offering transacted between counterparties.
 
-Examples include but are not limited to a
+Examples include, but are not limited to, a:
 * Quote
 * Order
 * Invoice referencing for example:
@@ -432,7 +432,7 @@ A Requester may request State Objects from multiple Providers, and in the contex
 #### **[R1]**
 Transacting counterparties MUST have an agreement specifying minimally the transactions to be performed between the transacting counterparties before a transactable state of an agreement can be instantiated within a BPI.
 
-Note, that an agreement in the context of this document may or may not be a commercial agreement as defined in (#24-Commercial-Agreements) below.
+*Note, that an agreement in the context of this document may or may not be a commercial agreement as defined in (#24-Commercial-Agreements) below.*
 
 ## 2.4 Commercial Agreements
 
@@ -1333,7 +1333,7 @@ BPI communication protocols MUST be simplex.
 #### **[R101]** 
 BPI communication protocols MUST be based on established communication protocol standards.
 
-*Non-normative examples include but are not limited to NATS [[NATS](#nats)], AMQP [[AMQP](#amqp-core-complete-v10)], and DIDComm [[DIDCOMM](#didcomm)].*
+*Non-normative examples include, but are not limited to, NATS [[NATS](#nats)], AMQP [[AMQP](#amqp-core-complete-v10)], and DIDComm [[DIDCOMM](#didcomm)].*
 
 *Note that typically, and in the context of this document, a communication protocol encompasses four layers:*
 *	*Semantic layer*
@@ -2498,7 +2498,6 @@ The state of an account MUST be minimally comprised of the following elements:
 * Owner(s)
 * Authorization Condition (if more than one owner)
 * Account Nonce
-* Value-Accounting Balance(s)
 * State Object Prover System representation (if an account is associated with a state object)
 * State Object storage (if an account is associated with a state object)
 
@@ -2810,9 +2809,9 @@ There are operating scenarios where it could be necessary that BPI data is repli
 #### **[R303]**	
 BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
 
-*Weak synchrony in this context means,* 
-* *that all messages will eventually reach their intended recipients and* 
-* *that after a certain, yet unknown, time the network will become synchronous again.*
+*Weak synchrony in this context means:* 
+* *All messages will eventually reach their intended recipients* 
+* *After a certain, yet unknown, time the network will become synchronous again*
 
 #### **[R304]**	
 Replication conflicts MUST be automatically detectable. 
@@ -2852,10 +2851,10 @@ This document lists the requirements for either option and indicates the differe
 **[R309]** BPI Storage  MUST support characteristics of commonly utilized enterprise-grade database solutions. 
 
 *Characteristics of enterprise-grade database solutions are but not limited to:*
-* *support for large number (> 1,000) of Parallel Queries*
-* *multi-process support where several processes can be handled by splitting workload between them.*
-* *support for database clustering to process high data volumes in short periods of time (sub second processing).*
-* *security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)].*  
+* *Support for large number (> 1,000) of Parallel Queries*
+* *Multi-process support where several processes can be handled by splitting workload between them*
+* *Support for database clustering to process high data volumes in short periods of time (sub second processing)*
+* *Security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)]*  
 
 #### **[O8]** 
 Centralized BPI Storage MAY be partially persistent. 
@@ -2863,7 +2862,7 @@ Centralized BPI Storage MAY be partially persistent.
 #### **[CR34]>[O8]** 
 Partially Persistent BPI Storage  MUST be append-only.
 
-*Non-normative examples of such data bases are but not limited to OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.*
+*Non-normative examples of such data bases are, but not limited to, OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.*
 
 ### 7.5.2 BPI Storage: Decentralized Deployment
 
@@ -2872,7 +2871,7 @@ BPI Storage  MUST support authenticated naming systems.
 
 *An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [[DANE](#dane)].*   
 
-*Non-normative examples include but are not limited to certificate authorities or a self-certifying PKI namespace.* 
+*Non-normative examples include, but are not limited to, certificate authorities or a self-certifying PKI namespace.* 
 
 #### **[R311]**	
 BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
@@ -2887,7 +2886,7 @@ BPI Storage  MUST support a Network Protocol that handles:
 * NAT traversal such as hole punching, port mapping, and relay
 * Multiple transport protocols
 * Encryption, signing, or clear communications
-* Multi-multiplexes such as Multiplex connections, streams, protocols, peers.
+* Multi-multiplexes such as Multiplex connections, streams, protocols, peers
 
 #### **[R314]**	
 Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
@@ -2937,10 +2936,10 @@ External non-authoritative, non-deterministic data means that there does not exi
 External non-authoritative, non-deterministic data for BPIs resides outside of an authoritative source and is subject to manipulation. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in data reporting and error checking, either cross-party, or by an appropriately incentivized 3rd party.
 
 #### **[D42]** 
-External non authoritative non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
+External non-authoritative, non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
 
 #### **[R316]** 
-External non-authoritative non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
+External non-authoritative, non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
 
 *Authoritative entities in the context of this document are entities that have been delegated authority by the participants of a BPI workstep to validate an external non-authoritative, non-deterministic source of input data into a BPI workstep.*
 
@@ -2977,10 +2976,10 @@ This document defines the conformance levels of a BPI as follows:
 * **Level 3:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
 
 #### **[D43]** 
-A claim that a BPI conforms to this specification SHOULD describe the testing procedure used to justify the claim.
+A claim that a BPI conforms to this specification at **level 1** SHOULD describe the testing procedure used to justify the claim.
 
 #### **[R319]** 
-A claim that a BPI conforms to this specification at **level 2** or higher MUST describe the testing procedure used to justify the claim.
+A claim that a BPI conforms to this specification at **level 2 or higher** MUST describe the testing procedure used to justify the claim.
 
 *Note that BPI Integration requirements in section [5.5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#554-bi--and-multi-directional-and-mono-directional-bpi-interoperability-services) and section [5.6 Standardized Set of BPI Interoperability APIs](#56-standardized-set-of-bpi-interoperability-apis) are not mandatory for meeting conformance until there are at least two implementations conformant to Level 1 of this standards' requirements.*
 
@@ -3183,7 +3182,8 @@ Mehran Shakeri, SAP \
 Alessandro Gasch, SAP \
 John Wolpert, ConsenSys \
 Sam Stokes, ConsenSys \
-Nick Kritikos, ConsenSys
+Nick Kritikos, ConsenSys \
+Yoav Bittan, ConsenSys 
  
 -------
 
