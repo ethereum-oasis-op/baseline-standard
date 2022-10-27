@@ -33,7 +33,7 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/)
 
 #### Editors:
 Dr. Andreas Freund (a.freundhaskel@gmail.com) \
-Kyle Thomas (kyle@provide.services), [Provide ](https://provide.services/)  \
+Kyle Thomas (kyle@provide.services), [Provide ](https://provide.services/) \
 Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
 
@@ -309,9 +309,9 @@ The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT) [[BFT](#the-by
 #### **[R13]** 
 The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
 
-Weak synchrony in this context means, 
-1. that all messages will eventually reach their intended recipients and 
-2. that after a certain, yet unknown time, the network will become synchronous again.
+Weak synchrony in this context means:
+1. That all messages will eventually reach their intended recipients
+2. That after a certain, yet unknown time, the network will become synchronous again
 
 # 7. Consensus
 The consensus algorithm is the most important component of a CCSM as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
