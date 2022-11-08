@@ -143,15 +143,15 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 # 2 API Overview
 
-  - Baseline
+1. Baseline
     - Description: Baseline Core provides internal integration middleware interfaces for baselining systems of record.
-  - Consensus Controlled State Machine (CCSM)
-    - Description: Baseline Core CCSM API provides interfaces for general interaction with the underlying CCSM.
-  - Privacy
-    - Description: Baseline Core Privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
-  - Registry
+2. Consensus Controlled State Machine (CCSM)
+   - Description: Baseline Core CCSM API provides interfaces for general interaction with the underlying CCSM.
+3. Privacy
+    - Description: Baseline Core Privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocolsand secure multi-party computation (MPC).
+4. Registry
     - Description: Utilities for resolving Unique Identifiers such as DIDs to DID documents for arbitrary BPI Subjects.
-  - Vault
+5. Vault
     - Description: Baseline Core Vault API provides tools and methods for managing digital authentication credentials for BPI Subjects based on roles and BPI Workgroup instances. 
 
 -------
