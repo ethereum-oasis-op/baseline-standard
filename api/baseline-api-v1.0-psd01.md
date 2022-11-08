@@ -229,7 +229,7 @@ Creates a BPI Account using the parameters provided in the request body.
               $ref: '#/components/schemas/BPIAccount'
             example:
               owners: 
-                - 'did:prvd:7cb23e2b-07ed-4562-8afb-73955f8f17c5'
+                - 'did:ethr:7cb23e2b-07ed-4562-8afb-73955f8f17c5'
               security_policies:
                 - type: AuthenticationPolicy
                   reference: 'https://example.com/policies/authentication-policy.json'
@@ -454,7 +454,7 @@ Retrieves details for a specified BPI `Subject.
           required: true
           schema:
             type: string
-          example: 'did:prvd:331156fb-fa5c-4557-ac39-69ae34c72c18'
+          example: 'did:ethr:331156fb-fa5c-4557-ac39-69ae34c72c18'
       responses:
         '200':
           content:
@@ -496,7 +496,7 @@ Updates a specified BPI `Subject` using the parameters provided in the request b
           required: true
           schema:
             type: string
-          example: 'did:prvd:99c404e9-fe10-4ca7-b787-d5943d03591c'
+          example: 'did:ethr:99c404e9-fe10-4ca7-b787-d5943d03591c'
       requestBody:
         content:
           application/json:
@@ -547,7 +547,7 @@ Returns a list of BPI `SubjectAccount` for a specified BPI `Subject`.
           required: true
           schema:
             type: string
-          example: 'did:prvd:331156fb-fa5c-4557-ac39-69ae34c72c18'
+          example: 'did:ethr:331156fb-fa5c-4557-ac39-69ae34c72c18'
       responses:
         '200':
           content:
@@ -591,7 +591,7 @@ Creates a BPI `SubjectAccount` for a specified BPI `Subject`.
           required: true
           schema:
             type: string
-          example: 'did:prvd:331156fb-fa5c-4557-ac39-69ae34c72c18'
+          example: 'did:ethr:331156fb-fa5c-4557-ac39-69ae34c72c18'
       requestBody:
         content:
           application/json:
@@ -639,14 +639,14 @@ Returns details for a specific BPI `SubjectAccount` for a specified BPI `Subject
           required: true
           schema:
             type: string
-          example: 'did:prvd:648142fb-fa5c-4557-ac39-69ae34c72c18'
+          example: 'did:ethr:648142fb-fa5c-4557-ac39-69ae34c72c18'
         - description: 'ID of a specific `Subject` for which a list of `SubjectAccount` objects is desired'
           in: path
           name: subject_id
           required: true
           schema:
             type: string
-          example: 'did:prvd:331156fb-fa5c-4557-ac39-69ae34c72c18'
+          example: 'did:ethr:331156fb-fa5c-4557-ac39-69ae34c72c18'
       responses:
         '200':
           content:
@@ -950,14 +950,14 @@ Creates a BPI `Workgroup` using the parameters provided in the request body.
         content:
           application/json:
             example:
-              subject_id: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+              subject_id: 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
               description: An example of the request body for workgroup creation
               name: Example workgroup
               network_id: 07102258-5e49-480e-86af-6d0c3260827d
               type: baseline
               security_policies: []
               admins: 
-                - 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+                - 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
             schema:
               $ref: '#/components/schemas/Workgroup'
         required: true
@@ -1043,14 +1043,14 @@ Updates a specific `Workgroup` using the parameters provided in the request body
         content:
           application/json:
             example:
-              subject_id: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+              subject_id: 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
               description: An example of the request body for updating a workgroup
               name: Example workgroup
               network_id: '07102258-5e49-480e-86af-6d0c3260827d'
               type: baseline
               security_policies: []
               admins:
-                - 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+                - 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
             schema:
               $ref: '#/components/schemas/Workgroup'
       responses:
@@ -1142,7 +1142,7 @@ Associates a specified BPI `Subject` with a specific BPI `Workgroup`. Note that 
         content:
           application/json:
             example:
-              subject_id: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+              subject_id: 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
       responses:
         '201':
           description: The request was successful and the specified subject has been associated with the specified workgroup.
@@ -2000,7 +2000,7 @@ Endpoint to resolve an identifier, DID, to it associated key material document, 
           required: true
           schema:
             type: string
-          example: 'did:prvd:8def7853-245b-4743-b702-984417a8ba2f'
+          example: 'did:ethr:8def7853-245b-4743-b702-984417a8ba2f'
       responses:
         '200':
           description: A resolved DID
@@ -2060,10 +2060,10 @@ Endpoint to resolve an identifier, DID, to it associated key material document, 
                 '@context':
                   - 'https://www.w3.org/ns/did/v1'
                   - 'https://w3id.org/security/suites/jws-2020/v1'
-                id: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
+                id: 'did:ethr:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
                 verificationMethod:
-                  - controller: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
-                    id: 'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                  - controller: 'did:ethr:54dc7f20-f2ae-49ff-93ab-c3857c64600a'
+                    id: 'did:ethr:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
                     publicKeyJwk:
                       kid: 'a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
                       'n': >-
@@ -2087,15 +2087,15 @@ Endpoint to resolve an identifier, DID, to it associated key material document, 
                         -----END PUBLIC KEY-----
                 type: JsonWebKey2020
                 assertionMethod:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                  'did:ethr:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
                 authentication:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                  'did:ethr:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
                 capabilityInvocation:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                  'did:ethr:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
                 capabilityDelegation:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                  'did:ethr:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
                 keyAgreement:
-                  'did:prvd:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
+                  'did:ethr:54dc7f20-f2ae-49ff-93ab-c3857c64600a#a3:c2:e5:17:c2:19:26:3c:fa:a2:2c:38:7b:ca:0c:60'
       summary: Retrieve DID document
       tags: 
         - Registry
@@ -2767,7 +2767,7 @@ The account associated with the (commercial) state of an agreement between count
         owners:
           description: Must be an array of either a DID or another resolvable unique identifier of the `Subject`
           example: 
-            - 'did:prvd:7cb23e2b-07ed-4562-8afb-73955f8f17c5'
+            - 'did:ethr:7cb23e2b-07ed-4562-8afb-73955f8f17c5'
           type: array
           items:
             type: string
@@ -3445,7 +3445,7 @@ Abstract identifier representing, e.g., an organization or user; a BPI `Subject`
       example:
         created_at: '2021-04-16T15:05:23.130Z'
         description: 'Organization for testing'
-        id: 'did:prvd:a7e165dd-2d91-4f1e-b025-6ef2c5514603'
+        id: 'did:ethr:a7e165dd-2d91-4f1e-b025-6ef2c5514603'
         metadata: {}
         name: 'ACME Inc.'
         type: 'Organization'
@@ -3471,7 +3471,7 @@ Abstract identifier representing, e.g., an organization or user; a BPI `Subject`
           type: string
         id:
           description: 'ID of a specific BPI `Subject`'
-          example: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+          example: 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
           readOnly: true
           type: string
         metadata:
@@ -3535,7 +3535,7 @@ A BPI `SubjectAccount` is the context of a `Subject`.
           readOnly: false
         id:
           description: Identifier of the specific BPI `SubjectAccount`
-          example: 'did:prvd:4A252b7e30f6cD6a85d20476Bb291Ef7f3a05293'
+          example: 'did:ethr:4A252b7e30f6cD6a85d20476Bb291Ef7f3a05293'
           type: string
           readOnly: true
         bpi_account_ids:
@@ -3613,7 +3613,7 @@ A BPI `SubjectAccount` is the context of a `Subject`.
           readOnly: false
         subject_id:
           description: Must be either a DID or another resolvable unique identifier of the `Subject`
-          example: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+          example: 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
           maxLength: 1024
           type: string
           format: URI
@@ -3773,7 +3773,7 @@ Defines a wallet structure.
         key_id: 'db9e6e21-23b0-497d-a02c-8a8813f8bf2d'
         public_key: 'xpub661MyMwAqRbcGdYXwwnwcnrH51AxyF3kkTeEt6iZfNDXsg4MLPgV7bEZ2v4uCx9djAboy6vSv3VbHPc6hf4Do8wb7FpJCuG7aMBwH2QgLJu'
         purpose: 44
-        subject_id: 'did:prvd:7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
+        subject_id: 'did:ethr:7c8fe6f1-38c3-4da1-b4b7-7591c6d0ca7c'
         vault_id: '190822c9-62f5-4caf-a419-df735a793b2f'
       properties:
         created_at:
@@ -3816,7 +3816,7 @@ Defines a wallet structure.
           type: integer
         subject_id:
           description: 'ID for a specific `Subject` that created a specific `Wallet`'
-          example: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+          example: 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
           maxLength: 1024
           minLength: 1
           readOnly: true
@@ -3894,19 +3894,19 @@ A BPI `Workgroup` represents a logical collection of resources provisioned withi
       description: |-
         'A BPI `Workgroup` represents a logical collection of resources provisioned within a BPI. _normative_'
       example:
-        subject_id: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+        subject_id: 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
         config:
           baselined: true
           webhook_secret: '1dfd34519a06420d8a6ed18afdffe932'
         created_at: '2021-05-21T12:36:52.977Z'
         description: 'Workgroup intended for demonstration purposes'
-        id: 'did:prvd:bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6'
+        id: 'did:ethr:bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6'
         name: 'Example Workgroup'
         network_id: '07102258-5e49-480e-86af-6d0c3260827d'
         type: 'baseline'
         security_policies: []
         admins: 
-          - 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+          - 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
       properties:
         config:
           description: BPI-specific workgroup data
@@ -3926,7 +3926,7 @@ A BPI `Workgroup` represents a logical collection of resources provisioned withi
           type: string
         id:
           description: 'ID for a specific `Workgroup`'
-          example: 'did:prvd:bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6'
+          example: 'did:ethr:bdf94fc0-63ad-4ee9-ac75-7eb63365d0f6'
           minLength: 1
           readOnly: true
           type: string
@@ -3956,7 +3956,7 @@ A BPI `Workgroup` represents a logical collection of resources provisioned withi
           items:
             $ref: "#/components/schemas/Subject"
           example:
-            - 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+            - 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
         security_policies:
           description: 'Security policies attached to a Workgroup' 
           example: 
@@ -3982,7 +3982,7 @@ A BPI `Workgroup` represents a logical collection of resources provisioned withi
           readOnly: false
         subject_id:
           description: ID of `Subject` that created `Workgroup`
-          example: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+          example: 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
           type: string
         admins:
           description: 'IDs of `Subject` instances with administrative control of `Workgroup`'
@@ -4016,7 +4016,7 @@ One stepwise state transition in a `WorkflowInstance` represented by a `Prover` 
         workflow_id: 'f9227803-5541-4c13-a554-f6980f03362a'
         type: 'purchase_order'
         participants: []
-        subject_id: 'did:prvd:93229a14-5e13-4c45-8352-3ad9948b8ae3'
+        subject_id: 'did:ethr:93229a14-5e13-4c45-8352-3ad9948b8ae3'
       properties:
         id:
           description: 'ID of a specific `WorkstepInstance`; _UUID as specified by RFC4122_'
