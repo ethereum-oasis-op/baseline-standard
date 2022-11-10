@@ -2990,9 +2990,10 @@ A cryptographic `Key` generated from a password or master key.
 ```
 ## 9.4 Errors
 
+#### **[R31]**
+
 A human-readable description of an error.
 
-#### **[R31]**
 ```
     Error:
       example:
@@ -3017,9 +3018,10 @@ A human-readable description of an error.
 ```
 ## 9.5 Keys
 
+#### **[O33]**
+
 A string of data that is used to lock or unlock cryptographic functions.
 
-#### **[O33]**
 ```
     Key:
       description: A string of data that is used to lock or unlock cryptographic functions; _non-normative_
@@ -3093,9 +3095,10 @@ A string of data that is used to lock or unlock cryptographic functions.
 ```
 ## 9.5 Network
 
+#### **[O34]**
+
 A  CCSM Network object.
 
-#### **[O34]**
 ```
     Network:
       description: CCSM Network object; _non-normative_
@@ -3145,9 +3148,10 @@ A  CCSM Network object.
       title: Network
       type: object
 ```
+#### **[O35]**
+
 Status of a CCSM network.
 
-#### **[O35]**
 ```
     NetworkStatus:
       example:
@@ -3172,9 +3176,10 @@ Status of a CCSM network.
 ```
 ## 9.6 Protocol Messages
 
+#### **[R32]**
+
 Baseline protocol message internal to a BPI.
 
-#### **[R32]**
 ```
     ProtocolMessage:
       description: 'Baseline protocol message internal to a BPI; _normative_'
@@ -3218,9 +3223,10 @@ Baseline protocol message internal to a BPI.
       title: 'Protocol Message'
       type: object
 ```
+#### **[R33]**
+
 Baseline protocol message payload.
 
-#### **[R33]**
 ```
     ProtocolMessagePayload:
       title: Protocol Message Payload
@@ -3327,9 +3333,10 @@ Baseline protocol message payload.
 ```
 ## 9.7 Recovery Policies
 
+#### **[R34]**
+
 Recovery policy attached to a BPI `SubjectAccount` typically connected to a role; may be independent.
 
-#### **[R34]**
 ```
     RecoveryPolicy:
       description: 'Recovery policy attached to a BPI `SubjectAccount` typically connected to a role; may be independent; _normative_'
@@ -3355,9 +3362,10 @@ Recovery policy attached to a BPI `SubjectAccount` typically connected to a role
 ```
 ## 9.7 Cryptographic Secret
 
+#### **[O36]**
+
 Cryptographic secret.
 
-#### **[O36]**
 ```
     Secret:
       description: 'Cryptographic secret; _non-normative_'
@@ -3412,9 +3420,10 @@ Cryptographic secret.
 ```
 ## 9.8 BPI State
 
+#### **[R35]**
+
 Representation of a valid state as claimed by a workgroup participant.
 
-#### **[R35]**
 ```
     StateClaim:
       description: Representation of a valid state as claimed by a workgroup participant; _normative_
@@ -3449,9 +3458,10 @@ Representation of a valid state as claimed by a workgroup participant.
       title: State Claim
       type: object
 ```
+#### **[R36]**
+
 Proposed (commercial) state transition of a BPI State Object via a BPI Transaction.
 
-#### **[R36]**
 ```
     StateProof:
       description: 'Proposed (commercial) state transition of a BPI State Object via a BPI Transaction; _normative_'
@@ -3490,9 +3500,10 @@ Proposed (commercial) state transition of a BPI State Object via a BPI Transacti
 ```
 ## 9.9 BPI Subject & Accounts
 
+#### **[R37]**
+
 Abstract identifier representing, e.g., an organization or user; a BPI `Subject` interacts with its `BPIAccount` instances by way of a BPI `SubjectAccount`.
 
-#### **[R37]**
 ```
     Subject:
       example:
@@ -3563,9 +3574,10 @@ Abstract identifier representing, e.g., an organization or user; a BPI `Subject`
           readOnly: false
       title: Subject
 ```
+#### **[R38]**
+
 A BPI `SubjectAccount` is the context of a `Subject`.
 
-#### **[R38]**
 ```
     SubjectAccount:
       description: |- 
@@ -3696,9 +3708,10 @@ A BPI `SubjectAccount` is the context of a `Subject`.
 ```
 ## 9.10 BPI Transactions
 
+#### **[R39]**
+
 Defines a BPI transaction between two or more subjects to be submitted to a CCSM `Network`.
 
-#### **[R39]**
 ```
     Transaction:
       description:  BPI transaction between two or more subjects to be submitted to a CCSM `Network`; _normative_
@@ -3758,9 +3771,10 @@ Defines a BPI transaction between two or more subjects to be submitted to a CCSM
 ```
 ## 9.11 Vault Management
 
+#### **[O37]**
+
 Unseals a specified `Vault`.
 
-#### **[O37]**
 ```
     UnsealVault:
       description: 'Unseals a specified `Vault`; _non-normative_'
@@ -3775,9 +3789,10 @@ Unseals a specified `Vault`.
       title: 'Unseal Vault'
       type: object
 ```
+#### **[O38]**
+
 Provides key management with a focus on providing advanced privacy and messaging capabilities (i.e., zero-knowledge proofs, SNARK-friendly hash functions, double-ratchet algorithm, etc.).
 
-#### **[O38]**
 ```
     Vault:
       description: 'Provides key management with a focus on providing advanced privacy and messaging capabilities (i.e., zero-knowledge proofs, SNARK-friendly hash functions, double-ratchet algorithm, etc.); _non-normative_'
@@ -3814,9 +3829,10 @@ Provides key management with a focus on providing advanced privacy and messaging
 ```
 ## 9.12 Wallet Management
 
+#### **[O39]**
+
 Defines a wallet structure.
 
-#### **[O39]**
 ```
     Wallet:
       description: 'Defines a wallet structure; _non-normative_'
@@ -3887,9 +3903,10 @@ Defines a wallet structure.
 ```
 ## 9.13 Cryptographic Witness
 
+#### **[R40]**
+
 Public and private inputs used to generate the `Proof`. Payload can be delivered as a JSON object or chunked and streamed.
 
-#### **[R40]**
 ```
     Witness:
       description: 'Public and private inputs used to generate the `Proof`. Payload can be delivered as a JSON object or chunked and streamed. Example is dependent on `Prover` parameters. _normative_'
@@ -3939,9 +3956,10 @@ Public and private inputs used to generate the `Proof`. Payload can be delivered
 ```
 ## 9.14 Workgroup Management
 
+#### **[R41]**
+
 A BPI `Workgroup` represents a logical collection of resources provisioned within a BPI.
 
-#### **[R41]**
 ```
     Workgroup:
       description: |-
@@ -4055,9 +4073,10 @@ A BPI `Workgroup` represents a logical collection of resources provisioned withi
 ```
 ## 9.16 Workstep Management
 
+#### **[R42]**
+
 One stepwise state transition in a `WorkflowInstance` represented by a `Prover` instance. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.
 
-#### **[R42]**
 ```
     WorkstepInstance:
       description: 'One stepwise state transition in a `WorkflowInstance` represented by a `Prover` instance. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`. _normative_'
