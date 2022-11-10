@@ -32,10 +32,10 @@ URI list end (commented out except during publication by OASIS TC Admin) -->
 John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/) 
 
 #### Editors:
-Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/), \
+Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/) \
 Andreas Freund (a.freundhaskel@gmail.com) \
 Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) \
-Chaals Nevile (chaals@entethalliance.org), [EEA](entethalliance.org)
+Chaals Nevile (chaals@entethalliance.org) [EEA](entethalliance.org)
 
 <!--
 #### Additional artifacts:
