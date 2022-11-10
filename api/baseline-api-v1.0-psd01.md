@@ -33,9 +33,9 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/)
 
 #### Editors:
 Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/), \
-Daven Jones (daven@provide.services), [Provide](https://provide.services/), \
 Andreas Freund (a.freundhaskel@gmail.com) \
-Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
+Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) \
+Chaals Nevile (chaals@entethalliance.org), [EEA](entethalliance.org)
 
 <!--
 #### Additional artifacts:
