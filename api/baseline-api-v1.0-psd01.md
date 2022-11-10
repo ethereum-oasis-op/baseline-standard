@@ -1206,9 +1206,10 @@ The CCSM interfaces enable interaction of the BPI with an underlying CCSM.
 
 ## 4.1 Contracts
 
+#### **[O1]**
+
 Returns a list of smart contracts in the authorized scope.
 
-#### **[O1]**
 ```
   /contracts:
     get:
@@ -1267,9 +1268,10 @@ Returns a list of smart contracts in the authorized scope.
         - CCSM
 ```
 
+#### **[O2]**
+
 Deploys a contract using the parameters provided in the request body.
 
-#### **[O2]**
 ```
   /contracts:
     post:
@@ -1306,9 +1308,10 @@ Deploys a contract using the parameters provided in the request body.
       tags:
         - CCSM
 ```
+#### **[O3]**
+
 Retrieves details for a specified `Contract`.
 
-#### **[O3]**
 ```
   /contracts/{id}:
     get:
@@ -1357,9 +1360,10 @@ Retrieves details for a specified `Contract`.
 
 ## 4.2 Networks
 
+#### **[O4]**
+
 Returns a list of available peer-to-peer CCSM `Network` instances.
 
-#### **[O4]**
 ```
   /networks:
     get:
@@ -1398,9 +1402,10 @@ Returns a list of available peer-to-peer CCSM `Network` instances.
       tags:
         - CCSM
 ```
+#### **[O5]**
+
 Retrieves the syncing status and, if fully-synced, real-time metrics and metadata of a specified CCSM `Network`.
 
-#### **[O5]**
 ```
   /networks/{id}/status:
     get:
@@ -1447,8 +1452,8 @@ Retrieves the syncing status and, if fully-synced, real-time metrics and metadat
 ## 4.3 Transactions 
 
 Returns a list of BPI `Transaction` instances in the authorized scope.
-
 #### **[R23]**
+
 ```
   /transactions:
     get:
