@@ -214,9 +214,11 @@ Returns a list of BPI Account objects in the authorized scope.
         - url: http://localhost:8080
       summary: List BPI account objects
 ```
-Creates a BPI Account using the parameters provided in the request body.
 
 #### **[R2]**
+
+Creates a BPI Account using the parameters provided in the request body.
+
 ```
   post:
       deprecated: false
@@ -262,9 +264,10 @@ Creates a BPI Account using the parameters provided in the request body.
       tags:
         - Baseline
 ```
+#### **[R3]**
+
 Retrieves details for a specific BPI Account.
 
-#### **[R3]**
 ```
   /bpi_accounts/{id}:
     get:
@@ -308,9 +311,10 @@ Retrieves details for a specific BPI Account.
 ```
 ## 3.2 Protocol Messages
 
+#### **[R4]**
+
 Creates a Baseline protocol message per the parameters provided in the request body.
 
-#### **[R4]**
 ```
   /protocol_messages:
     post:
@@ -351,9 +355,10 @@ Creates a Baseline protocol message per the parameters provided in the request b
 ```
 ## 3.4 BPI Subjects
 
+#### **[R5]**
+
 Returns a list of BPI `Subject` instances in the authorized scope.
 
-#### **[R5]**
 ```
   /subjects:
     get:
@@ -391,9 +396,10 @@ Returns a list of BPI `Subject` instances in the authorized scope.
         - Baseline
 ```
 
+#### **[R6]**
+
 Creates a BPI `Subject` using the parameters provided in the request body.
 
-#### **[R6]**
 ```/subjects:
     post:
       deprecated: false
@@ -438,9 +444,10 @@ Creates a BPI `Subject` using the parameters provided in the request body.
         - Baseline
 ```
 
+#### **[R7]**
+
 Retrieves details for a specified BPI `Subject.
 
-#### **[R7]**
 ```
   /subjects/{id}:
     get:
@@ -480,9 +487,10 @@ Retrieves details for a specified BPI `Subject.
       tags:
         - Baseline
 ```
+#### **[R8]**
+
 Updates a specified BPI `Subject` using the parameters provided in the request body.
 
-#### **[R8]**
 ```
   /subjects/{id}:
     put:
@@ -531,9 +539,10 @@ Updates a specified BPI `Subject` using the parameters provided in the request b
       tags:
         - Baseline
 ```
+#### **[R9]**
+
 Returns a list of BPI `SubjectAccount` for a specified BPI `Subject`.
 
-#### **[R9]**
 ```
   /subjects/{id}/accounts:
     get:
@@ -575,9 +584,10 @@ Returns a list of BPI `SubjectAccount` for a specified BPI `Subject`.
       tags:
         - Baseline
 ```
+#### **[R10]**
+
 Creates a BPI `SubjectAccount` for a specified BPI `Subject`.
 
-#### **[R10]**
 ```
   /subjects/{id}/accounts:
     post:
@@ -623,9 +633,10 @@ Creates a BPI `SubjectAccount` for a specified BPI `Subject`.
       tags:
         - Baseline
 ```
+#### **[R11]**
+
 Returns details for a specific BPI `SubjectAccount` for a specified BPI `Subject`.
 
-#### **[R11]**
 ```
   /subjects/{subject_id}/accounts/{id}:
     get:
@@ -677,9 +688,10 @@ Returns details for a specific BPI `SubjectAccount` for a specified BPI `Subject
 
 ## 3.3 Workflows & Worksteps
 
+#### **[R12]**
+
 Returns a list of BPI `Workflow` instances in the authorized scope.
 
-#### **[R12]**
 ```
   /workflows:
     get:
@@ -715,9 +727,10 @@ Returns a list of BPI `Workflow` instances in the authorized scope.
       tags:
         - Baseline
 ```
+#### **[R13]**
+
 Creates a BPI `WorkflowInstance` using the parameters provided in the request body.
 
-#### **[R13]**
 ```
   /workflows:
     post:
@@ -758,9 +771,10 @@ Creates a BPI `WorkflowInstance` using the parameters provided in the request bo
       tags:
         - Baseline
 ```
+#### **[R14]**
+
 Retrieves details for a specific BPI `WorkflowInstance`.
 
-#### **[R14]**
 ```
   /workflows/{id}:
     get:
@@ -799,9 +813,10 @@ Retrieves details for a specific BPI `WorkflowInstance`.
       tags:
         - Baseline
 ```
+#### **[R15]**
+
 Returns a list of BPI `Workstep` instances in a specific `Workflow` instance.
 
-#### **[R15]**
 ```
   /workflows/{id}/worksteps:
     get:
@@ -841,9 +856,10 @@ Returns a list of BPI `Workstep` instances in a specific `Workflow` instance.
       tags:
         - Baseline
 ```
+#### **[R16]**
+
 Retrieves details for a specific BPI workstep instance in a specific BPI `WorkflowInstance`.
 
-#### **[R16]**
 ```
   /workflows/{id}/worksteps/{workstep_id}:
     get:
@@ -900,9 +916,10 @@ Retrieves details for a specific BPI workstep instance in a specific BPI `Workfl
 ```
 ## 3.4 Workgroups
 
+#### **[R17]**
+
 Returns a list of BPI `Workgroup` instances in the authorized scope.
 
-#### **[R17]**
 ```
   /workgroups:
     get:
@@ -937,9 +954,10 @@ Returns a list of BPI `Workgroup` instances in the authorized scope.
       tags:
         - Baseline
 ```
+#### **[R18]**
+
 Creates a BPI `Workgroup` using the parameters provided in the request body.
 
-#### **[R18]**
 ```
   /workgroups:
     post:
@@ -984,9 +1002,10 @@ Creates a BPI `Workgroup` using the parameters provided in the request body.
       tags:
         - Baseline
 ```
+#### **[R19]**
+
 Retrieves details for a specific BPI `Workgroup`.
 
-#### **[R19]**
 ```
   /workgroups/{id}:
     get:
@@ -1023,9 +1042,10 @@ Retrieves details for a specific BPI `Workgroup`.
         - Baseline
 ```
 
+#### **[R20]**
+
 Updates a specific `Workgroup` using the parameters provided in the request body.
 
-#### **[R20]**
 ```
   /workgroups/{id}:
     put:
@@ -1073,9 +1093,10 @@ Updates a specific `Workgroup` using the parameters provided in the request body
         - Baseline
 ```
 
+#### **[R21]**
+
 Returns a list of BPI `Subject` instances associated with a specific BPI `Workgroup`.
 
-#### **[R21]**
 ```
   /workgroups/{id}/subjects:
     get:
@@ -1120,9 +1141,10 @@ Returns a list of BPI `Subject` instances associated with a specific BPI `Workgr
         - Baseline
 ```
 
+#### **[R22]**
+
 Associates a specified BPI `Subject` with a specific BPI `Workgroup`. Note that the authorization should be scoped to the BPI `Workgroup` in which the BPI `Subject` is to be included.
 
-#### **[R22]**
 ```
   /workgroups/{id}/subjects:
     post:
