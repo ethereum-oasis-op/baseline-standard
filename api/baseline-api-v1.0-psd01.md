@@ -148,7 +148,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 2. Consensus Controlled State Machine (CCSM)
    - Description: Baseline Core CCSM API provides interfaces for general interaction with the underlying CCSM.
 3. Privacy
-    - Description: Baseline Core Privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocolsand secure multi-party computation (MPC).
+    - Description: Baseline Core Privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
 4. Registry
     - Description: Utilities for resolving Unique Identifiers such as DIDs to DID documents for arbitrary BPI Subjects.
 5. Vault
