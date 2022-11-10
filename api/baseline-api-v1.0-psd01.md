@@ -32,10 +32,10 @@ URI list end (commented out except during publication by OASIS TC Admin) -->
 John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/) 
 
 #### Editors:
-Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/), \
-Daven Jones (daven@provide.services), [Provide](https://provide.services/), \
+Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/) \
 Andreas Freund (a.freundhaskel@gmail.com) \
-Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
+Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) \
+Chaals Nevile (chaals@entethalliance.org), [EEA](entethalliance.org)
 
 <!--
 #### Additional artifacts:
@@ -148,7 +148,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 2. Consensus Controlled State Machine (CCSM)
    - Description: Baseline Core CCSM API provides interfaces for general interaction with the underlying CCSM.
 3. Privacy
-    - Description: Baseline Core Privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocolsand secure multi-party computation (MPC).
+    - Description: Baseline Core Privacy provides interfaces supporting general consistency, zero-knowledge cryptography protocols and secure multi-party computation (MPC).
 4. Registry
     - Description: Utilities for resolving Unique Identifiers such as DIDs to DID documents for arbitrary BPI Subjects.
 5. Vault
@@ -214,9 +214,11 @@ Returns a list of BPI Account objects in the authorized scope.
         - url: http://localhost:8080
       summary: List BPI account objects
 ```
-Creates a BPI Account using the parameters provided in the request body.
 
 #### **[R2]**
+
+Creates a BPI Account using the parameters provided in the request body.
+
 ```
   post:
       deprecated: false
@@ -262,9 +264,10 @@ Creates a BPI Account using the parameters provided in the request body.
       tags:
         - Baseline
 ```
+#### **[R3]**
+
 Retrieves details for a specific BPI Account.
 
-#### **[R3]**
 ```
   /bpi_accounts/{id}:
     get:
@@ -308,9 +311,10 @@ Retrieves details for a specific BPI Account.
 ```
 ## 3.2 Protocol Messages
 
+#### **[R4]**
+
 Creates a Baseline protocol message per the parameters provided in the request body.
 
-#### **[R4]**
 ```
   /protocol_messages:
     post:
@@ -351,9 +355,10 @@ Creates a Baseline protocol message per the parameters provided in the request b
 ```
 ## 3.4 BPI Subjects
 
+#### **[R5]**
+
 Returns a list of BPI `Subject` instances in the authorized scope.
 
-#### **[R5]**
 ```
   /subjects:
     get:
@@ -391,9 +396,10 @@ Returns a list of BPI `Subject` instances in the authorized scope.
         - Baseline
 ```
 
+#### **[R6]**
+
 Creates a BPI `Subject` using the parameters provided in the request body.
 
-#### **[R6]**
 ```/subjects:
     post:
       deprecated: false
@@ -438,9 +444,10 @@ Creates a BPI `Subject` using the parameters provided in the request body.
         - Baseline
 ```
 
+#### **[R7]**
+
 Retrieves details for a specified BPI `Subject.
 
-#### **[R7]**
 ```
   /subjects/{id}:
     get:
@@ -480,9 +487,10 @@ Retrieves details for a specified BPI `Subject.
       tags:
         - Baseline
 ```
+#### **[R8]**
+
 Updates a specified BPI `Subject` using the parameters provided in the request body.
 
-#### **[R8]**
 ```
   /subjects/{id}:
     put:
@@ -531,9 +539,10 @@ Updates a specified BPI `Subject` using the parameters provided in the request b
       tags:
         - Baseline
 ```
+#### **[R9]**
+
 Returns a list of BPI `SubjectAccount` for a specified BPI `Subject`.
 
-#### **[R9]**
 ```
   /subjects/{id}/accounts:
     get:
@@ -575,9 +584,10 @@ Returns a list of BPI `SubjectAccount` for a specified BPI `Subject`.
       tags:
         - Baseline
 ```
+#### **[R10]**
+
 Creates a BPI `SubjectAccount` for a specified BPI `Subject`.
 
-#### **[R10]**
 ```
   /subjects/{id}/accounts:
     post:
@@ -623,9 +633,10 @@ Creates a BPI `SubjectAccount` for a specified BPI `Subject`.
       tags:
         - Baseline
 ```
+#### **[R11]**
+
 Returns details for a specific BPI `SubjectAccount` for a specified BPI `Subject`.
 
-#### **[R11]**
 ```
   /subjects/{subject_id}/accounts/{id}:
     get:
@@ -677,9 +688,10 @@ Returns details for a specific BPI `SubjectAccount` for a specified BPI `Subject
 
 ## 3.3 Workflows & Worksteps
 
+#### **[R12]**
+
 Returns a list of BPI `Workflow` instances in the authorized scope.
 
-#### **[R12]**
 ```
   /workflows:
     get:
@@ -715,9 +727,10 @@ Returns a list of BPI `Workflow` instances in the authorized scope.
       tags:
         - Baseline
 ```
+#### **[R13]**
+
 Creates a BPI `WorkflowInstance` using the parameters provided in the request body.
 
-#### **[R13]**
 ```
   /workflows:
     post:
@@ -758,9 +771,10 @@ Creates a BPI `WorkflowInstance` using the parameters provided in the request bo
       tags:
         - Baseline
 ```
+#### **[R14]**
+
 Retrieves details for a specific BPI `WorkflowInstance`.
 
-#### **[R14]**
 ```
   /workflows/{id}:
     get:
@@ -799,9 +813,10 @@ Retrieves details for a specific BPI `WorkflowInstance`.
       tags:
         - Baseline
 ```
+#### **[R15]**
+
 Returns a list of BPI `Workstep` instances in a specific `Workflow` instance.
 
-#### **[R15]**
 ```
   /workflows/{id}/worksteps:
     get:
@@ -841,9 +856,10 @@ Returns a list of BPI `Workstep` instances in a specific `Workflow` instance.
       tags:
         - Baseline
 ```
+#### **[R16]**
+
 Retrieves details for a specific BPI workstep instance in a specific BPI `WorkflowInstance`.
 
-#### **[R16]**
 ```
   /workflows/{id}/worksteps/{workstep_id}:
     get:
@@ -900,9 +916,10 @@ Retrieves details for a specific BPI workstep instance in a specific BPI `Workfl
 ```
 ## 3.4 Workgroups
 
+#### **[R17]**
+
 Returns a list of BPI `Workgroup` instances in the authorized scope.
 
-#### **[R17]**
 ```
   /workgroups:
     get:
@@ -937,9 +954,10 @@ Returns a list of BPI `Workgroup` instances in the authorized scope.
       tags:
         - Baseline
 ```
+#### **[R18]**
+
 Creates a BPI `Workgroup` using the parameters provided in the request body.
 
-#### **[R18]**
 ```
   /workgroups:
     post:
@@ -984,9 +1002,10 @@ Creates a BPI `Workgroup` using the parameters provided in the request body.
       tags:
         - Baseline
 ```
+#### **[R19]**
+
 Retrieves details for a specific BPI `Workgroup`.
 
-#### **[R19]**
 ```
   /workgroups/{id}:
     get:
@@ -1023,9 +1042,10 @@ Retrieves details for a specific BPI `Workgroup`.
         - Baseline
 ```
 
+#### **[R20]**
+
 Updates a specific `Workgroup` using the parameters provided in the request body.
 
-#### **[R20]**
 ```
   /workgroups/{id}:
     put:
@@ -1073,9 +1093,10 @@ Updates a specific `Workgroup` using the parameters provided in the request body
         - Baseline
 ```
 
+#### **[R21]**
+
 Returns a list of BPI `Subject` instances associated with a specific BPI `Workgroup`.
 
-#### **[R21]**
 ```
   /workgroups/{id}/subjects:
     get:
@@ -1120,9 +1141,10 @@ Returns a list of BPI `Subject` instances associated with a specific BPI `Workgr
         - Baseline
 ```
 
+#### **[R22]**
+
 Associates a specified BPI `Subject` with a specific BPI `Workgroup`. Note that the authorization should be scoped to the BPI `Workgroup` in which the BPI `Subject` is to be included.
 
-#### **[R22]**
 ```
   /workgroups/{id}/subjects:
     post:
@@ -1184,9 +1206,10 @@ The CCSM interfaces enable interaction of the BPI with an underlying CCSM.
 
 ## 4.1 Contracts
 
+#### **[O1]**
+
 Returns a list of smart contracts in the authorized scope.
 
-#### **[O1]**
 ```
   /contracts:
     get:
@@ -1245,9 +1268,10 @@ Returns a list of smart contracts in the authorized scope.
         - CCSM
 ```
 
+#### **[O2]**
+
 Deploys a contract using the parameters provided in the request body.
 
-#### **[O2]**
 ```
   /contracts:
     post:
@@ -1284,9 +1308,10 @@ Deploys a contract using the parameters provided in the request body.
       tags:
         - CCSM
 ```
+#### **[O3]**
+
 Retrieves details for a specified `Contract`.
 
-#### **[O3]**
 ```
   /contracts/{id}:
     get:
@@ -1335,9 +1360,10 @@ Retrieves details for a specified `Contract`.
 
 ## 4.2 Networks
 
+#### **[O4]**
+
 Returns a list of available peer-to-peer CCSM `Network` instances.
 
-#### **[O4]**
 ```
   /networks:
     get:
@@ -1376,9 +1402,10 @@ Returns a list of available peer-to-peer CCSM `Network` instances.
       tags:
         - CCSM
 ```
+#### **[O5]**
+
 Retrieves the syncing status and, if fully-synced, real-time metrics and metadata of a specified CCSM `Network`.
 
-#### **[O5]**
 ```
   /networks/{id}/status:
     get:
@@ -1422,11 +1449,12 @@ Retrieves the syncing status and, if fully-synced, real-time metrics and metadat
         - CCSM
 ```
 
-## 4.3 Transactions 
+## 4.3 Transactions
+
+#### **[R23]**
 
 Returns a list of BPI `Transaction` instances in the authorized scope.
 
-#### **[R23]**
 ```
   /transactions:
     get:
@@ -1479,9 +1507,10 @@ Returns a list of BPI `Transaction` instances in the authorized scope.
         - CCSM
 ```
 
+#### **[R24]**
+
 Creates and broadcast a BPI transaction in a chain- and protocol-agnostic manner using the parameters provided in the request body.
 
-#### **[R24]**
 ```
   /transactions:
     post:
@@ -1519,9 +1548,10 @@ Creates and broadcast a BPI transaction in a chain- and protocol-agnostic manner
       tags:
         - CCSM
 ```
+#### **[R25]**
+
 Retrieves details for a specified BPI `Transaction`.
 
-#### **[R25]**
 ```
   /transactions/{id}:
     get:
@@ -1561,9 +1591,10 @@ Retrieves details for a specified BPI `Transaction`.
 
 ## 4.4 Wallets
 
+#### **[O6]**
+
 Returns a list of `Wallet` instances.
 
-#### **[O6]**
 ```
   /wallets:
     get:
@@ -1602,9 +1633,10 @@ Returns a list of `Wallet` instances.
         - CCSM
 ```
 
+#### **[O7]**
+
 Creates a `Wallet` using the parameters provided in the request body. A `Wallet` may be setup as custodial or non-custodial. If the Wallet is custodial then the platform will derive addresses and securely persist an BPI `Account` for each of those derived addresses.
 
-#### **[O7]**
 ```
   /wallets:
     post:
@@ -1642,9 +1674,10 @@ Creates a `Wallet` using the parameters provided in the request body. A `Wallet`
       tags:
         - CCSM
 ```
+#### **[O8]**
+
 Returns a list of `Account` instances for a specific `Wallet`.
 
-#### **[O8]**
 ```
   /wallets/{id}/accounts:
     get:
@@ -1700,9 +1733,10 @@ Returns a list of `Account` instances for a specific `Wallet`.
 
 ## 5.1 Provers
 
+#### **[R26]**
+
 Returns a list of (cryptographic) `Prover` instances in the authorized scope.
 
-#### **[R26]**
 ```
   /provers:
     get:
@@ -1770,6 +1804,8 @@ Returns a list of (cryptographic) `Prover` instances in the authorized scope.
       tags:
         - Privacy
 ```
+#### **[R27]**
+
 Creates a BPI `Prover` using the parameters provided in the request body.
 
 Creating a prover entails compiling the prover from source, performing the appropriate setup or multiparty key ceremony and securely persisting resulting artifacts.
@@ -1780,7 +1816,6 @@ A persistent store must be implicitly initialized upon the creation of a new pro
 
 The parameters required to provision a `Prover` vary across providers and proving schemes.
 
-#### **[R27]**
 ```
   /provers:
     post:
@@ -1822,9 +1857,10 @@ The parameters required to provision a `Prover` vary across providers and provin
         - Privacy
 ```
 
+#### **[R28]**
+
 Retrieves details for a specific `Prover`.
 
-#### **[R28]**
 ```
   /provers/{id}:
     get:
@@ -1862,9 +1898,10 @@ Retrieves details for a specific `Prover`.
       tags:
         - Privacy
 ```
+#### **[R29]**
+
 Generates a cryptographic proof given a valid witness parameter; calling this API has an implicit side-effect of writing to the configured `Store`.
 
-#### **[R29]**
 ```
   /provers/{id}/prove:
     post:
@@ -1933,9 +1970,10 @@ Generates a cryptographic proof given a valid witness parameter; calling this AP
       tags:
         - Privacy
 ```
+#### **[R30]**
+
 Verifies a `Proof` using the `Witness` parameters provided in the request body.
 
-#### **[R30]**
 ```
   /provers/{id}/verify:
     post:
@@ -1985,9 +2023,10 @@ Verifies a `Proof` using the `Witness` parameters provided in the request body.
 
 ## 6.1 Resolve Identifier
 
+#### **[O9]**
+
 Endpoint to resolve an identifier, DID, to it associated key material document, DID document, for `Subject` instances.
 
-#### **[O9]**
 ```
   /resolve/{did}:
     get:
@@ -2118,9 +2157,10 @@ Endpoint to resolve an identifier, DID, to it associated key material document, 
 
 ## 7.1 Vault Management 
 
+#### **[O10]**
+
 Unseals a `Vault` and enables additional interaction within the authorized scope.
 
-#### **[O10]**
 ```
   /unseal:
     post:
@@ -2153,9 +2193,10 @@ Unseals a `Vault` and enables additional interaction within the authorized scope
         - Vault
 ```
 
+#### **[O11]**
+
 Returns a list of `Vault` instances in the authorized scope.
 
-#### **[O11]**
 ```
   /vaults:
     get:
@@ -2194,9 +2235,10 @@ Returns a list of `Vault` instances in the authorized scope.
         - Vault
 ```
 
+#### **[O12]**
+
 Creates a `Vault` instance using the parameters provided in the request body.
 
-#### **[O12]**
 ```
   /vaults:
     post:
@@ -2236,9 +2278,10 @@ Creates a `Vault` instance using the parameters provided in the request body.
       tags:
         - Vault
 ```
+#### **[O13]**
+
  Returns a list of keys in a specific `Vault`.
 
-#### **[O13]**
 ```
   /vaults/{id}/keys:
     get:
@@ -2282,9 +2325,10 @@ Creates a `Vault` instance using the parameters provided in the request body.
       tags:
         - Vault
 ```
+#### **[O14]**
+
 Creates a `Key` in a specific `Vault`.
 
-#### **[O14]**
 ```
   /vaults/{id}/keys:
     post:
@@ -2334,9 +2378,10 @@ Creates a `Key` in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O15]**
+
 Deletes a specific `Key` in a specific `Vault`.
 
-#### **[O15]**
 ```
   /vaults/{id}/keys/{key_id}:
     delete:
@@ -2375,9 +2420,10 @@ Deletes a specific `Key` in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O16]**
+
 Creates a derived key from a specific `Key` in a specific `Vault`.
 
-#### **[O16]**
 ```
   /vaults/{id}/keys/{key_id}/derive:
     post:
@@ -2426,9 +2472,10 @@ Creates a derived key from a specific `Key` in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O17]**
+
 Returns a list of secrets stored in a specific `Vault`.
 
-#### **[O17]**
 ```
   /vaults/{id}/secrets:
     get:
@@ -2472,9 +2519,10 @@ Returns a list of secrets stored in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O18]**
+
 Stores a `Secret` in a specific `Vault`.
 
-#### **[O18]**
 ```
   /vaults/{id}/secrets:
     post:
@@ -2517,9 +2565,10 @@ Stores a `Secret` in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O19]**
+
 Deletes a specific `Secret` from a specific `Vault`.
 
-#### **[O19]**
 ```
   /vaults/{id}/secrets/{secret_id}:
     delete:
@@ -2562,9 +2611,10 @@ Deletes a specific `Secret` from a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O20]**
+
 Retrieves a specific `Secret` from a specific `Vault`.
 
-#### **[O20]**
 ```
   /vaults/{id}/secrets/{secret_id}:
     get:
@@ -2741,9 +2791,10 @@ components:
 
 ## 9.1 BPI Account
 
+#### **[R31]**
+
 The account associated with the (commercial) state of an agreement between counterparties, which must only be changed as a result of a valid BPI transaction (i.e., a successful BPI `Workstep` execution) by way of a `StateClaim`as the new (commercial) state.
 
-#### **[R31]**
 ```
     BPIAccount:
       description: The account associated with the (commercial) state of an agreement between counterparties, which must only be changed as a result of a valid BPI transaction (i.e., a successful BPI `Workstep` execution) by way of a `StateClaim`as the new (commercial) state; _normative_
@@ -2837,9 +2888,10 @@ The account associated with the (commercial) state of an agreement between count
 ```
 ## 9.2 Contract
 
+#### **[O31]**
+
 Smart contract object.
 
-#### **[O31]**
 ```
     Contract:
       description: Smart contract object; _non-normative_
@@ -2895,9 +2947,10 @@ Smart contract object.
 ```
 ## 9.3 Derived Keys
 
+#### **[O32]**
+
 A cryptographic `Key` generated from a password or master key.
 
-#### **[O32]**
 ```
     DerivedKey:
       description: A cryptographic `Key` generated from a password or master key; _non-normative_
@@ -2937,9 +2990,10 @@ A cryptographic `Key` generated from a password or master key.
 ```
 ## 9.4 Errors
 
+#### **[R31]**
+
 A human-readable description of an error.
 
-#### **[R31]**
 ```
     Error:
       example:
@@ -2964,9 +3018,10 @@ A human-readable description of an error.
 ```
 ## 9.5 Keys
 
+#### **[O33]**
+
 A string of data that is used to lock or unlock cryptographic functions.
 
-#### **[O33]**
 ```
     Key:
       description: A string of data that is used to lock or unlock cryptographic functions; _non-normative_
@@ -3040,9 +3095,10 @@ A string of data that is used to lock or unlock cryptographic functions.
 ```
 ## 9.5 Network
 
+#### **[O34]**
+
 A  CCSM Network object.
 
-#### **[O34]**
 ```
     Network:
       description: CCSM Network object; _non-normative_
@@ -3092,9 +3148,10 @@ A  CCSM Network object.
       title: Network
       type: object
 ```
+#### **[O35]**
+
 Status of a CCSM network.
 
-#### **[O35]**
 ```
     NetworkStatus:
       example:
@@ -3119,9 +3176,10 @@ Status of a CCSM network.
 ```
 ## 9.6 Protocol Messages
 
+#### **[R32]**
+
 Baseline protocol message internal to a BPI.
 
-#### **[R32]**
 ```
     ProtocolMessage:
       description: 'Baseline protocol message internal to a BPI; _normative_'
@@ -3165,9 +3223,10 @@ Baseline protocol message internal to a BPI.
       title: 'Protocol Message'
       type: object
 ```
+#### **[R33]**
+
 Baseline protocol message payload.
 
-#### **[R33]**
 ```
     ProtocolMessagePayload:
       title: Protocol Message Payload
@@ -3274,9 +3333,10 @@ Baseline protocol message payload.
 ```
 ## 9.7 Recovery Policies
 
+#### **[R34]**
+
 Recovery policy attached to a BPI `SubjectAccount` typically connected to a role; may be independent.
 
-#### **[R34]**
 ```
     RecoveryPolicy:
       description: 'Recovery policy attached to a BPI `SubjectAccount` typically connected to a role; may be independent; _normative_'
@@ -3302,9 +3362,10 @@ Recovery policy attached to a BPI `SubjectAccount` typically connected to a role
 ```
 ## 9.7 Cryptographic Secret
 
+#### **[O36]**
+
 Cryptographic secret.
 
-#### **[O36]**
 ```
     Secret:
       description: 'Cryptographic secret; _non-normative_'
@@ -3359,9 +3420,10 @@ Cryptographic secret.
 ```
 ## 9.8 BPI State
 
+#### **[R35]**
+
 Representation of a valid state as claimed by a workgroup participant.
 
-#### **[R35]**
 ```
     StateClaim:
       description: Representation of a valid state as claimed by a workgroup participant; _normative_
@@ -3396,9 +3458,10 @@ Representation of a valid state as claimed by a workgroup participant.
       title: State Claim
       type: object
 ```
+#### **[R36]**
+
 Proposed (commercial) state transition of a BPI State Object via a BPI Transaction.
 
-#### **[R36]**
 ```
     StateProof:
       description: 'Proposed (commercial) state transition of a BPI State Object via a BPI Transaction; _normative_'
@@ -3437,9 +3500,10 @@ Proposed (commercial) state transition of a BPI State Object via a BPI Transacti
 ```
 ## 9.9 BPI Subject & Accounts
 
+#### **[R37]**
+
 Abstract identifier representing, e.g., an organization or user; a BPI `Subject` interacts with its `BPIAccount` instances by way of a BPI `SubjectAccount`.
 
-#### **[R37]**
 ```
     Subject:
       example:
@@ -3510,9 +3574,10 @@ Abstract identifier representing, e.g., an organization or user; a BPI `Subject`
           readOnly: false
       title: Subject
 ```
+#### **[R38]**
+
 A BPI `SubjectAccount` is the context of a `Subject`.
 
-#### **[R38]**
 ```
     SubjectAccount:
       description: |- 
@@ -3643,9 +3708,10 @@ A BPI `SubjectAccount` is the context of a `Subject`.
 ```
 ## 9.10 BPI Transactions
 
+#### **[R39]**
+
 Defines a BPI transaction between two or more subjects to be submitted to a CCSM `Network`.
 
-#### **[R39]**
 ```
     Transaction:
       description:  BPI transaction between two or more subjects to be submitted to a CCSM `Network`; _normative_
@@ -3705,9 +3771,10 @@ Defines a BPI transaction between two or more subjects to be submitted to a CCSM
 ```
 ## 9.11 Vault Management
 
+#### **[O37]**
+
 Unseals a specified `Vault`.
 
-#### **[O37]**
 ```
     UnsealVault:
       description: 'Unseals a specified `Vault`; _non-normative_'
@@ -3722,9 +3789,10 @@ Unseals a specified `Vault`.
       title: 'Unseal Vault'
       type: object
 ```
+#### **[O38]**
+
 Provides key management with a focus on providing advanced privacy and messaging capabilities (i.e., zero-knowledge proofs, SNARK-friendly hash functions, double-ratchet algorithm, etc.).
 
-#### **[O38]**
 ```
     Vault:
       description: 'Provides key management with a focus on providing advanced privacy and messaging capabilities (i.e., zero-knowledge proofs, SNARK-friendly hash functions, double-ratchet algorithm, etc.); _non-normative_'
@@ -3761,9 +3829,10 @@ Provides key management with a focus on providing advanced privacy and messaging
 ```
 ## 9.12 Wallet Management
 
+#### **[O39]**
+
 Defines a wallet structure.
 
-#### **[O39]**
 ```
     Wallet:
       description: 'Defines a wallet structure; _non-normative_'
@@ -3834,9 +3903,10 @@ Defines a wallet structure.
 ```
 ## 9.13 Cryptographic Witness
 
+#### **[R40]**
+
 Public and private inputs used to generate the `Proof`. Payload can be delivered as a JSON object or chunked and streamed.
 
-#### **[R40]**
 ```
     Witness:
       description: 'Public and private inputs used to generate the `Proof`. Payload can be delivered as a JSON object or chunked and streamed. Example is dependent on `Prover` parameters. _normative_'
@@ -3886,9 +3956,10 @@ Public and private inputs used to generate the `Proof`. Payload can be delivered
 ```
 ## 9.14 Workgroup Management
 
+#### **[R41]**
+
 A BPI `Workgroup` represents a logical collection of resources provisioned within a BPI.
 
-#### **[R41]**
 ```
     Workgroup:
       description: |-
@@ -4002,9 +4073,10 @@ A BPI `Workgroup` represents a logical collection of resources provisioned withi
 ```
 ## 9.16 Workstep Management
 
+#### **[R42]**
+
 One stepwise state transition in a `WorkflowInstance` represented by a `Prover` instance. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`.
 
-#### **[R42]**
 ```
     WorkstepInstance:
       description: 'One stepwise state transition in a `WorkflowInstance` represented by a `Prover` instance. A `Workstep` may or may not be required to reach on-chain finality prior to the execution of the next `Workstep` in a `Workflow`. _normative_'
@@ -4165,7 +4237,8 @@ Alessandro Gasch, SAP \
 John Wolpert, ConsenSys \
 Sam Stokes, ConsenSys \
 Nick Kritikos, ConsenSys \
-Yoav Bittan, ConsenSys
+Yoav Bittan, ConsenSys \
+Chaals Nevile, EEA
  
 -------
 
