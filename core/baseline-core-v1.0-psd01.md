@@ -35,7 +35,7 @@ John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/)
 Dr. Andreas Freund (a.freundhaskel@gmail.com) \
 Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/) \
 Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) \
-Chaals Nevile (chaals@entethalliance.org) [EEA](entethalliance.org)
+Chaals Nevile (chaals@entethalliance.org), [EEA](entethalliance.org)
 
 <!--
 #### Additional artifacts:
