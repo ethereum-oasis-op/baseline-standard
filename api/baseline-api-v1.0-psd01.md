@@ -4237,7 +4237,8 @@ Alessandro Gasch, SAP \
 John Wolpert, ConsenSys \
 Sam Stokes, ConsenSys \
 Nick Kritikos, ConsenSys \
-Yoav Bittan, ConsenSys
+Yoav Bittan, ConsenSys \
+Chaals Nevile, EEA
  
 -------
 
