@@ -1449,10 +1449,11 @@ Retrieves the syncing status and, if fully-synced, real-time metrics and metadat
         - CCSM
 ```
 
-## 4.3 Transactions 
+## 4.3 Transactions
+
+#### **[R23]**
 
 Returns a list of BPI `Transaction` instances in the authorized scope.
-#### **[R23]**
 
 ```
   /transactions:
@@ -1506,9 +1507,10 @@ Returns a list of BPI `Transaction` instances in the authorized scope.
         - CCSM
 ```
 
+#### **[R24]**
+
 Creates and broadcast a BPI transaction in a chain- and protocol-agnostic manner using the parameters provided in the request body.
 
-#### **[R24]**
 ```
   /transactions:
     post:
@@ -1546,9 +1548,10 @@ Creates and broadcast a BPI transaction in a chain- and protocol-agnostic manner
       tags:
         - CCSM
 ```
+#### **[R25]**
+
 Retrieves details for a specified BPI `Transaction`.
 
-#### **[R25]**
 ```
   /transactions/{id}:
     get:
@@ -1588,9 +1591,10 @@ Retrieves details for a specified BPI `Transaction`.
 
 ## 4.4 Wallets
 
+#### **[O6]**
+
 Returns a list of `Wallet` instances.
 
-#### **[O6]**
 ```
   /wallets:
     get:
@@ -1629,9 +1633,10 @@ Returns a list of `Wallet` instances.
         - CCSM
 ```
 
+#### **[O7]**
+
 Creates a `Wallet` using the parameters provided in the request body. A `Wallet` may be setup as custodial or non-custodial. If the Wallet is custodial then the platform will derive addresses and securely persist an BPI `Account` for each of those derived addresses.
 
-#### **[O7]**
 ```
   /wallets:
     post:
@@ -1669,9 +1674,10 @@ Creates a `Wallet` using the parameters provided in the request body. A `Wallet`
       tags:
         - CCSM
 ```
+#### **[O8]**
+
 Returns a list of `Account` instances for a specific `Wallet`.
 
-#### **[O8]**
 ```
   /wallets/{id}/accounts:
     get:
@@ -1727,9 +1733,10 @@ Returns a list of `Account` instances for a specific `Wallet`.
 
 ## 5.1 Provers
 
+#### **[R26]**
+
 Returns a list of (cryptographic) `Prover` instances in the authorized scope.
 
-#### **[R26]**
 ```
   /provers:
     get:
@@ -1797,6 +1804,8 @@ Returns a list of (cryptographic) `Prover` instances in the authorized scope.
       tags:
         - Privacy
 ```
+#### **[R27]**
+
 Creates a BPI `Prover` using the parameters provided in the request body.
 
 Creating a prover entails compiling the prover from source, performing the appropriate setup or multiparty key ceremony and securely persisting resulting artifacts.
@@ -1807,7 +1816,6 @@ A persistent store must be implicitly initialized upon the creation of a new pro
 
 The parameters required to provision a `Prover` vary across providers and proving schemes.
 
-#### **[R27]**
 ```
   /provers:
     post:
@@ -1849,9 +1857,10 @@ The parameters required to provision a `Prover` vary across providers and provin
         - Privacy
 ```
 
+#### **[R28]**
+
 Retrieves details for a specific `Prover`.
 
-#### **[R28]**
 ```
   /provers/{id}:
     get:
@@ -1889,9 +1898,10 @@ Retrieves details for a specific `Prover`.
       tags:
         - Privacy
 ```
+#### **[R29]**
+
 Generates a cryptographic proof given a valid witness parameter; calling this API has an implicit side-effect of writing to the configured `Store`.
 
-#### **[R29]**
 ```
   /provers/{id}/prove:
     post:
@@ -1960,9 +1970,10 @@ Generates a cryptographic proof given a valid witness parameter; calling this AP
       tags:
         - Privacy
 ```
+#### **[R30]**
+
 Verifies a `Proof` using the `Witness` parameters provided in the request body.
 
-#### **[R30]**
 ```
   /provers/{id}/verify:
     post:
@@ -2012,9 +2023,10 @@ Verifies a `Proof` using the `Witness` parameters provided in the request body.
 
 ## 6.1 Resolve Identifier
 
+#### **[O9]**
+
 Endpoint to resolve an identifier, DID, to it associated key material document, DID document, for `Subject` instances.
 
-#### **[O9]**
 ```
   /resolve/{did}:
     get:
@@ -2145,9 +2157,10 @@ Endpoint to resolve an identifier, DID, to it associated key material document, 
 
 ## 7.1 Vault Management 
 
+#### **[O10]**
+
 Unseals a `Vault` and enables additional interaction within the authorized scope.
 
-#### **[O10]**
 ```
   /unseal:
     post:
@@ -2180,9 +2193,10 @@ Unseals a `Vault` and enables additional interaction within the authorized scope
         - Vault
 ```
 
+#### **[O11]**
+
 Returns a list of `Vault` instances in the authorized scope.
 
-#### **[O11]**
 ```
   /vaults:
     get:
@@ -2221,9 +2235,10 @@ Returns a list of `Vault` instances in the authorized scope.
         - Vault
 ```
 
+#### **[O12]**
+
 Creates a `Vault` instance using the parameters provided in the request body.
 
-#### **[O12]**
 ```
   /vaults:
     post:
@@ -2263,9 +2278,10 @@ Creates a `Vault` instance using the parameters provided in the request body.
       tags:
         - Vault
 ```
+#### **[O13]**
+
  Returns a list of keys in a specific `Vault`.
 
-#### **[O13]**
 ```
   /vaults/{id}/keys:
     get:
@@ -2309,9 +2325,10 @@ Creates a `Vault` instance using the parameters provided in the request body.
       tags:
         - Vault
 ```
+#### **[O14]**
+
 Creates a `Key` in a specific `Vault`.
 
-#### **[O14]**
 ```
   /vaults/{id}/keys:
     post:
@@ -2361,9 +2378,10 @@ Creates a `Key` in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O15]**
+
 Deletes a specific `Key` in a specific `Vault`.
 
-#### **[O15]**
 ```
   /vaults/{id}/keys/{key_id}:
     delete:
@@ -2402,9 +2420,10 @@ Deletes a specific `Key` in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O16]**
+
 Creates a derived key from a specific `Key` in a specific `Vault`.
 
-#### **[O16]**
 ```
   /vaults/{id}/keys/{key_id}/derive:
     post:
@@ -2453,9 +2472,10 @@ Creates a derived key from a specific `Key` in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O17]**
+
 Returns a list of secrets stored in a specific `Vault`.
 
-#### **[O17]**
 ```
   /vaults/{id}/secrets:
     get:
@@ -2499,9 +2519,10 @@ Returns a list of secrets stored in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O18]**
+
 Stores a `Secret` in a specific `Vault`.
 
-#### **[O18]**
 ```
   /vaults/{id}/secrets:
     post:
@@ -2544,9 +2565,10 @@ Stores a `Secret` in a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O19]**
+
 Deletes a specific `Secret` from a specific `Vault`.
 
-#### **[O19]**
 ```
   /vaults/{id}/secrets/{secret_id}:
     delete:
@@ -2589,9 +2611,10 @@ Deletes a specific `Secret` from a specific `Vault`.
       tags:
         - Vault
 ```
+#### **[O20]**
+
 Retrieves a specific `Secret` from a specific `Vault`.
 
-#### **[O20]**
 ```
   /vaults/{id}/secrets/{secret_id}:
     get:
@@ -2768,9 +2791,10 @@ components:
 
 ## 9.1 BPI Account
 
+#### **[R31]**
+
 The account associated with the (commercial) state of an agreement between counterparties, which must only be changed as a result of a valid BPI transaction (i.e., a successful BPI `Workstep` execution) by way of a `StateClaim`as the new (commercial) state.
 
-#### **[R31]**
 ```
     BPIAccount:
       description: The account associated with the (commercial) state of an agreement between counterparties, which must only be changed as a result of a valid BPI transaction (i.e., a successful BPI `Workstep` execution) by way of a `StateClaim`as the new (commercial) state; _normative_
@@ -2864,9 +2888,10 @@ The account associated with the (commercial) state of an agreement between count
 ```
 ## 9.2 Contract
 
+#### **[O31]**
+
 Smart contract object.
 
-#### **[O31]**
 ```
     Contract:
       description: Smart contract object; _non-normative_
@@ -2922,9 +2947,10 @@ Smart contract object.
 ```
 ## 9.3 Derived Keys
 
+#### **[O32]**
+
 A cryptographic `Key` generated from a password or master key.
 
-#### **[O32]**
 ```
     DerivedKey:
       description: A cryptographic `Key` generated from a password or master key; _non-normative_
