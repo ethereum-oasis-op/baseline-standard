@@ -133,9 +133,11 @@ For information on whether any patents have been disclosed that may be essential
 
 ## 1.1 Terminology
 
-The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119).
+The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in **[[RFC2119](https://datatracker.ietf.org/doc/html/rfc2119)]**.
 
 ## 1.2 Normative References
+
+**[RFC2119]** S. Bradner, "Key words for use in RFCs to Indicate Requirement Levels" RFC 2119, DOI: 10.17487/RFC2119 March 1997, <https://www.rfc-editor.org/rfc/rfc2119>.
 
 **[RFC4122]** Leach, P., Mealling, M., and R. Salz, "A Universally Unique Identifier (UUID) URN Namespace", RFC 4122, DOI 10.17487/RFC4122, July 2005, <https://www.rfc-editor.org/info/rfc4122>.
 
