@@ -635,7 +635,7 @@ Creates a BPI `SubjectAccount` for a specified BPI `Subject`.
 ```
 #### **[R11]**
 
-Returns details for a specific BPI `SubjectAccount` for a specified BPI `Subject`.
+Returns details of the BPI `SubjectAccount` when given a specified BPI `Subject`.
 
 ```
   /subjects/{subject_id}/accounts/{id}:
