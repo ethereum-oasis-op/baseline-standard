@@ -28,9 +28,6 @@ URI list end (commented out except during publication by OASIS TC Admin) -->
 #### Open Project:
 [Baseline](https://www.baseline-protocol.org/), an initiative of [EEA Community Projects](https://entethalliance.org/eeacommunityprojects/)
 
-#### Project Chair:
-John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
-
 #### Editors:
 Dr. Andreas Freund (a.freundhaskel@gmail.com) \
 Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/) \
@@ -176,7 +173,7 @@ For complete copyright information please see the Notices section in the Appendi
 -------
 # 1 Introduction
 
-The Baseline Protocol is an open-source initiative that combines advances in cryptography, messaging, and Consensus Controlled State Machines (CCSMs) often referred to as blockchains or distributed ledger technology (DLT) to deliver secure and private business processes at low cost -- event ordering, data consistency, and workflow integrity. The Baseline Protocol provides a framework that allows Baseline Protocol Implementations (BPIs) to establish a common (business) frame of reference enabling confidential and complex (business) collaborations between enterprises without moving any sensitive data between traditional Systems of Record. The work is an [Ethereum Community Project](https://github.com/ethereum/oasis-open-project), which is managed by [OASIS](https://oasis-open-projects.org/).
+The Baseline Protocol is an open-source initiative that combines advances in cryptography, messaging, and consensus controlled state machines (CCSMs) often referred to as blockchains or distributed ledger technology (DLT), to deliver secure and private business processes at low cost -- event ordering, data consistency, and workflow integrity. The Baseline Protocol provides a framework that allows Baseline Protocol Implementations (BPIs) to establish a common (business) frame of reference enabling confidential and complex (business) collaborations between enterprises without moving any sensitive data between traditional Systems of Record. The work is an [Ethereum Community Project](https://github.com/ethereum/oasis-open-project), which is managed by [OASIS](https://oasis-open-projects.org/).
 
 ## 1.1 Overview
 
