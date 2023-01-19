@@ -4255,3 +4255,5 @@ Revisions made since the initial stage of this numbered Version of this document
 #### **[OAuth-2.0]** 
 Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518.
 
+## C.1 Internationalization and Localization Reference
+The standard encourages implementers to follow the [W3C "Strings on the Web: Language and Direction Metadata" best practices guide](#W3C-String-Meta) for identifying language and base direction for strings used on the Web wherever appropriate. 
