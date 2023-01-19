@@ -202,7 +202,7 @@ There are four requirement levels that are coded in requirement ids as per below
 
 Note that requirements are uniquely numbered in ascending order within each requirement level.
 
-Example : It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation.
+Example: It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation.
 
 
 -------
