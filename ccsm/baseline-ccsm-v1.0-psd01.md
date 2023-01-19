@@ -202,7 +202,7 @@ There are four requirement levels that are coded in requirement ids as per below
 
 Note that requirements are uniquely numbered in ascending order within each requirement level.
 
-Example : It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation.
+Example: It should be read that [R1] is an absolute requirement of the specification whereas [D1] is a recommendation.
 
 
 -------
@@ -476,6 +476,9 @@ Recommendations of the National Institute of Standards and Technology (NIST Guid
 
 #### **[HSM]** 
 Ramakrishnan, Vignesh; Venugopal, Prasanth; Mukherjee, Tuhin (2015). Proceedings of the International Conference on Information Engineering, Management and Security 2015: ICIEMS 2015. Association of Scientists, Developers and Faculties (ASDF). p. 9. ISBN 9788192974279.
+
+## A.3 Internationalization and Localization Reference
+The standard encourages implementers to follow the [W3C "Strings on the Web: Language and Direction Metadata" best practices guide](#W3C-String-Meta) for identifying language and base direction for strings used on the Web wherever appropriate. 
 
 
 -------
