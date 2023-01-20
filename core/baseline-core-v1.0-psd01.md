@@ -474,14 +474,14 @@ The functional terms of the contract SHOULD be represented on a BPI between the 
 
 *For example, a Payment Term such as N30, a discount value, agreed upon product numbers, Service Level Agreements (SLAs) etc.*
 
-[[D2]](#d2) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential).
+[[D2]](#d2) Testability: A legally binding functional terms of a contract between parties can be implemented in a baseline system referencing the suggested Merkle Tree [Example](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), as well as the funcional terms represented as a Zero Knowledge Circuit [Example](#Functional-Terms-Implemented-as-Zero-Knowledge-Circuit).
 
 #### **[D3]**	 
 The contract SHOULD be an MSA between the contract parties. 
 
 *An MSA is preferable since it allows a proliferation of contract-based BPI workflows and worksteps between the parties reducing complexity and potential errors.*
 
-[[D3]](#d3) Testability: A legally binding electronic contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential).
+[[D3]](#d3) Testability: MSAs between counterparties can be implemented in the same way as a legally binding contract between parties, referencing the suggested Merkle Tree [Example](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), as well as the funcional terms represented as a Zero Knowledge Circuit [Example](#Functional-Terms-Implemented-as-Zero-Knowledge-Circuit).
 
 #### **[CR1]<[D3]** 	
 There MUST be only one MSA between contract parties covering commercial transactions for a given set of products, services, or assets.
@@ -490,10 +490,15 @@ There MUST be only one MSA between contract parties covering commercial transact
 
 *Specific Terms and Conditions (“Specific T&Cs”) defines the terms and conditions governing a specific product, service, or asset or set thereof offered and delivered by Provider(s) to Requester(s).*
 
+[[CR1]<[D3]](#cr1d3) Testability: BPI logic ensures only unique combinations of an MSA, unique identifier, and an agreement type exist between two counterparties.
+
 #### **[D4]**	
 Each specific product, service, or asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its Specific T&C document.
 
 *This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.*
+
+[[D4]](#d4) Testability: 
+
 ### 2.4.2 Commercial Documents 
 
 Commercial documents, a category of commercial State Objects, refer to the state of a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments based on a legally binding contract.
@@ -3364,10 +3369,6 @@ An example implementation of a signed Commercial Agreement using a verifiable cr
   }]
 }
 ```
-
-
-
-
 
 # Appendix B - Security Considerations
 
