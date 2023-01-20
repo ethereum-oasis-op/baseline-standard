@@ -493,11 +493,11 @@ There MUST be only one MSA between contract parties covering commercial transact
 [[CR1]<[D3]](#cr1d3) Testability: BPI logic ensures only unique combinations of an MSA, unique identifier, and an agreement type exist between two counterparties.
 
 #### **[D4]**	
-Each specific product, service, or asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its Specific T&C document.
+Each specific product, service, asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its specific T&C document.
 
 *This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.*
 
-[[D4]](#d4) Testability: 
+[[D4]](#d4) Testability: BPI logic ensures State-Object-specific buisness rules and data exist per T&C document.
 
 ### 2.4.2 Commercial Documents 
 
