@@ -542,6 +542,9 @@ A commercial document MUST be non-repudiable.
 
 *Example: A Buyer ("Requester") and Seller ("Provider") may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.*
 
+[[R9]](#r9) Testability: The non-repudiation of a commercial document can be achieved through the verification of the digital signatures from both parties over the contract. An [Example](#commerical-agreement-as-verifiable-credential) of this is given, where in the “proof” section two digital signatures can be found. 
+
+
 ## 2.5 Consensus Controlled State Machine
 
 A Consensus Controlled State Machine (CCSM) is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage. 
