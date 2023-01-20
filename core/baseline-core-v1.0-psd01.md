@@ -462,74 +462,6 @@ There MUST be a legally binding contract, however simple and temporary, before a
 
 *For example, the contract and the order can be combined into a single document for a single transaction. However, there must be a legal framework in place to provide context for monies that are exchanged and settled. The functional part of the contract forms the basis of a Baseline Protocol Implementation (BPI) defined in section [2.6 Baseline Protocol Instance](#26-baseline-protocol-instance). The requirements below are to be understood solely within the context of this document. They are not meant to be generalized beyond this context.*
 
-### Commerical Agreement as Verifiable Credential
-
-*An example implementation of a signed Commercial Agreement using a verifiable credential. The VC below, showing an order between a buyer and seller, serves as input into a state object representing the Order. This example shows the binding contract between the buyer and the seller, the seller requesting the verification of the product order prior to its acceptance, and the buyer accepting the order if the functional terms are valid.*
-
-```
-{
-  "@context": [
-    "https://www.w3.org/2018/credentials/v1",
-    "https://w3id.org/traceability/v1"
-  ],
-  "id": "http://example.org/credentials/",
-  "type": [
-    "VerifiableCredential"
-  ],
-  "issuanceDate": "2021-02-04T20:29:37+00:00",
-  "issuer": "did:key:z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U",
-  "credentialSubject": {
-    "@context": [
-      "https://w3id.org/traceability/v1"
-    ],
-    "type": "EcommerceOrderRegistrationCredential",
-    "buyer": "did:example:123",
-    "orderID": "Order#975",
-    "productInOrder": [
-      "https://vc.example.com/?queryID=6206f1f744a781480c521902a1a1dbf5f1d01e7ea21daf483e7668817e58598a",
-      "https://vc.example.com/?queryID=6206f1f744a781480c521902a1a1dbf5f1d01e7ea21daf483e7668817e58598a"
-    ],
-    "certificateName": "ACME Ecommerce Order Registration Certificate"
-  },
-  "evidence": [
-    {
-      "type": [
-        "DocumentVerificationEvidence"
-      ],
-      "id": "https://example.acme.com/evidence/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B",
-      "verifier": [
-        "did:web:www.acme.com"
-      ],
-      "evidenceDocument": "ACME-Evidence-Document-0x2b440EbE-2-4-2021",
-      "subjectPresence": "InPerson",
-      "documentPresence": "Digital"
-    }
-  ],
-  "credentialStatus": {
-    "type": [
-      "RevocationList2020Status"
-    ],
-    "id": "https://example.acme.com/credential/status/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B#23323",
-    "revocationListIndex": "23323",
-    "revocationListCredential": "https://example.com/credentials/status/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B"
-  },
-  "proof": [{
-    "type": "Ed25519Signature2018",
-    "created": "2019-12-11T03:50:55Z",
-    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..4vwJBA0mXPn2R7g_zCNCJ8qgJAAsLhrsU9OJZrJPPQfRh7JiQr-NespMPlg36A9TyIn6uP67WMqPhFFBYMDNBQ",
-    "proofPurpose": "assertionMethod",
-    "verificationMethod": "did:key:z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U#z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U"
-  }, {
-      "type": "BbsBlsSignature2020",
-      "created": "2021-05-21T15:31:30Z",
-      "proofPurpose": "assertionMethod",
-      "proofValue": "ky+cRs+7xlw4FxccF16E5g9HjvbdochfiBklTba37+xomLAAHcv8nza1PK0Y/ux7XeULTDrrhbwp2mFGk3AHqRQtH4yRlZBP1fOZDiME8KRC2xRlLq6v4xrzy/CFLV7QdRpaqMJ4o8A3WmXGlxwfLA==",
-      "verificationMethod": "did:example:123#key-1"
-  }]
-}
-
-```
-
 [[R3]](#r3) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential).
 
 #### **[D1]**  
@@ -548,6 +480,8 @@ The functional terms of the contract SHOULD be represented on a BPI between the 
 The contract SHOULD be an MSA between the contract parties. 
 
 *An MSA is preferable since it allows a proliferation of contract-based BPI workflows and worksteps between the parties reducing complexity and potential errors.*
+
+[[D3]](#d3) Testability: A legally binding electronic contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential).
 
 #### **[CR1]<[D3]** 	
 There MUST be only one MSA between contract parties covering commercial transactions for a given set of products, services, or assets.
@@ -3212,6 +3146,227 @@ Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://ide
 
 #### **[SIOP]** 
 Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
+
+## A.3 Example References
+
+#### **[Functional-Terms-Implemented-as-Zero-Knowledge-Circuit]**
+```
+import "utils/pack/u32/nonStrictUnpack256" as unpack256
+import "utils/pack/u32/unpack128" as unpack128
+import "hashes/sha256/512bitPacked" as packed512Sha
+import "ecc/edwardsCompress" as edwardsCompress
+import "hashes/sha256/756bit" as shaOf756Bits
+import "utils/casts/bool_256_to_u32_8" as bool_256_to_u32_8
+import "ecc/edwardsScalarMult" as multiply
+import "utils/pack/bool/nonStrictUnpack256" as unpack256Bool
+import "ecc/babyjubjubParams" as context
+from "ecc/babyjubjubParams" import BabyJubJubParams
+
+struct Commitment {
+  field[2] value
+  field[2] salt
+}
+
+struct Metadata {
+  field[2] senderPublicKey
+  field agreementName
+ }
+
+// for example hash could be the hash of the N30 payment term
+struct PaymentAgreement {
+  u32[8] hash
+  field[2] senderPublicKey
+}
+
+def convert(field[2] input) -> u32[8]:
+  u32[4] lsbBits = unpack128(input[0])
+  u32[4] msbBits = unpack128(input[1])
+  return [...msbBits, ...lsbBits]
+
+def main(field publicInputHash, field[2] pk, private Commitment inputCommitment, private Metadata inputMetadata, private field sk) -> PaymentAgreement:
+  u32[8] publicInputHashBits = unpack256(publicInputHash)
+
+  // hash of the below private inputs must be equal to public input
+  // Convert inputs to u32
+  u32[8] saltBits = convert(inputCommitment.salt)
+  u32[8] valueBits = convert(inputCommitment.value)
+  bool[256] compressedSenderPubKey = edwardsCompress(inputMetadata.senderPublicKey)
+  u32[8] pubKeyBits = bool_256_to_u32_8(compressedSenderPubKey)
+  u32[8] nameBits = unpack256(inputMetadata.agreementName)
+ 
+  // compute hash
+  u32[8] paymentAgreementHash = shaOf756Bits(saltBits, pubKeyBits, nameBits)
+
+  // Check: Compare final hash to public input hash; and Compare input
+  bool out = publicInputHashBits == paymentAgreementHash && valueBits == paymentAgreementHash
+
+  // Check: Prove ownership of agreement
+  BabyJubJubParams ctx = context()
+  field[2] G = [ctx.Gu, ctx.Gv]
+  bool[256] skBits = unpack256Bool(sk)
+  field[2] ptExp = multiply(skBits, G, ctx)
+  bool owned = ptExp[0] == pk[0] && ptExp[1] == pk[1]
+
+  // Prepare output object
+  PaymentAgreement outputAgreement = PaymentAgreement { hash: paymentAgreementHash, senderPublicKey: inputMetadata.senderPublicKey }
+ 
+ return outputAgreement
+```
+
+#### **[Storing-an-Agreement-as-State-Object-in-Merkle-Tree]**
+
+```
+Example of Storing an Agreement as a state object in a Merkle Tree using the Payment Term agreement as an example:
+
+Agreement and Public Input Data Leafs
+Leaf 1: H({AgreementType: PaymentTerm})
+Leaf 2: H({AgreementID: A1D324BFCE})
+Leaf 3: H({AgreementDate: 1627601020})
+Leaf 3: H({PaymentTerm: 30})
+Leaf 4: H({SigningKey1: pk_buyer})
+Leaf 5: H({SigningKey1: pk_seller})
+
+Root is calculated normally.
+
+Agreement Proof Leafs:
+Leaf1: H({DocumentType: Invoice, Proof: zk-proof_Invoice1, PublicInput: Struct of the Leafs})
+Leaf 2: H({DocumentType: Invoice, Proof: zk-proof_Invoice1, PublicInput: Struct of the Leafs})
+
+Root is calculated normally. 
+```
+
+Optionally, the two trees can be joined into a 3rd full agreement state Merkle Tree. A secure, offchain Merkle Tree library can be found [here](https://github.com/Tierion/merkle-tools). 
+
+```
+Example of Merkle Proof Verification Circuit to validate a State Object: 
+
+
+// ABOUT
+
+// Function for proving membership of a leaf in a Merkle Tree of height h = 4.
+// 
+//            level h:          root
+//                              /       \
+//                                 ...
+//              ...
+//                       /    \    ...   /   \
+//            level  1:
+//                     /  \  /  \  ... /  \  /  \
+//  leaves at level 0:
+
+
+// IMPORTS
+
+import "hashes/sha256/512bit.zok" as sha256of512
+import "../hashes/sha256/padding/shaPad432To512.zok" as shaPad432To512
+
+import "utils/pack/bool/unpack128.zok" as unpack128
+import "../packing/unpack1x216To216x1.zok" as unpack1x216To216x1
+import "../packing/unpack2x128To256x1.zok" as unpack2x128To256x1
+
+import "../concatenate/orderedConcatenate216x216.zok" as orderedConcatenate216x216
+
+
+// MAIN
+
+// @param {field[4]} siblingPath - the values of the sibling nodes of the path from the leaf to the root. Assume each field is 216-bits.
+// @param {field[2]} leafValue - the value of the leaf. We aim to prove this leaf is in the tree.
+// @param {field} leafIndex - the index of the leaf within the leaves (indexing starts from zero). Note: the binary decomposition of a leaf's index gives us the 'left-rightness' of that leaf's path up the Merkle Tree.
+// @returns {field} root - the root of the merkle tree
+
+def main(private field[4] siblingPath, private field[2] leafValue, private field leafIndex) -> field[256]:
+
+  // Hash up the Merkle Tree to the root:
+
+  field[128] leafIndexBits = unpack128(leafIndex)
+  field[256] nodeValueBits = unpack2x128To256x1(leafValue)
+
+  for field i in 0..4 do
+    field j = 3 - i // iterator for the siblingPath
+    field k = 127 - i // iterator for the leafIndexBits
+
+    field[216] siblingNodeValueBits = unpack1x216To216x1(siblingPath[j])
+
+    field[432] preimage432 = orderedConcatenate216x216(leafIndexBits[k], nodeValueBits[40..256], siblingNodeValueBits)
+
+    field[512] preimage512 = shaPad432To512(preimage432)
+
+    nodeValueBits = sha256of512(preimage512[0..256], preimage512[256..512])
+  endfor
+
+  field[256] root = nodeValueBits
+
+  return root 
+```
+#### **[Commerical-Agreement-as-Verifiable-Credential]**
+
+An example implementation of a signed Commercial Agreement using a verifiable credential. The VC below, showing an order between a buyer and seller, serves as input into a state object representing the Order. This example shows the binding contract between the buyer and the seller, the seller requesting the verification of the product order prior to its acceptance, and the buyer accepting the order if the functional terms are valid.
+
+```
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/traceability/v1"
+  ],
+  "id": "http://example.org/credentials/",
+  "type": [
+    "VerifiableCredential"
+  ],
+  "issuanceDate": "2021-02-04T20:29:37+00:00",
+  "issuer": "did:key:z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U",
+  "credentialSubject": {
+    "@context": [
+      "https://w3id.org/traceability/v1"
+    ],
+    "type": "EcommerceOrderRegistrationCredential",
+    "buyer": "did:example:123",
+    "orderID": "Order#975",
+    "productInOrder": [
+      "https://vc.example.com/?queryID=6206f1f744a781480c521902a1a1dbf5f1d01e7ea21daf483e7668817e58598a",
+      "https://vc.example.com/?queryID=6206f1f744a781480c521902a1a1dbf5f1d01e7ea21daf483e7668817e58598a"
+    ],
+    "certificateName": "ACME Ecommerce Order Registration Certificate"
+  },
+  "evidence": [
+    {
+      "type": [
+        "DocumentVerificationEvidence"
+      ],
+      "id": "https://example.acme.com/evidence/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B",
+      "verifier": [
+        "did:web:www.acme.com"
+      ],
+      "evidenceDocument": "ACME-Evidence-Document-0x2b440EbE-2-4-2021",
+      "subjectPresence": "InPerson",
+      "documentPresence": "Digital"
+    }
+  ],
+  "credentialStatus": {
+    "type": [
+      "RevocationList2020Status"
+    ],
+    "id": "https://example.acme.com/credential/status/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B#23323",
+    "revocationListIndex": "23323",
+    "revocationListCredential": "https://example.com/credentials/status/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B"
+  },
+  "proof": [{
+    "type": "Ed25519Signature2018",
+    "created": "2019-12-11T03:50:55Z",
+    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..4vwJBA0mXPn2R7g_zCNCJ8qgJAAsLhrsU9OJZrJPPQfRh7JiQr-NespMPlg36A9TyIn6uP67WMqPhFFBYMDNBQ",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:key:z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U#z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U"
+  }, {
+      "type": "BbsBlsSignature2020",
+      "created": "2021-05-21T15:31:30Z",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "ky+cRs+7xlw4FxccF16E5g9HjvbdochfiBklTba37+xomLAAHcv8nza1PK0Y/ux7XeULTDrrhbwp2mFGk3AHqRQtH4yRlZBP1fOZDiME8KRC2xRlLq6v4xrzy/CFLV7QdRpaqMJ4o8A3WmXGlxwfLA==",
+      "verificationMethod": "did:example:123#key-1"
+  }]
+}
+```
+
+
+
 
 
 # Appendix B - Security Considerations
