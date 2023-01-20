@@ -506,15 +506,17 @@ Commercial documents, a category of commercial State Objects, refer to the state
 #### **[R4]**	
 A commercial State Object to be transacted on MUST be based on a specific commercial document.
 
-[[R4]](#r4) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) of a specific commercial document necessary for a Commercial State Object to be transacted.
+[[R4]](#r4) Testability: Given is an [Example](#functional-terms-implemented-as-zero-knowledge-circuit) of a specific commercial document necessary for a Commercial State Object to be transacted.
 
 #### **[R5]**  
 A commercial document MUST be derived from a legally binding contract.
 
-[[R5]](#r5) Testability: 
+[[R5]](#r5) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential)  of a legally binding contract.
 
 #### **[R6]**	
 A commercial document MUST be represented as an electronic record on a BPI between the counterparties.
+
+[[R6]](#r6) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential)  of a legally binding contract.
 
 #### **[R8]**	
 A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
