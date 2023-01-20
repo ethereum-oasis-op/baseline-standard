@@ -533,6 +533,8 @@ The definition of a commercial document authorization SHOULD be stated in the le
 #### **[D6]**	
 The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
 
+[[D6]](#d6) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract.
+
 #### **[R9]**	
 A commercial document MUST be non-repudiable.
 
