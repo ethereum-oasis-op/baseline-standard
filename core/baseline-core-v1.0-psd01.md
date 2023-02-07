@@ -435,7 +435,7 @@ Transacting counterparties MUST have an agreement specifying minimally the trans
 
 *Note, that an agreement in the context of this document may or may not be a commercial agreement as defined in [24-Commercial-Agreements](#24-commercial-agreements) below.*
 
-[[R1]](#r1) Testability: Functional terms of an agreement between counterparties are always implementable as transactions within a Baseline Protocol system.
+[[R1]](#r1) Testability: Functional terms of an agreement between counterparties are always implementable as transactions within a Baseline Protocol system because they are logical constraints which can always be represented in code. For example, payment term of 15 days can be checked whether the payment invoice is larger or smaller than the payment term. 
 
 ## 2.4 Commercial Agreements
 
@@ -474,7 +474,7 @@ The functional terms of the contract SHOULD be represented on a BPI between the 
 
 *For example, a Payment Term such as N30, a discount value, agreed upon product numbers, Service Level Agreements (SLAs) etc.*
 
-[[D2]](#d2) Testability: A legally binding functional terms of a contract between parties can be implemented in a baseline system referencing the suggested Merkle Tree [Example](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), as well as the funcional terms represented as a Zero Knowledge Circuit [Example](#Functional-Terms-Implemented-as-Zero-Knowledge-Circuit).
+[[D2]](#d2) Testability: A legally binding functional terms of a contract between parties can be implemented in a Baseline Protocol Implementation using for example [a Merkle Tree](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), as well as the funcional terms represented as a Zero Knowledge Circuit [Example](#Functional-Terms-Implemented-as-Zero-Knowledge-Circuit).
 
 #### **[D3]**	 
 The contract SHOULD be an MSA between the contract parties. 
@@ -490,14 +490,14 @@ There MUST be only one MSA between contract parties covering commercial transact
 
 *Specific Terms and Conditions (“Specific T&Cs”) defines the terms and conditions governing a specific product, service, or asset or set thereof offered and delivered by Provider(s) to Requester(s).*
 
-[[CR1]<[D3]](#cr1d3) Testability: BPI logic ensures only unique combinations of an MSA, unique identifier, and an agreement type exist between two counterparties.
+[[CR1]<[D3]](#cr1d3) Testability: BPI logic can ensure only unique combinations of an MSA, unique identifier, and an agreement type exist between two counterparties.
 
 #### **[D4]**	
 Each specific product, service, asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its specific T&C document.
 
 *This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.*
 
-[[D4]](#d4) Testability: BPI logic ensures State-Object-specific buisness rules and data exist per T&C document.
+[[D4]](#d4) Testability: BPI logic ensures State-Object-specific buisness rules and data exist per T&C document. An element such as a product in the state object can be uniquely(sp) identified and can therefor point to a circuit and can be forced to adhere to constraints written in the T&C
 
 ### 2.4.2 Commercial Documents 
 
@@ -511,7 +511,7 @@ A commercial State Object to be transacted on MUST be based on a specific commer
 #### **[R5]**  
 A commercial document MUST be derived from a legally binding contract.
 
-[[R5]](#r5) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) of a legally binding contract.
+[[R5]](#r5) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) of a legally binding contract. (legally binding contract can be expressed as given in example)
 
 #### **[R6]**	
 A commercial document MUST be represented as an electronic record on a BPI between the counterparties.
@@ -572,10 +572,14 @@ A BPI MUST utilize a CCSM.
 
 *1. Weaken the security assurances of the underlying CCSM by increasing the CCSM attack surface. Such an expansion of the attack surface can occur through, for example, the concentration of value-at-risk in one or more BPIs above the value used to economically secure the underlying CCSM. This situation would provide an economic incentive to attack, and subvert, the underlying CCSM to extract the value in one or more BPIs.* *2. Increase the existing attack surface of a CCSM such that the security assurances of the BPI become significantly weaker than the underlying CCSM. An example of such a situation can occur when a commercial State Object such as a Financing contract or an Order in BPI A is dependent on a commercial State Object such as an invoice as collateral in BPI B, and when BPI B has weaker transaction finality assurances than either BPI A or the underlying CCSM. In that scenario, the commercial State Object in BPI A cannot provably rely on the invoice as collateral in BPI B since the invoice might be reverted, and it would then no longer be suitable collateral.*
 	
+[[R10]](#r10) Testability: The implementation of a CCSM can be tested through, for example, an [Ethereum Client Transaction Crafting Function](#ethereum-client-transaction-crafting-function) which demonstrates how a CCSM transaction is created, signed and sent to a CCSM client.
+
 Hence, this document enumerates the following requirements below:
 
 #### **[R11]**	
 A BPI MUST have the same security assurances as to the CCSM it utilizes.
+
+[[R11]](#r11) Testability: 
 
 #### **[R12]**	
 A BPI MUST support cryptographic algorithms that have public libraries with verifiable security audits and are recommended by public security authorities such as the US National Institute of Standards and Technology (NIST).
@@ -3384,6 +3388,100 @@ An example implementation of a signed Commercial Agreement using a verifiable cr
       "verificationMethod": "did:example:123#key-1"
   }]
 }
+```
+
+#### **[Ethereum-Client-Transaction-Crafting-Function]**
+```
+import { ethers } from 'ethers';
+import { ITxManager } from '.';
+import { logger } from '../logger';
+import { jsonrpc, shieldContract } from '../blockchain';
+
+
+export class EthClient implements ITxManager {
+	constructor(public signer: any, public signerType: string) {
+		this.signerType = signerType;
+		this.signer = signer;
+	}
+
+
+	async constructTx(toAddress: string, fromAddress: string, txData: string) {
+		logger.debug('Received request for EthClient.signTx');
+		const { result: nonce } = await jsonrpc('eth_getTransactionCount', [
+			process.env.WALLET_PUBLIC_KEY,
+			'latest'
+		]);
+		logger.debug(`nonce: ${nonce}`);
+		const { result: gasPrice } = await jsonrpc('eth_gasPrice', []);
+		logger.debug(`gasPrice found: ${gasPrice}`);
+		const gasPriceSet = Math.ceil(Number(gasPrice) * 1.2);
+		logger.debug(`gasPrice set: ${gasPriceSet}`);
+
+
+		const unsignedTx = {
+			to: toAddress || '',
+			from: fromAddress,
+			data: txData,
+			nonce,
+			chainId: parseInt(process.env.CHAIN_ID, 10),
+			gasLimit: 0,
+			gasPrice: '0x' + gasPriceSet.toString(16)
+		};
+
+
+		// key-manager returns 400 if "from" field is provided in tx
+		if (this.signerType === 'key-manager') {
+			delete unsignedTx.from;
+		}
+
+
+		const res = await jsonrpc('eth_estimateGas', [unsignedTx]);
+		const gasEstimate = res.result;
+		logger.debug(`gasEstimate: ${gasEstimate}`);
+		if (!gasEstimate) {
+			return {
+				error: {
+					code: -32000,
+					message: `eth_estimateGas returned null value`
+				}
+			};
+		}
+		unsignedTx.gasLimit = Math.ceil(Number(gasEstimate) * 1.1);
+		logger.debug(`gasLimit set: ${unsignedTx.gasLimit}`);
+
+
+		logger.debug('Unsigned tx: ' + JSON.stringify(unsignedTx, null, 4));
+		const signedTx = await this.signer.signTransaction(unsignedTx, fromAddress);
+		logger.debug(`Signed tx: ${signedTx}`);
+		return { result: signedTx };
+	}
+
+
+	async sendTransaction(toAddress: string, fromAddress: string, txData: string) {
+		logger.debug('Received request for EthClient.sendTransaction');
+		let error = null;
+		let txHash: string;
+		try {
+			const { error: constructError, result: signedTx } = await this.constructTx(
+				toAddress,
+				fromAddress,
+				txData
+			);
+			if (constructError) {
+				return { error: constructError };
+			}
+			const res = await jsonrpc('eth_sendRawTransaction', [signedTx]);
+			txHash = res.result;
+		} catch (err) {
+			logger.error('EthClient.sendTransaction:', err);
+			if (err.error) {
+				error  = { data: err.error.message };
+			} else {
+				error = { data: err };
+			}
+		}
+		return { error, txHash };
+	}
 ```
 
 # Appendix B - Security Considerations
