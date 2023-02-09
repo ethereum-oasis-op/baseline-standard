@@ -568,50 +568,47 @@ BPIs are strongly dependent on the security and privacy capabilities of the CCSM
 #### **[R10]**	
 A BPI MUST utilize a CCSM.
 
+[[R10]](#r10) Testability: The implementation of a BPI using, for example, an [Ethereum Client Transaction Crafting Function](#ethereum-client-transaction-crafting-function) demonstrates how a CCSM transaction is created, signed and sent to a CCSM client, and is therefore utilzing a CCSM.
+
 *Since security and privacy requirements of a BPI are key, and are strongly dependent on the security and privacy assurances the CCSM on which the BPI is implemented can provide, BPIs need to take great care to avoid the following two situations:*
 
 *1. Weaken the security assurances of the underlying CCSM by increasing the CCSM attack surface. Such an expansion of the attack surface can occur through, for example, the concentration of value-at-risk in one or more BPIs above the value used to economically secure the underlying CCSM. This situation would provide an economic incentive to attack, and subvert, the underlying CCSM to extract the value in one or more BPIs.* *2. Increase the existing attack surface of a CCSM such that the security assurances of the BPI become significantly weaker than the underlying CCSM. An example of such a situation can occur when a commercial State Object such as a Financing contract or an Order in BPI A is dependent on a commercial State Object such as an invoice as collateral in BPI B, and when BPI B has weaker transaction finality assurances than either BPI A or the underlying CCSM. In that scenario, the commercial State Object in BPI A cannot provably rely on the invoice as collateral in BPI B since the invoice might be reverted, and it would then no longer be suitable collateral.*
-	
-[[R10]](#r10) Testability: The implementation of a CCSM can be tested through, for example, an [Ethereum Client Transaction Crafting Function](#ethereum-client-transaction-crafting-function) which demonstrates how a CCSM transaction is created, signed and sent to a CCSM client.
 
 Hence, this document enumerates the following requirements below:
 
 #### **[R11]**	
 A BPI MUST have the same security assurances as to the CCSM it utilizes.
 
-[[R11]](#r11) Testability: 
-
-#### **[R12]**	
-A BPI MUST support cryptographic algorithms that have public libraries with verifiable security audits and are recommended by public security authorities such as the US National Institute of Standards and Technology (NIST).
-
-*For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the NIST Cryptographic Module Verification Program [[CVMP]](#cvmp).*
-
-#### **[R13]**	
-If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
-
-#### **[R14]**	
-A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001).
-
-#### **[R15]**	
-State changes of a BPI MUST be verifiable on the CCSM it utilizes.
-
 *Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.*
+
+[[R11]](#r11) Testability: The three security assurances given by the CCSM (Data Immutability, Provable Time Linearization, and Double Spend Protection) are automatically extended to the BPI data and, therefore, the BPI itself, when a BPI commits the Zero Knowledge Proof, the Public Input of the Proof, and the New State Commitment to, as an example, the [Shield Smart Contract](https://github.com/eea-oasis/baseline/blob/main/core/contracts/contracts/privacy/Shield.sol) on the CCSM.
+State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
 #### **[D7]**	
 A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
 
 *Liveness means that if a CCSM does not require counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.*
 
+[[D7]](#d7) Testability: For a BPI to have the same Liveness properties as the CCSM it utilizes, you could, for example, store the relevant business information such as the Zero Knowledge Proof, the Public Input, and State commitment on a smart contract on the CCSM, giving the data stored on the CCSM its Liveness properties. 
+
+
 #### **[R16]**	
 A BPI MUST be censorship-resistant.
 
 *Censorship-resistant means that a transacting counterparty can terminate a transaction at any time without another transacting counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the transaction.*
 
+<!-- TODO: Find similar censorship-resistant requierment in other standards and review their testability statement -->
+[[R16]](#r16) Testability: One way to implement censorship resistance is to use a BPI with at least three or more nodes with peer-to-peer messaging and a consensus algorithm. 
+
 #### **[R17]**	
 A BPI MUST be able to provide privacy of the transacting counterparties' data.
 
+[[R17]](#r17) Testability: Asymmetric encrypion of the data by encrypting to a shared key between BPI users and BPI requires both parties two decrypt the data, one party is not enough. 
+
 #### **[R18]** 
 A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#rfc3339).
+
+[[R18]](#r18) Testability: All requirements for [IETF RFC 3339](#rfc3339) are testable.
 
 ## 2.7 High-Level Functional Requirements
 
@@ -628,8 +625,12 @@ Commercial Counterparties MUST ensure that utilized BPIs allow them to meet all 
 
 *This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.*
 
+[[R19]](#r19) Testability: Legal, compliance, and business reporting requirements are always implementable based on commercial transactions within a Baseline Protocol Instance. Adherance to these requierments can be verified by third parties utilizing Zero Knowledge Proofs.
+
 #### **[R20]**	
 Commercial Counterparties MUST support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
+
+[[R20]](#r20) Testability: All requirements for [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture) are testable.
 
 #### **[R21]**	
 Commercial Counterparties MUST use the BPI APIs to transact on a commercial State Object -- see the [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml).
@@ -637,6 +638,8 @@ Commercial Counterparties MUST use the BPI APIs to transact on a commercial Stat
 *An ability of a Requester to request products, services, or assets, in other words, commercial State Objects, through an instance of the Baseline Protocol's APIs do not necessarily imply the ability to provide products, services, and assets through an instance of the Baseline Protocol APIs and vice versa.*
 
 *Commercial counterparties need to know the level of conformity other commercial counterparties have with the Baseline Protocol Standard.*
+
+[[R21]](#r21) Testability: All requirements for [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml) are testable.
 
 #### **[R22]**	
 Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
