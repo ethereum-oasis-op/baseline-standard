@@ -646,6 +646,8 @@ Commercial Counterparties MUST publish their level of conformity (self-declarati
 
 Publicly accessible in the context of this document means that there exists a URI or URL pointing to a publication specifying the level of conformity with this document that is accessible through the public internet. 
 
+[[R22]](#r22) Testability: Counterparties can publish their level of conformity as a W3C verifiable credential in a well-known location at the root level of their internet domain, public CCSM or IPFS.
+
 ### 2.7.2 CCSM Lifecycle Processes
 
 Commercial Counterparties must comply with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard. This means BPI participants and BPI operators must be able to provide compliance reports to authorities derived from a BPI that demonstrate compliance with the applicable regulatory rules such as Suspicious Activity Reports as required by the US Bank Secrecy Act of 1970.  
@@ -660,6 +662,8 @@ If required to meet particular third-party requirements, (e.g., privacy or regul
 *Therefore, a pseudonymous map of a supply chain is a cryptographically connected and verifiable list of proofs about the relationships of participants and integrity of supply chain events that does not disclose identifying details of Providers and their commercial data.*
 
 *This allows enforcement of conformance with regulations, additional legal and technical requirements without disclosure of confidential information.*
+
+[[R23]](#r23) Testability: 
 
 An example of a pseudonymous map is given in the figure below:
 <div align="center">
