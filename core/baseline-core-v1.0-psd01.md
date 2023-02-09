@@ -663,8 +663,6 @@ If required to meet particular third-party requirements, (e.g., privacy or regul
 
 *This allows enforcement of conformance with regulations, additional legal and technical requirements without disclosure of confidential information.*
 
-[[R23]](#r23) Testability: 
-
 An example of a pseudonymous map is given in the figure below:
 <div align="center">
 <figure>
@@ -677,6 +675,8 @@ An example of a pseudonymous map is given in the figure below:
 </div>
 
 In the context of a supply chain in a BPI, the bitcoin values could be replaced by recursive zero-knowledge proofs. The map allows the BPI to validate the conformity of all the inputs and business rules of the supply chain that goes into a BPI State Object with a single proof.
+
+[[R23]](#r23) Testability: A pseudonymous map, such as the example above, is naturally created by recursivly proving the validity of a chain of commercial transations.
 
 ## 2.8 Baseline Protocol Reference Architecture
 
