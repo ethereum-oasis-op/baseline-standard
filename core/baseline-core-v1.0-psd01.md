@@ -710,12 +710,15 @@ Without a BPI, both Buyer and Seller must assume that the MSA between them and a
 #### **[R24]**	
 The transacting counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
 
-[[R24]](#24) Testability: A BPI can ensure both counterparties agree on buisness rules and buisness data required to validate the agreement by, for example, utilizing a [payment term agreement](#functional-terms-implemented-as-zero-knowledge-circuit) between two parties.
+[[R24]](#r24) Testability: A BPI can ensure both counterparties agree on buisness rules and buisness data required to validate the agreement by, for example, utilizing a [payment term agreement](#functional-terms-implemented-as-zero-knowledge-circuit) between two parties.
 
 #### **[R25]** 	
 The transacting counterparties MUST validate the correctness of a State Object based on a state change against the transaction business logic in the applicable BPI workflow and workstep.
 
-[[R25]](#25) Testability: 
+[[R25]](#r25) Testability: 
+
+An implementer must validate the correctness of a State Object based on a state change against transaction logic by the validation zero-knowledge proof in the BPI and ultimately on the CCSM. Reference back to [[R16]](#r16) to understand the validation of a zero-knowledge proof in a smart contract. 
+
 
 #### **[R26]** 	
 The transacting counterparties MUST generate a Proof of Correctness of a State Object based on a state change that can be validated against the BPI transaction business logic.
