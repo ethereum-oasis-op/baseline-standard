@@ -720,6 +720,8 @@ The transacting counterparties MUST validate the correctness of a State Object b
 #### **[R26]** 	
 The transacting counterparties MUST generate a Proof of Correctness of a State Object based on a state change that can be validated against the BPI transaction business logic.
 
+[[R26]](#r26) Testability: This can be accomplished by creating a [privacy package](https://github.com/eea-oasis/baseline/tree/main/core/privacy) with Zero-Knowledge Circuits generating Zero-Knowledge Proofs of the State changes of a State Object. 
+
 #### **[R27]** 	
 Any new state between counterparties MUST be recorded on the BPI between them.
 
