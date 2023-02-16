@@ -725,6 +725,8 @@ The transacting counterparties MUST generate a Proof of Correctness of a State O
 #### **[R27]** 	
 Any new state between counterparties MUST be recorded on the BPI between them.
 
+[[R27]](#r27) Testability: 
+
 #### **[R28]** 	
 Any transacting counterparty having received a Proof of Correctness of a state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
 
