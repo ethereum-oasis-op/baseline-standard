@@ -794,13 +794,19 @@ This approach requires a decentralized, or at least strongly federated, infrastr
 #### **[D10]**	
 The Public Key Infrastructure (PKI) of a BPI SHOULD have no single point of failure, and SHOULD NOT require pre-existing trust relationships between participants.*
 
+[[d10]](#d10) Testability: The PKI used within a BPI does not trusted third party identity providers that are capable of being compromised. 
+
 #### **[R33]**	
 The PKI of a BPI MUST be strongly federated.
 
 *Strongly federated in this context means that there is a known, finite number of participants, without a single point of failure in the PKI. However, collusion of a limited number of participants in the federated infrastructure may still lead to a compromised PKI. The consensus thresholds required for a change in the infrastructure are out of scope for this document.*
 
+[[R33]](#r33) Testability: Many counterparties govern the PKI, such as the [Sovrin Foundation](https://sovrin.org/).
+
 #### **[R34]**	
 The identifiers and identity utilized in a BPI MUST be controlled by its Principal Owner.
+
+[[R34]](#r34) Testability: The identifier used for a BPI user must be controlled by a public-private key pair, where the private key is controlled by the BPI user who is the Principal Owner of the identifier. The identifier of the Principal Owner is digitally signed with this private key to prove control. 
 
 *For a BPI to properly operate, communication must be trusted and secure. Communications are secured through the safe delivery of public keys tied to identities. The Principal Owner of the identity uses a corresponding secret private key to both decrypt messages sent to them, and to prove they sent a message by signing it with its private key.*
 
@@ -819,64 +825,99 @@ The identifiers and identity utilized in a BPI MUST be controlled by its Princip
 #### **[D11]** 
 A BPI SHOULD utilize a DPKI.
 
+[[D11]](#d11) Testability: A Decentralized Public Key Infrastructure can be implemented, for example, on a CCSM such as Ethereum to act as the decentralized key-value storage. Specific examples of DPKI are DID methods anchored to a public blockchain such as ["did:ethr"](https://github.com/decentralized-identity/ethr-did-resolver/blob/master/doc/did-method-spec.md) or ["did:ion"](https://github.com/decentralized-identity/ion). Specific DID methods can be found in the [DID specification registry](https://www.w3.org/TR/did-spec-registries/).
+
 #### **[CR1]>[D11]**	
 Any Principal Owner in a DPKI system utilized by a BPI MUST be able to broadcast a message if it is well-formed within the context of the DPKI.
 
 *Other peers in the system do not require admission control. This implies a decentralized consensus mechanism naturally leading to the utilization of systems such as CCSMs.*
+
+[[CR1]>[D11]](#cr1>d11) Testability: DID methods that have a message protocol conformant to the [W3C DID Standard](https://www.w3.org/TR/did-core/#methods) can be used to broadcast messaged within a DPKI system. A DID method must have the capacity to send Create, Read, Update, and Delete messages. An example of a did method that meets such requirements is ["did:ethr"](https://github.com/decentralized-identity/ethr-did-resolver/blob/master/doc/did-method-spec.md).
 
 #### **[CR2]>[D11]**	
 Given two or more histories of DPKI updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
 
 *This implies the existence of a method of ascertaining the level of resources backing a DPKI history such as the hash power in Bitcoin based on difficulty level and nonce.*
 
+[[CR2]>[D11]](#cr2>d11) Testability: Verification to determine that a set of keys associated with a DID in a DPKI is the valid and latest set of keys can be achieved by:
+1. Using a universal resolver to get the latest set of keys associated with the DID used in a BPI
+2. Extracting the block and transaction hash of the latest update on the CCSM used by the DID method from the metadata of the universal resolver.
+3. Verifying if the latest set of keys are in the longest chain using a block explorer such as [Etherscan](https://etherscan.io/).
+
 *Requirements of Identifier registration in DPKI are handled differently from DNS. Although registrars may exist in DPKI, these registrars must adhere to several requirements that ensure that identities belong to the entities they represent. This is achieved the following way:*
 
 #### **[CR3]>[D11]**	
 Private keys utilized in a BPI MUST be generated in a manner that ensures they remain under the Principal Owner’s control. 
 
+[[CR3]>[D11]](#cr3>d11) Testability: To ensure the Principal Owner is solely reponsible for the creation and use the set of public/private keys associated with their DID, a non-custodial wallet must be used to initiate all transactions on behalf of that principal owner within a BPI. An example of implementing this would be to integrate this non-custodial wallet with the BPI APIs that ensure all API payloads/messages are signed, and therefore authorized, solely by the Principal Owner's private key before executing BPI transactions.
+
 #### **[CR4]>[D11]** 
 Generating key pairs in a BPI on behalf of the Principal Owner MUST NOT be allowed.
 
+[[CR4]>[D11]](#cr4>d11) Testability: An example of cutting off the ability to generate public/private key pairs for a subject is by ensuring there are no custodial wallets that exist within a BPI.
+
 #### **[CR5]>[D11]**	
 Principal Owners in a BPI MUST always be in control of their identifiers and the corresponding public keys. 
+
+[[CR5]>[D11]](#cr5>d11) Testability: To guarantee Principal Owners are the sole controller over their identifiers and related public keys, validation can be conducted in the same manner as [[CR2]>[D11]](#cr2>d11). 
 
 #### **[O1]**	
 Principal Owners MAY extend control of their identifier to third parties.
 
 *For example for recovery purposes.*
 
+[[O1]](#o1) Testability: An implementer can verify whether a principal owner has delegated authority of their identifier to third parties by checking in the DID document if there are other DIDs in the [controller](https://www.w3.org/TR/did-core/#did-controller) section of the did document and what type of control these identifiers have by checking the [verification relationships](https://www.w3.org/TR/did-core/#verification-relationships) such as authentication or signing on behalf of [assertion](https://www.w3.org/TR/did-core/#assertion) in the DID document.
+
 #### **[CR6]<[O1]** 
 Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifiers.
 
+[[CR6]>[O1]](#cr6>o1) Testability: DID methods such as ["did:ethr"](https://github.com/decentralized-identity/ethr-did-resolver/blob/master/doc/did-method-spec.md) only support the method where only the principal owner can assign other DIDs for purposes of authentication and assertion to third parties. And in special circumstances control of identifiers, such as control over someone's device that has been assigned the DID. 
+
 #### **[R35]**	
 Private keys MUST be stored and/or transmitted securely.
+
+[[R35]](#r35) Testability: The private keys of identifiers must never be stored on a BPI. The set of private keys not used to control identifiers in the BPI should be stored outside of the BPI with the BPI user. An example ef secure transmission of private keys in the context of a transaction is for a BPI to craft a transaction, send this transaction to a BPI user for signing/authorization, and send this transaction back to the BPI to complete processing. An alternative implementation option is a custodial solution using an established key vault that stores private keys which are separate from the private keys that control identifiers. The private keys contained within the vault are encrypted at rest and only decrypted with a secret known only to the BPI user, for which that private key can be used for signing and encryption/decryption. The key vault should be sealed after every operation or after a pre-set time that should not be longer than a few minutes. 
 
 *No mechanism should exist that would allow a single entity to deprive a Principal Owner of their identifier without their consent. This implies that:*
 
 #### **[CR7]<[D11]**	
 Once a namespace is created within the context of a DPKI, it MUST NOT be possible to destroy it.
 
+[[CR7]>[D11]](#cr7>d11) Testability: The DID method used must not allow for DID deletion to be enacted by anyone.
+
 #### **[CR8]<[D11]**	
 Namespaces in a DPKI utilized by a BPI MUST NOT contain blacklisting mechanisms that would allow anyone to invalidate identifiers that do not belong to them.
+
+[[CR8]>[D11]](#cr8>d11) Testability: The DID method used must not allow blacklisting mechanisms such as suppressing the delivery of DID documents through the universal resolver for specific DIDs.
 
 #### **[CR9]<[D11]**	
 The rules for registering and renewing identifiers in a DPKI utilized by a BPI MUST be transparent and expressed in simple terms.
 
+[[CR9]>[D11]](#cr9>d11) Testability: The DID method used in a BPI is registered in the DID registry and conformant to the [W3C DID Standard](https://www.w3.org/TR/did-core/).
+
 #### **[R36]**	
 If registration is used as security to an expiration policy, the Principal Owner MUST be explicitly and timely warned that failure to renew the registration on time could result in the Principal Owner losing control of the identifier.
+
+[[R36]](#r36) Testability: The DID method used within a BPI does not have an expiration policy.
 
 #### **[CR10]>[D11]**	
 Once set, namespace rules within a DPKI utilized by a BPI MUST NOT be altered to introduce any new restrictions for renewing or updating identifiers.
 
 *Otherwise, it would be possible to take control of identifiers away from Principal Owners without their consent.*
 
+[[CR10]>[D11]](#cr10>d11) Testability: The DID method used within a BPI has a specification where its rules around the mechanics of a DID method have never been altered. 
+
 #### **[CR11]>[D11]**	
 Within a DPKI utilized by a BPI, processes for renewing or updating identifiers MUST NOT be modified to introduce new restrictions for updating or renewing an identifier, once issued.
+
+[[CR11]>[D11]](#cr11>d11) Testability: The DID method used within a BPI has a specification for which the read, create, update, and delete DID operations have never been altered. 
 
 #### **[CR12]>[D11]**	
 Within a DPKI utilized by a BPI, all network communications for creating, updating, renewing, or deleting identifiers MUST be sent via a non-centralized mechanism.
 
 *This is necessary to ensure that a single entity cannot prevent identifiers from being updated or renewed.*
+
+[[CR12]>[D11]](#cr11>d11) Testability: The DID method used within a BPI utilizes a peer-to-peer network nodes such as a public CCSM like Ethereum which offers appropriate interfaces for all DID operations. 
 
 ## 3.2 BPI Identifiers, Identities and Credentials, and their Management
 
@@ -891,23 +932,37 @@ Uniqueness and security of BPI identifiers are very important to unambiguously i
 #### **[R37]** 
 Requester and Provider interacting with and through a BPI, as well as any BPI Operator, MUST each have a unique identifier.
 
+[[R37]](#r37) Testability: Requesters, Providers, and BPI operators all have their own namespace. An example of a namespace is a DID Method that qualifies as a unique [identifier](https://www.w3.org/TR/did-core/#identifier). Alternative certificate authorities such as Octa can also assign a unique identifier in their own namespace. 
+
 #### **[R38]** 
 Any unique identifier utilized within a BPI MUST be associated with a set of public keys.
+
+[[R38]](#r38) Testability: Unique identifiers are generated by using a DID method, which [associates that identifier with a set of public keys in the DID document](https://www.w3.org/TR/did-core/#verification-methods). 
 
 #### **[R39]** 
 Any unique identifier utilized within a BPI MUST be discoverable by any 3rd party within said BPI.
 
+[[R39]](#r39) Testability: Unique identifiers are generated by using a DID method, which [any third party can resolve to obtain its DID document](https://www.w3.org/TR/did-core/#resolution) with its set of public keys.
+
 #### **[R40]** 
 Any unique identifier utilized within a BPI MUST be resolvable to its associated public keys used for cryptographic authentication of the unique identifier.
+
+[[R40]](#r40) Testability: Unique identifiers are generated by a DID method are a URI ([universal resource identifier](https://www.w3.org/TR/did-core/#did-url-syntax)). The resource identified must contain the public keys associated with the unique identifier used in the BPI. The W3C DID Standard details how URI's resolve to information, including public keys, in the URI's DID document as mentioned in [[R38]](#r38) & [[R39]](#r39). 
 
 #### **[R41]** 
 Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that identifies the Baseline Protocol Standard as a supported protocol including the supported version(s).
 
+[[R41]](#r41) Testability: The unique identifier of a BPI user resolves to a resource such as a DID document that contains a URI to another resource that specifies which version of the Baseline Protocol Standard the BPI user supports. 
+
 #### **[R42]** 
 Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
+[[R42]](#r42) Testability: The unique identifier of a BPI user must resolve to a resource such as a DID document that contains a URI to another resource that allows a BPI user to send a message to the BPI user owning the unique identifier.
+
 #### **[D12]** 
 Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#w3c-did)].
+
+[[D12]](#d12) Testability: W3C-DID methods from the [DID registry](https://www.w3.org/TR/did-spec-registries/) are utilized. 
 
 ### 3.2.2 BPI Identities and Credentials
 
@@ -936,24 +991,36 @@ A unique identifier utilized within one or more BPIs SHOULD be linked to an enti
 
 *Note that credentials utilized within one or more BPIs may be self-issued. The acceptance of self-issued credentials is up to the BPI participants that need to rely on the claim(s) within a self-issued credential.*
 
+[[D13]](#d13) Testability: The [W3C Verified Credentials Data Model 1.1](https://www.w3.org/TR/vc-data-model/) is used as Legal Entity credentials because they can be cryptogrpahically signed, verified, and revoked. 
+
 #### **[R43]** 
 The unique identifier of the (Legal) Entity MUST be the subject of the credential.
+
+[[R43]](#r43) Testability: The issuer of a verifiable credential is a DID or some form of URI that uniquely identifies issuers. Given is an [example](#legal-entity-verifiable-credential) of a Legal Entity Certificate based on the Global Leader Identifier Foundation (GLEIF).
 
 #### **[R44]** 
 The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
+[[R44]](#r44) Testability: The unique identifier of the issue resolves to a resource that contains a URI that points to the legal entity credential of the issuer. An example of this is a DID resolving to a DID document which contains a URI that links to the legal entity credential of the issuer. 
+
 #### **[D14]** 
 A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential Standard [[W3C VC](#w3c-vc)].
+
+[[D14]](#d14) Testability: The credential utilizes the [W3C Verified Credentials Data Model 1.1](https://www.w3.org/TR/vc-data-model/).
 
 #### **[R45]** 
 A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 
 *Note, that the unique and resolvable identifier of a credential does not have to be associated with any cryptographic keys.*
 
+[[R45]](#r45) Testability: The credential which uses the [W3C Verified Credentials Data Model 1.1](https://www.w3.org/TR/vc-data-model/) has an ID data attribute which takes the form of a DID or another resolveable URI. Given is an [example](#verifiable-credential-resolvable-identifier).
+
 #### **[R46]** 
 If present, the status of a credential utilized within one or more BPIs MUST be discoverable by a party verifying the credential, the credential verifier.
 
 *In the context of this document, a credential verifier is defined per the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc).*
+
+[[R46]](#r46) Testability: A URI link of the credential status is embedded in the verifiable credential. Given is an [example](#verifiable-credential-status-identifier).
 
 #### **[D15]** 
 A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
@@ -962,13 +1029,19 @@ A credential utilized within one or more BPIs SHOULD be discoverable by a partic
 
 *Note that discoverability can be restricted based on privacy and / or security rules within a given BPI. Discoverability could be achieved for example through a credential registry within a BPI or by listing a credential access endpoint in the DID document of a BPI Subject.*  
 
+[[D15]](#d15) Testability: The BPI has a search function that allows a usable credential to be disovered. 
+
 #### **[R47]** 
 The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the holder.
 
 *See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder [[Holder](#w3c-holder-definition)].*
 
+[[R47]](#r47) Testability: The presentation of a verifiable credential follows the [Verifiable Presentation Standard](https://www.w3.org/TR/vc-data-model/#presentations-0) within the W3C VC Data Model. 
+
 #### **[R48]** 
 If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
+
+[[R48]](#r48) Testability: The unique identifier of a holder is a DID for which its DID method is recognized and understood by the BPI.
 
 *As discussed in section [3.1 Introduction and High-Level Requirements](#31-introduction-and-high-level-requirements), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.*  
 
@@ -991,8 +1064,12 @@ For a BPI to achieve these objectives, the following requirements need to be met
 #### **[R49]** 
 A unique identifier utilized in a BPI MUST be stored by the BPI.
 
+[[R49]](#r49) Testability: The unique identifier of a BPI user is stored in a database such as [PostgreSQL](https://www.postgresql.org/).
+
 #### **[R50]** 
 The Principal Owner or their delegates MUST prove control over a unique identifier utilized in a BPI every time said unique identifier is used in the BPI by the Principal Owner or their delegates.
+
+[[R50]](#r50) Testability: Every message and transaction on a BPI is signed with the public keys in the DID document of the DID of its Principal Owner or their delegates. 
 
 #### **[R51]** 
 Every time a unique identifier utilized in a BPI is used in the BPI by the Principal Owner or their delegates, the BPI MUST verify that the Principal Owner or their delegates are in control of said unique identifier.
@@ -1001,16 +1078,29 @@ Every time a unique identifier utilized in a BPI is used in the BPI by the Princ
 
 *In the context of this document, a relying party is defined per the W3C Verifiable Credential Standard] [[W3C VC]](#w3c-vc).*
 
+[[R51]](#r51) Testability: The digital signature of every message and transaction in a BPI is verified cryptographically to ensure the public key associated with the digital signature is in the DID document of the DID on the message/transaction. 
+
 #### **[D16]** 
 A credential utilized in a BPI SHOULD be stored in the BPI.
 
 *This avoids the re-presentation of the credential after the initial presentation as long as those credentials are valid.*
 
+[[D16]](#d16) Testability: The verifiable credential tied to a BPI user (legal entity) is stored in a database such as [PostgreSQL](https://www.postgresql.org/).
+
 #### **[R52]** 
 A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
 
+[[R52]](#r52) Testability: The credential holder uses a verifiable presentation every time a credential is used in the BPI in order to verify and prove control over that specific credential. 
+
 #### **[R53]** 
 Every time a credential utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance, and that the credential holder is in control of said credential.
+
+[[R53]](#r53) Testability: Signature, data model, and schema verification must occur upon presentation of a credential within a BPI. The data model is verified to conform with the [W3C Verified Credentials Data Model 1.1](https://www.w3.org/TR/vc-data-model/). The schema is validated to be correct, for example, with a [JSON schema validator library](https://github.com/ajv-validator/ajv).
+
+Additionally, the credential's signature is verified in several steps:
+1. Identify the digital signature scheme and its associated cryptographic library from the verifiable credential within the “type” data property in the “proof" property. 
+2. Decode the JWS from the "jws" data property and validate the decoded signature using the identified cryptographic library. 
+3. Verify the public key generated by the signature validation matches the public key in the DID document as identified by the “verificationMethod" in the “proof”.
 
 *Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an OpenId Connect Identity Provider [[OIDC]](#oidc).*
 
@@ -3135,6 +3225,61 @@ Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://ide
 #### **[SIOP]** 
 Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
 
+## A.3 Example References
+
+#### **[Legal-Entity-Verifiable-Credential]**
+
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/traceability/v1"
+  ],
+  "id": "http://example.org/credentials/",
+  "type": [
+    "VerifiableCredential"
+  ],
+  "issuanceDate": "2021-02-04T20:29:37+00:00",
+  "issuer": {
+“id”: "did:key:z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U",
+“name”: “US State Department”
+}
+
+
+  "credentialSubject": {
+    "@context": [
+      "https://w3id.org/traceability/v1"
+    ],
+    "type": "LegalEntityIdentifierCredential",
+    "leiCode": "U3NPCIGPU8ABXC80QCMS",
+    "certificateName": "US Legal Entity Certificate"
+  },
+  "proof": {
+    "type": "Ed25519Signature2018",
+    "created": "2019-12-11T03:50:55Z",
+    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYYjY0Il19..vRvXpmERc0THmqOBtk0RmZF9KF_7rhxuIqaoDSotzylBKg2HxhGDNPjXDCwAXKyNh_NX6MnF6mv51-r1ez8hBg",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:key:z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U#z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U"
+  }
+}
+
+#### **[Verifiable-Credential-Resolvable-Identifier]**
+
+"https://vc.example.com/?queryID=0xCdf10f8ECc720cAAB83Dbe4Dfd5266C4aDeA8e66d43A8a44fdE0F79a539FC442"
+
+*This id data attribute is a URL with a unique query parameter that will return the underlying resource/credential/document upon request of the BPI user.* 
+
+#### **[Verifiable-Credential-Status-Identifier]**
+
+"credentialStatus": {
+    "type": [
+      "RevocationList2020Status"
+    ],
+    "id": "https://example.acme.com/credential/status/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B#23323",
+    "revocationListIndex": "23323",
+    "revocationListCredential": "https://example.com/credentials/status/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B"
+  },
+
+*This is an example of a URI link -- "revocationListCredential" -- in a verifiable credential that links to the list of active and revoked credentials or a particular type. The ”credentialStatus” shows which entry in the status list is for the credential in question.*
 
 # Appendix B - Security Considerations
 
@@ -3187,7 +3332,8 @@ Alessandro Gasch, SAP \
 John Wolpert, ConsenSys \
 Sam Stokes, ConsenSys \
 Nick Kritikos, ConsenSys \
-Yoav Bittan, ConsenSys 
+Yoav Bittan, ConsenSys \
+Mark Rymsza, ConsenSys
  
 -------
 
