@@ -794,7 +794,7 @@ This approach requires a decentralized, or at least strongly federated, infrastr
 #### **[D10]**	
 The Public Key Infrastructure (PKI) of a BPI SHOULD have no single point of failure, and SHOULD NOT require pre-existing trust relationships between participants.*
 
-[[d10]](#d10) Testability: The PKI used within a BPI does not trusted third party identity providers that are capable of being compromised. 
+[[d10]](#d10) Testability: The PKI used within a BPI does not have trusted third party identity providers that are capable of being compromised. 
 
 #### **[R33]**	
 The PKI of a BPI MUST be strongly federated.
