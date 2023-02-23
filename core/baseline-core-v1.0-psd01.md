@@ -433,7 +433,9 @@ A Requester may request State Objects from multiple Providers, and in the contex
 #### **[R1]**
 Transacting counterparties MUST have an agreement specifying minimally the transactions to be performed between the transacting counterparties before a transactable state of an agreement can be instantiated within a BPI.
 
-*Note, that an agreement in the context of this document may or may not be a commercial agreement as defined in (#24-Commercial-Agreements) below.*
+*Note, that an agreement in the context of this document may or may not be a commercial agreement as defined in [24-Commercial-Agreements](#24-commercial-agreements) below.*
+
+[[R1]](#r1) Testability: Functional terms of an agreement between counterparties are always implementable as transactions within a Baseline Protocol system because they are logical constraints which can always be represented in code. For example, payment term of 15 days can be checked whether the payment invoice is larger or smaller than the payment term. 
 
 ## 2.4 Commercial Agreements
 
@@ -447,6 +449,8 @@ Such commercial, and thus presumably legally enforceable, documents may be prese
 #### **[R2]**	
 The parties to a Commercial Agreement MUST have signed commercial documents with each other before a transactable state of a commercial agreement can be instantiated within a BPI.
 
+[[R2]](#r2) Testability: Functional terms of a commercial agreement between counterparties are always implementable as transactions within a Baseline Protocol system.
+
 ### 2.4.1 Contract
 
 This section details the prerequisites required to be fulfilled by a legal contract, also referred to as a Commercial Agreement in this document, between the parties, and defines the general terms and conditions in the legal contract governing commercial transactions between these parties. These prerequisites are to be understood only within the context of this document and are meant to be general and not specific to particular legal and regulatory frameworks.
@@ -458,18 +462,26 @@ There MUST be a legally binding contract, however simple and temporary, before a
 
 *For example, the contract and the order can be combined into a single document for a single transaction. However, there must be a legal framework in place to provide context for monies that are exchanged and settled. The functional part of the contract forms the basis of a Baseline Protocol Implementation (BPI) defined in section [2.6 Baseline Protocol Instance](#26-baseline-protocol-instance). The requirements below are to be understood solely within the context of this document. They are not meant to be generalized beyond this context.*
 
+[[R3]](#r3) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential).
+
 #### **[D1]**  
 The contract SHOULD be in an electronic form.
+
+[[D1]](#d1) Testability: A legally binding electronic contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential).
 
 #### **[D2]**   
 The functional terms of the contract SHOULD be represented on a BPI between the counterparties.
 
 *For example, a Payment Term such as N30, a discount value, agreed upon product numbers, Service Level Agreements (SLAs) etc.*
 
+[[D2]](#d2) Testability: Legally binding functional terms of a contract between parties can be implemented in a Baseline Protocol Implementation using for example [a Merkle Tree](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), as well as the funcional terms represented as a Zero Knowledge Circuit [Example](#Functional-Terms-Implemented-as-Zero-Knowledge-Circuit).
+
 #### **[D3]**	 
 The contract SHOULD be an MSA between the contract parties. 
 
 *An MSA is preferable since it allows a proliferation of contract-based BPI workflows and worksteps between the parties reducing complexity and potential errors.*
+
+[[D3]](#d3) Testability: MSAs between counterparties can be implemented in the same way as a legally binding contract between parties, referencing the suggested Merkle Tree [Example](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), as well as the funcional terms represented as a Zero Knowledge Circuit [Example](#Functional-Terms-Implemented-as-Zero-Knowledge-Circuit).
 
 #### **[CR1]<[D3]** 	
 There MUST be only one MSA between contract parties covering commercial transactions for a given set of products, services, or assets.
@@ -478,10 +490,15 @@ There MUST be only one MSA between contract parties covering commercial transact
 
 *Specific Terms and Conditions (“Specific T&Cs”) defines the terms and conditions governing a specific product, service, or asset or set thereof offered and delivered by Provider(s) to Requester(s).*
 
+[[CR1]<[D3]](#cr1d3) Testability: BPI logic can ensure only unique combinations of an MSA, unique identifier, and an agreement type exist between two counterparties.
+
 #### **[D4]**	
-Each specific product, service, or asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its Specific T&C document.
+Each specific product, service, asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its specific T&C document.
 
 *This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.*
+
+[[D4]](#d4) Testability: BPI logic ensures State-Object-specific buisness rules and data exist per T&C document. An element such as a product in the state object can be uniquely(sp) identified and can therefor point to a circuit and can be forced to adhere to constraints written in the T&C
+
 ### 2.4.2 Commercial Documents 
 
 Commercial documents, a category of commercial State Objects, refer to the state of a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments based on a legally binding contract.
@@ -489,21 +506,34 @@ Commercial documents, a category of commercial State Objects, refer to the state
 #### **[R4]**	
 A commercial State Object to be transacted on MUST be based on a specific commercial document.
 
+[[R4]](#r4) Testability: Given is an [Example](#functional-terms-implemented-as-zero-knowledge-circuit) of a specific commercial document necessary for a Commercial State Object to be transacted.
+
 #### **[R5]**  
 A commercial document MUST be derived from a legally binding contract.
+
+[[R5]](#r5) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) of a legally binding contract. (legally binding contract can be expressed as given in example)
 
 #### **[R6]**	
 A commercial document MUST be represented as an electronic record on a BPI between the counterparties.
 
+[[R6]](#r6) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) of a legally binding contract.
+
 #### **[R8]**	
 A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
+
+[[R8]](#r8) Testability: A ditial signature of an authorized user of the BPI can be extracted from the proof section of this [Example](#commerical-agreement-as-verifiable-credential) and compared to the identifier from the verification method.
 
 #### **[D5]**	
 The definition of a commercial document authorization SHOULD be stated in the legal contract underlying the commercial document.
 
 *Authorizations for commercial transactions are a foundational element in the context of this document, as they are in paper based agreements. Therefore, any legal authorization agreements relevant to the commercial agreement between commercial counterparties, and thus to commercial transactions between them, are important to be represented in a BPI to ensure mitigating the risk of unauthorized signatures.*
+
+[[D5]](#d5) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract.
+
 #### **[D6]**	
 The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
+
+[[D6]](#d6) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract.
 
 #### **[R9]**	
 A commercial document MUST be non-repudiable.
@@ -511,6 +541,9 @@ A commercial document MUST be non-repudiable.
 *Note that while non-repudiation in the physical world is most often tied to a physical signature of a Legal Entity on a legal document, in the digital world a digital signature over a digital legal document such as an Order or an Invoice belonging to a known and verifiable digital identity of a counterparty serves the same purpose.*
 
 *Example: A Buyer ("Requester") and Seller ("Provider") may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.*
+
+[[R9]](#r9) Testability: The non-repudiation of a commercial document can be achieved through the verification of the digital signatures from both parties over the contract. An [Example](#commerical-agreement-as-verifiable-credential) of this is given, where in the “proof” section two digital signatures can be found. 
+
 
 ## 2.5 Consensus Controlled State Machine
 
@@ -535,46 +568,47 @@ BPIs are strongly dependent on the security and privacy capabilities of the CCSM
 #### **[R10]**	
 A BPI MUST utilize a CCSM.
 
+[[R10]](#r10) Testability: The implementation of a BPI using, for example, an [Ethereum Client Transaction Crafting Function](#ethereum-client-transaction-crafting-function) demonstrates how a CCSM transaction is created, signed and sent to a CCSM client, and is therefore utilzing a CCSM.
+
 *Since security and privacy requirements of a BPI are key, and are strongly dependent on the security and privacy assurances the CCSM on which the BPI is implemented can provide, BPIs need to take great care to avoid the following two situations:*
 
 *1. Weaken the security assurances of the underlying CCSM by increasing the CCSM attack surface. Such an expansion of the attack surface can occur through, for example, the concentration of value-at-risk in one or more BPIs above the value used to economically secure the underlying CCSM. This situation would provide an economic incentive to attack, and subvert, the underlying CCSM to extract the value in one or more BPIs.* *2. Increase the existing attack surface of a CCSM such that the security assurances of the BPI become significantly weaker than the underlying CCSM. An example of such a situation can occur when a commercial State Object such as a Financing contract or an Order in BPI A is dependent on a commercial State Object such as an invoice as collateral in BPI B, and when BPI B has weaker transaction finality assurances than either BPI A or the underlying CCSM. In that scenario, the commercial State Object in BPI A cannot provably rely on the invoice as collateral in BPI B since the invoice might be reverted, and it would then no longer be suitable collateral.*
-	
+
 Hence, this document enumerates the following requirements below:
 
 #### **[R11]**	
 A BPI MUST have the same security assurances as to the CCSM it utilizes.
 
-#### **[R12]**	
-A BPI MUST support cryptographic algorithms that have public libraries with verifiable security audits and are recommended by public security authorities such as the US National Institute of Standards and Technology (NIST).
-
-*For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the NIST Cryptographic Module Verification Program [[CVMP]](#cvmp).*
-
-#### **[R13]**	
-If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
-
-#### **[R14]**	
-A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001).
-
-#### **[R15]**	
-State changes of a BPI MUST be verifiable on the CCSM it utilizes.
-
 *Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.*
+
+[[R11]](#r11) Testability: The three security assurances given by the CCSM (Data Immutability, Provable Time Linearization, and Double Spend Protection) are automatically extended to the BPI data and, therefore, the BPI itself, when a BPI commits the Zero Knowledge Proof, the Public Input of the Proof, and the New State Commitment to, as an example, the [Shield Smart Contract](https://github.com/eea-oasis/baseline/blob/main/core/contracts/contracts/privacy/Shield.sol) on the CCSM.
+State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
 #### **[D7]**	
 A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
 
 *Liveness means that if a CCSM does not require counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.*
 
+[[D7]](#d7) Testability: For a BPI to have the same Liveness properties as the CCSM it utilizes, you could, for example, store the relevant business information such as the Zero Knowledge Proof, the Public Input, and State commitment on a smart contract on the CCSM, giving the data stored on the CCSM its Liveness properties. 
+
+
 #### **[R16]**	
 A BPI MUST be censorship-resistant.
 
 *Censorship-resistant means that a transacting counterparty can terminate a transaction at any time without another transacting counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the transaction.*
 
+<!-- TODO: Find similar censorship-resistant requierment in other standards and review their testability statement -->
+[[R16]](#r16) Testability: One way to implement censorship resistance is to use a BPI with at least three or more nodes with peer-to-peer messaging and a consensus algorithm. 
+
 #### **[R17]**	
 A BPI MUST be able to provide privacy of the transacting counterparties' data.
 
+[[R17]](#r17) Testability: Asymmetric encrypion of the data by encrypting to a shared key between BPI users and BPI requires both parties two decrypt the data, one party is not enough. 
+
 #### **[R18]** 
 A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#rfc3339).
+
+[[R18]](#r18) Testability: All requirements for [IETF RFC 3339](#rfc3339) are testable.
 
 ## 2.7 High-Level Functional Requirements
 
@@ -591,8 +625,12 @@ Commercial Counterparties MUST ensure that utilized BPIs allow them to meet all 
 
 *This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.*
 
+[[R19]](#r19) Testability: Legal, compliance, and business reporting requirements are always implementable based on commercial transactions within a Baseline Protocol Instance. Adherance to these requierments can be verified by third parties utilizing Zero Knowledge Proofs.
+
 #### **[R20]**	
 Commercial Counterparties MUST support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
+
+[[R20]](#r20) Testability: All requirements for [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture) are testable.
 
 #### **[R21]**	
 Commercial Counterparties MUST use the BPI APIs to transact on a commercial State Object -- see the [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml).
@@ -601,10 +639,14 @@ Commercial Counterparties MUST use the BPI APIs to transact on a commercial Stat
 
 *Commercial counterparties need to know the level of conformity other commercial counterparties have with the Baseline Protocol Standard.*
 
+[[R21]](#r21) Testability: All requirements for [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml) are testable.
+
 #### **[R22]**	
 Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
 
 Publicly accessible in the context of this document means that there exists a URI or URL pointing to a publication specifying the level of conformity with this document that is accessible through the public internet. 
+
+[[R22]](#r22) Testability: Counterparties can publish their level of conformity as a W3C verifiable credential in a well-known location at the root level of their internet domain, public CCSM or IPFS.
 
 ### 2.7.2 CCSM Lifecycle Processes
 
@@ -633,6 +675,8 @@ An example of a pseudonymous map is given in the figure below:
 </div>
 
 In the context of a supply chain in a BPI, the bitcoin values could be replaced by recursive zero-knowledge proofs. The map allows the BPI to validate the conformity of all the inputs and business rules of the supply chain that goes into a BPI State Object with a single proof.
+
+[[R23]](#r23) Testability: A pseudonymous map, such as the example above, is naturally created by recursivly proving the validity of a chain of commercial transations.
 
 ## 2.8 Baseline Protocol Reference Architecture
 
@@ -666,20 +710,32 @@ Without a BPI, both Buyer and Seller must assume that the MSA between them and a
 #### **[R24]**	
 The transacting counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
 
+[[R24]](#r24) Testability: A BPI can ensure both counterparties agree on buisness rules and buisness data required to validate the agreement by, for example, utilizing a [payment term agreement](#functional-terms-implemented-as-zero-knowledge-circuit) between two parties.
+
 #### **[R25]** 	
 The transacting counterparties MUST validate the correctness of a State Object based on a state change against the transaction business logic in the applicable BPI workflow and workstep.
+
+[[R25]](#r25) Testability: a BPI can validate the correctness of a State Object based on a state change against transaction logic by the validation zero-knowledge proof in the BPI and ultimately on the CCSM. Reference back to [[R16]](#r16) to understand the validation of a zero-knowledge proof in a smart contract. 
 
 #### **[R26]** 	
 The transacting counterparties MUST generate a Proof of Correctness of a State Object based on a state change that can be validated against the BPI transaction business logic.
 
+[[R26]](#r26) Testability: This can be accomplished by creating a [privacy package](https://github.com/eea-oasis/baseline/tree/main/core/privacy) with Zero-Knowledge Circuits generating Zero-Knowledge Proofs of the State changes of a State Object. 
+
 #### **[R27]** 	
 Any new state between counterparties MUST be recorded on the BPI between them.
+
+[[R27]](#r27) Testability: This can be accomplished by creating a new entry in the storage of the BPI for the new State, such as in this [example](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), which can be queried. 
 
 #### **[R28]** 	
 Any transacting counterparty having received a Proof of Correctness of a state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
 
+[[R28]](#r28) Testability: Including a ZK Proof, public input, and state commitement inside the message payload would enable counterparties to validate the Proof of Correctness.
+
 #### **[R29]** 	
 A transacting counterparty MUST include a Proof of Correctness of the State Object generated by the state change in the BPI Messages between the transacting counterparties.
+
+[[R29]](#r29) Testability: A Proof of Correctness of the State Object can be stored and shared inside a merkle tree, such as in this [example](#storing-an-agreement-as-state-object-in-merkle-tree).
 
 ### 2.8.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer
 
@@ -700,8 +756,13 @@ The Client CCSM API as an external BPI API is implementation-specific and will n
 #### **[R30]**	
 CCSMs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of contracts as defined in [Section 2.4.1](#241-contract).
 
+[[R30]](#r30) Testability: Testability: All requirements in [Section 2.4.1](#241-contract) are testable.
+
 #### **[D8]**	
 A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM instance.
+
+[[D8]](#d8) Testability: Support for this can come from the utilization of an adapter, such as in the example code for a simple Ethereum Adapter given in [[R11]](#r11).
+
 
 #### **[D9]** 
 A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM type.
@@ -712,8 +773,13 @@ A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM 
 
 *The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.*
 
+[[D9]](#d9) Testability: This can acheived through the implementation of a new adapter program for each CCSM to add a CCSM into a BPI. Each adapter program will be different for each CCSM though all adapter programs will have a constructTx and a sendTransaction function, which was given in the example in [[R11]](#r11). 
+
+
 #### **[R31]**	
 The transacting counterparties MUST agree on which BPI is to be used.
+
+[[R31]](#r31) Testability: In order for counterparties to transact on the same BPI instance, this requierment must have been fulfilled.  
 
 ### 2.8.3 External Applications
 
@@ -721,6 +787,8 @@ The transacting counterparties MUST agree on which BPI is to be used.
 Application/s providing transaction functionality such as billing to counterparties, and are, therefore, external concerning the BPI, MUST be independent of any BPI.
 
 *Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa.*
+
+[[R32]](#r32) Testability: Ensuring this means counterparties only interact with the BPI utilizing the APIs as defined Baseline Protocol Standard, and not through integration of functionalities of external systems directly into a BPI, for example integrating an API of an ERP system into a BPI.
 
 ### 2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
@@ -3135,6 +3203,317 @@ Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://ide
 #### **[SIOP]** 
 Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
 
+## A.3 Example References
+
+#### **[Functional-Terms-Implemented-as-Zero-Knowledge-Circuit]**
+```
+import "utils/pack/u32/nonStrictUnpack256" as unpack256
+import "utils/pack/u32/unpack128" as unpack128
+import "hashes/sha256/512bitPacked" as packed512Sha
+import "ecc/edwardsCompress" as edwardsCompress
+import "hashes/sha256/756bit" as shaOf756Bits
+import "utils/casts/bool_256_to_u32_8" as bool_256_to_u32_8
+import "ecc/edwardsScalarMult" as multiply
+import "utils/pack/bool/nonStrictUnpack256" as unpack256Bool
+import "ecc/babyjubjubParams" as context
+from "ecc/babyjubjubParams" import BabyJubJubParams
+
+struct Commitment {
+  field[2] value
+  field[2] salt
+}
+
+struct Metadata {
+  field[2] senderPublicKey
+  field agreementName
+ }
+
+// for example hash could be the hash of the N30 payment term
+struct PaymentAgreement {
+  u32[8] hash
+  field[2] senderPublicKey
+}
+
+def convert(field[2] input) -> u32[8]:
+  u32[4] lsbBits = unpack128(input[0])
+  u32[4] msbBits = unpack128(input[1])
+  return [...msbBits, ...lsbBits]
+
+def main(field publicInputHash, field[2] pk, private Commitment inputCommitment, private Metadata inputMetadata, private field sk) -> PaymentAgreement:
+  u32[8] publicInputHashBits = unpack256(publicInputHash)
+
+  // hash of the below private inputs must be equal to public input
+  // Convert inputs to u32
+  u32[8] saltBits = convert(inputCommitment.salt)
+  u32[8] valueBits = convert(inputCommitment.value)
+  bool[256] compressedSenderPubKey = edwardsCompress(inputMetadata.senderPublicKey)
+  u32[8] pubKeyBits = bool_256_to_u32_8(compressedSenderPubKey)
+  u32[8] nameBits = unpack256(inputMetadata.agreementName)
+ 
+  // compute hash
+  u32[8] paymentAgreementHash = shaOf756Bits(saltBits, pubKeyBits, nameBits)
+
+  // Check: Compare final hash to public input hash; and Compare input
+  bool out = publicInputHashBits == paymentAgreementHash && valueBits == paymentAgreementHash
+
+  // Check: Prove ownership of agreement
+  BabyJubJubParams ctx = context()
+  field[2] G = [ctx.Gu, ctx.Gv]
+  bool[256] skBits = unpack256Bool(sk)
+  field[2] ptExp = multiply(skBits, G, ctx)
+  bool owned = ptExp[0] == pk[0] && ptExp[1] == pk[1]
+
+  // Prepare output object
+  PaymentAgreement outputAgreement = PaymentAgreement { hash: paymentAgreementHash, senderPublicKey: inputMetadata.senderPublicKey }
+ 
+ return outputAgreement
+```
+
+#### **[Storing-an-Agreement-as-State-Object-in-Merkle-Tree]**
+
+```
+Example of Storing an Agreement as a state object in a Merkle Tree using the Payment Term agreement as an example:
+
+Agreement and Public Input Data Leafs
+Leaf 1: H({AgreementType: PaymentTerm})
+Leaf 2: H({AgreementID: A1D324BFCE})
+Leaf 3: H({AgreementDate: 1627601020})
+Leaf 3: H({PaymentTerm: 30})
+Leaf 4: H({SigningKey1: pk_buyer})
+Leaf 5: H({SigningKey1: pk_seller})
+
+Root is calculated normally.
+
+Agreement Proof Leafs:
+Leaf1: H({DocumentType: Invoice, Proof: zk-proof_Invoice1, PublicInput: Struct of the Leafs})
+Leaf 2: H({DocumentType: Invoice, Proof: zk-proof_Invoice1, PublicInput: Struct of the Leafs})
+
+Root is calculated normally. 
+```
+
+Optionally, the two trees can be joined into a 3rd full agreement state Merkle Tree. A secure, offchain Merkle Tree library can be found [here](https://github.com/Tierion/merkle-tools). 
+
+```
+Example of Merkle Proof Verification Circuit to validate a State Object: 
+
+
+// ABOUT
+
+// Function for proving membership of a leaf in a Merkle Tree of height h = 4.
+// 
+//            level h:          root
+//                              /       \
+//                                 ...
+//              ...
+//                       /    \    ...   /   \
+//            level  1:
+//                     /  \  /  \  ... /  \  /  \
+//  leaves at level 0:
+
+
+// IMPORTS
+
+import "hashes/sha256/512bit.zok" as sha256of512
+import "../hashes/sha256/padding/shaPad432To512.zok" as shaPad432To512
+
+import "utils/pack/bool/unpack128.zok" as unpack128
+import "../packing/unpack1x216To216x1.zok" as unpack1x216To216x1
+import "../packing/unpack2x128To256x1.zok" as unpack2x128To256x1
+
+import "../concatenate/orderedConcatenate216x216.zok" as orderedConcatenate216x216
+
+
+// MAIN
+
+// @param {field[4]} siblingPath - the values of the sibling nodes of the path from the leaf to the root. Assume each field is 216-bits.
+// @param {field[2]} leafValue - the value of the leaf. We aim to prove this leaf is in the tree.
+// @param {field} leafIndex - the index of the leaf within the leaves (indexing starts from zero). Note: the binary decomposition of a leaf's index gives us the 'left-rightness' of that leaf's path up the Merkle Tree.
+// @returns {field} root - the root of the merkle tree
+
+def main(private field[4] siblingPath, private field[2] leafValue, private field leafIndex) -> field[256]:
+
+  // Hash up the Merkle Tree to the root:
+
+  field[128] leafIndexBits = unpack128(leafIndex)
+  field[256] nodeValueBits = unpack2x128To256x1(leafValue)
+
+  for field i in 0..4 do
+    field j = 3 - i // iterator for the siblingPath
+    field k = 127 - i // iterator for the leafIndexBits
+
+    field[216] siblingNodeValueBits = unpack1x216To216x1(siblingPath[j])
+
+    field[432] preimage432 = orderedConcatenate216x216(leafIndexBits[k], nodeValueBits[40..256], siblingNodeValueBits)
+
+    field[512] preimage512 = shaPad432To512(preimage432)
+
+    nodeValueBits = sha256of512(preimage512[0..256], preimage512[256..512])
+  endfor
+
+  field[256] root = nodeValueBits
+
+  return root 
+```
+#### **[Commerical-Agreement-as-Verifiable-Credential]**
+
+An example implementation of a signed Commercial Agreement using a verifiable credential. The VC below, showing an order between a buyer and seller, serves as input into a state object representing the Order. This example shows the binding contract between the buyer and the seller, the seller requesting the verification of the product order prior to its acceptance, and the buyer accepting the order if the functional terms are valid.
+
+```
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/traceability/v1"
+  ],
+  "id": "http://example.org/credentials/",
+  "type": [
+    "VerifiableCredential"
+  ],
+  "issuanceDate": "2021-02-04T20:29:37+00:00",
+  "issuer": "did:key:z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U",
+  "credentialSubject": {
+    "@context": [
+      "https://w3id.org/traceability/v1"
+    ],
+    "type": "EcommerceOrderRegistrationCredential",
+    "buyer": "did:example:123",
+    "orderID": "Order#975",
+    "productInOrder": [
+      "https://vc.example.com/?queryID=6206f1f744a781480c521902a1a1dbf5f1d01e7ea21daf483e7668817e58598a",
+      "https://vc.example.com/?queryID=6206f1f744a781480c521902a1a1dbf5f1d01e7ea21daf483e7668817e58598a"
+    ],
+    "certificateName": "ACME Ecommerce Order Registration Certificate"
+  },
+  "evidence": [
+    {
+      "type": [
+        "DocumentVerificationEvidence"
+      ],
+      "id": "https://example.acme.com/evidence/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B",
+      "verifier": [
+        "did:web:www.acme.com"
+      ],
+      "evidenceDocument": "ACME-Evidence-Document-0x2b440EbE-2-4-2021",
+      "subjectPresence": "InPerson",
+      "documentPresence": "Digital"
+    }
+  ],
+  "credentialStatus": {
+    "type": [
+      "RevocationList2020Status"
+    ],
+    "id": "https://example.acme.com/credential/status/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B#23323",
+    "revocationListIndex": "23323",
+    "revocationListCredential": "https://example.com/credentials/status/?queryID=0xFd5FEB812fFa20bEBDcBCD63dC11e96A7A1D59c14fAbEAF9c55D006Ac9DEac3B"
+  },
+  "proof": [{
+    "type": "Ed25519Signature2018",
+    "created": "2019-12-11T03:50:55Z",
+    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..4vwJBA0mXPn2R7g_zCNCJ8qgJAAsLhrsU9OJZrJPPQfRh7JiQr-NespMPlg36A9TyIn6uP67WMqPhFFBYMDNBQ",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": "did:key:z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U#z6MktHQo3fRRohk44dsbE76CuiTpBmyMWq2VVjvV6aBSeE3U"
+  }, {
+      "type": "BbsBlsSignature2020",
+      "created": "2021-05-21T15:31:30Z",
+      "proofPurpose": "assertionMethod",
+      "proofValue": "ky+cRs+7xlw4FxccF16E5g9HjvbdochfiBklTba37+xomLAAHcv8nza1PK0Y/ux7XeULTDrrhbwp2mFGk3AHqRQtH4yRlZBP1fOZDiME8KRC2xRlLq6v4xrzy/CFLV7QdRpaqMJ4o8A3WmXGlxwfLA==",
+      "verificationMethod": "did:example:123#key-1"
+  }]
+}
+```
+
+#### **[Ethereum-Client-Transaction-Crafting-Function]**
+```
+import { ethers } from 'ethers';
+import { ITxManager } from '.';
+import { logger } from '../logger';
+import { jsonrpc, shieldContract } from '../blockchain';
+
+
+export class EthClient implements ITxManager {
+	constructor(public signer: any, public signerType: string) {
+		this.signerType = signerType;
+		this.signer = signer;
+	}
+
+
+	async constructTx(toAddress: string, fromAddress: string, txData: string) {
+		logger.debug('Received request for EthClient.signTx');
+		const { result: nonce } = await jsonrpc('eth_getTransactionCount', [
+			process.env.WALLET_PUBLIC_KEY,
+			'latest'
+		]);
+		logger.debug(`nonce: ${nonce}`);
+		const { result: gasPrice } = await jsonrpc('eth_gasPrice', []);
+		logger.debug(`gasPrice found: ${gasPrice}`);
+		const gasPriceSet = Math.ceil(Number(gasPrice) * 1.2);
+		logger.debug(`gasPrice set: ${gasPriceSet}`);
+
+
+		const unsignedTx = {
+			to: toAddress || '',
+			from: fromAddress,
+			data: txData,
+			nonce,
+			chainId: parseInt(process.env.CHAIN_ID, 10),
+			gasLimit: 0,
+			gasPrice: '0x' + gasPriceSet.toString(16)
+		};
+
+
+		// key-manager returns 400 if "from" field is provided in tx
+		if (this.signerType === 'key-manager') {
+			delete unsignedTx.from;
+		}
+
+
+		const res = await jsonrpc('eth_estimateGas', [unsignedTx]);
+		const gasEstimate = res.result;
+		logger.debug(`gasEstimate: ${gasEstimate}`);
+		if (!gasEstimate) {
+			return {
+				error: {
+					code: -32000,
+					message: `eth_estimateGas returned null value`
+				}
+			};
+		}
+		unsignedTx.gasLimit = Math.ceil(Number(gasEstimate) * 1.1);
+		logger.debug(`gasLimit set: ${unsignedTx.gasLimit}`);
+
+
+		logger.debug('Unsigned tx: ' + JSON.stringify(unsignedTx, null, 4));
+		const signedTx = await this.signer.signTransaction(unsignedTx, fromAddress);
+		logger.debug(`Signed tx: ${signedTx}`);
+		return { result: signedTx };
+	}
+
+
+	async sendTransaction(toAddress: string, fromAddress: string, txData: string) {
+		logger.debug('Received request for EthClient.sendTransaction');
+		let error = null;
+		let txHash: string;
+		try {
+			const { error: constructError, result: signedTx } = await this.constructTx(
+				toAddress,
+				fromAddress,
+				txData
+			);
+			if (constructError) {
+				return { error: constructError };
+			}
+			const res = await jsonrpc('eth_sendRawTransaction', [signedTx]);
+			txHash = res.result;
+		} catch (err) {
+			logger.error('EthClient.sendTransaction:', err);
+			if (err.error) {
+				error  = { data: err.error.message };
+			} else {
+				error = { data: err };
+			}
+		}
+		return { error, txHash };
+	}
+```
 
 # Appendix B - Security Considerations
 
