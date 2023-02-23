@@ -586,16 +586,24 @@ A BPI MUST support cryptographic algorithms that have public libraries with veri
 
 *For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the NIST Cryptographic Module Verification Program [[CVMP]](#cvmp).*
 
+[[R12]](#r12) Testability: The [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the NIST Cryptographic Module Verification Program [[CVMP]](#cvmp) are testable. 
+
 #### **[R13]**	
 If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
+[[R13]](#r13) Testability: This can be accomplished through a number of protocols, examples of P2P suitable messaging protocols include libp2p, NATS, or DIDCOmm that offers the ability to encrypt messages, for example through onion encryption and routing where the relays use layers of encryption around the original encrypted payload. Using an encrypted JSON web token (JWE) for the original message payload is recommended. 
+
 #### **[R14]**	
 A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001).
+
+[[R14]](#r14) Testability: US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001) are testable. 
 
 #### **[R15]**	
 State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
 *Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.*
+
+[[R15]](#r15) Testability: This can be acheived through the use of Zero-Knoeldge Proof verification in a smart contract, such as this [example](https://github.com/eea-oasis/baseline/blob/master/core/contracts/contracts/privacy/Shield.sol)
 
 #### **[D7]**	
 A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
