@@ -788,6 +788,8 @@ Application/s providing transaction functionality such as billing to counterpart
 
 *Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa.*
 
+[[R32]](#r32) Testability: Ensuring this means counterparties only interact with the BPI utilizing the APIs as defined Baseline Protocol Standard, and not through integration of functionalities of external systems directly into a BPI, for example integrating an API of an ERP system into a BPI.
+
 ### 2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
 <div align="center">
