@@ -449,7 +449,7 @@ Such commercial, and thus presumably legally enforceable, documents may be prese
 #### **[R2]**	
 The parties to a Commercial Agreement MUST have signed commercial documents with each other before a transactable state of a commercial agreement can be instantiated within a BPI.
 
-[[R2]](#r2) Testability: Functional terms of a commercial agreement between counterparties are always implementable as transactions within a Baseline Protocol system.
+[[R2]](#r2) Testability: A commercial agreement represents a state that has been agreed on in specific terms between two or more counterparties. Such an agreement with all its elements including its counterparty signatures can be implemented into a baseline protocol implementation (BPI) through a Merkle Tree structure stored in database where each agreement element represented a Merkle Tree leaf. Merkle Trees can be readily implemented. A secure, offchain Merkle Tree library with tests can be found [here](https://github.com/Tierion/merkle-tools). 
 
 ### 2.4.1 Contract
 
@@ -462,12 +462,12 @@ There MUST be a legally binding contract, however simple and temporary, before a
 
 *For example, the contract and the order can be combined into a single document for a single transaction. However, there must be a legal framework in place to provide context for monies that are exchanged and settled. The functional part of the contract forms the basis of a Baseline Protocol Implementation (BPI) defined in section [2.6 Baseline Protocol Instance](#26-baseline-protocol-instance). The requirements below are to be understood solely within the context of this document. They are not meant to be generalized beyond this context.*
 
-[[R3]](#r3) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential).
+[[R3]](#r3) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
 
 #### **[D1]**  
 The contract SHOULD be in an electronic form.
 
-[[D1]](#d1) Testability: A legally binding electronic contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential).
+[[D1]](#d1) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
 
 #### **[D2]**   
 The functional terms of the contract SHOULD be represented on a BPI between the counterparties.
@@ -490,14 +490,14 @@ There MUST be only one MSA between contract parties covering commercial transact
 
 *Specific Terms and Conditions (“Specific T&Cs”) defines the terms and conditions governing a specific product, service, or asset or set thereof offered and delivered by Provider(s) to Requester(s).*
 
-[[CR1]<[D3]](#cr1d3) Testability: BPI logic can ensure only unique combinations of an MSA, unique identifier, and an agreement type exist between two counterparties.
+[[CR1]<[D3]](#cr1d3) Testability: Business logic can be expressed in software code, and software code can be tested, and since BPI logic can ensure only unique combinations of an MSA, unique identifier, and an agreement type exists between two or more counterparties, the requirement is testable.
 
 #### **[D4]**	
 Each specific product, service, asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its specific T&C document.
 
 *This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.*
 
-[[D4]](#d4) Testability: BPI logic ensures State-Object-specific buisness rules and data exist per T&C document. An element such as a product in the state object can be uniquely(sp) identified and can therefor point to a circuit and can be forced to adhere to constraints written in the T&C
+[[D4]](#d4) Testability: Since a T&C document is part of a contract and a contract can be represented in a testable manner per the testability statement of [[R3]](#r3), requirement [[D4]](#d4) is testable.
 
 ### 2.4.2 Commercial Documents 
 
@@ -521,19 +521,19 @@ A commercial document MUST be represented as an electronic record on a BPI betwe
 #### **[R8]**	
 A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
 
-[[R8]](#r8) Testability: A ditial signature of an authorized user of the BPI can be extracted from the proof section of this [Example](#commerical-agreement-as-verifiable-credential) and compared to the identifier from the verification method.
+[[R8]](#r8) Testability: A digital signature of an authorized user of the BPI state object associated with the commercial document can be extracted from the proof section of this [Example](#commerical-agreement-as-verifiable-credential), validated and compared to the key identified in the verification method.
 
 #### **[D5]**	
 The definition of a commercial document authorization SHOULD be stated in the legal contract underlying the commercial document.
 
 *Authorizations for commercial transactions are a foundational element in the context of this document, as they are in paper based agreements. Therefore, any legal authorization agreements relevant to the commercial agreement between commercial counterparties, and thus to commercial transactions between them, are important to be represented in a BPI to ensure mitigating the risk of unauthorized signatures.*
 
-[[D5]](#d5) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract.
+[[D5]](#d5) Testability: Given is an [a W3C Verifiable Credential Example](#commerical-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
 
 #### **[D6]**	
 The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
 
-[[D6]](#d6) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract.
+[[D6]](#d6) Testability: Given is an [a W3C Verfiaible Credential Example](#commerical-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
 
 #### **[R9]**	
 A commercial document MUST be non-repudiable.
@@ -579,7 +579,7 @@ Hence, this document enumerates the following requirements below:
 #### **[R11]**	
 A BPI MUST have the same security assurances as to the CCSM it utilizes.
 
-[[R11]](#r11) Testability: The three security assurances given by the CCSM (Data Immutability, Provable Time Linearization, and Double Spend Protection) are automatically extended to the BPI data and, therefore, the BPI itself, when a BPI commits the Zero Knowledge Proof, the Public Input of the Proof, and the New State Commitment to, as an example, the [Shield Smart Contract](https://github.com/eea-oasis/baseline/blob/main/core/contracts/contracts/privacy/Shield.sol) on the CCSM.
+[[R11]](#r11) Testability: The three security assurances given by the CCSM (Data Immutability, Provable Time Linearization, and Double Spend Protection) are automatically extended to the BPI data and, therefore, the BPI itself, when a BPI commits the Zero Knowledge Proof, the Public Input of the Proof, and the New State Commitment to, as an example, the [Shield Smart Contract](https://github.com/eea-oasis/baseline/blob/main/core/contracts/contracts/privacy/Shield.sol) on the CCSM because all the data to verify the BPI state are on the CCSM.
 
 #### **[R12]**	
 A BPI MUST support cryptographic algorithms that have public libraries with verifiable security audits and are recommended by public security authorities such as the US National Institute of Standards and Technology (NIST).
@@ -610,7 +610,7 @@ A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
 
 *Liveness means that if a CCSM does not require counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.*
 
-[[D7]](#d7) Testability: For a BPI to have the same Liveness properties as the CCSM it utilizes, you could, for example, store the relevant business information such as the Zero Knowledge Proof, the Public Input, and State commitment on a smart contract on the CCSM, giving the data stored on the CCSM its Liveness properties. 
+[[D7]](#d7) Testability: For a BPI to have the same Liveness properties as the CCSM it utilizes, you could, for example, store the relevant business information such as the Zero Knowledge Proof, the Public Input, and State commitment in a smart contract on the CCSM, giving the stored data the CCSM Liveness property. 
 
 
 #### **[R16]**	
@@ -619,7 +619,7 @@ A BPI MUST be censorship-resistant.
 *Censorship-resistant means that a transacting counterparty can terminate a transaction at any time without another transacting counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the transaction.*
 
 <!-- TODO: Find similar censorship-resistant requierment in other standards and review their testability statement -->
-[[R16]](#r16) Testability: One way to implement censorship resistance is to use a BPI with at least three or more nodes with peer-to-peer messaging and a consensus algorithm. 
+[[R16]](#r16) Testability: A simple way to implement the described censorship resistance in a testable manner is to define a revocation commitment that allows undoing an in-process transaction as is for example specified in the [DID Sidetree specification](https://identity.foundation/sidetree/spec/#commitment-schemes) with its [test vectors](https://identity.foundation/sidetree/spec/#test-vectors).   
 
 #### **[R17]**	
 A BPI MUST be able to provide privacy of the transacting counterparties' data.
@@ -697,7 +697,7 @@ An example of a pseudonymous map is given in the figure below:
 
 In the context of a supply chain in a BPI, the bitcoin values could be replaced by recursive zero-knowledge proofs. The map allows the BPI to validate the conformity of all the inputs and business rules of the supply chain that goes into a BPI State Object with a single proof.
 
-[[R23]](#r23) Testability: A pseudonymous map, such as the example above, is naturally created by recursivly proving the validity of a chain of commercial transations.
+[[R23]](#r23) Testability: A pseudonymous map, such as the example above, is naturally created by recursively proving the validity of a chain of commercial transactions using recursive zero-knowledge proof schemes such as PLONK used in the [Aztec Barretenberg Library](https://github.com/AztecProtocol/barretenberg) and its tests.
 
 ## 2.8 Baseline Protocol Reference Architecture
 
@@ -736,7 +736,7 @@ The transacting counterparties MUST agree on the business process rules which ar
 #### **[R25]** 	
 The transacting counterparties MUST validate the correctness of a State Object based on a state change against the transaction business logic in the applicable BPI workflow and workstep.
 
-[[R25]](#r25) Testability: a BPI can validate the correctness of a State Object based on a state change against transaction logic by the validation zero-knowledge proof in the BPI and ultimately on the CCSM. Reference back to [[R16]](#r16) to understand the validation of a zero-knowledge proof in a smart contract. 
+[[R25]](#r25) Testability: A BPI can validate the correctness of a State Object based on a state change against transaction logic by verifying a zero-knowledge proof of the state change in the BPI, and ultimately on the utilized CCSM. Reference back to [[R16]](#r16) to understand the verification of a zero-knowledge proof in a smart contract. 
 
 #### **[R26]** 	
 The transacting counterparties MUST generate a Proof of Correctness of a State Object based on a state change that can be validated against the BPI transaction business logic.
@@ -751,7 +751,7 @@ Any new state between counterparties MUST be recorded on the BPI between them.
 #### **[R28]** 	
 Any transacting counterparty having received a Proof of Correctness of a state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
 
-[[R28]](#r28) Testability: Including a ZK Proof, public input, and state commitement inside the message payload would enable counterparties to validate the Proof of Correctness.
+[[R28]](#r28) Testability: Including a zero-knowledge proof, public input, and state commitment, together with the prover scheme, and if required the common reference string, inside the message payload would enable counterparties to validate the Proof of Correctness on their own utilizing known libraries for the prover scheme such a PLONK or Groth16.
 
 #### **[R29]** 	
 A transacting counterparty MUST include a Proof of Correctness of the State Object generated by the state change in the BPI Messages between the transacting counterparties.
@@ -809,7 +809,7 @@ Application/s providing transaction functionality such as billing to counterpart
 
 *Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa.*
 
-[[R32]](#r32) Testability: Ensuring this means counterparties only interact with the BPI utilizing the APIs as defined Baseline Protocol Standard, and not through integration of functionalities of external systems directly into a BPI, for example integrating an API of an ERP system into a BPI.
+[[R32]](#r32) Testability: In an implementation, counterparties only interact with the BPI utilizing the APIs as defined by the Baseline Protocol Standard, and not through the integration of functionalities of external systems directly into a BPI, for example integrating an API of an ERP system into a BPI.
 
 ### 2.8.4 Baseline Protocol Stack Detailed Reference Architecture Layers and Components
 
