@@ -506,7 +506,7 @@ Commercial documents, a category of commercial State Objects, refer to the state
 #### **[R4]**	
 A commercial State Object to be transacted on MUST be based on a specific commercial document.
 
-[[R4]](#r4) Testability: Given is an [Example](#functional-terms-implemented-as-zero-knowledge-circuit) of a specific commercial document necessary for a Commercial State Object to be transacted.
+[[R4]](#r4) Testability: Since the testability statement in [[R2]](#r2) represents a commercial agreement with commercial documents and is testable as stated, this requirement is testable as well.
 
 #### **[R5]**  
 A commercial document MUST be derived from a legally binding contract.
