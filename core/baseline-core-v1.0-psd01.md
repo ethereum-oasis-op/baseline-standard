@@ -511,12 +511,12 @@ A commercial State Object to be transacted on MUST be based on a specific commer
 #### **[R5]**  
 A commercial document MUST be derived from a legally binding contract.
 
-[[R5]](#r5) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) of a legally binding contract. (legally binding contract can be expressed as given in example)
+[[R5]](#r5) Testability:  A legally binding contract outside of a BPI can be translated into a commercial document on the BPI as given in this [example](#commerical-agreement-as-verifiable-credential) of a legally binding contract expressed as a W3C Verifiable Credential which can be tested following the W3C Verifiable Credential test suite approach.
 
 #### **[R6]**	
 A commercial document MUST be represented as an electronic record on a BPI between the counterparties.
 
-[[R6]](#r6) Testability: Given is an [Example](#commerical-agreement-as-verifiable-credential) of a legally binding contract.
+[[R6]](#r6) Testability: Since the testability statement in [[R5]](#r5) represents an electronic version of a commercial document and is testable as stated, this requirement is testable as well.
 
 #### **[R8]**	
 A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
