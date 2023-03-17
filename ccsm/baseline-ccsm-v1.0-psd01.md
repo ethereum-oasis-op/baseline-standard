@@ -360,18 +360,26 @@ The CCSM utilized in a BPI MUST be able to support more than one BFT consensus a
 
 This is also known as plugable consensus. Note, that deterministic BFT consensus algorithms lead to strong consistency, and, thus, immediate finality. Probabilistic BFT consensus algorithms lead to eventual consistency, and, thus, eventual finality.
 
+[[R14]](#r14) testability: Any CCSM where the execution client is separate from the consensus client can support multiple BFT consensus algorithms. A well known example is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.  
+
 #### **[R15]**	
 Consensus algorithms employed in the CCSM utilized in a BPI MUST have a mathematical proof of security.
 
 A mathematical proof of security is a collection of mathematically provable theorems that make security statements about the three characteristics of a consensus algorithm -- consistency/safety, availability/liveness and fault tolerance and is based on specific operating assumptions of the protocol.
 
+[[R15]](#r15) testability: All well-known consensus algorithms have peer-reviewed papers with a mathematical security proof. A peer-reviewed overview of mathematical security proofs of the most popular consensus algorithms can be found [here](https://vtechworks.lib.vt.edu/bitstream/handle/10919/110096/Xiao_Y_D_2022.pdf?sequence=1&isAllowed=y)
+
 #### **[D7]**	
 Consensus algorithms employed in the CCSM utilized in a BPI SHOULD include economic security assurances with game theoretic security proofs.
+
+[[D7]](#d7) testability: An example of such a consensus algorithm is Ethereum's Proof-of-Stake protocol specified [here](https://arxiv.org/abs/1710.09437) including a game theoretic security analysis and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
 
 #### **[D8]**	
 Consensus algorithms employed in the CCSM utilized in a BPI SHOULD require not more than order N messages to reach consensus where N is the number of nodes in the network.
 
 *Note that the larger the number of nodes, the higher the level of security. Also, note that performance for certain consensus algorithms degrades quickly as the number of nodes increases because of the number of messages required to exchange between them to achieve consensus can grow very quickly. Therefore, algorithms that scale in the number of nodes without significant performance degradation are preferred. Also, note that network performance such as poor network latency can lead to severe issues such as consensus failure if an algorithm requires the exchange of large numbers of messages to reach consensus.*
+
+[[D8]](#d8) testability: An example of such a consensus algorithm requiring only O(N) messages is Ethereum's Proof-of-Stake protocol specified [here](https://arxiv.org/abs/1710.09437) because of its eventual finality feature. Tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
 
 # 8. Virtual State Machine
 CCSMs most often utilize a virtual state machine (VSM) for CCSM computations of CCSM state transitions; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework. 
@@ -464,6 +472,16 @@ This document defines the conformance levels of a CCSM as follows:
 * **Level 4:** All MUST requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
 * **Level 5:** All MUST and SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
 * **Level 6:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
+
+#### **[D10]** 
+A claim that a canonical token list implementation conforms to this specification SHOULD describe a testing procedure carried out for each requirement to which conformance is claimed, that justifies the claim with respect to that requirement.
+
+[[D10]](#d10) testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, and can be described as required in [[D10]](#d10).
+
+#### **[R29]** 
+A claim that a canonical token list implementation conforms to this specification at **Level 2** or higher MUST describe the testing procedure carried out for each requirement at **Level 2** or higher, that justifies the claim to that requirement.
+
+[[R29]](#r29) testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, be described, be built and implemented and results can be recorded as required in [[R29]](#r29).
 
 -------
 
