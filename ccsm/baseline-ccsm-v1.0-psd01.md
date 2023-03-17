@@ -296,7 +296,7 @@ The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verificatio
 
 Zero-Knowledge Proofs (ZKPs) (see reference [[ZKP](#how-to-explain-zero-knowledge-protocols-to-your-children)]) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
 
-[[D2]](#d2) testability: This requirement is a stronger requirement than [[R9]](#r9). The testability statement of [[R9]](#r9) references zkps. Therefore, [[D2]](#d2) is testable.
+[[D3]](#d3) testability: This requirement is a stronger requirement than [[R9]](#r9). The testability statement of [[R9]](#r9) references zkps. Therefore, [[D2]](#d2) is testable.
 
 # 4. Scalability
 To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce CCSM processing and storage resources. 
@@ -310,15 +310,21 @@ The CCSM utilized in a BPI SHOULD support secure data sources.
 
 This requirement means that a CCSM has a mechanism to securely connect its state through, for example, a smart contract with a data source which has certain security assurances in such a way that: a) the security of the data source is not compromised by the CCSM and b) the security assurances of the CCSM are not compromised by the secure data source.
 
+[[D4]](#d4) testability: An example of such a secure data  source is a zkEVM operating on a CCSM, and since a zkEVM is testable as shown in the [[R7]](#r7) testability statement, this requirement is testable.
+
 #### **[D5]**	
 When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use the same CCSM Protocol, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
 An example of such techniques is a two-phase lock relay bridge. Two-phase locking (2PL) is a concurrency control method that guarantees serializability. The protocol utilizes locks, applied by a CCSM transaction to data/assets, which may block other CCSM transactions from accessing the same data/assets during the lifecycle of a transaction impacting said data/asset(s). This protocol requires support for CCSM transaction receipts signaling CCSM transaction lifecycle completeness. This approach requires a relay server (network) between the two CCSMs which interacts with the locking/unlocking smart contracts on each of the CCSMs. Since both CCSMs operate the same CCSM protocol the relay server can be a node on both networks which does not introduce further security assumptions.
 
+[[D5]](#d5) testability: An example of a protocol with a test suite satisfying the requirement is the [GPACT](https://github.com/ConsenSys/gpact) protocol for EVM-compatible CCSMs. Therefore, the requirement is testable.  
+
 #### **[D6]**	
 When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use different CCSM Protocols, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
 An example of such techniques are Atomic Swap protocols. An atomic swap is a CCSM smart contract technology that enables the exchange of one CCSM asset for another without using centralized intermediaries, such as exchanges.
+
+[[D6]](#d6) testability: Since CCSMs using different protocols can still use the same execution framework such as Avalanche, or Hedera using an EVM-compatible execution client, the [GPACT](https://github.com/ConsenSys/gpact) protocol protocol can be utilized for CCSM interoperability. Therefore, and based on the [[D5]](#d5) testability statement, this requirement is testable.
 
 # 6. Network
 Network in this context refers to the nodes of a CCSM that form the CCSM network. A CCSM node has several components that impact the network namely its Peer-to-Peer (P2P) message protocol and its consensus algorithm. 
