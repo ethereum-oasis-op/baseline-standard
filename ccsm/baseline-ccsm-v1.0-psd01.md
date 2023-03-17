@@ -391,19 +391,29 @@ All CCSM nodes need to arrive at the same result based on the same input and exe
 
 For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet confirmed by CCSM consensus. This means that if the transaction of the Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending which transaction is executed first.
 
+[[R16]](#r16) testability: An example of such a deterministic execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable. 
+
 #### **[R17]**	
 The Execution Framework of the CCSM utilized in a BPI MUST ensure that state transition computations are either completed or aborted in finite time.
 
 What is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction. This requirement means that there cannot be infinite computational loops in a distributed computational system with consensus, as this would not allow the CCSM network to reach consensus anymore and bring the CCSM network itself to a halt. Note also, that when a CCSM node is offline, the virtual state machine’s Execution Framework does not perform computations; when a CCSM node comes back online, and synchronizes with the state of the CCSM network, it only validates the last available state - either a global state or specific to that node. 
 
+[[R17]](#r17) testability: An example of such a non-Turing-complete execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace with guaranteed completion for every transaction can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable.
+
 #### **[R18]**	
 The Execution Framework of the CCSM utilized in a BPI MUST support widely used cryptographic operations natively, e.g., hashing, digital signatures, or zero-knowledge proof verification.
+
+[[R18]](#r18) testability: An example of such an Execution Framework is the EVM as implemented in the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.
 
 #### **[D9]**	
 The Execution Framework of the CCSM utilized in a BPI SHOULD have a mathematical proof of correctness and security.
 
+[[D9]](#d9) testability: An example of such an execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper) with an associated security-audited implementation and test suite in the [Hyperledger Besu client](https://github.com/hyperledger/besu). Therefore, the requirement is testable.
+
 #### **[R19]**	
 The Execution Framework of the CCSM utilized in a BPI MUST be Verifiably Secure. 
+
+[[R19]](#r19) testability: CCSM execution frameworks can be verifiably secure if cryptographic proofs-of-correct execution of the execution stack trace can be independently verified to be correct. An example of such an execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable.
 
 # 9. Data Integrity and Transaction Completeness
 Data integrity over time, in other words the inability to alter data once it has been committed to the state of the CCSM, is one of the key features of typical CCSMs.
