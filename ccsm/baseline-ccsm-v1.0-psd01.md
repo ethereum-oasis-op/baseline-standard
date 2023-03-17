@@ -446,26 +446,38 @@ The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said C
 
 Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].
 
+[[R23]](#r23) testability: An example of such a CCSM is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable. 
+
 #### **[R24]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
 
+[[R24]](#r24) testability: An example of such a CCSM is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.
+
 #### **[R25]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support policy management.
+
+[[R25]](#r25) testability: An example of such a CCSM is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.
 
 #### **[R26]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO).
 
 See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
 
+[[R26]](#r26) testability: SSO can be combined with Oauth2 using for example [OpenID Connect certified implementations](https://openid.net/developers/certified/) which have certification test suites. Since Oauth2 is supported by the [Hyperledger Besu client](https://github.com/hyperledger/besu), the requirement is testable.
+
 #### **[R27]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication (MFA).
 
 See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).
 
+[[R27]](#r27) testability: SSO can be combined with MFA suing for example [the open-source Authelia framework](https://github.com/authelia/authelia) with its test suit. Therefore, [[R27]](#r27) testability is a testable extension of [[R26]](#r26) testability.
+
 #### **[R28]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules (HSM). 
 
 This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].
+
+[[R28]](#r28) testability: HSMs can be readily integrated with [OIDC using for example Authelia together with a commercial HSM](https://www.authelia.com/integration/openid-connect/hashicorp-vault/). Therefore, [[R28]](#r28) testability is a testable extension of [[R27]](#r27) testability.
 
 # 11 Conformance
 
