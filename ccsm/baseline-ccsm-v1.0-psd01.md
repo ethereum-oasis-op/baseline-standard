@@ -334,10 +334,14 @@ It is important that Peer-to-Peer (P2P) message protocols are used that do not r
 #### **[R11]**	
 A CCSM utilized in a BPI MUST support a P2P message protocol that does not require network leader nodes.
 
+[[R11]](#r11) testability: libp2p as a very commonly used [P2P message protocol](https://github.com/libp2p/specs) with a test suite [here](https://github.com/libp2p/go-libp2p/blob/master/test-plans/cmd/ping/main.go) is a leaderless protocol using peer-gossiping. This shows that the requirement is testable.
+
 The network requirements on the consensus algorithms are even more stringent than on the P2P protocol. Additional requirements on the consensus algorithm of the CCSM are discussed in the next section, section [7. Consensus](#7-consensus).
 
 #### **[R12]** 
 The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT) [[BFT](#the-byzantine-generals-problem)].
+
+[[R12]](#r12) testability: Ethereum's Proof-of-Stake consensus protocol satisfies the BFT requirements as specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
 
 #### **[R13]** 
 The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
@@ -345,6 +349,8 @@ The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony.
 Weak synchrony in this context means:
 1. That all messages will eventually reach their intended recipients
 2. That after a certain, yet unknown time, the network will become synchronous again
+
+[[R13]](#r13) testability: For a CCSM to operate under Weak Synchrony, both its messaging implementation and its consensus protocol implementation must satisfy the condition. Both libp2p and Ethereum's Proof-of-Stake consensus protocol implementations operate under weak synchrony per their specifications and as testable by their test suites. This means combining the [[R11]](#r11) and [[R12]](#r12) testability statements shows that this requirement is testable.
 
 # 7. Consensus
 The consensus algorithm is the most important component of a CCSM as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
