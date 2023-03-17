@@ -216,24 +216,36 @@ A CCSM utilized in a BPI MUST support cryptographic algorithms based on commonly
 
 The usage of cryptographic libraries that successfully passed the National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program (CMVP) is recommended.
 
+[[R1]](#r1) testability: Any security-audited cryptographic library will have test-vectors, and is, therefore, testable.
+
 #### **[R2]**	
 If the CCSM utilized in a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
+[[R2]](#r2) testability: libp2p as a very commonly used P2P message protocol supports end-to-end encryption, see [here](https://github.com/libp2p/specs/blob/master/noise/README.md) for the NOISE specification and relevant tests [here](https://github.com/libp2p/go-libp2p/blob/master/test-plans/cmd/ping/main.go). This shows that the requirement is testable. 
+
 #### **[R3]**	
 The CCSM utilized in a BPI MUST support CCSM Node Key Management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or ISO 27001 [[ISO27001](#iso27001)].
+
+[[R3]](#r3) testability: Given that there exist certification programs for [[FIPS](#fips)] or ISO 27001 [[ISO27001](#iso27001)], see for example the [NIST program]([[FIPS](#fips)] or ISO 27001 [[ISO27001](#iso27001)]), the requirement is testable.
 
 #### **[R4]**	
 The CCSM utilized in a BPI SHOULD support programmatic economic security assurances.
 
 *Note, economic security assurances such as those used in Proof-of-Stake consensus algorithms are designed to provide additional security assurances beyond those of cryptography in distributed systems. The security assurances are based on a system of economic incentives and disincentives for distributed system participants with the expressed goal that honest behavior of distributed system participants which enhances system security is in their economic self-interest. This is akin to determining if a cryptographic algorithm is secure or not, and what the level of security of said algorithm is, the security of a system of economic incentives and disincentives must be proven through a game theoretic security analysis.*
 
+[[R4]](#r4) testability: Programmatic economic security assurances are typically implemented within the CCSM's consensus protocol. Examples are Proof-of-Work for Bitcoin, and Proof-of-Stake for Ethereum, as common CCSMs. Ethereum's Proof-of-Stake protocol is specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
+
 #### **[D1]**	
 The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE).
 
 *Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing within the TEE, along with confidentiality of their assets.*
 
+[[D1]](#d1) testability: An example of a CCSM utilizing a TEE is Hyperledger Sawtooth with its [test suite](https://github.com/hyperledger/sawtooth-core/tree/main/cli/tests). Therefore, the requirement is testable.
+
 #### **[R5]**	
 The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033 [ISO-IEC-27033](#iso-iec-27033).
+
+[[R5]](#r5) testability: Similar to ISO 27001, there are numerous ISO/IEC 27033 certification programs. Therefore, the requirement is testable. 
 
 Network attacks typically take the form of Distributed Denial of Service (DDOS) attacks, attacks from groups of malicious CCSM nodes performing CCSM reorganizations, front running of transactions through transaction injections, and censoring of transactions. This includes game theoretic attacks such as discouragement, extortion, value-extraction, or random oracle attacks.
 
@@ -245,10 +257,14 @@ The CCSM utilized in a BPI MUST support a secure consensus algorithm as explaine
 * if all non-faulty participating nodes produce an output indicating the termination, and subsequent restart, of the protocol upon reaching consensus (availability/liveness), and
 * if the network exhibits the capability to perform as intended if network nodes fail, either unintentionally or intentionally (fault tolerance).
 
+[[R6]](#r6) testability: Consensus security is proven mathematically, and a reference implementation with tests is then security audited. An example is Ethereum's Proof-of-Stake protocol specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
+
 #### **[R7]**	
 A CCSM utilized in a BPI MUST have one or more secure-by-construction or Verifiably Secure execution frameworks.
 
 See the glossary for a definition of Verifiably Secure and more details about CCSM supported execution frameworks in section [9 Data Integrity and Transaction Completeness ](#9-data-integrity-and-transaction-completeness).
+
+[[R6]](#r6) testability: CCSM execution frameworks can be verifiably secure if cryptographic proofs-of-correct execution of the execution stack trace can be independently verified to be correct. An example of such an execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable.  
 
 # 3. Privacy
 CCSMs range in the level of privacy they support. One approach ensures that the contents of a CCSM transaction or storage are meaningless to parties not participating in an interaction. Another more stringent approach is to use a CCSM that precludes the accessibility of such information to non-participating parties. This standard sets the minimum requirement to the first approach, but the parties can agree to require that the BPI supports the second approach.
