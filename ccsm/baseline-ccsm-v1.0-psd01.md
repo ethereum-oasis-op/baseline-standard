@@ -264,7 +264,7 @@ A CCSM utilized in a BPI MUST have one or more secure-by-construction or Verifia
 
 See the glossary for a definition of Verifiably Secure and more details about CCSM supported execution frameworks in section [9 Data Integrity and Transaction Completeness ](#9-data-integrity-and-transaction-completeness).
 
-[[R6]](#r6) testability: CCSM execution frameworks can be verifiably secure if cryptographic proofs-of-correct execution of the execution stack trace can be independently verified to be correct. An example of such an execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable.  
+[[R7]](#r7) testability: CCSM execution frameworks can be verifiably secure if cryptographic proofs-of-correct execution of the execution stack trace can be independently verified to be correct. An example of such an execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable.  
 
 # 3. Privacy
 CCSMs range in the level of privacy they support. One approach ensures that the contents of a CCSM transaction or storage are meaningless to parties not participating in an interaction. Another more stringent approach is to use a CCSM that precludes the accessibility of such information to non-participating parties. This standard sets the minimum requirement to the first approach, but the parties can agree to require that the BPI supports the second approach.
@@ -272,21 +272,31 @@ CCSMs range in the level of privacy they support. One approach ensures that the 
 #### **[R8]**	
 The CCSM utilized in a BPI MUST support privacy preservation such that the contents of a CCSM transaction or CCSM storage does not carry meaning to parties not participating in a CCSM based interaction.
 
+[[R8]](#r8) testability: The ability to reason about privacy preservation tools such as hashes, Merkle proofs or other, more sophisticated, zero-knowledge proofs requires both a deterministic execution framework and the ability within this framework to reason about privacy-preserving cryptographic primitives. A widely utilized execution framework meeting both criteria is the EVM with its deterministic execution framework and the ability to reason about cryptographic primitives through the usage of EVM precompiles to perform elliptic curve operations. A comprehensive set of tests of the EVM specification itself including precompiles can be found [here](https://ethereum-tests.readthedocs.io/_/downloads/en/latest/pdf/). Therefore, the requirement is testable. 
+
 #### **[R9]**	
 The CCSM utilized in a BPI MUST support privacy preservation of transactions and their execution.
 
+[[R9]](#r9) testability: Reasoning about cryptographically shielded transactions and their execution against a given, yet hidden, state can be performed by, for example, zkEVM proofs as discussed in the [[R7]](#r7) testability statement verified on a CCSM using an EVM execution framework as discussed in the [[R8]](#r8) testability statement. As a consequence of both of those testability statements taken together, the requirement [[R9]](#r9) itself is testable.
+
 #### **[R10]**	
 The CCSM utilized in a BPI MUST support segregation between public and private state/data.
+
+[[R10]](#r10) testability: The testability of [[R10]](#r10) is consequence of the testability statements [[R7]](#r7) - [[R9]](#r9) since a private state can be represented as zero-knowledge proofs (private state data) embedded in the public state of a CCSM.
 
 #### **[D2]**	
 The CCSM utilized in a BPI SHOULD support a privacy-preserving P2P message protocol.
 
 Privacy-preserving in this context means that at least the content of a message, and ideally, also the sender and recipient, is opaque to all participants of the P2P network except sender and recipient.
 
+[[D2]](#d2) testability: Testability of this requirement is a direct consequence of the testability of [[R2]](#r2).
+
 #### **[D3]**	
 The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verification (if not generation) at the protocol level.
 
 Zero-Knowledge Proofs (ZKPs) (see reference [[ZKP](#how-to-explain-zero-knowledge-protocols-to-your-children)]) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
+
+[[D2]](#d2) testability: This requirement is a stronger requirement than [[R9]](#r9). The testability statement of [[R9]](#r9) references zkps. Therefore, [[D2]](#d2) is testable.
 
 # 4. Scalability
 To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce CCSM processing and storage resources. 
