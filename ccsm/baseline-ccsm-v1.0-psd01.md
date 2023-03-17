@@ -421,15 +421,21 @@ Data integrity over time, in other words the inability to alter data once it has
 #### **[R20]**	
 If the CCSM utilized in a BPI is strongly consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7).
 
+[[R20]](#r20) testability: An example of such a CCSM is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum using the supported [QBFT consensus algorithm](https://github.com/hyperledger/besu/tree/main/consensus/qbft) and with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.
+
 #### **[R21]**	
 If the CCSM utilized in a BPI is eventually consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7). 
 
 Besides data integrity, the notion of censorship-resistance, or the inability of anyone participant in a CCSM to stop any other participant’s transaction to be eventually included in the CCSM state, is another key feature of typical CCSMs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
 
+[[R21]](#r21) testability: An example of such a CCSM is Ethereum with its Proof-of-Stake protocol that guarantees eventual finality and is specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
+
 #### **[R22]**	
 The CCSM utilized in a BPI MUST guarantee that a transaction compliant with the CCSM protocol rules is eventually included in the state of the CCSM, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section [6. Network](#6-network) for details on the security assumptions of consensus algorithms).
 
 The reason why the reference to the consensus algorithm is important is as follows: To guarantee processing of a transaction, one needs only one honest CCSM node in the network. However, this is not sufficient to guarantee consensus. Therefore, and to include a submitted transaction in the CCSM state, there needs to be an honest majority of CCSM nodes to reach consensus on the submitted transaction.
+
+[[R22]](#r22) testability: An example of such a CCSM is Ethereum with its Proof-of-Stake protocol that guarantees eventual finality and is specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
 
 # 10. Integration Capabilities with External Systems 
 
