@@ -177,6 +177,8 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 | {api-root}/workgroups/{id} | Get, Put | Objects |
 | {api-root}/workgroups/{id}/subjects | Get, Post | Objects |
 
+Testability Statement for all specification requirements: API endpoints can be tested using API testing platforms such as [Postman](https://www.postman.com/). Since each API schema given in the requirements below specifies API responses using [RFC 2616 HTMl error codes](https://www.rfc-editor.org/rfc/rfc2616), and since each API schema has a given test fixture, all API specification requirements are testable. 
+
 ## 3.1 BPI Accounts
 
 Returns a list of BPI Account objects in the authorized scope.
@@ -4217,6 +4219,14 @@ This document defines the conformance levels of a BPI as follows:
 * **Level 4:** All MUST requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
 * **Level 5:** All MUST and SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
 * **Level 6:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
+
+#### **[D1]** 
+A claim that a Baseline Protocol API implementation conforms to this specification SHOULD describe a testing procedure carried out for each requirement to which conformance is claimed, that justifies the claim with respect to that requirement.
+
+[[D1]](#d1) testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, and can be described as required in [[D1]](#d1).
+
+#### **[R43]** 
+A claim that a Baseline API implementation conforms to this specification at **Level 2** or higher MUST describe the testing procedure carried out for each requirement at **Level 2** or higher, that justifies the claim to that requirement.
 
 -------
 
