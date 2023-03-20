@@ -462,12 +462,12 @@ There MUST be a legally binding contract, however simple and temporary, before a
 
 *For example, the contract and the order can be combined into a single document for a single transaction. However, there must be a legal framework in place to provide context for monies that are exchanged and settled. The functional part of the contract forms the basis of a Baseline Protocol Implementation (BPI) defined in section [2.6 Baseline Protocol Instance](#26-baseline-protocol-instance). The requirements below are to be understood solely within the context of this document. They are not meant to be generalized beyond this context.*
 
-[[R3]](#r3) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
+[[R3]](#r3) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commercial-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
 
 #### **[D1]**  
 The contract SHOULD be in an electronic form.
 
-[[D1]](#d1) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commerical-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
+[[D1]](#d1) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commercial-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
 
 #### **[D2]**   
 The functional terms of the contract SHOULD be represented on a BPI between the counterparties.
@@ -511,7 +511,7 @@ A commercial State Object to be transacted on MUST be based on a specific commer
 #### **[R5]**  
 A commercial document MUST be derived from a legally binding contract.
 
-[[R5]](#r5) Testability:  A legally binding contract outside of a BPI can be translated into a commercial document on the BPI as given in this [example](#commerical-agreement-as-verifiable-credential) of a legally binding contract expressed as a W3C Verifiable Credential which can be tested following the W3C Verifiable Credential test suite approach.
+[[R5]](#r5) Testability:  A legally binding contract outside of a BPI can be translated into a commercial document on the BPI as given in this [example](#commercial-agreement-as-verifiable-credential) of a legally binding contract expressed as a W3C Verifiable Credential which can be tested following the W3C Verifiable Credential test suite approach.
 
 #### **[R6]**	
 A commercial document MUST be represented as an electronic record on a BPI between the counterparties.
@@ -521,19 +521,19 @@ A commercial document MUST be represented as an electronic record on a BPI betwe
 #### **[R8]**	
 A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
 
-[[R8]](#r8) Testability: A digital signature of an authorized user of the BPI state object associated with the commercial document can be extracted from the proof section of this [Example](#commerical-agreement-as-verifiable-credential), validated and compared to the key identified in the verification method.
+[[R8]](#r8) Testability: A digital signature of an authorized user of the BPI state object associated with the commercial document can be extracted from the proof section of this [Example](#commercial-agreement-as-verifiable-credential), validated and compared to the key identified in the verification method.
 
 #### **[D5]**	
 The definition of a commercial document authorization SHOULD be stated in the legal contract underlying the commercial document.
 
 *Authorizations for commercial transactions are a foundational element in the context of this document, as they are in paper based agreements. Therefore, any legal authorization agreements relevant to the commercial agreement between commercial counterparties, and thus to commercial transactions between them, are important to be represented in a BPI to ensure mitigating the risk of unauthorized signatures.*
 
-[[D5]](#d5) Testability: Given is an [a W3C Verifiable Credential Example](#commerical-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
+[[D5]](#d5) Testability: Given is an [a W3C Verifiable Credential Example](#commercial-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
 
 #### **[D6]**	
 The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
 
-[[D6]](#d6) Testability: Given is an [a W3C Verfiaible Credential Example](#commerical-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
+[[D6]](#d6) Testability: Given is an [a W3C Verfiaible Credential Example](#commercial-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
 
 #### **[R9]**	
 A commercial document MUST be non-repudiable.
@@ -542,7 +542,7 @@ A commercial document MUST be non-repudiable.
 
 *Example: A Buyer ("Requester") and Seller ("Provider") may agree that a signed Order requires a signed original paper copy, or a digitally signed electronic Order Form, in addition to an Order being digitally signed and recorded within a BPI.*
 
-[[R9]](#r9) Testability: The non-repudiation of a commercial document can be achieved through the verification of the digital signatures from both parties over the contract. An [Example](#commerical-agreement-as-verifiable-credential) of this is given, where in the “proof” section two digital signatures can be found. 
+[[R9]](#r9) Testability: The non-repudiation of a commercial document can be achieved through the verification of the digital signatures from both parties over the contract. An [Example](#commercial-agreement-as-verifiable-credential) of this is given, where in the “proof” section two digital signatures can be found. 
 
 
 ## 2.5 Consensus Controlled State Machine
@@ -603,7 +603,7 @@ State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
 *Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.*
 
-[[R15]](#r15) Testability: This can be acheived through the use of Zero-Knoeldge Proof verification in a smart contract, such as this [example](https://github.com/eea-oasis/baseline/blob/master/core/contracts/contracts/privacy/Shield.sol)
+[[R15]](#r15) Testability: This can be achieved through the use of Zero-Knowledge Proof verification in a smart contract, such as this [example](https://github.com/eea-oasis/baseline/blob/master/core/contracts/contracts/privacy/Shield.sol)
 
 #### **[D7]**	
 A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
@@ -618,13 +618,13 @@ A BPI MUST be censorship-resistant.
 
 *Censorship-resistant means that a transacting counterparty can terminate a transaction at any time without another transacting counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the transaction.*
 
-<!-- TODO: Find similar censorship-resistant requierment in other standards and review their testability statement -->
+<!-- TODO: Find similar censorship-resistant requirement in other standards and review their testability statement -->
 [[R16]](#r16) Testability: A simple way to implement the described censorship resistance in a testable manner is to define a revocation commitment that allows undoing an in-process transaction as is for example specified in the [DID Sidetree specification](https://identity.foundation/sidetree/spec/#commitment-schemes) with its [test vectors](https://identity.foundation/sidetree/spec/#test-vectors).   
 
 #### **[R17]**	
 A BPI MUST be able to provide privacy of the transacting counterparties' data.
 
-[[R17]](#r17) Testability: Asymmetric encrypion of the data by encrypting to a shared key between BPI users and BPI requires both parties two decrypt the data, one party is not enough. 
+[[R17]](#r17) Testability: Asymmetric encryption of the data by encrypting to a shared key between BPI users and BPI requires both parties two decrypt the data, one party is not enough. 
 
 #### **[R18]** 
 A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#rfc3339).
@@ -646,7 +646,7 @@ Commercial Counterparties MUST ensure that utilized BPIs allow them to meet all 
 
 *This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.*
 
-[[R19]](#r19) Testability: Legal, compliance, and business reporting requirements are always implementable based on commercial transactions within a Baseline Protocol Instance. Adherance to these requierments can be verified by third parties utilizing Zero Knowledge Proofs.
+[[R19]](#r19) Testability: Legal, compliance, and business reporting requirements are always implementable based on commercial transactions within a Baseline Protocol Instance. Adherence to these requirements can be verified by third parties utilizing Zero Knowledge Proofs.
 
 #### **[R20]**	
 Commercial Counterparties MUST support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
@@ -731,7 +731,7 @@ Without a BPI, both Buyer and Seller must assume that the MSA between them and a
 #### **[R24]**	
 The transacting counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
 
-[[R24]](#r24) Testability: A BPI can ensure both counterparties agree on buisness rules and buisness data required to validate the agreement by, for example, utilizing a [payment term agreement](#functional-terms-implemented-as-zero-knowledge-circuit) between two parties.
+[[R24]](#r24) Testability: A BPI can ensure both counterparties agree on business rules and business data required to validate the agreement by, for example, utilizing a [payment term agreement](#functional-terms-implemented-as-zero-knowledge-circuit) between two parties.
 
 #### **[R25]** 	
 The transacting counterparties MUST validate the correctness of a State Object based on a state change against the transaction business logic in the applicable BPI workflow and workstep.
@@ -756,7 +756,7 @@ Any transacting counterparty having received a Proof of Correctness of a state c
 #### **[R29]** 	
 A transacting counterparty MUST include a Proof of Correctness of the State Object generated by the state change in the BPI Messages between the transacting counterparties.
 
-[[R29]](#r29) Testability: A Proof of Correctness of the State Object can be stored and shared inside a merkle tree, such as in this [example](#storing-an-agreement-as-state-object-in-merkle-tree).
+[[R29]](#r29) Testability: A Proof of Correctness of the State Object can be stored and shared inside a Merkle tree, such as in this [example](#storing-an-agreement-as-state-object-in-merkle-tree).
 
 ### 2.8.2 Considerations on BPI and CCSM Abstraction Layers and the CCSM Layer
 
@@ -794,13 +794,13 @@ A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM 
 
 *The agreement on the governance entity, its rules, and its method of achieving interval synchronization consensus, as well as the definition of acceptable governance structures and their rules is beyond the scope of this document.*
 
-[[D9]](#d9) Testability: This can acheived through the implementation of a new adapter program for each CCSM to add a CCSM into a BPI. Each adapter program will be different for each CCSM though all adapter programs will have a constructTx and a sendTransaction function, which was given in the example in [[R11]](#r11). 
+[[D9]](#d9) Testability: This can be achieved through the implementation of a new adapter program for each CCSM to add a CCSM into a BPI. Each adapter program will be different for each CCSM though all adapter programs will have a constructTx and a sendTransaction function, which was given in the example in [[R11]](#r11). 
 
 
 #### **[R31]**	
 The transacting counterparties MUST agree on which BPI is to be used.
 
-[[R31]](#r31) Testability: In order for counterparties to transact on the same BPI instance, this requierment must have been fulfilled.  
+[[R31]](#r31) Testability: In order for counterparties to transact on the same BPI instance, this requirement must have been fulfilled.  
 
 ### 2.8.3 External Applications
 
@@ -3006,8 +3006,12 @@ Internal authoritative data means that there exists only one authoritative versi
 #### **[O10]** 
 Internal authoritative input data to a BPI workstep MAY come from a single source.
 
+[[D10]](#d10) Testability: Since the [Baseline Protocol API specification is testable](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md), and since internal authoritative input data with source identification will be used in the Baseline Protocol APIs based on agreed upon data schames between counterparties, the requirement is testable. 
+
 #### **[CR36]>[O10]** 
 If the internal authoritative input data to a BPI workstep is single-sourced, that source MUST be authoritative.
+
+[[CR36]>[O10]](#cr36o10) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be bdining. And since [[R6]](#r6) is testable, [[CR36]>[O10]](#cr36o10) is testable.
 
 ## 8.2 External Authoritative Data for BPIs
 
@@ -3015,6 +3019,8 @@ External authoritative data means that the input data to a BPI workstep is held 
 
 #### **[R315]** 
 BPI Subjects participating in a workstep MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
+
+[[R315]](#r15) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be bdining. And since [[R6]](#r6) is testable, [[R315]](#r15) is testable.
 
 
 ## 8.3 External Non-authoritative, Non-deterministic Data for BPIs
@@ -3028,18 +3034,24 @@ External non-authoritative, non-deterministic data for BPIs resides outside of a
 #### **[D42]** 
 External non-authoritative, non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
 
+[[D42]](#d42) Testability: Since the [Baseline Protocol API specification is testable](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md), and since non-authoritative, non-deterministic data with source identification will be used in the Baseline Protocol APIs based on agreed upon data schames between counterparties, the requirement is testable.
+
 #### **[R316]** 
 External non-authoritative, non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
 
-*Authoritative entities in the context of this document are entities that have been delegated authority by the participants of a BPI workstep to validate an external non-authoritative, non-deterministic source of input data into a BPI workstep.*
+[[R316]](#r316) Testability: Agreement on validation of non-authoritative, non-deterministic BPI input data is an extension of non-repudiation of the commercial documents requirement, [[R9]](#r9) which is testable, because non-authoritative, non-deterministic BPI input data sources will be enumerated in a commercial document. Therefore, the requirement is testable. 
 
 #### **[R317]** 
 BPI participants MUST agree upon a standard validation method for external non-authoritative,  non-deterministic input data to a BPI workstep.
+
+[[R317]](#r317) Testability: Agreement on the validation method of non-authoritative, non-deterministic BPI input data is an extension of non-repudiation of the commercial documents requirement, [[R9]](#r9) which is testable, because non-authoritative, non-deterministic BPI input data sources will be enumerated in a commercial document. Therefore, the requirement is testable.
 
 #### **[R318]** 
 A BPI workstep participant MUST be able to validate that the validation criteria of external non-authoritative,  non-deterministic input data to the BPI workstep has been met.
 
 *Appropriate data validation methods vary on a case-by-case basis depending upon the data types, sources and formats. As such, it is up to the BPI participants to agree upon the optimal validation method for their implementation. This includes design decisions such as what threshold of unresponsive oracles leads to a rejected input, how to aggregate the oracle responses and remove outliers, signing data to ensure provenance, implementing cryptographic mechanisms such as threshold signatures/secret sharing and TEEs such as Intel SGX or AMD SEV to obfuscate data from oracle providers.*
+
+[[R318]](#r318) Testability: Validation of non-authoritative, non-deterministic BPI input data is an extension of the state object validation requirement, [[R25]](#r25) which is testable, because non-authoritative, non-deterministic BPI input data sources will be part of a BPI state object. Therefore, the requirement is testable.
 
 ### 8.3.2 External Non-authoritative, non-deterministic BPI Input Data Variance
 
@@ -3065,11 +3077,15 @@ This document defines the conformance levels of a BPI as follows:
 * **Level 2:** All MUST and SHOULD requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
 * **Level 3:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
 
-#### **[D43]** 
-A claim that a BPI conforms to this specification at **level 1** SHOULD describe the testing procedure used to justify the claim.
+### **[D43]** 
+A claim that a BPI conforms to this specification SHOULD describe a testing procedure carried out for each requirement to which conformance is claimed, that justifies the claim with respect to that requirement.
+
+[[D43]](#d43) Testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, and can be described as required in [[D43]](#d43).
 
 #### **[R319]** 
-A claim that a BPI conforms to this specification at **level 2 or higher** MUST describe the testing procedure used to justify the claim.
+A claim that a BPI conforms to this specification at **Level 2** or higher MUST describe the testing procedure carried out for each requirement at **Level 2** or higher, that justifies the claim to that requirement.
+
+[[R319]](#r319) Testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, be described, be built and implemented and results can be recorded as required in [[R319]](#r319).
 
 *Note that BPI Integration requirements in section [5.5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#554-bi--and-multi-directional-and-mono-directional-bpi-interoperability-services) and section [5.6 Standardized Set of BPI Interoperability APIs](#56-standardized-set-of-bpi-interoperability-apis) are not mandatory for meeting conformance until there are at least two implementations conformant to Level 1 of this standards' requirements.*
 
@@ -3375,7 +3391,7 @@ def main(private field[4] siblingPath, private field[2] leafValue, private field
 
   return root 
 ```
-#### **[Commerical-Agreement-as-Verifiable-Credential]**
+#### **[Commercial-Agreement-as-Verifiable-Credential]**
 
 An example implementation of a signed Commercial Agreement using a verifiable credential. The VC below, showing an order between a buyer and seller, serves as input into a state object representing the Order. This example shows the binding contract between the buyer and the seller, the seller requesting the verification of the product order prior to its acceptance, and the buyer accepting the order if the functional terms are valid.
 
