@@ -216,24 +216,36 @@ A CCSM utilized in a BPI MUST support cryptographic algorithms based on commonly
 
 The usage of cryptographic libraries that successfully passed the National Institute of Standards and Technology (NIST) Cryptographic Module Verification Program (CMVP) is recommended.
 
+[[R1]](#r1) testability: Any security-audited cryptographic library will have test-vectors, and is, therefore, testable.
+
 #### **[R2]**	
 If the CCSM utilized in a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
+[[R2]](#r2) testability: libp2p as a very commonly used P2P message protocol supports end-to-end encryption, see [here](https://github.com/libp2p/specs/blob/master/noise/README.md) for the NOISE specification and relevant tests [here](https://github.com/libp2p/go-libp2p/blob/master/test-plans/cmd/ping/main.go). This shows that the requirement is testable. 
+
 #### **[R3]**	
 The CCSM utilized in a BPI MUST support CCSM Node Key Management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or ISO 27001 [[ISO27001](#iso27001)].
+
+[[R3]](#r3) testability: Given that there exist certification programs for [[FIPS](#fips)] or ISO 27001 [[ISO27001](#iso27001)], see for example the [NIST program]([[FIPS](#fips)] or ISO 27001 [[ISO27001](#iso27001)]), the requirement is testable.
 
 #### **[R4]**	
 The CCSM utilized in a BPI SHOULD support programmatic economic security assurances.
 
 *Note, economic security assurances such as those used in Proof-of-Stake consensus algorithms are designed to provide additional security assurances beyond those of cryptography in distributed systems. The security assurances are based on a system of economic incentives and disincentives for distributed system participants with the expressed goal that honest behavior of distributed system participants which enhances system security is in their economic self-interest. This is akin to determining if a cryptographic algorithm is secure or not, and what the level of security of said algorithm is, the security of a system of economic incentives and disincentives must be proven through a game theoretic security analysis.*
 
+[[R4]](#r4) testability: Programmatic economic security assurances are typically implemented within the CCSM's consensus protocol. Examples are Proof-of-Work for Bitcoin, and Proof-of-Stake for Ethereum, as common CCSMs. Ethereum's Proof-of-Stake protocol is specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
+
 #### **[D1]**	
 The CCSM utilized in a BPI SHOULD be compatible with CCSM protocol execution in Trusted Execution Environments (TEE).
 
 *Note, a TEE is a secure area of a main processor. It guarantees code and data loaded inside to be protected with respect to confidentiality and integrity. A TEE as an isolated execution environment provides security features such as isolated execution, integrity of applications executing within the TEE, along with confidentiality of their assets.*
 
+[[D1]](#d1) testability: An example of a CCSM utilizing a TEE is Hyperledger Sawtooth with its [test suite](https://github.com/hyperledger/sawtooth-core/tree/main/cli/tests). Therefore, the requirement is testable.
+
 #### **[R5]**	
 The CCSM utilized in a BPI MUST provide high network attack resistance and detection capabilities at the protocol level per ISO/IEC 27033 [ISO-IEC-27033](#iso-iec-27033).
+
+[[R5]](#r5) testability: Similar to ISO 27001, there are numerous ISO/IEC 27033 certification programs. Therefore, the requirement is testable. 
 
 Network attacks typically take the form of Distributed Denial of Service (DDOS) attacks, attacks from groups of malicious CCSM nodes performing CCSM reorganizations, front running of transactions through transaction injections, and censoring of transactions. This includes game theoretic attacks such as discouragement, extortion, value-extraction, or random oracle attacks.
 
@@ -245,10 +257,14 @@ The CCSM utilized in a BPI MUST support a secure consensus algorithm as explaine
 * if all non-faulty participating nodes produce an output indicating the termination, and subsequent restart, of the protocol upon reaching consensus (availability/liveness), and
 * if the network exhibits the capability to perform as intended if network nodes fail, either unintentionally or intentionally (fault tolerance).
 
+[[R6]](#r6) testability: Consensus security is proven mathematically, and a reference implementation with tests is then security audited. An example is Ethereum's Proof-of-Stake protocol specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
+
 #### **[R7]**	
 A CCSM utilized in a BPI MUST have one or more secure-by-construction or Verifiably Secure execution frameworks.
 
 See the glossary for a definition of Verifiably Secure and more details about CCSM supported execution frameworks in section [9 Data Integrity and Transaction Completeness ](#9-data-integrity-and-transaction-completeness).
+
+[[R7]](#r7) testability: CCSM execution frameworks can be verifiably secure if cryptographic proofs-of-correct execution of the execution stack trace can be independently verified to be correct. An example of such an execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable.  
 
 # 3. Privacy
 CCSMs range in the level of privacy they support. One approach ensures that the contents of a CCSM transaction or storage are meaningless to parties not participating in an interaction. Another more stringent approach is to use a CCSM that precludes the accessibility of such information to non-participating parties. This standard sets the minimum requirement to the first approach, but the parties can agree to require that the BPI supports the second approach.
@@ -256,21 +272,31 @@ CCSMs range in the level of privacy they support. One approach ensures that the 
 #### **[R8]**	
 The CCSM utilized in a BPI MUST support privacy preservation such that the contents of a CCSM transaction or CCSM storage does not carry meaning to parties not participating in a CCSM based interaction.
 
+[[R8]](#r8) testability: The ability to reason about privacy preservation tools such as hashes, Merkle proofs or other, more sophisticated, zero-knowledge proofs requires both a deterministic execution framework and the ability within this framework to reason about privacy-preserving cryptographic primitives. A widely utilized execution framework meeting both criteria is the EVM with its deterministic execution framework and the ability to reason about cryptographic primitives through the usage of EVM precompiles to perform elliptic curve operations. A comprehensive set of tests of the EVM specification itself including precompiles can be found [here](https://ethereum-tests.readthedocs.io/_/downloads/en/latest/pdf/). Therefore, the requirement is testable. 
+
 #### **[R9]**	
 The CCSM utilized in a BPI MUST support privacy preservation of transactions and their execution.
 
+[[R9]](#r9) testability: Reasoning about cryptographically shielded transactions and their execution against a given, yet hidden, state can be performed by, for example, zkEVM proofs as discussed in the [[R7]](#r7) testability statement verified on a CCSM using an EVM execution framework as discussed in the [[R8]](#r8) testability statement. As a consequence of both of those testability statements taken together, the requirement [[R9]](#r9) itself is testable.
+
 #### **[R10]**	
 The CCSM utilized in a BPI MUST support segregation between public and private state/data.
+
+[[R10]](#r10) testability: The testability of [[R10]](#r10) is consequence of the testability statements [[R7]](#r7) - [[R9]](#r9) since a private state can be represented as zero-knowledge proofs (private state data) embedded in the public state of a CCSM.
 
 #### **[D2]**	
 The CCSM utilized in a BPI SHOULD support a privacy-preserving P2P message protocol.
 
 Privacy-preserving in this context means that at least the content of a message, and ideally, also the sender and recipient, is opaque to all participants of the P2P network except sender and recipient.
 
+[[D2]](#d2) testability: Testability of this requirement is a direct consequence of the testability of [[R2]](#r2).
+
 #### **[D3]**	
 The CCSM utilized in a BPI SHOULD support Zero-Knowledge Proof (ZKP) verification (if not generation) at the protocol level.
 
 Zero-Knowledge Proofs (ZKPs) (see reference [[ZKP](#how-to-explain-zero-knowledge-protocols-to-your-children)]) are powerful cryptographic methods by which one party (the prover) can prove to another party (the verifier) that they know a value x -- the password to an online bank account --, without conveying any information apart from the fact that they know the value x -- the password. The essence of zero-knowledge proofs is that it is trivial to prove that one possesses knowledge of certain information by simply revealing it; the challenge is to prove such possession without revealing the information itself or any additional information. When combined with CCSMs, ZKPs allow participants to conduct business and exchange assets in the open without revealing anything about the business itself while any outside party can verify that the way business was conducted was in accordance with all applicable business and legal rules for a commercial transaction.
+
+[[D3]](#d3) testability: This requirement is a stronger requirement than [[R9]](#r9). The testability statement of [[R9]](#r9) references zkps. Therefore, [[D2]](#d2) is testable.
 
 # 4. Scalability
 To support the required commercial transaction volume between Baseline Protocol counterparties, the CCSM utilized by a BPI should be chosen with these transaction volumes in mind. Especially, since in a public CCSM setting there will be, potentially, a significant volume of transactions competing for scarce CCSM processing and storage resources. 
@@ -284,15 +310,21 @@ The CCSM utilized in a BPI SHOULD support secure data sources.
 
 This requirement means that a CCSM has a mechanism to securely connect its state through, for example, a smart contract with a data source which has certain security assurances in such a way that: a) the security of the data source is not compromised by the CCSM and b) the security assurances of the CCSM are not compromised by the secure data source.
 
+[[D4]](#d4) testability: An example of such a secure data  source is a zkEVM operating on a CCSM, and since a zkEVM is testable as shown in the [[R7]](#r7) testability statement, this requirement is testable.
+
 #### **[D5]**	
 When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use the same CCSM Protocol, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
 An example of such techniques is a two-phase lock relay bridge. Two-phase locking (2PL) is a concurrency control method that guarantees serializability. The protocol utilizes locks, applied by a CCSM transaction to data/assets, which may block other CCSM transactions from accessing the same data/assets during the lifecycle of a transaction impacting said data/asset(s). This protocol requires support for CCSM transaction receipts signaling CCSM transaction lifecycle completeness. This approach requires a relay server (network) between the two CCSMs which interacts with the locking/unlocking smart contracts on each of the CCSMs. Since both CCSMs operate the same CCSM protocol the relay server can be a node on both networks which does not introduce further security assumptions.
 
+[[D5]](#d5) testability: An example of a protocol with a test suite satisfying the requirement is the [GPACT](https://github.com/ConsenSys/gpact) protocol for EVM-compatible CCSMs. Therefore, the requirement is testable.  
+
 #### **[D6]**	
 When transactions connect one CCSM with another CCSM for the purpose of interoperating assets or data across BPIs, and the CCSMs use different CCSM Protocols, the CCSM utilized in a BPI SHOULD support asset and data locking techniques to prevent double-spend/usage of assets.
 
 An example of such techniques are Atomic Swap protocols. An atomic swap is a CCSM smart contract technology that enables the exchange of one CCSM asset for another without using centralized intermediaries, such as exchanges.
+
+[[D6]](#d6) testability: Since CCSMs using different protocols can still use the same execution framework such as Avalanche, or Hedera using an EVM-compatible execution client, the [GPACT](https://github.com/ConsenSys/gpact) protocol protocol can be utilized for CCSM interoperability. Therefore, and based on the [[D5]](#d5) testability statement, this requirement is testable.
 
 # 6. Network
 Network in this context refers to the nodes of a CCSM that form the CCSM network. A CCSM node has several components that impact the network namely its Peer-to-Peer (P2P) message protocol and its consensus algorithm. 
@@ -302,10 +334,14 @@ It is important that Peer-to-Peer (P2P) message protocols are used that do not r
 #### **[R11]**	
 A CCSM utilized in a BPI MUST support a P2P message protocol that does not require network leader nodes.
 
+[[R11]](#r11) testability: libp2p as a very commonly used [P2P message protocol](https://github.com/libp2p/specs) with a test suite [here](https://github.com/libp2p/go-libp2p/blob/master/test-plans/cmd/ping/main.go) is a leaderless protocol using peer-gossiping. This shows that the requirement is testable.
+
 The network requirements on the consensus algorithms are even more stringent than on the P2P protocol. Additional requirements on the consensus algorithm of the CCSM are discussed in the next section, section [7. Consensus](#7-consensus).
 
 #### **[R12]** 
 The CCSM utilized in a BPI MUST be Byzantine Fault Tolerant (BFT) [[BFT](#the-byzantine-generals-problem)].
+
+[[R12]](#r12) testability: Ethereum's Proof-of-Stake consensus protocol satisfies the BFT requirements as specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
 
 #### **[R13]** 
 The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony. 
@@ -313,6 +349,8 @@ The CCSM utilized in a BPI MUST be able to operate under Weak Synchrony.
 Weak synchrony in this context means:
 1. That all messages will eventually reach their intended recipients
 2. That after a certain, yet unknown time, the network will become synchronous again
+
+[[R13]](#r13) testability: For a CCSM to operate under Weak Synchrony, both its messaging implementation and its consensus protocol implementation must satisfy the condition. Both libp2p and Ethereum's Proof-of-Stake consensus protocol implementations operate under weak synchrony per their specifications and as testable by their test suites. This means combining the [[R11]](#r11) and [[R12]](#r12) testability statements shows that this requirement is testable.
 
 # 7. Consensus
 The consensus algorithm is the most important component of a CCSM as it ensures the consistency of the network at any given time. Therefore, the requirements on the consensus algorithms are very stringent.
@@ -322,18 +360,26 @@ The CCSM utilized in a BPI MUST be able to support more than one BFT consensus a
 
 This is also known as plugable consensus. Note, that deterministic BFT consensus algorithms lead to strong consistency, and, thus, immediate finality. Probabilistic BFT consensus algorithms lead to eventual consistency, and, thus, eventual finality.
 
+[[R14]](#r14) testability: Any CCSM where the execution client is separate from the consensus client can support multiple BFT consensus algorithms. A well known example is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.  
+
 #### **[R15]**	
 Consensus algorithms employed in the CCSM utilized in a BPI MUST have a mathematical proof of security.
 
 A mathematical proof of security is a collection of mathematically provable theorems that make security statements about the three characteristics of a consensus algorithm -- consistency/safety, availability/liveness and fault tolerance and is based on specific operating assumptions of the protocol.
 
+[[R15]](#r15) testability: All well-known consensus algorithms have peer-reviewed papers with a mathematical security proof. A peer-reviewed overview of mathematical security proofs of the most popular consensus algorithms can be found [here](https://vtechworks.lib.vt.edu/bitstream/handle/10919/110096/Xiao_Y_D_2022.pdf?sequence=1&isAllowed=y)
+
 #### **[D7]**	
 Consensus algorithms employed in the CCSM utilized in a BPI SHOULD include economic security assurances with game theoretic security proofs.
+
+[[D7]](#d7) testability: An example of such a consensus algorithm is Ethereum's Proof-of-Stake protocol specified [here](https://arxiv.org/abs/1710.09437) including a game theoretic security analysis and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
 
 #### **[D8]**	
 Consensus algorithms employed in the CCSM utilized in a BPI SHOULD require not more than order N messages to reach consensus where N is the number of nodes in the network.
 
 *Note that the larger the number of nodes, the higher the level of security. Also, note that performance for certain consensus algorithms degrades quickly as the number of nodes increases because of the number of messages required to exchange between them to achieve consensus can grow very quickly. Therefore, algorithms that scale in the number of nodes without significant performance degradation are preferred. Also, note that network performance such as poor network latency can lead to severe issues such as consensus failure if an algorithm requires the exchange of large numbers of messages to reach consensus.*
+
+[[D8]](#d8) testability: An example of such a consensus algorithm requiring only O(N) messages is Ethereum's Proof-of-Stake protocol specified [here](https://arxiv.org/abs/1710.09437) because of its eventual finality feature. Tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
 
 # 8. Virtual State Machine
 CCSMs most often utilize a virtual state machine (VSM) for CCSM computations of CCSM state transitions; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework. 
@@ -345,19 +391,29 @@ All CCSM nodes need to arrive at the same result based on the same input and exe
 
 For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet confirmed by CCSM consensus. This means that if the transaction of the Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending which transaction is executed first.
 
+[[R16]](#r16) testability: An example of such a deterministic execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable. 
+
 #### **[R17]**	
 The Execution Framework of the CCSM utilized in a BPI MUST ensure that state transition computations are either completed or aborted in finite time.
 
 What is deemed to be a suitable finite time is determined by the commercially allowable duration of a commercial transaction. This requirement means that there cannot be infinite computational loops in a distributed computational system with consensus, as this would not allow the CCSM network to reach consensus anymore and bring the CCSM network itself to a halt. Note also, that when a CCSM node is offline, the virtual state machine’s Execution Framework does not perform computations; when a CCSM node comes back online, and synchronizes with the state of the CCSM network, it only validates the last available state - either a global state or specific to that node. 
 
+[[R17]](#r17) testability: An example of such a non-Turing-complete execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace with guaranteed completion for every transaction can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable.
+
 #### **[R18]**	
 The Execution Framework of the CCSM utilized in a BPI MUST support widely used cryptographic operations natively, e.g., hashing, digital signatures, or zero-knowledge proof verification.
+
+[[R18]](#r18) testability: An example of such an Execution Framework is the EVM as implemented in the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.
 
 #### **[D9]**	
 The Execution Framework of the CCSM utilized in a BPI SHOULD have a mathematical proof of correctness and security.
 
+[[D9]](#d9) testability: An example of such an execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper) with an associated security-audited implementation and test suite in the [Hyperledger Besu client](https://github.com/hyperledger/besu). Therefore, the requirement is testable.
+
 #### **[R19]**	
 The Execution Framework of the CCSM utilized in a BPI MUST be Verifiably Secure. 
+
+[[R19]](#r19) testability: CCSM execution frameworks can be verifiably secure if cryptographic proofs-of-correct execution of the execution stack trace can be independently verified to be correct. An example of such an execution framework is the Ethereum Virtual Machine (EVM) with its [specification](https://github.com/ethereum/yellowpaper). Proofs-of-correct execution of the EVMs stack trace can be implemented and tested in the context of, for example, a zero-knowledge Ethereum Virtual Machine (zkEVM) that produces such proofs in zero-knowledge with [tests showing conformance to the EVM specification](https://github.com/0xpolygonhermez). Therefore, the requirement is testable.
 
 # 9. Data Integrity and Transaction Completeness
 Data integrity over time, in other words the inability to alter data once it has been committed to the state of the CCSM, is one of the key features of typical CCSMs.
@@ -365,15 +421,21 @@ Data integrity over time, in other words the inability to alter data once it has
 #### **[R20]**	
 If the CCSM utilized in a BPI is strongly consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7).
 
+[[R20]](#r20) testability: An example of such a CCSM is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum using the supported [QBFT consensus algorithm](https://github.com/hyperledger/besu/tree/main/consensus/qbft) and with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.
+
 #### **[R21]**	
 If the CCSM utilized in a BPI is eventually consistent (as defined in section [7. Consensus](#7-consensus)), data committed to the state of the CCSM MUST NOT be alterable after the CCSM state has been finalized (as defined in section 7). 
 
 Besides data integrity, the notion of censorship-resistance, or the inability of anyone participant in a CCSM to stop any other participant’s transaction to be eventually included in the CCSM state, is another key feature of typical CCSMs. It conveys the concept of a network without a central authority that can stop things from happening at will. This can be formalized as follows.
 
+[[R21]](#r21) testability: An example of such a CCSM is Ethereum with its Proof-of-Stake protocol that guarantees eventual finality and is specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
+
 #### **[R22]**	
 The CCSM utilized in a BPI MUST guarantee that a transaction compliant with the CCSM protocol rules is eventually included in the state of the CCSM, if the security assumptions of the utilized consensus protocol remain valid during transaction processing (see section [6. Network](#6-network) for details on the security assumptions of consensus algorithms).
 
 The reason why the reference to the consensus algorithm is important is as follows: To guarantee processing of a transaction, one needs only one honest CCSM node in the network. However, this is not sufficient to guarantee consensus. Therefore, and to include a submitted transaction in the CCSM state, there needs to be an honest majority of CCSM nodes to reach consensus on the submitted transaction.
+
+[[R22]](#r22) testability: An example of such a CCSM is Ethereum with its Proof-of-Stake protocol that guarantees eventual finality and is specified [here](https://arxiv.org/abs/1710.09437) and tests of a security audited reference implementation can be found [here](https://github.com/prysmaticlabs/prysm/tree/develop/testing). Therefore, the requirement is testable.
 
 # 10. Integration Capabilities with External Systems 
 
@@ -384,26 +446,38 @@ The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said C
 
 Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].
 
+[[R23]](#r23) testability: An example of such a CCSM is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable. 
+
 #### **[R24]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support roles & access management.
 
+[[R24]](#r24) testability: An example of such a CCSM is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.
+
 #### **[R25]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support policy management.
+
+[[R25]](#r25) testability: An example of such a CCSM is the [Hyperledger Besu client](https://github.com/hyperledger/besu) for Ethereum with a well-defined [test suite](https://github.com/hyperledger/besu/tree/main/acceptance-tests). Therefore, the requirement is testable.
 
 #### **[R26]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Single-Sign-On (SSO).
 
 See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).
 
+[[R26]](#r26) testability: SSO can be combined with Oauth2 using for example [OpenID Connect certified implementations](https://openid.net/developers/certified/) which have certification test suites. Since Oauth2 is supported by the [Hyperledger Besu client](https://github.com/hyperledger/besu), the requirement is testable.
+
 #### **[R27]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Multi-Factor authentication (MFA).
 
 See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).
 
+[[R27]](#r27) testability: SSO can be combined with MFA suing for example [the open-source Authelia framework](https://github.com/authelia/authelia) with its test suit. Therefore, [[R27]](#r27) testability is a testable extension of [[R26]](#r26) testability.
+
 #### **[R28]**	
 The CCSM utilized in a BPI or the CCSM Abstraction Layer interacting with said CCSM MUST support Hardware Security Modules (HSM). 
 
 This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].
+
+[[R28]](#r28) testability: HSMs can be readily integrated with [OIDC using for example Authelia together with a commercial HSM](https://www.authelia.com/integration/openid-connect/hashicorp-vault/). Therefore, [[R28]](#r28) testability is a testable extension of [[R27]](#r27) testability.
 
 # 11 Conformance
 
@@ -426,6 +500,16 @@ This document defines the conformance levels of a CCSM as follows:
 * **Level 4:** All MUST requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
 * **Level 5:** All MUST and SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
 * **Level 6:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by the test report defined in this document that proves the implementation's conformance with each requirement based on test-fixtures with test-fixture inputs as defined in this document. **This conformance level cannot yet be achieved since there is not yet a defined set of standardized test-fixtures and test-inputs**.
+
+#### **[D10]** 
+A claim that a canonical token list implementation conforms to this specification SHOULD describe a testing procedure carried out for each requirement to which conformance is claimed, that justifies the claim with respect to that requirement.
+
+[[D10]](#d10) testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, and can be described as required in [[D10]](#d10).
+
+#### **[R29]** 
+A claim that a canonical token list implementation conforms to this specification at **Level 2** or higher MUST describe the testing procedure carried out for each requirement at **Level 2** or higher, that justifies the claim to that requirement.
+
+[[R29]](#r29) testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, be described, be built and implemented and results can be recorded as required in [[R29]](#r29).
 
 -------
 
