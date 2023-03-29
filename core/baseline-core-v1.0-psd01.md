@@ -2851,8 +2851,13 @@ As has been done throughout this document, there are BPI layer-specific privacy 
 #### **[R288]**	
 Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 
+[[R288]](#r288) Testability: Since BPI Storage supports testable policy management (see [[R284]](#r284)), and since preventing PII storage can be cast into a policy, the requirement is teatble because of testability of [[R284]](#r284).
+
+
 #### **[D39]**	
 BPI Storage arranged in a network SHOULD utilize privacy-preserving P2P message protocols.
+
+[[D39]](#d39) Testability: Since BPI Storage arranged in a network can support pairwise key/identity relationships between storage nodes in a testable manner (see [[R282]](#r282)), and since with pairwise key/identity relationships between storage nodes any messages between storage nodes can be asymmetrically encrypted which guarantees privacy of exchanged messages between storage nodes, the requirement is testable.
 
 ## 7.3. BPI Data Orchestration
 
