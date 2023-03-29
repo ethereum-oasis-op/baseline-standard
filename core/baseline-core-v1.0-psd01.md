@@ -2816,23 +2816,33 @@ BPI Storage MUST be compatible with commonly used external authentication servic
 #### **[R283]**	
 BPI Storage MUST support roles & access management.
 
+[[R283]](#r283) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support [Role Based Access Management (RBAC)](https://www.postgresql.org/docs/current/user-manag.html). Therefore, the requirement is testable. 
+
 #### **[R284]**	
 BPI Storage MUST support policy management.
+
+[[R284]](#r284) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support Policy Management such as [row based policy management](https://www.postgresql.org/docs/current/ddl-rowsecurity.html). Therefore, the requirement is testable.
 
 #### **[R285]**	
 BPI Storage MUST support Single-Sign-On (SSO).
 
 *See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).*
 
+[[R285]](#r285) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support [SSO](https://www.postgresql.org/docs/10/auth-methods.html). Therefore, the requirement is testable.
+
 #### **[R286]**	
 BPI Storage MUST support multi-factor authentication (MFA)
 
 *See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
+[[R286]](#r286) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support MFA by allowing up to three authentication factors in a user authentication policy, see [user creation](https://dev.mysql.com/doc/refman/8.0/en/create-user.html). Therefore, the requirement is testable.
+
 #### **[R287]**	
 BPI Storage MUST support hardware security modules (HSM). 
 
 *This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].*
+
+[[R287]](#r287) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support [cryptographic key based authentication frameworks such as Oauth-2.0](https://www.postgresql.org/docs/10/auth-methods.html). Since the private keys associated with the public keys used in cryptographic key based authentication frameworks can be managed in HSM-based services such as [AWS KMS](https://aws.amazon.com/kms/), the requirement is testable.
 
 ## 7.2. BPI Storage Privacy
 
