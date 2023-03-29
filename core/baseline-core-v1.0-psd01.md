@@ -2792,18 +2792,26 @@ As has been done throughout this document, there are BPI layer-specific security
 #### **[R279]** 
 Data in transit in a BPI MUST be encrypted.
 
+[[R279]](#r279) Testability: Any data submitted through a common communication/messaging protocol such as TCP/IP or libp2p can be encrypted using widely available, security audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
+
 #### **[R280]** 
 Data at rest in a BPI MUST be encrypted.
+
+[[R280]](#r280) Testability: Any data stored in a common, widely used storage medum such as a database can be encrypted either through native cryptographic libraries or using widely available, security audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
 
 #### **[R281]**	
 BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
 
 *This is also known as a secure connection.*
 
+[[R281]](#r281) Testability: An example of BPI Storage organized in a network could be an open-source [PostgreSQL](https://www.postgresql.org/) data base cluster with replication across different geographies. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] betweenc client and server and between servers, and since PostgreSQL has an extensive testuite including for OAuth-2.0, the requirement is testable.
+
 #### **[R282]**	
 BPI Storage MUST be compatible with commonly used external authentication services. 
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
+
+[[R282]](#r282) Testability: An example of BPI Storage could be an open-source [PostgreSQL](https://www.postgresql.org/) data base. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] between client and server and between servers, and since PostgreSQL has an extensive testuite including for OAuth-2.0, the requirement is testable.
 
 #### **[R283]**	
 BPI Storage MUST support roles & access management.
