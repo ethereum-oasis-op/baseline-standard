@@ -3263,6 +3263,11 @@ Decentralized Identity Foundation, DIDComm Messaging Editor's Draft, https://ide
 #### **[SIOP]** 
 Decentralized Identity Foundation, Self-Issued OpenID Connect Provider DID Profile v0.1, https://identity.foundation/did-siop/
 
+#### **[W3C-String-Meta]**
+
+Strings on the Web: Language and Direction Metadata, R. Ishida, A. Phillips, August 2022,
+https://www.w3.org/TR/string-meta/
+
 ## A.3 Example References
 
 #### **[Functional-Terms-Implemented-as-Zero-Knowledge-Circuit]**
@@ -3590,7 +3595,7 @@ The standard does not set any requirements for compliance to jurisdiction legisl
 The standard does not set any requirements for the use of specific applications/tools/libraries etc. The implementer should perform due diligence when selecting specific applications/tools/libraries.
 
 ## B.3 Internationalization and Localization Reference
-The standard encourages implementers to follow the [W3C "Strings on the Web: Language and Direction Metadata" best practices guide](#W3C-String-Meta) for identifying language and base direction for strings used on the Web wherever appropriate. 
+The standard encourages implementers to follow the [W3C "Strings on the Web: Language and Direction Metadata" best practices guide](#w3c-string-meta) for identifying language and base direction for strings used on the Web wherever appropriate. 
 
 <!--
 
