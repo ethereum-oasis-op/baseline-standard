@@ -3013,13 +3013,19 @@ This document lists the requirements for either option and indicates the differe
 * *Support for database clustering to process high data volumes in short periods of time (sub second processing)*
 * *Security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)]*  
 
+[[R309]](#r309) Testability: An example of a BPI consistent with the requirement is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite in line with enterprise-grade data base solutions, the requirement is testable.
+
 #### **[O8]** 
 Centralized BPI Storage MAY be partially persistent. 
+
+[[O8]](#o8) Testability: An example of centralized BPI Stroage that can be made partially consistent by restricing writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite, the requirement is testable.
 
 #### **[CR34]>[O8]** 
 Partially Persistent BPI Storage  MUST be append-only.
 
 *Non-normative examples of such data bases are, but not limited to, OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.*
+
+[[CR34]>[O8]](#cr34o8) Testability: An example of centralized BPI Stroage that is append-only by restricing writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite, the requirement is testable.
 
 ### 7.5.2 BPI Storage: Decentralized Deployment
 
@@ -3030,13 +3036,19 @@ BPI Storage  MUST support authenticated naming systems.
 
 *Non-normative examples include, but are not limited to, certificate authorities or a self-certifying PKI namespace.* 
 
+[[R310]](#r310) Testability: A BPI Storage through one or more access endpointa can be listed in the `Services` section of a DID document. Since BPI Subjects can be associated with a DID of a given DID method -- the authenticated naming system --, and since a DID can be resolved to its DID Document including ite 'Services' section and the cryptographic keys associated with the DID capabilities, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
+
 #### **[R311]**	
 BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
+
+[[R311]](#r311) Testability: An example of a BPI Stroage that can replicate large data sizes is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite, the requirement is testable.
 
 #### **[R312]**	
 BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
 
 *Non-normative examples are [libp2p](#libp2p) or distributed hash tables [[DHT]](#dht).*
+
+[[R312]](#r312) Testability: An example of BPI Storage that allows for locating other data peer and data objects is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite. Therefore, the requirement is testable.
 
 #### **[R313]**	
 BPI Storage  MUST support a Network Protocol that handles:
@@ -3045,16 +3057,24 @@ BPI Storage  MUST support a Network Protocol that handles:
 * Encryption, signing, or clear communications
 * Multi-multiplexes such as Multiplex connections, streams, protocols, peers
 
+[[R313]](#r313) Testability: An example of BPI Storage that incorporates a Network Protocol as described in the requirement is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite, because it utilizes the P2P Network Protocol [libp2p](#libp2p) with its complete test suite that has the required properties. Therefore, the requirement is testable.
+
 #### **[R314]**	
 Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
 *Non-normative examples are conflict-free replicated data types [[CRDT](#crdt)] or Interval Tree Clocks [[ITC](#itc)] to ensure eventual data consistency.*
 
+[[R313]](#r313) Testability: An example of a Fully Persistent BPI Stroage that supports Generalized Time Stamps is the [CRDT Extension](https://github.com/supabase/pg_crdt) of the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite as well as the CRDT extension, the requirement is testable.
+
 #### **[O9]** 
 Decentralized BPI Storage MAY be partially persistent.
 
+[[O9]](#o9) Testability: An example of a Decentralized BPI Storage that is partially persistent is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite. Therefore, the requirement is testable.
+
 #### **[CR35]>[O9]**	
 Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
+
+[[R313]](#r313) Testability: Since the PostGres data base can be made partially persistent according to the testable requirement [[O8]](#o8) and since since Postgres supports CRDTs as shown in the testable requirement [[R313]](#r313), the requirment is testable. 
 
 -------
 # 8 BPI External Data Inputs
