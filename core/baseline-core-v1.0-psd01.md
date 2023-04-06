@@ -2866,8 +2866,12 @@ To accommodate a high-volume, low latency environment with many data changes, BP
 #### **[R289]**	
 Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
 
+[[R289]](#r289) Testability: Data Orchestration solutions without a single point of failure are distributed. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+
 #### **[R290]**	
 Data Orchestration utilized in a BPI MUST preserve source consistency. 
+
+[[R290]](#r290) Testability: Data Orchestration solutions preserving source consistency typically utilize a queued, redundant publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 *To avoid subscribers seeing partial and/or inconsistent data, BPI Data Orchestration has the following requirements:*
 
@@ -2876,44 +2880,68 @@ Data Orchestration utilized in a BPI MUST implement transaction boundaries.
 
 *This means that a single user's action can trigger atomic updates.*
 
+[[R291]](#r291) Testability: Data Orchestration solutions with transaction boundaries typically utilize topic-driven publish/subscribe messaging models. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+
 #### **[R292]**	
-Data Orchestration utilized in a BPI MUST Commit the exact order in which operations happened on the primary database.
+Data Orchestration utilized in a BPI MUST commit the exact order in which operations happened on the primary database.
+
+[[R292]](#r292) Testability: Data Orchestration solutions which commit to and preserve operations order utilize a publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R293]**	
 Data Orchestration utilized in a BPI MUST support a consistent state.
 
+[[R293]](#r293) Testability: Data Orchestration solutions that support a consistent state typically utilize a queued publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created to preserve state by maintaining a history of state changes. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+
 #### **[R294]**	
-Data Orchestration utilized in a BPI MUST support User-space processing. 
+Data Orchestration utilized in a BPI MUST support user-space processing. 
 
 *In the context of this document, this requirement establishes a capability that allows for one or more computations outside a database to be triggered by a data change in the data storage system.*
+
+[[R294]](#r294) Testability: Data Orchestration solutions that support user-space processing typically utilize a topic-driven publish/subscribe messaging system where messages either trigger outside computations and/or data storage operations or are the result of outside computations and/or data storage operations. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R295]**	
 Data Orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
 
+[[R295]](#r295) Testability: Data Orchestration solutions that make no assumptions about consumer uptime utilize a topic-driven publish/subscribe messaging system where messages are kept in topic queues until they are consumed by a subscribing application (consumer). An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+
 #### **[R296]**	
 Data Orchestration utilized in a BPI MUST isolate data source and consumers.
+
+[[R296]](#r296) Testability: Data Orchestration solutions that isolate data source (producer) and consumer utilize a topic-driven publish/subscribe messaging system. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R297]**	
 Data Orchestration utilized in a BPI MUST support low latency.
 
 *Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.*
 
+[[R297]](#r297) Testability: There are many Data Orchestration solutions that are low latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+
 #### **[R298]**	
 Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes at any point in time.
+
+[[R298]](#r298) Testability: There are many Data Orchestration solutions that are highly scalable, highly redundant to guarantee high-availability and have low latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 *The BPI Data Orchestration must include the following four components:*
 
 #### **[R299]**	
 The Data Orchestration Layer utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
 
+[[R299]](#r299) Testability: Data Orchestration solutions with fetcher capabilities typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+
 #### **[R300]**	
 The Data Orchestration Layer utilized in a BPI MUST include a log store that caches the generated data change stream.
+
+[[R300]](#r300) Testability: Data Orchestration solutions with a log store typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
 
 #### **[R301]**	
 The Data Orchestration Layer utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
 
+[[R301]](#r301) Testability: Data Orchestration solutions with a snapshot store typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+
 #### **[R302]**	
-The Data Orchestration Layer utilized in a BPI MUST include a subscription client pulling change events seamlessly across various components and servicing them to a service in a BPI.
+The Data Orchestration Layer utilized in a BPI MUST include a subscription client pulling change events with low-latency across various components and servicing them to a service in a BPI.
+
+[[R302]](#r302) Testability: Data Orchestration solutions typically utilize a subscription client. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
 
 ## 7.4 BPI-External Storage: Edge Storage
 
