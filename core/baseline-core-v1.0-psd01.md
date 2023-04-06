@@ -2954,26 +2954,42 @@ BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI u
 * *All messages will eventually reach their intended recipients* 
 * *After a certain, yet unknown, time the network will become synchronous again*
 
+[[R303]](#r303) Testability: Eventual consistency between different BPI storage can be achieved utilizing a P2P messaging solution with eventual consistency for data synchronization. Such a P2P solution is [libp2p](https://github.com/libp2p/go-libp2p) with its complete testsuite. Therefore, the requirement is testable 
+
 #### **[R304]**	
 Replication conflicts MUST be automatically detectable. 
+
+[[R304]](#r304) Testability: An example of external BPI storage that can detect replication conflicts automatically is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite including replication tests, the requirement is testable.
 
 #### **[R305]** 
 Replication conflicts MUST be resolvable either automatically or manually.
 
+[[R305]](#r305) Testability: An example of external BPI storage that can resolve replication conflicts automatically (e.g. rejecting conflicing updates), as well as manually (e.g. update a table update SQL procedure) is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite including replication tests, the requirement is testable.
+
 #### **[R306]**	
 BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
+
+[[R306]](#r306) Testability: libp2p as a very commonly used P2P message/wire protocol supports end-to-end encryption, see [here](https://github.com/libp2p/specs/blob/master/noise/README.md) for the NOISE specification and relevant tests [here](https://github.com/libp2p/go-libp2p/blob/master/test-plans/cmd/ping/main.go) as well as authentication and authorization solutions such as OAuth-2.0. This shows that the requirement is testable.
 
 #### **[D40]**	
 BPI Edge Storage SHOULD be able to cryptographically sign messages.
 
+[[D40]](#d40) Testability: An example of external BPI storage that can sign messages is the open-source [PostgreSQL](https://www.postgresql.org/) data base using SSL, and since PostgreSQL has an extensive testuite including SSL certificate testing, the requirement is testable.
+
 #### **[D41]**	
 BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delegates within a BPI.
+
+[[D41]](#d41) Testability: A BPI Storage access endpoint can be listed in the `Services` section of a DID document. Since BPI Subjects as members of a Worjgroup can be associated with a DID, and since a DID can be resolved to its DID Document including ite 'Services' section, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
 
 #### **[R307]**	
 BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
+[[R307]](#r307) Testability: Since OAuth-2.0 can utilize DIDs which can be used as BPI identifiers and identities, and since the open-source [PostgreSQL](https://www.postgresql.org/) data base supports OAuth-2.0, and since PostgreSQL has an extensive testuite including OAuth-2.0 tests, the requirement is testable.
+
 #### **[R308]**	
 BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data (see section [7.5 BPI-Internal Storage](#75-bpi-internal-storage)) requirements for security, privacy, and integration.
+
+[[R308]](#r308) Testability: Since BPI Edge Storage is a type of BPI Storage that could be used in a BPI and since all the requirements in section 7.5 BPI-Internal Storage](#75-bpi-internal-storage)) are testable, this requirement is testable as well.
 
 ## 7.5 BPI-Internal Storage 
 
