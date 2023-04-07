@@ -2804,14 +2804,14 @@ BPI Storage arranged in a network MUST support pairwise key/identity relationshi
 
 *This is also known as a secure connection.*
 
-[[R281]](#r281) Testability: An example of BPI Storage organized in a network could be an open-source [PostgreSQL](https://www.postgresql.org/) data base cluster with replication across different geographies. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] betweenc client and server and between servers, and since PostgreSQL has an extensive testuite including for OAuth-2.0, the requirement is testable.
+[[R281]](#r281) Testability: An example of BPI Storage organized in a network could be an open-source [PostgreSQL](https://www.postgresql.org/) data base cluster with replication across different geographies. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] betweenc client and server and between servers, and since PostgreSQL has an extensive test suite including for OAuth-2.0, the requirement is testable.
 
 #### **[R282]**	
 BPI Storage MUST be compatible with commonly used external authentication services. 
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
 
-[[R282]](#r282) Testability: An example of BPI Storage could be an open-source [PostgreSQL](https://www.postgresql.org/) data base. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] between client and server and between servers, and since PostgreSQL has an extensive testuite including for OAuth-2.0, the requirement is testable.
+[[R282]](#r282) Testability: An example of BPI Storage could be an open-source [PostgreSQL](https://www.postgresql.org/) data base. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] between client and server and between servers, and since PostgreSQL has an extensive test suite including for OAuth-2.0, the requirement is testable.
 
 #### **[R283]**	
 BPI Storage MUST support roles & access management.
@@ -2851,7 +2851,7 @@ As has been done throughout this document, there are BPI layer-specific privacy 
 #### **[R288]**	
 Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 
-[[R288]](#r288) Testability: Since BPI Storage supports testable policy management (see [[R284]](#r284)), and since preventing PII storage can be cast into a policy, the requirement is teatble because of testability of [[R284]](#r284).
+[[R288]](#r288) Testability: Since BPI Storage supports testable policy management (see [[R284]](#r284)), and since preventing PII storage can be cast into a policy, the requirement is testable because of testability of [[R284]](#r284).
 
 
 #### **[D39]**	
@@ -2959,12 +2959,12 @@ BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI u
 #### **[R304]**	
 Replication conflicts MUST be automatically detectable. 
 
-[[R304]](#r304) Testability: An example of external BPI storage that can detect replication conflicts automatically is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite including replication tests, the requirement is testable.
+[[R304]](#r304) Testability: An example of external BPI storage that can detect replication conflicts automatically is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite including replication tests, the requirement is testable.
 
 #### **[R305]** 
 Replication conflicts MUST be resolvable either automatically or manually.
 
-[[R305]](#r305) Testability: An example of external BPI storage that can resolve replication conflicts automatically (e.g. rejecting conflicing updates), as well as manually (e.g. update a table update SQL procedure) is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite including replication tests, the requirement is testable.
+[[R305]](#r305) Testability: An example of external BPI storage that can resolve replication conflicts automatically (e.g. rejecting conflicing updates), as well as manually (e.g. update a table update SQL procedure) is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite including replication tests, the requirement is testable.
 
 #### **[R306]**	
 BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
@@ -2974,7 +2974,7 @@ BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
 #### **[D40]**	
 BPI Edge Storage SHOULD be able to cryptographically sign messages.
 
-[[D40]](#d40) Testability: An example of external BPI storage that can sign messages is the open-source [PostgreSQL](https://www.postgresql.org/) data base using SSL, and since PostgreSQL has an extensive testuite including SSL certificate testing, the requirement is testable.
+[[D40]](#d40) Testability: An example of external BPI storage that can sign messages is the open-source [PostgreSQL](https://www.postgresql.org/) data base using SSL, and since PostgreSQL has an extensive test suite including SSL certificate testing, the requirement is testable.
 
 #### **[D41]**	
 BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delegates within a BPI.
@@ -2984,7 +2984,7 @@ BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delega
 #### **[R307]**	
 BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
-[[R307]](#r307) Testability: Since OAuth-2.0 can utilize DIDs which can be used as BPI identifiers and identities, and since the open-source [PostgreSQL](https://www.postgresql.org/) data base supports OAuth-2.0, and since PostgreSQL has an extensive testuite including OAuth-2.0 tests, the requirement is testable.
+[[R307]](#r307) Testability: Since OAuth-2.0 can utilize DIDs which can be used as BPI identifiers and identities, and since the open-source [PostgreSQL](https://www.postgresql.org/) data base supports OAuth-2.0, and since PostgreSQL has an extensive test suite including OAuth-2.0 tests, the requirement is testable.
 
 #### **[R308]**	
 BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data (see section [7.5 BPI-Internal Storage](#75-bpi-internal-storage)) requirements for security, privacy, and integration.
@@ -3013,19 +3013,19 @@ This document lists the requirements for either option and indicates the differe
 * *Support for database clustering to process high data volumes in short periods of time (sub second processing)*
 * *Security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)]*  
 
-[[R309]](#r309) Testability: An example of a BPI consistent with the requirement is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite in line with enterprise-grade data base solutions, the requirement is testable.
+[[R309]](#r309) Testability: An example of a BPI consistent with the requirement is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite in line with enterprise-grade data base solutions, the requirement is testable.
 
 #### **[O8]** 
 Centralized BPI Storage MAY be partially persistent. 
 
-[[O8]](#o8) Testability: An example of centralized BPI Stroage that can be made partially consistent by restricing writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite, the requirement is testable.
+[[O8]](#o8) Testability: An example of centralized BPI Stroage that can be made partially consistent by restricing writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
 
 #### **[CR34]>[O8]** 
 Partially Persistent BPI Storage  MUST be append-only.
 
 *Non-normative examples of such data bases are, but not limited to, OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.*
 
-[[CR34]>[O8]](#cr34o8) Testability: An example of centralized BPI Stroage that is append-only by restricing writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite, the requirement is testable.
+[[CR34]>[O8]](#cr34o8) Testability: An example of centralized BPI Stroage that is append-only by restricing writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
 
 ### 7.5.2 BPI Storage: Decentralized Deployment
 
@@ -3041,7 +3041,7 @@ BPI Storage  MUST support authenticated naming systems.
 #### **[R311]**	
 BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
 
-[[R311]](#r311) Testability: An example of a BPI Stroage that can replicate large data sizes is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite, the requirement is testable.
+[[R311]](#r311) Testability: An example of a BPI Stroage that can replicate large data sizes is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
 
 #### **[R312]**	
 BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
@@ -3064,7 +3064,7 @@ Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
 *Non-normative examples are conflict-free replicated data types [[CRDT](#crdt)] or Interval Tree Clocks [[ITC](#itc)] to ensure eventual data consistency.*
 
-[[R313]](#r313) Testability: An example of a Fully Persistent BPI Stroage that supports Generalized Time Stamps is the [CRDT Extension](https://github.com/supabase/pg_crdt) of the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive testuite as well as the CRDT extension, the requirement is testable.
+[[R313]](#r313) Testability: An example of a Fully Persistent BPI Stroage that supports Generalized Time Stamps is the [CRDT Extension](https://github.com/supabase/pg_crdt) of the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite as well as the CRDT extension, the requirement is testable.
 
 #### **[O9]** 
 Decentralized BPI Storage MAY be partially persistent.
