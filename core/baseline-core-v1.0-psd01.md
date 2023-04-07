@@ -462,12 +462,12 @@ There MUST be a legally binding contract, however simple and temporary, before a
 
 *For example, the contract and the order can be combined into a single document for a single transaction. However, there must be a legal framework in place to provide context for monies that are exchanged and settled. The functional part of the contract forms the basis of a Baseline Protocol Implementation (BPI) defined in section [2.6 Baseline Protocol Instance](#26-baseline-protocol-instance). The requirements below are to be understood solely within the context of this document. They are not meant to be generalized beyond this context.*
 
-[[R3]](#r3) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commercial-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
+[[R3]](#r3) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commercial-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [testsuite](https://github.com/w3c/vc-test-suite).
 
 #### **[D1]**  
 The contract SHOULD be in an electronic form.
 
-[[D1]](#d1) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commercial-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
+[[D1]](#d1) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commercial-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [testsuite](https://github.com/w3c/vc-test-suite).
 
 #### **[D2]**   
 The functional terms of the contract SHOULD be represented on a BPI between the counterparties.
@@ -511,7 +511,7 @@ A commercial State Object to be transacted on MUST be based on a specific commer
 #### **[R5]**  
 A commercial document MUST be derived from a legally binding contract.
 
-[[R5]](#r5) Testability:  A legally binding contract outside of a BPI can be translated into a commercial document on the BPI as given in this [example](#commercial-agreement-as-verifiable-credential) of a legally binding contract expressed as a W3C Verifiable Credential which can be tested following the W3C Verifiable Credential test suite approach.
+[[R5]](#r5) Testability:  A legally binding contract outside of a BPI can be translated into a commercial document on the BPI as given in this [example](#commercial-agreement-as-verifiable-credential) of a legally binding contract expressed as a W3C Verifiable Credential which can be tested following the W3C Verifiable Credential testsuite approach.
 
 #### **[R6]**	
 A commercial document MUST be represented as an electronic record on a BPI between the counterparties.
@@ -528,12 +528,12 @@ The definition of a commercial document authorization SHOULD be stated in the le
 
 *Authorizations for commercial transactions are a foundational element in the context of this document, as they are in paper based agreements. Therefore, any legal authorization agreements relevant to the commercial agreement between commercial counterparties, and thus to commercial transactions between them, are important to be represented in a BPI to ensure mitigating the risk of unauthorized signatures.*
 
-[[D5]](#d5) Testability: Given is an [a W3C Verifiable Credential Example](#commercial-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
+[[D5]](#d5) Testability: Given is an [a W3C Verifiable Credential Example](#commercial-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential testsuite approach.
 
 #### **[D6]**	
 The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
 
-[[D6]](#d6) Testability: Given is an [a W3C Verfiaible Credential Example](#commercial-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
+[[D6]](#d6) Testability: Given is an [a W3C Verfiaible Credential Example](#commercial-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential testsuite approach.
 
 #### **[R9]**	
 A commercial document MUST be non-repudiable.
@@ -2792,12 +2792,12 @@ As has been done throughout this document, there are BPI layer-specific security
 #### **[R279]** 
 Data in transit in a BPI MUST be encrypted.
 
-[[R279]](#r279) Testability: Any data submitted through a common communication/messaging protocol such as TCP/IP or libp2p can be encrypted using widely available, security audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
+[[R279]](#r279) Testability: Any data submitted through a common communication/messaging protocol such as TCP/IP or libp2p can be encrypted using widely available, security audited cryptographic libraries which have a testsuite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
 
 #### **[R280]** 
 Data at rest in a BPI MUST be encrypted.
 
-[[R280]](#r280) Testability: Any data stored in a common, widely used storage medum such as a database can be encrypted either through native cryptographic libraries or using widely available, security audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
+[[R280]](#r280) Testability: Any data stored in a common, widely used storage medum such as a database can be encrypted either through native cryptographic libraries or using widely available, security audited cryptographic libraries which have a testsuite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
 
 #### **[R281]**	
 BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
@@ -2816,33 +2816,33 @@ BPI Storage MUST be compatible with commonly used external authentication servic
 #### **[R283]**	
 BPI Storage MUST support roles & access management.
 
-[[R283]](#r283) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support [Role Based Access Management (RBAC)](https://www.postgresql.org/docs/current/user-manag.html). Therefore, the requirement is testable. 
+[[R283]](#r283) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive testsuite of all funcitonality support [Role Based Access Management (RBAC)](https://www.postgresql.org/docs/current/user-manag.html). Therefore, the requirement is testable. 
 
 #### **[R284]**	
 BPI Storage MUST support policy management.
 
-[[R284]](#r284) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support Policy Management such as [row based policy management](https://www.postgresql.org/docs/current/ddl-rowsecurity.html). Therefore, the requirement is testable.
+[[R284]](#r284) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive testsuite of all funcitonality support Policy Management such as [row based policy management](https://www.postgresql.org/docs/current/ddl-rowsecurity.html). Therefore, the requirement is testable.
 
 #### **[R285]**	
 BPI Storage MUST support Single-Sign-On (SSO).
 
 *See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).*
 
-[[R285]](#r285) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support [SSO](https://www.postgresql.org/docs/10/auth-methods.html). Therefore, the requirement is testable.
+[[R285]](#r285) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive testsuite of all funcitonality support [SSO](https://www.postgresql.org/docs/10/auth-methods.html). Therefore, the requirement is testable.
 
 #### **[R286]**	
 BPI Storage MUST support multi-factor authentication (MFA)
 
 *See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
-[[R286]](#r286) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support MFA by allowing up to three authentication factors in a user authentication policy, see [user creation](https://dev.mysql.com/doc/refman/8.0/en/create-user.html). Therefore, the requirement is testable.
+[[R286]](#r286) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive testsuite of all funcitonality support MFA by allowing up to three authentication factors in a user authentication policy, see [user creation](https://dev.mysql.com/doc/refman/8.0/en/create-user.html). Therefore, the requirement is testable.
 
 #### **[R287]**	
 BPI Storage MUST support hardware security modules (HSM). 
 
 *This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].*
 
-[[R287]](#r287) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support [cryptographic key based authentication frameworks such as Oauth-2.0](https://www.postgresql.org/docs/10/auth-methods.html). Since the private keys associated with the public keys used in cryptographic key based authentication frameworks can be managed in HSM-based services such as [AWS KMS](https://aws.amazon.com/kms/), the requirement is testable.
+[[R287]](#r287) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive testsuite of all funcitonality support [cryptographic key based authentication frameworks such as Oauth-2.0](https://www.postgresql.org/docs/10/auth-methods.html). Since the private keys associated with the public keys used in cryptographic key based authentication frameworks can be managed in HSM-based services such as [AWS KMS](https://aws.amazon.com/kms/), the requirement is testable.
 
 ## 7.2. BPI Storage Privacy
 
@@ -2851,7 +2851,7 @@ As has been done throughout this document, there are BPI layer-specific privacy 
 #### **[R288]**	
 Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 
-[[R288]](#r288) Testability: Since BPI Storage supports testable policy management (see [[R284]](#r284)), and since preventing PII storage can be cast into a policy, the requirement is teatble because of testability of [[R284]](#r284).
+[[R288]](#r288) Testability: Since BPI Storage supports testable policy management (see [[R284]](#r284)), and since preventing PII storage can be cast into a policy, the requirement is testable because of testability of [[R284]](#r284).
 
 
 #### **[D39]**	
@@ -2866,12 +2866,12 @@ To accommodate a high-volume, low latency environment with many data changes, BP
 #### **[R289]**	
 Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
 
-[[R289]](#r289) Testability: Data Orchestration solutions without a single point of failure are distributed. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R289]](#r289) Testability: Data Orchestration solutions without a single point of failure are distributed. An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R290]**	
 Data Orchestration utilized in a BPI MUST preserve source consistency. 
 
-[[R290]](#r290) Testability: Data Orchestration solutions preserving source consistency typically utilize a queued, redundant publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R290]](#r290) Testability: Data Orchestration solutions preserving source consistency typically utilize a queued, redundant publish/subscribe messaging model. An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 *To avoid subscribers seeing partial and/or inconsistent data, BPI Data Orchestration has the following requirements:*
 
@@ -2880,68 +2880,68 @@ Data Orchestration utilized in a BPI MUST implement transaction boundaries.
 
 *This means that a single user's action can trigger atomic updates.*
 
-[[R291]](#r291) Testability: Data Orchestration solutions with transaction boundaries typically utilize topic-driven publish/subscribe messaging models. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R291]](#r291) Testability: Data Orchestration solutions with transaction boundaries typically utilize topic-driven publish/subscribe messaging models. An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R292]**	
 Data Orchestration utilized in a BPI MUST commit the exact order in which operations happened on the primary database.
 
-[[R292]](#r292) Testability: Data Orchestration solutions which commit to and preserve operations order utilize a publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R292]](#r292) Testability: Data Orchestration solutions which commit to and preserve operations order utilize a publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created. An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R293]**	
 Data Orchestration utilized in a BPI MUST support a consistent state.
 
-[[R293]](#r293) Testability: Data Orchestration solutions that support a consistent state typically utilize a queued publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created to preserve state by maintaining a history of state changes. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R293]](#r293) Testability: Data Orchestration solutions that support a consistent state typically utilize a queued publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created to preserve state by maintaining a history of state changes. An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R294]**	
 Data Orchestration utilized in a BPI MUST support user-space processing. 
 
 *In the context of this document, this requirement establishes a capability that allows for one or more computations outside a database to be triggered by a data change in the data storage system.*
 
-[[R294]](#r294) Testability: Data Orchestration solutions that support user-space processing typically utilize a topic-driven publish/subscribe messaging system where messages either trigger outside computations and/or data storage operations or are the result of outside computations and/or data storage operations. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R294]](#r294) Testability: Data Orchestration solutions that support user-space processing typically utilize a topic-driven publish/subscribe messaging system where messages either trigger outside computations and/or data storage operations or are the result of outside computations and/or data storage operations. An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R295]**	
 Data Orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
 
-[[R295]](#r295) Testability: Data Orchestration solutions that make no assumptions about consumer uptime utilize a topic-driven publish/subscribe messaging system where messages are kept in topic queues until they are consumed by a subscribing application (consumer). An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R295]](#r295) Testability: Data Orchestration solutions that make no assumptions about consumer uptime utilize a topic-driven publish/subscribe messaging system where messages are kept in topic queues until they are consumed by a subscribing application (consumer). An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R296]**	
 Data Orchestration utilized in a BPI MUST isolate data source and consumers.
 
-[[R296]](#r296) Testability: Data Orchestration solutions that isolate data source (producer) and consumer utilize a topic-driven publish/subscribe messaging system. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R296]](#r296) Testability: Data Orchestration solutions that isolate data source (producer) and consumer utilize a topic-driven publish/subscribe messaging system. An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R297]**	
 Data Orchestration utilized in a BPI MUST support low latency.
 
 *Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.*
 
-[[R297]](#r297) Testability: There are many Data Orchestration solutions that are low latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R297]](#r297) Testability: There are many Data Orchestration solutions that are low latency. An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R298]**	
 Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes at any point in time.
 
-[[R298]](#r298) Testability: There are many Data Orchestration solutions that are highly scalable, highly redundant to guarantee high-availability and have low latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R298]](#r298) Testability: There are many Data Orchestration solutions that are highly scalable, highly redundant to guarantee high-availability and have low latency. An example of such an implementation with a complete testsuite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 *The BPI Data Orchestration must include the following four components:*
 
 #### **[R299]**	
 The Data Orchestration Layer utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
 
-[[R299]](#r299) Testability: Data Orchestration solutions with fetcher capabilities typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+[[R299]](#r299) Testability: Data Orchestration solutions with fetcher capabilities typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete testsuite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
 
 #### **[R300]**	
 The Data Orchestration Layer utilized in a BPI MUST include a log store that caches the generated data change stream.
 
-[[R300]](#r300) Testability: Data Orchestration solutions with a log store typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+[[R300]](#r300) Testability: Data Orchestration solutions with a log store typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete testsuite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
 
 #### **[R301]**	
 The Data Orchestration Layer utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
 
-[[R301]](#r301) Testability: Data Orchestration solutions with a snapshot store typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+[[R301]](#r301) Testability: Data Orchestration solutions with a snapshot store typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete testsuite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
 
 #### **[R302]**	
 The Data Orchestration Layer utilized in a BPI MUST include a subscription client pulling change events with low-latency across various components and servicing them to a service in a BPI.
 
-[[R302]](#r302) Testability: Data Orchestration solutions typically utilize a subscription client. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+[[R302]](#r302) Testability: Data Orchestration solutions typically utilize a subscription client. An example of such an implementation with a complete testsuite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
 
 ## 7.4 BPI-External Storage: Edge Storage
 
@@ -2979,7 +2979,7 @@ BPI Edge Storage SHOULD be able to cryptographically sign messages.
 #### **[D41]**	
 BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delegates within a BPI.
 
-[[D41]](#d41) Testability: A BPI Storage access endpoint can be listed in the `Services` section of a DID document. Since BPI Subjects as members of a Worjgroup can be associated with a DID, and since a DID can be resolved to its DID Document including ite 'Services' section, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
+[[D41]](#d41) Testability: A BPI Storage access endpoint can be listed in the `Services` section of a DID document. Since BPI Subjects as members of a Worjgroup can be associated with a DID, and since a DID can be resolved to its DID Document including ite 'Services' section, and since the W3C DID Standard has an existing testsuite for DID methods claiming conformance, the requirement is testable.
 
 #### **[R307]**	
 BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
@@ -3036,7 +3036,7 @@ BPI Storage  MUST support authenticated naming systems.
 
 *Non-normative examples include, but are not limited to, certificate authorities or a self-certifying PKI namespace.* 
 
-[[R310]](#r310) Testability: A BPI Storage through one or more access endpointa can be listed in the `Services` section of a DID document. Since BPI Subjects can be associated with a DID of a given DID method -- the authenticated naming system --, and since a DID can be resolved to its DID Document including ite 'Services' section and the cryptographic keys associated with the DID capabilities, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
+[[R310]](#r310) Testability: A BPI Storage through one or more access endpointa can be listed in the `Services` section of a DID document. Since BPI Subjects can be associated with a DID of a given DID method -- the authenticated naming system --, and since a DID can be resolved to its DID Document including ite 'Services' section and the cryptographic keys associated with the DID capabilities, and since the W3C DID Standard has an existing testsuite for DID methods claiming conformance, the requirement is testable.
 
 #### **[R311]**	
 BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
@@ -3048,7 +3048,7 @@ BPI Storage  MUST support a routing protocol that enables locating data peers an
 
 *Non-normative examples are [libp2p](#libp2p) or distributed hash tables [[DHT]](#dht).*
 
-[[R312]](#r312) Testability: An example of BPI Storage that allows for locating other data peer and data objects is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite. Therefore, the requirement is testable.
+[[R312]](#r312) Testability: An example of BPI Storage that allows for locating other data peer and data objects is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete testsuite. Therefore, the requirement is testable.
 
 #### **[R313]**	
 BPI Storage  MUST support a Network Protocol that handles:
@@ -3057,7 +3057,7 @@ BPI Storage  MUST support a Network Protocol that handles:
 * Encryption, signing, or clear communications
 * Multi-multiplexes such as Multiplex connections, streams, protocols, peers
 
-[[R313]](#r313) Testability: An example of BPI Storage that incorporates a Network Protocol as described in the requirement is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite, because it utilizes the P2P Network Protocol [libp2p](#libp2p) with its complete test suite that has the required properties. Therefore, the requirement is testable.
+[[R313]](#r313) Testability: An example of BPI Storage that incorporates a Network Protocol as described in the requirement is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete testsuite, because it utilizes the P2P Network Protocol [libp2p](#libp2p) with its complete testsuite that has the required properties. Therefore, the requirement is testable.
 
 #### **[R314]**	
 Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
@@ -3069,7 +3069,7 @@ Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 #### **[O9]** 
 Decentralized BPI Storage MAY be partially persistent.
 
-[[O9]](#o9) Testability: An example of a Decentralized BPI Storage that is partially persistent is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite. Therefore, the requirement is testable.
+[[O9]](#o9) Testability: An example of a Decentralized BPI Storage that is partially persistent is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete testsuite. Therefore, the requirement is testable.
 
 #### **[CR35]>[O9]**	
 Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
