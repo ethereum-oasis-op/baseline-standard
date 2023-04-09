@@ -2804,7 +2804,7 @@ BPI Storage arranged in a network MUST support pairwise key/identity relationshi
 
 *This is also known as a secure connection.*
 
-[[R281]](#r281) Testability: An example of BPI Storage organized in a network could be an open-source [PostgreSQL](https://www.postgresql.org/) data base cluster with replication across different geographies. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] betweenc client and server and between servers, and since PostgreSQL has an extensive test suite including for OAuth-2.0, the requirement is testable.
+[[R281]](#r281) Testability: An example of BPI Storage organized in a network could be an open-source [PostgreSQL](https://www.postgresql.org/) data base cluster with replication across different geographies. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] between client and server and between servers, and since PostgreSQL has an extensive test suite including for OAuth-2.0, the requirement is testable.
 
 #### **[R282]**	
 BPI Storage MUST be compatible with commonly used external authentication services. 
