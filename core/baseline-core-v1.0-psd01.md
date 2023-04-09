@@ -3025,7 +3025,7 @@ Partially Persistent BPI Storage  MUST be append-only.
 
 *Non-normative examples of such data bases are, but not limited to, OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.*
 
-[[CR34]>[O8]](#cr34o8) Testability: An example of centralized BPI Stroage that is append-only by restricing writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
+[[CR34]>[O8]](#cr34o8) Testability: An example of centralized BPI Storage that is append-only by restricting writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
 
 ### 7.5.2 BPI Storage: Decentralized Deployment
 
