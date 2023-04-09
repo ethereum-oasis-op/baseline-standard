@@ -2792,7 +2792,7 @@ As has been done throughout this document, there are BPI layer-specific security
 #### **[R279]** 
 Data in transit in a BPI MUST be encrypted.
 
-[[R279]](#r279) Testability: Any data submitted through a common communication/messaging protocol such as TCP/IP or libp2p can be encrypted using widely available, security audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
+[[R279]](#r279) Testability: Any data submitted through a common communication/messaging protocol such as TCP/IP or libp2p can be encrypted using widely available, security-audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
 
 #### **[R280]** 
 Data at rest in a BPI MUST be encrypted.
