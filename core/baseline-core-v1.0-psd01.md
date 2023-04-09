@@ -2821,7 +2821,7 @@ BPI Storage MUST support roles & access management.
 #### **[R284]**	
 BPI Storage MUST support policy management.
 
-[[R284]](#r284) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support Policy Management such as [row based policy management](https://www.postgresql.org/docs/current/ddl-rowsecurity.html). Therefore, the requirement is testable.
+[[R284]](#r284) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support Policy Management such as [row based policy management](https://www.postgresql.org/docs/current/ddl-rowsecurity.html). Therefore, the requirement is testable.
 
 #### **[R285]**	
 BPI Storage MUST support Single-Sign-On (SSO).
