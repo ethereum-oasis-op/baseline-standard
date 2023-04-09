@@ -2797,7 +2797,7 @@ Data in transit in a BPI MUST be encrypted.
 #### **[R280]** 
 Data at rest in a BPI MUST be encrypted.
 
-[[R280]](#r280) Testability: Any data stored in a common, widely used storage medum such as a database can be encrypted either through native cryptographic libraries or using widely available, security audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
+[[R280]](#r280) Testability: Any data stored in a common, widely used storage medum such as a database can be encrypted either through native cryptographic libraries or using widely available, security-audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
 
 #### **[R281]**	
 BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
