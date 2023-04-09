@@ -3018,7 +3018,7 @@ This document lists the requirements for either option and indicates the differe
 #### **[O8]** 
 Centralized BPI Storage MAY be partially persistent. 
 
-[[O8]](#o8) Testability: An example of centralized BPI Stroage that can be made partially consistent by restricing writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
+[[O8]](#o8) Testability: An example of centralized BPI Storage that can be made partially consistent by restricting writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
 
 #### **[CR34]>[O8]** 
 Partially Persistent BPI Storage  MUST be append-only.
