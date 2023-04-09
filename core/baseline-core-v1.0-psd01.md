@@ -3041,7 +3041,7 @@ BPI Storage  MUST support authenticated naming systems.
 #### **[R311]**	
 BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
 
-[[R311]](#r311) Testability: An example of a BPI Stroage that can replicate large data sizes is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
+[[R311]](#r311) Testability: An example of a BPI Storage that can replicate large data sizes is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
 
 #### **[R312]**	
 BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
