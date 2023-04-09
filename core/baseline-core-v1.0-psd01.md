@@ -2816,7 +2816,7 @@ BPI Storage MUST be compatible with commonly used external authentication servic
 #### **[R283]**	
 BPI Storage MUST support roles & access management.
 
-[[R283]](#r283) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support [Role Based Access Management (RBAC)](https://www.postgresql.org/docs/current/user-manag.html). Therefore, the requirement is testable. 
+[[R283]](#r283) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support [Role Based Access Management (RBAC)](https://www.postgresql.org/docs/current/user-manag.html). Therefore, the requirement is testable. 
 
 #### **[R284]**	
 BPI Storage MUST support policy management.
