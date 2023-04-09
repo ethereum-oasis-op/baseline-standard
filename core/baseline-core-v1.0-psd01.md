@@ -2964,7 +2964,7 @@ Replication conflicts MUST be automatically detectable.
 #### **[R305]** 
 Replication conflicts MUST be resolvable either automatically or manually.
 
-[[R305]](#r305) Testability: An example of external BPI storage that can resolve replication conflicts automatically (e.g. rejecting conflicing updates), as well as manually (e.g. update a table update SQL procedure) is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite including replication tests, the requirement is testable.
+[[R305]](#r305) Testability: An example of external BPI storage that can resolve replication conflicts automatically (e.g. rejecting conflicting updates), as well as manually (e.g. update a table update SQL procedure) is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite including replication tests, the requirement is testable.
 
 #### **[R306]**	
 BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
