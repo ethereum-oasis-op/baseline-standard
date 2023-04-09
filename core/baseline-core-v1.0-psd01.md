@@ -2828,7 +2828,7 @@ BPI Storage MUST support Single-Sign-On (SSO).
 
 *See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).*
 
-[[R285]](#r285) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support [SSO](https://www.postgresql.org/docs/10/auth-methods.html). Therefore, the requirement is testable.
+[[R285]](#r285) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support [SSO](https://www.postgresql.org/docs/10/auth-methods.html). Therefore, the requirement is testable.
 
 #### **[R286]**	
 BPI Storage MUST support multi-factor authentication (MFA)
