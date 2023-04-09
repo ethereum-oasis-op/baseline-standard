@@ -2979,7 +2979,7 @@ BPI Edge Storage SHOULD be able to cryptographically sign messages.
 #### **[D41]**	
 BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delegates within a BPI.
 
-[[D41]](#d41) Testability: A BPI Storage access endpoint can be listed in the `Services` section of a DID document. Since BPI Subjects as members of a Worjgroup can be associated with a DID, and since a DID can be resolved to its DID Document including ite 'Services' section, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
+[[D41]](#d41) Testability: A BPI Storage access endpoint can be listed in the `Services` section of a DID document. Since BPI Subjects as members of a Workgroup can be associated with a DID, and since a DID can be resolved to its DID Document including its 'Services' section, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
 
 #### **[R307]**	
 BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
