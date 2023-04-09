@@ -3036,7 +3036,7 @@ BPI Storage  MUST support authenticated naming systems.
 
 *Non-normative examples include, but are not limited to, certificate authorities or a self-certifying PKI namespace.* 
 
-[[R310]](#r310) Testability: A BPI Storage through one or more access endpointa can be listed in the `Services` section of a DID document. Since BPI Subjects can be associated with a DID of a given DID method -- the authenticated naming system --, and since a DID can be resolved to its DID Document including ite 'Services' section and the cryptographic keys associated with the DID capabilities, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
+[[R310]](#r310) Testability: A BPI Storage through one or more access endpoints can be listed in the `Services` section of a DID document. Since BPI Subjects can be associated with a DID of a given DID method -- the authenticated naming system --, and since a DID can be resolved to its DID Document including its 'Services' section and the cryptographic keys associated with the DID capabilities, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
 
 #### **[R311]**	
 BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
