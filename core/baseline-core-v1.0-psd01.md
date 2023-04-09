@@ -3074,7 +3074,7 @@ Decentralized BPI Storage MAY be partially persistent.
 #### **[CR35]>[O9]**	
 Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
 
-[[R313]](#r313) Testability: Since the PostGres data base can be made partially persistent according to the testable requirement [[O8]](#o8) and since since Postgres supports CRDTs as shown in the testable requirement [[R313]](#r313), the requirment is testable. 
+[[R313]](#r313) Testability: Since the PostGres data base can be made partially persistent according to the testable requirement [[O8]](#o8) and since since Postgres supports CRDTs as shown in the testable requirement [[R313]](#r313), the requirement is testable. 
 
 -------
 # 8 BPI External Data Inputs
