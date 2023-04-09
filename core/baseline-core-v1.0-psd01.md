@@ -2835,7 +2835,7 @@ BPI Storage MUST support multi-factor authentication (MFA)
 
 *See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
-[[R286]](#r286) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support MFA by allowing up to three authentication factors in a user authentication policy, see [user creation](https://dev.mysql.com/doc/refman/8.0/en/create-user.html). Therefore, the requirement is testable.
+[[R286]](#r286) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support MFA by allowing up to three authentication factors in a user authentication policy, see [user creation](https://dev.mysql.com/doc/refman/8.0/en/create-user.html). Therefore, the requirement is testable.
 
 #### **[R287]**	
 BPI Storage MUST support hardware security modules (HSM). 
