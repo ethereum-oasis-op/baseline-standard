@@ -2842,7 +2842,7 @@ BPI Storage MUST support hardware security modules (HSM).
 
 *This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].*
 
-[[R287]](#r287) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all funcitonality support [cryptographic key based authentication frameworks such as Oauth-2.0](https://www.postgresql.org/docs/10/auth-methods.html). Since the private keys associated with the public keys used in cryptographic key based authentication frameworks can be managed in HSM-based services such as [AWS KMS](https://aws.amazon.com/kms/), the requirement is testable.
+[[R287]](#r287) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support [cryptographic key based authentication frameworks such as Oauth-2.0](https://www.postgresql.org/docs/10/auth-methods.html). Since the private keys associated with the public keys used in cryptographic key based authentication frameworks can be managed in HSM-based services such as [AWS KMS](https://aws.amazon.com/kms/), the requirement is testable.
 
 ## 7.2. BPI Storage Privacy
 
