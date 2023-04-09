@@ -3064,7 +3064,7 @@ Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
 *Non-normative examples are conflict-free replicated data types [[CRDT](#crdt)] or Interval Tree Clocks [[ITC](#itc)] to ensure eventual data consistency.*
 
-[[R313]](#r313) Testability: An example of a Fully Persistent BPI Stroage that supports Generalized Time Stamps is the [CRDT Extension](https://github.com/supabase/pg_crdt) of the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite as well as the CRDT extension, the requirement is testable.
+[[R313]](#r313) Testability: An example of a Fully Persistent BPI Storage that supports Generalized Time Stamps is the [CRDT Extension](https://github.com/supabase/pg_crdt) of the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite as well as the CRDT extension, the requirement is testable.
 
 #### **[O9]** 
 Decentralized BPI Storage MAY be partially persistent.
