@@ -3051,7 +3051,7 @@ BPI Storage  MUST support a routing protocol that enables locating data peers an
 [[R312]](#r312) Testability: An example of BPI Storage that allows for locating other data peer and data objects is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite. Therefore, the requirement is testable.
 
 #### **[R313]**	
-BPI Storage  MUST support a Network Protocol that handles:
+BPI Storage  MUST support a Network Protocol that handles all of:
 * NAT traversal such as hole punching, port mapping, and relay
 * Multiple transport protocols
 * Encryption, signing, or clear communications
