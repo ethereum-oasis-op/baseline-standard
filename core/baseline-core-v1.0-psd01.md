@@ -2851,7 +2851,7 @@ As has been done throughout this document, there are BPI layer-specific privacy 
 #### **[R288]**	
 Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 
-[[R288]](#r288) Testability: Since BPI Storage supports testable policy management (see [[R284]](#r284)), and since preventing PII storage can be cast into a policy, the requirement is testable because of testability of [[R284]](#r284).
+[[R288]](#r288) Testability: Since BPI Storage can be reviewed to determine whether PII has been stored, the requirement is testable because).
 
 
 #### **[D39]**	
