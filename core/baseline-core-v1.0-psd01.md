@@ -2285,11 +2285,17 @@ A workstep MUST have an input, one or more process steps, and an output.
 
 *This is just a well-known convention from business process management frameworks.*
 
+[[R211]](#r211) Testability: A workstep can be realized as function in a typical copmuter language. Such functions require in its expression in code a definition of function inputs, function logic, and function return values (outputs) as the result of applying the function logic to the inputs of the function. Since computer code organized in such a manner is known to be testable, the requirement is testable.
+
 #### **[R212]** 
 The input of a workstep MUST represent a new, proposed state of a state object compliant with the agreement between the agreement counterparties.
 
+[[R212]](#r212) Testability: The inputs of a computer function can be formatted in any desired data schema, such as the data schema for a state object related to an agreement between counterparties. Since such a properly formatted input can be validated by a function's logic to be conformant to the agreed upon state object data schema, and to not be equal to the current state object, therefore, the input can be validated to be a new state object (proposal). And as this logic can be expressed in computer code, and since computer code is testable, the requirement is testable.  
+
 #### **[R213]** 
 The process steps in a workstep MUST represent a verification system comprised of the set, or subset, of agreement rules and agreement data such that an input can be validated to comply with the agreement rules and agreement data, or not.
+
+[[R213]](#r213) Testability: A verification system comprised of rules can be expressed in computer code. And computer code is testable beased on a given input and expected output.   
 
 #### **[R214]** 
 The output of a workstep MUST represent the verifiable validation result of an input into a workstep as a correct or incorrect new agreement state.
@@ -2353,7 +2359,7 @@ The output from a workstep execution MUST be a valid zero-knowledge proof of cor
 * ***Zero-Knowledge:*** *if the statement is true, no verifier learns anything other than the fact that the statement is true. In other words, just knowing the statement (not the secret) is sufficient to construct a scenario that shows that the prover knows the secret. This is formalized by showing that every verifier has some simulator that, given only the statement to be proved (and no access to the prover), can produce a transcript that "looks like" an interaction between the honest prover and the verifier.*
 
 #### **[R226]** 
-A zero-knowledge proof of correctness of an input MUST be non-interactive.
+A zero-knowledge proof of correctness of an output MUST be non-interactive.
 
 *Non-interactive in this context means that there is no interaction between the prover (generating the proof) and the verifier.*
 
