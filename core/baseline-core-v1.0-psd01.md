@@ -297,6 +297,10 @@ The ability of a Party operating Workflows on a baseline-compliant implementatio
 
 An individual, organization, or company that has legal rights and obligations.
 
+**Low latency:**
+
+A latency that does not Material Impact the overall system latency of the BPI.
+
 **Liveness:**
 
 In concurrent computing, liveness refers to a set of properties of concurrent systems that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
@@ -1352,7 +1356,7 @@ A BPI Subject Account owner MUST be notified by a BPI of any changes to a BPI Su
 
 This document defines service orchestration as the sequence and conditions organized in an interaction pattern that one or more service agents must follow, and in which one service invokes other services to achieve its desired goal.
 
-BPI service orchestration is intended to operate in a business environment with high service volume (many BPI service requests), low system latency (fast completion of BPI service requests by a BPI required), and where BPI service requests change BPI data often. It is key to achieve a flexible, loosely-coupled architecture as described in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture). BPI service orchestration is geared towards high-volume, low latency environments with many data changes.
+BPI service orchestration is intended to operate in a business environment with high service volume (many BPI service requests), low system latency (fast completion of BPI service requests by a BPI required), and where BPI service requests change BPI data often. It is key to achieve a flexible, loosely-coupled architecture as described in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture). BPI service orchestration is geared towards high-volume, Low Latency environments with many data changes.
 
 #### **[R87]** 
 BPI service orchestration utilized in a BPI MUST be able to identify the actions to be completed by services based on message context and content, and successfully orchestrate the desired action.
@@ -2861,7 +2865,7 @@ BPI Storage arranged in a network SHOULD utilize privacy-preserving P2P message 
 
 ## 7.3. BPI Data Orchestration
 
-To accommodate a high-volume, low latency environment with many data changes, BPI Data Orchestration has the following requirements:
+To accommodate a high-volume, Low Latency environment with many data changes, BPI Data Orchestration has the following requirements:
 
 #### **[R289]**	
 Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
@@ -2890,7 +2894,7 @@ Data Orchestration utilized in a BPI MUST commit the exact order in which operat
 #### **[R293]**	
 Data Orchestration utilized in a BPI MUST support a consistent state.
 
-[[R293]](#r293) Testability: Data Orchestration solutions that support a consistent state typically utilize a queued publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created to preserve state by maintaining a history of state changes. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R293]](#r293) Testability: Data Orchestration solutions that support a consistent state typically utilize a queued publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created to preserve state by maintaining a history of state changes, and a message for a given topic is removed from the data orchestration solution once consumed. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R294]**	
 Data Orchestration utilized in a BPI MUST support user-space processing. 
@@ -2910,16 +2914,16 @@ Data Orchestration utilized in a BPI MUST isolate data source and consumers.
 [[R296]](#r296) Testability: Data Orchestration solutions that isolate data source (producer) and consumer utilize a topic-driven publish/subscribe messaging system. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R297]**	
-Data Orchestration utilized in a BPI MUST support low latency.
+Data Orchestration utilized in a BPI MUST support Low Latency.
 
 *Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.*
 
-[[R297]](#r297) Testability: There are many Data Orchestration solutions that are low latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R297]](#r297) Testability: There are many Data Orchestration solutions that are Low Latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 #### **[R298]**	
 Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes at any point in time.
 
-[[R298]](#r298) Testability: There are many Data Orchestration solutions that are highly scalable, highly redundant to guarantee high-availability and have low latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R298]](#r298) Testability: There are many Data Orchestration solutions that are highly scalable, highly redundant to guarantee high-availability and have Low Latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
 *The BPI Data Orchestration must include the following four components:*
 
@@ -2984,7 +2988,7 @@ BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delega
 #### **[R307]**	
 BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
-[[R307]](#r307) Testability: Since OAuth-2.0 can utilize DIDs which can be used as BPI identifiers and identities, and since the open-source [PostgreSQL](https://www.postgresql.org/) data base supports OAuth-2.0, and since PostgreSQL has an extensive test suite including OAuth-2.0 tests, the requirement is testable.
+[[R307]](#r307) Testability: Since OAuth-2.0 can testably utilize DIDs e.g. [[DID-JWT]](https://github.com/decentralized-identity/did-jwt/tree/master/src/__tests__) which can be used as BPI identifiers and identities, and since the open-source [PostgreSQL](https://www.postgresql.org/) data base supports OAuth-2.0, and since PostgreSQL has an extensive test suite including OAuth-2.0 tests, the requirement is testable.
 
 #### **[R308]**	
 BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data (see section [7.5 BPI-Internal Storage](#75-bpi-internal-storage)) requirements for security, privacy, and integration.
