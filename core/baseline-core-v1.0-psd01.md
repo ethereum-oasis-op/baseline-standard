@@ -3017,7 +3017,7 @@ This document lists the requirements for either option and indicates the differe
 * *Support for database clustering to process high data volumes in short periods of time (sub second processing)*
 * *Security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)]*  
 
-[[R309]](#r309) Testability: An example of a BPI consistent with the requirement is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite in line with enterprise-grade data base solutions, the requirement is testable.
+[[R309]](#r309) Testability: An example of a BPI consistent with the requirement is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite in line with enterprise-grade data base solutions, and since commercial implementations such as [Microsoft Azure PostgreSQL - Single Server](https://techcommunity.microsoft.com/t5/azure-database-for-postgresql/security-amp-compliance-certifications-on-azure-database-for/ba-p/1503450) has both enterprise and global security and regulatory compliance certifications, the requirement is testable.
 
 #### **[O8]** 
 Centralized BPI Storage MAY be partially persistent. 
