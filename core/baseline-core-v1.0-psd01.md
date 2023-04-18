@@ -2796,19 +2796,57 @@ As has been done throughout this document, there are BPI layer-specific security
 #### **[R279]** 
 Data in transit in a BPI MUST be encrypted.
 
-[[R279]](#r279) Testability: Any data submitted through a common communication/messaging protocol such as TCP/IP or libp2p can be encrypted using widely available, security-audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
+[[R279]](#r279) Testability: Preconditions: There is a BPI test environment with at least two independent services processing data that communicate with each other, the communication between the services is captured using a packet capture system, and the encryption algorithm(s) in the test meets the security requirements of this document.
+
+Test Steps:
+
+1. Start the communication between the two services in the test environment using some plain text test data which is encrypted/decrypted by each service.
+2. Capture the network traffic using the packet capture tool.
+3. Inspect the captured packets to confirm that all data transmitted between the nodes is encrypted, and not in plain text, and can be decrypted using the key(s) used for encryption.
+5. Repeat steps 1-3 for different types of data and communication scenarios (e.g., different data formats, different network topologies).
+
+Expected Results: All data transmitted between the nodes is encrypted (does not appear in plain text).
+
+The requirement is met, if all expected results are met. The requirement is not me, if any of the results are not meeting test expectations.
 
 #### **[R280]** 
 Data at rest in a BPI MUST be encrypted.
 
-[[R280]](#r280) Testability: Any data stored in a common, widely used storage medum such as a database can be encrypted either through native cryptographic libraries or using widely available, security-audited cryptographic libraries which have a test suite e.g. [Sodium](https://doc.libsodium.org/). Therefore, the requirement is testable.
+[[R280]](#r280) Testability: Preconditions: There is a BPI test environment that can store data and the encryption algorithm(s) in the test meets the security requirements of this document.
+
+Test Steps:
+
+1. Identify the location of the data at rest in the BPI.
+2. Verify that the data is encrypted and cannot be decrypted without the encryption/decryption key.
+3. Attempt to decrypt the encrypted data without the encryption/decryption key and verify that it is not possible.
+5. Repeat steps 1-3 for different types of data and storage scenarios (e.g., different data formats, different storage media).
+
+Expected Results: The data at rest in the BPI is encrypted and cannot be decrypted without the encryption/decrytion key.
+
+The requirement is met, if all expected results are met. The requirement is not me, if any of the results are not meeting test expectations.
 
 #### **[R281]**	
 BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
 
 *This is also known as a secure connection.*
 
-[[R281]](#r281) Testability: An example of BPI Storage organized in a network could be an open-source [PostgreSQL](https://www.postgresql.org/) data base cluster with replication across different geographies. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] between client and server and between servers, and since PostgreSQL has an extensive test suite including for OAuth-2.0, the requirement is testable.
+[[R281]](#r281) Testability: Preconditions: There is a BPI test environment with at least two independent storage nodes that communicate with each other, the communication between the services is onfigured to support pairwise key/identity relationships, and the encryption/decryption algorithm(s) in the test meets the security requirements of this document.
+
+Test Steps:
+
+1. Verify that each storage node has a unique identity and a corresponding public key.
+2. Establish a pairwise key/identity relationship between two storage nodes.
+3. Verify that the storage nodes can communicate securely using the established relationship.
+4. Attempt to access the data stored on one storage node from the other without using the established relationship and verify that it is not possible.
+5. Repeat steps 2-4 for different pairs of storage nodes in the network.
+
+Expected Results:
+1. Each storage node has a unique identity and a corresponding public key.
+2. The pairwise key/identity relationships between storage nodes are established.
+3. The storage nodes can communicate securely using the established relationships.
+4. It is not possible to access the data stored on one storage node from the other without using the established relationship.
+
+The requirement is met, if all expected results are met. The requirement is not me, if any of the results are not meeting test expectations.
 
 #### **[R282]**	
 BPI Storage MUST be compatible with commonly used external authentication services. 
