@@ -1207,7 +1207,7 @@ This document utilizes the NIST definition of Access Management [[NIST SP 1800-2
 The most common access management approaches are:
 - Role Based Access Management (RBAC) tying access rights to a system defined roles and its attributes
 - Access Control List (ACL) tying access rights to a table listing the permissions attached to computing resources
-- Attribute Based Access Control (ABAC) tying access rights to an evaluation of a set of rules and policies to manage access rights according to specific attributes, such as environmental, system, object, or user information
+- Attribute Based Access Control (ABAC) tying access rights to an evaluation of a set of rules and policies to manage access rights according to specific attributes, such as environmental, system, object, or BPI Subject information
 
 #### **[R63]**	
 Abstraction Layers utilized in a BPI MUST support security policy management.
@@ -1234,7 +1234,7 @@ Abstraction Layers utilized in a BPI MUST support hardware security modules (HSM
 # 5 Middleware, Communication, and Interoperability
 
 This section of the document focuses on the concepts and requirements that describe the key capabilities to connect the BPI Abstraction Layer to the BPI Processing Layer and the correctness preserving integration of different BPIs. This section has the following structure:
-* BPI Subjects -- describing the key capabilities required for access authentication to a BPI, and access authorization of BPI functionality, and BPI- or -user-specific data within a BPI.
+* BPI Subjects -- describing the key capabilities required for access authentication to a BPI, and access authorization of BPI functionality, and BPI- or -BPI Subject-specific data within a BPI.
 * BPI Service Orchestration -- describing the middleware capability enabling the invocation of key BPI capabilities through the BPI Abstraction Layer.
 * BPI Communication -- describing the key capability of how BPI subjects can communicate with one another within a workgroup, within a BPI, and, also, across BPIs.
 * BPI Integration -- describing the necessary capabilities to ensure the correct intersection of multiple workflows between different BPIs with correctly advanced state across intersecting workflows with minimal or no trust assumptions.   
@@ -2853,38 +2853,184 @@ BPI Storage MUST be compatible with commonly used external authentication servic
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
 
-[[R282]](#r282) Testability: An example of BPI Storage could be an open-source [PostgreSQL](https://www.postgresql.org/) data base. Since PostgreSQL supports [[OAuth-2.0](#oauth-20)] between client and server and between servers, and since PostgreSQL has an extensive test suite including for OAuth-2.0, the requirement is testable.
+[[R282]](#r282) Testability: Preconditions: A typical BPI Storage e.g. the open-source [PostgreSQL](https://www.postgresql.org/) data base deployed in a BPI test environment with a BPI client and a BPI server, and an authemtication service to be used with the BPI Storage such as [[OAuth-2.0](#oauth-20)] between client and server.
+
+Test steps:
+
+1. Create a BPI Subject within the BPI with a public-private cryptographic key pair based on one of the cryptographic algorithms supported by the authentication service chosen for the BPI Subject
+2. Create an authentication policy for the BPI Storage supported by each of the authemtication services chosen for the test  
+2. Attempt to authenticate the BPI Subject with the BPI Storage using each of the identified external authentication services for the test.
+3. Verify that the authentication of the BPI Subject is successful and the BPI Subject is granted the appropriate access to the BPI Storage as per the test authentication policy.
+4. Repeat the above steps for each supported external authentication service.
+
+Test pass criteria:
+
+The test will pass if one or more of the external authentication services successfully authenticate a BPI Subject to the BPI Storage and the BPI Subject is granted the type of access to the BPI Storage as defined in the test policy. Note the test policy could be any combination of read and write access to the BPI Storage.
 
 #### **[R283]**	
 BPI Storage MUST support roles & access management.
 
-[[R283]](#r283) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support [Role Based Access Management (RBAC)](https://www.postgresql.org/docs/current/user-manag.html). Therefore, the requirement is testable. 
+[[R283]](#r283) Testability: Preconditions: Identify the roles that need to be supported by the BPI Storage, based on the functional requirements and design specifications such as "Administrators" with full read and write permissions or "ReadUser" with only read permissions.
+
+Test steps:
+
+1. Create two or mor test BPU Subjects and assign them to the identified roles.
+2. Attempt to perform various operations on the BPI Storage using each test BPI Subject such as read and write operations.
+3. Verify that the operations are allowed or denied based on the permissions associated with the BPI Subject's role.
+4. Attempt to perform operations that require higher permissions than the current BPI Subject's role such as writing for a "ReadUser" role.
+5. Verify that such operations are denied and an appropriate error message is displayed.
+6. Repeat the above steps for each supported role.
+
+Test pass criteria:
+
+The test will pass if all supported roles are successfully tested, and BPI Subject's are able to perform operations only as allowed by their role's permissions. Additionally, attempting operations that require higher permissions than the current BPI Subject's role must be denied, and appropriate error messages must be displayed.
 
 #### **[R284]**	
 BPI Storage MUST support policy management.
 
-[[R284]](#r284) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support Policy Management such as [row based policy management](https://www.postgresql.org/docs/current/ddl-rowsecurity.html). Therefore, the requirement is testable.
+[[R284]](#r284) Testability:
+
+Preconditions:
+
+* A BPI test environment is installed and configured properly.
+* The BPI storage component is designed to support policy management.
+* A BPI Subject has appropriate permissions to create, modify, and delete policies.
+
+Test Steps:
+
+1. Create a set of policies that the BPI storage component should be able to manage, including access control policies, retention policies, and deletion policies.
+2. Using the BPI's user interface or API, attempt to create each of the policies defined in step 1.
+3. Verify that each policy was created successfully and is stored in the BPI storage component.
+4. Modify one or more of the policies created in step 2 and verify that the changes are applied correctly.
+5. Attempt to delete one or more of the policies created in step 2 and verify that they are removed from the BPI storage component.
+6. Attempt to retrieve a policy from the BPI storage component using the BPI's user interface or API and verify that the correct policy is returned.
+7. Attempt to enforce one or more of the policies created in step 2 and verify that the appropriate actions are taken (e.g., access is denied for a BPI Subject who does not have the necessary permissions).
+8. Repeat steps 2-7 for each type of policy created in step 1.
+9. Verify that the BPI's user interface or API provides a clear way to manage policies.
+
+Test Passing Criteria: The test will pass if all of the following criteria are met:
+
+* All policies created in step 2 are successfully created, modified, and deleted, and are stored in the BPI storage component.
+* Retrieval of policies in step 6 returns the correct policy for each policy created in step 2.
+* Enforcement of policies in step 7 results in the appropriate actions for each policy created in step 2.
+* The BPI's user interface or API provides an intuitive way to manage policies.
+* There are no errors or exceptions during the test.
 
 #### **[R285]**	
 BPI Storage MUST support Single-Sign-On (SSO).
 
 *See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).*
 
-[[R285]](#r285) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support [SSO](https://www.postgresql.org/docs/10/auth-methods.html). Therefore, the requirement is testable.
+[[R285]](#r285) Testability: 
+
+Preconditions:
+
+* A BPI test environment is installed and configured properly.
+* The BPI storage component is designed to support SSO using a SSO provider.
+* A BPI Subject has appropriate permissions to access the BPI.
+
+Test Steps:
+
+1. Attempt to access the BPI's user interface or API without providing any authentication credentials.
+2. Verify that the BPI redirects the BPI Subject to a SSO login page or displays a message indicating that authentication is required.
+3. Log in using a SSO provider that has been configured for the BPI.
+4. Verify that the BPI grants access to the BPI Subject after successful authentication.
+5. Attempt to access a protected resource or perform a protected action within the BPI.
+6. Verify that the BPI grants access to the BPI Subject if the BPI Subject has appropriate permissions.
+7. Attempt to access a protected resource or perform a protected action within the BPI using an invalid or expired SSO token.
+8. Verify that the BPI denies access to the BPI Subject and provides an appropriate error message.
+9. Attempt to log out of the BPI.
+10. Verify that the BPI logs out the BPI Subject from the SSO provider and revokes the BPI Subject's BPI session.
+
+Test Passing Criteria: The test will pass if
+
+* The BPI redirects the BPI Subject to a SSO login page or displays a message indicating that authentication is required.
+* Successful login using a SSO provider grants access to the BPI.
+* Access to protected resources or actions within the BPI is granted only to BPI Subjects with appropriate permissions.
+* Invalid or expired SSO tokens result in access being denied and an appropriate error message being displayed.
+* Logging out of the BPI logs the BPI Subject out of the SSO provider and revokes the BPI Subject's BPI session.
+
 
 #### **[R286]**	
 BPI Storage MUST support multi-factor authentication (MFA)
 
 *See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
-[[R286]](#r286) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support MFA by allowing up to three authentication factors in a user authentication policy, see [user creation](https://dev.mysql.com/doc/refman/8.0/en/create-user.html). Therefore, the requirement is testable.
+[[R286]](#r286) Testability: 
+
+Preconditions:
+
+* A BPI test environment is installed and configured properly.
+* The BPI storage component is designed to support MFA.
+* A BPI Subject has appropriate permissions to access the BPI.
+
+Test Steps:
+
+* Attempt to access the BPI's user interface or API without providing any authentication credentials.
+* Verify that the BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
+* Enter valid username and password credentials to log in to the BPI.
+* Verify that the BPI grants access to the BPI Subject after successful authentication with username and password.
+* Attempt to access a protected resource or perform a protected action within the BPI.
+* Verify that the BPI grants access to the BPI Subject if the BPI Subject has appropriate permissions.
+* Attempt to enable MFA for the BPI Subject account used to log in to the BPI.
+* Verify that the BPI supports multiple factors for MFA, such as SMS, email, or an authenticator app.
+* Attempt to log out and log back in to the BPI using only the username and password credentials.
+* Verify that the BPI requires the BPI Subject to provide an additional factor of authentication for MFA after the initial login.
+* Attempt to access a protected resource or perform a protected action within the BPI.
+* Verify that the BPI grants access to the BPI Subject if the BPI Subject has appropriate permissions and has provided the required additional factor of authentication for MFA.
+* Attempt to disable MFA for the BPI Subject account used to log in to the BPI.
+* Verify that the BPI disables MFA for the BPI Subject account and allows the BPI Subject to log in with only username and password credentials.
+
+Test Passing Criteria: The test will pass if
+
+* The BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
+*Successful login using username and password credentials grants access to the BPI.
+*Access to protected resources or actions within the BPI is granted only to users with appropriate permissions.
+*The BPI supports multiple factors for MFA, such as SMS, email, or an authenticator app.
+*After enabling MFA, the BPI requires the BPI Subject to provide an additional factor of authentication for MFA after the initial login.
+*Access to protected resources or actions within the BPI is granted only if the BPI Subject has provided the required additional factor of authentication for MFA.
+*After disabling MFA, the BPI allows the BPI Subject to log in with only username and password credentials.
 
 #### **[R287]**	
 BPI Storage MUST support hardware security modules (HSM). 
 
 *This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].*
 
-[[R287]](#r287) Testability: Common BPI storage options such as [PostgreSQL](https://www.postgresql.org/) with their comprehensive test suite of all functionality support [cryptographic key based authentication frameworks such as Oauth-2.0](https://www.postgresql.org/docs/10/auth-methods.html). Since the private keys associated with the public keys used in cryptographic key based authentication frameworks can be managed in HSM-based services such as [AWS KMS](https://aws.amazon.com/kms/), the requirement is testable.
+[[R287]](#r287) Testability:
+
+Preconditions:
+
+* A BPI test environment is installed and configured properly.
+* The BPI storage component is designed to support an HSM.
+* The HSM is installed and properly configured to work with the BPI storage component.
+* A BPI Subject has appropriate permissions to access the BPI.
+
+Test Steps:
+
+* Attempt to access the BPI's user interface or API without providing any authentication credentials.
+* Verify that the BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
+* Enter valid username and password credentials to log in to the BPI.
+* Verify that the BPI grants access to the BPI Subject after successful authentication with username and password.
+* Attempt to perform a cryptographic operation that requires the use of the HSM, such as signing a message or verifying a signature.
+* Verify that the BPI communicates with the HSM to perform the cryptographic operation.
+* Attempt to generate a cryptographic key using the HSM.
+* Verify that the BPI communicates with the HSM to generate the key.
+* Attempt to store a cryptographic key in the HSM.
+* Verify that the BPI communicates with the HSM to store the key securely.
+* Attempt to retrieve a cryptographic key from the HSM.
+* Verify that the BPI communicates with the HSM to retrieve the key securely.
+* Attempt to delete a cryptographic key from the HSM.
+* Verify that the BPI communicates with the HSM to delete the key securely.
+
+Test Passing Criteria: The test will pass if
+
+* The BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
+* Successful login using username and password credentials grants access to the BPI.
+* The BPI can perform cryptographic operations that require the use of the HSM, such as signing a message or verifying a signature.
+* The BPI can generate a cryptographic key using the HSM.
+* The BPI can store a cryptographic key securely in the HSM.
+* The BPI can retrieve a cryptographic key securely from the HSM.
+* The BPI can delete a cryptographic key securely from the HSM.
 
 ## 7.2. BPI Storage Privacy
 
@@ -2893,13 +3039,50 @@ As has been done throughout this document, there are BPI layer-specific privacy 
 #### **[R288]**	
 Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 
-[[R288]](#r288) Testability: Since BPI Storage can be reviewed to determine whether PII has been stored, the requirement is testable because).
+[[R288]](#r288) Testability: 
 
+Preconditions:
+
+* A BPI test environment is installed and configured properly.
+* The BPI storage component contains identification methods to prevent storing Personal Identifiable Information (PII).
+* The BPI Subject has appropriate permissions to access the BPI.
+
+Test Steps:
+
+* Create a record that contains PII, such as a name, address, social security number, or phone number.
+* Attempt to store the record in the BPI using a write operation method, such as POST or PUT.
+* Verify that the BPI rejects the record and returns an error message indicating that the record contains PII and cannot be stored.
+* Create a record that does not contain PII, such as a random string or number.
+* Attempt to store the record in the BPI using a write operation method, such as POST or PUT.
+*Verify that the BPI accepts the record and stores it successfully.
+
+Example Methods to identify PII:
+
+* Use regular expressions or data pattern matching to identify common PII data elements in a record.
+* Compare record data with a pre-defined list of PII data elements to identify PII.
+
+Test Passing Criteria: The test will pass if
+
+* The BPI rejects the storage of records that contain Personal Identifiable Information (PII) and returns an error message indicating that PII cannot be stored.
+* The BPI accepts the storage of records that do not contain PII and stores them successfully.
+* The BPI is able to identify PII using the specified methods.
+* The BPI correctly identifies records that contain PII and rejects their storage.
+
+Note: The test above only verifies write operations, as the requirement is related to the storage of PII. However, read operations should also be checked to ensure that PII cannot be accessed or returned in query results.
 
 #### **[D39]**	
 BPI Storage arranged in a network SHOULD utilize privacy-preserving P2P message protocols.
 
-[[D39]](#d39) Testability: Since BPI Storage arranged in a network can support pairwise key/identity relationships between storage nodes in a testable manner (see [[R282]](#r282)), and since with pairwise key/identity relationships between storage nodes any messages between storage nodes can be asymmetrically encrypted which guarantees privacy of exchanged messages between storage nodes, the requirement is testable.
+[[D39]](#d39) Testability: 
+
+Preconditions:
+* BPI Storage is arranged in a two node network that can support pairwise key/identity relationships between storage nodes in a testable manner (see [[R282]](#r282) for testing details)
+
+Test Steps:
+* Using a pairwise key/identity relationship between the two BPI storage nodes, asymmetrically encrypt a message such as a data replication message.
+* Perform Test from [[R279]](#r279)
+
+Test Passing Criteria: The test will pass if the test passing criteria in [[R279]](#r279) Testability are met.
 
 ## 7.3. BPI Data Orchestration
 
@@ -2908,7 +3091,30 @@ To accommodate a high-volume, Low Latency environment with many data changes, BP
 #### **[R289]**	
 Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
 
-[[R289]](#r289) Testability: Data Orchestration solutions without a single point of failure are distributed. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R289]](#r289) Testability: 
+
+Preconditions:
+
+* A BPI test environment is installed and configured properly.
+* The Data Orchestration component is designed to handle multiple nodes and is not a single point of failure.
+* The BPI Subject has appropriate permissions to access the BPI.
+
+Test Steps:
+
+1. Verify that the Data Orchestration component consists of multiple nodes distributed across different servers or locations.
+2. Simulate the failure of one of the Data Orchestration nodes by shutting down the node or disconnecting it from the network.
+3. Attempt to perform a write operation on the BPI, such as POST or PUT.
+4. Verify that the BPI can still perform the operation successfully without any errors or data loss.
+5. Restore the failed Data Orchestration node to the network.
+6. Verify that the restored node can synchronize with the other nodes in the Data Orchestration component and that the BPI continues to function correctly.
+
+Test Passing Criteria: The test will pass if
+
+* The Data Orchestration component used in the BPI consists of multiple nodes distributed across different servers or locations.
+* The BPI is able to handle the failure of one or more Data Orchestration nodes without any errors or data loss.
+* The restored Data Orchestration node is able to synchronize with the other nodes in the component and the BPI continues to function correctly.
+
+Note: Additional tests may be required to verify that the Data Orchestration component can handle high traffic and is able to scale horizontally to accommodate additional nodes as needed.
 
 #### **[R290]**	
 Data Orchestration utilized in a BPI MUST preserve source consistency. 
@@ -2920,7 +3126,7 @@ Data Orchestration utilized in a BPI MUST preserve source consistency.
 #### **[R291]**	
 Data Orchestration utilized in a BPI MUST implement transaction boundaries.
 
-*This means that a single user's action can trigger atomic updates.*
+*This means that a single BPI Subject's action can trigger atomic updates.*
 
 [[R291]](#r291) Testability: Data Orchestration solutions with transaction boundaries typically utilize topic-driven publish/subscribe messaging models. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
 
