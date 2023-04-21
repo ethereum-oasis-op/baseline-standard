@@ -275,6 +275,10 @@ A Common Frame of Reference as used in this document refers to achieving and mai
 
 A Consensus Controlled State Machine (CCSM) is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage.
 
+**Data Orchestration:** 
+
+An automated process for taking siloed data from multiple storage locations, combining and organizing it, and making it available for analysis.
+
 **Electronic Record:**
 
 Information captured through electronic means, and which may or may not have a paper record to back it up.
@@ -3086,6 +3090,8 @@ Test Passing Criteria: The test will pass if the test passing criteria in [[R279
 
 ## 7.3. BPI Data Orchestration
 
+Data Orchestration is an automated process for taking siloed data from multiple storage locations, combining and organizing it, and making it available for analysis.
+
 To accommodate a high-volume, Low Latency environment with many data changes, BPI Data Orchestration has the following requirements:
 
 #### **[R289]**	
@@ -3117,23 +3123,90 @@ Test Passing Criteria: The test will pass if
 Note: Additional tests may be required to verify that the Data Orchestration component can handle high traffic and is able to scale horizontally to accommodate additional nodes as needed.
 
 #### **[R290]**	
-Data Orchestration utilized in a BPI MUST preserve source consistency. 
+Data Orchestration utilized in a BPI MUST preserve data consistency from source to target within the BPI. 
 
-[[R290]](#r290) Testability: Data Orchestration solutions preserving source consistency typically utilize a queued, redundant publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R290]](#r290) Testability: 
+
+Preconditions:
+
+* A BPI test environment is installed and configured properly.
+* The data source is not directly connected to the data target within the BPI.
+* The Data Orchestration component in the BPI is designed to preserve data consistency from source to target within the BPI.
+* The BPI Subject has appropriate permissions to access the BPI.
+
+Test Steps:
+
+1. Perform a write operation by the BPI Subject on the BPI, such as POST or PUT, with a specified set of data.
+2. Verify that the data is successfully written to the BPI.
+3. Perform a read operation on the BPI to retrieve the data that was written.
+4. Check that the data retrieved matches the data that was written to the BPI.
+5. Perform a read operation on the BPI data target system, the BPI Storage, to retrieve the data that was written to the BPI.
+6. Check that the data retrieved from the BPI data target system matches the data that was written to the BPI.
+7. Repeat steps 1-6 with multiple concurrent write operations.
+8. Verify that all of the written data is consistent between  the BPI target system.
+
+Test Passing Criteria: The test will pass if,
+
+* The written data is successfully written to the BPI.
+* The data retrieved from the BPI matches the data that was written.
+* The data retrieved from the BPI target system matches the data that was written to the BPI.
+* All of the written data is consistent across both the BPI and the target system, even under multiple concurrent write operations.
 
 *To avoid subscribers seeing partial and/or inconsistent data, BPI Data Orchestration has the following requirements:*
 
 #### **[R291]**	
 Data Orchestration utilized in a BPI MUST implement transaction boundaries.
 
-*This means that a single BPI Subject's action can trigger atomic updates.*
+*This means that a single BPI Subject's action can trigger atomic updates. A transaction boundary is defined as where a transaction begins or ends, where within the transaction all writes to a system are atomic, in that they either all complete, or are all reverted if any single write in a given transaction fails. An atomic update is defined as an indivisible and irreducible series of system operations such that either all occurs, or nothing occurs. An example of a transaction boundary is a "Create Invoice" transaction that creates an invoice in a system or fails if an error occurs.*
 
-[[R291]](#r291) Testability: Data Orchestration solutions with transaction boundaries typically utilize topic-driven publish/subscribe messaging models. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R291]](#r291) Testability: 
+
+Preconditions:
+
+* A BPI test environment is installed and configured properly.
+* The Data Orchestration component in the BPI is designed to implement transaction boundaries.
+* Several transaction types are defined within the BPI as part of Data Orchestration, including what consitutes a correctly and incorrectly formed transaction, and how often a transaction of a specific transaction type should be made available to worksteps processing this transaction type.
+* The BPI Subject has appropriate permissions to access the BPI.
+
+Test Steps: 
+
+1. The BPI Subject submits a correctly formed transaction of a specific type on the BPI by making a POST request.
+2. Verify that BPI Data Orchestration writes this transaction to one designated data orchestration entry point associated with the chose transaction type.
+3. Verify that BPI Data Orchestration writes the transaction from the designated entry point for the transaction type to all BPI Data Orchestration exit points associated with the chosen transaction type.
+4. The BPI Subject submits an incorrectly formed transaction of a specific type on the BPI by making a POST request.
+5. Verify that BPI Data Orchestration writes this transaction to one designated data orchestration entry point associated with the chose transaction type.
+6. Verify that BPI Data Orchestration Does not write the transaction from the designated entry point for the transaction type to anyl BPI Data Orchestration exit points associated with the chosen transaction type, and generates an error message relayed back to the BPI Subject.
+7. Repeat steps 1-6 with multiple concurrent transactions of different types.
+
+Test Passing Criteria: The test will pass if,
+
+* All writes of the correctly and incorrectly formed transactions to the transaction type specific Data Orchestration entry points succeed.
+* All writes of the correctly formed transactions to the transaction type specific Data Orchestration exit points succeed.
+* All writes of the incorrectly formed transactions to the transaction type specific Data Orchestration exit points fail, and generate an error message relayed back to the BPI Subject.
 
 #### **[R292]**	
-Data Orchestration utilized in a BPI MUST commit the exact order in which operations happened on the primary database.
+Data Orchestration utilized in a BPI MUST commit to the exact order in which transactions are received by Data Orchestration.
 
-[[R292]](#r292) Testability: Data Orchestration solutions which commit to and preserve operations order utilize a publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R292]](#r292) Testability: 
+
+Preconditions:
+
+* A BPI test environment is installed and configured properly.
+* The Data Orchestration module is properly configured and enabled.
+* The BPI Subject has appropriate permissions to access the BPI.
+
+Test Steps:
+
+1. The BPI Subject sends two or more transactions to the BPI in a specific order targeting a specific workstep with BPI State Object.
+2. Verify that the transactions are received by the Data Orchestration module in the exact same order in which they were sent at a Data Orchestration entry point.
+3. Verify that the transactions are committed by the Data Orchestration module in the exact same order in which they were received to one or more Data Orchestration exit points.
+4. Verify that the committed transactions have been properly applied by the workstep to the BPI State Object and that the final state of the BPI State Object is consistent with the transactions that were sent.
+
+Passing Criteria: The test will pass if all the following criteria are met,
+
+* The transactions are received by the Data Orchestration module in the exact same order in which they were sent.
+* The transactions are committed by the Data Orchestration module in the exact same order in which they were received.
+* The committed transactions have been properly applied to the targeted BPI State Object and the final state of the BPI State Object is consistent with the transactions that were sent.
 
 #### **[R293]**	
 Data Orchestration utilized in a BPI MUST support a consistent state.
