@@ -2860,7 +2860,7 @@ Test Steps:
 1. Verify that each storage node has a unique identity and a corresponding public key.
 2. Establish a pairwise key/identity relationship between two storage nodes.
 3. Verify that the storage nodes can communicate securely using the established relationship.
-4. Attempt to access the data stored on one storage node from the other without using the established relationship and verify that it is not possible.
+4. Verify that the storage node does not provide access to the data stored except using the established relationship.
 5. Repeat steps 2-4 for different pairs of storage nodes in the network.
 
 Expected Results:
