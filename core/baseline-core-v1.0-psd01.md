@@ -2852,7 +2852,7 @@ BPI Storage arranged in a network MUST support pairwise key/identity relationshi
 Preconditions: 
 
 * There is a BPI test environment with at least two independent storage nodes that communicate with each other
-* The communication between the services is onfigured to support pairwise key/identity relationships
+* The communication between the services is configured to support pairwise key/identity relationships
 * The encryption/decryption algorithm(s) in the test meets the security requirements of this document.
 
 Test Steps:
