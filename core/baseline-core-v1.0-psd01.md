@@ -2808,7 +2808,7 @@ Preconditions:
 
 * There is a BPI test environment with at least two independent services processing data that communicate with each other
 * The communication between the services is captured using a packet capture system
-* The encryption algorithm(s) in the test meets the security requirements of this document.
+* The encryption algorithm(s) in the test meets the security requirements of this document,  see [[R12]](#r12).
 
 Test Steps:
 
@@ -2829,7 +2829,7 @@ Data at rest in a BPI MUST be encrypted.
 Preconditions: 
 
 * There is a BPI test environment that can store data
-* The encryption algorithm(s) in the test meets the security requirements of this document.
+* The encryption algorithm(s) in the test meets the security requirements of this document, see [[R12]](#r12).
 
 Test Steps:
 
@@ -2853,7 +2853,7 @@ Preconditions:
 
 * There is a BPI test environment with at least two independent storage nodes that communicate with each other
 * The communication between the services is configured to support pairwise key/identity relationships
-* The encryption/decryption algorithm(s) in the test meets the security requirements of this document.
+* The encryption/decryption algorithm(s) in the test meets the security requirements of this document, see [[R12]](#r12).
 
 Test Steps:
 
@@ -2904,23 +2904,28 @@ BPI Storage MUST support roles & access management.
 
 Preconditions: 
 
-* Identify the roles that need to be supported by the BPI Storage, based on the functional requirements and design specifications such as "Administrators" with full read and write permissions or "ReadUser" with only read permissions.
+* Identify roles and levels of access required that need to be supported by the BPI Storage, based on the business requirements of the test use case.
+* A BPI test system is up and running.
+* Two or more BPI Subjects and BPI Subject Accounts created in the BPI
 
 Test steps:
 
-1. Create two or mor test BPU Subjects and assign them to the identified roles.
-2. Attempt to perform various operations on the BPI Storage using each test BPI Subject such as read and write operations.
-3. Verify that the operations are allowed or denied based on the permissions associated with the BPI Subject's role.
-4. Attempt to perform operations that require higher permissions than the current BPI Subject's role such as writing for a "ReadUser" role.
+1. Create two or more test BPU Subjects and assign them to the identified roles and the level of access specified for each role.
+2. Attempt to perform various operations on the BPI Storage using each test BPI Subject.
+3. Verify that the operations are allowed or denied based on the access permissions associated with each of the BPI Subjects' role.
+4. Attempt to perform operations that require different access permissions than the test BPI Subjects' role.
 5. Verify that such operations are denied and an appropriate error message is displayed.
-6. Repeat the above steps for each supported role.
+6. Repeat the above steps for each test role.
 
 Test pass criteria:
 
-The test will pass if all supported roles are successfully tested, and BPI Subjects are able to perform operations only as allowed by their role's permissions. Additionally, attempting operations that require higher permissions than the current BPI Subject's role must be denied, and appropriate error messages must be displayed.
+* The test will pass if all test roles are successfully tested, and the test BPI Subjects are able to perform operations only as allowed by their role's permissions. 
+* Additionally, attempting operations that require different permissions than the test BPI Subjects' roles must be denied, and appropriate error messages must be displayed.
 
 #### **[R284]**	
 BPI Storage MUST support policy management.
+
+*Examples of such policies are rules governing creation, modification, deletion, and retention of data.* 
 
 [[R284]](#r284) Testability:
 
@@ -2928,17 +2933,18 @@ Preconditions:
 
 * A BPI test environment is installed and configured properly.
 * The BPI storage component is designed to support policy management.
-* A BPI Subject has appropriate permissions to create, modify, and delete policies.
+* A set of test policies has been configured in the BPI storage component. 
+* A BPI Subject has appropriate permissions for the test policies.
 
 Test Steps:
 
-1. Create a set of policies that the BPI storage component should be able to manage, including access control policies, retention policies, and deletion policies.
+1. Create a set of policies that the BPI storage component should be able to manage.
 2. Using the BPI's user interface or API, attempt to create each of the policies defined in step 1.
 3. Verify that each policy was created successfully and is stored in the BPI storage component.
 4. Modify one or more of the policies created in step 2 and verify that the changes are applied correctly.
 5. Attempt to delete one or more of the policies created in step 2 and verify that they are removed from the BPI storage component.
 6. Attempt to retrieve a policy from the BPI storage component using the BPI's user interface or API and verify that the correct policy is returned.
-7. Attempt to enforce one or more of the policies created in step 2 and verify that the appropriate actions are taken (e.g., access is denied for a BPI Subject who does not have the necessary permissions).
+7. Verify that an action on the BPI Storage component taken by the test BPI Subject is either allowed or denied by the set of policies created in step 2 and verify that the appropriate actions towards the test BPI Subject are taken based on the result of the policy evaluation of the test BPI Subjects attempted action.
 8. Repeat steps 2-7 for each type of policy created in step 1.
 9. Verify that the BPI's user interface or API provides a clear way to manage policies.
 
@@ -3002,28 +3008,28 @@ Test Steps:
 
 1. Attempt to access the BPI's user interface or API without providing any authentication credentials.
 2. Verify that the BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
-3. Enter valid username and password credentials to log in to the BPI.
-4. Verify that the BPI grants access to the BPI Subject after successful authentication with username and password.
+3. BPI Subject provides valid credentials to log in to the BPI.
+4. Verify that the BPI grants access to the BPI Subject after successful authentication of the provided credentials.
 5. Attempt to access a protected resource or perform a protected action within the BPI.
 6. Verify that the BPI grants access to the BPI Subject if the BPI Subject has appropriate permissions.
 7. Attempt to enable MFA for the BPI Subject account used to log in to the BPI.
 8. Verify that the BPI supports multiple factors for MFA, such as SMS, email, or an authenticator app.
-9. Attempt to log out and log back in to the BPI using only the username and password credentials.
+9. Attempt to log out and log back in to the BPI using only the credentials used before MFA was activated.
 10. Verify that the BPI requires the BPI Subject to provide an additional factor of authentication for MFA after the initial login.
 11. Attempt to access a protected resource or perform a protected action within the BPI.
 12. Verify that the BPI grants access to the BPI Subject if the BPI Subject has appropriate permissions and has provided the required additional factor of authentication for MFA.
 13 Attempt to disable MFA for the BPI Subject account used to log in to the BPI.
-14 Verify that the BPI disables MFA for the BPI Subject account and allows the BPI Subject to log in with only username and password credentials.
+14 Verify that the BPI disables MFA for the BPI Subject account and allows the BPI Subject to log in with only the intial set of credentials.
 
 Test Passing Criteria: The test will pass if
 
 * The BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
-*Successful login using username and password credentials grants access to the BPI.
-*Access to protected resources or actions within the BPI is granted only to users with appropriate permissions.
-*The BPI supports multiple factors for MFA, such as SMS, email, or an authenticator app.
-*After enabling MFA, the BPI requires the BPI Subject to provide an additional factor of authentication for MFA after the initial login.
+* Successful login using the initial BPI Subject credentials grants access to the BPI.
+* Access to protected resources or actions within the BPI is granted only to a BPI Subject with appropriate permissions.
+* The BPI supports multiple factors for MFA, such as SMS, email, or an authenticator app.
+* After enabling MFA, the BPI requires the BPI Subject to provide an additional factor of authentication for MFA after the initial login.
 *Access to protected resources or actions within the BPI is granted only if the BPI Subject has provided the required additional factor of authentication for MFA.
-*After disabling MFA, the BPI allows the BPI Subject to log in with only username and password credentials.
+*After disabling MFA, the BPI allows the BPI Subject to log in with only the initial credentials used by the BPI Subject.
 
 #### **[R287]**	
 BPI Storage MUST support hardware security modules (HSM). 
@@ -3045,26 +3051,27 @@ Test Steps:
 2. Verify that the BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
 3. Log in to the BPI.
 4. Verify that the BPI grants access to the BPI Subject after successful authentication.
-5. Attempt to perform a cryptographic operation that requires the use of the HSM, such as signing a message or verifying a signature.
-6. Verify that the BPI communicates with the HSM to perform the cryptographic operation.
-7. Attempt to generate a cryptographic key using the HSM.
-8. Verify that the BPI communicates with the HSM to generate the key.
-9. Attempt to store a cryptographic key in the HSM.
-10. Verify that the BPI communicates with the HSM to store the key securely.
-11. Attempt to retrieve a cryptographic key from the HSM.
-12. Verify that the BPI communicates with the HSM to retrieve the key securely.
-13. Attempt to delete a cryptographic key from the HSM.
-14. Verify that the BPI communicates with the HSM to delete the key securely.
+5. Verify that the BPI communicates with the HSM to perform the cryptographic operation.
+6. Attempt to generate a cryptographic key using the HSM.
+7. Verify that the BPI communicates with the HSM to generate the key.
+8. Attempt to store a cryptographic key in the HSM.
+9. Verify that the BPI communicates with the HSM to store the key securely.
+10. Attempt to retrieve a cryptographic key from the HSM.
+11. Verify that the BPI communicates with the HSM to retrieve the key securely.
+12. Attempt to delete a cryptographic key from the HSM.
+13. Verify that the BPI communicates with the HSM to delete the key securely.
+14. Attempt to perform a cryptographic processing operation available in the chosen test HSM using a cryptographic key created during the test in the HSM.
+15. Verify that the cryptographic processing operation produced a cryptographic valid result.
 
 Test Passing Criteria: The test will pass if
 
 * The BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
-* Successful login using username and password credentials grants access to the BPI.
-* The BPI can perform cryptographic operations that require the use of the HSM, such as signing a message or verifying a signature.
+* Successful login grants access to the BPI.
 * The BPI can generate a cryptographic key using the HSM.
 * The BPI can store a cryptographic key securely in the HSM.
 * The BPI can retrieve a cryptographic key securely from the HSM.
 * The BPI can delete a cryptographic key securely from the HSM.
+* The BPI can perform cryptographic processing operations available in the HSM.
 
 ## 7.2. BPI Storage Privacy
 ###### BPISTORAGEPRIVACY
@@ -3528,7 +3535,7 @@ Preconditions:
 * A test BPI Edge Storage is set up and configured
 * A BPI test system is running and accessible
 * A set of data is stored in the BPI Edge Storage
-* The network between BPI and BPI Edge Storage is delivering masseages in finite time as set by the test.
+* The network between BPI and BPI Edge Storage is delivering messages in finite time as set by the test.
 
 Test Steps:
 
@@ -3658,13 +3665,13 @@ Preconditions:
 * A BPI Workgroup has been established with at least one member.
 * BPI Edge Storage has been set up and is operational within the BPI.
 * The BPI Workgroup members or their delegates have access to the BPI network and the necessary permissions to discover and access BPI Edge Storage.
-* There exists one or more methds within the BPI to discover resources associated with or operated by the BPI, such as service discovery protocols or manual configuration.
+* There exists one or more methods within the BPI to discover resources associated with or operated by the BPI, such as service discovery protocols or manual configuration.
 
 Test steps:
 
 1. Make BPI Edge Storage discoverable by BPI Workgroup members or their delegates within the BPI using the BPI discovery mechanism.
-2. Attempt to discover BPI Edge Storage using various BPI diiscovery methods.
-3. Verify that BPI Edge Storage has been successfully identified and can subequently be accessed by BPI Workgroup members or their delegates.
+2. Attempt to discover BPI Edge Storage using various BPI discovery methods.
+3. Verify that BPI Edge Storage has been successfully identified and can subsequently be accessed by BPI Workgroup members or their delegates.
 4. Verify that BPI Edge Storage is accessible only to authorized parties and that unauthorized access attempts are rejected.
 5. Attempt to repeat Steps 1. to 4. after the BPI Edge Storage has been removed from the BPI discovery mechanism
 
