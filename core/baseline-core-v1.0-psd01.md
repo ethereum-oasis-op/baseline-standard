@@ -3041,7 +3041,7 @@ BPI Storage MUST support hardware security modules (HSM).
 Preconditions:
 
 * A BPI test environment is installed and configured properly.
-* The BPI storage component is designed to support an HSM.
+* The BPI storage component is configured to support an HSM.
 * The HSM is installed and properly configured to work with the BPI storage component.
 * A BPI Subject has appropriate permissions to access the BPI.
 
