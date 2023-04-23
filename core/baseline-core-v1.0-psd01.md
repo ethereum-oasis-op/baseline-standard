@@ -2834,7 +2834,7 @@ Preconditions:
 Test Steps:
 
 1. Identify the location of the data at rest in the BPI.
-2. Verify that the data is encrypted and cannot be decrypted without the encryption/decryption key.
+2. Verify that the data is encrypted with the encryption/decryption key.
 3. Attempt to decrypt the encrypted data without the encryption/decryption key and verify that it is not possible.
 5. Repeat steps 1-3 for different types of data and storage scenarios (e.g., different data formats, different storage media).
 
