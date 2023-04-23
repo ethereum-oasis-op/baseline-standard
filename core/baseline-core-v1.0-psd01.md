@@ -2780,6 +2780,7 @@ All other data SHOULD be stored as fully persistent data in the storage capabili
 
 -------
 # 7 General BPI Storage Capabilities
+###### BPISTORAGEGENERAL
 
 BPI storage is a key enabler to scale BPI stacks that are either data-intensive or data sensitive or both.
 
@@ -2794,13 +2795,20 @@ The document defines storage capability requirements in the following areas:
 * Fully Persistent Data
 
 ## 7.1 BPI Storage Security
+###### BPISTORAGESECURITY
 
 As has been done throughout this document, there are BPI layer-specific security requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI security requirements in [2 Design and Architecture](#2-design-and-architecture). 
 
 #### **[R279]** 
 Data in transit in a BPI MUST be encrypted.
 
-[[R279]](#r279) Testability: Preconditions: There is a BPI test environment with at least two independent services processing data that communicate with each other, the communication between the services is captured using a packet capture system, and the encryption algorithm(s) in the test meets the security requirements of this document.
+[[R279]](#r279) Testability: 
+
+Preconditions: 
+
+* There is a BPI test environment with at least two independent services processing data that communicate with each other
+* The communication between the services is captured using a packet capture system
+* The encryption algorithm(s) in the test meets the security requirements of this document.
 
 Test Steps:
 
@@ -2816,7 +2824,12 @@ The requirement is met, if all expected results are met. The requirement is not 
 #### **[R280]** 
 Data at rest in a BPI MUST be encrypted.
 
-[[R280]](#r280) Testability: Preconditions: There is a BPI test environment that can store data and the encryption algorithm(s) in the test meets the security requirements of this document.
+[[R280]](#r280) Testability: 
+
+Preconditions: 
+
+* There is a BPI test environment that can store data
+* The encryption algorithm(s) in the test meets the security requirements of this document.
 
 Test Steps:
 
@@ -2834,7 +2847,13 @@ BPI Storage arranged in a network MUST support pairwise key/identity relationshi
 
 *This is also known as a secure connection.*
 
-[[R281]](#r281) Testability: Preconditions: There is a BPI test environment with at least two independent storage nodes that communicate with each other, the communication between the services is onfigured to support pairwise key/identity relationships, and the encryption/decryption algorithm(s) in the test meets the security requirements of this document.
+[[R281]](#r281) Testability: 
+
+Preconditions: 
+
+* There is a BPI test environment with at least two independent storage nodes that communicate with each other
+* The communication between the services is onfigured to support pairwise key/identity relationships
+* The encryption/decryption algorithm(s) in the test meets the security requirements of this document.
 
 Test Steps:
 
@@ -2857,7 +2876,12 @@ BPI Storage MUST be compatible with commonly used external authentication servic
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
 
-[[R282]](#r282) Testability: Preconditions: A typical BPI Storage e.g. the open-source [PostgreSQL](https://www.postgresql.org/) data base deployed in a BPI test environment with a BPI client and a BPI server, and an authemtication service to be used with the BPI Storage such as [[OAuth-2.0](#oauth-20)] between client and server.
+[[R282]](#r282) Testability: 
+
+Preconditions: 
+
+* A typical BPI Storage e.g. the open-source [PostgreSQL](https://www.postgresql.org/) data base deployed in a BPI test environment with a BPI client and a BPI server
+* An authemtication service to be used with the BPI Storage such as [[OAuth-2.0](#oauth-20)] between client and server.
 
 Test steps:
 
@@ -2869,12 +2893,18 @@ Test steps:
 
 Test pass criteria:
 
-The test will pass if one or more of the external authentication services successfully authenticate a BPI Subject to the BPI Storage and the BPI Subject is granted the type of access to the BPI Storage as defined in the test policy. Note the test policy could be any combination of read and write access to the BPI Storage.
+The test will pass if one or more of the external authentication services successfully authenticate a BPI Subject to the BPI Storage and the BPI Subject is granted the type of access to the BPI Storage as defined in the test policy. 
+
+Note that the test policy could be any combination of read and write access to the BPI Storage.
 
 #### **[R283]**	
 BPI Storage MUST support roles & access management.
 
-[[R283]](#r283) Testability: Preconditions: Identify the roles that need to be supported by the BPI Storage, based on the functional requirements and design specifications such as "Administrators" with full read and write permissions or "ReadUser" with only read permissions.
+[[R283]](#r283) Testability: 
+
+Preconditions: 
+
+* Identify the roles that need to be supported by the BPI Storage, based on the functional requirements and design specifications such as "Administrators" with full read and write permissions or "ReadUser" with only read permissions.
 
 Test steps:
 
@@ -2887,7 +2917,7 @@ Test steps:
 
 Test pass criteria:
 
-The test will pass if all supported roles are successfully tested, and BPI Subject's are able to perform operations only as allowed by their role's permissions. Additionally, attempting operations that require higher permissions than the current BPI Subject's role must be denied, and appropriate error messages must be displayed.
+The test will pass if all supported roles are successfully tested, and BPI Subjects are able to perform operations only as allowed by their role's permissions. Additionally, attempting operations that require higher permissions than the current BPI Subject's role must be denied, and appropriate error messages must be displayed.
 
 #### **[R284]**	
 BPI Storage MUST support policy management.
@@ -2970,20 +3000,20 @@ Preconditions:
 
 Test Steps:
 
-* Attempt to access the BPI's user interface or API without providing any authentication credentials.
-* Verify that the BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
-* Enter valid username and password credentials to log in to the BPI.
-* Verify that the BPI grants access to the BPI Subject after successful authentication with username and password.
-* Attempt to access a protected resource or perform a protected action within the BPI.
-* Verify that the BPI grants access to the BPI Subject if the BPI Subject has appropriate permissions.
-* Attempt to enable MFA for the BPI Subject account used to log in to the BPI.
-* Verify that the BPI supports multiple factors for MFA, such as SMS, email, or an authenticator app.
-* Attempt to log out and log back in to the BPI using only the username and password credentials.
-* Verify that the BPI requires the BPI Subject to provide an additional factor of authentication for MFA after the initial login.
-* Attempt to access a protected resource or perform a protected action within the BPI.
-* Verify that the BPI grants access to the BPI Subject if the BPI Subject has appropriate permissions and has provided the required additional factor of authentication for MFA.
-* Attempt to disable MFA for the BPI Subject account used to log in to the BPI.
-* Verify that the BPI disables MFA for the BPI Subject account and allows the BPI Subject to log in with only username and password credentials.
+1. Attempt to access the BPI's user interface or API without providing any authentication credentials.
+2. Verify that the BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
+3. Enter valid username and password credentials to log in to the BPI.
+4. Verify that the BPI grants access to the BPI Subject after successful authentication with username and password.
+5. Attempt to access a protected resource or perform a protected action within the BPI.
+6. Verify that the BPI grants access to the BPI Subject if the BPI Subject has appropriate permissions.
+7. Attempt to enable MFA for the BPI Subject account used to log in to the BPI.
+8. Verify that the BPI supports multiple factors for MFA, such as SMS, email, or an authenticator app.
+9. Attempt to log out and log back in to the BPI using only the username and password credentials.
+10. Verify that the BPI requires the BPI Subject to provide an additional factor of authentication for MFA after the initial login.
+11. Attempt to access a protected resource or perform a protected action within the BPI.
+12. Verify that the BPI grants access to the BPI Subject if the BPI Subject has appropriate permissions and has provided the required additional factor of authentication for MFA.
+13 Attempt to disable MFA for the BPI Subject account used to log in to the BPI.
+14 Verify that the BPI disables MFA for the BPI Subject account and allows the BPI Subject to log in with only username and password credentials.
 
 Test Passing Criteria: The test will pass if
 
@@ -3011,20 +3041,20 @@ Preconditions:
 
 Test Steps:
 
-* Attempt to access the BPI's user interface or API without providing any authentication credentials.
-* Verify that the BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
-* Enter valid username and password credentials to log in to the BPI.
-* Verify that the BPI grants access to the BPI Subject after successful authentication with username and password.
-* Attempt to perform a cryptographic operation that requires the use of the HSM, such as signing a message or verifying a signature.
-* Verify that the BPI communicates with the HSM to perform the cryptographic operation.
-* Attempt to generate a cryptographic key using the HSM.
-* Verify that the BPI communicates with the HSM to generate the key.
-* Attempt to store a cryptographic key in the HSM.
-* Verify that the BPI communicates with the HSM to store the key securely.
-* Attempt to retrieve a cryptographic key from the HSM.
-* Verify that the BPI communicates with the HSM to retrieve the key securely.
-* Attempt to delete a cryptographic key from the HSM.
-* Verify that the BPI communicates with the HSM to delete the key securely.
+1. Attempt to access the BPI's user interface or API without providing any authentication credentials.
+2. Verify that the BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
+3. Enter valid username and password credentials to log in to the BPI.
+4. Verify that the BPI grants access to the BPI Subject after successful authentication with username and password.
+5. Attempt to perform a cryptographic operation that requires the use of the HSM, such as signing a message or verifying a signature.
+6. Verify that the BPI communicates with the HSM to perform the cryptographic operation.
+7. Attempt to generate a cryptographic key using the HSM.
+8. Verify that the BPI communicates with the HSM to generate the key.
+9. Attempt to store a cryptographic key in the HSM.
+10. Verify that the BPI communicates with the HSM to store the key securely.
+11. Attempt to retrieve a cryptographic key from the HSM.
+12. Verify that the BPI communicates with the HSM to retrieve the key securely.
+13. Attempt to delete a cryptographic key from the HSM.
+14. Verify that the BPI communicates with the HSM to delete the key securely.
 
 Test Passing Criteria: The test will pass if
 
@@ -3037,6 +3067,7 @@ Test Passing Criteria: The test will pass if
 * The BPI can delete a cryptographic key securely from the HSM.
 
 ## 7.2. BPI Storage Privacy
+###### BPISTORAGEPRIVACY
 
 As has been done throughout this document, there are BPI layer-specific privacy requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI privacy requirements in section [2 Design and Architecture](#2-design-and-architecture).
 
@@ -3053,12 +3084,12 @@ Preconditions:
 
 Test Steps:
 
-* Create a record that contains PII, such as a name, address, social security number, or phone number.
-* Attempt to store the record in the BPI using a write operation method, such as POST or PUT.
-* Verify that the BPI rejects the record and returns an error message indicating that the record contains PII and cannot be stored.
-* Create a record that does not contain PII, such as a random string or number.
-* Attempt to store the record in the BPI using a write operation method, such as POST or PUT.
-*Verify that the BPI accepts the record and stores it successfully.
+1. Create a record that contains PII, such as a name, address, social security number, or phone number.
+2. Attempt to store the record in the BPI using a write operation method, such as POST or PUT.
+3. Verify that the BPI rejects the record and returns an error message indicating that the record contains PII and cannot be stored.
+4. Create a record that does not contain PII, such as a random string or number.
+5. Attempt to store the record in the BPI using a write operation method, such as POST or PUT.
+6. Verify that the BPI accepts the record and stores it successfully.
 
 Example Methods to identify PII:
 
@@ -3083,12 +3114,13 @@ Preconditions:
 * BPI Storage is arranged in a two node network that can support pairwise key/identity relationships between storage nodes in a testable manner (see [[R282]](#r282) for testing details)
 
 Test Steps:
-* Using a pairwise key/identity relationship between the two BPI storage nodes, asymmetrically encrypt a message such as a data replication message.
-* Perform Test from [[R279]](#r279)
+1. Using a pairwise key/identity relationship between the two BPI storage nodes, asymmetrically encrypt a message such as a data replication message.
+2. Perform Test from [[R279]](#r279)
 
 Test Passing Criteria: The test will pass if the test passing criteria in [[R279]](#r279) Testability are met.
 
 ## 7.3. BPI Data Orchestration
+###### BPIDATAORCHESTRATION
 
 Data Orchestration is an automated process for taking siloed data from multiple storage locations, combining and organizing it, and making it available for analysis.
 
@@ -3209,62 +3241,276 @@ Passing Criteria: The test will pass if all the following criteria are met,
 * The committed transactions have been properly applied to the targeted BPI State Object and the final state of the BPI State Object is consistent with the transactions that were sent.
 
 #### **[R293]**	
-Data Orchestration utilized in a BPI MUST support a consistent state.
+Data Orchestration utilized in a BPI MUST support a consistent Data Orchestration state.
 
-[[R293]](#r293) Testability: Data Orchestration solutions that support a consistent state typically utilize a queued publish/subscribe messaging model where each message is uniquely associated to a topic and where the message identifier is deterministically created to preserve state by maintaining a history of state changes, and a message for a given topic is removed from the data orchestration solution once consumed. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+*This can be achieved for example using a two-phase-lock commitment that ensures that a message log in the data orchestration module is idempotent, in other words is append only once per message and not more.*
+
+[[R293]](#r293) Testability: 
+
+Preconditions:
+
+* A BPI test environment is deployed and running.
+* The Data Orchestration module is properly configured and enabled.
+
+Test Steps:
+
+1. Send a BPI transaction request to the BPI though a POST or PUT request
+2. Verify that the message log in the Data Orchestration module is updated only once for the transaction.
+3. Repeat step 1 and 2 for multiple concurrent transactions.
+4. Verify that the message log in the Data Orchestration module is updated only once for each of the concurrent transactions.
+5. Introduce errors in the Data Orchestration module, such as network failures, and retry the transaction requests.
+6. Verify that the message log in the Data Orchestration module is updated only once for each of the retried transactions.
+
+Test Passing Criteria: The test passes if:
+
+* The message log in the Data Orchestration module is updated only once for each transaction and for each concurrent transaction.
+* The message log in the Data Orchestration module is not updated for failed transactions.
+* The message log in the Data Orchestration module is updated only once for each retried transaction.
+
 
 #### **[R294]**	
 Data Orchestration utilized in a BPI MUST support user-space processing. 
 
 *In the context of this document, this requirement establishes a capability that allows for one or more computations outside a database to be triggered by a data change in the data storage system.*
 
-[[R294]](#r294) Testability: Data Orchestration solutions that support user-space processing typically utilize a topic-driven publish/subscribe messaging system where messages either trigger outside computations and/or data storage operations or are the result of outside computations and/or data storage operations. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R294]](#r294) Testability: 
+
+Preconditions:
+
+* A BPI test instance is set up and running.
+* User-space processing functionality is enabled and configured such that a data change in a source system triggers at least one data change in a  target system as defined in the user-space processing function.
+* Make sure there is only one user-space processing function for the test.
+
+Test Steps:
+
+1. Add a new record to a BPI data storage system as the source system defined in the user-space processing function.
+2. Verify that the user-space processing is triggered by the data change.
+3. Check that the user-space processing function is executed correctly and one or more data changes are made in the defined target system as per the functions definition.
+4. Make changes to the newly created record.
+5. Verify that the user-space processing is triggered again by the data change.
+6. Check that the user-space processing function is executed correctly again as per the functions definition.
+7. Add a new record to another BPI data storage system not defined as the source system in the user-space processing function.
+8. Verify that the user-space processing is not triggered by the data change. 
+
+Test Passing Criteria:
+
+* The user-space processing is triggered by the data change in a BPI storage system.
+* The user-space processing function is executed correctly for both steps 3 and 6.
+* The processing function is not triggered for any data change that is not specified in the configuration.
+* The BPI storage system remains stable and consistent throughout the test.
 
 #### **[R295]**	
-Data Orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
+Data Orchestration utilized in a BPI MUST NOT make assumptions about the uptime of a Data Orchestration consumer.
 
-[[R295]](#r295) Testability: Data Orchestration solutions that make no assumptions about consumer uptime utilize a topic-driven publish/subscribe messaging system where messages are kept in topic queues until they are consumed by a subscribing application (consumer). An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R295]](#r295) Testability: 
+
+Preconditions:
+
+* BPI test environment is set up and running.
+* Data Orchestration is implemented and functional.
+* Data Orchestration consumer is registered.
+
+Test Steps:
+
+1. Simulate a scenario where the Data Orchestration consumer experiences an unexpected downtime.
+2. Verify that the Data Orchestration continues to operate normally without any impact to the BPI's functionality.
+3. Bring the Data Orchestration consumer back online.
+4. Verify that the Data Orchestration resumes sending data to the consumer without any data loss or corruption.
+
+Test Passing Criteria:
+
+* Step 2 must complete without any errors or issues.
+* Step 4 must complete without any data loss or corruption.
+* The BPI must remain operational and functional even when the Data Orchestration consumer is down.
 
 #### **[R296]**	
-Data Orchestration utilized in a BPI MUST isolate data source and consumers.
+Data Orchestration utilized in a BPI MUST isolate Data Orchestration data sources from Data Orchestration consumers to which data from the Data Orchestration data sources is delivered via the BPI's Data Orchestration component.
 
-[[R296]](#r296) Testability: Data Orchestration solutions that isolate data source (producer) and consumer utilize a topic-driven publish/subscribe messaging system. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R296]](#r296) Testability: 
+
+Preconditions:
+
+* A BPI test system with Data Orchestration component is set up and running.
+* Data sources and data source associated data consumers have been identified and configured in the BPI system and its Data Orchestration component.
+
+Test Steps:
+
+1. Send data from a data source to the Data Orchestration component of the BPI system.
+2. Verify that the data is received and stored by the Data Orchestration component.
+3. Check that the data source is not accessible to any Data Orchestration consumers.
+4. Verify that the Data Orchestration component delivers the received data to the consumer.
+5. Check that the Data Orchestration consumer does not have access to the data source that provided the data.
+6. Repeat steps 1-5 for multiple data sources and consumers.
+
+Test Passing Criteria:
+
+* The Data Orchestration component should successfully receive and store data from the data source.
+* The data source should not be accessible to any Data Orchestration consumers.
+* The Data Orchestration component should successfully deliver data to the consumer associated with the data source.
+* The Data Orchestration consumer should not have access to * the data source that provided the delivered data.
+* The test should pass for all tested data sources and consumers.
 
 #### **[R297]**	
 Data Orchestration utilized in a BPI MUST support Low Latency.
 
 *Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.*
 
-[[R297]](#r297) Testability: There are many Data Orchestration solutions that are Low Latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R297]](#r297) Testability: 
+
+Preconditions:
+
+* A BPI test system with Data Orchestration capability is set up and running.
+* A test data source and consumer are set up within the BPI.
+* The BPI has a defined threshold for "Low Latency".
+
+Test Steps:
+
+* Send a request to the test data source to initiate a data change.
+* Measure the time it takes for the data change to propagate through the Data Orchestration component and reach the test consumer.
+* Compare the measured time with the defined "Low Latency" threshold.
+
+If the measured time is below the defined threshold, the test passes. Otherwise, the test fails.
+
+Test Passing Criteria:
+
+* The test is considered passed if the measured time for the data change to propagate through the Data Orchestration component and reach the test consumer is below the defined "Low Latency" threshold.
+
 
 #### **[R298]**	
 Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes at any point in time.
 
-[[R298]](#r298) Testability: There are many Data Orchestration solutions that are highly scalable, highly redundant to guarantee high-availability and have Low Latency. An example of such an implementation with a complete test suite is [Apache Kafka](https://github.com/apache/kafka). Therefore, the requirement is testable.
+[[R298]](#r298) Testability: 
+
+Preconditions:
+
+* A BPI test system is set up and running with Data Orchestration implemented.
+* There are enough resources available to simulate varying volume loads on the system.
+* Define minimum and maximum processing volume for the test.
+* Define acceptable Data Orchestration latencies for the test.
+* Define BPI system latencies for the test.
+
+Test Steps:
+
+1. Increase the volume of data being processed by the Data Orchestration component to a significant level.
+2. Verify that the overall system latency is within acceptable limits.
+3. Gradually increase the volume of data being processed until it reaches a peak level.
+4. Verify that the overall system latency is still within acceptable limits.
+5. Reduce the volume of data being processed back to the initial level.
+6. Verify that the overall system latency returns to its previous level.
+
+Passing Criteria:
+
+* In steps 2 and 4, the overall system latency should not exceed the acceptable limit specified for the BPI.
+* In step 6, the overall system latency should return to its previous level.
+* The test should be repeated multiple times with varying volume loads, and the passing criteria should be met consistently.
 
 *The BPI Data Orchestration must include the following four components:*
 
 #### **[R299]**	
-The Data Orchestration Layer utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
+Data Orchestration utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
 
-[[R299]](#r299) Testability: Data Orchestration solutions with fetcher capabilities typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+[[R299]](#r299) Testability: 
+
+Preconditions:
+
+* A BPI test instance with a data source and a Data Orchestration component.
+
+Test Steps:
+
+1. Inject a test record into the data source.
+2. Wait for a reasonable period for the fetcher capability of the Data Orchestration component to extract the changes from the data source.
+3. Retrieve the extracted record from the Data Orchestration component.
+4. Verify that the retrieved record matches the injected record in the data source.
+
+Test Passing Criteria:
+
+* The injected record in the data source and the retrieved record from the Data Orchestration component must match.
+* The fetcher capability must extract the changes from the data source in a reasonable period of time.
+* The extracted changes must be available for retrieval from the Data Orchestration component.
+
+Note: The test steps can be modified to include multiple records and various types of data sources to test the scalability and flexibility of the fetcher capability.
 
 #### **[R300]**	
-The Data Orchestration Layer utilized in a BPI MUST include a log store that caches the generated data change stream.
+Data Orchestration utilized in a BPI MUST include a log store that caches the generated data change stream in a BPI.
 
-[[R300]](#r300) Testability: Data Orchestration solutions with a log store typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+[[R300]](#r300) Testability: 
+
+Preconditions:
+
+* A BPI test system is set up and running with Data Orchestration enabled.
+* A log store is configured and connected to the Data Orchestration component.
+
+Test Steps:
+
+1. Make a change to the data source connected to the BPI.
+2. Verify that the change is captured in the log store of the Data Orchestration component.
+3. Make another change to the data source.
+4. Verify that the second change is also captured in the log store of the Data Orchestration component.
+5. Verify that the order of changes in the log store matches the order in which they were made to the data source.
+6. Disable the log store and make a change to the data source.
+7. Verify that the change is not captured in the log store.
+
+Test Passing Criteria:
+
+* The changes made to the data source are captured in the log store.
+* The order of changes in the log store matches the order in which they were made to the data source.
+* The log store can be enabled or disabled as desired, and only captures changes when enabled.
 
 #### **[R301]**	
-The Data Orchestration Layer utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
+Data Orchestration utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
 
-[[R301]](#r301) Testability: Data Orchestration solutions with a snapshot store typically utilize a queued publish/subscribe messaging model. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+[[R301]](#r301) Testability: 
+
+Preconditions:
+
+* The Data Orchestration layer has been properly installed and configured in the BPI test environment.
+* A data source is connected and sending data to the Data Orchestration layer.
+
+Test Steps:
+
+1. Send a set of test data to the Data Orchestration layer.
+2. Verify that the data is properly received and stored in the log store.
+3. Verify that the snapshot store has captured the data as a moving snapshot from the log store.
+4. Change the data source by updating the data.
+5. Verify that the updated data is properly received and stored in the log store.
+6. Verify that the snapshot store has captured the updated data as a moving snapshot from the log store.
+7. Repeat steps 4-6 with different sets of data to ensure that the snapshot store can capture a moving snapshot of any generated change data stream.
+
+Test Passing Criteria:
+
+* The test passes if all test steps have been successfully executed without errors or failures.
+* The snapshot store should be able to store a moving snapshot of the generated change data stream.
+* The snapshot store should capture any changes to the data source in the moving snapshot from the log store.
 
 #### **[R302]**	
-The Data Orchestration Layer utilized in a BPI MUST include a subscription client pulling change events with low-latency across various components and servicing them to a service in a BPI.
+Data Orchestration utilized in a BPI MUST include a subscription client pulling change events across the Data Orchestration component and delivering them to a service in a BPI with Low Latency.
 
-[[R302]](#r302) Testability: Data Orchestration solutions typically utilize a subscription client. An example of such an implementation with a complete test suite is [Linkedin's Databus](https://github.com/linkedin/databus). Therefore, the requirement is testable.
+[[R302]](#r302) Testability: 
+
+Preconditions:
+
+* A BPI test system is set up and running
+* The Data Orchestration component is configured and operational
+* The service that will receive change events is set up and running
+* Define Low Latency tolerance values for the Data Orchestration component relative to overall BPI system latency targets.
+
+Test Steps:
+
+1. Generate data changes in the data source used by the Data Orchestration component
+2. Verify that the subscription client is pulling change events from the Data Orchestration component
+3. Verify that the change events are being delivered to the service
+4. Increase the volume and frequency of data changes in the data source and repeat steps 2-3
+5. Verify that the overall system latency of the BPI is not impacted by the increase in data changes
+
+Test Passing Criteria:
+
+* Step 1 is successful
+* Steps 2-3 are successful and the change events are being delivered to the service with Low Latency
+* Step 4 is successful and the change events are being delivered to the service with Low Latency
+* Step 5 is successful and the overall system latency of the BPI is not impacted by the increase in data changes
 
 ## 7.4 BPI-External Storage: Edge Storage
+###### BPIEDGESTORAGE
 
 There are operating scenarios where it could be necessary that BPI data is replicated outside of a BPI such as to avoid having to rebase the state of a system or record due to an accidental data update if the correct state is not readily accessible to enforce system-of-record access policies. 
 
@@ -3275,44 +3521,214 @@ BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI u
 * *All messages will eventually reach their intended recipients* 
 * *After a certain, yet unknown, time the network will become synchronous again*
 
-[[R303]](#r303) Testability: Eventual consistency between different BPI storage can be achieved utilizing a P2P messaging solution with eventual consistency for data synchronization. Such a P2P solution is [libp2p](https://github.com/libp2p/go-libp2p) with its complete test suite. Therefore, the requirement is testable 
+[[R303]](#r303) Testability: 
+
+Preconditions:
+
+* A test BPI Edge Storage is set up and configured
+* A BPI test system is running and accessible
+* A set of data is stored in the BPI Edge Storage
+* The network between BPI and BPI Edge Storage is delivering masseages in finite time as set by the test.
+
+Test Steps:
+
+1. Store a set of data in BPI Edge Storage.
+2. Verify that the data is available in BPI Edge Storage and not in the BPI.
+3. Introduce a delay in the network that lasts longer than the known average duration to send data from the BPI Edge Storage to the BPI.
+4. Update the data in the BPI Edge Storage.
+5. Verify that the data update is eventually propagated to the BPI and the data in BPI is consistent with the updated data in BPI Edge Storage.
+6. Remove the network delay and verify that the updated data is available in BPI with minimal delay.
+
+Test Passing Criteria:
+
+* The data stored in BPI Edge Storage is available and consistent with BPI under normal network conditions.
+* The data update in BPI Edge Storage is eventually propagated to BPI and the data in BPI is consistent with the updated data in BPI Edge Storage.
+* The delay introduced in the network does not result in data loss or corruption.
+* The updated data is available in BPI with minimal delay after the network delay is removed.
 
 #### **[R304]**	
-Replication conflicts MUST be automatically detectable. 
+Data replication conflicts in BPI Edge Storage MUST be automatically detectable. 
 
-[[R304]](#r304) Testability: An example of external BPI storage that can detect replication conflicts automatically is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite including replication tests, the requirement is testable.
+[[R304]](#r304) Testability: 
+
+Preconditions:
+
+* A BPI Edge Storage system is properly set up and configured.
+* There are at least two storage nodes that are replicating data.
+* The data being replicated has the potential to cause conflicts.
+
+Test Steps:
+
+1. Write a piece of data to BPI Edge Storage.
+2. Simulate a network partition between the storage nodes, so that each node continues to receive writes while unable to communicate with each other.
+3. Update the same piece of data on both storage nodes while the network partition is in place.
+4. Rejoin the network partition.
+5. Verify that the BPI Edge Storage system has detected a conflict.
+6. Verify that the BPI Edge Storage system has resolved the conflict by using a conflict resolution strategy, such as last write wins or a custom resolution function.
+
+Test Passing Criteria:
+
+* The BPI Edge Storage system detects the conflict within a reasonable amount of time, such as a few seconds.
+* The conflict is resolved automatically by the BPI Edge Storage system.
+* The resolution strategy used by the BPI Edge Storage system aligns with the chosen conflict resolution approach.
+* The resolution is propagated to all nodes in the storage cluster, so that all nodes eventually have the same data.
 
 #### **[R305]** 
-Replication conflicts MUST be resolvable either automatically or manually.
+Data replication conflicts in BPI Edge Storage MUST be resolvable either automatically or manually.
 
-[[R305]](#r305) Testability: An example of external BPI storage that can resolve replication conflicts automatically (e.g. rejecting conflicting updates), as well as manually (e.g. update a table update SQL procedure) is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite including replication tests, the requirement is testable.
+[[R305]](#r305) Testability: 
+
+Preconditions:
+
+* BPI Edge Storage is set up and running.
+* There are multiple nodes for data replication in BPI Edge Storage.
+* The BPI Edge Storage has passed the test for [[R04]](#r304).
+
+Test Steps:
+
+1. Simulate a data replication conflict scenario by creating two or more replicas of the same data item with different values in different nodes of BPI Edge Storage that cannot be automatically resolved by the BPI Edge Storage Data Conflict Resolution capability.
+2. Check whether BPI Edge Storage can automatically detect and resolve the data replication conflict. If yes, then repat Step 1.
+3. If BPI Edge Storage does not automatically resolve the conflict, a human readable message must be created and a manually attempt to resolve the conflict must be possible through a user interface.
+4. Verify that the data replication conflict has been successfully resolved through the user interface and only one replica of the data item with the correct value remains.
+
+Test Passing Criteria:
+
+* The test passes if BPI Edge Storage can automatically detect the data replication conflict and cannot resolve it automatically.
+* The manual conflict resolution results in only one replica of the data item with the correct value remaining in BPI Edge Storage.
+* The time taken to detect and resolve the conflict is within acceptable limits.
 
 #### **[R306]**	
-BPI Edge Storage MUST use a secure and privacy-preserving wire protocol.
+BPI Edge Storage MUST use a secure and privacy-preserving wire protocol for communication.
 
-[[R306]](#r306) Testability: libp2p as a very commonly used P2P message/wire protocol supports end-to-end encryption, see [here](https://github.com/libp2p/specs/blob/master/noise/README.md) for the NOISE specification and relevant tests [here](https://github.com/libp2p/go-libp2p/blob/master/test-plans/cmd/ping/main.go) as well as authentication and authorization solutions such as OAuth-2.0. This shows that the requirement is testable.
+[[R306]](#r306) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running.
+* BPI Edge Storage is installed and configured.
+* BPI Edge Storage is using a wire protocol for communication.
+
+Test steps:
+
+1. Verify that a wire protocol is implemented in BPI Edge Storage.
+2. Attempt to intercept communication between BPI Edge Storage and the BPI.
+3. Verify that intercepted communication cannot be deciphered by analyzing the data from the wire protocol.
+4. Verify that sensitive data in the communication is encrypted using the identified encryption algorithm in the wire protocol.
+5. Verify that the protocol is resistant to person-in-the-middle attacks.
+
+Test Passing criteria:
+
+* The identified protocol is implemented in BPI Edge Storage.
+* Intercepted communication cannot be deciphered by analyzing the data from the wire protocol.
+* Sensitive data in the communication is encrypted using the identified protocol.
+* The wire protocol is resistant to person-in-the-middle attacks.
 
 #### **[D40]**	
 BPI Edge Storage SHOULD be able to cryptographically sign messages.
 
-[[D40]](#d40) Testability: An example of external BPI storage that can sign messages is the open-source [PostgreSQL](https://www.postgresql.org/) data base using SSL, and since PostgreSQL has an extensive test suite including SSL certificate testing, the requirement is testable.
+[[D40]](#d40) Testability: 
+
+Preconditions:
+
+* A BPI Edge Storage is installed and configured properly.
+* Cryptographic keys for message signing are generated and available.
+
+Test Steps:
+
+1. Send a message to the BPI Edge Storage.
+2. Verify that the message received by BPI Edge Storage can be cryptographically signed.
+3. Verify that BPI Edge Storage is able to sign the message with the cryptographic keys.
+4. Send the signed message from BPI Edge Storage back to the message origin.
+5. Verify the message origin has received the signed message from the BPI Edge Storage
+5. Verify that the signature of the message sent by the BPI Edge Storage is valid using the corresponding cryptographic keys.
+
+Test Passing Criteria:
+
+* The message is successfully signed by BPI Edge Storage with the provided cryptographic keys.
+* The signature of the message is verified as valid using the corresponding cryptographic keys.
 
 #### **[D41]**	
 BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delegates within a BPI.
 
-[[D41]](#d41) Testability: A BPI Storage access endpoint can be listed in the `Services` section of a DID document. Since BPI Subjects as members of a Workgroup can be associated with a DID, and since a DID can be resolved to its DID Document including its 'Services' section, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
+[[D41]](#d41) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running.
+* A BPI Workgroup has been established with at least one member.
+* BPI Edge Storage has been set up and is operational within the BPI.
+* The BPI Workgroup members or their delegates have access to the BPI network and the necessary permissions to discover and access BPI Edge Storage.
+* There exists one or more methds within the BPI to discover resources associated with or operated by the BPI, such as service discovery protocols or manual configuration.
+
+Test steps:
+
+1. Make BPI Edge Storage discoverable by BPI Workgroup members or their delegates within the BPI using the BPI discovery mechanism.
+2. Attempt to discover BPI Edge Storage using various BPI diiscovery methods.
+3. Verify that BPI Edge Storage has been successfully identified and can subequently be accessed by BPI Workgroup members or their delegates.
+4. Verify that BPI Edge Storage is accessible only to authorized parties and that unauthorized access attempts are rejected.
+5. Attempt to repeat Steps 1. to 4. after the BPI Edge Storage has been removed from the BPI discovery mechanism
+
+Test Passing criteria:
+
+* BPI Edge Storage is discoverable by BPI Workgroup members or their delegates within the BPI.
+* BPI Edge Storage can be accessed by BPI Workgroup members or their delegates.
+* BPI Edge Storage is accessible only to authorized parties and unauthorized access attempts are rejected.
+* The BPI Edge Storage is not discoverable in Step 5.
 
 #### **[R307]**	
-BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
+BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. 
 
-[[R307]](#r307) Testability: Since OAuth-2.0 can testably utilize DIDs e.g. [[DID-JWT]](https://github.com/decentralized-identity/did-jwt/tree/master/src/__tests__) which can be used as BPI identifiers and identities, and since the open-source [PostgreSQL](https://www.postgresql.org/) data base supports OAuth-2.0, and since PostgreSQL has an extensive test suite including OAuth-2.0 tests, the requirement is testable.
+See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
+
+[[R307]](#r307) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running
+* The BPI has assigned a BPI Identifier and Identity to the BPI Edge Storage
+* The BPI Identifier, Identity, and its associated credentials for the BPI Edge Storage are stored in the BPI Edge Storage and in the BPI
+
+Test Steps:
+
+1. Verify that the BPI Edge Storage is able to accept and store the BPI Identifier and Identity.
+2. Verify that the BPI Edge Storage is able to store and protect the associated credentials for the BPI Identifier and Identity.
+3. Verify that the BPI Edge Storage is able to use the BPI Identifier and Identity to interact with other BPI 4. components, such as other BPI Storage.
+4. Verify that the BPI Edge Storage is able to correctly identify itself to other BPI components using the assigned BPI Identifier and Identity.
+
+Test Passing Criteria:
+
+* The BPI Edge Storage is able to accept and store the BPI Identifier and Identity without error.
+* The BPI Edge Storage is able to store and protect the associated credentials for the BPI Identifier and Identity without error.
+* The BPI Edge Storage is able to use the BPI Identifier and Identity to interact with other BPI components without error.
+* The BPI Edge Storage is able to correctly identify itself to other BPI components using the assigned BPI Identifier and Identity without error.
 
 #### **[R308]**	
-BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data (see section [7.5 BPI-Internal Storage](#75-bpi-internal-storage)) requirements for security, privacy, and integration.
+BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data.
 
-[[R308]](#r308) Testability: Since BPI Edge Storage is a type of BPI Storage that could be used in a BPI and since all the requirements in section 7.5 BPI-Internal Storage](#75-bpi-internal-storage)) are testable, this requirement is testable as well.
+See section [7.5 BPI-Internal Storage](#75-bpi-internal-storage) requirements for security, privacy, and integration.
 
-## 7.5 BPI-Internal Storage 
+[[R308]](#r308) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running.
+* BPI Edge Storage is installed and configured with appropriate access credentials.
+
+Test Steps:
+
+1. Create a new Partially Persistent Data object in BPI Edge Storage.
+2. Verify that the object can be accessed and updated without affecting newer versions.
+3. Create a new Fully Persistent Data object in BPI Edge Storage.
+4. Verify that all versions of the object can be accessed and updated independently.
+
+Test Passing Criteria:
+
+* The Partially Persistent Data object can be accessed and updated without affecting newer versions.
+* The Fully Persistent Data object allows all versions to be accessed and updated independently.
+
+
+## 7.5 BPI-Internal Storage
+###### BPIINTERNALSTORAGE 
 
 There are two storage types BPI storage systems can utilize, fully or partially persistent storage.
 
@@ -3325,8 +3741,9 @@ There are two deployment options -- centralized or distributed/decentralized dep
 This document lists the requirements for either option and indicates the differences between partially and fully persistent data storage where required.		
 
 ### 7.5.1 BPI Storage: Centralized Deployment
+###### BPIINTERNALSTORAGECENTRALIZED
 
-**[R309]** BPI Storage  MUST support characteristics of commonly utilized enterprise-grade database solutions. 
+Since BPIs are typically used in an enterprise context, BPI Storage ideally has characteristics of commonly utilized enterprise-grade database solutions. 
 
 *Characteristics of enterprise-grade database solutions are but not limited to:*
 * *Support for large number (> 1,000) of Parallel Queries*
@@ -3334,77 +3751,295 @@ This document lists the requirements for either option and indicates the differe
 * *Support for database clustering to process high data volumes in short periods of time (sub second processing)*
 * *Security features that adhere to established industry security standards such as the US Federal Information Processing Standard [[FIPS](#fips)] or [[ISO 27001](#iso27001)]*  
 
-[[R309]](#r309) Testability: An example of a BPI consistent with the requirement is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite in line with enterprise-grade data base solutions, and since commercial implementations such as [Microsoft Azure PostgreSQL - Single Server](https://techcommunity.microsoft.com/t5/azure-database-for-postgresql/security-amp-compliance-certifications-on-azure-database-for/ba-p/1503450) has both enterprise and global security and regulatory compliance certifications, the requirement is testable.
 
 #### **[O8]** 
 Centralized BPI Storage MAY be partially persistent. 
 
-[[O8]](#o8) Testability: An example of centralized BPI Storage that can be made partially consistent by restricting writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
+[[O8]](#o8) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running.
+* The Centralized BPI Storage has been set up and configured.
+
+Test Steps:
+
+1. Create a test data set and add it to the Centralized BPI Storage.
+2. Modify the test data set and add it to the Centralized BPI Storage.
+3. Verify that the latest version of the test data set is retrievable.
+4. Verify that the previous version of the test data set is retrievable.
+5. Modify the test data set again and add it to the Centralized BPI Storage.
+6. Verify that the latest version of the test data set is retrievable.
+7. Verify that the previous version of the test data set is still retrievable.
+8. Repeat steps 5-7 with multiple data sets.
+9. Verify that the Centralized BPI Storage is functioning properly and no data is lost or corrupted.
+
+Test Passing Criteria:
+
+* All test steps are completed successfully.
+* The latest and previous versions of the test data sets are retrievable from the Centralized BPI Storage.
+* The Centralized BPI Storage is functioning properly and no data is lost or corrupted.
 
 #### **[CR34]>[O8]** 
 Partially Persistent BPI Storage  MUST be append-only.
 
 *Non-normative examples of such data bases are, but not limited to, OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.*
 
-[[CR34]>[O8]](#cr34o8) Testability: An example of centralized BPI Storage that is append-only by restricting writes to a row in a table to one time is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
+[[CR34]>[O8]](#cr34o8) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running.
+* A Partially Persistent BPI Storage has been set up.
+* The system is capable of generating test data to append to the storage.
+
+Test Steps:
+
+1. Verify that the Partially Persistent BPI Storage is empty initially.
+2. Append test data to the storage using the BPI API or other appropriate means.
+3. Retrieve the appended data and verify its correctness.
+4. Attempt to modify or delete the appended data.
+5. Verify that modification or deletion of the appended data is not possible.
+
+Test Passing Criteria: The test will pass if,
+
+* Step 1 is successful and the storage is initially empty.
+* Step 2 is successful and the test data is appended to the storage.
+* Step 3 is successful and the retrieved data matches the test data.
+* Step 4 is unsuccessful and the appended data remains unmodified and undeleted.
+* Step 5 is successful and modification or deletion of the appended data is not possible.
 
 ### 7.5.2 BPI Storage: Decentralized Deployment
+###### BPIINTERNALSTORAGEDECENTRALIZED
 
-#### **[R310]**	
+#### **[R309]**	
 BPI Storage  MUST support authenticated naming systems.
 
 *An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [[DANE](#dane)].*   
 
 *Non-normative examples include, but are not limited to, certificate authorities or a self-certifying PKI namespace.* 
 
-[[R310]](#r310) Testability: A BPI Storage through one or more access endpoints can be listed in the `Services` section of a DID document. Since BPI Subjects can be associated with a DID of a given DID method -- the authenticated naming system --, and since a DID can be resolved to its DID Document including its 'Services' section and the cryptographic keys associated with the DID capabilities, and since the W3C DID Standard has an existing test suite for DID methods claiming conformance, the requirement is testable.
+[[R309]](#r309) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running.
+* The BPI Storage has been configured with an authenticated naming system, such as W3C DID or DNS-based Authentication of Named Entities.
+
+Test Steps:
+
+1. Verify that the BPI Storage supports the authenticated naming system that has been configured.
+2. Create a new record in the BPI Storage using the authenticated naming system.
+3. Retrieve the record from the BPI Storage and verify that it contains the expected authenticated name and associated cryptographic material.
+4. Attempt to retrieve the record using an incorrect authenticated name and verify that the retrieval fails.
+5. Update the record in the BPI Storage with a new authenticated name and associated cryptographic material.
+6. Retrieve the updated record from the BPI Storage and verify that it contains the new authenticated name and associated cryptographic material.
+
+Test Passing Criteria:
+
+* The BPI Storage supports the configured authenticated naming system.
+* The created record contains the expected authenticated name and associated cryptographic material.
+* The retrieval of the record using an incorrect authenticated name fails.
+* The updated record contains the new authenticated name and associated cryptographic material.
+
+#### **[R310]**	
+BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. 
+
+A large data block in this document is defined to be larger than 1MB but less than 128MB. 
+
+[[R310]](#r310) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running
+* The BPI Storage is operational and has enough free space to store large data blocks
+* The data exchange protocol used by the BPI Storage is configured to handle large data blocks of up to 128MB
+
+Test steps:
+
+1. Create a large data block of size 10MB.
+2. Attempt to replicate the large data block to the BPI Storage.
+3. Verify that the data block was successfully replicated to the BPI Storage and that its integrity was preserved during the replication process.
+4. Create a second large data block of size 100MB.
+5. Attempt to replicate the second large data block to the BPI Storage.
+6. Verify that the data block was successfully replicated to the BPI Storage and that its integrity was preserved during the replication process.
+7. Attempt to replicate a data block larger than 128MB to the BPI Storage.
+8. Verify that the replication failed due to the size limit imposed by the data exchange protocol.
+
+Test Passing criteria:
+
+* The first large data block and the second large data block are successfully replicated to the BPI Storage and their integrity is preserved.
+* The replication of a data block larger than 128MB to the BPI Storage fails.
 
 #### **[R311]**	
-BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. A large data block in this document is defined to be larger than 1MB but less than 128MB. 
-
-[[R311]](#r311) Testability: An example of a BPI Storage that can replicate large data sizes is the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite, the requirement is testable.
-
-#### **[R312]**	
 BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
 
 *Non-normative examples are [libp2p](#libp2p) or distributed hash tables [[DHT]](#dht).*
 
-[[R312]](#r312) Testability: An example of BPI Storage that allows for locating other data peer and data objects is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite. Therefore, the requirement is testable.
+[[R311]](#r311) Testability: 
 
-#### **[R313]**	
+Preconditions:
+
+* A BPI test system is up and running
+* BPI Storage is configured and operational
+* BPI Storage has at least two data peers with data objects available
+* Routing protocol is enabled and properly configured in BPI Storage
+
+Test Steps:
+
+1. Verify that BPI Storage is able to discover and locate data peers through the routing protocol
+2. Verify that BPI Storage is able to locate data objects in a specific data peer through the routing protocol
+3. Verify that BPI Storage is able to route requests to the appropriate data peer based on the requested data object
+4. Verify that BPI Storage is able to handle changes in data peer availability or data object locations and update the routing information accordingly
+5. Verify that the routing protocol is able to handle a large number of data peers and data objects without significant degradation of performance
+
+Test Passing Criteria:
+
+* All test steps must pass without errors
+* The routing protocol must be able to locate data peers and data objects with a success rate of at least 95%
+* The routing protocol must be able to handle changes in data peer availability or data object locations within 30 seconds
+* The routing protocol must not significantly degrade the performance of BPI Storage, with requests being handled within 500 milliseconds on average
+
+#### **[R312]**	
 BPI Storage  MUST support a Network Protocol that handles all of:
 * NAT traversal such as hole punching, port mapping, and relay
 * Multiple transport protocols
-* Encryption, signing, or clear communications
+* Encryption, signing, or clear text communications
 * Multi-multiplexes such as Multiplex connections, streams, protocols, peers
 
-[[R313]](#r313) Testability: An example of BPI Storage that incorporates a Network Protocol as described in the requirement is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite, because it utilizes the P2P Network Protocol [libp2p](#libp2p) with its complete test suite that has the required properties. Therefore, the requirement is testable.
+[[R312]](#r312) Testability: 
 
-#### **[R314]**	
+Preconditions:
+
+* A BPI test system is up and running
+* BPI Storage is installed and running
+* Network connectivity is available between BPI Storage and other network devices
+
+Test Steps:
+
+1. Test NAT traversal by verifying that BPI Storage can successfully perform hole punching, port mapping, and relay.
+    * Connect two network devices on different NATs to the BPI Storage
+    * Verify that the devices can establish a connection and communicate with each other through the BPI Storage using hole punching, port mapping, and relay techniques.
+2. Test multiple transport protocols support
+    * Connect a network device to the BPI Storage using TCP protocol
+    * Verify that the device can communicate with BPI Storage using TCP protocol
+    * Connect another network device to the BPI Storage using UDP protocol
+    * Verify that the device can communicate with BPI Storage using UDP protocol
+3. Test Encryption, signing, or clear communications support
+    * Enable encryption and signing for communications between BPI Storage and a network device
+    * Verify that communications between BPI Storage and the device are encrypted and signed
+    * Disable encryption and signing for communications between BPI Storage and the device
+    * Verify that communications between BPI Storage and the device are unencrypted
+4. Test Multi-multiplexes support
+    * Connect multiple network devices to the BPI Storage
+    * Verify that the devices can establish multiple connections simultaneously through BPI Storage
+    * Verify that the devices can communicate with each other through BPI Storage using the established connections.
+
+Passing Criteria:
+
+* NAT traversal, multiple transport protocols, encryption, signing, and clear communications, and multi-multiplexes tests should pass without any errors or failures.
+
+#### **[R313]**	
 Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
 *Non-normative examples are conflict-free replicated data types [[CRDT](#crdt)] or Interval Tree Clocks [[ITC](#itc)] to ensure eventual data consistency.*
 
-[[R313]](#r313) Testability: An example of a Fully Persistent BPI Storage that supports Generalized Time Stamps is the [CRDT Extension](https://github.com/supabase/pg_crdt) of the open-source [PostgreSQL](https://www.postgresql.org/) data base, and since PostgreSQL has an extensive test suite as well as the CRDT extension, the requirement is testable.
+[[R313]](#r313) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running.
+* The BPI Storage system is fully persistent and supports Generalized Time Stamps.
+* The BPI Storage system is configured to use an eventual data consistency condition and conflict-free data replication based on Generalized Time Stamps.
+* There are at least two clients that can write to the BPI Storage independently.
+
+Test Steps:
+
+1. Write data to one replica of the Fully Persistent BPI Storage.
+2. Read the data from all replicas of the Fully Persistent BPI Storage.
+3. Verify that the data is consistent across all replicas and reflects the latest changes.
+4. Modify the data in one replica of the Fully Persistent BPI Storage.
+5. Write the modified data to one replica of the Fully Persistent BPI Storage.
+6. Read the modified data from all replicas of the Fully Persistent BPI Storage.
+7. Verify that the modified data is consistent across all replicas and reflects the latest changes.
+8. Write data to two replicas of the Fully Persistent BPI Storage where the data written to the frst replica is not consistent with the data written to the second replica and the first data set is written by client 1 and data set two is written by client 2, and there is a time delay between first and second data set.
+9. Verify that the chosen Generalized Time Stamp mechanism works properly by successfully repeating steps 2. through 7. where only the first data set is replicated.  
+
+Test Passing Criteria:
+
+* The data written and modified in the Fully Persistent BPI Storage is consistent across all replicas.
+* The data reflects the latest changes made to it.
+The BPI Storage system has successfully stored data conflict-free using Generalized Time Stamps with eventual data consistency condition, and the data can be retrieved without inconsistencies.
+* The Fully Persistent BPI Storage provides full data persistency.
 
 #### **[O9]** 
 Decentralized BPI Storage MAY be partially persistent.
 
-[[O9]](#o9) Testability: An example of a Decentralized BPI Storage that is partially persistent is the open-source protocol [Interplenetary File System (IPFS)](https://github.com/ipfs/kubo) with its complete test suite. Therefore, the requirement is testable.
+[[O9]](#o9) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running.
+* The BPI decentralized storage has been properly set up and configured.
+* The BPI supports both fully and partially persistent data storage.
+
+Test Steps:
+
+1. Create a new data object and store it in the decentralized BPI storage with partially persistent storage settings.
+2. Retrieve the data object from the decentralized BPI storage.
+3. Verify that the retrieved data object is the same as the one that was originally stored, with respect to its contents and associated metadata.
+4. Append new data to the partially persistent data object in the decentralized BPI storage.
+5. Retrieve the updated data object from the decentralized BPI storage.
+6. Verify that the retrieved data object contains the newly appended data, with respect to its contents and associated metadata.
+7. Store a new data object in the decentralized BPI storage with fully persistent storage settings.
+8. Retrieve the fully persistent data object from the decentralized BPI storage.
+9. Verify that the retrieved data object is the same as the one that was originally stored, with respect to its contents and associated metadata.
+10. Attempt to append new data to the fully persistent data object in the decentralized BPI storage.
+11. Verify that the attempt to append data fails, since fully persistent data objects cannot be appended.
+
+Test Passing Criteria:
+
+* Test steps 1-6 and 8-9 must pass, indicating that partially persistent data can be properly stored, retrieved, and updated in the decentralized BPI storage.
+* Test steps 7 and 10-11 must pass, indicating that fully persistent data can be properly stored and retrieved, and that attempts to append data to fully persistent data objects fail as expected.
+* The generalized time stamp testing should ensure eventual data consistency in all test steps.
+
 
 #### **[CR35]>[O9]**	
 Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
 
-[[R313]](#r313) Testability: Since the PostGres data base can be made partially persistent according to the testable requirement [[O8]](#o8) and since Postgres supports CRDTs as shown in the testable requirement [[R313]](#r313), the requirement is testable. 
+[[CR35]>[O9]](#cr35o9) Testability: 
+
+Preconditions:
+
+* A BPI test system is up and running
+* The partially persistent BPI storage has been assigned a unique identifier and associated credentials
+* The BPI storage has been configured to support Generalized Time Stamps or consensus protocols for eventual data consistency
+
+Test Steps:
+
+1. Write a data block of size 2MB to the partially persistent BPI storage using the supported Generalized Time Stamps or consensus protocols for eventual data consistency
+2. Verify that the data block is successfully written to the storage with the correct timestamp or consensus protocol signature
+3. Update the data block with a modification of size 500KB using the supported Generalized Time Stamps or consensus protocols for eventual data consistency
+4. Verify that the modification is successfully applied to the data block and the updated timestamp or consensus protocol signature is correct
+5. Delete the data block using the supported Generalized Time Stamps or consensus protocols for eventual data consistency
+6. Verify that the data block is successfully deleted from the storage and the timestamp or consensus protocol signature is correct
+
+Test Passing Criteria:
+
+* All test steps are successfully executed without any errors
+* The data block is successfully written to the partially persistent BPI storage with the correct timestamp or consensus protocol signature
+* The modification to the data block is successfully applied and the updated timestamp or consensus protocol signature is correct
+* The data block is successfully deleted from the storage and the timestamp or consensus protocol signature is correct
 
 -------
+
 # 8 BPI External Data Inputs
 
 This section of the document focuses on the requirements and considerations related to the input of external data into a BPI workstep. Specifically, it addresses:
 
-- internal authoritative data - data sourced from a single authoritative source, internal to one of the BPI participants to a BPI workstep (i.e. internal Systems of Record)
-- external authoritative data - data sourced from external authoritative sources (i.e. government record) and
-- external non-authoritative, non-deterministic data sourced from external non-authoritative, non-deterministic sources (i.e. IoT sensor data, time, etc).
+* internal authoritative data - data sourced from a single authoritative source, internal to one of the BPI participants to a BPI workstep (i.e. internal Systems of Record)
+* external authoritative data - data sourced from external authoritative sources (i.e. government record) and
+* external non-authoritative, non-deterministic data sourced from external non-authoritative, non-deterministic sources (i.e. IoT sensor data, time, etc).
 
 
 ## 8.1 Internal Authoritative Data for BPIs
@@ -3428,7 +4063,7 @@ External authoritative data means that the input data to a BPI workstep is held 
 #### **[R315]** 
 BPI Subjects participating in a workstep MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
 
-[[R315]](#r15) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be bdining. And since [[R6]](#r6) is testable, [[R315]](#r15) is testable.
+[[R315]](#r15) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be binding. And since [[R6]](#r6) is testable, [[R315]](#r15) is testable.
 
 
 ## 8.3 External Non-authoritative, Non-deterministic Data for BPIs
