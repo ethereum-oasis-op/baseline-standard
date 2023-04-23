@@ -2880,7 +2880,7 @@ BPI Storage MUST be compatible with commonly used external authentication servic
 
 Preconditions: 
 
-* A typical BPI Storage e.g. the open-source [PostgreSQL](https://www.postgresql.org/) data base deployed in a BPI test environment with a BPI client and a BPI server
+* A BPI Storage e.g. the open-source [PostgreSQL](https://www.postgresql.org/) data base deployed in a BPI test environment with a BPI client and a BPI server
 * An authemtication service to be used with the BPI Storage such as [[OAuth-2.0](#oauth-20)] between client and server.
 
 Test steps:
