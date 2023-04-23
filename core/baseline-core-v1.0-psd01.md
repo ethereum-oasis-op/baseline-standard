@@ -3043,7 +3043,7 @@ Test Steps:
 
 1. Attempt to access the BPI's user interface or API without providing any authentication credentials.
 2. Verify that the BPI redirects the BPI Subject to a login page or displays a message indicating that authentication is required.
-3. Enter valid username and password credentials to log in to the BPI.
+3. Log in to the BPI.
 4. Verify that the BPI grants access to the BPI Subject after successful authentication with username and password.
 5. Attempt to perform a cryptographic operation that requires the use of the HSM, such as signing a message or verifying a signature.
 6. Verify that the BPI communicates with the HSM to perform the cryptographic operation.
