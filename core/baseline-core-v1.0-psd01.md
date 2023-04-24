@@ -2869,7 +2869,7 @@ Expected Results:
 3. The storage nodes can communicate securely using the established relationships.
 4. It is not possible to access the data stored on one storage node from the other without using the established relationship.
 
-The requirement is met, if all expected results are met. The requirement is not me, if any of the results are not meeting test expectations.
+The requirement is met, if all expected results are met. The requirement is not met, if any of the results are not meeting test expectations.
 
 #### **[R282]**	
 BPI Storage MUST be compatible with commonly used external authentication services. 
