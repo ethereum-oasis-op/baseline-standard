@@ -3594,7 +3594,7 @@ Preconditions:
 Test Steps:
 
 1. Simulate a data replication conflict scenario by creating two or more replicas of the same data item with different values in different nodes of BPI Edge Storage that cannot be automatically resolved by the BPI Edge Storage Data Conflict Resolution capability.
-2. Check whether BPI Edge Storage can automatically detect and resolve the data replication conflict. If yes, then repat Step 1.
+2. Check whether BPI Edge Storage can automatically detect and resolve the data replication conflict. If yes, then repeat Step 1.
 3. If BPI Edge Storage does not automatically resolve the conflict, a human readable message must be created and a manually attempt to resolve the conflict must be possible through a user interface.
 4. Verify that the data replication conflict has been successfully resolved through the user interface and only one replica of the data item with the correct value remains.
 
