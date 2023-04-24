@@ -3086,7 +3086,6 @@ Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 Preconditions:
 
 * A BPI test environment is installed and configured properly.
-* The BPI storage component contains identification methods to prevent storing Personal Identifiable Information (PII).
 * The BPI Subject has appropriate permissions to access the BPI.
 
 Test Steps:
