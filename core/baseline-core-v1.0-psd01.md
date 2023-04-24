@@ -3203,7 +3203,6 @@ Data Orchestration utilized in a BPI MUST implement transaction boundaries.
 Preconditions:
 
 * A BPI test environment is installed and configured properly.
-* The Data Orchestration component in the BPI is designed to implement transaction boundaries.
 * Several transaction types are defined within the BPI as part of Data Orchestration, including what consitutes a correctly and incorrectly formed transaction, and how often a transaction of a specific transaction type should be made available to worksteps processing this transaction type.
 * The BPI Subject has appropriate permissions to access the BPI.
 
