@@ -2886,7 +2886,7 @@ Preconditions:
 Test steps:
 
 1. Create a BPI Subject within the BPI with a public-private cryptographic key pair based on one of the cryptographic algorithms supported by the authentication service chosen for the BPI Subject
-2. Create an authentication policy for the BPI Storage supported by each of the authemtication services chosen for the test  
+2. Create an authentication policy for the BPI Storage supported by each of the authentication services chosen for the test  
 2. Attempt to authenticate the BPI Subject with the BPI Storage using each of the identified external authentication services for the test.
 3. Verify that the authentication of the BPI Subject is successful and the BPI Subject is granted the appropriate access to the BPI Storage as per the test authentication policy.
 4. Repeat the above steps for each supported external authentication service.
