@@ -2910,7 +2910,7 @@ Preconditions:
 
 Test steps:
 
-1. Create two or more test BPU Subjects and assign them to the identified roles and the level of access specified for each role.
+1. Create two or more test BPI Subjects and assign them to the identified roles and the level of access specified for each role.
 2. Attempt to perform various operations on the BPI Storage using each test BPI Subject.
 3. Verify that the operations are allowed or denied based on the access permissions associated with each of the BPI Subjects' role.
 4. Attempt to perform operations that require different access permissions than the test BPI Subjects' role.
