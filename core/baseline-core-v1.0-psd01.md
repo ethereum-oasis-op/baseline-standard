@@ -2994,7 +2994,7 @@ Test Passing Criteria: The test will pass if
 #### **[R286]**	
 BPI Storage MUST support multi-factor authentication (MFA)
 
-*See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).*
+*This document adopts [NIST's definition of MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
 [[R286]](#r286) Testability: 
 
