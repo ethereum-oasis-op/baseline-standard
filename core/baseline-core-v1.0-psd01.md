@@ -2840,7 +2840,7 @@ Test Steps:
 
 Expected Results: The data at rest in the BPI is encrypted and cannot be decrypted without the encryption/decrytion key.
 
-The requirement is met, if all expected results are met. The requirement is not me, if any of the results are not meeting test expectations.
+The requirement is met, if all expected results are met. The requirement is not met, if any of the results are not meeting test expectations.
 
 #### **[R281]**	
 BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
