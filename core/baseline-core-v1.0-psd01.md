@@ -2992,6 +2992,8 @@ Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consen
 -------
 # 8 BPI External Data Inputs
 
+###### bpiextdatainputs
+
 This section of the document focuses on the requirements and considerations related to the input of external data into a BPI workstep. Specifically, it addresses:
 
 - internal authoritative data - data sourced from a single authoritative source, internal to one of the BPI participants to a BPI workstep (i.e. internal Systems of Record)
@@ -3001,59 +3003,226 @@ This section of the document focuses on the requirements and considerations rela
 
 ## 8.1 Internal Authoritative Data for BPIs
 
+###### intauthbpidata
+
 Internal authoritative data means that there exists only one authoritative version of the input data in some system of record of a BPI participant, making it the only choice for input into a BPI workstep. Authoritative in this context means that BPI participants involved in a BPI workstep have agreed that the authoritative source is the accurate and reliable truth for that particular type of data.
 
 #### **[O10]** 
 Internal authoritative input data to a BPI workstep MAY come from a single source.
 
-[[D10]](#d10) Testability: Since the [Baseline Protocol API specification is testable](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md), and since internal authoritative input data with source identification will be used in the Baseline Protocol APIs based on agreed upon data schames between counterparties, the requirement is testable. 
+[[D10]](#d10) Testability: 
+
+Preconditions:
+
+* A PBI test system is up and running.
+* There is a given set of test BPI Subjects that are part of a test workgroup.
+* The test BPI participants in a workgroup have agreed to allow internal authoritative input data to a BPI workstep only from a single, specific data source.
+* The test workgroup is associated with only one test workstep.
+* The test workstep accepts only input data from the agreed upon data source for a given data schema, and the input data is transformed in an agreed upon manner to an expected output.
+* The agreed-upon input data source is configured with a test data set.
+* Another, second input data source is configured with the same test data set as the agreed-upon data source. 
+
+Test Steps:
+
+1. Verify that the input data provided to the BPI test workstep is from the agreed-upon authoritative data source.
+2. Verify that the input data complies with the established business logic of the test workstep.
+3. Verify that the BPI workstep processes the input data correctly.
+4. Switch the input data source, and repeat step 1.
+5. Verify that the workstep creates an error, and exits with an appropriate error message.
+
+Test Passing Criteria:
+
+* The first input data is verified to be from the agreed-upon authoritative source.
+* The BPI workstep processes the first input data correctly.
+* The BPI workstep creates an error, and exits with the expected error message, when the input data comes from the second input data source.
 
 #### **[CR36]>[O10]** 
 If the internal authoritative input data to a BPI workstep is single-sourced, that source MUST be authoritative.
 
-[[CR36]>[O10]](#cr36o10) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be bdining. And since [[R6]](#r6) is testable, [[CR36]>[O10]](#cr36o10) is testable.
+[[CR36]>[O10]](#cr36o10) Testability: 
+
+Preconditions:
+
+* A PBI test system is up and running.
+* There is a given set of test BPI Subjects that are part of a test workgroup.
+* The test workgroup is associated with only one test workstep.
+* There exists a system of record identified as the single source for the input data.
+* A test workstep has been created that requires internal authoritative input data from a single source.
+* The BPI Subjects involved in the workstep have agreed that the identified system of record is the authoritative source for the input data.
+* The test workstep accepts only input data from the agreed upon data source for a given data schema, and the input data is transformed in an agreed upon manner to an expected output.
+* The agreed-upon input data source is configured with a test data set.
+
+Test Steps:
+
+1. Retrieve the input data for the identified BPI workstep from the single source system of record.
+2. Verify that the retrieved input data matches the expected format and is consistent with the requirements of the test workstep.
+3. Verify that the single source system of record is the authoritative source for the input data in the test workstep.
+
+Test Passing Criteria:
+
+* The retrieved input data matches the expected format and is consistent with the requirements of the test workstep.
+* The identified single source system of record is confirmed to be the authoritative source for the input data.
 
 ## 8.2 External Authoritative Data for BPIs
 
+###### extauthbpidata
+
 External authoritative data means that the input data to a BPI workstep is held in some authoritative 3rd party database, such as government records. Unlike internal authoritative data where there is only one source, external authoritative data input to a BPI workstep may have multiple sources.
 
-#### **[R315]** 
+#### **[R314]** 
 BPI Subjects participating in a workstep MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
 
-[[R315]](#r15) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be bdining. And since [[R6]](#r6) is testable, [[R315]](#r15) is testable.
+[[R314]](#r314) Testability: 
 
+Preconditions:
+
+* There is a given set of test BPI Subjects that are part of a test workgroup.
+* The test workgroup is associated with only one test workstep.
+* There exists an external system identified as the single source for the input data.
+* A test workstep has been created that requires external authoritative input data from a single source.
+* The test workstep accepts only input data from the agreed upon data source for a given data schema, and the input data is transformed in an agreed upon manner to an expected output.
+* The agreed-upon input data source is configured with a test data set.
+* An agreement quorum has been defined and configures in the test BPI.
+
+Test Steps:
+
+1. A BPI workgroup participant initiates an agreement process among the BPI subjects in the workgroup.
+2. The BPI system presents the BPI subjects with the source and type of the external authoritative data.
+3. The BPI subjects review and validate the source and type of the external authoritative data.
+4. If the specified quorum of BPI subjects agree, the BPI system records the agreement and uses the external authoritative data as the input source for the workstep.
+5. If the quorum of BPI subject is not reached, the BPI system does not record the agreement and prompts the subjects to discuss and resolve the disagreement.
+6. Once the agreement has been reached, the BPI system records the agreement and uses the external authoritative data as the input source for the workstep.
+7. Start the BPI workstep that requires external authoritative data as input.
+8. Complete the workstep using the agreed upon external authoritative data.
+9. Verify that the workstep was successfully completed using the agreed upon external authoritative data.
+
+Test Passing Criteria: The test is considered passing if,
+
+* The BPI system successfully initiates the agreement process among the BPI subjects.
+* The specified quorum of BPI subjects agree upon the source and type of the external authoritative data.
+* The BPI system records the agreement and uses the agreed upon external authoritative data as the input source for the workstep.
+* The workstep is successfully completed using the agreed upon external authoritative data.
 
 ## 8.3 External Non-authoritative, Non-deterministic Data for BPIs
+
+###### extnonauthbpidata
 
 External non-authoritative, non-deterministic data means that there does not exist an authoritative, deterministic source for the data used as input to a BPI workstep. In that case, a normalizing mechanism often referred to as an oracle is needed to account for potential source discrepancies. Entities reporting external non-authoritative, non-deterministic data into a BPI worksteps may also be referred to as oracles.
 
 ### 8.3.1 Data Trustworthiness
 
+###### bpidatatrust
+
 External non-authoritative, non-deterministic data for BPIs resides outside of an authoritative source and is subject to manipulation. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in data reporting and error checking, either cross-party, or by an appropriately incentivized 3rd party.
 
 #### **[D42]** 
-External non-authoritative, non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple endpoints.
+External non-authoritative, non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple sources.
 
-[[D42]](#d42) Testability: Since the [Baseline Protocol API specification is testable](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md), and since non-authoritative, non-deterministic data with source identification will be used in the Baseline Protocol APIs based on agreed upon data schames between counterparties, the requirement is testable.
+[[D42]](#d42) Testability: 
 
-#### **[R316]** 
+
+Preconditions:
+
+* A test BPI system is available and functional.
+* At least two independent sources of external non-authoritative, non-deterministic are available that produce the same input data.
+* A test workstep has been created that requires external non-authoritative, non-deterministic input data.
+
+Test Steps:
+
+1. Start the test workstep that requires external non-authoritative, non-deterministic input data.
+2. Source the input data from a single external source and record the source of the data.
+3. Repeat step 2, but use a different external source for the same input data.
+4. Repeat step 2, alternating between the external sources used in steps 2 and 3.
+5. Verify that the BPI workstep successfully processed the input data from all sources used in steps 2-4 and produced the same expected result for the input data from different sources.
+
+Test Passing Criteria:
+
+* The test workstep should process input data from all sources used in steps 2-4 without errors or inconsistencies.
+* The expected results from the test workstep should match the actual results produced in step 5.
+
+
+#### **[R315]** 
 External non-authoritative, non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
 
-[[R316]](#r316) Testability: Agreement on validation of non-authoritative, non-deterministic BPI input data is an extension of non-repudiation of the commercial documents requirement, [[R9]](#r9) which is testable, because non-authoritative, non-deterministic BPI input data sources will be enumerated in a commercial document. Therefore, the requirement is testable. 
+[[R315]](#r315) Testability: 
+
+Preconditions:
+
+* A test BPI system is available and functional.
+* A test workstep that takes external non-authoritative, non-deterministic input data.
+* One or more authoritative entities responsible for validating the input data.
+* The validation criteria defined and agreed upon by all BPI subjects involved in the test workstep.
+
+Test Steps:
+
+1. Initialize the test workstep with external non-authoritative, non-deterministic input data from one or more data sources.
+2. Submit the input data to the authoritative entities responsible for validation.
+3. The authoritative entities validate the input data against the predefined validation criteria.
+4. If the input data passes the validation criteria, proceed to the next step. Otherwise, fail the test.
+5. Use the validated input data as input to the BPI workstep.
+6. Verify that the BPI workstep produces the expected output.
+
+Test Passing Criteria: The test passes if,
+
+* The input data passes the validation criteria defined by the authoritative entities.
+* The test workstep produces the expected output using the validated input data.
+
+#### **[R316]** 
+BPI workstep participants MUST agree upon a validation method for external non-authoritative,  non-deterministic input data to a BPI workstep.
+
+[[R316]](#r316) Testability: 
+
+Preconditions:
+
+* A test BPI system is available and functional.
+* A test workstep that takes external non-authoritative, non-deterministic input data.
+* There are at least two BPI workstep participants.
+* Each participant is a valid BPI Subject and is authorized to participate in the test workstep.
+* One or more validation methods for the external non-authoritative, non-deterministic input data to the test workstep.
+
+Test Steps:
+
+1. One BPI workstep participants proposes a validation method for the external non-authoritative, non-deterministic input data to be used in the test workstep.
+2. Each BPI workstep participant verifies that the proposed validation method on sample input data produces reliable results.
+3. Each BPI workstep participant either accepts or rejetcs the proposal. 
+4. Once the validation method is agreed upon, it is recorded in the BPI.
+
+Test Passing Criteria:
+
+* The BPI workstep participants have agreed upon a validation method for the external non-authoritative, non-deterministic input data.
+* The agreed-upon validation method has been tested and shown to produce reliable results.
+* The validation method and testing results have been recorded on the test BPI.
 
 #### **[R317]** 
-BPI participants MUST agree upon a standard validation method for external non-authoritative,  non-deterministic input data to a BPI workstep.
-
-[[R317]](#r317) Testability: Agreement on the validation method of non-authoritative, non-deterministic BPI input data is an extension of non-repudiation of the commercial documents requirement, [[R9]](#r9) which is testable, because non-authoritative, non-deterministic BPI input data sources will be enumerated in a commercial document. Therefore, the requirement is testable.
-
-#### **[R318]** 
 A BPI workstep participant MUST be able to validate that the validation criteria of external non-authoritative,  non-deterministic input data to the BPI workstep has been met.
 
 *Appropriate data validation methods vary on a case-by-case basis depending upon the data types, sources and formats. As such, it is up to the BPI participants to agree upon the optimal validation method for their implementation. This includes design decisions such as what threshold of unresponsive oracles leads to a rejected input, how to aggregate the oracle responses and remove outliers, signing data to ensure provenance, implementing cryptographic mechanisms such as threshold signatures/secret sharing and TEEs such as Intel SGX or AMD SEV to obfuscate data from oracle providers.*
 
-[[R318]](#r318) Testability: Validation of non-authoritative, non-deterministic BPI input data is an extension of the state object validation requirement, [[R25]](#r25) which is testable, because non-authoritative, non-deterministic BPI input data sources will be part of a BPI state object. Therefore, the requirement is testable.
+[[R317]](#r317) Testability: 
+
+Preconditions:
+
+* A test BPI system is available and functional.
+* At least one source of external non-authoritative, non-deterministic input data.
+* A test workstep that takes external non-authoritative, non-deterministic input data.
+* The test workstep participant has access to the external non-authoritative, non-deterministic input data.
+* The validation criteria for the external non-authoritative, non-deterministic input data has been agreed upon and documented by the BPI workstep participants.
+* The validation criteria for the external non-authoritative, non-deterministic input data has been implemented in the test workstep.
+
+Test Steps:
+
+1. Input data from an external non-authoritative, non-deterministic source.
+2. Validate the external non-authoritative, non-deterministic input data against the agreed-upon validation criteria in the test workstep.
+3. Record the validation result along with the validation criteria and input data.
+
+Test Passing Criteria:
+
+* The validation result is recorded and indicates that the validation criteria for the external non-authoritative, non-deterministic input data has been met.
+* The recorded validation criteria and input data are consistent with the agreed-upon validation method for the test workstep.
 
 ### 8.3.2 External Non-authoritative, non-deterministic BPI Input Data Variance
+
+###### extnonauthbpiinputdata
 
 External non-authoritative, non-deterministic BPI input data can be subject to variations from lack of time synchronicity, fluctuations in precision or reporting error. Party A may read the temperature of a shipment as 77.1 degree Fahrenheit while party B reads it as 77.3 degree Fahrenheit. Small variance in timing can also produce mismatched BPI data inputs. These variations may lead to failure to agree on BPI workstep input data accuracy. Therefore, BPI workstep participants should agree upon their algorithmic approach to removing variance and outlier data. This agreed-upon method should have a clearly defined standard with all oracles involved adhering to the same data format and variance reduction approach.
 
