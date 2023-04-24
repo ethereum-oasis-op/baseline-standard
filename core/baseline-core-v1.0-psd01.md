@@ -303,7 +303,7 @@ An individual, organization, or company that has legal rights and obligations.
 
 **Low latency:**
 
-A latency that does not Material Impact the overall system latency of the BPI.
+A latency that does not Materially Impact the overall system latency of the BPI.
 
 **Liveness:**
 
