@@ -3170,7 +3170,6 @@ Preconditions:
 
 * A BPI test environment is installed and configured properly.
 * The data source is not directly connected to the data target within the BPI.
-* The Data Orchestration component in the BPI is designed to preserve data consistency from source to target within the BPI.
 * The BPI Subject has appropriate permissions to access the BPI.
 
 Test Steps:
