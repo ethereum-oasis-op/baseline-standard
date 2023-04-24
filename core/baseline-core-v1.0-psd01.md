@@ -3977,7 +3977,7 @@ Test Passing Criteria:
 * The data written and modified in the Fully Persistent BPI Storage is consistent across all replicas.
 * The data reflects the latest changes made to it.
 The BPI Storage system has successfully stored data conflict-free using Generalized Time Stamps with eventual data consistency conditions, and the data can be retrieved without inconsistencies.
-* The Fully Persistent BPI Storage provides full data persistency.
+* The Fully Persistent BPI Storage provides full data persistence.
 
 #### **[O9]** 
 Decentralized BPI Storage MAY be partially persistent.
