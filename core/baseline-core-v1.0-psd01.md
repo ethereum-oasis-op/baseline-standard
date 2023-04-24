@@ -3969,7 +3969,7 @@ Test Steps:
 5. Write the modified data to one replica of the Fully Persistent BPI Storage.
 6. Read the modified data from all replicas of the Fully Persistent BPI Storage.
 7. Verify that the modified data is consistent across all replicas and reflects the latest changes.
-8. Write data to two replicas of the Fully Persistent BPI Storage where the data written to the frst replica is not consistent with the data written to the second replica and the first data set is written by client 1 and data set two is written by client 2, and there is a time delay between first and second data set.
+8. Write data to two replicas of the Fully Persistent BPI Storage where the data written to the first replica is not consistent with the data written to the second replica and the first data set is written by client 1 and data set two is written by client 2, and there is a time delay between first and second data set.
 9. Verify that the chosen Generalized Time Stamp mechanism works properly by successfully repeating steps 2. through 7. where only the first data set is replicated.  
 
 Test Passing Criteria:
