@@ -2819,7 +2819,7 @@ Test Steps:
 
 Expected Results: All data transmitted between the nodes is encrypted (does not appear in plain text).
 
-The requirement is met, if all expected results are met. The requirement is not me, if any of the results are not meeting test expectations.
+The requirement is met, if all expected results are met. The requirement is not met, if any of the results are not meeting test expectations.
 
 #### **[R280]** 
 Data at rest in a BPI MUST be encrypted.
