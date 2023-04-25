@@ -2925,7 +2925,7 @@ Test pass criteria:
 #### **[R284]**	
 BPI Storage MUST support policy management.
 
-*Examples of such policies are rules governing creation, modification, deletion, and retention of data.* 
+*Policy management in the context of this document means the creation, reading of, updating and deletion or archiving of policies used in a BPI Storage. Examples of such policies to be managed are rules governing creation, modification, deletion, and retention of data.* 
 
 [[R284]](#r284) Testability:
 
