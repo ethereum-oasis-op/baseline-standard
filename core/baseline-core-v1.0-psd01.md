@@ -53,19 +53,19 @@ This specification replaces or supersedes:
 * Specifications replaced by this specification (include hyperlink, preferably to HTML format)
  -->
 
-This specification is related to:    
+This specification is related to:
 
-**[baseline-api-v1.0]** _Baseline API and Data Model Version 0.1_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 17 November 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. [**FIX LINKS**]
+**[baseline-api-v1.0]** _Baseline API and Data Model Version 0.1_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 17 November 2021. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md . Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md.
 
 
-**[baseline-dlt-v1.0]** _Baseline CCSM Requirements Version 0.1_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 17 November 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html. [**FIX LINKS**]
+**[baseline-ccsm-v1.0]** _Baseline CCSM Requirements Version 0.1_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 17 November 2021. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md . Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md.
 
 
 #### Abstract:
 This document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more Systems of Record can synchronize their system state over a Consensus Controlled State Machine (CCSM) network with little or no trust assumptions.
 
 #### Status:
-This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline TC team.
+This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline Core Dev team.
 
 <!--
 was last revised or approved by Baseline, part of the Ethereum OASIS Open Project, on the above date. The level of approval is also listed above. Check the "Latest stage" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Open Project (OP) are listed at [TBD].
@@ -79,12 +79,12 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 #### Citation format:
 When referencing this specification the following citation format should be used:
 
-**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html. [**FIX LINKS**]
+**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md. Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md.
 
 -------
 
 ## Notices
-Copyright © OASIS Open 2021. All Rights Reserved.
+Copyright © OASIS Open 2023. All Rights Reserved.
 
 Distributed under the terms of the OASIS [IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr).
 
@@ -357,9 +357,9 @@ Marsh S. (1994). "Formalizing Trust as a Computational Concept". Ph.D. thesis, U
 
 **Verifiably Secure:**
 
-A Process that enables a computer to offload the computation of some function to other perhaps untrusted clients, while maintaining verifiable, and, thus, secure results. The other clients evaluate the function and return the result with proof that the computation of the function was carried out correctly. The proof is not absolute but is dependent on the validity of the security assumptions used in the proof. For example, a blockchain consensus algorithm where the proof of computation is the nonce of a block. Someone inspecting the block can assume with virtual certainty that the results are correct because the number of computational nodes that agreed on the outcome of the same computation is defined as sufficient for the consensus outcome to be secure in the consensus algorithm’s mathematical proof of security. 
+A Process that enables a computer to offload the computation of some function to other perhaps untrusted clients, while maintaining verifiable, and, thus, secure results. The other clients evaluate the function and return the result with proof that the computation of the function was carried out correctly. The proof is not absolute but is dependent on the validity of the security assumptions used in the proof. For example, a blockchain consensus algorithm where the proof of computation is the nonce of a block. Someone inspecting the block can assume with virtual certainty that the results are correct because the number of computational nodes that agreed on the outcome of the same computation is defined as sufficient for the consensus outcome to be secure in the consensus algorithm’s mathematical proof of security.
 
-Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive Verifiable Computing: Outsourcing Computation to Untrusted Workers. CRYPTO 2010. doi:10.1007/978-3-642-14623-7_25. 
+Gennaro, Rosario; Gentry, Craig; Parno, Bryan (31 August 2010). Non-Interactive Verifiable Computing: Outsourcing Computation to Untrusted Workers. CRYPTO 2010. doi:10.1007/978-3-642-14623-7_25.
 
 **Workflow:**
 
@@ -2325,7 +2325,7 @@ A workstep instance MUST be associated with only one workgroup.
 9. Verify that the system prompts the user to select a valid workgroup before proceeding with the association of the work step instance by creating an error warning and not proceeding with the system process..
 10. Verify that the system prevents the association of a work step instance with a non-existent workgroup by creating an error warning and aborting the system process.  
 
-If all of the above tests pass, then the requirement is met
+If all of the above test steps are successfully completed, then the requirement is met
 
 
 #### **[R216]** 
@@ -2338,36 +2338,218 @@ A workstep instance MUST inherit the security and privacy policies of its associ
 #### **[R217]** 
 A workstep MUST have a unique identifier within a BPI.
 
+[[R217]](#r217) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and operational.
+* There are at least two worksteps set-up within the BPI.
+
+Test steps:
+
+1. Retrieve the list of worksteps within the BPI.
+2. For each workstep in the list, validate that the workstep identifiers are not duplicate.
+3. Create a new workstep within the BPI and verify that it's identifier does not exist in the list of other workstep identifiers.
+4. Attempt to create a new workstep within the BPI with the same identifier as an existing workstep and verify that it is rejected.
+
+Test Passing criteria:
+
+* Test step 2 passes if all worksteps in the list have a unique identifier within the BPI.
+* Test step 3 passes if the new workstep is assigned a unique identifier.
+* Test step 4 passes if the attempt to create a workstep with the same identifier as an existing workstep is rejected.
+
 #### **[R218]** 
 A workstep MUST be updatable.
 
+[[R218]](#r218) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and operational.
+* A workstep exists in the BPI system.
+
+Test Steps:
+
+1. Access the workstep in the BPI system.
+2. Attempt to update the workstep with new information.
+3. Save the changes to the workstep.
+4. AAccess the workstep in the BPI system again.
+5. Verify that the new workstep information displays correctly
+
+Test Passing Criteria:
+
+* The changes to the workstep are saved successfully and can be viewed when accessing the workstep again.
+
 #### **[R219]** 
-A workstep instance MUST NOT be updated while the workstep is being executed by the BPI.
+A workstep instance MUST NOT be updated while the workstep instance is being executed by the BPI.
 
 *This ensures that no breaking changes with potentially significant negative business impact are introduced while a workstep instance is being executed.*
+
+[[R219]](#r219) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and operational.
+* A BPI with at least one workstep defined.
+* A workstep instance that is currently being executed by the BPI.
+
+Test steps:
+
+1. Get the identifier of the workstep instance that is currently being executed by the BPI.
+2. Attempt to update the workstep instance while it is being executed by the BPI.
+3. Verify that the workstep instance was not updated and that an appropriate error message is returned.
+4. Wait for the workstep instance to complete execution.
+5. Verify that the workstep instance can now be updated.
+
+Test Passing criteria:
+
+* Step 3 must return an appropriate error message indicating that the workstep instance cannot be updated while it is being executed by the BPI.
+* Step 5 must successfully update the workstep instance.
 
 #### **[R220]** 
 A workstep MUST be versioned within a BPI.
 
 *Note that versions of the same workstep do not have to be compatible with one another.* 
 
+[[R220]](#r220) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and operational.
+* A BPI has been created and contains at least one workstep.
+* The BPI allows for versioning of worksteps.
+
+Test Steps:
+
+1. Create a new workstep within the BPI.
+2. Verify that the workstep has been assigned a version number (e.g., 1.0).
+3. Make a change to the workstep and save the changes.
+4. Verify that the workstep's version number has been updated (e.g., 1.1).
+5. Repeat steps 3-4 for at least two more changes to the workstep.
+6. Verify that each change results in an updated version number.
+7. Attempt to execute the workstep with an earlier version number (e.g., 1.0).
+8. Verify that an error or warning is thrown indicating that the workstep version is outdated and needs to be updated.
+9. Create a new version of the workstep.
+10. Verify that the new version has a unique version number.
+11. Attempt to execute the workstep with the new version number.
+12. Verify that the workstep executes successfully.
+
+Test Passing Criteria:
+
+* The workstep versioning functionality allows for changes to be made to a workstep while maintaining a record of the changes and ensuring that an outdated version cannot be executed.
+* The test passes if all steps execute successfully and the workstep can be versioned and executed without errors or warnings.
+
 #### **[R221]** 
-A workstep MUST be executed by a BPI.
+A workstep MUST be executed inside a BPI's Virtual State Machine (VSM).
+
+Note, that a BPI's Virtual State Machine is part of the BPI Processing Layer as discussed before.
+
+[[R221]](#r221) Testability:
+
+Preconditions:
+
+* A BPI test instance is up and running, with the VSM module installed and operational.
+* The BPI has at least one workstep defined and versioned.
+* The BPI Middleware Layer is functioning correctly and passing inputs and outputs to the VSM.
+
+Test Steps:
+
+1. Select a workstep to execute within the BPI's VSM.
+2. Verify that the workstep is versioned by checking the version number in the BPI's metadata.
+3. Verify that the input to the workstep is being passed correctly from the BPI Middleware Layer to the BPI Processing Layer.
+4. Execute the workstep inside the BPI's VSM.
+5. Verify that the output generated by the workstep is being passed correctly to the BPI Middleware Layer from the BPI Processing Layer.
+6. Repeat steps 1-5 with a different workstep, and verify that each workstep is executed within the BPI's VSM.
+
+Test Passing Criteria:
+
+* The workstep version number is correctly identified and validated.
+* The input to the workstep is correctly passed from the BPI Middleware Layer to the VSM.
+* The workstep is successfully executed inside the VSM.
+* The output generated by the workstep is correctly passed from the VSM to the BPI Middleware Layer.
+* All worksteps are successfully executed within the BPI's VSM.
 
 #### **[R222]** 
-The input of a workstep MUST be submitted by an authorized member of the workgroup attached to that workstep.
+The input of a workstep instance MUST be submitted by an authorized member of the workgroup attached to that workstep instance.
 
 *Note, that this allows for delegation of authorization from the authorization bearing Entity A to Entity B, akin to a power-of-attorney. This concept is also known as attenuated authorization.*
 
+[[R222]](#r222) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running.
+* A workgroup and its members is set up in the BPI. 
+* The workgroup is attached to a workstep instance in the BPI.
+* The workgroup's security policy defining workgroup member authorizations are defined in the BPI system.
+
+Test Steps:
+
+1 An unauthorized member of the workgroup tries to submit an input to the workstep instance.
+2. Verify that the BPI system rejects the input submission and displays an error message.
+3. An authorized member of the workgroup submits the input of the workstep instance.
+4. Verify that the BPI system accepts the input submission and executes the workstep instance.
+
+Test Passing Criteria:
+
+* Test step 2 passes if the BPI system rejects the input submission and displays an error message.
+* Test step 4 passes if the BPI system accepts the input submission and executes the workstep instance.
+* The test passes if all the test steps pass.
+
 #### **[R223]** 
-A workstep MUST be deterministic.
+A BPI workstep MUST be deterministic.
 
 *This means that for a given input, there can be only one valid output from the workstep generated by the BPI.*
+
+[[R223]](#r223) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running.
+* A BPI workstep has a defined input and output.
+* The workstep has been implemented and deployed in the BPI system.
+* The input to the workstep is well-defined.
+
+Test Steps:
+
+1. Submit the same input to the workstep instance twice.
+2. Record the output generated by the workstep for both input submissions.
+3. Compare the output generated by the workstep for both input submissions.
+4. If the outputs are identical, the test passes. Otherwise, it fails.
+
+Test Passing Criteria:
+
+* The test passes if the output generated by the workstep is identical for the same input submitted to the workstep instance twice.
+* The test fails if the output generated by the workstep is not identical for the same input submitted to the workstep instance twice.
+
 
 #### **[R224]** 
 The output from a workstep execution MUST be finalized through an agreed-upon quorum of cryptographic signatures of the workgroup participants associated with the workstep.
 
-*This means that the output of a workstep execution must be verified and agreed upon by a previously defined number of the workgroup participants. This naturally extends to the input as well.* 
+*This means that the output of a workstep execution must be verified and agreed upon by a previously defined number of the workgroup participants.*
+
+[[R224]](#r224) Testability:
+
+Preconditions:
+
+* A BPI test instance is in place, and there is at least one workstep defined.
+* The workgroup is associated with the workstep and its participants have the necessary access rights and cryptographic tools to create digital signatures.
+* An agreed-upon quorum threshold for the required number of cryptographic signatures has been defined as a policy in the workgroup.
+
+Test Steps:
+
+1. Submit input data to initiate the execution of the workstep instance.
+2. Execute the workstep, and obtain the output.
+3. Request the digital signature from each workgroup participant associated with the workstep.
+4. Verify the received signatures using the cryptographic tools agreed upon by the workgroup.
+5. Count the number of valid signatures obtained and compare it to the quorum threshold.
+6. If the number of valid signatures obtained is equal to or greater than the quorum threshold, mark the test as passed. Otherwise, mark it as failed.
+
+Test Passing Criteria: The test will pass if and only if the following conditions are met,
+
+* The workstep instance was executed successfully.
+* The digital signatures obtained from the workgroup participants associated with the workstep are valid and verified using the cryptographic tools agreed upon by the workgroup.
+* The number of valid signatures obtained is equal to or greater than the quorum threshold.
 
 #### **[R225]** 
 The output from a workstep execution MUST be a valid zero-knowledge proof of correctness of the new agreement state generated by the BPI executing the workstep (privacy preservation).
@@ -2378,74 +2560,329 @@ The output from a workstep execution MUST be a valid zero-knowledge proof of cor
 * ***Soundness:*** *if the statement is false, no cheating prover can convince an honest verifier that it is true, except with some small probability.*
 * ***Zero-Knowledge:*** *if the statement is true, no verifier learns anything other than the fact that the statement is true. In other words, just knowing the statement (not the secret) is sufficient to construct a scenario that shows that the prover knows the secret. This is formalized by showing that every verifier has some simulator that, given only the statement to be proved (and no access to the prover), can produce a transcript that "looks like" an interaction between the honest prover and the verifier.*
 
+[[R225]](#r225) Testability:
+
+Preconditions:
+
+* A BPI test instance with at least one workstep defined.
+* A workgroup associated with the workstep.
+* Cryptographic signature mechanism is implemented in the BPI.
+* Zero-knowledge proof generation is implemented in the BPI.
+
+Test Steps:
+
+1. Submit input data for a workstep instance by an authorized member of the associated workgroup.
+2. Execute the workstep with the submitted input data.
+3. Generate a zero-knowledge proof of correctness of the new agreement state.
+4. Request the cryptographic signatures from the agreed-upon quorum of workgroup participants.
+5. Validate that the received cryptographic signatures are valid and match the workgroup participants associated with the workstep.
+6. Validate the zero-knowledge proof of correctness of the new agreement state.
+7. Verify that the output generated by the workstep execution matches the expected agreement state.
+
+Test Passing Criteria:
+
+* The workstep output matches the agreement state.
+* The cryptographic signatures are valid and match the workgroup participants.
+* The zero-knowledge proof of correctness of the new agreement state is valid.
+
+
 #### **[R226]** 
-A zero-knowledge proof of correctness of an output MUST be non-interactive.
+A zero-knowledge proof of correctness of a workstep output MUST be non-interactive.
 
 *Non-interactive in this context means that there is no interaction between the prover (generating the proof) and the verifier.*
+
+[[R226]](#r226) Testability:
+
+Preconditions:
+
+* A BPI test instance with at least one workstep defined.
+* The BPI workstep has been designed and implemented with an output that requires a zero-knowledge proof of correctness.
+* A zero-knowledge proof system that supports non-interactive proofs has been selected and integrated into the BPI.
+
+Test Steps:
+
+1. Submit a valid input to the workstep.
+2. Execute the workstep.
+3. Generate a zero-knowledge proof of correctness for the output of the workstep using the selected zero-knowledge proof system.
+4. Verify that the proof is valid and shows the correctness of the output generated by the workstep based only on the proof data provided to the verification function from the workstep output.
+
+Test Passing Criteria:
+
+* The workstep output is correctly generated.
+* The zero-knowledge proof of correctness is valid and shows the correctness of the output generated by the workstep based only on the proof data provided to the verification function from the workstep output..
 
 #### **[R227]** 
 An input that does not represent a new, valid agreement state of a state object MUST NOT generate a valid zero-knowledge proof of correctness of the input. 
 
+[[R227]](#r227) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running with at least one workstep that operates on a state object.
+* The BPI is configured to generate zero-knowledge proofs of correctness for each workstep output.
+* The BPI is configured to reject inputs that do not represent a valid new agreement state.
+
+Test Steps:
+
+1. Submit an input to the workstep that does not represent a valid new agreement state for the state object.
+2. Execute the workstep.
+3. Verify that the BPI rejects the input and does not generate a valid zero-knowledge proof of correctness for the output.
+4. Submit a new input to the workstep that represents a valid new agreement state for the state object.
+5. Execute the workstep.
+6. Verify that the BPI accepts the input, generates a valid zero-knowledge proof of correctness for the output, and updates the state object accordingly.
+
+Test Passing Criteria:
+
+* The BPI should reject the invalid input and not generate a valid zero-knowledge proof of correctness for the output in step 3.
+* The BPI should accept the valid input, generate a valid zero-knowledge proof of correctness for the output, and update the state object accordingly in step 6.
+
 #### **[R228]** 
-A zero-knowledge proof of correctness of an input MUST be verifiable by any 3rd party in a time at most proportional to the size of the prover system that generated the proof.
+A zero-knowledge proof of correctness of a workstep output MUST be verifiable by any 3rd party in a time at most proportional to the size of the prover system that generated the proof.
 
 *The time requirement means that any 3rd party verifier must be able to verify the proof representing a prover system of size n in time O(n), e.g., a Merkle-proof of a Merkle-trie branch of 10 tuples can be verified in 10 computational steps. It also means that the zero-knowledge proof of correctness of input does not have to be succinct. Succinct means that the proofs are short (smaller than the size of the prover circuit) and that the verification is fast.*
 
+[[R228]](#r228) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running with at least one workstep.
+* A BPI workstep with an output that can be used to generate a zero-knowledge proof.
+* A prover system that can generate a zero-knowledge proof of correctness for the output is of size N.
+* The size N is given by the size of the circuit used to generate the proof in terms of number of circuit constraint equations.
+* A verifier system that can verify the zero-knowledge proof.
+
+Test Steps:
+
+1. Submit a valid input to the BPI workstep.
+2. Generate a zero-knowledge proof of correctness for the output using the prover system.
+3. Verify the zero-knowledge proof using the verifier system.
+4. Measure the number of computational steps taken by the verifier system to verify the proof.
+5. Verify that the number of computational steps taken to verify the proof is proportional to or less than the size of the prover system.
+
+Test Passing Criteria:
+
+* The test will pass if the zero-knowledge proof of correctness for the workstep output can be verified by the verifier system in a number of computational step at most proportional to the size of the prover system that generated the proof.
+
 #### **[D26]** 
-The zero-knowledge proof of correctness of an input SHOULD be succinct.
+The zero-knowledge proof of correctness of a workstep output SHOULD be succinct.
+
+*A zero-knowledge proof is said to succinct is the proof is smaller than the size of the circuit, the poly-logarithm to be precise, used to generate the proof.* 
+
+[[D26]](#d26) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running with at least one workstep.
+* A BPI workstep with an output that can be used to generate a zero-knowledge proof.
+* A prover system that can generate a zero-knowledge proof of correctness for the output is of size N.
+* The size N is given by the size of the circuit used to generate the proof in terms of number of circuit constraint equations.
+* A verifier system that can verify the zero-knowledge proof.
+
+Test Steps:
+
+1. Submit a valid input to the BPI workstep.
+2. Generate a zero-knowledge proof of correctness for the output using the prover system.
+3. Verify the zero-knowledge proof using the verifier system.
+4. Measure the number of computational steps taken by the verifier system to verify the proof.
+5. Verify that the number of computational steps taken to verify the proof is proportional at most to or less than the poly-logarithm of the size of the prover system.
+
+Test Passing Criteria:
+
+* The test will pass if the zero-knowledge proof of correctness for the workstep output can be verified by the verifier system in a number of computational step at most proportional to the size of the prover system that generated the proof.
 
 #### **[D27]** 
-The zero-knowledge proof of correctness of an input SHOULD be efficient.
+The zero-knowledge proof of correctness of a workstep output SHOULD be efficient.
 
 *Efficient in this context means that the size of the proof does not grow with the size of the prover system(s). This is a highly desirable feature when it comes to both data on a CCSM and verification time.*
 
+[[D27]](#d27) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running with at least two worksteps.
+* BPI worksteps with a valid input, business logic, and output.
+* The BPI workstep inputs are the same.
+* The business logic in the worksteps is different with the complexity of the business logic increasing with each workstep which leads to different sizes of zero-knowledge proof circuits.
+* A zero-knowledge proof system in place for verifying the correctness of the output.
+
+Test steps:
+
+1. Create a workstep instance with a small prover system size and a valid input.
+2. Execute the workstep and generate a zero-knowledge proof of correctness of the output.
+3. Verify the zero-knowledge proof's correctness using the proof system and record the verification time.
+4. Repeat steps 1-3 with workstep instances having progressively larger prover system sizes for each new workstep.
+5. Compare the verification times for each workstep instance to determine whether the verification time grows as the size of the prover system grows.
+
+Test Passing criteria:
+
+* The verification time of the zero-knowledge proof should remain constant as the size of the prover system grows, demonstrating that the zero-knowledge proof is efficient.
+* If the verification time grows significantly as the size of the prover system grows, the test fails, indicating that the zero-knowledge proof system is not efficient.
+
 #### **[D28]** 
-The zero-knowledge proof of correctness of an input SHOULD be based on modular constructions.
+The zero-knowledge proof of correctness of a workstep output SHOULD be based on modular constructions.
 
 *Modular in this context means that the proof system can represent multiple statements, in other words, multiple proofs together, in one proof. For example, "I have an invoice with a face value of over $10,000, payable within 30 days, and the payee has never missed a payment in 10 years of doing business with me". This is also highly desirable, especially when having to combine various proofs as in the previous statement.*
 
-#### **[R229]** 
-A zero-knowledge proof of correctness of an input into a workstep MUST be committed to the CCSM utilized by the BPI using a compact cryptographic proof after it has been finalized on the BPI.
+[[D28]](#d28) Testability:
 
-*Such a commitment can represent more than one zero-knowledge proof of correctness of an input. Compact in this context means that the CCSM commitment is smaller in size than the totality of the proof(s) represented by the commitment. This is desirable because it reduces the data footprint of the BPI which should be one of the implementation goals of a BPI.*
+Preconditions:
+
+* A BPI test instance is set up and running with at least two worksteps.
+* BPI worksteps with a valid input, business logic, and output.
+* A BPI's workstep output must be generated by a zero-knowledge proof generator that claims to use modular constructions.
+
+Test Steps:
+
+1. Create a simple circuit that takes a fixed input and produces a fixed output.
+2. Generate two different workstep outputs using the same simple circuit as the business logic.
+3. Verify the zero-knowledge proof of correctness for each workstep output separately.
+4. Generate a third workstep output that is the result of chaining the two simple circuits together in a new workstep.
+5. Verify the zero-knowledge proof of correctness for the third workstep output, which represents the result of chaining two circuits.
+6. Compare the verification time for the third workstep output with the verification time for each of the two original workstep outputs.
+
+Test Passing Criteria: The test passes if,
+
+* The verification time for the third workstep output is not significantly greater than the verification time for each of the two original workstep outputs.
+* The verification of the third workstep output is successful and it represents the correct output of the chained circuits.
+
+
+#### **[R229]** 
+A zero-knowledge proof of correctness of a workstep output that has been finalized on the BPI MUST be committed to the CCSM utilized by the BPI using a compact cryptographic proof.
+
+*Such a commitment can represent more than one zero-knowledge proof of correctness of an input. Compact in this context means that the CCSM commitment is smaller in size than the totality of the proof(s) represented by the commitment. This is desirable because it reduces the data footprint of the BPI which should be one of the implementation goals of a BPI. Note that a compact proof may be succinct or efficient.*
+
+[[R229]](#r229) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running with at least one workstep.
+* A BPI workstep with a valid input, business logic, and output.
+* The BPI worksteps have been executed and their output has been finalized through an agreed-upon quorum of cryptographic signatures of the workgroup participants associated with the worksteps.
+
+Test Steps:
+
+1. Retrieve the zero-knowledge proof(s) of correctness for the output of the executed workstep.
+2. Generate a compact cryptographic proof of the zero-knowledge proof(s) of correctness.
+3. Verify that the compact cryptographic proof is smaller in size than the total size of the zero-knowledge proof(s) of correctness.
+4. Commit the compact cryptographic proof to the CCSM utilized by the BPI for storage.
+5. Verify that the commitment to the proof(s) has been stored on the CCSM.
+
+Test Passing Criteria:
+
+* The compact cryptographic proof is smaller in size than the total size of the zero-knowledge proof(s) of correctness.
+* The commitment to the proof(s) has been stored on the CCSM.
 
 #### **[R230]** 
-A cryptographic proof of correctness of a BPI state transition on the CCSM MUST be verifiable by any 3rd party at any time in a time at most proportional to the size of the prover system. 
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM MUST be verifiable by any 3rd party at any time in a time at most proportional to the size of the prover system. 
 
 *Note, that the requirement does not state that the proof has to be verifiable on the CCSM itself, that it does not need to be succinct, and that it does not need to be efficient.*
 
+[[R230]](#r230) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running with at least one workstep.
+* A BPI workstep with a valid input, business logic, and output.
+* A BPI with a workstep that generates a cryptographic proof of correctness for a state transition has been executed and its output has been committed to the CCSM.
+* The size of the prover system has been determined based on the number of constraint equations generated by the circuit used in the workstep. 
+
+Test Steps:
+
+1. Obtain the cryptographic proof of correctness for the state transition from the CCSM.
+2. Attempt to verify the proof using a third-party verification tool.
+3. Measure the time taken for verification in the number of computational steps to very the constraint equations.
+4. Calculate the proportionality constant between the size of the prover system and the time taken for verification.
+5. Verify that the time taken for verification is of order one, O(1).
+
+Test Passing Criteria:
+
+* The test will pass if the verification of the cryptographic proof of correctness of the BPI state transition can be completed by a third party within a time at most proportional to the size of the prover system, as specified by the requirement.
+
 #### **[D29]** 
-A cryptographic proof of correctness of a BPI state transition on the CCSM SHOULD be verifiable by any 3rd party at any time on the CCSM utilized by the BPI.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output generated by a BPI and stored on the CCSM utilized by the BPI SHOULD be verifiable by any 3rd party and at any time by the CCSM utilized by the BPI.
+
+[[D29]](#d29) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running with at least one workstep.
+* A BPI workstep with a valid input, business logic, and output.
+* A BPI workstep has been executed and the output, along with its cryptographic proof, has been stored on the CCSM utilized by the BPI.
+* The cryptographic proof of correctness generated satisfies [[R230]](#r230).
+
+Test Steps:
+
+1. Retrieve the cryptographic proof of the workstep output stored on the CCSM utilized by the BPI.
+2. Request the CCSM utilized by the BPI to verify the cryptographic proof of the workstep output.
+3, Verify that the CCSM is able to successfully verify the cryptographic proof.
+4. Repeat steps 1-3 for multiple workstep outputs stored on the CCSM utilized by the BPI at different randomly selected points in time during the testing period.
+
+Test Passing Criteria: The test is considered passing if all of the following criteria are met,
+
+* The CCSM utilized by the BPI is able to verify the cryptographic proof of correctness of the BPI state transition.
+* The test has been repeated for multiple workstep outputs stored on the CCSM utilized by the BPI, at random points in time during the testiing period, and all verifications are successful.
 
 #### **[D30]** 
-A cryptographic proof of correctness of a BPI state transition on the CCSM SHOULD be succinct.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output and stored on the CCSM SHOULD be succinct.
+
+[[D30]](#d30) Testability: The same test as for [[D26]](#d26) can be used for [[D30]](#d30) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characterisitcs as in used in [[D26]](#d26).
 
 #### **[D31]** 
-A cryptographic proof of correctness of a BPI state transition on the CCSM SHOULD be efficient.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM SHOULD be efficient.
+
+[[D31]](#d31) Testability: The same test as for [[D27]](#d27) can be used for [[D31]](#d31) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characterisitcs as in used in [[D27]](#d27).
 
 #### **[D32]** 
-A cryptographic proof of correctness of a BPI state transition on the CCSM SHOULD be based on modular constructions.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM SHOULD be based on modular constructions.
+
+[[D32]](#d32) Testability: The same test as for [[D28]](#d28) can be used for [[D32]](#d32) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characterisitcs as in used in [[D28]](#d28).
 
 *In specific situations, the above SHOULD requirements become MUST.*
 
 #### **[O3]** 
-A cryptographic proof of correctness of a BPI state transition MAY be used in a commercial value-creation or value-exchange event.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output MAY be used in a commercial value-creation or value-exchange event.
 
-*This means that the output of a workstep can be used to represent a unit of value accounting such as a token. For example, one or more workstep outputs may be used as (verifiable) collateral in issuing an asset-backed security (value-creation).*
+*This means that the output of a workstep can be used to represent a unit of value accounting such as a digital asset. For example, one or more workstep outputs may be used as (verifiable) collateral in issuing an asset-backed security (value-creation).*
+
+[[O3]](#03) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and running with at least one workstep.
+* The BPI workstep must have a valid state object associated to it.
+* The workstep execution has been performed and the corresponding cryptographic proof of correctness of the state transition has been generated and stored in the CCSM utilized by the BPI.
+
+Test Steps:
+
+1. Initiate a commercial value-creation or value-exchange event using the BPI state object that is a result of the workstep execution for which the cryptographic proof was generated.
+2. Verify that the cryptographic proof is used to validate the correctness of the state transition during the event.
+3. Verify that the cryptographic proof is available for any 3rd party to verify the correctness of the state transition.
+
+Test Passing Criteria:
+
+* The commercial value-creation or value-exchange event is successfully initiated using the BPI state object.
+* The cryptographic proof of correctness of the state transition is used to validate the correctness of the state transition during the event.
+* The cryptographic proof is available for any 3rd party to verify the correctness of the state transition.
 
 #### **[CR16]<[O3]** 
 A cryptographic proof of correctness of a BPI state transition used in a commercial value-creation MUST be succinct.
 
-#### **[CR17]<[O3]** 
-A cryptographic proof of correctness of a BPI state transition MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
+[[CR16]<[O3]](#cr16o3) Testability: The same test as in [[D26]](#d26) Testability may be used.
 
-*The zero-knowledge proof of correctness can be a cryptographic aggregator of proofs of workstep input correctness that would allow multiple proofs to be represented and provable within one proof.* 
+#### **[CR17]<[O3]** 
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep outputn MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
+
+*The zero-knowledge proof of correctness can be a cryptographic aggregator of proofs of workstep input correctness that would allow multiple proofs to be represented and provable within one proof.*
+
+[[CR17]<[O3]](#cr76o3) Testability: The same test as in [[R229]](#r229) Testability may be used with the only difference being that the proof on the CCSM contains the representation of only one proof.
 
 #### **[CR18]<[O3]** 
-A cryptographic proof of correctness of a BPI state transition MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
+
+[[CR18]<[O3]](#cr18o3) Testability: The same test as in [[R230]](#r230) Testability may be used.
 
 #### **[CR19]<[O3]** 
-A cryptographic proof of correctness of a BPI state transition MUST NOT be able to be used in more than one commercial value-creation/exchange event at any time.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output MUST NOT be able to be used in more than one commercial value-creation/exchange event at any time.
 
 *This requirement is necessary to avoid the usage of the same output as collateral in more than one commercial value-creation event, such as tokenization, and subsequent usage in value-exchange events, also known as double-pledging.*
 
@@ -2453,24 +2890,95 @@ A cryptographic proof of correctness of a BPI state transition MUST NOT be able 
 
 *Note that this only restricts the usage of pledged outputs to the CCSM utilized in a given BPI. It is impossible to foresee which CCSMs will be used for the implementation of a BPI. Therefore, for example, a document may be baselined on more than one BPI and CCSM without being able to avoid a double pledge since the individual CCSMs are not synchronized.*
 
+[[CR19]<[O3]](#cr19o3) Testability:
+
+Preconditions:
+
+* A BPI with the capability of generating cryptographic proofs of correctness of a state transition as expressed by a workstep output.
+* An updateable commitment system on the CCSM utilized by the BPI that allows for creating and verifying commitments.
+* A commercial value-creation/exchange event where a BPI workstep output may be pledged.
+* The BPI workstep output that will be pledged in the commercial value-creation event.
+
+Test Steps:
+
+1. Generate a cryptographic proof of correctness of a BPI state transition as expressed by a workstep output.
+2. Initiate a commercial value-creation or value-exchange event using the BPI state object that is a result of the workstep execution for which the cryptographic proof was generated.
+3. Verify that the cryptographic proof is used to validate the correctness of the state transition during the event.
+4. Verify that the cryptographic proof is available for any 3rd party to verify the correctness of the state transition.
+5. Create an output pledge by including the BPI workstep output and a resolvable identifier of the commercial value-creation in a commitment stating that the output is pledged in a commercial value-creation event.
+3. Verify that the output pledge is stored on the CCSM utilized by the BPI.
+4. Attempt to use the output pledge in another commercial value-creation/exchange event.
+5. Verify that the attempt to use the output pledge in another commercial value-creation/exchange event fails because the commercial value-creation event verification that the cryptographic proof of correctness of a BPI state transition included in the valu-creation event is not included in the Output Pledge on the BPIs CCSM fails.
+6. Verify that the output pledge is used in the commercial value-creation/exchange event in which it was committed.
+7. Verify that the output pledge can be revoked by removing it from the commitment system on the CCSM utilized by the BPI.
+
+Test Passing Criteria:
+
+The test will pass if the output pledge can only be used in the commercial value-creation/exchange event in which it was committed, and any attempt to use the same output pledge in another commercial value-creation/exchange event fails as long as said event is restricted to the CCSM the BPI uses for the Output Pledge. Additionally, the Output Pledge should be able to be revoked by removing it from the commitment system on the CCSM utilized by the BPI.
+
 #### **[CR20]<[O3]** 
-A BPI MUST create an Output Pledge of a workstep output used in a commercial value-creation event as a succinct, efficient, non-interactive zero-knowledge proof of the pledge commitment (privacy preservation of an output pledged in a commercial value-creation event).
+A BPI MUST create an Output Pledge of a workstep output used in a commercial value-creation event as a succinct, non-interactive zero-knowledge proof of the pledge commitment (privacy preservation of an output pledged in a commercial value-creation event).
 
 *Note that an Output Pledge can contain, and usually will contain more than one workstep output used in a commercial value-creation event.*
+
+[[CR20]<[O3]](#cr20o3) Testability:
+
+Preconditions:
+
+* The BPI test instance has a workstep output that will be used in a commercial value-creation event.
+* The BPI is capable of generating an Output Pledge for the workstep output.
+* The BPI utilizes a zero-knowledge proof system.
+
+Test Steps:
+
+1. Execute the workstep that generates the output to be used in a commercial value-creation event.
+2. Generate an Output Pledge for the workstep output.
+3. Verify that the generated zero-knowledge proof of the Output Pledge is non-interactive by checking that it does not require any interaction between the BPI and an external proof verifier.
+4. Verify that the generated zero-knowledge proof of the Output Pledge is succinct by checking that the size of the proof in terms of computation steps is smaller than the number of computational steps required to solve the constraint equation system of the prover based on the zero-knowledge circuit used.
+
+Test Passing Criteria:
+
+* The generated zero-knoweldge proof of the Output Pledge is non-interactive.
+* The generated zero-knoweldge proof of the Output Pledge is succinct.
 
 #### **[CR21]<[O3]** 
 An Output Pledge MUST be committed to the CCSM utilized by the BPI (Liveness).
 
+[[CR21]<[O3]](#cr21o3) Testability: The same test as in [[R229]](#r229) Testability may be used.
+
 #### **[CR22]<[O3]** 
 An Output Pledge MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant proof verifiability).
 
+[[CR22]<[O3]](#cr22o3) Testability: The same test as in [[D29]](#rd29) Testability may be used.
+
 #### **[CR23]<[O3]** 
 An Output Pledge MUST be updatable.
+
+[[CR23]<[O3]](#cr23o3) Testability: The same test as in [CR19]<[O3]](#cr19o3) Testability may be used since it involves an update operation of an Output Pledge.
 
 #### **[CR24]<[O3]** 
 An Output Pledge MUST only be updated by the owners of the workstep output used in a commercial value-creation event.
 
 *Note that there are many ways this can be achieved. Note also that the ownership of the output might change and be highly fractionalized if used in a token as collateral. Therefore, there might be the need for a custodianship that is authorized to update the Output Pledge, and only under specific circumstances, such as when the outstanding token number is zero.*
+
+[[CR24]<[O3]](#cr24o3) Testability:
+
+Preconditions:
+
+* A BPI test instance with the ability to create Output Pledges is set up and running.
+* A workstep output has been used in a commercial value-creation event and an Output Pledge has been created for it.
+
+Test Steps:
+
+1. Verify that only the owners of the workstep output used in the commercial value-creation event are able to update the Output Pledge.
+2. Attempt to update the Output Pledge using credentials of a non-owner of the workstep output.
+3. Verify that the attempt to update the Output Pledge failed and the Output Pledge remained unchanged.
+4. Attempt to update the Output Pledge using credentials of an owner of the workstep output.
+5. Verify that the attempt to update the Output Pledge succeeded and the Output Pledge was updated accordingly.
+
+Test Passing Criteria:
+
+* The test is considered passed if the attempt to update the Output Pledge using credentials of a non-owner of the workstep output fails in Step 2, and the attempt to update the Output Pledge using credentials of an owner of the workstep output succeeds in Step 4, and the Output Pledge is updated accordingly in Step 5.
 
 ## 6.2 BPI Workflow
 After specifying a workstep, this document will now turn to a workflow.
@@ -2478,61 +2986,304 @@ After specifying a workstep, this document will now turn to a workflow.
 #### **[R231]** 
 A workflow MUST contain at least one workstep.
 
+[[R231]](#r231) Testability:
+
+Preconditions:
+
+* A BPI test instance has been initialized and configured to support workflow creation.
+* The BPI interface for creating workflows is accessible to a BPI Subject.
+
+Test Steps:
+
+1. Create a new workflow using the BPI interface.
+2. Verify that the workflow contains no workstep.
+3. Attempt to save the workflow without any worksteps.
+4. Verify that the BPI returns an error message and prevents the workflow from being saved.
+5. Add a workstep to the workflow.
+6. Verify that the BPI correctly saved the workstep to the workflow.
+
+Test Passing Criteria:
+
+* If the BPI returns an error message and prevents the workflow from being saved without any worksteps.
+* If the BPI correctly saves a workflow with one workstep.
+
 #### **[R232]** 
-All requirements for a workstep MUST also be applied to a workflow.
-
-*This means that requirements such as determinism, ability to be updated, versioning, characteristics of zero-knowledge proofs, etc. also apply to a workflow.*
-
-#### **[R233]** 
 If there is more than one workstep in a workflow, the worksteps in a workflow MUST be causally connected.
 
 *This means that the output of a workstep in a workflow is a required input into one or more subsequent worksteps.*
+
+[[R232]](#r232) Testability:
+
+Preconditions:
+
+* A BPI test instance has been initialized and configured to support workflow creation.
+* A workflow has been created with more than one workstep.
+* The input to the first workstep in the workflow has been defined.
+
+Test steps:
+
+1. Execute the first workstep in the workflow.
+2. Verify that the output of the first workstep is used as input in the second workstep.
+3. Repeat step 2 for all pairs of consecutive worksteps in the workflow.
+
+Test Passing criteria:
+
+* All pairs of consecutive worksteps in the workflow use the output of one workstep as input in the next workstep.
 
 #### **[D33]** 
 If there is more than one workstep in a workflow, the zero-knowledge proof of correctness of the input to the last workstep in the workflow SHOULD be a proof that accumulates the valid proofs for all previous inputs.
 
 *Such proofs are known as inductive proof chains as each proof accumulates the previous proof, with further local inputs, in the causal chain of worksteps. The verifier, therefore, does not have to verify all proofs and hold all inputs but rather only the final one with the final public input to prove the validity of the entire computational chain.*
 
+[[D33]](#d33) Testability:
+
+Preconditions:
+
+* A BPI test instance has been initialized and configured to support workflow creation.
+* A workflow has been created with more than one workstep.
+* The input to the first workstep in the workflow has been defined.
+
+Test Steps:
+
+1. Create a workflow with at least two worksteps.
+2. Generate valid zero-knowledge proofs of correctness of the inputs to all worksteps except the last one.
+3. Generate an inductive proof chain, which accumulates all previous proofs, for the input to the last workstep.
+4. Verify the inductive proof chain by checking if the final proof is valid.
+5. Modify any of the inputs to any of the previous worksteps.
+6. Regenerate the corresponding proof and update the inductive proof chain.
+7. Verify the updated inductive proof chain by checking if the final proof is still valid.
+
+Test Passing Criteria:
+
+* The final proof of the inductive proof chain is valid.
+* The inductive proof chain can be updated with the latest proof of any previous input without invalidating the final proof.
+
 #### **[D34]** 
 The prover system in a workflow with more than one workstep SHOULD be the same for all worksteps.
 
-#### **[CR25]>[D34]** 
-The prover system in a workflow MUST be the same for all worksteps.
+[[D34]](#d34) Testability:
 
-#### **[R234]** 
+Preconditions:
+
+* A BPI test instance has been initialized and configured to support workflow creation.
+* A workflow with more than one workstep has been defined.
+* Each workstep in the workflow has its own prover system for generating and verifying proofs.
+
+Test Steps:
+
+1. Select two worksteps in the workflow.
+2. Generate a proof for the output of the first workstep using its prover system.
+3. Verify the proof generated in step 2 using the prover system of the second workstep.
+4. Record whether the verification in step 3 was successful or not.
+5. Repeat steps 2-4 for all combinations of worksteps in the workflow.
+6. Verify that for each combination of worksteps, the proof generated in one workstep can be verified using the prover system of another workstep.
+7. If any verification in step 6 fails, record the specific combination of worksteps and the result of the verification.
+
+Test Passing Criteria:
+
+* All verifications in step 6 pass, indicating that the prover system in the workflow is the same for all worksteps.
+* If any verification in step 6 fails, the test fails and the specific combination of worksteps and verification result are recorded for further investigation.
+
+#### **[R233]** 
 A workflow with more than one workstep MUST have a unique identifier within a BPI. 
 
-#### **[R235]** 
+[[R233]](#r233) Testability:
+
+Preconditions:
+
+* A BPI test instance has been created.
+* The BPI has at least two workflows.
+
+Test steps:
+
+1. Retrieve the list of workflows within the BPI.
+2. For each workflow, retrieve its identifier.
+3. Verify that each identifier is unique within the BPI.
+4. Repeat steps 2 and 3 for all workflows in the BPI.
+5. Verify that there are no duplicate identifiers within the BPI.
+6. Attempt to change the identifier of one workflow to the be the same as the identifier of another workflow.
+7. Verify that the BPI does not allow this change and generates and appropriate error message. 
+
+
+Test passing criteria:
+
+* All existing workflows in the BPI have a unique identifier.
+* An attempt to assign the same identifier to two workflows fails and the BPI generates an appropriate error message.
+
+
+#### **[R234]** 
 A workflow with more than one workstep and a given set of inputs MUST be sequentially executed by a BPI.
 
 *This simply means that for a given set of inputs there is only one process path through a given workflow.*
+
+[[R234]](#r234) Testability:
+
+Preconditions:
+
+* A BPI test instance is set up and configured.
+* The BPI has at least one workflow with more than one workstep and a defined set of inputs.
+* The inputs for the workflow are available and valid.
+
+Test steps:
+
+1. Start the BPI and provide the inputs for the workflow.
+2. Verify that the BPI executes the first workstep in the workflow.
+3. Verify that the output from the first workstep is used as input for the second workstep in the workflow.
+4. Repeat steps 2 and 3 until all worksteps in the workflow have been executed.
+5. Verify that the output of the last workstep in the workflow matches the expected output based on the provided inputs.
+
+Test passing criteria:
+
+* All worksteps in the workflow are executed in the correct order.
+* The output of each workstep is used as input for the subsequent workstep.
+* The final output of the workflow matches the expected output based on the provided inputs.
 
 ## 6.3 BPI Workgroup
 
 In this section, the document will discuss the requirements for a workgroup. Note that which BPI Subjects may or may not be able to create a workgroup is up to the individual implementations. However,
 
-#### **[R236]** 
+#### **[R235]** 
 There MUST be at least one BPI Subject role that has the authorization to create a workgroup.
 
-#### **[R237]** 
+[[R235]](#r235) Testability:
+
+Preconditions:
+
+* A BPI test instance has at least one BPI Subject role defined.
+* The BPI Subject has access to the BPI.
+
+Test Steps:
+
+1. Log in to the system as the user.
+2. Verify that there is at least one BPI Subject defined in the system.
+3. Attempt to create a workgroup using the BPI Subject's credentials.
+4. Verify that the workgroup is successfully created.
+5. Verify that the BPI Subject has the appropriate authorization to create a workgroup by attempting to create a workgroup using credentials that do not have the required authorization.
+6. Verify that the BPI denies the attempt to create a workgroup using unauthorized credentials.
+
+Test Passing Criteria:
+
+* Step 2: At least one BPI Subject role is found in the system.
+* Step 4: The workgroup is created successfully.
+* Step 6: The system denies the attempt to create a workgroup using unauthorized credentials.
+
+#### **[R236]** 
 A workgroup MUST consist of at least one BPI Subject participant.
 
 *Note that a workgroup participant may be a BPI Subject of another BPI than the BPI the workgroup is defined in. The appropriate authentication and authorization policies to enable such a scenario are up to implementers and beyond the scope of this document.*
 
-#### **[R238]** 
+[[R236]](#r236) Testability:
+
+Preconditions:
+
+* A BPI Subject has access to a BPI test system with credentials that allow the creation of a workgroup.
+
+Test steps:
+
+1. Create a new workgroup.
+2. Verify that the workgroup does not contain any participants.
+3. Add a BPI Subject participant to the workgroup.
+4. Verify that the participant is added successfully.
+5. Attempt to remove the participant from the workgroup.
+6. Verify that the participant cannot be removed.
+7. Attempt to add another participant to the workgroup.
+8. Verify that the participant is added successfully.
+
+Test passing criteria:
+
+* Steps 1 to 4 should execute successfully.
+* Step 5 should fail and raise an error or exception.
+* Steps 6 to 8 should execute successfully.
+
+#### **[R237]** 
 A workgroup MUST have at least one administrator.
 
-#### **[R239]** 
+[[R237]](#r237) Testability:
+
+Preconditions:
+
+* A workgroup exists in the BPI test system.
+* The BPI Subject is logged in with the appropriate authorization to manage the workgroup.
+
+Test Steps:
+
+1. Add a new participant to the workgroup.
+2. Verify that the participant has been added to the workgroup.
+3. Remove the administrator from the workgroup.
+4. Verify that the administrator has been removed and there are no other administrators in the workgroup.
+5. Attempt to perform an administrative action, such as adding or removing a participant, as a non-administrator.
+6. Verify that the action is not allowed and an appropriate error message is displayed.
+
+Test Passing Criteria:
+
+* Step 2: The participant should be successfully added to the workgroup.
+* Step 4: The administrator should be successfully removed, and there should be no other administrators in the workgroup.
+* Step 6: The action should not be allowed, and an appropriate error message should be displayed.
+
+#### **[R238]** 
 A workgroup MUST have at least one security policy.
 
 *Note that a security policy consists of authentication and authorization rules for the workgroup participants. Note also that one or more workgroup administrators define the workgroup security policy.*
 
-#### **[R240]** 
+[[R238]](#r238) Testability:
+
+Preconditions:
+
+* A workgroup exists in the BPI test system.
+* A BPI Subject is logged in as an administrator of a workgroup.
+
+Test steps:
+
+1. Add a new security policy to the workgroup.
+2. Verify that the security policy includes authentication rules that define the allowed authentication methods for workgroup participants.
+3. Verify that the security policy includes authorization rules that define the allowed actions for workgroup participants.
+4. Verify that the security policy is enforced for all workgroup participants.
+5. Attempt to add a participant to the workgroup without specifying authentication credentials that satisfy the security policy. 
+6. Verify that the participant is not added.
+7. Attempt to perform an unauthorized action in the workgroup as a participant. 
+8. Verify that the action is denied.
+
+Test passing criteria:
+
+* The security policy is added successfully.
+* The security policy includes authentication and authorization rules.
+* The security policy is enforced for all workgroup participants.
+* The participant is not added if authentication credentials do not satisfy the security policy.
+* The unauthorized action is denied for participants that do not have the required authorization according to the security policy.
+
+#### **[R239]** 
 A workgroup MUST have at least one privacy policy.
 
 *A privacy policy consists of the data visibility rules for each participant.*
 
-#### **[R241]** 
+[[R239]](#r239) Testability:
+
+Preconditions:
+
+* A workgroup exists in the BPI test system.
+* A BPI Subject has the appropriate authorization to create a privacy policy for the workgroup.
+
+Test steps:
+
+1. Create a new privacy policy for the workgroup that restricts data visibility such that Participant A cannot see that Participant B is in the workgroup.
+2. Add Participant A and Participant B to the workgroup.
+3. Verify that Participant A cannot see that Participant B is in the workgroup.
+4. Verify that Participant B cannot see that Participant A is in the workgroup.
+5. Verify that a privacy policy has been created and associated with the workgroup.
+6. Verify that if the privacy policy is attempted to be removed, the action fails and an appropriate error message is displayed.
+7. Create a second privacy policy.
+8. Verify that the second privacy policy can be removed.
+
+Passing criteria:
+
+* The new privacy policy is successfully created.
+* Participants cannot see other participants in the workgroup as specified by the privacy policy.
+* The privacy policy is associated with the workgroup.
+* The privacy policy cannot be removed from the group, if there is only one privacy policy defined for the workgroup.
+* A second privacy policy is successfully created.
+* The second privacy policy is successfully removed.  
+
+#### **[R240]** 
 A workgroup administrator MUST be able to perform at minimum the following functions:
 * add or remove one or more participants
 * create, update and delete both security and privacy policies.
@@ -2540,75 +3291,473 @@ A workgroup administrator MUST be able to perform at minimum the following funct
 
 Archiving a workgroup in the context of this document means that a workgroup cannot be actively used anymore. However, the workgroup data structures and associated data are accessible at any time but only by the participants of the archived workgroup.
 
+[[R240]](#r240) Testability:
+
+Preconditions:
+
+* A BPI Subject is logged in as a workgroup administrator in a BPI test instance.
+* The workgroup exists in the BPI.
+
+Test steps:
+
+* Add a new participant to the workgroup.
+  * Verify that the participant has been added to the workgroup.
+* Remove a participant from the workgroup.
+  * Verify that the participant has been removed from the workgroup.
+* Create a new security policy.
+  * Verify that the security policy has been created and associated with the workgroup.
+* Update an existing security policy.
+  * Verify that the security policy has been updated and the changes are reflected in the workgroup.
+* Delete an existing security policy.
+  * Verify that the security policy has been deleted and is no longer associated with the workgroup.
+* Create a new privacy policy.
+  * Verify that the privacy policy has been created and associated with the workgroup.
+* Update an existing privacy policy.
+  * Verify that the privacy policy has been updated and the changes are reflected in the workgroup.
+* Delete an existing privacy policy.
+  * Verify that the privacy policy has been deleted and is no longer associated with the workgroup.
+* Archive the workgroup.
+  * Verify that the workgroup has been archived and is no longer accessible.
+
+Test passing criteria:
+
+* The participant has been added/removed from the workgroup as expected.
+* The security/privacy policy has been created/updated/deleted as expected.
+* The workgroup has been archived as expected.
+* All test steps passed without any errors.
+
 #### **[O4]** 
 A workgroup MAY have more than one administrator.
 
-#### **[CR26]>[O4]** 
+[[O4]](#o4) Testability: Execute the test in [[R237]](#r237) Testability twice.
+
+#### **[CR25]>[O4]** 
 There MUST be a consensus model for administrative actions.
+
+[[CR25]<[O4]](#cr25o4) Testability:
+
+Preconditions:
+
+* A BPI test system is installed and running.
+* A workgroup exists with at least one participant and an administrator.
+* The consensus model for administrative actions is configured in the BPI system.
+
+Test Steps:
+
+1. The administrator creates a new security policy for the workgroup.
+2. Another administrator attempts to delete the security policy created in step 1.
+3. The system should prompt the second administrator to obtain consensus from the first administrator before proceeding with the deletion.
+4. The second administrator obtains consensus from the first administrator and proceeds with the deletion.
+5. The system should successfully delete the security policy.
+6. The administrator adds a new participant to the workgroup.
+7. Another administrator attempts to remove the participant added in step 6.
+8. The system should prompt the second administrator to obtain consensus from the first administrator before proceeding with the removal.
+9. The second administrator obtains consensus from the first administrator and proceeds with the removal.
+10. The system should successfully remove the participant.
+11. The administrator archives the workgroup.
+12. Another administrator attempts to delete the workgroup.
+13. The system should prompt the second administrator to obtain consensus from the first administrator before proceeding with the deletion.
+14. The second administrator obtains consensus from the first administrator and proceeds with the deletion.
+15. The system should successfully delete the workgroup.
+
+Test Passing Criteria:
+
+* The security policy is successfully created and deleted with the consensus of both administrators.
+* The new participant is successfully added and removed with the consensus of both administrators.
+* The workgroup is successfully archived and deleted with the consensus of both administrators.
 
 #### **[O5]** 
 A workgroup MAY be attached to one or more workstep instances. 
 
-#### **[CR27]>[O5]** 
+[[O5]](#o5) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and running.
+* At least one workgroup is created.
+* At least one workstep instance is available.
+
+Test Steps:
+
+1. Attach the workgroup to a workstep instance.
+2. Verify that the workgroup is successfully attached to the workstep instance.
+3. Detach the workgroup from the workstep instance.
+4. Verify that the workgroup is successfully detached from the workstep instance.
+5. Attach the workgroup to multiple workstep instances.
+6. Verify that the workgroup is successfully attached to all the specified workstep instances.
+7. Detach the workgroup from all the attached workstep instances.
+8. Verify that the workgroup is successfully detached from all the attached workstep instances.
+
+Test Passing Criteria:
+
+* Each step in the test plan is executed successfully.
+* The workgroup is successfully attached and detached from the workstep instances as specified.
+* The workgroup is attached to multiple workstep instances simultaneously without any issues.
+
+#### **[CR26]>[O5]** 
 A workgroup attached to a workflow MUST be also attached to each workstep in the workflow.
+
+[[CR26]<[O5]](#cr26o5) Testability:
+
+Preconditions:
+
+* A workflow with more than one workstep exists in a BPI test system.
+* A workgroup is created in the BPI.
+
+Test Steps:
+
+1. Attach the created workgroup to the workflow.
+2. For each workstep in the workflow:
+    * Verify that the workgroup is attached to the workstep.
+    * If the workgroup is not attached to the workstep, attach it to the workstep.
+3. Detach the workgroup from the workflow.
+4. Verify that the workgroup is detached from all worksteps in the workflow.
+    * If the workgroup is still attached to any workstep, detach it from that workstep.
+
+Test Passing Criteria:
+
+* The workgroup is successfully attached to each workstep in the workflow.
+* The workgroup is successfully detached from all worksteps in the workflow when detached from the workflow.
 
 ## 6.4 BPI Account
 Before moving on to the requirements on the individual components in the processing layer required for agreement execution, this document needs to define and specify the prerequisites. Since this document has been defining and discussing state objects in the context of a BPI, it needs to define stateful object processing. This necessitates an account-based model for both BPI subjects and BPI state objects. This is analogous to the Ethereum model using accounts for individual participants and smart contracts -- both are stateful objects. For simplicity, this document refers to account instead of BPI Account
 
-#### **[R242]** 
+#### **[R241]** 
 An account MUST be associated with one or more BPI Subjects.
 
-#### **[R243]**
-A BPI state object MUST be associated with an account.
+[[R241]](#r241) Testability:
+
+Preconditions:
+
+* A BPI test system is running properly.
+* A user has appropriate authorization to create and manage BPI subjects.
+* There are no existing accounts associated with any BPI subjects.
+
+Test Steps:
+
+1. Create a new account in the BPI system.
+2. Associate the account with a BPI subject.
+3. Verify that the account is successfully associated with the BPI subject.
+4. Associate the account with the another BPI subject as in Step 2.
+5. Verify that the account is successfully associated with the second BPI subject.
+6. Attempt to associate an account with a non-existent BPI subject.
+7. Verify that the system throws an error message indicating that the BPI subject does not exist.
+
+Test Passing Criteria:
+
+* Steps 1-5 must pass without any errors, and the account should be successfully associated with the BPI subject.
+* Step 7 must result in an error message indicating that the BPI subject does not exist.
+
+#### **[R242]**
+A BPI State Object MUST be associated with an account.
+
+[[R242]](#r242) Testability:
+
+Preconditions:
+
+* There is a BPI test system with at least one workflow that includes one or more worksteps.
+* There is an account associated with the BPI.
+* A workstep within the workflow produces a BPI State Object as output.
+
+Test Steps:
+
+1. Access the account.
+2. Navigate to the workflow within the BPI.
+3. Check that there is at least one workstep that produces a BPI State Object as output.
+4. Execute the workflow by providing the necessary inputs.
+5. Check that the BPI State Object produced by the workstep is associated with the account.
+
+Test Passing Criteria:
+
+The test passes if the BPI State Object produced by the workstep is associated with the account.
 
 *An account itself is defined through the following requirements:*
 
-#### **[R244]** 
+#### **[R243]** 
 An account MUST have a unique account identifier.
 
-#### **[R245]** 
+[[R243]](#r243) Testability:
+
+Preconditions:
+
+* There is an operational BPI test system
+
+Test Steps:
+
+1. Create two new accounts with account identifiers.
+2. Verify that the account identifiers for each account are different.
+3. Attempt to create a new account with an account identifier that already exists.
+4. Verify that the system returns an error message indicating that the account identifier is already in use.
+5. Delete one of the accounts.
+6. Attempt to create a new account with the same account identifier as the deleted account.
+7. Verify that the system allows the creation of the new account with the previously used account identifier.
+
+Test Passing Criteria:
+
+* Step 2: All account identifiers are unique.
+* Step 4: The system returns an error message indicating that the account identifier is already in use.
+* Step 7: The system allows the creation of the new account with the previously used account identifier.
+
+#### **[R244]** 
 An account MUST have at least one account owner.
+
+[[R244]](#r244) Testability:
+
+Preconditions:
+
+* A BPI test system is running and accessible.
+* There are no existing accounts in the system.
+
+Test Steps:
+
+1. Create a new account with a BPI Subject in the owner role.
+2. Verify that the account is created successfully with an account identifier.
+3. Verify that the account has at least one account owner.
+4. Create a new account with no account owner.
+5. Verify that the BPI denies the account creation and creates an appropriate error message.
+
+Test Passing Criteria: The test passes,
+
+* If the account is created successfully with a unique account identifier and at least one account owner.
+* If the BPI does not create an account if there is no BPI Subject inidcated as the owner.
 
 #### **[O6]** 
 An account MAY have more than one account owner.
 
-#### **[CR28]>[O6]** 
+[[O6]](#ro6) Testability:
+
+Preconditions:
+
+* A BPI test system is running and accessible.
+* There are no existing accounts in the system.
+
+Test Steps:
+
+1. Create a new account with a BPI Subject in the owner role.
+2. Verify that the account is created successfully with an account identifier.
+3. Verify that the account has at least one account owner.
+4. Add a new account owner to the account.
+5. Verify that the account has two account owners.
+
+Test Passing Criteria: The test passes,
+
+* If the account is created successfully with a unique account identifier and at least one account owner.
+* If a second owner is successfully added to an account.
+
+#### **[CR27]>[O6]** 
 If an account has more than one account owner, the account MUST have an account authorization condition.
 
-*An account authorization condition is a condition which has to be met by the account owners to authorize a BPI transaction from that account.*
+*An account authorization condition is a condition that has to be met by all or a portion of the account owners such as an m-of-n signature condition to authorize a BPI transaction from that account.*
 
-#### **[R246]** 
-Account ownership and associated authorizations MUST be cryptographically provable.
+[[CR27]<[O6]](#cr27o6) Testability:
+
+Preconditions:
+
+* A BPI test system is operational.
+* A user has appropriate authorization to create an account.
+* An account has been created with multiple account owners.
+
+Test Steps:
+
+1. Log in to the BPI with appropriate authorization.
+2. Navigate to the account details page of the account with multiple account owners.
+3. Check if an account authorization condition is present.
+4. Check that the account authorization condition is an m-of-n signature condition with a minimum number of signatures required is properly configured.
+5. Add a new transaction request for the account.
+6. Verify that the transaction request requires authorization from all account owners.
+7. Log in to the BPI with one of the account owners.
+8. Navigate to the transaction request and verify that it requires authorization from all account owners.
+9. Provide authorization for the transaction request.
+10. Repeat steps 7-9 for all account owners.
+11. Verify that the transaction request is authorized only when the required number of account owners have provided their authorization.
+12. Repeat steps 5-11 for different types of transaction requests.
+
+Test Passing Criteria:
+
+* Step 3 should show the presence of an account authorization condition.
+* Step 4 should verify that the account authorization condition is an m-of-n signature condition with a minimum number of signatures required.
+* Step 6 should verify that the transaction request requires authorization from all account owners.
+* Steps 7-9 should successfully provide authorization for the transaction request for each account owner.
+* Step 11 should verify that the transaction request is authorized only when the required number of account owners have provided their authorization.
+
+#### **[R245]** 
+Account ownership authemtication and account authorization conditions MUST be cryptographically provable.
 
 *This may be achieved through for example a cryptographic digital signature.*
 
-#### **[R247]** 
+[[R245]](#r245) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and running with one or more BPI Subjects and BPI Subject Accounts.
+* One or more accounts exist.
+* The BPI supports cryptographic alogrithms.
+
+Test Steps:
+
+1. Log in to the BPI using the BPI Subject account.
+2. Create an account, add BPI Subject as an owner, and create an account ownership authentication condition (e.g., a digital signature) for the account as a security policy.
+3. Verify that the authentication condition is cryptographically provable by checking that the new account owner can be verified using the appropriate cryptographic algorithm and the BPI Subjects's public key when accessing the account.
+4. Create an account authorization condition (e.g., an m-of-n signature condition) for the account.
+5. Verify that the authorization condition is cryptographically provable by checking that it can be verified using the appropriate cryptographic algorithm and the public keys of the authorized BPI Subjects as owners by having one owner submit a BPI transaction.
+6. Verify that the BPI checks the authentication and authorization conditions and allows the transaction only if they are valid.
+
+Test Passing Criteria:
+
+* The authentication and authorization conditions are created successfully.
+* The authentication and authorization conditions are cryptographically provable.
+* The BPI checks the authentication and authorization conditions during a transaction.
+* The BPI allows the transaction only if the authentication and authorization conditions are valid.
+
+#### **[R246]** 
 An account MUST have a deterministic nonce.
 
 *This ensures that transactions originating from an account are processed in the correct order.*
+
+[[R246]](#r246) Testability:
+
+Preconditions:
+
+* An account exists in a BPI test system.
+* The BPI has a deterministic and unique nonce implementation for accounts.
+
+Test Steps:
+
+1. Retrieve the initial nonce value of the account.
+2. Perform an action that triggers a nonce update, such as initiating a transactions.
+3. Retrieve the updated nonce value of the account.
+4. Repeat steps 2-3 multiple times, performing the same action each time.
+5. Verify that the updated nonce values obtained in step 3 are unique and different from the initial nonce value and each other.
+6. Verify that the nonce values used in step 4 can be indepedently recalcuated using the nonce implementation in the BPI.
+
+Test Passing Criteria:
+
+* The initial nonce value is retrieved successfully.
+* The updated nonce values obtained after performing the same action multiple times (steps 3-5) are unique and different from the initial nonce value, and each other.
+* The updated nonce values from step 4. can be indepedently recalcuated using the nonce implementation in the BPI.
 
 #### **[D35]** 
 An account SHOULD have one or more units of value-accounting balances.
 
 *Also often known as tokens, these units of value-accounting allow the usage of state objects in financial transactions requiring units of accounting.*
 
-#### **[R248]** 
+[[D35]](#d35) Testability:
+
+Preconditions:
+
+* A BPI test system is operational.
+* An account is created and has one value-accounting balance.
+
+Test Steps:
+
+1. Ensure that the account is created successfully.
+2. Check if the account has one value-accounting balance.
+3. Attempt to remove the value-accounting balance from the account.
+4. Confirm that the removal of the value-accounting balance is not allowed (since it is recommended to have at least one balance).
+5. Add a new value-accounting balance to the account.
+6. Validate that the value-accounting balance is added to the account successfully.
+
+Passing Criteria:
+
+* The account has one value-accounting balance.
+* The units of value-accounting balances are correctly  associated with the account.
+* The removal of the value-accounting balance is not allowed (since it is recommended to have at least one balance).
+* The addition of a new value-accounting balance is successful.
+
+#### **[R247]** 
 The state of an account MUST be represented by a cryptographic vector commitment scheme.
 
 A cryptographic vector commitment scheme commits to an ordered sequence of q values (m<sub>1</sub>, . . . , m<sub>q</sub>) in such a way that one
 can later open the commitment at specific positions (e.g., prove that m<sub>i</sub> is the i<sup>th</sup> committed message). For security, Vector Commitments are required to satisfy position binding which states that an adversary should not be able to open a commitment to two different values at the same position. An example of such a scheme is a Merkle Trie.
 
-#### **[R249]** 
+[[R247]](#r247) Testability:
+
+Preconditions:
+
+* An account with an account state exists on a BPI test system.
+* The chose vector commitment scheme for the account state is a Merkle tree implementation.
+* The initial account state is set up.
+
+Test Steps:
+ 
+1. Retrieve the initial account state from the BPI.
+2. Perform operations that modify the account state:
+  a. Add a new transaction to the account.
+  b. Change the account settings.
+3. Store the updated account state.
+4. Reconstruct the updated account state Merkle tree using the updated account state values.
+5. Generate the updated Merkle root hash from the reconstructed Merkle tree.
+6. Retrieve the stored Merkle root hash from the updated account.
+7. Compare the reconstructed Merkle root hash with the stored Merkle root hash.
+
+Passing Criteria: 
+
+* If the Merkle root hashes in in step 7. match the test succeeds, otherwise it fails.
+
+#### **[R248]** 
 Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
 
-*[R248] and [R249] ensure the structural integrity and cryptographic verifiability of the account at all times.*
+[[R248]](#r248) Testability: 
 
-#### **[R250]** 
+Preconditions:
+
+* An account with an account state exists on a BPI test system.
+* The chose vector commitment scheme for the account state is a Merkle tree implementation.
+* The initial account state is set up.
+* One account property is an object consisting of multiple elements.
+
+Test Steps:
+ 
+1. Retrieve the initial account state from the BPI.
+2. Perform operations that modify the account state:
+  a. Update an element in the one multi-element account property.
+3. Store the updated account state.
+4. Reconstruct the updated account property Merkle tree using the updated account property element value.
+5. Reconstruct the updated account state Merkle tree using the updated account state values taking into account that the value of the updated multi-element account property in the account state is the root hash of the updated Merkle tree of the multi-element account property.
+6. Generate the updated Merkle root hash from the reconstructed Merkle tree.
+7. Retrieve the stored Merkle root hash from the updated account.
+8. Compare the reconstructed Merkle root hash with the stored Merkle root hash.
+
+Passing Criteria: 
+
+* If the Merkle root hashes in in step 8. match the test succeeds, otherwise it fails.
+
+*[R247] and [R248] ensure the structural integrity and cryptographic verifiability of the account at all times.*
+
+#### **[R249]** 
 The history of the state of an account MUST be represented by a cryptographic vector commitment.
 
 *This is required because not only does each state have to have structural integrity at all times but also its history with a causal connection between states.*
 
-#### **[R251]** 
+[[R249]](#r249) Testability:
+
+Preconditions:
+
+* An account with an account state exists on a BPI test system.
+* The chose vector commitment scheme for the account state is a Merkle tree implementation.
+* The initial account state is set up.
+* The history of the above account exists on the same BPI test system.
+* The chose vector commitment scheme for the account state history is a Sparse Merkle tree implementation of the Merkle root hashes of the account state.
+* The initial account state history is set up.
+* The BPI test system can generate a Merkle Proof of Set Membership
+
+Test Steps:
+
+1. Retrieve the initial account state from the BPI.
+2. Perform operations that modify the account state:
+  * Add a new transaction to the account.
+  * Change the account settings.
+3. Store the updated account state.
+4. Retrieve the stored Merkle root hash from the updated account.
+5. Retrieve the last Merkle root of the account state history
+6. Generate a Merkle Proof of Set Membership of the stored Merkle root hash from the updated account.
+7. Verify the Merkle Proof of Set Membership of the stored Merkle root hash from the updated account using the last Merkle root of the account state history and the stored Merkle root hash from the updated account.
+
+Passing Criteria: 
+
+* If the Merkle proof successfully verifies, the test suceeds, otherwise it fails.
+
+#### **[R250]** 
 The state of an account MUST be minimally comprised of the following elements:
 * Account Identifier
 * Owner(s)
@@ -2617,57 +3766,390 @@ The state of an account MUST be minimally comprised of the following elements:
 * State Object Prover System representation (if an account is associated with a state object)
 * State Object storage (if an account is associated with a state object)
 
-#### **[R252]** 
+[[R250]](#r250) Testability:
+
+Preconditions:
+
+* The account system in a test BPI instance is set up and operational.
+* The necessary components for representing the account state are implemented.
+
+Test Steps:
+
+1. Create a new account.
+2. Verify that the account has the following elements:
+    * Account Identifier
+    * Owner(s)
+    * Authorization Condition (if more than one owner)
+    * Account Nonce
+    * State Object Prover System representation (if associated with a state object)
+    * State Object storage (if associated with a state object)
+3. Modify each of the elements individually and verify that the changes are reflected in the account state.
+4. Ensure that the account state remains consistent throughout the modifications.
+5. Perform account operations such as transactions or updates and verify that the account state is updated accordingly.
+6. Validate that the account state can be retrieved accurately and all the required elements are present.
+7. Test the account state with multiple owners and verify that the authorization condition is correctly enforced.
+
+Passing criteria:
+
+* The account state contains all the required elements mentioned in the requirement.
+* The modifications to individual elements are correctly reflected in the account state.
+* The account state remains consistent throughout the operations and modifications.
+* The authorization condition (if applicable) is properly enforced for accounts with multiple owners.
+
+
+#### **[R251]** 
 The state of an account MUST only be changed based on a valid transaction compliant with the account authorization condition(s).
 
-#### **[R253]** 
+[[R251]](#r251) Testability:
+
+Preconditions:
+
+* The account system and state object functionality are set up and operational in a BPI test instance.
+* An account with authorization condition(s) and associated state object exists.
+* The BPI supports creating and processing transactions.
+
+
+Test Steps:
+
+1. Create a new transaction that attempts to modify the state of the associated state object.
+2. Verify that the transaction includes all the required information, such as the account identifier, transaction details, and any additional data required by the authorization condition(s).
+3. Check if the transaction complies with the authorization condition(s) defined for the associated account.
+4. If the transaction is compliant with the authorization condition(s):
+    * Apply the transaction to update the state of the associated state object.
+    * Verify that the state object's state has been modified as expected.
+5. If the transaction is not compliant with the authorization condition(s):
+    * Reject the transaction and ensure that the state of the associated state object remains unchanged.
+6. Repeat steps 2-6 with different types of transactions and authorization conditions, including valid transactions and transactions that do not meet the authorization condition(s).
+7. Verify that only valid transactions compliant with the authorization condition(s) successfully modify the state of the associated state object.
+
+Passing criteria:
+
+* Valid transactions compliant with the authorization condition(s) successfully modify the state of the associated state object.
+* Transactions that do not meet the authorization condition(s) are rejected, and the state of the associated state object remains unchanged.
+* The BPI accurately enforces the authorization condition(s) to control state object modifications.
+
+#### **[R252]** 
 The state of a state object MUST only be changed based on a valid transaction compliant with the authorization condition(s) of the account to which the state object belongs.
 
 *This document will discuss the requirements of a transaction and what constitutes a valid transaction in the next section. Note, that an account is associated with a workstep instance through the shared state objects.*
 
+[[R252]](#r252) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and operational.
+* The account system and state object functionality are implemented.
+* An account with associated state object(s) exists.
+* The authorization condition(s) for the account and state object(s) are properly defined.
+* Valid transaction types and corresponding authorization conditions are implemented.
+
+Test Steps:
+
+1. Create a valid transaction to modify the state of a state object associated with an account.
+    * Ensure the transaction includes all required information, such as the account identifier, transaction details, and any additional data required by the authorization condition(s).
+2. Verify that the transaction complies with the authorization condition(s) defined for the associated account and state object.
+    * Validate that the transaction meets the necessary criteria specified in the authorization condition(s), such as signatures or other authentication mechanisms.
+3. If the transaction is compliant with the authorization condition(s):
+    * Apply the transaction to update the state of the associated state object.
+    * Ensure the state object's state has been modified as expected.
+4. If the transaction is not compliant with the authorization condition(s):
+    * Reject the transaction and ensure that the state of the associated state object remains unchanged.
+
+Passing Criteria:
+
+* Only valid transactions compliant with the authorization condition(s) successfully modify the state of the associated state object.
+* Transactions that do not meet the authorization condition(s) are rejected, and the state of the associated state object remains unchanged.
+* The BPI system accurately enforces the authorization condition(s) to control state object modifications.
+* The integrity and security of the state object's state are maintained, ensuring that unauthorized modifications are prevented.
+
 ## 6.5 BPI Transactions
 Account states, and therefore, the state of BPI state objects, and, thus, agreement states are altered through BPI transactions submitted by requesters of state changes from their accounts. In the following, this document specifies requirements for the structure and characteristics of transactions.
 
-#### **[R254]** 
-Each transaction MUST have minimally the following identifiers:
+#### **[R253]** 
+Each transaction MUST minimally have the following identifiers:
 * Workflow (instance) ID (UID)
 * Workstep (instance) ID (UID)
 * Transaction ID (UID)
 
 *Note that a Workflow (Instance) ID may be the same as a Workstep (Instance) ID, if the workflow has only one workstep.* 
 
-#### **[R255]** 
+[[R253]](#r253) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and operational.
+* The workflow and workstep functionality are implemented.
+* The generation of unique identifiers (UIDs) is in place.
+
+Test Steps:
+
+1. Create a transaction for a workflow with multiple worksteps.
+   * Generate a unique Workflow ID (UID) for the transaction.
+   * Generate a unique Transaction ID (UID) for the transaction.
+   * Generate unique Workstep IDs (UIDs) for each workstep involved in the transaction.
+2. Verify that the transaction includes the required identifiers.
+   * Ensure that the Workflow ID, Transaction ID, and Workstep IDs are correctly associated with the transaction.
+3. If the workflow has only one workstep:
+   * Confirm that the Workflow ID and Workstep ID are the same.
+   * Validate that the Transaction ID is unique.
+4. If the workflow has multiple worksteps:
+    * Ensure that the Workflow ID and Transaction ID are unique.
+    * Verify that each Workstep ID is unique and associated with the corresponding workstep in the workflow.
+
+Passing Criteria:
+
+* Each transaction must have a valid and unique Workflow ID (UID), Workstep ID (UID), and Transaction ID (UID).
+* For workflows with only one workstep, the Workflow ID and Workstep ID must be the same, while the Transaction ID remains unique.
+* For workflows with multiple worksteps, each workstep must have a unique Workstep ID associated with the corresponding transaction and workflow.
+* The BPI system correctly handles the generation and assignment of identifiers, ensuring consistency and uniqueness.
+* The identifiers enable proper tracking, identification, and correlation of transactions within the BPI system.
+
+#### **[R254]** 
 The Workflow Instance ID MUST be derivable from the Workflow ID.
 
-#### **[R256]** 
+[[R254]](#r254) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and operational.
+* The workflow functionality is implemented.
+* The Workflow ID generation and derivation logic are in place.
+
+Test Steps:
+
+1. Generate a Workflow ID.
+    * Create a new workflow and generate a unique Workflow ID.
+2. Derive the Workflow Instance ID from the Workflow ID.
+    * Apply the derivation logic to generate the Workflow Instance ID based on the Workflow ID.
+3. Verify that the Workflow Instance ID is correctly derived.
+    * Compare the derived Workflow Instance ID with the expected Workflow Instance ID based on the Workflow ID.
+4. Create another Workflow ID.
+    * Generate a new unique Workflow ID for a different workflow.
+5. Derive the Workflow Instance ID for the second workflow.
+    * Apply the derivation logic to generate the Workflow Instance ID based on the second Workflow ID.
+6. Verify that the second Workflow Instance ID is correctly derived.
+    * Compare the derived Workflow Instance ID with the expected Workflow Instance ID based on the second Workflow ID.
+
+Passing Criteria:
+
+* The Workflow Instance ID must be correctly derived from the Workflow ID.
+* The derived Workflow Instance ID must be unique and consistent for each corresponding Workflow ID.
+* The derivation logic ensures a deterministic and consistent mapping between the Workflow ID and the Workflow Instance ID.
+* The BPI system correctly applies the derivation logic and generates accurate Workflow Instance IDs.
+
+#### **[R255]** 
 The Workstep Instance ID MUST be derivable from the Workstep ID.
+
+[[R255]](#r255) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and operational.
+* The workflow and workstep functionality is implemented.
+* The Workstep ID generation and derivation logic are in place.
+
+Test Steps:
+
+1. Generate a Workstep ID.
+    * Create a new workstep and generate a unique Workstep ID.
+2. Derive the Workstep Instance ID from the Workstep ID.
+    * Apply the derivation logic to generate the Workstep Instance ID based on the Workstep ID.
+3. Verify that the Workstep Instance ID is correctly derived.
+    * Compare the derived Workstep Instance ID with the expected Workstep Instance ID based on the Workstep ID.
+4. Create another Workstep ID.
+    * Generate a new unique Workstep ID for a different workstep.
+5. Derive the Workstep Instance ID for the second workstep.
+    * Apply the derivation logic to generate the Workstep Instance ID based on the second Workstep ID.
+6. Verify that the second Workstep Instance ID is correctly derived.
+    * Compare the derived Workstep Instance ID with the expected Workstep Instance ID based on the second Workstep ID.
+
+Passing Criteria:
+
+* The Workstep Instance ID must be correctly derived from the Workstep ID.
+* The derived Workstep Instance ID must be unique and consistent for each corresponding Workstep ID.
+* The derivation logic ensures a deterministic and consistent mapping between the Workstep ID and the Workstep Instance ID.
+* The BPI system correctly applies the derivation logic and generates accurate Workstep Instance IDs.
 
 #### **[D36]** 
 A Transaction ID SHOULD be generated by the transaction originator/sender.
 
-#### **[R257]** 
+[[D36]](#d36) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and operational.
+* The transaction functionality is implemented.
+* The system allows for the generation of Transaction IDs.
+
+Test Steps:
+
+1. Initiate a transaction.
+    * The transaction originator/sender initiates a transaction within the BPI system.
+2. Generate a Transaction ID for the transaction.
+    * The BPI system generates a unique Transaction ID for the initiated transaction.
+3. Verify that the Transaction ID is generated by the originator/sender.
+    * Check whether the generated Transaction ID is provided by the transaction originator/sender.
+4. Perform multiple transactions by different originators/senders.
+    * Repeat steps 1 to 3 for multiple transactions initiated by different originators/senders.
+
+Passing Criteria:
+
+* The BPI system successfully generates a unique Transaction ID for each initiated transaction.
+* The Transaction ID is provided by the transaction originator/sender.
+* Different originators/senders generate distinct Transaction IDs for their respective transactions.
+* The generated Transaction IDs are consistently and accurately associated with their corresponding transactions.
+
+#### **[R256]** 
 A Transaction MUST have a `From` (Sender) and a `To` (Receiver) element each containing the respective Sender and Receiver account numbers.
 
+[[R256]](#r256) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and operational.
+* The transaction functionality is implemented.
+* The system has established accounts with unique account numbers.
+
+Test Steps:
+
+1. Initiate a transaction.
+    * The transaction initiator/sender starts the process of initiating a transaction within the BPI system.
+2. Specify the Sender and Receiver account numbers.
+    * The transaction initiator/sender provides the account number of the sender and receiver as part of the transaction details.
+3. Verify the presence of the `From` and `To` elements.
+    * Check whether the transaction includes the `From` element, which contains the sender's account number, and the `To` element, which contains the receiver's account number.
+4. Validate the accuracy of the Sender and Receiver account numbers.
+    * Confirm that the provided account numbers in the `From` and `To` elements match the intended sender and receiver accounts.
+5. Perform multiple transactions with different sender and receiver accounts.
+    * Repeat steps 1 to 4 for multiple transactions involving different sender and receiver accounts.
+
+Passing Criteria:
+
+* Each transaction must include the `From` and `To` elements.
+* The `From` element should contain the correct account number of the sender.
+* The `To` element should contain the correct account number of the receiver.
+* The sender and receiver account numbers provided in the transactions must match the intended accounts.
+* Different sender and receiver accounts should be successfully used in multiple transactions.
+
+#### **[R257]** 
+Each transaction MUST have a different, deterministic nonce based on the account of the sender.
+
+[[R257]](#r257) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and operational.
+* There exists an account with a unique account number.
+* There are no existing transactions associated with the account.
+
+Test Steps:
+
+1. Generate the first transaction with a unique sender account number.
+2. Record the nonce of the first transaction.
+3. Generate the second transaction with the same sender account number.
+4. Record the nonce of the second transaction.
+5. Repeat steps 3 and 4 for several transactions initiated by the same sender account.
+6. Verify that each recorded nonce is different from the previous nonces.
+7. Derive the nonce for each transaction using the same deterministic method as the sender account.
+8. Compare the derived nonces with the recorded nonces for each transaction.
+9. Verify that the derived nonces match the recorded nonces for all the transactions.
+
+Passing Criteria:
+
+* The recorded nonces for all the transactions initiated by the same sender account must be unique and different from each other.
+* The derived nonces using the deterministic method must match the recorded nonces for all the transactions.
+
 #### **[R258]** 
-Each transaction MUST have a deterministic nonce based on the account of the sender.
+Each transaction MUST contain a representation of a document as a state object constituting the suggested new agreement state.  
+
+[[R258]](#r258) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with transaction capabilities.
+* Create at least one sender account and one receiver account.
+
+Test Steps:
+
+1. Generate a unique Transaction ID.
+2. Prepare a document representing the suggested new agreement state.
+3. Create a transaction with the required field and attach the document as a state object.
+4. Send the transaction to the BPI system for processing.
+
+Passing Criteria:
+
+* The transaction is successfully submitted to the BPI system without any errors or rejections.
+* The BPI system validates and accepts the transaction with the document as a state object.
+* The document is associated with the respective transaction.
+* The BPI system updates the agreement state based on the contents of the document.
 
 #### **[R259]** 
-Each transaction MUST contain a representation of the document as a state object constituting the suggested new agreement state, such that it can be validated by the prover system associated with the account associated with the state object representing the agreement state to be altered.  
-
-#### **[R260]** 
-If there is more than one prover system associated with the receiver account, the transaction MUST unambiguously identify which prover system the transaction is targeting.
-
-#### **[R261]** 
 A transaction MUST contain the cryptographic digital signature of one or more of the owner(s) of the Sender account compliant with the account's authorization condition.
 
-#### **[R262]** 
+[[R259]](#r259) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with transaction capabilities.
+* Create at least one sender account with multiple owners.
+* Define the authorization condition for the sender account.
+
+Test Steps:
+
+1. Prepare the transaction data, including all the necessary fields
+2. Generate a unique Transaction ID.
+3. Compute the cryptographic digital signature(s) of one or more owners of the sender account, compliant with the account's authorization condition.
+4. Include the digital signature(s) in the transaction data.
+5. Send the transaction to the BPI system for processing.
+
+Passing Criteria:
+
+* The transaction is successfully submitted to the BPI system without any errors or rejections.
+* The BPI system verifies the digital signature(s) against the sender account's authorization condition.
+* If the signature(s) are compliant with the authorization condition, the BPI system accepts the transaction.
+* If the signature(s) do not comply with the authorization condition, the BPI system rejects the transaction.
+
+#### **[R260]** 
 A transaction MUST be considered invalid if one of the following conditions is met:
 * The transaction nonce is not equal to the next deterministic value of the account nonce.
 * The cryptographic signature of the account owner(s) on the transaction cannot be verified
 * The account authorization condition for the Sender account is not met.
 * The transaction does not have an existing Workflow (Instance) ID, Workstep (Instance) ID
 * The transaction `From` or `To` are not valid account identifiers
-* The transaction is not well-formed based on the requirements of the chosen prover system of the Receiver Account
+* The transaction does not contain a proposed new agreement state object.
+
+[[R260]](#r260) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with transaction capabilities.
+* Create a Sender account with its corresponding account nonce, owner(s), and authorization condition.
+* Establish a workflow with a unique Workflow (Instance) ID associated with a unique workstep with a Workstep (Instance) ID.
+* Ensure the existence of valid account identifiers for `From` and `To` in the transaction.
+* Prepare a proposed new agreement state object.
+
+Test Steps:
+
+1. Retrieve the next deterministic value of the account nonce.
+2. Generate a transaction with the necessary fields, including the transaction nonce, cryptographic signature of the account owner(s), Workflow (Instance) ID, Workstep (Instance) ID, `From` and `To` account identifiers, and the proposed new agreement state object.
+3. Verify that the transaction nonce is equal to the next deterministic value of the account nonce.
+4. Verify the cryptographic signature of the account owner(s) on the transaction to ensure it can be successfully verified.
+5. Check if the account authorization condition for the Sender account is met.
+6. Verify the existence of Workflow (Instance) ID and Workstep (Instance) ID in the transaction.
+6. Validate the `From` and `To` account identifiers to confirm their validity.
+7. Ensure the presence of a proposed new agreement state object in the transaction.
+
+Passing Criteria:
+
+* The transaction is considered valid if all the conditions listed in the preconditions are met.
+* The transaction nonce matches the next deterministic value of the account nonce.
+* The cryptographic signature of the account owner(s) on the transaction is successfully verified.
+* The account authorization condition for the Sender account is met.
+* The transaction contains an existing Workflow (Instance) ID and Workstep (Instance) ID.
+* The `From` and `To` account identifiers are valid and correctly specified in the transaction.
+* The transaction includes a proposed new agreement state object.
+
+If any of the above criteria are not met the test fails.
 
 *Note, that this is only a minimal set of requirements on an invalid transaction. Each BPI can define other requirements not covered above.*
 
@@ -2690,69 +4172,380 @@ A prerequisite for transaction lifecycle step 4 where the BPI Processing Layer T
 
 The requirements for the subsequent step (5) are as follows:
 
-#### **[R263]** 
+#### **[R261]** 
 A Transaction Pool MUST be able to validate all transaction requirements for a valid transaction in section [6.5 BPI Transactions](#65-bpi-transactions).
 
-#### **[R264]** 
-A Transaction Pool MUST order transactions for processing based on the order of their unique messaging ID and their account nonces.
+[[R261]](#r261) Testability:
 
-#### **[R265]** 
+Preconditions:
+
+* Set up a BPI test system with a Transaction Pool component.
+
+Test Steps:
+
+1. Generate a transaction with all required fields
+2. Submit the transaction to the Transaction Pool for validation.
+3. Verify that the Transaction Pool successfully validates the transaction.
+4. Confirm that the transaction is added to the valid transaction pool.
+5. Generate a transaction missing one or more required fields.
+6. Submit the transaction to the Transaction Pool for validation.
+7. Verify that the Transaction Pool does not validate the transaction and responds with an appropriate error message.
+8. Confirm that the transaction is not added to the valid transaction pool.
+
+Passing Criteria:
+
+* The Transaction Pool validates all required fields and transaction requirements of a transaction.
+* The Transaction Pool successfully validates the first generated transaction without any errors or failures.
+* The validated transaction is added to the valid transaction pool, indicating that it meets all the necessary requirements.
+* The Transaction Pool rejects the second, invalid transaction and responds with an appropriate error message.
+* The rejected Transaction is not in the valid transaction pool.
+
+#### **[R262]** 
+A Transaction Pool MUST order transactions for processing based on the order of their unique messaging ID and their account nonces for the same 'From" account.
+
+[[R262]](#r262) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with a Transaction Pool component.
+
+Test Steps:
+
+1. Create two transactions with the same "From" account but different messaging IDs and nonces. Ensure that the messaging ID and nonces are ordered such that the second transaction has a higher messaging ID and nonce compared to the first transaction.
+2. Submit the transactions to the Transaction Pool for processing.
+Verify that the Transaction Pool correctly orders the transactions based on their unique messaging ID and account nonces.
+3. Confirm that the first transaction is processed before the second transaction, indicating that the Transaction Pool follows the specified ordering criteria.
+
+Passing Criteria:
+
+* The Transaction Pool orders transactions for processing based on their unique messaging ID and account nonces.
+* The Transaction Pool correctly orders the submitted transactions according to their messaging ID and nonces.
+* The first transaction with a lower messaging ID and nonce should be processed before the second transaction with a higher messaging ID and nonce.
+
+#### **[R263]** 
 If the order of two or more transactions from the same account in the Transaction Pool is in contradiction to the order of the deterministic account nonce, the transactions MUST first be ordered by their account nonces and then by their message IDs.
 
 *Note, that this is required to avoid a BPI operator ordering transactions maliciously, or injecting malicious transactions ahead of other transactions.*
 
-#### **[R266]** 
-A Transaction Pool MUST create a batch of a fixed number of transactions after a given time to be processed by the Virtual State Machine.
+[[R263]](#r263) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with a Transaction Pool component.
+
+Test Steps:
+
+1. Create three transactions from the same account with different message IDs and nonces. 
+2. Submit the transactions in a contradictory order, where the order of nonces and message IDs is not aligned.
+3. Submit the transactions to the Transaction Pool for processing.
+4. Verify that the Transaction Pool correctly handles the ordering of transactions based on the account nonces and message IDs.
+5. Confirm that the transactions are reordered by the Transaction Pool following the specified requirement: first by the account nonces in ascending order, and then by the message IDs in ascending order.
+6. Verify that the reordered transactions are processed in the correct order, i.e., the transaction with the lowest nonce first.
+
+Passing Criteria:
+
+* The Transaction Pool enforces the specified ordering based on account nonces and message IDs correctly.
+* The Transaction Pool correctly reorders the transactions from the same account if their order contradicts the order of the deterministic account nonce.
+* The reordered transactions are processed in the correct order according to the ordering criteria.
+
+#### **[R264]** 
+A Transaction Pool MUST create a batch of transactions to be processed by the Virtual State Machine given one or more batching parameters such as time, number of transactions, or storage size of a batch.
 
 *The number of transactions per batch and the time period covered by each batch while fixed can be freely chosen by an implementer. Recommendations as to batch size and time frame will be given in an implementers guide and is beyond the scope of this document.*
 
-#### **[R267]** 
+[[R264]](#r264) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with a Transaction Pool component.
+* Configure the Transaction Pool with batching parameters, such as time interval, number of transactions, or storage size.
+
+Test Steps:
+
+1. Initiate the BPI system and Transaction Pool.
+2. Verify that the Transaction Pool has the specified batching parameters set.
+3. Monitor the Transaction Pool to ensure it collects transactions for batching.
+4. Check if the Transaction Pool creates a batch of transactions based on the specified batching parameters.
+5. Confirm that the batch of transactions is passed to the Virtual State Machine for processing.
+
+Passing Criteria:
+
+* The Transaction Pool successfully collects transactions based on the specified batching parameters.
+* A batch of transactions is created according to the specified batching parameters.
+* The batch of transactions is correctly forwarded to the Virtual State Machine for processing.
+
+#### **[R265]** 
 A Transaction Pool MUST process an invalid transaction by assigning the transaction an error code and an easily human readable error message and issuing a message minimally consisting of the tuple `(Sender Account, Error Code, Error Message, Transaction)` to the Messaging Capability of the BPI to inform the sender of the transaction failure and its reason.
+
+[[R265]](#r265) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with a Transaction Pool component.
+* Messaging Capability of the BPI to communicate with the transaction sender.
+
+Test Steps:
+
+1. Initiate the BPI system and Transaction Pool.
+2. Submit an invalid transaction to the Transaction Pool.
+3. Verify that the Transaction Pool detects the invalidity of the transaction.
+4. Verify that the transaction sender receives an error message containing the tuple (Sender Account, Error Code, Error Message, Transaction).
+
+Passing Criteria:
+
+* The Transaction Pool correctly detects and identifies invalid transactions.
+* An error code and an easily human-readable error message are assigned to the invalid transaction.
+* The message containing the tuple (Sender Account, Error Code, Error Message, Transaction) is successfully issued to the Messaging Capability.
+* The sender receives the message from the Messaging Capability, informing them of the transaction failure and providing the reason for the failure.
 
 In the following, this document will discuss the requirements on the Virtual State Machine of the BPI Processing Layer.
 
 Since BPIs are used to verify the correctness of state transitions (see step (6) in Fig. 10 above), BPIs will utilize a Virtual State Machine (VSM) for its computations to validate state transitions of state objects; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework.
 
-#### **[R268]**	
+#### **[R266]**	
 The Execution Framework of a VSM MUST be deterministic.
 
 *Any BPI running the same Execution Framework on the same state object with the same input data needs to arrive at the same result, in other words, deterministic outcomes. This is only guaranteed if the Execution Framework either does not allow instructions to be executed in parallel, but only strictly sequential, or if the Execution Framework has methods in place that allow the identification and prevention of transactions that would cause state conflicts if processed in parallel.* 
 
 *For example, the Buyer, also known as Requester, proposes a commercial state change of the MSA through Order A which is created at time t, and the Seller, also known as the Provider, has just agreed to a suggested discount rate change in the MSA submitted by the Buyer at time t-1 but not yet processed. This means that if the transaction of Order A is processed in parallel to the discount change the wrong discount might be applied to Order A depending on which transaction is executed first.*
 
-#### **[R269]**	
+[[R266]](#r266) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with a Virtual State Machine (VSM) component.
+* Configure and initialize the Execution Framework of the VSM.
+
+Test Steps:
+
+1. Execute a series of transactions on the BPI system.
+2. Record the sequence of actions and events within the Execution Framework during the transaction execution.
+3. Repeat Step 1 multiple times with the same initial state and transactions.
+4. Compare the recorded sequences of actions and events from Step 2 for each execution.
+5. Verify that the recorded sequences of actions and events are identical for all executions.
+6. Introduce variations in the execution environment, such as system load or resource availability.
+7. Repeat Step 1 with the same initial state and transactions under the varied execution environment.
+8. Compare the recorded sequences of actions and events from Step 2 for each execution under the varied environment.
+9. Verify that the recorded sequences of actions and events remain identical despite the variations in the execution environment.
+
+Passing Criteria:
+
+* The recorded sequences of actions and events within the Execution Framework are identical across multiple executions with the same initial state and transactions.
+* The recorded sequences of actions and events remain consistent even when the execution environment is varied.
+
+#### **[R267]**	
 The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or aborted in finite time. 
 
 *Note that what is deemed to be a suitable, finite time is determined by the allowable duration of a transaction. This requirement means that infinite computational loops cannot be allowed in a BPI.*
 
-#### **[R270]**	
+[[R267]](#r267) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with a Virtual State Machine (VSM) component.
+* Configure and initialize the Execution Framework of the VSM.
+Test Steps:
+
+1. Initiate a state transition within the BPI system by submitting a transaction to the BPI.
+2. Measure the elapsed time for the state transition validation computation triggered by the transaction to complete.
+3. Repeat Step 1 with different state transitions, including both simple and complex scenarios.
+4. Measure the elapsed time for each state transition validation computation.
+5. Verify that the elapsed time for each state transition validation computation is finite and within an acceptable range.
+6. Introduce a state transition that triggers a potentially infinite computation or an exceptionally long validation process by submitting a transaction to the BPI.
+7. Ensure that the computation either completes within a predetermined time limit or set resource consumption limit or is aborted after exceeding the time or resource limit.
+8. Repeat Steps 6-7 with different problematic state transitions, covering various edge cases.
+
+Passing Criteria:
+
+* The elapsed time for state transition validation computations triggered by a transaction is finite and within an acceptable range for all tested scenarios.
+* Problematic state transitions triggering potentially infinite computations or exceptionally long validation processes are either completed within a predetermined time limit or resource consumption limit or aborted if the time or resource limit is exceeded.
+
+#### **[R268]**	
 The Execution Framework of a VSM MUST support commonly used cryptographic primitives for zero-knowledge proofs, e.g., hashing, commitments, accumulators, or zero-knowledge proof verification.
+
+[[R268]](#r268) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with a Virtual State Machine (VSM) component that supports a zero-knowledge proof framework such a zk-SNARK or zk-STARK
+* A transaction that triggers a zero-knowledge proof generation event based in the VSM.
+* A simple logic that verifies the integrity of a signed simple document translated into zero-knowledge circuit (public inputs: Roothash of the document mapped into a Merkle Tree, the public key that signed the document, Private Data: The Merkle Proofs for each data element in the document, the digital signature over the root hash of the document Merkle tree) that verifies that the Merkle proofs for all leafs are correct and that the digital signature of the root hash is also correct. This circuit tests the following common cryptographic primitives used in a zero-knowledge proofs: hashing, accumulation via the Merkle tree, digital signatures, zero-knowledge prover system.
+
+Test Steps:
+
+1. Transform the simple document into a Merkle tree and digitally sign the Merkle Tree root hash, and generate the Merkle Proofs for each document element as a leaf in the Merkle tree.
+2. Submit the data as public and private input data to the zero-knowledge prover service of the VSM for one of the zero-knoweldge prover systems supported by the service such as PLONK, FRI or Groth16. This tests the cryptographic primitives used in the circuit arithmetization and commitment schemes utilized such as a Kate commitment scheme
+3. Submit the zero-knowledge proof received from the VSM to the zero-knowledge verifier service of the VSM.
+4. Verify that the zero-knowledge proof is correct.
+
+Passing Criteria:
+
+* The document is correctly transformed into a Merkle tree and its root hash correctly signed.
+* The zero-knowledge proof of document integrity is correctly generated and is correctly verified. 
 
 #### **[D37]**	
 The Execution Framework of a VSM SHOULD have a mathematical proof of correctness and security.
 
-#### **[R271]**	
-The Execution Framework of a VSM MUST be Verifiably Secure. 
+[[D37]](#d37) Testability: There is a peer-reviewed academic paper that proofs the mathematical correctness and security of the utilized VSM given certain security assumptions such as the hardness of the Diffie-Hellman Discrete Logarithm and framework such as the universal composability framework.
 
-#### **[R272]** 
+#### **[D38]**	
+The Execution Framework of a VSM SHOULD be Verifiably Secure. 
+
+[[D38]](#d38) Testability:
+
+Preconditions:
+
+* Set up a BPI test system with a Virtual State Machine (VSM) component.
+* The necessary functions or computations that can be offloaded to other VSM clients within the Execution Framework are defined.
+* A mechanism to verify the correctness of a computation offloaded from the main VSM to another VSM client within the Execution Framework is implemented in the Execution Framework.
+* A protocol or mechanism for other clients to evaluate the function and return the result with a proof of correct computation is implemented.
+* A proof of correct execution provided by a VSM client can be independently verified within the main VSM of the Execution Framework.
+* A security analysis of the Execution Framework, focusing on the verifiably secure mechanism and the assumptions used in the proof of computation has been completed and any findings remediated including an assessment of the validity of the security assumptions used in the proof andtheir impact on the overall security of the Execution Framework, and an evaluation of the resilience of the Execution Framework against potential attacks or attempts to manipulate the computation results or the verifiable proof.
+* A thorough review of the mathematical proofs and algorithms used in the Execution Framework, ensuring their correctness and reliability has been completed.
+
+Test Steps:
+
+1. Perform a series of test computations in the main VSM, offloading them to other VSM clients
+2. Verify that the returned results can be verified as correct through the provided proofs by the main VSM.
+
+Passing Criteria:
+
+* The Execution Framework meets all preconditions.
+* Other VSM clients can successfully evaluate the offloaded functions from the main VSM and provide a proof of correct computation.
+* The Execution Framework independently verifies the provided proofs and validates the correctness of the computation results.
+
+#### **[R269]** 
 If a VSM can generate a valid Proof-of-Correctness for a transaction, it MUST update the state and the state history of the state object the transaction targeted based on the transaction data.
 
-#### **[R273]** 
-If a VSM can generate a valid Proof-of-Correctness for a transaction and the targeted state object is not the state object of the complete  agreement state, it MUST update the state object of the agreement and its state history in addition to the state object and its history targeted by the transaction.
+[[R269]](#r269) Testability:
 
-#### **[R274]** 
+Preconditions:
+
+* A BPI test system with a Virtual State Machine (VSM) component is running.
+* BPI contains a test state object associated with an account connected to a workstep within a workflow connect to a workgroup.
+* A BPI Subject participant in the workgroup.
+* A representation of the expected updated state object and its updated history.
+
+Test Steps:
+
+1. Create a valid transaction with appropriate transaction data based on the defined workstep.
+2. Submit the transaction to the BPI VSM via the workstep for processing.
+3. Verify that the VSM generates a Proof-of-Correctness for the transaction.
+4. Check if the VSM updated the state object associated with the account associated with the workstep.
+5. Check id the VSM updated the state history of the targeted state object based on the transaction data.
+6. Validate that the updated state object and the state history of the state object equal the previosuly generated representation of the state object and its history (initial state object value.
+
+Passing Criteria:
+
+* A valid transaction with appropriate transaction data is created.
+* The valis transaction is submitted to the VSM for processing.
+* The VSM generates a valid Proof-of-Correctness for the transaction.
+* The VSM updates the state object and its history based on the transaction data.
+* The updated state and state history align with the expected changes specified by the transaction data.
+
+#### **[R270]** 
 A VSM MUST store all proofs, state objects, their associated data, and their histories in the Storage capability of the BPI Processing Layer.
 
-#### **[R275]** 
+[[R270]](#r270) Testability:
+
+Preconditions:
+
+* A BPI test system is operational.
+* A set of test transactions has been created.
+
+Configure and initialize the Storage capability of the BPI Processing Layer.
+Test Steps:
+
+1. Submit a series of transactions to the BPI system.
+2. Verify that the VSM generates proofs for each transaction.
+3. Retrieve the stored proofs, state objects, associated data, and their histories from the Storage capability.
+4. Validate that the retrieved information matches the original data and corresponds to the respective transactions.
+
+Passing Criteria:
+
+* Multiple transactions are sucessfully submitted to and performed on the BPI system.
+* The VSM successfully generates proofs for each transaction.
+* The VSM stores the generated proofs, state objects, associated data, and their histories in the Storage capability.
+* The stored proofs, state objects, associated data, and their histories can be retrieved from the Storage capability.
+* The retrieved information matches the original data and corresponds to the respective transactions.
+
+#### **[R271]** 
 The integrity of proofs, transactions, state objects, and their data and histories MUST be cryptographically verifiable by the owners of the accounts associated with the proofs, transactions, state objects, and their data and history.
 
-#### **[R276]** 
+[[R271]](#r271) Testability:
+
+Preconditions:
+
+* A BPI test system with the necessary components, including accounts, proofs, transactions, state objects, and their data and histories is operational.
+* A cryptographic verification mechanisms with tooling to test integrity such as a Merkle Tree is properly configured and accessible to the account owners.
+* One or more test transactions for the BPI.
+
+Test Steps:
+
+1. Generate a proof for a transaction on the BPI system.
+2. Verify that the proof, along with the associated transaction, state object, and their data and histories, can be accessed by the respective account owners.
+3. Using the chosen verfication mathod, cryptographically verify the integrity of the proof, transaction, state object, and their data and histories using the available tooling for the chosen verification method.
+4. Confirm that the account owners are able to successfully verify the integrity of the aforementioned components.
+
+Passing Criteria:
+
+* A proof is generated for a transaction.
+* The proof, along with the associated transaction, state object, and their data and histories, can be accessed by the respective account owners.
+* Using the chosen verification method and associated tooling, the account owners can successfully cryptographically verify the integrity of the proof, transaction, state object, and their data and histories.
+
+#### **[R272]** 
 All updates to an agreement state and their associated accounts by a VSM MUST be communicated to all agreement counterparties through the Message capability in the BPI Middleware layer. 
 
-#### **[R277]** 
+[[R272]](#r272) Testability:
+
+Preconditions:
+
+* A BPI test system with the necessary components, including agreement states, associated accounts, and the Message capability in the BPI Middleware layer.
+* All counterparties to a test agreement are registered as BPI Subjects in the test BPI and connected to the BPI Message capability.
+* There is one or more test transactions operating on the agreement state using a VSM.
+
+Test Steps:
+
+1. Submit one or more test transactions causing an update to an agreement state (state object) and its associated accounts using the VSM in the BPI system.
+2. Verify that the generated state update message is processed by the Message capability.
+3. Confirm that all agreement counterparties receive the state update message.
+4. Validate that the state update message contains the relevant information about the update, such as the updated agreement state and the associated accounts.
+
+Passing Criteria:
+
+* A successful update is made to an agreement state and its associated accounts using the VSM.
+* The update is successfully by the Message capability.
+* The message contains the necessary information about the update.
+* All agreement counterparties receive the message.
+
+#### **[R273]** 
 A Proof-of-Correctness of a state transition and associated data required for proof verification generated by a VSM MUST be communicated to the CCSM Abstraction Layer for subsequent commitment to the CCSM utilized by the BPI through the Message capability in the BPI Middleware layer. 
 
 *Note, see the BPI transaction lifecycle management flow in Fig. 10, in particular step (8).*
+
+[[R273]](#r273) Testability:
+
+Preconditions:
+
+* An operational BPI test system with the necessary components, including the VSM, CCSM Abstraction Layer, CCSM, and the Message capability in the BPI Middleware layer.
+* One or more test transactions that trigger state transition.
+
+Test Steps:
+
+1. Submit a test transaction to the BPI
+2. Verify that a Proof-of-Correctness for a state transition and its associated data using the VSM in the BPI system was successfully generated.
+3. Verify that the generated Proof-of-Correctness was sent to the CCSM Abstraction Layer through the Message capability in the BPI Middleware layer.
+4. Verify that the CCSM Abstraction Layer receives the Proof-of-Correctness message.
+5. Validate that the Proof-of-Correctness message contains the necessary information for subsequent commitment to the CCSM.
+6. Confirm that the CCSM Abstraction Layer successfully commits the Proof-of-Correctness to the CCSM.
+7. Repeat Step 1. through 6. for all test transactions.
+
+Passing Criteria:
+
+* For each test transactions and associated state transition, a Proof-of-Correctness is successfully generated using the VSM.
+* The CCSM Abstraction Layer receives the Proof-of-Correctness message for each transaction.
+* Each Proof-of-Correctness message contains the necessary information for subsequent commitment to the CCSM.
+* The CCSM Abstraction Layer successfully commits each Proof-of-Correctness to the CCSM.
 
 The following requirements are addressing the operating scenario where a BPI consists of more than one node. This is a perfectly feasible scenario with its pros and cons beyond the scope of this document to discuss. However, certain requirements need to be met for such a scenario to be operationally viable.
 
@@ -2761,24 +4554,151 @@ A BPI MAY consist of more than one processing node.
 
 *This document will call such a structure a BPI network.*
 
+[[O7]](#o7) Testability:
+
+Preconditions:
+
+* An operational BPI test system with multiple processing nodes.
+* One or more test transactions.
+
+Test Steps:
+
+1. Verify that the BPI system has been configured with multiple processing nodes.
+2. Submit a transaction to the BPI system.
+3. Confirm that the transaction is distributed and processed across the multiple processing nodes.
+4. Validate that at least one processing node executed the transaction.
+
+Passing Criteria:
+
+* Transactions are distributed and successfully processed across all the processing nodes.
+* At least one processing node actively participates in the processing of transactions.
+* The processing nodes effectively communicate and coordinate with each other during transaction processing.
+
 #### **[CR29]>[O7]** 
-If there is a BPI network to execute and finalize transactions, it MUST utilize a consensus algorithm fulfilling all requirements described in the Baseline CCSM Specification.
+A BPI network executing and finalizing transactions MUST utilize a consensus algorithm fulfilling all requirements described in the Baseline CCSM Specification.
+
+[[CR29]>[O7]](#cr29o7) Testability:
+
+Preconditions:
+
+* An operational BPI network with multiple nodes.
+* A configured consensus algorithm for the BPI network.
+* One or more test transactions.
+
+Test Steps:
+
+1. Submit a transaction to the BPI network.
+2. Monitor the network to ensure that the consensus algorithm is used for transaction finalization.
+3. Repeat Step 1. and 2.
+4. Validate that a consensus majority of nodes in the network agree on the order and validity of transactions.
+5. Verify that the transactions are successfully executed and finalized based on the consensus algorithm.
+
+Passing Criteria:
+
+* The chosen consensus algorithm is utilized for transaction finalization.
+* A consensus majority of nodes in the network agree on the order and validity of transactions.
+* The submitted transactions are successfully executed and finalized based on the consensus algorithm.
 
 #### **[CR30]>[O7]** 
-If there is a BPI network to execute and finalize transactions, the consensus algorithm employed MUST have a time to consensus that is smaller than the time to consensus of the CCSM utilized by the BPI network.
+The consensus algorithm of a BPI network MUST have a time to consensus that is smaller than the time to consensus of the CCSM utilized by the BPI network.
+
+[[CR30]>[O7]](#cr30o7) Testablity:
+
+Preconditions:
+
+* An operational BPI test network with multiple nodes.
+* A configured consensus algorithm for the BPI network.
+* One or more test transactions.
+
+Test Steps:
+
+1. Submit a test transaction to the BPI network.
+2. Measure the time it takes for the BPI network to reach consensus on the transaction.
+3. Measure the time it takes for the CCSM to reach consensus on the inclusion of the proof-of-correct-execution of the test transaction.
+4. Compare the time to consensus of the BPI with the time to consensus of the CCSM.
+5. Repeat Steps. 1. to 4. for all test transactions.
+
+Passing Criteria:
+
+* The BPI reaches consensus on the test transactions.
+* The CCSM reaches consensus on the inclusion of the proof-of-correct-execution of the test transactions.
+* The time to consensus of the BPI is smaller than the time to consensus of the CCSM.
 
 #### **[CR31]>[O7]** 
-If there is a BPI network to execute and finalize transactions, the consensus algorithm employed MUST have a time to finality that is smaller than the time to finality of the CCSM utilized by the BPI network.
+The consensus algorithm of a BPI network MUST have a time to finality that is smaller than the time to finality of the CCSM utilized by the BPI network.
 
-*These requirements are necessary such that transactions in the BPI cannot be altered after they have been committed to and finalized on the CCSM utilized by the BPI.*
+[[CR31]>[O7]](#cr31o7) Testablity:
+
+Preconditions:
+
+* An operational BPI test network with multiple nodes.
+* A configured consensus algorithm for the BPI network.
+* One or more test transactions.
+
+Test Steps:
+
+1. Submit a test transaction to the BPI network.
+2. Measure the time it takes for the consensus algorithm of the BPI network to reach finality on the transaction.
+3. Measure the time it takes for the consensus algorithm of the CCSM to reach finality on the inclusion of the proof-of-correct-execution of the test transaction.
+4. Compare the time to finality of the BPI with the time to finality of the CCSM.
+5. Repeat Steps. 1. to 4. for all test transactions.
+
+Passing Criteria:
+
+* The consensus algorithm of the BPI reaches finality on the test transactions.
+* The consensus algorithm of the CCSM reaches finality on the inclusion of the proof-of-correct-execution of the test transactions.
+* The time to finality of the BPI is smaller than the time to finality of the CCSM.
+
+*The above requirements are necessary such that transactions in the BPI cannot be altered after they have been committed to and finalized on the CCSM utilized by the BPI.*
 
 #### **[CR32]>[O7]** 
-If there is a BPI network and it chooses consensus on the execution of a transaction, there MUST be consensus on both the order and the correct execution of transactions.
+A BPI network MUST reach consensus on both the order and the correct execution of transactions.
+
+[[CR32]>[O7]](#cr32o7) Testablity:
+
+Preconditions:
+
+* An operational BPI test network with multiple nodes.
+* A configured consensus algorithm for the BPI network for the order of transactions and the correct execution of transactions.
+* One or more test transactions.
+
+Test Steps:
+
+1. Submit a set of transactions to the BPI network in a specific order.
+2. Monitor the consensus process to ensure that all nodes participate in the consensus.
+3. Verify that the BPI network reaches consensus on the order of the transactions based on the submission order.
+4. Verify that the BPI network reaches consensus on the correct execution of the transactions.
+5. Validate that all nodes in the BPI network have the same ordered and executed transactions.
+
+Passing Criteria:
+
+* The BPI network reaches consensus on the order of the transactions based on the submission order.
+* The BPI network reaches consensus on the correct execution of the transactions.
+* All nodes in the BPI network have the same ordered and executed transactions.
 
 #### **[CR33]>[O7]** 
-If there is a BPI network and it chooses consensus on the execution of a transaction, it MUST use a common execution framework. 
+A BPI network MUST use a common execution framework. 
 
 *Note that if more than one execution framework were chosen, no consensus could be reached on the outcome of a transaction because the state representation is execution framework dependent e.g. Ethereum account state vs. a zero-knowledge-proof of account state.*
+
+[[CR33]>[O7]](#cr33o7) Testablity:
+
+Preconditions:
+
+* An operational BPI network with multiple nodes.
+* One or more test transactions.
+
+Test Steps:
+
+1. Submit a set of transactions to the BPI network.
+2. Monitor the execution of transactions across the network.
+3. Validate that the transactions are executed on each node produce consistent and expected results.
+3. Validate that the transactions that are executed on each node produce the same results on each node.
+
+Passing Criteria:
+
+* The transactions are executed on each node 
+* The transactions tha are executed on each node produce the same result.
 
 The last capability relevant for the transaction lifecycle management in the BPI processing layer that needs to be specified is the Storage capability.
 
@@ -2786,16 +4706,40 @@ The key discussion on the Storage capability is full data persistency (write man
 
 In the case of a BPI, this document needs to distinguish between proof, transaction, and state data and its history and metadata associated with state objects, etc. Given the need to maintain consistency between state data on the CCSM utilized by the BPI and state data in the BPI, the following requirement is important.
 
-#### **[R278]** 
-Proof, transaction, and state object data and their histories together with their integrity proofs MUST be stored as partially persistent data in the storage capability.
+#### **[R274]** 
+Proof, transaction, and state object data and their histories together with their integrity proofs MUST be stored as partially persistent data in the BPI storage capability.
 
-#### **[D38]** 
-All other data SHOULD be stored as fully persistent data in the storage capability.
+Partially persistent data is defined as append-only (write once, read many).
 
-*This is a consequence of step (7) in Fig. 10 above.*
+*The Storage capability requirements are defined in section [7 General BPI Storage Capabilities](#7-general-bpi-storage-capabilities).*
 
-*The Storage capability must also meet all requirements defined in section [7 General BPI Storage Capabilities](#7-general-bpi-storage-capabilities).*
+[[R274]](#r274) Testability:
 
+Preconditions:
+
+* An operational BPI test system.
+* Data structures and formats for proof, transaction, and state object data, including their histories and integrity proofs.
+* A test set for a proof, and a state object, including its history and (CCSM) integrity proof. 
+* One or more test transactions and its expected results.
+
+Test Steps:
+
+1. Submit a  test transaction.
+2. Verify that the transaction is correctly executed and the resulting proof, state object and history and integrity data is stored in the storage capability
+3. Retrieve the stored data from the storage capability.
+4. Validate that the retrieved data matches the expected data.
+5. Attempt to modify the stored data.
+6. Ensure that the modification is rejected, and the stored data remains unchanged.
+7. Append additional data to the existing stored data by submitting another transaction.
+8. Verify that all the data is successfully stored and retrievable.
+9. Repeat Steps 1. through 8. for all test transactions.
+
+Passing Criteria:
+
+* The proof, transaction, and state object data are stored in the BPI storage capability without any modification.
+* The retrieved stored data matches the originally submitted data.
+* Modification of the stored data is rejected, and the stored data remains unchanged.
+* Additional data can be successfully appended to the existing stored data using transactions.
 -------
 # 7 General BPI Storage Capabilities
 
@@ -3641,7 +5585,7 @@ Revisions made since the initial stage of this numbered Version of this document
 
 # Appendix E - Notices
 
-Copyright © OASIS Open 2021. All Rights Reserved.
+Copyright © OASIS Open 2023. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
 
