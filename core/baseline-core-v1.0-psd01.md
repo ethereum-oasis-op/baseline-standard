@@ -4769,10 +4769,10 @@ The document defines storage capability requirements in the following areas:
 
 As has been done throughout this document, there are BPI layer-specific security requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI security requirements in [2 Design and Architecture](#2-design-and-architecture). 
 
-#### **[R275]** 
+#### **[R279]** 
 Data in transit in a BPI MUST be encrypted.
 
-[[R275]](#r275) Testability: 
+[[R279]](#r279) Testability: 
 
 Preconditions: 
 
@@ -4791,10 +4791,10 @@ Expected Results: All data transmitted between the nodes is encrypted (does not 
 
 The requirement is met, if all expected results are met. The requirement is not met, if any of the results are not meeting test expectations.
 
-#### **[R276]** 
+#### **[R280]** 
 Data at rest in a BPI MUST be encrypted.
 
-[[R276]](#r276) Testability: 
+[[R280]](#r280) Testability: 
 
 Preconditions: 
 
@@ -4812,12 +4812,12 @@ Expected Results: The data at rest in the BPI is encrypted and cannot be decrypt
 
 The requirement is met, if all expected results are met. The requirement is not met, if any of the results are not meeting test expectations.
 
-#### **[R277]**	
+#### **[R281]**	
 BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
 
 *This is also known as a secure connection.*
 
-[[R277]](#r277) Testability: 
+[[R281]](#r281) Testability: 
 
 Preconditions: 
 
@@ -4841,12 +4841,12 @@ Expected Results:
 
 The requirement is met, if all expected results are met. The requirement is not met, if any of the results are not meeting test expectations.
 
-#### **[R278]**	
+#### **[R282]**	
 BPI Storage MUST be compatible with commonly used external authentication services. 
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
 
-[[R278]](#r278) Testability: 
+[[R282]](#r282) Testability: 
 
 Preconditions: 
 
@@ -4867,10 +4867,10 @@ The test will pass if one or more of the external authentication services succes
 
 Note that the test policy could be any combination of read and write access to the BPI Storage.
 
-#### **[R279]**	
+#### **[R283]**	
 BPI Storage MUST support roles & access management.
 
-[[R279]](#r279) Testability: 
+[[R283]](#r283) Testability: 
 
 Preconditions: 
 
@@ -4892,12 +4892,12 @@ Test pass criteria:
 * The test will pass if all test roles are successfully tested, and the test BPI Subjects are able to perform operations only as allowed by their role's permissions. 
 * Additionally, attempting operations that require different permissions than the test BPI Subjects' roles must be denied, and appropriate error messages must be displayed.
 
-#### **[R280]**	
+#### **[R284]**	
 BPI Storage MUST support policy management.
 
 *Policy management in the context of this document means the creation, reading of, updating and deletion or archiving of policies used in a BPI Storage. Examples of such policies to be managed are rules governing creation, modification, deletion, and retention of data.* 
 
-[[R280]](#r280) Testability:
+[[R284]](#r284) Testability:
 
 Preconditions:
 
@@ -4926,12 +4926,12 @@ Test Passing Criteria: The test will pass if all of the following criteria are m
 * The BPI's user interface or API provides an intuitive way to manage policies.
 * There are no errors or exceptions during the test.
 
-#### **[R281]**	
+#### **[R285]**	
 BPI Storage MUST support Single-Sign-On (SSO).
 
 *See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).*
 
-[[R281]](#r281) Testability: 
+[[R285]](#r285) Testability: 
 
 Preconditions:
 
@@ -4961,12 +4961,12 @@ Test Passing Criteria: The test will pass if
 * Logging out of the BPI logs the BPI Subject out of the SSO provider and revokes the BPI Subject's BPI session.
 
 
-#### **[R282]**	
+#### **[R286]**	
 BPI Storage MUST support multi-factor authentication (MFA)
 
 *This document adopts [NIST's definition of MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
-[[R282]](#r282) Testability: 
+[[R286]](#r286) Testability: 
 
 Preconditions:
 
@@ -5001,12 +5001,12 @@ Test Passing Criteria: The test will pass if
 *Access to protected resources or actions within the BPI is granted only if the BPI Subject has provided the required additional factor of authentication for MFA.
 *After disabling MFA, the BPI allows the BPI Subject to log in with only the initial credentials used by the BPI Subject.
 
-#### **[R283]**	
+#### **[R287]**	
 BPI Storage MUST support hardware security modules (HSM). 
 
 *This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].*
 
-[[R283]](#r283) Testability:
+[[R287]](#r287) Testability:
 
 Preconditions:
 
@@ -5048,10 +5048,10 @@ Test Passing Criteria: The test will pass if
 
 As has been done throughout this document, there are BPI layer-specific privacy requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI privacy requirements in section [2 Design and Architecture](#2-design-and-architecture).
 
-#### **[R284]**	
+#### **[R288]**	
 Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 
-[[R284]](#r284) Testability: 
+[[R288]](#r288) Testability: 
 
 Preconditions:
 
@@ -5102,10 +5102,10 @@ Data Orchestration is an automated process for taking siloed data from multiple 
 
 To accommodate a high-volume, Low Latency environment with many data changes, BPI Data Orchestration has the following requirements:
 
-#### **[R285]**	
+#### **[R289]**	
 Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
 
-[[R285]](#r285) Testability: 
+[[R289]](#r289) Testability: 
 
 Preconditions:
 
@@ -5130,10 +5130,10 @@ Test Passing Criteria: The test will pass if
 
 Note: Additional tests may be required to verify that the Data Orchestration component can handle high traffic and is able to scale horizontally to accommodate additional nodes as needed.
 
-#### **[R286]**	
+#### **[R290]**	
 Data Orchestration utilized in a BPI MUST preserve data consistency from source to target within the BPI. 
 
-[[R286]](#r286) Testability: 
+[[R290]](#r290) Testability: 
 
 Preconditions:
 
@@ -5161,12 +5161,12 @@ Test Passing Criteria: The test will pass if,
 
 *To avoid subscribers seeing partial and/or inconsistent data, BPI Data Orchestration has the following requirements:*
 
-#### **[R287]**	
+#### **[R291]**	
 Data Orchestration utilized in a BPI MUST implement transaction boundaries.
 
 *This means that a single BPI Subject's action can trigger atomic updates. A transaction boundary is defined as where a transaction begins or ends, where within the transaction all writes to a system are atomic, in that they either all complete, or are all reverted if any single write in a given transaction fails. An atomic update is defined as an indivisible and irreducible series of system operations such that either all occurs, or nothing occurs. An example of a transaction boundary is a "Create Invoice" transaction that creates an invoice in a system or fails if an error occurs.*
 
-[[R287]](#r287) Testability: 
+[[R291]](#r291) Testability: 
 
 Preconditions:
 
@@ -5190,10 +5190,10 @@ Test Passing Criteria: The test will pass if,
 * All writes of the correctly formed transactions to the transaction type specific Data Orchestration exit points succeed.
 * All writes of the incorrectly formed transactions to the transaction type specific Data Orchestration exit points fail, and generate an error message relayed back to the BPI Subject.
 
-#### **[R288]**	
+#### **[R292]**	
 Data Orchestration utilized in a BPI MUST commit to the exact order in which transactions are received by Data Orchestration.
 
-[[R288]](#r288) Testability: 
+[[R292]](#r292) Testability: 
 
 Preconditions:
 
@@ -5214,12 +5214,12 @@ Passing Criteria: The test will pass if all the following criteria are met,
 * The transactions are committed by the Data Orchestration module in the exact same order in which they were received.
 * The committed transactions have been properly applied to the targeted BPI State Object and the final state of the BPI State Object is consistent with the transactions that were sent.
 
-#### **[R289]**	
+#### **[R293]**	
 Data Orchestration utilized in a BPI MUST support a consistent Data Orchestration state.
 
 *This can be achieved for example using a two-phase-lock commitment that ensures that a message log in the data orchestration module is idempotent, in other words is append only once per message and not more.*
 
-[[R289]](#r289) Testability: 
+[[R293]](#r293) Testability: 
 
 Preconditions:
 
@@ -5242,12 +5242,12 @@ Test Passing Criteria: The test passes if:
 * The message log in the Data Orchestration module is updated only once for each retried transaction.
 
 
-#### **[R290]**	
+#### **[R294]**	
 Data Orchestration utilized in a BPI MUST support user-space processing. 
 
 *In the context of this document, this requirement establishes a capability that allows for one or more computations outside a database to be triggered by a data change in the data storage system.*
 
-[[R290]](#r290) Testability: 
+[[R294]](#r294) Testability: 
 
 Preconditions:
 
@@ -5273,10 +5273,10 @@ Test Passing Criteria:
 * The processing function is not triggered for any data change that is not specified in the configuration.
 * The BPI storage system remains stable and consistent throughout the test.
 
-#### **[R291]**	
+#### **[R295]**	
 Data Orchestration utilized in a BPI MUST NOT make assumptions about the uptime of a Data Orchestration consumer.
 
-[[R291]](#r291) Testability: 
+[[R295]](#r295) Testability: 
 
 Preconditions:
 
@@ -5297,10 +5297,10 @@ Test Passing Criteria:
 * Step 4 must complete without any data loss or corruption.
 * The BPI must remain operational and functional even when the Data Orchestration consumer is down.
 
-#### **[R292]**	
+#### **[R296]**	
 Data Orchestration utilized in a BPI MUST isolate Data Orchestration data sources from Data Orchestration consumers to which data from the Data Orchestration data sources is delivered via the BPI's Data Orchestration component.
 
-[[R292]](#r292) Testability: 
+[[R296]](#r296) Testability: 
 
 Preconditions:
 
@@ -5324,12 +5324,12 @@ Test Passing Criteria:
 * The Data Orchestration consumer should not have access to * the data source that provided the delivered data.
 * The test should pass for all tested data sources and consumers.
 
-#### **[R293]**	
+#### **[R297]**	
 Data Orchestration utilized in a BPI MUST support Low Latency.
 
 *Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.*
 
-[[R293]](#r293) Testability: 
+[[R297]](#r297) Testability: 
 
 Preconditions:
 
@@ -5350,10 +5350,10 @@ Test Passing Criteria:
 * The test is considered passed if the measured time for the data change to propagate through the Data Orchestration component and reach the test consumer is below the defined "Low Latency" threshold.
 
 
-#### **[R294]**	
+#### **[R298]**	
 Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes at any point in time.
 
-[[R294]](#r294) Testability: 
+[[R298]](#r298) Testability: 
 
 Preconditions:
 
@@ -5380,10 +5380,10 @@ Passing Criteria:
 
 *The BPI Data Orchestration must include the following four components:*
 
-#### **[R295]**	
+#### **[R299]**	
 Data Orchestration utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
 
-[[R295]](#r295) Testability: 
+[[R299]](#r299) Testability: 
 
 Preconditions:
 
@@ -5404,10 +5404,10 @@ Test Passing Criteria:
 
 Note: The test steps can be modified to include multiple records and various types of data sources to test the scalability and flexibility of the fetcher capability.
 
-#### **[R296]**	
+#### **[R300]**	
 Data Orchestration utilized in a BPI MUST include a log store that caches the generated data change stream in a BPI.
 
-[[R296]](#r296) Testability: 
+[[R300]](#r300) Testability: 
 
 Preconditions:
 
@@ -5430,10 +5430,10 @@ Test Passing Criteria:
 * The order of changes in the log store matches the order in which they were made to the data source.
 * The log store can be enabled or disabled as desired, and only captures changes when enabled.
 
-#### **[R297]**	
+#### **[R301]**	
 Data Orchestration utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
 
-[[R297]](#r297) Testability: 
+[[R301]](#r301) Testability: 
 
 Preconditions:
 
@@ -5456,10 +5456,10 @@ Test Passing Criteria:
 * The snapshot store should be able to store a moving snapshot of the generated change data stream.
 * The snapshot store should capture any changes to the data source in the moving snapshot from the log store.
 
-#### **[R298]**	
+#### **[R302]**	
 Data Orchestration utilized in a BPI MUST include a subscription client pulling change events across the Data Orchestration component and delivering them to a service in a BPI with Low Latency.
 
-[[R298]](#r298) Testability: 
+[[R302]](#r302) Testability: 
 
 Preconditions:
 
@@ -5488,14 +5488,14 @@ Test Passing Criteria:
 
 There are operating scenarios where it could be necessary that BPI data is replicated outside of a BPI such as to avoid having to rebase the state of a system or record due to an accidental data update if the correct state is not readily accessible to enforce system-of-record access policies. 
 
-#### **[R299]**	
+#### **[R303]**	
 BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
 
 *Weak synchrony in this context means:* 
 * *All messages will eventually reach their intended recipients* 
 * *After a certain, yet unknown, time the network will become synchronous again*
 
-[[R299]](#r299) Testability: 
+[[R303]](#r303) Testability: 
 
 Preconditions:
 
@@ -5520,10 +5520,10 @@ Test Passing Criteria:
 * The delay introduced in the network does not result in data loss or corruption.
 * The updated data is available in BPI with minimal delay after the network delay is removed.
 
-#### **[R300]**	
+#### **[R304]**	
 Data replication conflicts in BPI Edge Storage MUST be automatically detectable. 
 
-[[R300]](#r300) Testability: 
+[[R304]](#r304) Testability: 
 
 Preconditions:
 
@@ -5547,16 +5547,16 @@ Test Passing Criteria:
 * The resolution strategy used by the BPI Edge Storage system aligns with the chosen conflict resolution approach.
 * The resolution is propagated to all nodes in the storage cluster, so that all nodes eventually have the same data.
 
-#### **[R301]** 
+#### **[R305]** 
 Data replication conflicts in BPI Edge Storage MUST be resolvable either automatically or manually.
 
-[[R301]](#r301) Testability: 
+[[R305]](#r305) Testability: 
 
 Preconditions:
 
 * BPI Edge Storage is set up and running.
 * There are multiple nodes for data replication in BPI Edge Storage.
-* The BPI Edge Storage has passed the test for [[R300]](#r300).
+* The BPI Edge Storage has passed the test for [[R04]](#r304).
 
 Test Steps:
 
@@ -5571,10 +5571,10 @@ Test Passing Criteria:
 * The manual conflict resolution results in only one replica of the data item with the correct value remaining in BPI Edge Storage.
 * The time taken to detect and resolve the conflict is within acceptable limits.
 
-#### **[R302]**	
+#### **[R306]**	
 BPI Edge Storage MUST use a secure and privacy-preserving wire protocol for communication.
 
-[[R302]](#r302) Testability: 
+[[R306]](#r306) Testability: 
 
 Preconditions:
 
@@ -5649,12 +5649,12 @@ Test Passing criteria:
 * BPI Edge Storage is accessible only to authorized parties and unauthorized access attempts are rejected.
 * The BPI Edge Storage is not discoverable in Step 5.
 
-#### **[R303]**	
+#### **[R307]**	
 BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. 
 
 See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
-[[R303]](#r303) Testability: 
+[[R307]](#r307) Testability: 
 
 Preconditions:
 
@@ -5676,12 +5676,12 @@ Test Passing Criteria:
 * The BPI Edge Storage is able to use the BPI Identifier and Identity to interact with other BPI components without error.
 * The BPI Edge Storage is able to correctly identify itself to other BPI components using the assigned BPI Identifier and Identity without error.
 
-#### **[R304]**	
+#### **[R308]**	
 BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data.
 
 See section [7.5 BPI-Internal Storage](#75-bpi-internal-storage) requirements for security, privacy, and integration.
 
-[[R304]](#r304) Testability: 
+[[R308]](#r308) Testability: 
 
 Preconditions:
 
@@ -5786,14 +5786,14 @@ Test Passing Criteria: The test will pass if,
 ### 7.5.2 BPI Storage: Decentralized Deployment
 ###### BPIINTERNALSTORAGEDECENTRALIZED
 
-#### **[R305]**	
+#### **[R309]**	
 BPI Storage  MUST support authenticated naming systems.
 
 *An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [[DANE](#dane)].*   
 
 *Non-normative examples include, but are not limited to, certificate authorities or a self-certifying PKI namespace.* 
 
-[[R305]](#r305) Testability: 
+[[R309]](#r309) Testability: 
 
 Preconditions:
 
@@ -5816,12 +5816,12 @@ Test Passing Criteria:
 * The retrieval of the record using an incorrect authenticated name fails.
 * The updated record contains the new authenticated name and associated cryptographic material.
 
-#### **[R306]**	
+#### **[R310]**	
 BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. 
 
 A large data block in this document is defined to be larger than 1MB but less than 128MB. 
 
-[[R306]](#r306) Testability: 
+[[R310]](#r310) Testability: 
 
 Preconditions:
 
@@ -5845,12 +5845,12 @@ Test Passing criteria:
 * The first large data block and the second large data block are successfully replicated to the BPI Storage and their integrity is preserved.
 * The replication of a data block larger than 128MB to the BPI Storage fails.
 
-#### **[R307]**	
+#### **[R311]**	
 BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
 
 *Non-normative examples are [libp2p](#libp2p) or distributed hash tables [[DHT]](#dht).*
 
-[[R307]](#r307) Testability: 
+[[R311]](#r311) Testability: 
 
 Preconditions:
 
@@ -5874,14 +5874,14 @@ Test Passing Criteria:
 * The routing protocol must be able to handle changes in data peer availability or data object locations within 30 seconds
 * The routing protocol must not significantly degrade the performance of BPI Storage, with requests being handled within 500 milliseconds on average
 
-#### **[R308]**	
+#### **[R312]**	
 BPI Storage  MUST support a Network Protocol that handles all of:
 * NAT traversal such as hole punching, port mapping, and relay
 * Multiple transport protocols
 * Encryption, signing, or clear text communications
 * Multi-multiplexes such as Multiplex connections, streams, protocols, peers
 
-[[R308]](#r308) Testability: 
+[[R312]](#r312) Testability: 
 
 Preconditions:
 
@@ -5913,12 +5913,12 @@ Passing Criteria:
 
 * NAT traversal, multiple transport protocols, encryption, signing, and clear communications, and multi-multiplexes tests should pass without any errors or failures.
 
-#### **[R309]**	
+#### **[R313]**	
 Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
 *Non-normative examples are conflict-free replicated data types [[CRDT](#crdt)] or Interval Tree Clocks [[ITC](#itc)] to ensure eventual data consistency.*
 
-[[R309]](#r309) Testability: 
+[[R313]](#r313) Testability: 
 
 Preconditions:
 
@@ -6037,7 +6037,7 @@ External authoritative data means that the input data to a BPI workstep is held 
 #### **[R315]** 
 BPI Subjects participating in a workstep MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
 
-[[R315]](#r315) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be binding. And since [[R6]](#r6) is testable, [[R315]](#r315) is testable.
+[[R315]](#r15) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be binding. And since [[R6]](#r6) is testable, [[R315]](#r15) is testable.
 
 
 ## 8.3 External Non-authoritative, Non-deterministic Data for BPIs
