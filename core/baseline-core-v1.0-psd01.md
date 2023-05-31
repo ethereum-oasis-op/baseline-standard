@@ -84,7 +84,7 @@ When referencing this specification the following citation format should be used
 -------
 
 ## Notices
-Copyright © OASIS Open 2023. All Rights Reserved.
+Copyright © OASIS Open 2021-2023. All Rights Reserved.
 
 Distributed under the terms of the OASIS [IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr).
 
