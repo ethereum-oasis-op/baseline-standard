@@ -3054,12 +3054,10 @@ Preconditions:
 Test Steps:
 
 1. Retrieve the input data for the identified BPI workstep from the single source system of record.
-2. Verify that the retrieved input data matches the expected format and is consistent with the requirements of the test workstep.
-3. Verify that the single source system of record is the authoritative source for the input data in the test workstep.
+2. Verify that the single source system of record is the authoritative source for the input data in the test workstep.
 
 Test Passing Criteria:
 
-* The retrieved input data matches the expected format and is consistent with the requirements of the test workstep.
 * The identified single source system of record is confirmed to be the authoritative source for the input data.
 
 ## 8.2 External Authoritative Data for BPIs
@@ -3082,6 +3080,8 @@ Preconditions:
 * The test workstep accepts input data only from the agreed upon data source for a given data schema.
 * The agreed-upon input data source is configured with a test data set.
 * An agreement quorum has been defined and configured in the test BPI.
+* The test BPI response if a quorum by the participants is reached is configured.
+* The test BPI response if a quorum by the participants is not reached is configured. 
 
 Test Steps:
 
@@ -3099,8 +3099,9 @@ Test Passing Criteria: The test is considered passing if,
 
 * The BPI system successfully initiates the agreement process among the BPI subjects.
 * The specified quorum of BPI subjects agree upon the source and type of the external authoritative data.
-* The BPI system records the agreement and uses the agreed upon external authoritative data as the input source for the workstep.
-* The workstep is successfully completed using the agreed upon external authoritative data.
+    * The BPI system records the agreement and uses the agreed upon external authoritative data as the input source for the workstep.
+    * The workstep is successfully completed using the agreed upon external authoritative data.
+* The BPI system responds as conifgured if the specified quorum of BPI subjects on the source and type of the external authoritative data is not reached.
 
 ## 8.3 External Non-authoritative, Non-deterministic Data for BPIs
 
@@ -3130,14 +3131,13 @@ Test Steps:
 
 1. Start the test workstep that requires external non-authoritative, non-deterministic input data.
 2. Source the input data from a single external source and record the source of the data.
-3. Repeat step 2 for each different external source for the same input data.
-4. Repeat step 2, alternating between the external sources used in steps 2 and 3.
-5. Verify that the BPI workstep successfully processed the input data from all sources used in steps 2-4 and produced the same expected result for the input data from different sources.
+3. Repeat step 2 for each available external source for the same input data.
+4. Verify that the BPI workstep successfully processed the input data from all sources used in steps 2-3 and produced the same expected result for the input data from different sources.
 
 Test Passing Criteria:
 
-* The test workstep should process input data from all sources used in steps 2-4 without errors or inconsistencies.
-* The expected results from the test workstep should match the actual results produced in step 5.
+* The test workstep should process input data from all sources used in steps 2-3 without errors or inconsistencies.
+* The expected results from the test workstep should match the actual results produced in step 4.
 
 
 #### **[R316]** 
@@ -3157,14 +3157,15 @@ Test Steps:
 1. Initialize the test workstep with external non-authoritative, non-deterministic input data from one or more data sources.
 2. Submit the input data to the authoritative entities responsible for validation.
 3. The authoritative entities validate the input data against the predefined validation criteria.
-4. If the input data passes the validation criteria, proceed to the next step. Otherwise, fail the test.
-5. Use the validated input data as input to the BPI workstep.
-6. Verify that the BPI workstep produces the expected output.
+4. If the input data passes the validation criteria, proceed:
+    a. Use the validated input data as input to the BPI workstep.
+    b. Verify that the BPI workstep produces the expected output.
+5. If the input data does not pass the validation criteria, the BPI stops the workstep processing and responds to the workstep participants with an appropriate error message.
 
 Test Passing Criteria: The test passes if,
 
-* The input data passes the validation criteria defined by the authoritative entities.
-* The test workstep produces the expected output using the validated input data.
+* If the input data passes the validation criteria defined by the authoritative entities and the test workstep produces the expected output using the validated input data.
+* If the input data does not pass the validation criteria defined by the authoritative entities, the BPI stops the workstep processing and responds to the workstep participants with an appropriate error message.
 
 #### **[R317]** 
 BPI workstep participants MUST agree upon a validation method for external non-authoritative,  non-deterministic input data to a BPI workstep.
