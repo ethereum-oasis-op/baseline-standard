@@ -3014,7 +3014,7 @@ Internal authoritative input data to a BPI workstep MAY come from a single sourc
 
 Preconditions:
 
-* A PBI test system is up and running.
+* A BPI test system is up and running.
 * There is a given set of test BPI Subjects that are part of a test workgroup.
 * The test BPI participants in a workgroup have agreed to allow internal authoritative input data to a BPI workstep only from a single, specific data source.
 * The test workgroup is associated with only one test workstep.
