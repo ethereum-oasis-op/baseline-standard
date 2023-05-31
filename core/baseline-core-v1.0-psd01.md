@@ -3042,13 +3042,13 @@ If the internal authoritative input data to a BPI workstep is single-sourced, th
 
 Preconditions:
 
-* A PBI test system is up and running.
+* A BPI test system is up and running.
 * There is a given set of test BPI Subjects that are part of a test workgroup.
 * The test workgroup is associated with only one test workstep.
 * There exists a system of record identified as the single source for the input data.
 * A test workstep has been created that requires internal authoritative input data from a single source.
 * The BPI Subjects involved in the workstep have agreed that the identified system of record is the authoritative source for the input data.
-* The test workstep accepts only input data from the agreed upon data source for a given data schema, and the input data is transformed in an agreed upon manner to an expected output.
+* The test workstep accepts only input data from the agreed upon data source for a given data schema.
 * The agreed-upon input data source is configured with a test data set.
 
 Test Steps:
@@ -3079,7 +3079,7 @@ Preconditions:
 * The test workgroup is associated with only one test workstep.
 * There exists an external system identified as the single source for the input data.
 * A test workstep has been created that requires external authoritative input data from a single source.
-* The test workstep accepts only input data from the agreed upon data source for a given data schema, and the input data is transformed in an agreed upon manner to an expected output.
+* The test workstep accepts input data only from the agreed upon data source for a given data schema.
 * The agreed-upon input data source is configured with a test data set.
 * An agreement quorum has been defined and configured in the test BPI.
 
@@ -3123,14 +3123,14 @@ External non-authoritative, non-deterministic BPI input data into a BPI workstep
 Preconditions:
 
 * A test BPI system is available and functional.
-* At least two independent sources of external non-authoritative, non-deterministic are available that produce the same input data.
+* At least two independent sources of external non-authoritative, non-deterministic data are available that produce the same input data.
 * A test workstep has been created that requires external non-authoritative, non-deterministic input data.
 
 Test Steps:
 
 1. Start the test workstep that requires external non-authoritative, non-deterministic input data.
 2. Source the input data from a single external source and record the source of the data.
-3. Repeat step 2, but use a different external source for the same input data.
+3. Repeat step 2 for each different external source for the same input data.
 4. Repeat step 2, alternating between the external sources used in steps 2 and 3.
 5. Verify that the BPI workstep successfully processed the input data from all sources used in steps 2-4 and produced the same expected result for the input data from different sources.
 
