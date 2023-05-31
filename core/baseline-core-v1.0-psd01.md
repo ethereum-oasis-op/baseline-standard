@@ -3178,14 +3178,13 @@ Preconditions:
 * A test workstep that takes external non-authoritative, non-deterministic input data.
 * There are at least two BPI workstep participants.
 * Each participant is a valid BPI Subject and is authorized to participate in the test workstep.
-* One or more validation methods for the external non-authoritative, non-deterministic input data to the test workstep.
+* One or more validation methods for the external non-authoritative, non-deterministic input data to the test workstep are availabe to apply to the external data source to the workstep.
 
 Test Steps:
 
-1. One BPI workstep participants proposes a validation method for the external non-authoritative, non-deterministic input data to be used in the test workstep.
-2. Each BPI workstep participant verifies that the proposed validation method on sample input data produces reliable results.
-3. Each BPI workstep participant either accepts or rejetcs the proposal. 
-4. Once the validation method is agreed upon, it is recorded in the BPI.
+1. One BPI workstep participants proposes one of the available validation method for the external non-authoritative, non-deterministic input data to be used in the test workstep.
+2. Each BPI workstep participant either accepts or rejetcs the proposal. 
+3. Once the validation method is agreed upon, it is recorded in the BPI.
 
 Test Passing Criteria:
 
@@ -3214,11 +3213,14 @@ Test Steps:
 1. Input data from an external non-authoritative, non-deterministic source.
 2. Validate the external non-authoritative, non-deterministic input data against the agreed-upon validation criteria in the test workstep.
 3. Record the validation result along with the validation criteria and input data.
+4. Retrieve the validation result along with the validation criteria and input data
+5. Validate that retrieved validation criteria and input data agree with the original validation criteria and input data and that the agreed-upon validation criteria applied to the inout data matches the retireved validation result.
 
 Test Passing Criteria:
 
 * The validation result is recorded and indicates that the validation criteria for the external non-authoritative, non-deterministic input data has been met.
 * The recorded validation criteria and input data are consistent with the agreed-upon validation method for the test workstep.
+* The retrieved validation criteria and input data agree with the original validation criteria and input data and that the agreed-upon validation criteria applied to the inout data matches the retireved validation result. 
 
 ### 8.3.2 External Non-authoritative, non-deterministic BPI Input Data Variance
 
