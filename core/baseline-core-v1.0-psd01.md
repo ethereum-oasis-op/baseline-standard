@@ -3010,7 +3010,7 @@ Internal authoritative data means that there exists only one authoritative versi
 #### **[O10]** 
 Internal authoritative input data to a BPI workstep MAY come from a single source.
 
-[[D10]](#d10) Testability: 
+[[O10]](#o10) Testability: 
 
 Preconditions:
 
@@ -3018,7 +3018,7 @@ Preconditions:
 * There is a given set of test BPI Subjects that are part of a test workgroup.
 * The test BPI participants in a workgroup have agreed to allow internal authoritative input data to a BPI workstep only from a single, specific data source.
 * The test workgroup is associated with only one test workstep.
-* The test workstep accepts only input data from the agreed upon data source for a given data schema, and the input data is transformed in an agreed upon manner to an expected output.
+* The test workstep accepts only input data from the agreed upon data source for a given data schema.
 * The agreed-upon input data source is configured with a test data set.
 * Another, second input data source is configured with the same test data set as the agreed-upon data source. 
 
@@ -3032,7 +3032,6 @@ Test Steps:
 
 Test Passing Criteria:
 
-* The first input data is verified to be from the agreed-upon authoritative source.
 * The BPI workstep processes the first input data correctly.
 * The BPI workstep creates an error, and exits with the expected error message, when the input data comes from the second input data source.
 
