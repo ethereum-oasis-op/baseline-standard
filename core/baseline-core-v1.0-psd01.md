@@ -3068,10 +3068,10 @@ Test Passing Criteria:
 
 External authoritative data means that the input data to a BPI workstep is held in some authoritative 3rd party database, such as government records. Unlike internal authoritative data where there is only one source, external authoritative data input to a BPI workstep may have multiple sources.
 
-#### **[R314]** 
+#### **[R315]** 
 BPI Subjects participating in a workstep MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
 
-[[R314]](#r314) Testability: 
+[[R315]](#r315) Testability: 
 
 Preconditions:
 
@@ -3081,7 +3081,7 @@ Preconditions:
 * A test workstep has been created that requires external authoritative input data from a single source.
 * The test workstep accepts only input data from the agreed upon data source for a given data schema, and the input data is transformed in an agreed upon manner to an expected output.
 * The agreed-upon input data source is configured with a test data set.
-* An agreement quorum has been defined and configures in the test BPI.
+* An agreement quorum has been defined and configured in the test BPI.
 
 Test Steps:
 
@@ -3140,10 +3140,10 @@ Test Passing Criteria:
 * The expected results from the test workstep should match the actual results produced in step 5.
 
 
-#### **[R315]** 
+#### **[R316]** 
 External non-authoritative, non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
 
-[[R315]](#r315) Testability: 
+[[R316]](#r316) Testability: 
 
 Preconditions:
 
@@ -3166,10 +3166,10 @@ Test Passing Criteria: The test passes if,
 * The input data passes the validation criteria defined by the authoritative entities.
 * The test workstep produces the expected output using the validated input data.
 
-#### **[R316]** 
+#### **[R317]** 
 BPI workstep participants MUST agree upon a validation method for external non-authoritative,  non-deterministic input data to a BPI workstep.
 
-[[R316]](#r316) Testability: 
+[[R317]](#r317) Testability: 
 
 Preconditions:
 
@@ -3192,12 +3192,12 @@ Test Passing Criteria:
 * The agreed-upon validation method has been tested and shown to produce reliable results.
 * The validation method and testing results have been recorded on the test BPI.
 
-#### **[R317]** 
+#### **[R318]** 
 A BPI workstep participant MUST be able to validate that the validation criteria of external non-authoritative,  non-deterministic input data to the BPI workstep has been met.
 
 *Appropriate data validation methods vary on a case-by-case basis depending upon the data types, sources and formats. As such, it is up to the BPI participants to agree upon the optimal validation method for their implementation. This includes design decisions such as what threshold of unresponsive oracles leads to a rejected input, how to aggregate the oracle responses and remove outliers, signing data to ensure provenance, implementing cryptographic mechanisms such as threshold signatures/secret sharing and TEEs such as Intel SGX or AMD SEV to obfuscate data from oracle providers.*
 
-[[R317]](#r317) Testability: 
+[[R318]](#r318) Testability: 
 
 Preconditions:
 
@@ -3250,10 +3250,10 @@ A claim that a BPI conforms to this specification SHOULD describe a testing proc
 
 [[D43]](#d43) Testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, and can be described as required in [[D43]](#d43).
 
-#### **[R318]** 
+#### **[R319]** 
 A claim that a BPI conforms to this specification at **Level 2** or higher MUST describe the testing procedure carried out for each requirement at **Level 2** or higher, that justifies the claim to that requirement.
 
-[[R318]](#r318) Testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, be described, be built and implemented and results can be recorded as required in [[R319]](#r319).
+[[R319]](#r319) Testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, be described, be built and implemented and results can be recorded as required in [[R319]](#r319).
 
 *Note that BPI Integration requirements in section [5.5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services](#554-bi--and-multi-directional-and-mono-directional-bpi-interoperability-services) and section [5.6 Standardized Set of BPI Interoperability APIs](#56-standardized-set-of-bpi-interoperability-apis) are not mandatory for meeting conformance until there are at least two implementations conformant to Level 1 of this standards' requirements.*
 
