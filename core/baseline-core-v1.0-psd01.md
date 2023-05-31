@@ -3081,7 +3081,7 @@ Preconditions:
 * A test workstep has been created that requires external authoritative input data from a single source.
 * The test workstep accepts input data only from the agreed upon data source for a given data schema.
 * The agreed-upon input data source is configured with a test data set.
-* An agreement quorum has been defined and configures in the test BPI.
+* An agreement quorum has been defined and configured in the test BPI.
 
 Test Steps:
 
