@@ -3123,7 +3123,7 @@ External non-authoritative, non-deterministic BPI input data into a BPI workstep
 Preconditions:
 
 * A test BPI system is available and functional.
-* At least two independent sources of external non-authoritative, non-deterministic are available that produce the same input data.
+* At least two independent sources of external non-authoritative, non-deterministic data are available that produce the same input data.
 * A test workstep has been created that requires external non-authoritative, non-deterministic input data.
 
 Test Steps:
