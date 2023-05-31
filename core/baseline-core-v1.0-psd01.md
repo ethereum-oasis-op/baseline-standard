@@ -275,6 +275,10 @@ A Common Frame of Reference as used in this document refers to achieving and mai
 
 A Consensus Controlled State Machine (CCSM) is a network of replicated, shared, and synchronized digital data spread across multiple sites connected by a peer-to-peer and utilizing a consensus algorithm. There is no central administrator or centralized data storage.
 
+**Data Orchestration:**
+
+An automated process for taking siloed data from multiple storage locations, combining and organizing it, and making it available for analysis.
+
 **Electronic Record:**
 
 Information captured through electronic means, and which may or may not have a paper record to back it up.
@@ -302,6 +306,10 @@ An individual, organization, or company that has legal rights and obligations.
 In concurrent computing, liveness refers to a set of properties of concurrent systems that require a system to make progress, despite its concurrently executing components ("processes") may have to "take turns" in critical sections, parts of the program that cannot be simultaneously run by multiple processes. Liveness guarantees are important properties in operating systems and distributed systems.
 
 Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181-185
+
+**Low latency:**
+
+A latency that does not Materially Impact the overall system latency of the BPI.
 
 **Master Services Agreement (MSA):**
 
