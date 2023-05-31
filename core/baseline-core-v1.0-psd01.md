@@ -3042,7 +3042,7 @@ If the internal authoritative input data to a BPI workstep is single-sourced, th
 
 Preconditions:
 
-* A PBI test system is up and running.
+* A BPI test system is up and running.
 * There is a given set of test BPI Subjects that are part of a test workgroup.
 * The test workgroup is associated with only one test workstep.
 * There exists a system of record identified as the single source for the input data.
