@@ -2323,7 +2323,7 @@ New Agreement State = Old Agreement State + Agreed upon New State Object + Works
 #### **[R215]** 
 A workstep instance MUST be associated with only one workgroup.
 
-[[R215]](#r215) Testability: A test of this requirment can be comprised of the following sequence:
+[[R215]](#r215) Testability: A test of this requirement can be comprised of the following sequence:
 
 1. Create multiple work step instances and assign them to different workgroups.
 2. Verify that each work step instance is associated with only one workgroup through a system search that only yeilds one result for each workstep instance.
