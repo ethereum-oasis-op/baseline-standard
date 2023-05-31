@@ -3130,7 +3130,7 @@ Test Steps:
 
 1. Start the test workstep that requires external non-authoritative, non-deterministic input data.
 2. Source the input data from a single external source and record the source of the data.
-3. Repeat step 2, but use a different external source for the same input data.
+3. Repeat step 2 for each different external source for the same input data.
 4. Repeat step 2, alternating between the external sources used in steps 2 and 3.
 5. Verify that the BPI workstep successfully processed the input data from all sources used in steps 2-4 and produced the same expected result for the input data from different sources.
 
