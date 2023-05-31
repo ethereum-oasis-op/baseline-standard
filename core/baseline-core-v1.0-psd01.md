@@ -2293,7 +2293,10 @@ A workstep MUST have an input, one or more process steps, and an output.
 
 *This is just a well-known convention from business process management frameworks.*
 
-[[R211]](#r211) Testability: A valid workstep is a function that transforms a given input, using one or more transformations of the input into an output. An invalid workstep either does not have an input, or transformations of the input into an output, or an output, or any combination of the three components.
+[[R211]](#r211) Testability: A valid workstep is a function that transforms a given input, using one or more transformations of the input into an output. An invalid workstep meets any of the following conditions: 
+- it does not have an input, or 
+- it does not transform the input, or
+- it does not have an output.
 
 #### **[R212]** 
 The input of a workstep MUST represent a new, proposed state of a state object compliant with the agreement between the agreement counterparties.
