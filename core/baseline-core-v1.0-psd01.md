@@ -2301,7 +2301,11 @@ A workstep MUST have an input, one or more process steps, and an output.
 #### **[R212]** 
 The input of a workstep MUST represent a new, proposed state of a state object compliant with the agreement between the agreement counterparties.
 
-[[R212]](#r212) Testability: The input of a workstep where the workstep is represented as a function as in the testability of [[R211]](#r211) can be formatted in a (data) schema of a state object that represents the state of a given agreement between counterparties such as the accumulated amount billed by a Seller to a Buyer. A function input formatted in this way can be validated by the function's logic to be a) conformant to the agreed upon state object schema, and b) to not be equal to the current state object. And the result of these two comparisons can be expressed as a true/false boolean statement as the function output. Therefore, the input can be evaluated to be valid -- a new state object (proposal) -- or not as per the requirement.  
+[[R212]](#r212) Testability: The input and output of a workstep can be formatted according to the data schema of a state object that represents the state of a given agreement.
+
+If the input and output are valid representations of a state according to the agreement, and are not equal, they meet the requirement.
+
+If they are equal, or cannot be represented as a valid state object, they do not meet the requirement.
 
 #### **[R213]** 
 The process steps in a workstep MUST represent a verification system comprised of the set, or subset, of agreement rules and agreement data such that an input can be validated to comply with the agreement rules and agreement data, or not.
