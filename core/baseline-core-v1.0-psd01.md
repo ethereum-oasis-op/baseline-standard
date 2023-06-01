@@ -2457,7 +2457,7 @@ Test Passing Criteria:
 #### **[R221]** 
 A workstep MUST be executed inside a BPI's Virtual State Machine (VSM).
 
-Note, that a BPI's Virtual State Machine is part of the BPI Processing Layer as discussed before.
+Note, that a BPI's Virtual State Machine is part of the BPI Processing Layer as discussed in [Section 2.8.4](#284-baseline-protocol-stack-detailed-reference-architecture-layers-and-components).
 
 [[R221]](#r221) Testability:
 
