@@ -2318,7 +2318,7 @@ New Agreement State = Old Agreement State + Agreed upon New State Object + Works
 
 *See sections 6.4 and 6.5 below on BPI Accounts associated with state objects and BPI transactions for details.*
 
-[[R214]](#r214) Testability: IF an input is provided to a workstep, THEN the output of the workstep MUST represent the validation result of the input as a correct or incorrect new agreement state. AND the validation result MUST be verifiable. To verify the validation result, the output of the workstep should contain information that allows the result to be tested or confirmed using a predefined method or standard. This may involve providing a reference to the criteria or rules used for validation, or specifying the expected behavior of the new agreement state. In addition, the requirement implies that the output of the workstep should only represent the validation result of the input, and not any other information or data. Therefore, a test should ensure that the output is limited to this specific purpose and does not include any extraneous or unnecessary information. 
+[[R214]](#r214) Testability: IF an input is provided to a workstep, THEN the output of the workstep MUST represent the validation result of the input as a correct or incorrect new agreement state. AND the validation result MUST be verifiable. To verify the validation result, the output of the workstep should contain information that allows the result to be tested or confirmed using a predefined method or standard. This may involve providing a reference to the criteria or rules used for validation, or specifying the expected behavior of the new agreement state. 
 
 #### **[R215]** 
 A workstep instance MUST be associated with only one workgroup.
