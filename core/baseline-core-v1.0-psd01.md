@@ -1311,10 +1311,59 @@ A BPI Subject Account MUST NOT contain any personal identifiable information (PI
 
 *This requirement facilitates compliance with privacy laws in different jurisdictions.*
 
+[R78](#r78) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* A BPI Subject Account is created and accessible within the BPI system.
+
+Test Steps:
+
+1. Access the BPI Subject Account and inspect the stored information.
+2. Verify that no personal identifiable information (PII) is present in the BPI Subject Account.
+3. Check all fields, attributes, or properties associated with the BPI Subject Account for any signs of PII.
+4. Validate that sensitive information such as full name, date of birth, social security number, address, contact details, or any other personally identifiable information is not stored within the BPI Subject Account.
+5. Attempt to update the BPI Subject Account by entering information suspected to be PII.
+6. Verify that the system detects the suspected PII and prevents the update from being applied immediately.
+7. Confirm that the system places the update with suspected PII in a pending state for further review.
+8. Review the pending updates and ensure they are manually inspected to determine if they contain PII.
+9. If the updates do not contain PII, approve and apply the changes to the BPI Subject Account.
+10. If the updates contain PII, reject the changes and provide appropriate guidance to the user for removing or anonymizing the PII.
+11. Repeat steps 5-10 with different types of information that may be considered PII.
+
+Passing Criteria:
+
+* The BPI Subject Account does not contain any personal identifiable information (PII).
+* No sensitive information or PII is present in the fields, attributes, or properties of the BPI Subject Account.
+* The system detects and prevents the addition of PII to the BPI Subject Account.
+* Updates suspected to contain PII are placed in a pending state for manual review.
+* Updates without PII are approved and applied to the BPI Subject Account.
+
 #### **[R79]** 
 A BPI Subject Account MUST NOT be created by an external BPI Subject.
 
 *This requirement ensures that only a BPI operator can create a BPI Subject Account to avoid account creation spamming and implementation of KYC processes required in certain jurisdictions.*
+
+[R79](#r79) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* An external BPI Subject can access the BPI.
+
+Test Steps:
+
+1. Attempt to create a BPI Subject Account using the credentials of an external BPI Subject.
+2. Verify that the system prevents the creation of a BPI Subject Account by an external BPI Subject.
+3. Check for any error messages or notifications indicating that the creation of a BPI Subject Account by an external BPI Subject is not allowed.
+4. Validate that the system does not generate any records or data associated with the attempted creation of a BPI Subject Account by an external BPI Subject.
+
+Passing Criteria:
+
+* The system prohibits the creation of a BPI Subject Account by an external BPI Subject.
+* An appropriate error message or notification is displayed indicating that the creation of a BPI Subject Account by an external BPI Subject is not allowed.
+* No records or data related to the attempted creation of a BPI Subject Account by an external BPI Subject are generated.
 
 #### **[R80]** 
 A BPI Subject Account MUST have at least the following data properties:
@@ -1331,30 +1380,243 @@ A BPI Subject Account MUST have at least the following data properties:
 * *that a BPI Subject can independently recover a BPI Subject Account even if their private key was compromised, and ensure forward security ([R80.4]), and*
 * *that there is a provable relationship with BPI Accounts connected to BPI state objects connected to the BPI Subject Account owner ([R80.5]).*  
 
+[R80](#r80) Testability:
+
+Preconditions:
+
+* BPI system is operational.
+* A BPI Subject can access the BPI.
+
+Test Steps:
+
+1. Create a BPI Subject Account by providing the necessary data properties, including a unique, resolvable, and cryptographically verifiable identifier, one or more security policies, a cryptographically verifiable credential, a BPI Subject Account recovery key, and a list of related BPI Accounts.
+2. Verify that the BPI Subject Account is successfully created without any errors or notifications.
+3. Retrieve the BPI Subject Account and validate that the data properties are correctly stored and associated with the account.
+4. Perform authentication and authorization checks using the security policies associated with the BPI Subject Account, and verify that the account behaves as expected.
+5. Update the BPI Subject Account recovery key and ensure that the key is successfully changed and can only be derived by the BPI Subject owning the account.
+6. Add or remove BPI Accounts from the BPI Subject Account's list of related accounts and confirm that the changes are reflected accurately.
+7. Attempt  to create a BPI Subject Account with one or more of the required data properties missing.
+8. Verify that a BPI Subject Acount is not created and an appropriate error message is displayed.
+
+Passing Criteria:
+
+* A BPI Subject Account is created without any errors or notifications.
+* The created BPI Subject Account contains all the specified data properties, including a unique identifier, security policies, a cryptographically verifiable credential, a BPI Subject Account recovery key, and a list of related BPI Accounts.
+* The security policies associated with the BPI Subject Account are enforced correctly during authentication and authorization processes.
+* The BPI Subject Account recovery key can be updated and is only derivable by the BPI Subject owning the account.
+* The list of related BPI Accounts in the BPI Subject Account is accurately maintained and can be modified as intended.
+* A BPI Suject Account is not created if one or more of the required data properties are missing.
+
 #### **[R81]** 
-A BPI Subject Account MUST have a cryptographically verifiable audit trail from BPI Subject Account inception to its closure.
+A BPI Subject Account MUST have a cryptographically verifiable audit trail for all BPI Subject Account operations both attempted and completed.
 
 *This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions. Audit trail in the context of this document refers to the time sequenced capture of the state of a data structure within a BPI such as a BPI Subject Account from state instantiation to state deletion or archiving including all successful and unsuccessful state changes. An audit trail is said to be cryptographically verifiable if the audit trail includes auxiliary cryptographic information that allows 3rd parties to verify an audit trail as consistent. Creating a linked chain of hashes of each audit trail entry such as a Merkle proof is an example of such auxiliary cryptographic information.*
+
+[R81](#r81) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* A BPI Subject Account exists.
+* A cryptographic technique to ensure the cryptographic verifiablity of the audit trail.
+
+Test Steps:
+
+1. Perform various operations on the BPI Subject Account, such as creating, updating, and deleting account data.
+2. Retrieve the audit trail associated with the BPI Subject Account.
+3. Verify that the audit trail contains a record for each operation performed on the BPI Subject Account, including both attempted and completed operations.
+4. Validate that the audit trail records include relevant information such as the type of operation, timestamp, BPI Subject involved, and any additional details specific to the operation.
+5. Verify the integrity of the audit trail by ensuring that it is cryptographically verifiable, preventing tampering or unauthorized modifications based on the chosen cryptographic technique.
+6. Perform a simulated attempt to tamper with the audit trail and confirm that the system detects the tampering and maintains the integrity of the audit trail.
+7. Verify that the audit trail accurately reflects the sequence of operations and their outcomes, including successful and failed attempts.
+8. Test the search and retrieval functionality of the audit trail by querying specific operations and confirming that the corresponding records are returned accurately.
+
+Passing Criteria:
+
+* The BPI Subject Account supports various operations, including creation, update, and deletion of account data.
+* The audit trail associated with the BPI Subject Account contains a record for each attempted and completed operation.
+* The audit trail records include relevant information and details about the operations performed on the BPI Subject Account.
+* The audit trail is cryptographically verifiable, ensuring the integrity of the recorded operations.
+* The system detects any tampering attempts on the audit trail and maintains its integrity.
+* The audit trail accurately reflects the sequence of operations and their outcomes.
+* The search and retrieval functionality of the audit trail returns the expected records accurately.
 
 #### **[R82]** 
 A BPI Subject Account MUST be encrypted to and decrypted by a cryptographic key only known to the BPI Subject Account owner.
 
+[R82](#r82) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* A BPI Subject Account exists.
+
+Test Steps:
+
+1. Retrieve the BPI Subject Account from the BPI system.
+2. Attempt to access the encrypted data of the BPI Subject Account without the cryptographic key known only to the BPI Subject Account owner.
+3. Verify that the encrypted data cannot be decrypted or accessed without the correct cryptographic key.
+4. Obtain the cryptographic key known only to the BPI Subject Account owner.
+5. Decrypt the encrypted data of the BPI Subject Account using the cryptographic key.
+6. Validate that the decrypted data matches the expected data associated with the BPI Subject Account.
+7. Attempt to decrypt the encrypted data using an incorrect cryptographic key.
+8. Verify that the decryption fails and the data remains inaccessible.
+9. Update the encrypted data of the BPI Subject Account with new information.
+10. Ensure that the updated data is encrypted using the cryptographic key known only to the BPI Subject Account owner.
+11. Retrieve the BPI Subject Account and verify that the encrypted data has been successfully updated.
+
+Passing Criteria:
+
+* The encrypted data of the BPI Subject Account cannot be accessed or decrypted without the correct cryptographic key.
+* When the correct cryptographic key is provided, the encrypted data can be successfully decrypted and accessed.
+* Decrypting the encrypted data using an incorrect cryptographic key fails to provide access to the data.
+* The updated data of the BPI Subject Account is successfully encrypted using the cryptographic key.
+
 #### **[D19]** 
 A BPI Subject Account SHOULD be encrypted when not in active use by the BPI Subject that owns the BPI Subject Account.
+
+[D19](#d19) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* A BPI Subject Account exists.
+
+Test Steps:
+
+1. Retrieve the BPI Subject Account from the BPI system.
+2. Verify that the BPI Subject Account is correctly decrypted when it is accessed.
+3. Attempt to access the encrypted data of the BPI Subject Account when it is not in active use.
+4. Verify that the BPI Subject Account data is encrypted.
+
+Passing Criteria:
+
+* The BPI Subject Account is encrypted when not in active use by the BPI Subject.
+* The decrypted data matches the expected data associated with the BPI Subject Account.
 
 *[**[R82]**](#r82) and [**[D19]**](#d19) ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.*
 
 #### **[R83]** 
-The BPI Subject Account owner MUST be able to perform the following operations on its BPI Subject Account: read, update and delete.
+A BPI Subject Account owner MUST be able to perform the following operations on its BPI Subject Account: read, update and delete.
+
+[R83](#r83) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* A BPI Subject Account exists.
+* A BPI Subject Account is owned by the account owner.
+
+Test Steps:
+
+1. Authenticate the BPI Subject Account owner.
+2. Retrieve and read the BPI Subject Account.
+3. Verify that the retrieved BPI Subject Account contains the expected data.
+4. Update the BPI Subject Account by modifying its properties.
+5. Retrieve and read the updated BPI Subject Account.
+6. Verify that the retrieved BPI Subject Account reflects the applied updates.
+7. Delete the BPI Subject Account.
+8. Attempt to retrieve the deleted BPI Subject Account.
+9. Verify that the deleted BPI Subject Account cannot be accessed.
+
+Passing Criteria:
+
+* The BPI Subject Account owner can read and retrieve their BPI Subject Account.
+* The retrieved BPI Subject Account contains the expected data.
+* The BPI Subject Account owner can update their BPI Subject Account, and the updates are reflected in the retrieved account.
+* The BPI Subject Account owner can delete their BPI Subject Account.
+* The deleted BPI Subject Account is inaccessible and cannot be retrieved.
+
 
 #### **[R84]** 
 An internal BPI Subject MUST be able to perform the following operations on its BPI Subject Account: create, read, update and delete.
 
+[R84](#r84) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* An internal BPI Subject exists.
+
+Test Steps:
+
+1. Authenticate the internal BPI Subject.
+2. Create a new BPI Subject Account for the internal BPI Subject.
+3. Retrieve and read the BPI Subject Account.
+4. Verify that the retrieved BPI Subject Account contains the expected data.
+5. Update the BPI Subject Account by modifying its properties.
+6. Retrieve and read the updated BPI Subject Account.
+7. Verify that the retrieved BPI Subject Account reflects the applied updates.
+8. Delete the BPI Subject Account.
+9. Attempt to retrieve the deleted BPI Subject Account.
+10. Verify that the deleted BPI Subject Account cannot be accessed.
+
+Passing Criteria:
+
+1. The internal BPI Subject can create a new BPI Subject Account.
+2. The internal BPI Subject can read and retrieve its BPI Subject Account.
+3. The retrieved BPI Subject Account contains the expected data.
+4. The internal BPI Subject can update its BPI Subject Account, and the updates are reflected in the retrieved account.
+5. The internal BPI Subject can delete its BPI Subject Account.
+6. The deleted BPI Subject Account is inaccessible and cannot be retrieved.
+
 #### **[R85]** 
 An internal BPI Subject MUST be able to perform the following operations on other BPI Subject Accounts: create, read, update and delete provided that there exist one or more security policies authorizing these capabilities to said internal BPI Subject.
 
+[R85](#r85) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* There are BPI Subject Accounts existing.
+* The internal BPI Subject has the necessary authorization based on security policies to perform BPI Subject Account operations.
+
+Test Steps:
+
+1. Authenticate the internal BPI Subject aginst one of the BPI Subject Accounts for which the internal BPI Subject is authorized based on an existing security policy in said BPI Subject Account.
+2. Retrieve and read an existing BPI Subject Account.
+3. Verify that the retrieved BPI Subject Account contains the expected data.
+4. Update an existing BPI Subject Account by modifying its properties.
+5. Retrieve and read the updated BPI Subject Account.
+6. Verify that the retrieved BPI Subject Account reflects the applied updates.
+7. Delete an existing BPI Subject Account.
+8. Verify that the BPI Subject Account is successfully deleted.
+9. Attempt to retrieve the deleted BPI Subject Account.
+10. Verify that the deleted BPI Subject Account cannot be accessed.
+
+Passing Criteria:
+
+* An existing BPI Subject Account exists and can be retrieved by an internal BPI Subject with the correct authorization based on an existin security policy.
+* The internal BPI Subject can read and retrieve an existing BPI Subject Account.
+* The retrieved BPI Subject Account contains the expected data.
+* The internal BPI Subject can update an existing BPI Subject Account, and the updates are reflected in the retrieved account.
+* The internal BPI Subject can delete an existing BPI Subject Account successfully.
+* The deleted BPI Subject Account is inaccessible and cannot be retrieved.
+
 #### **[R86]** 
 A BPI Subject Account owner MUST be notified by a BPI of any changes to a BPI Subject Account or BPI Accounts associated with a BPI Subject Account.
+
+[R86](#r86) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* A BPI Subject Account exists.
+* The BPI Subject Account owner is logged in and actively using the BPI system.
+
+Test Steps:
+
+1. Perform a change to the BPI Subject Account, such as updating a property or adding/removing an associated BPI Account.
+2. Verify that the BPI Subject Account owner receives a notification regarding the change.
+3. Access the notification received by the BPI Subject Account owner.
+4. Verify that the notification contains accurate information about the change made to the BPI Subject Account or the associated BPI Accounts.
+
+Passing Criteria:
+
+* The BPI Subject Account owner is promptly notified of any changes made to the BPI Subject Account or the associated BPI Accounts.
+* The notification is successfully delivered to the BPI Subject Account owner.
+* The notification received by the BPI Subject Account owner contains accurate and relevant information about the change made.
+* The BPI Subject Account owner can access and view the notification without any issues.
 
 ## 5.3 BPI Service Orchestration
 
