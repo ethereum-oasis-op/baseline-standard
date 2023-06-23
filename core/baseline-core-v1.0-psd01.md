@@ -6043,7 +6043,7 @@ External authoritative data means that the input data to a BPI workstep is held 
 #### **[R315]** 
 BPI Subjects participating in a workstep MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
 
-[[R315]](#r15) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be bdining. And since [[R6]](#r6) is testable, [[R315]](#r15) is testable.
+[[R315]](#r15) Testability: An agreement on authoritative data sources will be embedded in a commercial document electronically represented on a BPI as required by [[R6]](#r6) to be bindining. And since [[R6]](#r6) is testable, [[R315]](#r15) is testable.
 
 
 ## 8.3 External Non-authoritative, Non-deterministic Data for BPIs
