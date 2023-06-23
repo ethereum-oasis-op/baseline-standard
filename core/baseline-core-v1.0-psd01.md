@@ -2662,7 +2662,7 @@ Preconditions:
 
 * A BPI test instance is set up and running with at least one workstep.
 * A BPI workstep with an output that can be used to generate a zero-knowledge proof.
-* A prover system that can generate a zero-knowledge proof of correctness for the output is of size N.
+* A prover system that can generate a zero-knowledge proof of correctness for the output of size N.
 * The size N is given by the size of the circuit used to generate the proof in terms of number of circuit constraint equations.
 * A verifier system that can verify the zero-knowledge proof.
 
