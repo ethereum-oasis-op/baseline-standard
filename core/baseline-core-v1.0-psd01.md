@@ -4740,7 +4740,7 @@ Preconditions:
 Test Steps:
 
 1. Submit a  test transaction.
-2. Verify that the transaction is correctly executed and the resulting proof, state object and history and integrity data is stored in the storage capability
+2. Verify that the transaction is correctly executed and the resulting proof, state object, and history and integrity data are stored in the storage capability
 3. Retrieve the stored data from the storage capability.
 4. Validate that the retrieved data matches the expected data.
 5. Attempt to modify the stored data.
