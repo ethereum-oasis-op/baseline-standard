@@ -4557,7 +4557,7 @@ Test Steps:
 
 Passing Criteria:
 
-* For each test transactions and associated state transition, a Proof-of-Correctness is successfully generated using the VSM.
+* For each test transaction and associated state transition, a Proof-of-Correctness is successfully generated using the VSM.
 * The CCSM Abstraction Layer receives the Proof-of-Correctness message for each transaction.
 * Each Proof-of-Correctness message contains the necessary information for subsequent commitment to the CCSM.
 * The CCSM Abstraction Layer successfully commits each Proof-of-Correctness to the CCSM.
