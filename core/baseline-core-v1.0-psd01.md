@@ -2954,7 +2954,7 @@ Test Steps:
 Test Passing Criteria:
 
 * The generated zero-knowledge proof of the Output Pledge is non-interactive.
-* The generated zero-knoweldge proof of the Output Pledge is succinct.
+* The generated zero-knowledge proof of the Output Pledge is succinct.
 
 #### **[CR21]<[O3]** 
 An Output Pledge MUST be committed to the CCSM utilized by the BPI (Liveness).
