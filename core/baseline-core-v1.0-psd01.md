@@ -2703,7 +2703,7 @@ Test Steps:
 
 Test Passing Criteria:
 
-* The test will pass if the zero-knowledge proof of correctness for the workstep output can be verified by the verifier system in a number of computational step at most proportional to the size of the prover system that generated the proof.
+* The test will pass if the zero-knowledge proof of correctness for the workstep output can be verified by the verifier system in a number of computational steps at most proportional to the size of the prover system that generated the proof.
 
 #### **[D27]** 
 The zero-knowledge proof of correctness of a workstep output SHOULD be efficient.
