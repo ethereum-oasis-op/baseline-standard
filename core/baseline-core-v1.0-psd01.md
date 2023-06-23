@@ -4229,7 +4229,7 @@ Preconditions:
 
 Test Steps:
 
-1. One BPI workstep participants proposes one of the available validation method for the external non-authoritative, non-deterministic input data to be used in the test workstep.
+1. One BPI workstep participant proposes one of the available validation methods for the external non-authoritative, non-deterministic input data to be used in the test workstep.
 2. Each BPI workstep participant either accepts or rejetcs the proposal. 
 3. Once the validation method is agreed upon, it is recorded in the BPI.
 
