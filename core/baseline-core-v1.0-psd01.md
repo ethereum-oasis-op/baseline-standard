@@ -2835,7 +2835,7 @@ Test Steps:
 Test Passing Criteria: The test is considered passing if all of the following criteria are met,
 
 * The CCSM utilized by the BPI is able to verify the cryptographic proof of correctness of the BPI state transition.
-* The test has been repeated for multiple workstep outputs stored on the CCSM utilized by the BPI, at random points in time during the testiing period, and all verifications are successful.
+* The test has been repeated for multiple workstep outputs stored on the CCSM utilized by the BPI, at random points in time during the testing period, and all verifications are successful.
 
 #### **[D30]** 
 A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output and stored on the CCSM SHOULD be succinct.
