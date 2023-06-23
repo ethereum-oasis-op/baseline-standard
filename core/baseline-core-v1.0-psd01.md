@@ -4713,7 +4713,7 @@ Test Steps:
 Passing Criteria:
 
 * The transactions are executed on each node 
-* The transactions tha are executed on each node produce the same result.
+* The transactions that are executed on each node produce the same result.
 
 The last capability relevant for the transaction lifecycle management in the BPI processing layer that needs to be specified is the Storage capability.
 
