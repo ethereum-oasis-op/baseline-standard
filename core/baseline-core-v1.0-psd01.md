@@ -2389,7 +2389,7 @@ Test Steps:
 2. Attempt to update the workstep with new information.
 3. Save the changes to the workstep.
 4. Access the workstep in the BPI system again.
-5. Verify that the new workstep information displays correctly
+5. Verify that the new workstep information is displayed correctly
 
 Test Passing Criteria:
 
