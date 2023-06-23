@@ -2953,7 +2953,7 @@ Test Steps:
 
 Test Passing Criteria:
 
-* The generated zero-knoweldge proof of the Output Pledge is non-interactive.
+* The generated zero-knowledge proof of the Output Pledge is non-interactive.
 * The generated zero-knoweldge proof of the Output Pledge is succinct.
 
 #### **[CR21]<[O3]** 
