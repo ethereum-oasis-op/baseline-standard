@@ -4139,7 +4139,7 @@ Test Steps:
 5. If the quorum of BPI subject is not reached, the BPI system does not record the agreement and prompts the subjects to discuss and resolve the disagreement.
 6. Once the agreement has been reached, the BPI system records the agreement and uses the external authoritative data as the input source for the workstep.
 7. Start the BPI workstep that requires external authoritative data as input.
-8. Complete the workstep using the agreed upon external authoritative data.
+8. Complete the workstep using the agreed-upon external authoritative data.
 9. Verify that the workstep was successfully completed using the agreed upon external authoritative data.
 
 Test Passing Criteria: The test is considered passing if,
