@@ -4267,7 +4267,7 @@ Test Passing Criteria:
 
 * The validation result is recorded and indicates that the validation criteria for the external non-authoritative, non-deterministic input data have been met.
 * The recorded validation criteria and input data are consistent with the agreed-upon validation method for the test workstep.
-* The retrieved validation criteria and input data agree with the original validation criteria and input data and that the agreed-upon validation criteria applied to the inout data matches the retireved validation result. 
+* The retrieved validation criteria and input data agree with the original validation criteria and input data and the agreed-upon validation criteria applied to the input data match the retired validation result. 
 
 ### 8.3.2 External Non-authoritative, non-deterministic BPI Input Data Variance
 
