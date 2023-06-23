@@ -2494,7 +2494,7 @@ The input of a workstep instance MUST be submitted by an authorized member of th
 Preconditions:
 
 * A BPI test instance is set up and running.
-* A workgroup and its members is set up in the BPI. 
+* A workgroup and its members are set up in the BPI. 
 * The workgroup is attached to a workstep instance in the BPI.
 * The workgroup's security policy defining workgroup member authorizations are defined in the BPI system.
 
