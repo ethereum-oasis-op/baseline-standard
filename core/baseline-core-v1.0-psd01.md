@@ -4111,7 +4111,7 @@ Test Passing Criteria:
 
 ###### extauthbpidata
 
-External authoritative data means that the input data to a BPI workstep is held in some authoritative 3rd party database, such as government records. Unlike internal authoritative data where there is only one source, external authoritative data input to a BPI workstep may have multiple sources.
+External authoritative data means that the input data to a BPI workstep is held in some authoritative 3rd party data store, such as government records in a centralized database. Unlike internal authoritative data where there is only one version, external authoritative data input to a BPI workstep may have multiple versions each coming from a different source such as pricing data of a commodity.
 
 #### **[R315]** 
 BPI Subjects participating in a workstep MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
