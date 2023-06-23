@@ -2681,7 +2681,7 @@ Test Passing Criteria:
 #### **[D26]** 
 The zero-knowledge proof of correctness of a workstep output SHOULD be succinct.
 
-*A zero-knowledge proof is said to succinct is the proof is smaller than the size of the circuit, the poly-logarithm to be precise, used to generate the proof.* 
+*A zero-knowledge proof is said to be succinct if the proof is smaller than the size of the circuit, the poly-logarithm to be precise, used to generate the proof.* 
 
 [[D26]](#d26) Testability:
 
