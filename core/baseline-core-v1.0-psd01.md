@@ -4147,7 +4147,7 @@ Test Passing Criteria: The test is considered passing if,
 * The BPI system successfully initiates the agreement process among the BPI subjects.
 * The specified quorum of BPI subjects agree upon the source and type of the external authoritative data.
     * The BPI system records the agreement and uses the agreed upon external authoritative data as the input source for the workstep.
-    * The workstep is successfully completed using the agreed upon external authoritative data.
+    * The workstep is successfully completed using the agreed-upon external authoritative data.
 * The BPI system responds as conifgured if the specified quorum of BPI subjects on the source and type of the external authoritative data is not reached.
 
 ## 8.3 External Non-authoritative, Non-deterministic Data for BPIs
