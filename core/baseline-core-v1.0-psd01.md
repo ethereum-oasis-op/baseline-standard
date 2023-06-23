@@ -4128,7 +4128,7 @@ Preconditions:
 * The agreed-upon input data source is configured with a test data set.
 * An agreement quorum has been defined and configured in the test BPI.
 * The test BPI response, if a quorum by the participants is reached, is configured.
-* The test BPI response if a quorum by the participants is not reached is configured. 
+* The test BPI response, if a quorum by the participants is not reached, is configured. 
 
 Test Steps:
 
