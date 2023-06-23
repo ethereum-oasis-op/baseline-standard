@@ -4124,7 +4124,7 @@ Preconditions:
 * The test workgroup is associated with only one test workstep.
 * There exists an external system identified as the single source for the input data.
 * A test workstep has been created that requires external authoritative input data from a single source.
-* The test workstep accepts input data only from the agreed upon data source for a given data schema.
+* The test workstep accepts input data only from the agreed-upon data source for a given data schema.
 * The agreed-upon input data source is configured with a test data set.
 * An agreement quorum has been defined and configured in the test BPI.
 * The test BPI response if a quorum by the participants is reached is configured.
