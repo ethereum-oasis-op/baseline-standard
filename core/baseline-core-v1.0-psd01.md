@@ -2358,7 +2358,7 @@ A workstep MUST have a unique identifier within a BPI.
 Preconditions:
 
 * A BPI test instance is set up and operational.
-* There are at least two worksteps set-up within the BPI.
+* There are at least two worksteps set up within the BPI.
 
 Test steps:
 
