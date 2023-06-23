@@ -4127,7 +4127,7 @@ Preconditions:
 * The test workstep accepts input data only from the agreed-upon data source for a given data schema.
 * The agreed-upon input data source is configured with a test data set.
 * An agreement quorum has been defined and configured in the test BPI.
-* The test BPI response if a quorum by the participants is reached is configured.
+* The test BPI response, if a quorum by the participants is reached, is configured.
 * The test BPI response if a quorum by the participants is not reached is configured. 
 
 Test Steps:
