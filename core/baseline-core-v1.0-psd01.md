@@ -2885,7 +2885,7 @@ A cryptographic proof of correctness of a BPI state transition used in a commerc
 [[CR16]<[O3]](#cr16o3) Testability: The same test as in [[D26]](#d26) Testability may be used.
 
 #### **[CR17]<[O3]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep outputn MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
 
 *The zero-knowledge proof of correctness can be a cryptographic aggregator of proofs of workstep input correctness that would allow multiple proofs to be represented and provable within one proof.*
 
