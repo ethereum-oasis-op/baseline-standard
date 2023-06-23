@@ -2363,7 +2363,7 @@ Preconditions:
 Test steps:
 
 1. Retrieve the list of worksteps within the BPI.
-2. For each workstep in the list, validate that the workstep identifiers are not duplicate.
+2. For each workstep in the list, validate that the workstep identifiers are not duplicates.
 3. Create a new workstep within the BPI and verify that its identifier does not exist in the list of other workstep identifiers.
 4. Attempt to create a new workstep within the BPI with the same identifier as an existing workstep and verify that it is rejected.
 
