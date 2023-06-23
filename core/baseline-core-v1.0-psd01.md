@@ -4065,7 +4065,7 @@ Preconditions:
 * There is a given set of test BPI Subjects that are part of a test workgroup.
 * The test BPI participants in a workgroup have agreed to allow internal authoritative input data to a BPI workstep only from a single, specific data source.
 * The test workgroup is associated with only one test workstep.
-* The test workstep accepts only input data from the agreed upon data source for a given data schema.
+* The test workstep accepts only input data from the agreed-upon data source for a given data schema.
 * The agreed-upon input data source is configured with a test data set.
 * Another, second input data source is configured with the same test data set as the agreed-upon data source. 
 
