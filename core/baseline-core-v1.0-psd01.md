@@ -2840,7 +2840,7 @@ Test Passing Criteria: The test is considered passing if all of the following cr
 #### **[D30]** 
 A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output and stored on the CCSM SHOULD be succinct.
 
-[[D30]](#d30) Testability: The same test as for [[D26]](#d26) can be used for [[D30]](#d30) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characterisitcs as in used in [[D26]](#d26).
+[[D30]](#d30) Testability: The same test as for [[D26]](#d26) can be used for [[D30]](#d30) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characteristics as in used in [[D26]](#d26).
 
 #### **[D31]** 
 A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM SHOULD be efficient.
