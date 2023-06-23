@@ -2500,7 +2500,7 @@ Preconditions:
 
 Test Steps:
 
-1 An unauthorized member of the workgroup tries to submit an input to the workstep instance.
+1 An unauthorized member of the workgroup tries to submit input to the workstep instance.
 2. Verify that the BPI system rejects the input submission and displays an error message.
 3. An authorized member of the workgroup submits the input of the workstep instance.
 4. Verify that the BPI system accepts the input submission and executes the workstep instance.
