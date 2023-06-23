@@ -4261,7 +4261,7 @@ Test Steps:
 2. Validate the external non-authoritative, non-deterministic input data against the agreed-upon validation criteria in the test workstep.
 3. Record the validation result along with the validation criteria and input data.
 4. Retrieve the validation result along with the validation criteria and input data
-5. Validate that retrieved validation criteria and input data agree with the original validation criteria and input data and that the agreed-upon validation criteria applied to the inout data matches the retireved validation result.
+5. Validate that retrieved validation criteria and input data agree with the original validation criteria and input data and that the agreed-upon validation criteria applied to the input data match the retrieved validation result.
 
 Test Passing Criteria:
 
