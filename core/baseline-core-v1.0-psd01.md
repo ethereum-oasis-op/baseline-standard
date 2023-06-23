@@ -3097,7 +3097,7 @@ Test Steps:
 Test Passing Criteria:
 
 * All verifications in step 6 pass, indicating that the prover system in the workflow is the same for all worksteps.
-* If any verification in step 6 fails, the test fails and the specific combination of worksteps and verification result are recorded for further investigation.
+* If any verification in step 6 fails, the test fails and the specific combination of worksteps and verification results are recorded for further investigation.
 
 #### **[R233]** 
 A workflow with more than one workstep MUST have a unique identifier within a BPI. 
@@ -3116,7 +3116,7 @@ Test steps:
 3. Verify that each identifier is unique within the BPI.
 4. Repeat steps 2 and 3 for all workflows in the BPI.
 5. Verify that there are no duplicate identifiers within the BPI.
-6. Attempt to change the identifier of one workflow to the be the same as the identifier of another workflow.
+6. Attempt to change the identifier of one workflow to be the same as the identifier of another workflow.
 7. Verify that the BPI does not allow this change and generates and appropriate error message. 
 
 
@@ -3453,7 +3453,7 @@ Test Steps:
 1. Create a new account in the BPI system.
 2. Associate the account with a BPI subject.
 3. Verify that the account is successfully associated with the BPI subject.
-4. Associate the account with the another BPI subject as in Step 2.
+4. Associate the account with another BPI subject as in Step 2.
 5. Verify that the account is successfully associated with the second BPI subject.
 6. Attempt to associate an account with a non-existent BPI subject.
 7. Verify that the system throws an error message indicating that the BPI subject does not exist.
@@ -3596,7 +3596,7 @@ Test Passing Criteria:
 * Step 11 should verify that the transaction request is authorized only when the required number of account owners have provided their authorization.
 
 #### **[R245]** 
-Account ownership authemtication and account authorization conditions MUST be cryptographically provable.
+Account ownership authentication and account authorization conditions MUST be cryptographically provable.
 
 *This may be achieved through for example a cryptographic digital signature.*
 
@@ -3606,13 +3606,13 @@ Preconditions:
 
 * A BPI test system is set up and running with one or more BPI Subjects and BPI Subject Accounts.
 * One or more accounts exist.
-* The BPI supports cryptographic alogrithms.
+* The BPI supports cryptographic algorithms.
 
 Test Steps:
 
 1. Log in to the BPI using the BPI Subject account.
 2. Create an account, add BPI Subject as an owner, and create an account ownership authentication condition (e.g., a digital signature) for the account as a security policy.
-3. Verify that the authentication condition is cryptographically provable by checking that the new account owner can be verified using the appropriate cryptographic algorithm and the BPI Subjects's public key when accessing the account.
+3. Verify that the authentication condition is cryptographically provable by checking that the new account owner can be verified using the appropriate cryptographic algorithm and the BPI Subjects' public key when accessing the account.
 4. Create an account authorization condition (e.g., an m-of-n signature condition) for the account.
 5. Verify that the authorization condition is cryptographically provable by checking that it can be verified using the appropriate cryptographic algorithm and the public keys of the authorized BPI Subjects as owners by having one owner submit a BPI transaction.
 6. Verify that the BPI checks the authentication and authorization conditions and allows the transaction only if they are valid.
@@ -3639,17 +3639,17 @@ Preconditions:
 Test Steps:
 
 1. Retrieve the initial nonce value of the account.
-2. Perform an action that triggers a nonce update, such as initiating a transactions.
+2. Perform an action that triggers a nonce update, such as initiating a transaction.
 3. Retrieve the updated nonce value of the account.
 4. Repeat steps 2-3 multiple times, performing the same action each time.
 5. Verify that the updated nonce values obtained in step 3 are unique and different from the initial nonce value and each other.
-6. Verify that the nonce values used in step 4 can be indepedently recalcuated using the nonce implementation in the BPI.
+6. Verify that the nonce values used in step 4 can be independently recalculated using the nonce implementation in the BPI.
 
 Test Passing Criteria:
 
 * The initial nonce value is retrieved successfully.
 * The updated nonce values obtained after performing the same action multiple times (steps 3-5) are unique and different from the initial nonce value, and each other.
-* The updated nonce values from step 4. can be indepedently recalcuated using the nonce implementation in the BPI.
+* The updated nonce values from step 4. can be independently recalculated using the nonce implementation in the BPI.
 
 #### **[D35]** 
 An account SHOULD have one or more units of value-accounting balances.
@@ -3690,7 +3690,7 @@ can later open the commitment at specific positions (e.g., prove that m<sub>i</s
 Preconditions:
 
 * An account with an account state exists on a BPI test system.
-* The chose vector commitment scheme for the account state is a Merkle tree implementation.
+* The chosen vector commitment scheme for the account state is a Merkle tree implementation.
 * The initial account state is set up.
 
 Test Steps:
@@ -3707,7 +3707,7 @@ Test Steps:
 
 Passing Criteria: 
 
-* If the Merkle root hashes in in step 7. match the test succeeds, otherwise it fails.
+* If the Merkle root hashes in step 7. match the test succeeds, otherwise, it fails.
 
 #### **[R248]** 
 Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
@@ -3717,7 +3717,7 @@ Account properties consisting of more than one element MUST be represented by th
 Preconditions:
 
 * An account with an account state exists on a BPI test system.
-* The chose vector commitment scheme for the account state is a Merkle tree implementation.
+* The chosen vector commitment scheme for the account state is a Merkle tree implementation.
 * The initial account state is set up.
 * One account property is an object consisting of multiple elements.
 
@@ -3735,7 +3735,7 @@ Test Steps:
 
 Passing Criteria: 
 
-* If the Merkle root hashes in in step 8. match the test succeeds, otherwise it fails.
+* If the Merkle root hashes in step 8. match the test succeeds, otherwise it fails.
 
 *[R247] and [R248] ensure the structural integrity and cryptographic verifiability of the account at all times.*
 
@@ -3749,10 +3749,10 @@ The history of the state of an account MUST be represented by a cryptographic ve
 Preconditions:
 
 * An account with an account state exists on a BPI test system.
-* The chose vector commitment scheme for the account state is a Merkle tree implementation.
+* The chosen vector commitment scheme for the account state is a Merkle tree implementation.
 * The initial account state is set up.
 * The history of the above account exists on the same BPI test system.
-* The chose vector commitment scheme for the account state history is a Sparse Merkle tree implementation of the Merkle root hashes of the account state.
+* The chosen vector commitment scheme for the account state history is a Sparse Merkle tree implementation of the Merkle root hashes of the account state.
 * The initial account state history is set up.
 * The BPI test system can generate a Merkle Proof of Set Membership
 
@@ -3770,7 +3770,7 @@ Test Steps:
 
 Passing Criteria: 
 
-* If the Merkle proof successfully verifies, the test suceeds, otherwise it fails.
+* If the Merkle proof successfully verifies, the test succeeds, otherwise it fails.
 
 #### **[R250]** 
 The state of an account MUST be minimally comprised of the following elements:
@@ -4177,7 +4177,7 @@ The figure below showcases at a high level the flow of a transaction through a B
 <figure>
   <img
   src="./images/Baseline-Fig-6.2-High-Level Baseline-Transaction-Lifecycle.png"
-      alt="The figure shows a BPI transaction lifecycle: A transaction is prepared and submitted by an external application and flows through the different layers of the BPI stack -- in order, BPI Abstraction Layer, Middleware Layer, Processing Layer, CCSM Abstraction Layer, and CCSM Layer -- and interacts with the components of each layer. After the transaction has been finalized on the CCSM layer, the figure shows how the result of this submitted tranaction is again received by the external application after it reverse travsersed the layers of the BPI stack and interacted with the relevant components in each layer as required."
+      alt="The figure shows a BPI transaction lifecycle: A transaction is prepared and submitted by an external application and flows through the different layers of the BPI stack -- in order, BPI Abstraction Layer, Middleware Layer, Processing Layer, CCSM Abstraction Layer, and CCSM Layer -- and interacts with the components of each layer. After the transaction has been finalized on the CCSM layer, the figure shows how the result of this submitted transaction is again received by the external application after it reverse traversed the layers of the BPI stack and interacted with the relevant components in each layer as required."
   >
   <figcaption>Figure 10: High Level Transaction Lifecycle Flow through the BPI</figcaption>
 </figure>
@@ -4290,7 +4290,7 @@ Passing Criteria:
 * The batch of transactions is correctly forwarded to the Virtual State Machine for processing.
 
 #### **[R265]** 
-A Transaction Pool MUST process an invalid transaction by assigning the transaction an error code and an easily human readable error message and issuing a message minimally consisting of the tuple `(Sender Account, Error Code, Error Message, Transaction)` to the Messaging Capability of the BPI to inform the sender of the transaction failure and its reason.
+A Transaction Pool MUST process an invalid transaction by assigning the transaction an error code and an easily human-readable error message and issuing a message minimally consisting of the tuple `(Sender Account, Error Code, Error Message, Transaction)` to the Messaging Capability of the BPI to inform the sender of the transaction failure and its reason.
 
 [[R265]](#r265) Testability:
 
@@ -4315,7 +4315,7 @@ Passing Criteria:
 
 In the following, this document will discuss the requirements on the Virtual State Machine of the BPI Processing Layer.
 
-Since BPIs are used to verify the correctness of state transitions (see step (6) in Fig. 10 above), BPIs will utilize a Virtual State Machine (VSM) for its computations to validate state transitions of state objects; a digital computer running on a physical computer. A VSM requires an architecture and execution rules which together define the Execution Framework.
+Since BPIs are used to verify the correctness of state transitions (see step (6) in Fig. 10 above), BPIs will utilize a Virtual State Machine (VSM) for its computations to validate state transitions of state objects; a digital computer running on a physical computer. A VSM requires architecture and execution rules which together define the Execution Framework.
 
 #### **[R266]**	
 The Execution Framework of a VSM MUST be deterministic.
@@ -4389,7 +4389,7 @@ Preconditions:
 Test Steps:
 
 1. Transform the simple document into a Merkle tree and digitally sign the Merkle Tree root hash, and generate the Merkle Proofs for each document element as a leaf in the Merkle tree.
-2. Submit the data as public and private input data to the zero-knowledge prover service of the VSM for one of the zero-knoweldge prover systems supported by the service such as PLONK, FRI or Groth16. This tests the cryptographic primitives used in the circuit arithmetization and commitment schemes utilized such as a Kate commitment scheme
+2. Submit the data as public and private input data to the zero-knowledge prover service of the VSM for one of the zero-knowledge prover systems supported by the service such as PLONK, FRI, or Groth16. This tests the cryptographic primitives used in the circuit arithmetization and commitment schemes utilized such as a Kate commitment scheme
 3. Submit the zero-knowledge proof received from the VSM to the zero-knowledge verifier service of the VSM.
 4. Verify that the zero-knowledge proof is correct.
 
@@ -4401,7 +4401,7 @@ Passing Criteria:
 #### **[D37]**	
 The Execution Framework of a VSM SHOULD have a mathematical proof of correctness and security.
 
-[[D37]](#d37) Testability: There is a peer-reviewed academic paper that proofs the mathematical correctness and security of the utilized VSM given certain security assumptions such as the hardness of the Diffie-Hellman Discrete Logarithm and framework such as the universal composability framework.
+[[D37]](#d37) Testability: There is a peer-reviewed academic paper that proves the mathematical correctness and security of the utilized VSM given certain security assumptions such as the hardness of the Diffie-Hellman Discrete Logarithm and framework such as the universal composability framework.
 
 #### **[D38]**	
 The Execution Framework of a VSM SHOULD be Verifiably Secure. 
@@ -4415,7 +4415,7 @@ Preconditions:
 * A mechanism to verify the correctness of a computation offloaded from the main VSM to another VSM client within the Execution Framework is implemented in the Execution Framework.
 * A protocol or mechanism for other clients to evaluate the function and return the result with a proof of correct computation is implemented.
 * A proof of correct execution provided by a VSM client can be independently verified within the main VSM of the Execution Framework.
-* A security analysis of the Execution Framework, focusing on the verifiably secure mechanism and the assumptions used in the proof of computation has been completed and any findings remediated including an assessment of the validity of the security assumptions used in the proof andtheir impact on the overall security of the Execution Framework, and an evaluation of the resilience of the Execution Framework against potential attacks or attempts to manipulate the computation results or the verifiable proof.
+* A security analysis of the Execution Framework, focusing on the verifiably secure mechanism and the assumptions used in the proof of computation has been completed and any findings remediated including an assessment of the validity of the security assumptions used in the proof and their impact on the overall security of the Execution Framework, and an evaluation of the resilience of the Execution Framework against potential attacks or attempts to manipulate the computation results or the verifiable proof.
 * A thorough review of the mathematical proofs and algorithms used in the Execution Framework, ensuring their correctness and reliability has been completed.
 
 Test Steps:
@@ -4447,8 +4447,8 @@ Test Steps:
 2. Submit the transaction to the BPI VSM via the workstep for processing.
 3. Verify that the VSM generates a Proof-of-Correctness for the transaction.
 4. Check if the VSM updated the state object associated with the account associated with the workstep.
-5. Check id the VSM updated the state history of the targeted state object based on the transaction data.
-6. Validate that the updated state object and the state history of the state object equal the previosuly generated representation of the state object and its history (initial state object value.
+5. Check if the VSM updated the state history of the targeted state object based on the transaction data.
+6. Validate that the updated state object and the state history of the state object equal the previously generated representation of the state object and its history (initial state object value.
 
 Passing Criteria:
 
@@ -4478,7 +4478,7 @@ Test Steps:
 
 Passing Criteria:
 
-* Multiple transactions are sucessfully submitted to and performed on the BPI system.
+* Multiple transactions are successfully submitted to and performed on the BPI system.
 * The VSM successfully generates proofs for each transaction.
 * The VSM stores the generated proofs, state objects, associated data, and their histories in the Storage capability.
 * The stored proofs, state objects, associated data, and their histories can be retrieved from the Storage capability.
@@ -4492,14 +4492,14 @@ The integrity of proofs, transactions, state objects, and their data and histori
 Preconditions:
 
 * A BPI test system with the necessary components, including accounts, proofs, transactions, state objects, and their data and histories is operational.
-* A cryptographic verification mechanisms with tooling to test integrity such as a Merkle Tree is properly configured and accessible to the account owners.
+* A cryptographic verification mechanism with tooling to test integrity such as a Merkle Tree is properly configured and accessible to the account owners.
 * One or more test transactions for the BPI.
 
 Test Steps:
 
 1. Generate a proof for a transaction on the BPI system.
 2. Verify that the proof, along with the associated transaction, state object, and their data and histories, can be accessed by the respective account owners.
-3. Using the chosen verfication mathod, cryptographically verify the integrity of the proof, transaction, state object, and their data and histories using the available tooling for the chosen verification method.
+3. Using the chosen verification method, cryptographically verify the integrity of the proof, transaction, state object, and their data and histories using the available tooling for the chosen verification method.
 4. Confirm that the account owners are able to successfully verify the integrity of the aforementioned components.
 
 Passing Criteria:
@@ -4517,7 +4517,7 @@ Preconditions:
 
 * A BPI test system with the necessary components, including agreement states, associated accounts, and the Message capability in the BPI Middleware layer.
 * All counterparties to a test agreement are registered as BPI Subjects in the test BPI and connected to the BPI Message capability.
-* There is one or more test transactions operating on the agreement state using a VSM.
+* There are one or more test transactions operating on the agreement state using a VSM.
 
 Test Steps:
 
@@ -4529,7 +4529,7 @@ Test Steps:
 Passing Criteria:
 
 * A successful update is made to an agreement state and its associated accounts using the VSM.
-* The update is successfully by the Message capability.
+* The update is successfully executed by the Message capability.
 * The message contains the necessary information about the update.
 * All agreement counterparties receive the message.
 
