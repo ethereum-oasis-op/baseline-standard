@@ -4580,7 +4580,7 @@ Test Steps:
 
 1. Verify that the BPI system has been configured with multiple processing nodes.
 2. Submit a transaction to the BPI system.
-3. Confirm that the transaction is distributed and processed across the multiple processing nodes.
+3. Confirm that the transaction is distributed and processed across multiple processing nodes.
 4. Validate that at least one processing node executed the transaction.
 
 Passing Criteria:
