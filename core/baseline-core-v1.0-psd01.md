@@ -2923,7 +2923,7 @@ Test Steps:
 5. Create an output pledge by including the BPI workstep output and a resolvable identifier of the commercial value-creation in a commitment stating that the output is pledged in a commercial value-creation event.
 3. Verify that the output pledge is stored on the CCSM utilized by the BPI.
 4. Attempt to use the output pledge in another commercial value-creation/exchange event.
-5. Verify that the attempt to use the output pledge in another commercial value-creation/exchange event fails because the commercial value-creation event verification that the cryptographic proof of correctness of a BPI state transition included in the valu-creation event is not included in the Output Pledge on the BPIs CCSM fails.
+5. Verify that the attempt to use the output pledge in another commercial value-creation/exchange event fails because the commercial value-creation event verification that the cryptographic proof of correctness of a BPI state transition included in the value-creation event is not included in the Output Pledge on the BPIs CCSM fails.
 6. Verify that the output pledge is used in the commercial value-creation/exchange event in which it was committed.
 7. Verify that the output pledge can be revoked by removing it from the commitment system on the CCSM utilized by the BPI.
 
