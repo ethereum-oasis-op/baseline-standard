@@ -2845,7 +2845,7 @@ A cryptographic proof of correctness of a BPI state transition as expressed by a
 #### **[D31]** 
 A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM SHOULD be efficient.
 
-[[D31]](#d31) Testability: The same test as for [[D27]](#d27) can be used for [[D31]](#d31) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characterisitcs as in used in [[D27]](#d27).
+[[D31]](#d31) Testability: The same test as for [[D27]](#d27) can be used for [[D31]](#d31) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characteristics as in used in [[D27]](#d27).
 
 #### **[D32]** 
 A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM SHOULD be based on modular constructions.
