@@ -1365,47 +1365,294 @@ BPI service orchestration is intended to operate in a business environment with 
 #### **[R87]** 
 BPI service orchestration utilized in a BPI MUST be able to identify the actions to be completed by services based on message context and content, and successfully orchestrate the desired action.
 
+[R87](#r87) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* BPI services and their corresponding actions are properly configured and available.
+
+Test Steps:
+
+1. Send a message with a specific context and content to the BPI service orchestration.
+2. Verify that the BPI service orchestration correctly identifies the actions to be completed based on the message context and content.
+3. Confirm that the identified actions align with the desired actions for the given message.
+4. Execute the identified actions through the BPI service orchestration.
+5. Validate that the desired actions are successfully orchestrated by the BPI service orchestration.
+6. Verify that any required services are invoked and perform the necessary operations based on the message context and content.
+
+Passing Criteria:
+
+* The BPI service orchestration accurately identifies the actions to be completed based on the message context and content.
+* The identified actions align with the desired actions for the given message.
+* The BPI service orchestration successfully orchestrates the desired actions.
+* All required services are invoked and perform the necessary operations based on the message context and content.
+* The overall execution of the BPI service orchestration completes without any errors or exceptions.
+* The expected outcome or result of the orchestrated actions is achieved.
+
 #### **[R88]** 
 BPI service orchestration utilized in a BPI MUST NOT introduce additional points of failure.
 
 In the context of this document, a point of failure is defined as any non-redundant part of a BPI that, if not operational, would cause a BPI to fail.
+
+[R88](#r88) Testability:
+
+Preconditions:
+
+* A BPI system is operational.
+* The BPI service orchestration is properly configured and deployed.
+* One or more sets of BPI test transactions. 
+
+Test Steps:
+
+1. Execute a set of BPI test transactions.
+2. Monitor the behavior of the BPI service orchestration during the execution of each test transaction.
+3. Verify that the BPI service orchestration behaves as expected for test transaction.
+4. Simulate potential failure scenarios by deliberately disabling or interrupting specific components or services in the BPI.
+5. Verify that the BPI service orchestration properly handles the failures and gracefully recovers without causing a complete BPI failure.
+6. Simulate potential failure scenarios by deliberately disabling or interrupting the BPI service orchestration in the BPI.
+7. Verify that BPI service orchestration failure is discvered and thet its built-in redundancies are successfully executed. 
+8. Monitor the overall stability and resilience of the BPI system during the failure scenarios.
+
+Passing Criteria:
+
+* The BPI service orchestration successfully coordinates the required services and operations during normal operations.
+* All critical components and services of the BPI continue to operate as expected throughout the test execution.
+* The BPI service orchestration demonstrates resilience and fault tolerance by handling potential failure scenarios without causing a complete BPI failure of other BPI system components.
+* The BPI service orchestration demonstrates resilience and fault tolerance by handling potential failure scenarios without causing a complete BPI failure of the BPI service orchestration component.
+* The BPI system maintains its overall stability and functionality even in the presence of failures or disruptions.
+* No single non-redundant part of the BPI, including the BPI service orchestration, is identified as a point of failure during the test.
 
 #### **[R89]** 
 BPI service orchestration utilized in a BPI MUST have source consistency preservation.
 
 *This means that the content of a message/service request cannot be altered after it has been created by the BPI service orchestration capability.* 
 
+[R89](#r89) Testability:
+
+Preconditions:
+* A BPI system is operational.
+* The BPI service orchestration capability is properly configured and deployed.
+
+Test Steps:
+1. Send a service request to the BPI service orchestration capability.
+2. Capture the content of the service request before it is processed by the BPI service orchestration.
+3. Verify that the content of the service request remains unchanged throughout the processing by the BPI service orchestration.
+4. Monitor the BPI service orchestration to ensure that it does not alter the content of the service request during any stage of processing.
+5. Repeat steps 1-4 with multiple service requests, covering different scenarios and message types.
+6. Perform a comparison between the original content of the service requests and the content received after processing by the BPI service orchestration.
+7. Validate that there are no differences or alterations in the content of the service requests.
+
+Passing Criteria:
+* The content of the service requests remains unchanged throughout the processing by the BPI service orchestration.
+* The BPI service orchestration does not introduce any modifications, additions, or omissions to the content of the service requests.
+* The comparison between the original content and the content after processing shows no differences or alterations.
+
 #### **[R90]** 
 BPI service orchestration utilized in a BPI MUST avoid having the orchestration consumers see partial and/or inconsistent data. 
 
 *Note that transaction boundaries, i.e., a single service's action, may trigger atomic updates.*
+
+[R90](#r90) Testability:
+
+Preconditions:
+* A BPI system is operational.
+* The BPI service orchestration capability is properly configured and deployed.
+* The BPI has data sources or services that provide data to the orchestration process.
+
+Test Steps:
+1. Trigger a service request that involves data retrieval or modification through the BPI service orchestration.
+2. Monitor the orchestration process to ensure that all required data sources or services are accessed.
+3. Verify that the data retrieved or modified by the orchestration process is complete and consistent.
+4. Introduce a failure or inconsistency in one of the data sources or services during the orchestration process.
+5. Repeat the same service request and monitor the orchestration process.
+6. Validate that the orchestration process detects the failure or inconsistency in the data source or service.
+7. Ensure that the orchestration process handles the failure or inconsistency appropriately, such as by providing an error message or fallback mechanism.
+8. Confirm that the orchestration consumers do not receive partial or inconsistent data during the service request.
+
+Passing Criteria:
+1. The BPI service orchestration successfully retrieves and modifies the required data from all relevant data sources or services.
+2. In the event of a failure or inconsistency in a data source or service, the orchestration process detects and handles it appropriately.
+3. The orchestration consumers do not receive partial or inconsistent data during the service request.
+4. The BPI service orchestration ensures that the data seen by the orchestration consumers is complete and consistent, even in the presence of potential failures or inconsistencies in the underlying data sources or services.
 
 #### **[R91]** 
 BPI service orchestration utilized in a BPI MUST capture the exact order in which operations happened. 
 
 In the context of this document, operations in a BPI service orchestration do not necessarily have to be causally connected to be ordered by the BPI service orchestration. For example, if operation 1, the creation of an invoice between Alice and Bob in a BPI, is received by the BPI service orchestration of a BPI before operation 2, the creation of a shipping notice of a purchase order between Bob and Claire, then the operation identifiers assigned to operation 1 and operation 2 must reflect that order through for example a deterministic nonce as the operation's identifier.
 
+[R91](#r91) Testability:
+
+Preconditions:
+* a BPI system is operational.
+* The BPI service orchestration capability is properly configured and deployed.
+* The BPI has multiple operations or services that are orchestrated.
+
+Test Steps:
+1. Perform a series of operations or service requests through the BPI service orchestration.
+2. Monitor the orchestration process to ensure that it captures the order of the operations.
+3. Validate that the orchestration process maintains an accurate and sequential record of the operations.
+4. Introduce variations in the timing or order of the operations.
+5. Repeat the operations and monitor the orchestration process.
+6. Verify that the orchestration process accurately captures the adjusted order of the operations.
+7. Perform operations with concurrent requests from multiple users or systems.
+8. Monitor the orchestration process to confirm that it correctly records the order of operations from different sources.
+9. Test the orchestration process with a large number of operations to ensure scalability and accurate ordering.
+10. Validate that the captured order of operations matches the actual order in which they were performed.
+
+Passing Criteria:
+* The BPI service orchestration accurately captures the order of operations or service requests.
+* The orchestration process maintains the exact order of operations even with variations in timing or concurrent requests.
+* The orchestration process can handle a large number of operations without compromising the accuracy of the captured order.
+* The captured order of operations matches the actual order in which they were performed, providing a reliable audit trail of the BPI activities.
+
 #### **[R92]** 
 BPI service orchestration utilized in a BPI MUST preserve a consistent state.
 
+[R92](#r92) Testability:
+
+Preconditions:
+* A BPI system is operational.
+* The BPI service orchestration capability is properly configured and deployed.
+* The BPI has multiple operations or services that are orchestrated.
+
+Test Steps:
+1. Execute a series of operations or service requests through the BPI service orchestration.
+2. Monitor the BPI service orchestration state changes and data modifications during the orchestration process.
+3. Verify that the BPI service orchestration state remains consistent throughout the orchestration, with no unexpected changes or inconsistencies.
+4. Introduce variations or errors in the input data or requests.
+5. Repeat the operations and monitor the state changes.
+6. Validate that the orchestration process handles variations and errors without compromising the consistency of the state through proper error handling.
+7. Perform concurrent operations from multiple users or systems.
+8. Monitor the state BPI service orchestration changes during the concurrent operations.
+9. Ensure that the state remains consistent and does not lead to conflicts or data corruption.
+
+Passing Criteria:
+* The BPI service orchestration maintains a consistent state throughout the execution of operations.
+* The orchestration process handles variations and errors without introducing inconsistencies or corruption in the state.
+* Concurrent operations do not result in conflicts or data corruption, preserving the consistent state of the BPI.
+
 #### **[R93]** 
-BPI service orchestration utilized in a BPI MUST perform the computation triggered by the state change outside the state machine. 
+BPI service orchestration utilized in a BPI MUST ensure that a service subscriber is decoupled from a BPI service it invokes. 
 
 *This ensures that there is less load and more stability of the orchestration stack and that subscribers are decoupled from the state machine, such that they can independently scale.*
+
+[R93](#r93) Testability:
+
+Preconditions:
+* A BPI system is operational.
+* The BPI service orchestration capability is properly configured and deployed.
+* There are subscribers to the BPI service.
+
+Test Steps:
+1. A BPI service subscriber invokes a BPI service subscribed by multiple subscribers.
+2. Monitor the execution of the BPI service operation.
+3. Verify that the service request invokes a BPI service instance independent of the invoking subscriber.
+4. Validate that only the invoking subscriber receives the expected responses or notifications from the BPI service invocation.
+5. Modify the system state and trigger another invocation of the BPI service.
+6. Verify that the service request invokes a BPI service instance independent of the invoking subscriber.
+7. Validate that only the invoking subscriber receives the expected responses or notifications from the BPI service invocation.
+
+Passing Criteria:
+1. The BPI service orchestration ensures that the service request invokes BPI service instance independent of the invoking subscriber
+2. Only the invoking subscriber receives the expected responses or notifications from the BPI service invocation..
+3. The BPI system maintains its operational functionality throughout the service invocations.
+4. The subscribers maintain their functionality and responsiveness to the BPI service without being directly involved in the execution.
 
 #### **[R94]** 
 BPI service orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
 
+[R94](#r94) Testability:
+
+Preconditions:
+* A BPI system is operational.
+* The BPI service orchestration capability is properly configured and deployed.
+
+Test Steps:
+1. Bring down one or more consumers of the BPI service.
+2. Invoke the BPI service that relies on the consumer(s) that are currently offline.
+3. Monitor the behavior of the BPI service orchestration.
+4. Verify that the BPI service orchestration maintains the service quests for the offline consumers.
+5. Bring the offline consumer(s) back online.
+6. Observe how the BPI service orchestration handles the availability of the consumer(s).
+7. Validate that the BPI service is able to seamlessly interact with the consumer(s) without any negative impact on the service orchestration.
+
+Passing Criteria:
+1. The BPI service orchestration maintains the state of service requests when consumer(s) are offline.
+2. The BPI service is able to handle the availability of the consumer(s) gracefully and resumes normal operation when they come back online.
+3. No data or functionality is lost or compromised due to the offline status of the consumer(s).
+4. The BPI system maintains its overall functionality and responsiveness throughout the test.
+
 #### **[R95]** 
-BPI service orchestration utilized in a BPI MUST isolate between data source and data consumers.
+BPI service orchestration utilized in a BPI MUST isolate data sources from data consumers.
+
+[R95](#r95) Testability:
+
+Preconditions:
+1. The BPI system is operational.
+2. The BPI service orchestration capability is properly configured and deployed.
+
+Test Steps:
+1. A BPI service subscriber invokes a BPI service that requires access to data from a specific BPI data source.
+2. Monitor the data flow and interactions between the BPI service and the data source.
+3. Verify that the data consumer, the BPI service, accesses the data source using the BPI service orchestration, and not directly.
+4. Repeat steps 1. through 3. for concurrent BPI service invocations.
+5. Ensure that that each invoked BPI service receives the necessary data from the data source through the BPI service orchestration independent from any of the other BPI service requests.
+
+Passing Criteria:
+1. The BPI service accesses the data source through the BPI service orchestration, and not directly.
+2. Each invoked BPI service receives the necessary data from the data source through the BPI service orchestration independent from any of the other BPI service requests.
 
 #### **[R96]** 
 BPI service orchestration MUST not have a Material Impact on the overall system latency of the BPI.
 
+[R96](#r96) Testability:
+
+Preconditions:
+
+* A BPI test system with a BPI service orchestration capability is set up and running.
+* A test BPI service subscriber and BPI service consumer are set up within the BPI.
+* The BPI has a defined threshold for "Material Impact".
+
+Test Steps:
+
+1. The BPI service subscriber invokes a BPI service.
+2. Measure the time it takes for the BPI service request to propagate through the BPI service orchestration component and reach the BPI service consumer.
+3. Compare the measured time with the defined "Material Impact" threshold.
+
+Test Passing Criteria:
+
+* The test is considered passed if the measured time for the BPI service request to propagate through the BPI serviceorchestration component and reach the BPI service consumer is below the defined "Material Impact" threshold.
+
 #### **[R97]** 
-BPI service orchestration utilized in a BPI MUST NOT have a Material Impact on BPI scalability and BPI availability. 
+BPI service orchestration utilized in a BPI MUST NOT have a negative Material Impact on BPI scalability and BPI availability. 
 
 *This requirement ensures that overall system latency is not impacted when volume meaningfully and rapidly changes (scalable) at any given point in time (highly available).*
+
+[R97](#r97) Testability:
+
+Preconditions:
+
+* A BPI test system is set up and running with BPI service orchestration implemented.
+* There are enough resources available to simulate varying volume loads on the system.
+* Define minimum and maximum processing volume for the test.
+* Define acceptable BPI service orchestration latencies for the test.
+* Define BPI system latencies for the test.
+
+Test Steps:
+
+1. Increase the volume of data being processed by the BPI service orchestration component to a significant level.
+2. Verify that the overall system latency is within acceptable limits.
+3. Gradually increase the volume of data being processed until it reaches a peak level.
+4. Verify that the overall system latency is still within acceptable limits.
+5. Reduce the volume of data being processed back to the initial level.
+6. Verify that the overall system latency returns to its previous level.
+
+Passing Criteria:
+
+* In steps 2 and 4, the overall system latency should not exceed the acceptable limit specified for the BPI.
+* In step 6, the overall system latency should return to its previous level.
+* The test should be repeated multiple times with varying volume loads, and the passing criteria should be met consistently.
 
 ## 5.4 BPI Communication
 
