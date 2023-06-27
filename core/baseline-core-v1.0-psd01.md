@@ -1272,7 +1272,7 @@ Test Steps:
 
 1. A BPI Subject creates a new cryptographic key.
 2. Verify that the created key conforms to the specified cryptographic algorithm.
-3. A BPI Subject derive a new cryptographic key from an existing key.
+3. A BPI Subject derives a new cryptographic key from an existing key.
 4. Ensure that the derived key is different from the original key and conforms to the specified cryptographic algorithm.
 5. A BPI Subject stores a cryptographic key in the storage capability of the BPI.
 6. Retrieve the stored key and validate its integrity and correctness.
@@ -1300,7 +1300,7 @@ A BPI Subject MUST be capable of performing encryption and decryption operations
 
 Preconditions:
 
-* Set up a BPI yesy system with the necessary cryptographic algorithms and protocols.
+* Set up a BPI test system with the necessary cryptographic algorithms and protocols.
 * Ensure that the BPI Subject has access to the encryption and decryption keys.
 
 Test Steps:
@@ -1341,7 +1341,7 @@ Test Steps:
 1. Generate an input data sample.
 2. BPI Subject applies the cryptographic hashing function to input data from the sample.
 3. Verify that the hash output has the expected length and format.
-4. BPI Subject changs a single character in the input data and repeat the hashing operation.
+4. BPI Subject changes a single character in the input data and repeats the hashing operation.
 5. Confirm that the resulting hash value is different from the previous hash.
 6. BPI Subject performs multiple hashing operations using different input data from the sample.
 7. Validate that each input produces a unique hash output.
@@ -1353,7 +1353,7 @@ Passing Criteria:
 * The BPI Subject successfully performs the cryptographic hashing operation.
 * The generated hash output has the expected length and format.
 * Changing a single character in the input data results in a different hash value.
-* Each input data from the genrated sample produces a unique hash output.
+* Each input data from the generated sample produces a unique hash output.
 * The BPI supports multiple cryptographic hashing algorithms that produce algorithm compliant outputs (expected length and format, hash changes when input changes)
 
 #### **[R70]**	
@@ -1368,16 +1368,15 @@ Preconditions:
 
 Test Steps:
 
-1. BPI Subject generates a key pair for digital signature using the BPI Subject.
+1. BPI Subject generates a key pair for digital signature.
 2. BPI Subject creates a sample message or data to be signed.
 3. BPI Subject digitally signs the message with the private key.
 4. BPI Subject verifies the digital signature using the corresponding public key and the signed message.
-5. BPI Subject modifies a single character in the signed message and attempt to verify the digital signature.
+5. BPI Subject modifies a single character in the signed message and attempts to verify the digital signature.
 6. BPI Subject confirms that the verification fails, indicating the integrity of the message has been compromised.
-7. BPI Subject generates multiple key pairs and sign the same message with different private keys.
-8. BPI Subject verifies each digital signature using the corresponding public key and confirm the validity of each signature.
-9. BPI Subject utilizes different cryptographic algorithms supported by the BPI for digital signature creation.
-10. BPI Subject verifies the digital signatures using the appropriate verification algorithm for each signature.
+7. BPI Subject generates multiple key pairs and signs the same message with different private keys.
+8. BPI Subject verifies each digital signature using the corresponding public key and confirms the validity of each signature.
+9. BPI Subject repeats steps 1. through 8. for all cryptographic algorithms supported by the BPI for digital signature creation.
 
 Passing Criteria:
 
@@ -1411,8 +1410,7 @@ Test Steps:
 6. Modify a single character in the signed message and attempt to verify the threshold digital signature.
 7. Confirm that the verification fails, indicating the integrity of the message has been compromised.
 8. Add or remove participants from the group and repeat the threshold digital signature creation and verification process.
-9. Utilize different cryptographic algorithms supported by the BPI for threshold digital signature creation.
-10. Verify the threshold digital signatures using the appropriate verification algorithm.
+9. Repeat steps 1. through 8. for all cryptographic algorithms supported by the BPI for threshold digital signature creation.
 
 Passing Criteria:
 
@@ -1443,12 +1441,12 @@ Test Steps:
 2. Select the number of shares and the threshold value for the secret sharing scheme.
 3. Perform the secret sharing process by dividing the secret value into shares.
 4. Distribute the shares to the participating BPI Subjects.
-Reconstruct the secret value using the required number of shares (threshold).
-5. Verify that the reconstructed secret value matches the original secret value.
-6. Modify one of the shares and attempt to reconstruct the secret value.
-7. Confirm that the reconstruction fails, indicating the integrity of the secret has been compromised.
-8. Change the number of shares or the threshold value and repeat the secret sharing and reconstruction process.
-9. Utilize different cryptographic algorithms supported by the BPI for secret sharing and repeat steps 1. through 8.
+5. Reconstruct the secret value using the required number of shares (threshold).
+6. Verify that the reconstructed secret value matches the original secret value.
+7. Modify one of the shares and attempt to reconstruct the secret value.
+8. Confirm that the reconstruction fails, indicating the integrity of the secret has been compromised.
+9. Change the number of shares or the threshold value and repeat the secret sharing and reconstruction process.
+9. Repeat steps 1. through 9. for all cryptographic algorithms supported by the BPI for secret sharing.
 
 Passing Criteria:
 
@@ -1570,7 +1568,7 @@ Test Steps:
 Passing Criteria:
 * All test passing criteria from [R73](#r73) Testability for an internal BPI subject.
 * For any other BPI component type in the BPI:
-    * The internal BPI Subject can create a new BPI components.
+    * The internal BPI Subject can create a new BPI component.
     * The internal BPI Subject can read the details of the created BPI component accurately.
     * The internal BPI Subject can update the BPI component and confirm the changes are reflected in the system.
     * The BPI component is no longer accessible after deletion by the internal BPI Subject.
