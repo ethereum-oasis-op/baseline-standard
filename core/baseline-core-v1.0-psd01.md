@@ -1396,7 +1396,7 @@ Test Steps:
 5. Update the BPI Subject Account recovery key and ensure that the key is successfully changed and can only be derived by the BPI Subject owning the account.
 6. Add or remove BPI Accounts from the BPI Subject Account's list of related accounts and confirm that the changes are reflected accurately.
 7. Attempt  to create a BPI Subject Account with one or more of the required data properties missing.
-8. Verify that a BPI Subject Acount is not created and an appropriate error message is displayed.
+8. Verify that a BPI Subject Account is not created and an appropriate error message is displayed.
 
 Passing Criteria:
 
@@ -1418,7 +1418,7 @@ Preconditions:
 
 * A BPI system is operational.
 * A BPI Subject Account exists.
-* A cryptographic technique to ensure the cryptographic verifiablity of the audit trail.
+* A cryptographic technique to ensure the cryptographic verifiability of the audit trail.
 
 Test Steps:
 
@@ -1573,7 +1573,7 @@ Preconditions:
 
 Test Steps:
 
-1. Authenticate the internal BPI Subject aginst one of the BPI Subject Accounts for which the internal BPI Subject is authorized based on an existing security policy in said BPI Subject Account.
+1. Authenticate the internal BPI Subject against one of the BPI Subject Accounts for which the internal BPI Subject is authorized based on an existing security policy in said BPI Subject Account.
 2. Retrieve and read an existing BPI Subject Account.
 3. Verify that the retrieved BPI Subject Account contains the expected data.
 4. Update an existing BPI Subject Account by modifying its properties.
@@ -1586,7 +1586,7 @@ Test Steps:
 
 Passing Criteria:
 
-* An existing BPI Subject Account exists and can be retrieved by an internal BPI Subject with the correct authorization based on an existin security policy.
+* An existing BPI Subject Account exists and can be retrieved by an internal BPI Subject with the correct authorization based on an existing security policy.
 * The internal BPI Subject can read and retrieve an existing BPI Subject Account.
 * The retrieved BPI Subject Account contains the expected data.
 * The internal BPI Subject can update an existing BPI Subject Account, and the updates are reflected in the retrieved account.
