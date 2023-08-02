@@ -1418,15 +1418,94 @@ This leads to the following core capability requirements within a BPI:
 #### **[R98]** 
 BPI communication protocols MUST be message-based.
 
+[[R98]](#r98) Testability: 
+
+Preconditions:
+
+* The BPI system is operational and properly configured.
+* The BPI communication capability is enabled and configured to use message-based protocols.
+
+Test Steps:
+
+1. Send a test message from one BPI Subject to another BPI Subject using the BPI communication capability.
+2. Verify that the test message is delivered successfully to the intended recipient BPI Subject.
+3. Repeat step 1 and 2 for multiple test messages to ensure consistent message delivery.
+4. Attempt to send a test message using a non-message-based protocol (e.g., direct API call).
+5. Verify that the BPI communication capability does not process the test message sent via the non-message-based protocol.
+
+Passing Criteria:
+
+* All test messages sent via the BPI communication capability are successfully delivered to the intended recipients.
+* Test messages sent using non-message-based protocols are not processed by the BPI communication capability.
+
 #### **[R99]** 
 BPI communication protocols MUST be asynchronous.
+
+[[R99]](#r99) Testability:
+
+Preconditions:
+
+* The BPI system is operational and properly configured.
+* The BPI communication capability is enabled and configured to use asynchronous communication protocols.
+
+Test Steps:
+
+1. Send a message from BPI Subject A to BPI Subject B using the BPI communication capability.
+2. Verify that BPI Subject A can continue with other operations without waiting for a response from BPI Subject B.
+3. BPI Subject B should receive the message and process it asynchronously without blocking other operations.
+4. Send multiple messages from BPI Subject A to BPI Subject B in rapid succession.
+5. Observe that BPI Subject A can send all messages without waiting for individual responses.
+6. Ensure that BPI Subject B processes all messages independently and asynchronously.
+7. Attempt to send a response message from BPI Subject B to BPI Subject A using the same communication channel.
+8. Verify that BPI Subject A can receive the response message asynchronously without any delays in other operations.
+9. Repeat steps 1 to 8 with different message sizes and content to validate asynchronous behavior under various conditions.
+10. Initiate a long-running task in BPI Subject B, such as a computational operation or a time-consuming operation.
+11. Verify that BPI Subject A can continue to send messages to BPI Subject B during the execution of the long-running task.
+12. Monitor BPI Subject B to ensure that the long-running task does not affect the processing of incoming messages.
+13. Introduce a delay or network latency to simulate slow message transmission between BPI Subject A and BPI Subject B.
+14. Send a message from BPI Subject A to BPI Subject B during the simulated delay.
+15. Verify that BPI Subject A does not wait for the response and can proceed with other operations.
+16. Ensure that BPI Subject B receives the message and processes it asynchronously once the delay is resolved.
+
+Passing Criteria:
+
+* Test messages sent via the BPI communication capability are processed asynchronously by both the sender and receiver.
+* BPI Subject A can continue with other operations without waiting for responses from BPI Subject B.
+* BPI Subject B processes all incoming messages independently and asynchronously, even during long-running tasks or network latency.
+* Asynchronous behavior is consistent under different message sizes, content, and network conditions.
+* The BPI system demonstrates reliable and consistent asynchronous communication throughout the test.
 
 #### **[R100]** 
 BPI communication protocols MUST be simplex. 
 
 *Simplex is a communication mode in which only one message is transmitted, and always going in the same direction.*
 
-*An example of the three requirements above is as follows: BPI Subject X sends a message over channel A at time T0 to BPI Subject Y. It may receive a response from BPI Subject Y over channel B at a later time T1.*
+*An example of the three requirements above is as follows: BPI Subject X sends a message over channel A at time T<sub>0</sub> to BPI Subject Y. It may receive a response from BPI Subject Y over channel B at a later time T<sub>1</sub>.*
+
+[[R100]](#r100) Testability:
+
+Preconditions:
+
+* The BPI system is operational and properly configured.
+* The BPI communication capability is enabled and configured to use simplex communication protocols.
+
+Test Steps:
+
+1. Send a message from BPI Subject A to BPI Subject B using the BPI communication capability.
+2. Verify that BPI Subject B receives the message successfully.
+3. Attempt to send a response message from BPI Subject B to BPI Subject A using the same communication channel.
+4. Verify that the response message is not transmitted, as simplex communication only allows messages to flow in one direction.
+5. Repeat steps 1 to 4 with multiple test messages to ensure consistent simplex behavior.
+6. Send multiple messages from BPI Subject A to BPI Subject B in rapid succession.
+7. Observe that each message is transmitted separately and unidirectionally, without any overlapping or simultaneous transmission.
+8. Attempt to initiate multiple simultaneous message transmissions from BPI Subject B to BPI Subject A.
+9. Verify that only one message is transmitted at a time, and subsequent messages wait for the ongoing transmission to complete.
+
+Passing Criteria:
+
+* Test messages sent via the BPI communication capability are successfully transmitted in one direction and received by the intended recipients.
+* Response messages are not allowed in simplex communication, and any attempted response transmissions are blocked.
+* Simultaneous message transmissions are not possible in simplex mode, and messages are transmitted sequentially without overlapping.
 
 #### **[R101]** 
 BPI communication protocols MUST be based on established communication protocol standards.
@@ -1439,36 +1518,286 @@ BPI communication protocols MUST be based on established communication protocol 
 *	*Cryptographic layer*
 *	*Transport layer*
 
-The layers are defined as follows, and note that some requirements refer to communication between BPIs as noted within the relevant requirement:
+[[R101]](#r101) Testability:
+
+Preconditions:
+
+* The BPI system is operational and properly configured.
+* The BPI communication capability is enabled and supports various communication protocols.
+
+Test Steps:
+
+1. Identify the list of communication protocols that the BPI claims to support based on the documentation.
+2. For each communication protocol, verify that it adheres to well-established communication protocol standards (e.g., HTTP, HTTPS, MQTT, WebSockets, AMQP, etc.).
+3. Confirm that the communication protocols used in the BPI are widely accepted and have been widely used in the industry.
+4. Check if the BPI follows the defined specifications and requirements for each supported communication protocol.
+5. Review the communication protocol documentation to ensure that it covers all necessary aspects, such as message format, headers, payload, authentication, security, and error handling.
+6. Verify that the BPI communication protocols use standard message formats and data encoding methods.
+7. Validate that the BPI communication protocols support common security mechanisms like TLS/SSL encryption for secure communication.
+8. Ensure that the communication protocols are interoperable and can communicate with other systems using the same standard protocols.
+9. Review the implementation of each communication protocol to ensure it aligns with the established protocol standards.
+10. Send test messages using each communication protocol and examine the responses received.
+11. Check if the responses adhere to the standard communication protocol guidelines and have the expected format and structure.
+
+Passing Criteria:
+
+* All BPI communication protocols used are based on well-established and widely accepted communication protocol standards.
+* The BPI adheres to the defined specifications and requirements for each supported communication protocol.
+* Communication protocols used by the BPI are interoperable and can communicate with other systems using the same standard protocols.
+* Test messages sent through each communication protocol result in responses that adhere to the standard protocol guidelines and have the expected format and structure.
+* The BPI communication protocols provide the necessary security features, such as encryption and authentication, as specified by the established communication protocol standards.
+* The BPI communication capability is consistent with the established communication protocol standards throughout the test.
+
+The communication protocol layers are defined as follows, and note that some requirements refer to communication between BPIs as noted within the relevant requirement:
 * Transport Layer
   - #### **[R102]**	
-    - A BPI MUST utilize the well established TLS 1.2 [[RFC5246](#rfc5246)] or 1.3 [[RFC8446](#rfc8446)] protocol to transport messages between BPIs.
+    A BPI MUST utilize the well established TLS 1.2 [[RFC5246](#rfc5246)] or 1.3 [[RFC8446](#rfc8446)] protocol to transport messages between BPIs.
+    
+    [[R102]](#r102) Testability:
+
+    Preconditions:
+    * The BPI system is operational and properly configured.
+    * The BPI communication capability is enabled and supports TLS protocol versions 1.2 and/or 1.3.
+
+    Test Steps:
+    1. Check the BPI documentation to confirm that it specifies the use of TLS protocol versions 1.2 and/or 1.3 for message transport between BPIs.
+    2. Ensure that the BPI supports TLS protocol version negotiation to enable the use of either TLS 1.2 or TLS 1.3 depending on the capabilities of the communicating parties.
+    3. Review the BPI implementation to verify that the TLS handshake process is properly configured to negotiate the highest supported TLS version with the remote BPI.
+    4. Validate that the BPI enforces strong cryptographic ciphersuites and secure settings in the TLS configuration for both TLS 1.2 and TLS 1.3.
+    5. Confirm that the BPI uses valid and trusted X.509 certificates for TLS encryption and that certificate validation is performed during the handshake process.
+    6. Test the BPI communication by initiating TLS connections between BPI instances, ensuring that the selected TLS version adheres to the requirements specified in the documentation.
+    7. Monitor the TLS handshake process to verify that it successfully negotiates either TLS 1.2 or TLS 1.3 based on the supported versions of the communicating BPIs.
+    8. Capture and analyze network traffic to ensure that TLS encryption is applied to the message transport between BPIs.
+    9. Perform a vulnerability assessment to identify potential security issues in the TLS implementation and configuration.
+
+    Passing Criteria:
+    * The BPI documentation clearly states that TLS protocol versions 1.2 and/or 1.3 are utilized for message transport between BPIs.
+    * The BPI supports TLS protocol version negotiation and can dynamically select the highest supported TLS version during the handshake process.
+    * The TLS handshake process successfully negotiates either TLS 1.2 or TLS 1.3, depending on the capabilities of the communicating BPIs.
+    * Strong cryptographic ciphersuites and secure settings are enforced for both TLS 1.2 and TLS 1.3 connections in the BPI configuration.
+    * The BPI uses valid and trusted X.509 certificates for TLS encryption, and certificate validation is performed during the handshake process.
+    * During testing, the TLS-encrypted connections are established successfully between BPI instances using either TLS 1.2 or TLS 1.3 as negotiated.
+    * The network traffic analysis confirms that message transport between BPIs is protected by TLS encryption.
+    * The vulnerability assessment does not identify any critical security issues in the TLS implementation and configuration of the BPI.
+
   - #### **[R103]**	
-    - For synchronous BPI messaging between BPIs, a BPI MUST utilize HTTPS [[RFC2818](#rfc2818)].
+    For synchronous BPI messaging between BPIs, a BPI MUST utilize HTTPS [[RFC2818](#rfc2818)].
+
+    [[R103]](#r103) Testability:
+
+    Preconditions:
+    * The BPI system is operational and properly configured.
+    * The BPI communication capability is enabled and supports HTTPS based on RFC 2818.
+
+    Test Steps:
+    1. Check the BPI documentation to confirm that it specifies the use of HTTPS based on RFC 2818 for synchronous messaging between BPIs.
+    2. Validate that the BPI supports the HTTPS protocol with proper configuration options, including support for secure cipher suites, server authentication, and client certificate validation.
+    3. Ensure that the BPI enforces the use of HTTPS when communicating with other BPI instances synchronously.
+    4. Verify that the BPI correctly handles HTTPS URL construction, including specifying the appropriate HTTP method (e.g., GET, POST, PUT, DELETE) and parameters for synchronous communication.
+    5. Test the BPI communication by initiating synchronous HTTPS connections between BPI instances, ensuring that the expected HTTP status codes (e.g., 200 OK) are received for successful responses and appropriate error codes (e.g., 4xx, 5xx) are received for unsuccessful responses.
+    6. Capture and analyze network traffic to ensure that HTTPS encryption is applied to the synchronous message exchange between BPIs.
+    7. Check that the BPI handles SSL/TLS certificate validation correctly and rejects invalid or self-signed certificates.
+    8. Perform a vulnerability assessment to identify potential security issues related to HTTPS implementation and configuration.
+
+    Passing Criteria:
+    * The BPI documentation clearly states the use of HTTPS based on RFC 2818 for synchronous messaging between BPIs.
+    * The BPI supports HTTPS with the appropriate configuration options for secure cipher suites, server authentication, and client certificate validation.
+    * The BPI consistently uses HTTPS for synchronous communication with other BPI instances.
+    * During testing, the synchronous HTTPS connections are successfully established between BPI instances, and the expected HTTP status codes are received for various test scenarios.
+    * The network traffic analysis confirms that the synchronous message exchange between BPIs is protected by HTTPS encryption.
+    * The BPI correctly handles SSL/TLS certificate validation and rejects invalid or self-signed certificates.
+    * The vulnerability assessment does not identify any critical security issues related to the HTTPS implementation and configuration of the BPI.
+
   - #### **[R104]**	 
-    - For asynchronous BPI messaging between BPIs or messaging within a BPI, a BPI MUST utilize established asynchronous protocols such as Websockets or AMQP. 
+    For asynchronous BPI messaging between BPIs or messaging within a BPI, a BPI MUST utilize established asynchronous protocols such as Websockets or AMQP. 
+
+    [[R104]](#r104) Testability:
+
+    Preconditions:
+    * The BPI system is operational and properly configured.
+    * The BPI communication capability is enabled and supports asynchronous messaging.
+    * The BPI supports one or more established asynchronous protocols such as Websockets or AMQP.
+
+    Test Steps:
+    1. Check the BPI documentation to confirm that it specifies the use of established asynchronous protocols (e.g., Websockets, AMQP) for asynchronous BPI messaging between BPIs or messaging within a BPI.
+    2. Verify that the BPI has the required libraries or modules installed to support the chosen asynchronous protocols.
+    3. Test the BPI's ability to establish asynchronous connections using the chosen protocol. For example:
+      a. For Websockets:
+          - Initiate a connection to the BPI's Websockets endpoint.
+          - Exchange messages between BPI instances asynchronously through Websockets.
+      b. For AMQP:
+          - Connect to the BPI's AMQP broker.
+          - Publish messages to a queue and consume messages asynchronously from the queue.
+    4. Validate that the BPI can handle concurrent asynchronous message processing and can scale effectively to handle a large number of asynchronous messages.
+    5. Simulate various real-world scenarios where BPI instances communicate asynchronously, such as handling multiple incoming messages concurrently, and verify that the BPI functions correctly without message loss or misordering.
+    6. Ensure that the BPI gracefully handles connection failures and reconnects to the asynchronous messaging broker without data loss.
+    7. Test the BPI's error handling capabilities for asynchronous communication, such as handling message processing failures and reporting errors appropriately.
+
+    Passing Criteria:
+    * The BPI documentation clearly states the use of established asynchronous protocols (e.g., Websockets, AMQP) for asynchronous BPI messaging between BPIs or messaging within a BPI.
+    * The BPI successfully establishes asynchronous connections using the specified protocols.
+    * The BPI can effectively exchange messages asynchronously with other BPI instances or within the same BPI using the chosen protocols.
+    * The BPI handles concurrent asynchronous message processing and scales effectively to handle a large number of asynchronous messages without performance degradation.
+    * The BPI functions correctly in various real-world scenarios, ensuring proper message handling without loss or misordering of messages.
+    * The BPI gracefully handles connection failures and reconnects to the asynchronous messaging broker without data loss.
+    * The BPI demonstrates robust error handling for asynchronous communication, ensuring appropriate handling of message processing failures and error reporting.
+    
 
 Note that while messaging within a BPI must be asynchronous, the communication between two BPIs can be either synchronous to asynchronous depending on the use case.
 
 * Cryptographic Layer: This layer deals with the BPI message envelope and the BPI message payload authenticity. However, it does not deal with authorization. Authorization is assumed to be validated based on security policies in the BPI core components such as workgroups. 
   - #### **[R105]**	
-    All BPI envelope level formats MUST be achieved through JOSE-based structures see **[R106]** and **[R107]**. 
-    
+    All BPI envelope level formats MUST be achieved through JOSE-based data structures see **[R106]** and **[R107]**. 
+
     *Note that JOSE stands for JSON Object Signing and Encryption.*
+
+    [[R105]](#r105) Testability:
+
+    Preconditions:
+    * The BPI system is operational and properly configured.
+    * The BPI supports data exchange using JOSE-based data structures.
+
+    Test Steps:
+    1. Test the BPI's ability to send and receive messages using JOSE-based data structures such as JSON Web Encryption (JWE) and JSON Web Signature (JWS). In particular:
+      a. Send a sample message with JOSE-based data structures as the envelope format to a recipient BPI instance.
+      b. Verify that the recipient BPI can successfully receive and process the message.
+    2. Perform interoperability tests with other BPI instances or systems that also use JOSE-based data structures to ensure seamless data exchange.
+    3. Validate that the BPI's error handling mechanisms are in place and provide meaningful error messages when encountering invalid or unsupported JOSE-based data structures.
+    4. Verify that the BPI enforces security measures defined by JOSE to protect the confidentiality, integrity, and authenticity of the exchanged data.
+
+    Passing Criteria:
+    1. The BPI successfully sends and receives messages using JOSE-based data structures such as JWE or JWS.
+    4. Interoperability tests with other BPI instances or systems that use JOSE-based data structures demonstrate successful data exchange.
+    5. The BPI provides meaningful error messages when encountering invalid or unsupported JOSE-based data structures.
+    6. The BPI enforces security measures defined by JOSE to protect the confidentiality, integrity, and authenticity of the exchanged data.
+
   - #### **[R106]**	
-    The encrypted message formats MUST use an Encrypted JSON Web Token (JWE) structure [[RFC7516](#rfc7516)].
+    BPI encrypted message formats MUST use an Encrypted JSON Web Encryption (JWE) structure [[RFC7516](#rfc7516)].
+
+    [[R106]](#r106) Testability:
+
+    Preconditions:
+    * The BPI system is operational and properly configured.
+    * The BPI supports encryption of messages using JSON Web Encryption (JWE) structure as specified in RFC7516.
+
+    Test Steps:
+    1. Test the BPI's ability to encrypt and decrypt messages using the JWE structure. For example:
+      a. Create a sample JSON payload.
+      b. Encrypt the payload using JWE structure.
+      c. Verify that the encrypted payload is in compliance with RFC7516.
+      d. Decrypt the encrypted payload and ensure it matches the original JSON payload.
+    2. Verify that the BPI can properly handle various JWE encryption algorithms and key management methods as defined in RFC7518.
+    3. Perform interoperability tests with other BPI instances or systems that also use JWE structure for message encryption to ensure seamless data exchange.
+    4. Validate that the BPI enforces the necessary security measures, such as key management and encryption algorithm selection, when using JWE structure.
+
+    Passing Criteria:
+    * The BPI successfully encrypts and decrypts messages using JWE structure, with the decrypted payload matching the original JSON payload.
+    * The BPI handles various JWE encryption algorithms and key management methods as defined in RFC7518 correctly.
+    * Interoperability tests with other BPI instances or systems using JWE structure demonstrate successful data exchange.
+    * The BPI enforces necessary security measures for key management and encryption algorithm selection when using JWE structure.
+  
   - #### **[R107]** 
-    The signed unencrypted format MUST use a Signed JSON Web Token (JWS) structure following [[RFC7519](#rfc7519)] and following [[RFC7515](#rfc7515)] for its digital signature. 
+    BPI signed unencrypted formats MUST use a Signed JSON Web Signature (JWS) structure following [[RFC7519](#rfc7519)] and following [[RFC7515](#rfc7515)] for its digital signature. 
+  
+    [[R107]](#r107) Testability:
+
+    Preconditions:
+    * The BPI system is operational and properly configured.
+    * The BPI supports signing unencrypted formats using JSON Web Signature (JWS) structure as specified in RFC7515 and JWT format as specified in RFC7519.
+
+    Test Steps:
+    1. Test the BPI's ability to generate and verify digital signatures using JWS structure. For example:
+      a. Create a sample JSON payload.
+      b. Sign the payload using JWS structure.
+      c. Verify that the generated signature is in compliance with RFC7515.
+      d. Verify the signature against the original JSON payload to ensure its validity.
+    2. Verify that the BPI can handle various JWS signing algorithms and key management methods as defined in RFC7518.
+    3. Perform interoperability tests with other BPI instances or systems that also use JWS structure for digital signatures to ensure seamless data exchange.
+    4. Validate that the BPI enforces the necessary security measures, such as key management and signature algorithm selection, when using JWS structure for signing.
+
+    Passing Criteria:
+    * The BPI successfully generates and verifies digital signatures using JWS structure, with the verified signature matching the original JSON payload.
+    * The BPI handles various JWS signing algorithms and key management methods as defined in RFC7518 correctly.
+    * Interoperability tests with other BPI instances or systems using JWS structure for digital signatures demonstrate successful data exchange.
+    * The BPI enforces necessary security measures for key management and signature algorithm selection when using JWS structure for signing.
+  
   - #### **[D20]**	
     BPI messages SHOULD always use JWEs with the ciphertext containing a signed payload. 
     
       *A JWS may be used for initial authentication and authorization between BPIs.*
+
+    [[D20]](#d20) Testability:
+    
+    Preconditions:
+    * The BPI system is operational and properly configured.
+    * The BPI supports the use of JSON Web Encryption (JWE) with signed payloads.
+
+    Test Steps:
+    1. Create a sample BPI message payload in JSON format.
+    2. Encrypt the payload using JWEs with the ciphertext containing a signed payload.
+    3. Attempt to decrypt the JWE-encrypted payload and verify that the decrypted content matches the original payload.
+    4. Generate an invalid or tampered JWE by modifying the signed payload or changing the cryptographic parameters.
+    5. Attempt to decrypt the tampered JWE and verify that the BPI correctly detects the tampering and rejects the message.
+    6. Test the BPI's behavior when receiving BPI messages that use JWEs with signed payloads from other BPI instances. Verify that the BPI can properly process and decrypt the received messages.
+
+    Passing Criteria:
+    * The BPI successfully encrypts and decrypts BPI message payloads using JWEs with signed payloads, with the decrypted content matching the original payload.
+    * The BPI correctly detects and rejects invalid or tampered JWEs during decryption.
+    * The BPI can properly process and decrypt BPI messages received from other BPI instances that use JWEs with signed payloads.
+
   - #### **[D21]** 
       The digital signature used for the JWS and JWE of a BPI Message SHOULD be based on the public keys associated with a W3C DID in the W3C DID document as defined in [[W3C DID](#W3C-DID)]. 
         
       *This simplifies the authentication of the message without having to rely on a 3rd party identity provider to validate the digital certificate issued to the BPI Subject. Non-normative examples of W3C DID Documents can be found in [[W3C DID](#W3C-DID)]*
+
+      [[D21]](#d21) Testability:
+
+      Preconditions:
+      * The BPI system is operational and supports the use of JSON Web Signature (JWS) and JSON Web Encryption (JWE).
+      * The BPI is capable of working with W3C Decentralized Identifiers (DIDs) and the associated DID documents.
+      * The BPI supports the use of public key cryptography for digital signatures.
+
+      Test Steps:
+      1. Create a sample BPI Message.
+      2. Generate a W3C DID document that contains the public keys to be used for digital signatures.
+      3. Sign the BPI Message using the private key corresponding to one of the public keys in the W3C DID document.
+      4. Attach the JWS and/or JWE to the BPI Message.
+      5. Transmit the BPI Message to another BPI instance.
+      6. Verify that the recipient BPI instance can successfully validate the digital signature using the corresponding public key from the W3C DID document that is resolved from the senders W3C DID.
+      7. Attempt to verify the digital signature using a different public key not present in the W3C DID document, and ensure that the verification fails.
+      8. Repeat the test with different BPI Messages and different sets of public keys from the W3C DID document.
+
+      Passing Criteria:
+      * The BPI successfully validates the digital signature of a BPI Message when using the corresponding public key from the W3C DID document.
+      * The BPI rejects the verification of a digital signature when using a public key not present in the W3C DID document.
+
   - #### **[R108]** 
     BPI Message authenticity and proof of control of the private keys MUST be established through a cryptographic challenge-response scheme utilizing a shared secret and the public keys of the involved BPI Subject. 
+
+    [[R108]](#r108) Testability:
+
+    Preconditions:
+    * The BPI supports cryptographic challenge-response schemes.
+    * The BPI is capable of generating and managing shared secrets for BPI Subjects.
+    * The BPI can access and utilize the public keys of the involved BPI Subjects.
+
+    Test Steps:
+    1. Generate a shared secret between two BPI Subjects (BPI Subject A and BPI Subject B).
+    2. BPI Subject A initiates a cryptographic challenge by sending a challenge message to BPI Subject B.
+    3. The challenge message should contain the shared secret, a random nonce, and any additional required data.
+    4. BPI Subject B receives the challenge message from BPI Subject A.
+    5. BPI Subject B processes the challenge and generates a response by signing the concatenated nonce, shared secret, and additional data using its private key.
+    6. BPI Subject B sends the response message back to BPI Subject A.
+    7. BPI Subject A verifies the response by using BPI Subject B's public key to check the signature.
+    8. Ensure that the verification is successful and the response is valid.
+    9. Repeat the test with BPI Subject B initiating the challenge, and BPI Subject A responding to it.
+
+    Passing Criteria:
+    * The BPI can successfully generate and manage shared secrets for BPI Subjects.
+    * The BPI correctly accesses and utilizes the public keys of the involved BPI Subjects.
+    * BPI Subject A can initiate a challenge and successfully verify the response from BPI Subject B.
+    * BPI Subject B can initiate a challenge and successfully verify the response from BPI Subject A.
+    * The cryptographic challenge-response scheme ensures the authenticity of BPI Messages and provides proof of control of the private keys of the involved BPI Subjects.
 
 An example of a challenge-response system is given in the figure below.
 
@@ -1487,12 +1816,62 @@ An example of a challenge-response system is given in the figure below.
   - #### **[R109]** 
     Any BPI Capability addressable using a BPI Message MUST be discoverable by a BPI Subject utilizing resolvable URIs of said BPI capabilities.
   
-    *An example of such a URI would be a BPI API endpoint.*
+    *An example of such a URI would be a BPI API endpoint.*9
+
+    [[R109]](#r10) Testability:
+
+    Preconditions:
+    * The BPI is operational and capable of responding to messages.
+    * All BPI capabilities are properly configured and addressable through resolvable URIs.
+
+    Test Steps:
+    1. BPI Subject A sends a BPI Message requesting the list of all available BPI capabilities.
+    2. The BPI receives the message and processes the request.
+    3. The BPI responds to BPI Subject A with a message containing a list of resolvable URIs for all available BPI capabilities.
+    4. BPI Subject A parses the response message to extract the list of capability URIs.
+    5. BPI Subject A selects a specific capability from the list and sends a new BPI Message containing a query for that capability.
+    6. The BPI receives the message, processes the query, and identifies the specific capability associated with the requested URI.
+    7. The BPI generates a response message containing the details and parameters of the identified capability.
+    8. BPI Subject A receives the response message and verifies that the capability details match the expected specifications.
+    9. BPI Subject A performs the same test for multiple other capability URIs from the initial list.
+
+    Passing Criteria:
+    * The BPI successfully responds to the request for a list of available BPI capabilities.
+    * The list of capability URIs provided by the BPI is accurate and complete.
+    * BPI Subject A can select a specific capability from the list and send a query for that capability.
+    * The BPI correctly identifies the capability associated with the queried URI.
+    * The BPI provides an accurate and complete response to the query message.
+    * BPI Subject A can successfully perform the test for multiple capability URIs, and the responses match the expected specifications.
 
   - #### **[R110]** 
     Any BPI Subject within a BPI MUST be discoverable by any other BPI Subject within a BPI.
 
     *For example, a BPI Subject DID can be resolved to its DID document containing a BPI communication endpoint in its "service" section that is directly addressable through the BPI Communication capability.*
+
+    [[R110]](#r110) Testability:
+
+    Preconditions:
+    * The BPI is operational and capable of handling messages.
+    * All BPI Subjects are registered and accessible within the BPI.
+
+    Test Steps:
+    1. BPI Subject A sends a BPI Message requesting the list of all available BPI Subjects within the BPI.
+    2. The BPI receives the message and processes the request.
+    3. The BPI responds to BPI Subject A with a message containing a list of all registered BPI Subjects within the BPI.
+    4. BPI Subject A parses the response message to extract the list of BPI Subjects.
+    5. BPI Subject A selects a specific BPI Subject from the list and sends a new BPI Message containing a query for that BPI Subject.
+    6. The BPI receives the message, processes the query, and identifies the specific BPI Subject associated with the requested information.
+    7. The BPI generates a response message containing the details and information of the identified BPI Subject.
+    8. BPI Subject A receives the response message and verifies that the BPI Subject details match the expected specifications.
+    9. BPI Subject A performs the same test for multiple other BPI Subjects from the initial list.
+
+    Passing Criteria:
+    * The BPI successfully responds to the request for a list of all registered BPI Subjects.
+    * The list of BPI Subjects provided by the BPI is accurate and complete.
+    * BPI Subject A can select a specific BPI Subject from the list and send a query for that BPI Subject.
+    * The BPI correctly identifies the BPI Subject associated with the queried information.
+    * The BPI provides an accurate and complete response to the query message.
+    * BPI Subject A can successfully perform the test for multiple BPI Subjects, and the responses match the expected specifications.
 
 * Semantic Layer: The semantic layer specifies how a message payload needs to be structured to be both BPI capability/service and BPI Subject friendly. Note that the content level refers to the content and message inside the message envelope. For the semantic layer, this document specifies how messages are identified and processed.
 
@@ -1501,28 +1880,159 @@ An example of a challenge-response system is given in the figure below.
 
    *Message identification does not merely identify the message. The message type also identifies the associated processing protocol such as the specification for a particular zero-knowledge prover scheme. A processing protocol is essentially a group of related messages that are required to achieve a multi-step business process.*
 
+    [[R111]](#r111) Testability:
+
+    Preconditions:
+    * The BPI is operational and capable of handling messages.
+
+    Test Steps:
+    1. BPI Subject A creates a BPI Message with specifying the message type.
+    2. BPI Subject A sends the message to the BPI.
+    3. The BPI receives the message and attempts to process it.
+    4. The BPI verifies if the message type is present in the message header.
+    5. The BPI checks if the message type corresponds to a valid and supported message context.
+    6. The BPI processes the message based on the established context.
+    7. Repeat step 1. through 6. without specifying a message type.
+    8. The BPI must reject a BPI message without a message type and generate an appropriate error response to the sender.
+
+    Passing Criteria:
+    * The BPI successfully receives the BPI Message without any errors or disruptions.
+    * The BPI identifies that the message type is missing from the message header.
+    * The BPI generates an appropriate error response indicating the absence of the message type.
+    * The BPI accepts a BPI Message containing a valid message type.
+    * The BPI confirms that the provided message type corresponds to a recognized and supported message context.
+    * The BPI processes the BPI Message correctly based on the established context and content structure.
+    * BPI Subject A receives a response from the BPI indicating successful processing of the BPI Message.
+
   - #### **[R112]**	
     A BPI message MUST contain a unique message identifier that is generated by the sender.
 
     *This allows unique identification of the message through its lifecycle.*
 
+    [[R112]](#r112) Testability:
+
+    Preconditions:
+    * The BPI is operational and capable of handling messages.
+
+    Test Steps:
+    1. BPI Subject A creates a BPI Message and generates a unique message identifier for the message.
+    2. BPI Subject A sends the message to the BPI.
+    3. The BPI receives the message and extracts the message identifier from the message header.
+    4. The BPI checks if the message identifier is unique and has not been previously used for any other message.
+    5. The BPI stores the message identifier for future reference.
+    6. BPI Subject B creates another BPI Message and generates a unique message identifier for this new message.
+    7. BPI Subject B sends the second message to the BPI.
+    8. The BPI receives the second message and extracts the new message identifier.
+    9. The BPI verifies if the new message identifier is unique and has not been previously used.
+    10. The BPI stores the new message identifier for future reference.
+
+    Passing Criteria:
+    * The BPI successfully receives the BPI Messages from both BPI Subject A and B without any errors or disruptions.
+    * BPI Subject A's generated message identifier is unique and has not been previously used in the BPI.
+    * The BPI acknowledges that the message identifier from BPI Subject A is unique and stores it for reference.
+    * BPI Subject B's generated message identifier is unique and has not been previously used in the BPI.
+    * The BPI acknowledges that the message identifier from BPI Subject B is unique and stores it for reference.
+    * The BPI is capable of handling multiple unique message identifiers concurrently without any conflicts or errors.
+
   - #### **[D22]**	
     A BPI message SHOULD contain one or more message decorators.
 
-*In general, decorators in messages at a content level allow for the support of reusable conventions that are present across multiple messages to handle the same functionality consistently. A relevant analogy for decorators is that they are like HTTP headers in an HTTP request. The same HTTP header is often reused as a convention across multiple requests to achieve cross-domain functionality.*
+      *In general, decorators in messages at a content level allow for the support of reusable conventions that are present across multiple messages to handle the same functionality consistently. A relevant analogy for decorators is that they are like HTTP headers in an HTTP request. The same HTTP header is often reused as a convention across multiple requests to achieve cross-domain functionality.*
 
-*An initial set of useful message decorators that can be used are, but are not limited to:*
-  * *~Thread: provide request/reply and threading semantics to allow for maintaining state within, and also across messages*
-  *	*~Timing: timestamps, expiration, elapsed time*
-  *	*~L10n: localization support*
+      *An initial set of useful message decorators that can be used are, but are not limited to:*
+        * *~Thread: provide request/reply and threading semantics to allow for maintaining state within, and also across messages*
+        *	*~Timing: timestamps, expiration, elapsed time*
+        *	*~L10n: localization support*
+
+    [[D22]](#d22) Testability:
+
+    Preconditions:
+    * The BPI is operational and capable of handling messages.
+
+    Test Steps:
+    1. BPI Subject A creates a BPI Message with one or more message decorators.
+    2. BPI Subject A sends the message to the BPI.
+    3. The BPI receives the message and extracts the message decorators from the message header.
+    4. The BPI validates that the message decorators present in the message are correctly formatted and follow the expected conventions.
+    5. The BPI processes the message decorators to handle the functionality they represent consistently.
+    6. BPI Subject B creates another BPI Message with a different set of message decorators.
+    7. BPI Subject B sends the second message to the BPI.
+    8. The BPI receives the second message and extracts the message decorators.
+    9. The BPI verifies that the message decorators in the second message comply with the defined conventions.
+    10. The BPI processes the message decorators to execute the corresponding cross-domain functionality.
+
+    Passing Criteria:
+    * The BPI successfully receives the BPI Messages from both BPI Subject A and B without any errors or disruptions.
+    * The message decorators present in the message from BPI Subject A are well-formed and adhere to the expected conventions.
+    * The BPI processes the message decorators from BPI Subject A as intended and consistently handles the functionality they represent.
+    * The message decorators in the message from BPI Subject B are correctly formatted and follow the predefined conventions.
+    * The BPI successfully processes the message decorators from BPI Subject B to execute the corresponding cross-domain functionality.
+    * The BPI demonstrates the ability to handle various message decorators concurrently and consistently, contributing to enhanced message functionality.
 
   - #### **[R113]**	
     All content level BPI messages MUST be represented in JSON format [[RFC7159](#rfc7159)].
 
+    [[R113]](#r113) Testability:
+
+    Preconditions:
+    * The BPI is operational and capable of processing messages.
+    * The BPI has defined content level messages that it supports.
+
+    Test Steps:
+    1. BPI Subject A creates a content level BPI Message in JSON format.
+    2. BPI Subject A sends the JSON-formatted message to the BPI.
+    3. The BPI receives the message and verifies that it is in JSON format according to RFC7159.
+    4. The BPI parses the JSON content to extract the relevant data and context of the message.
+    5. BPI Subject B creates another content level BPI Message in a different format (non-JSON).
+    6. BPI Subject B sends the non-JSON message to the BPI.
+    7. The BPI receives the non-JSON message and validates that it does not comply with the JSON format as specified in RFC7159.
+    8. The BPI attempts to parse the non-JSON content but identifies the format mismatch.
+    9. BPI Subject C creates another content level BPI Message in JSON format and includes nested JSON structures.
+    10. BPI Subject C sends the JSON-formatted message with nested JSON structures to the BPI.
+    11. The BPI receives the message and ensures that the nested JSON structures are valid and correctly processed.
+    12. The BPI successfully extracts data and context from the nested JSON structures.
+
+    Passing Criteria:
+    * The BPI successfully receives the content level BPI Message from BPI Subject A without any errors or disruptions.
+    * The content level BPI Message from BPI Subject A is verified to be in JSON format according to RFC7159.
+    * The BPI accurately extracts the relevant data and context from the JSON-formatted message sent by BPI Subject A.
+    * BPI Subject B's non-JSON content level BPI Message is received by the BPI, and the BPI detects that it does not adhere to the JSON format specified in RFC7159.
+    * The BPI handles the non-JSON message gracefully, displaying a format mismatch error and preventing unintended parsing.
+    * BPI Subject C's content level BPI Message with nested JSON structures is received by the BPI without any issues.
+    * The BPI successfully processes the nested JSON structures within the message, accurately extracting data and context from the nested JSON elements.
+
   - #### **[R114]**	
     BPI Messages MUST be either a valid JSON-LD document, or a JSON document that can be interpreted as JSON-LD by associating a context through HTTP headers, as described in the section "Interpreting JSON as JSON-LD" of the JSON-LD standard [[JSONLD](#jsonld)].
 
-  *Note that BPI Messages may fully, and directly support JSON-LD.*
+    *Note that BPI Messages may fully, and directly support JSON-LD.*
+
+    [[R114]](#r114) Testability:
+
+    Preconditions:
+    * The BPI is operational and capable of processing messages.
+    * The BPI has defined content level messages that it supports.
+
+    Test Steps:
+    1. BPI Subject A creates a BPI Message as a valid JSON-LD document with a context provided within the JSON-LD structure.
+    2. BPI Subject A sends the JSON-LD formatted message to the BPI.
+    3. The BPI receives the JSON-LD message and validates that it is indeed a valid JSON-LD document.
+    4. The BPI extracts the data and context from the JSON-LD message based on the provided context within the JSON-LD structure.
+    5. BPI Subject B creates another BPI Message as a valid JSON document without any explicit JSON-LD context.
+    6. BPI Subject B sends the JSON-formatted message to the BPI.
+    7. The BPI receives the JSON message and identifies that it lacks an explicit JSON-LD context.
+    8. The BPI checks the HTTP headers of the received message for any context association.
+    9. If the BPI identifies a context in the HTTP headers, it interprets the JSON message as JSON-LD and extracts the data and context accordingly.
+    10. If the BPI does not find a context in the HTTP headers, it treats the message as a standard JSON document and processes it accordingly.
+
+    Passing Criteria:
+    * The BPI successfully receives the JSON-LD formatted BPI Message from BPI Subject A without any errors or disruptions.
+    * The BPI validates that the received BPI Message is a valid JSON-LD document.
+    * The BPI accurately extracts the relevant data and context from the JSON-LD formatted message sent by BPI Subject A.
+    * BPI Subject B's JSON BPI Message is received by the BPI without any issues.
+    * The BPI identifies that the JSON BPI Message lacks an explicit JSON-LD context.
+    * The BPI checks the HTTP headers of the received message and identifies an associated context.
+    * If a context is found in the HTTP headers, the BPI interprets the JSON BPI Message as JSON-LD and extracts the data and context accordingly.
+    * If no context is found in the HTTP headers, the BPI treats the message as a standard JSON document and processes it accordingly.
 
 ## 5.5 BPI Integration
 
