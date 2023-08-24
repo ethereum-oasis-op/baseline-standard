@@ -1618,24 +1618,108 @@ Resolvable identifiers utilized within a BPI are of equivalent importance for in
 #### **[R115]** 
 Identifiers and Credentials utilized in BPI Interoperability MUST satisfy all requirements in section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management). 
 
+[[R115]](#r115) Testability: See the Testability Statements in section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
+
 ### 5.5.2 Discoverable Authentication and Authorization Capabilities for BPI Interoperability Services
 
 Similar to a BPI itself, the interactions between BPIs through BPI Interoperability services must follow a similar, albeit slightly reduced set of requirements around BPI Subject authentication and authorization as a BPI.
 
 #### **[R116]**	
-BPI Interoperability Services MUST be compatible with widely used external authentication services. 
+BPI Interoperability Services MUST be compatible with widely used external authentication services.
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAUTH-2.0](oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
+
+[[R116]](#r116) Testability:
+
+Preconditions:
+* The BPI is operational and capable of interacting with external services.
+* The external authentication services e.g. OAUTH, SAML, OIDC, or AD/LDAP are configured and available.
+
+Test Steps:
+1. BPI Subject A initiates an authentication request using the OAUTH protocol to authenticate with the BPI.
+2. The BPI receives the authentication request and processes it using the OAUTH protocol.
+3. The BPI validates the user's identity using the OAUTH authentication flow.
+4. Repeat steps 1. to 3. for other supported authentication protocols
+
+
+Passing Criteria:
+* A BPI Subject successfully authenticates using either of the supported authentication protocols with the BPI.
+* The BPI processes the authentication request without errors and follows the chosen protocol.
+* The BPI accurately validates the BPI Subject's identity through the the authentication flow. 
+
+Note: Each authentication step should occur independently and without interference from previous steps.
 
 #### **[R117]**	
 BPI Interoperability Services MUST support roles & access management.
 
 *Role and Access Management in this context refers to the required roles of BPI Subjects and their authority to access and execute BPI functionality across multiple BPIs.*
 
+[[R117]](#r117) Testability:
+
+Preconditions:
+* The BPI is operational and capable of interacting with other BPIs.
+* Role and Access Management for BPI Subjects is configured and established.
+
+Test Steps:
+1. BPI Subject X attempts to access a specific BPI functionality on BPI A that requires Role A.
+2. BPI A receives the access request and validates whether BPI Subject X has Role A.
+3. If BPI Subject X has Role A, BPI A grants access and allows the execution of the requested functionality.
+4. BPI Subject Y tries to access a certain BPI feature on BPI B that necessitates Role B.
+5. BPI B receives the access request and verifies if BPI Subject Y possesses Role B.
+6. If BPI Subject Y holds Role B, BPI B permits access and allows the execution of the requested functionality.
+7. BPI Subject Z attempts to access a specific BPI capability on BPI C that requires both Role C and Role D.
+8. BPI C receives the access request and checks whether BPI Subject Z has both Role C and Role D.
+9. If BPI Subject Z possesses both Role C and Role D, BPI C grants access for the requested functionality.
+10. BPI Subject W attempts to access a particular BPI functionality on BPI D without the required Role.
+11. BPI D receives the access request and confirms that BPI Subject W lacks the necessary Role.
+12. BPI D denies access to the requested functionality for BPI Subject W.
+
+Passing Criteria:
+* BPI Subject X successfully accesses the BPI functionality on BPI A that requires Role A.
+* BPI A processes the access request and correctly verifies the possession of Role A.
+* BPI Subject Y effectively accesses the BPI feature on BPI B that necessitates Role B.
+* BPI B handles the access request and accurately confirms the presence of Role B.
+* BPI Subject Z appropriately accesses the BPI capability on BPI C that requires both Role C and Role D.
+* BPI C handles the access request and accurately confirms the presence of both Role C and Role D.
+* BPI Subject W is denied access to the BPI functionality on BPI D due to the lack of required Role.
+
+Note: Each access request should be independent, and the roles should be accurately verified according to the established access management configuration.
+
 #### **[R118]**	
 BPI Interoperability Services MUST support policy management.
 
 *Policy Management in this context refers to the management of authentication and authorization rules to access and execute BPI functionality for roles of BPI Subjects across multiple BPIs.*
+
+[[R118]](#r118) Testability:
+
+Preconditions:
+* The BPI is operational and capable of interacting with other BPIs.
+* Policy Management for BPI Interoperability Services is configured and operational.
+
+Test Steps:
+1. BPI Subject X attempts to access a specific BPI functionality on BPI A.
+2. BPI A receives the access request and checks the policy management rules for the requested functionality.
+3. If the policy management rules grant access to BPI Subject X, BPI A allows the execution of the requested functionality.
+4. BPI Subject Y tries to access a certain BPI feature on BPI B.
+5. BPI B receives the access request and verifies the policy management rules for the requested feature.
+6. If the policy management rules permit access to BPI Subject Y, BPI B allows the execution of the requested feature.
+7. BPI Subject Z attempts to access a specific BPI capability on BPI C.
+8. BPI C receives the access request and validates the policy management rules for the requested capability.
+9. If the policy management rules authorize access for BPI Subject Z, BPI C grants access for the requested capability.
+10. BPI Subject W attempts to access a particular BPI functionality on BPI D without satisfying the policy management rules.
+11. BPI D receives the access request and checks the policy management rules for the requested functionality.
+12. BPI D denies access to the requested functionality for BPI Subject W due to policy restrictions.
+
+Passing Criteria:
+* BPI Subject X successfully accesses the BPI functionality on BPI A as allowed by the policy management rules.
+* BPI A processes the access request and correctly verifies the policy management rules for the requested functionality.
+* BPI Subject Y effectively accesses the BPI feature on BPI B as permitted by the policy management rules.
+* BPI B handles the access request and accurately validates the policy management rules for the requested feature.
+* BPI Subject Z appropriately accesses the BPI capability on BPI C in accordance with the policy management rules.
+* BPI C processes the access request and correctly confirms the policy management rules for the requested capability.
+* BPI Subject W is denied access to the BPI functionality on BPI D due to policy restrictions.
+
+Note: Each access request should be independent, and policy management rules should be accurately verified according to the established policy configuration.
 
 ### 5.5.3 Discoverable and Negotiable BPI Interoperability Services
 
@@ -1646,8 +1730,58 @@ To facilitate ease of discovery, a BPI may publish a verifiable and non-repudiab
 #### **[R119]**	
 The service endpoint specification of the resolvable BPI identifier MUST list BPI service endpoints that allow for further BPI service discovery and the establishment of a secure channel between either BPIs or BPI Subjects.
 
+[[R119]](#r119) Testability:
+
+Preconditions:
+* The BPI system is operational and capable of handling service endpoint specifications for resolvable BPI identifiers.
+
+Test Steps:
+1. Retrieve the resolvable BPI identifier for BPI A.
+2. Examine the service endpoint specification associated with the resolvable BPI identifier of BPI A.
+3. Verify that the service endpoint specification provides information enabling further BPI service discovery.
+4. Check if the service endpoint specification allows for the establishment of a secure channel between BPI A and other BPIs or BPI Subjects.
+5. Retrieve the resolvable BPI identifier for BPI B.
+6. Examine the service endpoint specification linked to the resolvable BPI identifier of BPI B.
+7. Confirm that the service endpoint specification supports additional BPI service discovery.
+8. Ensure that the service endpoint specification facilitates the creation of a secure channel between BPI B and other BPIs or BPI Subjects.
+9. Retrieve the resolvable BPI identifier for BPI C.
+10. Analyze the service endpoint specification associated with the resolvable BPI identifier of BPI C.
+11. Validate that the service endpoint specification includes information for further BPI service discovery.
+12. Check if the service endpoint specification enables the establishment of a secure channel between BPI C and other BPIs or BPI Subjects.
+
+Passing Criteria:
+* The service endpoint specification of the resolvable BPI identifier for BPI A provides details enabling additional BPI service discovery.
+* The service endpoint specification of the resolvable BPI identifier for BPI A allows for the secure channel establishment with other BPIs or BPI Subjects.
+* The service endpoint specification of the resolvable BPI identifier for BPI B includes information for further BPI service discovery.
+* The service endpoint specification of the resolvable BPI identifier for BPI B permits the creation of a secure channel with other BPIs or BPI Subjects.
+* The service endpoint specification of the resolvable BPI identifier for BPI C contains details for additional BPI service discovery.
+* The service endpoint specification of the resolvable BPI identifier for BPI C enables the establishment of a secure channel with other BPIs or BPI Subjects.
+
+Note: Each test step verifies the accuracy and functionality of the service endpoint specification associated with a resolvable BPI identifier.
+
 #### **[D23]** 
 Each BPI service SHOULD be defined by an identifier that corresponds to the resolvable BPI identifier and its associated signing key(s) that offer this BPI service. 
+
+[[D23]](#d23) Testability:
+
+Test Preconditions:
+* The BPI is set up with multiple BPI services and their associated signing keys.
+* Resolvable BPI identifiers and their corresponding BPI services are available.
+
+Test Steps:
+1. Identify a BPI service within the BPI for testing.
+2. Retrieve the identifier and associated signing key(s) for the selected BPI service.
+3. Create a BPI message that requests information about the available BPI services.
+4. Send the BPI message to the BPI service discovery mechanism.
+5. Receive the response containing the list of available BPI services and their identifiers.
+6. Verify that the identifier of the selected BPI service is listed in the response.
+7. Compare the retrieved signing key(s) of the selected BPI service with the signing key(s) associated with its identifier.
+8. Perform digital signature verification using the public key associated with the identifier to ensure that the signing key(s) match.
+
+Passing Criteria:
+* The response from the BPI service discovery mechanism contains the identifier of the selected BPI service.
+* The retrieved signing key(s) match the signing key(s) associated with the BPI service's identifier.
+* The digital signature verification using the public key associated with the identifier is successful.
 
 #### **[D24]** 
 Each BPI service SHOULD be minimally specified by the following elements:
@@ -1660,26 +1794,133 @@ Each BPI service SHOULD be minimally specified by the following elements:
 * The Cryptographic Prover system,
 * The Cryptographic Prover system specification. 
 
+[[D24]](#d24) Testability:
+
+Test Preconditions:
+* The BPI is set up with multiple BPI services and their specifications.
+* Resolvable BPI identifiers are available.
+
+Test Steps:
+1. Choose a specific BPI service from the BPI ecosystem for testing.
+2. Retrieve the specified elements for the selected BPI service: domain, description, version, provider, service endpoints, service endpoint-specification endpoints, cryptographic prover system, and cryptographic prover system specification.
+3. Create a BPI message requesting information about the specified elements of BPI services.
+4. Send the BPI message to the BPI service discovery mechanism.
+5. Receive the response containing information about available BPI services and their specifications.
+6. Verify that the retrieved information matches the specified elements of the selected BPI service.
+7. Cross-reference the service endpoints and endpoint-specification endpoints to ensure accuracy.
+8. Check if the cryptographic prover system and its specification are accurately listed.
+
+Passing Criteria:
+* The response from the BPI service discovery mechanism contains accurate information about the specified elements of the selected BPI service.
+* The retrieved service endpoints and endpoint-specification endpoints match the ones specified.
+* The cryptographic prover system and its specification are correctly listed.
+
+
 #### **[R120]**	
 To ensure a BPI service specification timeline, the BPI service specification MUST include “created” and “updated” timestamps, and the full history of "updated" timestamps.
+
+[[R120]](#r120) Testability:
+
+Test Preconditions:
+* A BPI service specification with accurate timestamps is available.
+
+Test Steps:
+1. Retrieve the BPI service specification for testing.
+2. Check if the BPI service specification contains the "created" and "updated" timestamps.
+3. Verify the accuracy of the "created" timestamp.
+4. Check if there is a history of "updated" timestamps associated with the BPI service specification.
+5. Compare the "updated" timestamps history with external records to ensure accuracy.
+
+Passing Criteria:
+* The BPI service specification includes both "created" and "updated" timestamps.
+* The "created" timestamp is accurate and matches the expected creation time.
+* The "updated" timestamps history is present and aligned with external records.
 
 #### **[R121]**	
 After a BPI service endpoint has been discovered by a BPI or BPI Subject, the exact specification of the BPI service endpoint MUST be negotiated between the different BPIs and their BPI Subjects. 
 
 *Negotiation in the context of this document is the process of two or more BPIs presenting each other with and then agreeing to a way to fulfill BPI service requests amongst each other.*  
 
+[[R121]](#r121) Testability:
+
+Test Preconditions:
+* Two or more BPIs capable of negotiation are available for testing.
+
+Test Steps:
+1. Initiate a BPI service request from one BPI to another.
+2. Monitor the negotiation process between the two BPIs.
+3. Ensure that the negotiation process involves the presentation of methods or ways to fulfill the BPI service request.
+4. Confirm that the negotiation process results in an agreement between the BPIs on how to fulfill the BPI service request.
+
+Passing Criteria:
+* The negotiation process between the BPIs involves presenting ways to fulfill the BPI service request.
+* The BPIs successfully reach an agreement on how to fulfill the BPI service request.
+
 *Based upon published BPI service capabilities, a BPI service requester may present the BPI service provider with one or more service requests expressed using one of the published specifications of the requested BPI service. Such requirements may include BPI Service Version, List of BPIs offering a BPI service, etc.*
 
 #### **[R122]**	
 A BPI service requester MUST present the BPI service provider with one or more service requirements expressed using one of the published specifications of the requested BPI service.
 
+[[R122]](#r122) Testability:
+
+Test Preconditions:
+* Two or more BPIs capable of negotiation are available for testing.
+
+Test Steps:
+1. Initiate a BPI service request from one BPI to another.
+2. Monitor the negotiation process between the two BPIs.
+3. Ensure that the negotiation process involves the presentation of methods or ways to fulfill the BPI service request.
+4. Confirm that the negotiation process results in an agreement between the BPIs on how to fulfill the BPI service request.
+
+Passing Criteria:
+* The negotiation process between the BPIs involves presenting ways to fulfill the BPI service request.
+* The BPIs successfully reach an agreement on how to fulfill the BPI service request.
+
 #### **[O2]**	
 The service provider MAY respond to one of the requirements.
 
-*Example of this could be a JSON object with a response e.g. the standard HTTP response 200 or 403*
+*An example of this could be a JSON object with a response e.g. the standard HTTP response 200 or 403*
+
+[[O2]](#o2) Testability:
+
+Test Preconditions:
+* A BPI service requester is available for testing.
+* A BPI service provider with the requested BPI service specification is available.
+
+Test Steps:
+1. Prepare a set of service requirements for the requested BPI service.
+2. Present the prepared service requirements to the BPI service provider.
+3. The BPI service provider responds to one of the presented service requirements.
+
+Passing Criteria:
+* The BPI service requester presents service requirements to the BPI service provider.
+* The BPI service provider responds to one of the presented service requirements.
+* The response from the BPI service provider aligns with the example of a valid JSON response or a standard HTTP response status code.
+
 
 #### **[CR15]<[O2]** 
 If the BPI service provider has not responded to any of the BPI service requests by a BPI, the BPI service provider MUST refuse the service request.
+
+[[CR15]<[O2]](#cr15o2) Testability:
+
+Test Preconditions:
+* A BPI service requester is available for testing.
+* A BPI service provider with the requested BPI service specification is available.
+
+Test Steps:
+1. Initiate a BPI service request to the BPI service provider.
+2. Monitor the response from the BPI service provider.
+3. If the BPI service provider responds to the request, proceed to step 4. If not, proceed to step 5.
+4. Confirm that the BPI service provider's response aligns with the expected response for a successful service request.
+5. Attempt another BPI service request to the same BPI service provider.
+6. Monitor the response from the BPI service provider.
+7. If the BPI service provider does not respond, verify that the service request is refused by the BPI service provider.
+
+Passing Criteria:
+* The BPI service requester initiates a BPI service request to the BPI service provider.
+* The BPI service provider responds to the request or does not respond.
+* If the BPI service provider responds, the response aligns with the expected response for a successful service request.
+* If the BPI service provider does not respond to subsequent requests, the BPI service provider correctly refuses the service request.
 
 ### 5.5.4 Bi- and Multi-directional and Mono-directional BPI Interoperability Services
 
