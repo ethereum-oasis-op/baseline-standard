@@ -888,15 +888,61 @@ where associated data refers to data describing the characteristics of the ident
 
 This approach requires a decentralized, or at least strongly federated, infrastructure as expressed in the requirements below. 
 
-#### **[D10]**	
+#### **[D10]**
 The Public Key Infrastructure (PKI) of a BPI SHOULD have no single point of failure, and SHOULD NOT require pre-existing trust relationships between participants.*
 
-#### **[R33]**	
+[[D10]](#d10) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* All necessary participants and components are set up and operational within the BPI.
+* The PKI component of the BPI is in place.
+* No pre-existing trust relationships exist between participants.
+
+Test Steps:
+
+1. Simulate a failure scenario by shutting down one of the PKI nodes.
+2. Disable all but one PKI node, leaving a single node operational.
+3. Attempt to establish communication between two BPI participants who have not previously interacted. Initiate a communication between two participants who do not have any pre-existing trust relationship.
+
+Expected Results:
+
+1. The BPI PKI should still be operational without any significant disruptions or critical failures, demonstrating the absence of a single point of failure.
+2. The BPI should successfully establish a secure communication channel between the participants without requiring pre-existing trust relationships.
+
+The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
+
+#### **[R33]**
 The PKI of a BPI MUST be strongly federated.
 
 *Strongly federated in this context means that there is a known, finite number of participants, without a single point of failure in the PKI. However, collusion of a limited number of participants in the federated infrastructure may still lead to a compromised PKI. The consensus thresholds required for a change in the infrastructure are out of scope for this document.*
 
-#### **[R34]**	
+[[R33]](#r33) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* All necessary participants and components are set up and operational within the BPI.
+* The PKI component of the BPI is in place.
+* A known, finite number of participants is registered with the PKI.
+* There is no single point of failure in the PKI.
+
+Test Steps:
+
+1. Query the PKI for the list of registered participants.
+2. Have a predefined set of participants attempt to collude and compromise the PKI.
+3. Review the PKI architecture and configuration to ensure there is no single point of failure.
+
+Expected Results:
+
+1. The list should contain a known and finite number of participants, confirming that the PKI meets the requirement.
+2. The PKI should detect and prevent the collusion, maintaining its integrity and security.
+3. The PKI architecture should demonstrate resilience against single points of failure.
+
+The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
+
+#### **[R34]**
 The identifiers and identity utilized in a BPI MUST be controlled by its Principal Owner.
 
 *For a BPI to properly operate, communication must be trusted and secure. Communications are secured through the safe delivery of public keys tied to identities. The Principal Owner of the identity uses a corresponding secret private key to both decrypt messages sent to them, and to prove they sent a message by signing it with its private key.*
@@ -907,11 +953,35 @@ The identifiers and identity utilized in a BPI MUST be controlled by its Princip
 
 *The design of X.509 PKIX also permits any of the thousands of CAs to impersonate any website or web service. Therefore, entities cannot be certain that their communications are not being compromised by a fraudulent certificate allowing a PITM (Person-in-the-Middle) attack. While workarounds have been proposed, good ones do not exist.*
 
-*Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative. The goal of DPKI is to ensure that, unlike PKIX, no single third-party can compromise the integrity and security of a system employing DPKI as a whole.* 
+*Decentralized Public Key Infrastructure (DPKI) has been proposed as a secure alternative. The goal of DPKI is to ensure that, unlike PKIX, no single third-party can compromise the integrity and security of a system employing DPKI as a whole.*
 
 *Within DPKI, a Principal Owner can be given direct control and ownership of a globally readable identifier by registering the identifier for example in a CCSM. Simultaneously, CCSMs allow for the assignment of arbitrary data such as public keys to these identifiers and permit those values to be globally readable in a secure manner that is not vulnerable to the PITM attacks that are possible in PKIX. This is done by linking an identifier’s lookup value to the latest and most correct public keys for that identifier. In this design, control over the identifier is returned to the Principal Owner. Therefore, it is no longer trivial for any one entity to undermine the security of the entire DPKI system or to compromise an identifier that is not theirs, thus, overcoming the challenges of typical PKI.*
 
 *Furthermore, DPKI requires a public registry of identifiers and their associated public keys that can be read by anyone but cannot be compromised. As long as this registration remains valid, and the Principal Owner can maintain control of their private key, no 3rd party can take ownership of that identifier without resorting to direct coercion of the Principal Owner.*
+
+[[R34]](#r34) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* The Decentralized Public Key Infrastructure (DPKI) is integrated into the BPI.
+* A Principal Owner is identified and has control over their identity within the DPKI.
+* A public registry of identifiers and their associated public keys is in place and secure.
+* All necessary components for secure communication are operational.
+
+Test Steps:
+
+1. Access the DPKI registry and verify that the Principal Owner has control and ownership of their globally readable identifier.
+2. Attempt to access and modify the public registry data to verify that it can be read by anyone but cannot be compromised.
+3. Attempt to intercept and manipulate the communication between two parties within the BPI to verify that it is not vulnerable to PITM attacks.
+
+Expected Results:
+
+1. The Principal Owner should have direct control and ownership of their identifier within the DPKI.
+2. The public registry should be securely readable by anyone, but attempts to compromise or modify it should fail.
+3. The BPI communication should remain secure and resistant to PITM attacks.
+
+The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
 
 #### **[D11]** 
 A BPI SHOULD utilize a DPKI.
