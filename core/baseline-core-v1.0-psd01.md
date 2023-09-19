@@ -986,6 +986,28 @@ The requirement is met if all expected results are met. The requirement is not m
 #### **[D11]** 
 A BPI SHOULD utilize a DPKI.
 
+[[D11]](#d11) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* The Decentralized Public Key Infrastructure (DPKI) component is integrated into the BPI or available for integration.
+* All necessary components for secure communication are operational.
+
+Test Steps:
+
+1. Examine the BPI configuration to determine if DPKI is present and properly configured.
+2. Initiate a sample transaction or communication within the BPI and inspect the methods used for key management and identity verification.
+3. Review the DPKI documentation and standards.
+
+Expected Results: 
+
+1. The DPKI component should be integrated into the BPI or available for seamless integration.
+2. The BPI should utilize the DPKI for key management and identity verification.
+3. The BPI's use of DPKI should align with the principles and specifications defined for DPKI.
+
+The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
+
 #### **[CR1]>[D11]**	
 Any Principal Owner in a DPKI system utilized by a BPI MUST be able to broadcast a message if it is well-formed within the context of the DPKI.
 
@@ -1012,6 +1034,27 @@ Principal Owners MAY extend control of their identifier to third parties.
 
 *For example for recovery purposes.*
 
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* The Decentralized Public Key Infrastructure (DPKI) is integrated into the BPI or available for integration.
+* A Principal Owner has control over their identifier within the DPKI.
+* A third party is identified for potential extension of control.
+
+Test Steps:
+
+1. ccess the DPKI registry and verify that the Principal Owner has control and ownership of their globally readable identifier.
+2. Attempt to extend control of the Principal Owner's identifier to a third party as per the requirement.
+3. Access the DPKI registry and inspect the ownership and control of the extended identifier by the third party.
+
+Expected Result: 
+
+1. The Principal Owner should have direct control and ownership of their identifier within the DPKI.
+2. The BPI should support the extension of control of the identifier to a third party, allowing the Principal Owner to grant access and control to the designated third party.
+3. The third party should have direct control and ownership of the extended identifier within the DPKI.
+
+The requirement is met, if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
+
 #### **[CR6]<[O1]** 
 Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifiers.
 
@@ -1019,6 +1062,26 @@ Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit,
 Private keys MUST be stored and/or transmitted securely.
 
 *No mechanism should exist that would allow a single entity to deprive a Principal Owner of their identifier without their consent. This implies that:*
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Private keys are generated and used within the BPI.
+* Secure storage and transmission mechanisms are in place for private keys.
+
+Test Steps:
+
+1. Review the BPI configuration and settings related to private key storage.
+2. Initiate a secure transmission of a private key. Attempt to intercept and compromise the transmission of the private key. Verify the security of the transmission.
+3. Review the security standards and best practices followed for private key storage and transmission. Evaluate the BPI's adherence to these established security practices.
+
+Expected Results: 
+
+1. Private keys should be stored in a secure manner that is not easily accessible to unauthorized users.
+2. The private key transmission should be securely encrypted and resistant to interception or compromise.
+3. The BPI's handling of private keys should comply with recognized security standards and best practices.
+
+The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
 
 #### **[CR7]<[D11]**	
 Once a namespace is created within the context of a DPKI, it MUST NOT be possible to destroy it.
