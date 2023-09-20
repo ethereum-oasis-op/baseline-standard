@@ -1013,12 +1013,61 @@ Any Principal Owner in a DPKI system utilized by a BPI MUST be able to broadcast
 
 *Other peers in the system do not require admission control. This implies a decentralized consensus mechanism naturally leading to the utilization of systems such as CCSMs.*
 
+[[CR1]>[D11]](#cr1D11) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* The Decentralized Public Key Infrastructure (DPKI) is integrated into the BPI or available for integration.
+* A Principal Owner exists within the DPKI system.
+* The DPKI system is decentralized and utilizes systems such as CCSMs for consensus.
+
+Test Steps:
+
+1. The Principal Owner initiates the process of creating and broadcasting a well-formed message within the context of the DPKI.
+2. Check if other peers within the DPKI system have received the broadcasted message from the Principal Owner.
+3. Evaluate the architecture and consensus process used within the DPKI system to ensure it is decentralized.
+
+Expected Results: 
+
+1. The Principal Owner should be able to successfully create and broadcast a well-formed message without requiring admission control from other peers.
+2. Expected Result: Other peers should be able to receive the broadcasted message without requiring admission control.
+3. Expected Result: The DPKI system should employ a decentralized consensus mechanism, such as the use of systems like CCSMs.
+
+The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
+
 #### **[CR2]>[D11]**	
 Given two or more histories of DPKI updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
 
 *This implies the existence of a method of ascertaining the level of resources backing a DPKI history such as the hash power in Bitcoin based on difficulty level and nonce.*
 
 *Requirements of Identifier registration in DPKI are handled differently from DNS. Although registrars may exist in DPKI, these registrars must adhere to several requirements that ensure that identities belong to the entities they represent. This is achieved the following way:*
+
+[[CR2]>[D11]](cr2d11) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* There are two or more histories of Decentralized Public Key Infrastructure (DPKI) updates available within the BPI.
+* Principal Owners exist within the DPKI system.
+* A method of ascertaining the level of resources backing a DPKI history, such as hash power, is available.
+* Registrars may exist within DPKI but must adhere to the requirements ensuring that identities belong to the entities they represent.
+
+Test Steps:
+
+1. Check the BPI configuration to ensure the availability of multiple DPKI histories.
+2. The Principal Owner inspects the available histories and selects the preferred one based on security criteria.
+3. Evaluate the method and data used to calculate the level of resources backing a DPKI history, such as hash power in Bitcoin.
+4. Review the requirements that registrars must adhere to in order to ensure that identities belong to the entities they represent.
+
+Expected Results: 
+
+1. There should be two or more histories of DPKI updates accessible.
+2. The Principal Owner should be able to determine the preferred history based on security criteria, such as resource backing or other relevant factors.
+3. The method for ascertaining the resource level should be validated and reliable.
+4. Registrars within the DPKI system should adhere to the specified requirements to confirm identity ownership.
+
+The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
 
 #### **[CR3]>[D11]**	
 Private keys utilized in a BPI MUST be generated in a manner that ensures they remain under the Principal Owner’s control. 
