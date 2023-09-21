@@ -911,8 +911,6 @@ Expected Results:
 1. The BPI PKI should still be operational without any significant disruptions or critical failures, demonstrating the absence of a single point of failure.
 2. The BPI should successfully establish a secure communication channel between the participants without requiring pre-existing trust relationships.
 
-The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
-
 #### **[R33]**
 The PKI of a BPI MUST be strongly federated.
 
@@ -939,8 +937,6 @@ Expected Results:
 1. The list should contain a known and finite number of participants, confirming that the PKI meets the requirement.
 2. The PKI should detect and prevent the collusion, maintaining its integrity and security.
 3. The PKI architecture should demonstrate resilience against single points of failure.
-
-The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
 
 #### **[R34]**
 The identifiers and identity utilized in a BPI MUST be controlled by its Principal Owner.
@@ -981,8 +977,6 @@ Expected Results:
 2. The public registry should be securely readable by anyone, but attempts to compromise or modify it should fail.
 3. The BPI communication should remain secure and resistant to PITM attacks.
 
-The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
-
 #### **[D11]** 
 A BPI SHOULD utilize a DPKI.
 
@@ -1005,8 +999,6 @@ Expected Results:
 1. The DPKI component should be integrated into the BPI or available for seamless integration.
 2. The BPI should utilize the DPKI for key management and identity verification.
 3. The BPI's use of DPKI should align with the principles and specifications defined for DPKI.
-
-The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
 
 #### **[CR1]>[D11]**	
 Any Principal Owner in a DPKI system utilized by a BPI MUST be able to broadcast a message if it is well-formed within the context of the DPKI.
@@ -1034,8 +1026,6 @@ Expected Results:
 2. Expected Result: Other peers should be able to receive the broadcasted message without requiring admission control.
 3. Expected Result: The DPKI system should employ a decentralized consensus mechanism, such as the use of systems like CCSMs.
 
-The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
-
 #### **[CR2]>[D11]**	
 Given two or more histories of DPKI updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
 
@@ -1043,7 +1033,7 @@ Given two or more histories of DPKI updates, any Principal Owner within a BPI MU
 
 *Requirements of Identifier registration in DPKI are handled differently from DNS. Although registrars may exist in DPKI, these registrars must adhere to several requirements that ensure that identities belong to the entities they represent. This is achieved the following way:*
 
-[[CR2]>[D11]](cr2d11) Testability:
+[[CR2]>[D11]](#cr2d11) Testability:
 
 Preconditions:
 
@@ -1067,21 +1057,80 @@ Expected Results:
 3. The method for ascertaining the resource level should be validated and reliable.
 4. Registrars within the DPKI system should adhere to the specified requirements to confirm identity ownership.
 
-The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
-
 #### **[CR3]>[D11]**	
 Private keys utilized in a BPI MUST be generated in a manner that ensures they remain under the Principal Owner’s control. 
 
-#### **[CR4]>[D11]** 
+[[Cr3]>[D11]](#cr3d11) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Principal Owners are registered within the BPI.
+* Private keys are generated and utilized within the BPI.
+* The private key generation process is under scrutiny for compliance.
+
+Test Steps:
+
+1. Review the BPI's private key generation method and associated controls.
+2. The Principal Owner initiates the process of generating a private key and demonstrates control over it.
+3. Evaluate the BPI's adherence to established security standards and best practices for private key generation.
+
+Expected Results: 
+
+1. The Principal Owner should be able to successfully generate a private key and prove that they have control over it.
+2. The BPI's private key generation process should comply with recognized security standards and best practices.
+
+#### **[CR4]>[D11]**
 Generating key pairs in a BPI on behalf of the Principal Owner MUST NOT be allowed.
 
-#### **[CR5]>[D11]**	
-Principal Owners in a BPI MUST always be in control of their identifiers and the corresponding public keys. 
+[[Cr4]>[D11]](#cr4d11) Testability: 
 
-#### **[O1]**	
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Principal Owners are registered within the BPI.
+* The BPI includes functionality for generating key pairs.
+
+Test Steps:
+
+1. The Principal Owner initiates the process of generating a key pair.
+2. Try to initiate key pair generation without the Principal Owner's direct action.
+
+Expected Results:
+
+1. The BPI should allow the Principal Owner to generate a key pair.
+2. The BPI should not allow key pair generation on behalf of the Principal Owner without their direct involvement.
+
+#### **[CR5]>[D11]**
+Principal Owners in a BPI MUST always be in control of their identifiers and the corresponding public keys.
+
+[[CR5]>[D11]](#cr5d11) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Principal Owners are registered within the BPI.
+* Identifiers and corresponding public keys are managed within the BPI.
+* Secure mechanisms for identifier and public key control are in place.
+
+Test Steps:
+
+1. The Principal Owner initiates a process to demonstrate control over their identifier.
+2. The Principal Owner initiates a process to demonstrate control over their public key within the BPI.
+3. An unauthorized party attempts to modify the identifier or public key of a Principal Owner.
+
+Expected Results: 
+
+1. The Principal Owner should be able to successfully validate their control over their identifier.
+2. The Principal Owner should be able to successfully validate their control over their corresponding public key.
+3. The BPI should not allow unauthorized parties to modify the identifier or public key of a Principal Owner.
+
+#### **[O1]**
 Principal Owners MAY extend control of their identifier to third parties.
 
 *For example for recovery purposes.*
+
+[[O1]](#o1) Testability:
 
 Preconditions:
 
@@ -1092,25 +1141,46 @@ Preconditions:
 
 Test Steps:
 
-1. ccess the DPKI registry and verify that the Principal Owner has control and ownership of their globally readable identifier.
+1. Access the DPKI registry and verify that the Principal Owner has control and ownership of their globally readable identifier.
 2. Attempt to extend control of the Principal Owner's identifier to a third party as per the requirement.
 3. Access the DPKI registry and inspect the ownership and control of the extended identifier by the third party.
 
-Expected Result: 
+Expected Results: 
 
 1. The Principal Owner should have direct control and ownership of their identifier within the DPKI.
 2. The BPI should support the extension of control of the identifier to a third party, allowing the Principal Owner to grant access and control to the designated third party.
 3. The third party should have direct control and ownership of the extended identifier within the DPKI.
 
-The requirement is met, if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
-
 #### **[CR6]<[O1]** 
 Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifiers.
+
+[[CR6]>[O1]](#cr6o1) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Principal Owners are registered within the BPI.
+* The BPI includes functionality for controlling identifiers.
+* A third party is identified for potential extension of control.
+
+Test Steps:
+
+1. Attempt to extend control of an identifier to a third party without the explicit consent of the Principal Owner.
+2. Communicate with the Principal Owner to receive their consent for the extension of control to the identified third party.
+3. Complete the process of extending control to the third party, ensuring the Principal Owner's consent is honored.
+
+Expected Results: 
+
+1. The BPI should not allow the extension of control to a third party without the explicit and informed consent of the Principal Owner.
+2. The Principal Owner should explicitly and willingly consent to the extension of control to the third party.
+3. The BPI should allow the extension of control to the third party as an explicit, informed decision by the Principal Owner.
 
 #### **[R35]**	
 Private keys MUST be stored and/or transmitted securely.
 
 *No mechanism should exist that would allow a single entity to deprive a Principal Owner of their identifier without their consent. This implies that:*
+
+[[R35]](#r35) Testability: 
 
 Preconditions:
 
@@ -1130,24 +1200,120 @@ Expected Results:
 2. The private key transmission should be securely encrypted and resistant to interception or compromise.
 3. The BPI's handling of private keys should comply with recognized security standards and best practices.
 
-The requirement is met if all expected results are met. The requirement is not met if any of the results are not meeting test expectations.
-
 #### **[CR7]<[D11]**	
 Once a namespace is created within the context of a DPKI, it MUST NOT be possible to destroy it.
 
-#### **[CR8]<[D11]**	
+[[CR7]<[D11]](#cr7d11) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A namespace has been created within the context of a Decentralized Public Key Infrastructure (DPKI) using the BPI.
+* Secure mechanisms for namespace management are in place.
+
+Test Steps:
+
+1. Attempt to destroy the previously created namespace.
+2. Check if the previously created namespace still exists and is accessible.
+
+Expected Results: 
+
+1. The BPI should not allow the destruction of the namespace.
+2. The namespace should be preserved and accessible, and it should not have been destroyed.
+
+#### **[CR8]<[D11]**
 Namespaces in a DPKI utilized by a BPI MUST NOT contain blacklisting mechanisms that would allow anyone to invalidate identifiers that do not belong to them.
+
+[[CR8]<[D11]](#cr8d11) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A namespace exists within the context of a Decentralized Public Key Infrastructure (DPKI) using the BPI.
+* Secure mechanisms for namespace management are in place.
+
+Test Steps:
+
+1. Review the configuration and settings of the namespace within the DPKI to check for the presence of blacklisting mechanisms.
+2. Attempt to use the namespace or associated functionality to invalidate an identifier that does not belong to the user.
+
+Expected Results: 
+
+1. The namespace should not contain any blacklisting mechanisms that would allow anyone to invalidate identifiers that do not belong to them.
+2. Expected Result: The BPI should not allow the invalidation of identifiers that do not belong to the user, confirming the absence of blacklisting mechanisms.
 
 #### **[CR9]<[D11]**	
 The rules for registering and renewing identifiers in a DPKI utilized by a BPI MUST be transparent and expressed in simple terms.
 
+[[CR9]<[D11]](#cr9d11) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A Decentralized Public Key Infrastructure (DPKI) is integrated into the BPI or available for integration.
+* Rules for registering and renewing identifiers within the DPKI are established.
+
+Test Steps:
+
+1. Review the documentation or configuration that defines the rules for identifier registration.
+2. Review the documentation or configuration that defines the rules for identifier renewal.
+
+Expected Results: 
+
+1. The rules for registering identifiers should be transparent and expressed in simple terms that are easily understandable.
+2. The rules for renewing identifiers should be transparent and expressed in simple terms that are easily understandable.
+
 #### **[R36]**	
 If registration is used as security to an expiration policy, the Principal Owner MUST be explicitly and timely warned that failure to renew the registration on time could result in the Principal Owner losing control of the identifier.
+
+[[R36]](#r36) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Principal Owners are registered within the BPI.
+* An expiration policy linked to registration exists within the BPI.
+* The BPI includes mechanisms for sending warnings to Principal Owners.
+* Timely warning thresholds are defined for registration expiration.
+
+Test Steps:
+
+1. Review the configuration and settings within the BPI to check for the existence of an expiration policy linked to registration.
+2. Verify that the BPI specifies the time frame within which Principal Owners will be warned about impending registration expiration.
+3. Review the documentation or configuration to understand how warnings are delivered to Principal Owners.
+4. Trigger a scenario where a Principal Owner's registration is nearing expiration and observe the warning mechanism in action.
+
+Expected Results: 
+
+1. The BPI should have a registration expiration policy in place.
+2. Timely warning thresholds should be clearly defined.
+3. The BPI should have mechanisms in place to send warnings to Principal Owners.
+4. The Principal Owner should receive an explicit and timely warning about the impending expiration, explicitly stating that failure to renew on time could result in loss of control of the identifier.
 
 #### **[CR10]>[D11]**	
 Once set, namespace rules within a DPKI utilized by a BPI MUST NOT be altered to introduce any new restrictions for renewing or updating identifiers.
 
 *Otherwise, it would be possible to take control of identifiers away from Principal Owners without their consent.*
+
+[[CR10]>[D11]](#cr10d11) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A namespace exists within the context of a Decentralized Public Key Infrastructure (DPKI) using the BPI.
+* Namespace rules are established for renewing or updating identifiers within the DPKI.
+* Secure mechanisms for managing namespace rules are in place.
+
+Test Steps:
+
+1. Review the documentation or configuration that defines the current namespace rules.
+2. Attempt to alter the existing namespace rules to introduce new restrictions for renewing or updating identifiers.
+
+Expected Results: 
+
+1. The existing namespace rules should be documented and stable.
+2. The BPI should not allow the alteration of namespace rules to introduce new restrictions for renewing or updating identifiers.
+
 
 #### **[CR11]>[D11]**	
 Within a DPKI utilized by a BPI, processes for renewing or updating identifiers MUST NOT be modified to introduce new restrictions for updating or renewing an identifier, once issued.
