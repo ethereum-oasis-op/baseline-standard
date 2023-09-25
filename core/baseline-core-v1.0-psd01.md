@@ -1318,10 +1318,47 @@ Expected Results:
 #### **[CR11]>[D11]**	
 Within a DPKI utilized by a BPI, processes for renewing or updating identifiers MUST NOT be modified to introduce new restrictions for updating or renewing an identifier, once issued.
 
+[[Cr11]>[D11]](#cr11d11) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A Decentralized Public Key Infrastructure (DPKI) is integrated into the BPI or available for integration.
+* Processes for renewing or updating identifiers within the DPKI are established.
+* Secure mechanisms for managing identifier renewal and updates are in place.
+
+Test Steps:
+
+1. Examine the existing processes for renewing or updating identifiers within the DPKI.
+2. Attempt to modify the existing processes for identifier renewal and updates to introduce new restrictions.
+
+Expected Results: 
+
+1. The existing processes for renewing or updating identifiers should be documented and stable.
+2. The BPI should not allow the modification of processes to introduce new restrictions for renewing or updating an identifier once it has been issued.
+
 #### **[CR12]>[D11]**	
 Within a DPKI utilized by a BPI, all network communications for creating, updating, renewing, or deleting identifiers MUST be sent via a non-centralized mechanism.
 
 *This is necessary to ensure that a single entity cannot prevent identifiers from being updated or renewed.*
+
+[[Cr12]>[D11]](#cr12d11) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A Decentralized Public Key Infrastructure (DPKI) is integrated into the BPI or available for integration.
+* Processes for creating, updating, renewing, or deleting identifiers within the DPKI are established.
+* Secure non-centralized network communication mechanisms are in place.
+
+Test Steps:
+
+1. Examine the network communication mechanisms used for creating, updating, renewing, or deleting identifiers within the DPKI.
+2. Ensure that communications are not centralized through a single point or entity.
+
+Expected Results: 
+
+1. All network communications related to identifier management should follow a non-centralized path, avoiding single points of failure.
 
 ## 3.2 BPI Identifiers, Identities and Credentials, and their Management
 
