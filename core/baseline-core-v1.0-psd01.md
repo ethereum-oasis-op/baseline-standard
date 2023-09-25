@@ -988,8 +988,45 @@ Uniqueness and security of BPI identifiers are very important to unambiguously i
 #### **[R37]** 
 Requester and Provider interacting with and through a BPI, as well as any BPI Operator, MUST each have a unique identifier.
 
+[[R37]](r37) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Requesters, Providers, and BPI Operators are registered within the BPI.
+* Secure mechanisms for identifier assignment are in place.
+
+Test Steps:
+
+1. Review the identifiers assigned to Requesters, Providers, and BPI Operators within the BPI to ensure that each entity has a unique identifier .
+2. Attempt to assign the same identifier to multiple Requesters, Providers, or BPI Operators within the BPI.
+
+Expected Results: 
+
+1. Each Requester, Provider, and BPI Operator should have a unique and distinct identifier assigned to them.
+2. The BPI should not allow the assignment of the same identifier to multiple entities, ensuring uniqueness.
+
 #### **[R38]** 
 Any unique identifier utilized within a BPI MUST be associated with a set of public keys.
+
+[[R38]](r38) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Public keys are generated and available for association with identifiers.
+* Secure mechanisms for associating public keys with identifiers are in place.
+
+Test Steps:
+
+1. Review the identifiers assigned to entities within the BPI and check if each identifier is associated with a set of public keys.
+2. Attempt to disassociate public keys from an identifier within the BPI.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should be associated with the appropriate set of public keys.
+2. The BPI should not allow the disassociation of public keys from an identifier, ensuring that all identifiers remain associated with their respective public keys.
 
 #### **[R39]** 
 Any unique identifier utilized within a BPI MUST be discoverable by any 3rd party within said BPI.
