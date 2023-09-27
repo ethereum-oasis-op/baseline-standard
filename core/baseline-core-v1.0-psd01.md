@@ -1096,8 +1096,46 @@ Expected Results:
 #### **[R42]** 
 Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
+[[R42]](r42) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Each identifier is associated with an endpoint URI that allows for BPI messaging.
+* Secure mechanisms for identifier resolution to BPI messaging URIs are in place.
+
+Test Steps:
+
+1. Review the unique identifiers assigned to entities within the BPI and confirm that each identifier is resolvable to an endpoint URI that allows for BPI messaging.
+2. Attempt to configure or test scenarios where unique identifiers cannot be resolved to URIs that allow for BPI messaging.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should have an associated endpoint URI that enables BPI messaging, ensuring that BPI-related communication can occur.
+2. The BPI should not allow configurations or scenarios that disrupt or prevent the resolution of unique identifiers to URIs capable of facilitating BPI messaging.
+
 #### **[D12]** 
 Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#w3c-did)].
+
+[[D12]](d12) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* There is a requirement to follow the W3C DID Core specification for these identifiers.
+* Secure mechanisms for handling and validating W3C DID-compliant identifiers are in place.
+
+Test Steps:
+
+1. Review the unique identifiers assigned to entities within the BPI and confirm that they follow the format specified in the W3C DID Core specification.
+2. Attempt to configure or use identifiers that do not comply with the W3C DID Core specification.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should follow the format prescribed by the W3C DID Core specification.
+2. The BPI should not allow configurations or scenarios that result in the use of identifiers that do not comply with the W3C DID Core specification.
 
 ### 3.2.2 BPI Identities and Credentials
 
