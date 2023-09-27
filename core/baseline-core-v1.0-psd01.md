@@ -1031,11 +1031,67 @@ Expected Results:
 #### **[R39]** 
 Any unique identifier utilized within a BPI MUST be discoverable by any 3rd party within said BPI.
 
+[[R39]](r39) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Secure mechanisms for identifier discoverability are in place.
+
+Test Steps:
+
+1. Review the identifiers assigned to entities within the BPI and confirm that unique identifiers can be discovered by any 3rd party participant within the BPI.
+2. Attempt to configure or test scenarios where unique identifiers cannot be discovered by any 3rd party within the BPI.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should be discoverable by any 3rd party participant without any access restrictions.
+2. The BPI should not allow configurations or scenarios that restrict or prevent the discoverability of unique identifiers by any 3rd party participant.
+
 #### **[R40]** 
 Any unique identifier utilized within a BPI MUST be resolvable to its associated public keys used for cryptographic authentication of the unique identifier.
 
+[[R40]](r40) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Each identifier is associated with its corresponding set of public keys used for cryptographic authentication.
+* Secure mechanisms for identifier resolution are in place.
+
+Test Steps:
+
+1. Review the unique identifiers assigned to entities within the BPI and confirm that each identifier is associated with its corresponding set of public keys used for cryptographic authentication.
+2. Attempt to configure or test scenarios where unique identifiers cannot be resolved to their associated public keys.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should have an established association with its corresponding set of public keys.
+2. The BPI should not allow configurations or scenarios that disrupt or prevent the resolution of unique identifiers to their associated public keys.
+
 #### **[R41]** 
 Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that identifies the Baseline Protocol Standard as a supported protocol including the supported version(s).
+
+[[R41]](r41) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Each identifier is associated with an endpoint URI that identifies the Baseline Protocol Standard as a supported protocol, including supported version(s).
+* Secure mechanisms for identifier resolution to URIs are in place.
+
+Test Steps:
+
+1. Inspect the records or configuration to ensure that each identifier can be resolved to a URI with the required protocol information.
+2. Initiate processes or configurations that disrupt or prevent the resolution of identifiers to URIs with the required protocol information.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should have an associated endpoint URI that correctly identifies the Baseline Protocol Standard as a supported protocol, including supported version(s).
+2. The BPI should not allow configurations or scenarios that disrupt or prevent the resolution of unique identifiers to URIs with the required protocol information.
 
 #### **[R42]** 
 Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
