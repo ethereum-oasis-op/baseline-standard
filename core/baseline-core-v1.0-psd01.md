@@ -2108,7 +2108,7 @@ Succinct in the context of zero-knowledge proofs means that a zero-knowledge pro
 
 Preconditions:
 
-* A non-interactive zero-knowledge proof of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Service from a prover system that can generate a zero-knowledge proof of correctness for the output of size N. The size N is given by the size of the circuit used to generate the proof in terms of the number of circuit constraint equations.
+* A non-interactive zero-knowledge proof of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services from a prover system that can generate a zero-knowledge proof of correctness for the output of size N. The size N is given by the size of the circuit used to generate the proof in terms of the number of circuit constraint equations.
 * A verifier system that can verify the zero-knowledge proof.
 
 Test Steps:
