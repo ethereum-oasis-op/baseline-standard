@@ -2119,7 +2119,7 @@ Test Steps:
 
 Test Passing Criteria:
 
-* The test will pass if the non-interactive zero-knowledge proof of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Service can be verified by the verifier system in a number of computational steps at most proportional to the size of the prover system that generated the proof.
+* The test will pass if the non-interactive zero-knowledge proof of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services can be verified by the verifier system in a number of computational steps at most proportional to the size of the prover system that generated the proof.
 
 #### **[R125]** 
 The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
