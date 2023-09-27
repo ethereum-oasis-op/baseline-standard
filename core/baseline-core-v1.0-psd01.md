@@ -2926,7 +2926,7 @@ Test Preconditions:
 * Cryptographic keys for encryption and decryption are available and properly configured.
 
 Test Steps:
-1. The test system initiates a communication between two BPIs (source and target).
+1. The test system initiates communication between two BPIs (source and target).
 2. During the communication, the data being transmitted is intercepted.
 3. The intercepted data is analyzed to determine if it is encrypted.
 4. If the intercepted data is encrypted, proceed to step 6. If not, proceed to step 5.
