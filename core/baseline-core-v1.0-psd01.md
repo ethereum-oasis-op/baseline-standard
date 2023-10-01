@@ -1164,24 +1164,145 @@ A unique identifier utilized within one or more BPIs SHOULD be linked to an enti
 
 *Note that credentials utilized within one or more BPIs may be self-issued. The acceptance of self-issued credentials is up to the BPI participants that need to rely on the claim(s) within a self-issued credential.*
 
+[[D13]](d13) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Cryptographically signed, verifiable, and revocable credentials based on public keys are supported within the BPI.
+* Cryptographically signed, verifiable, and revocable credentials are issued and associated with unique identifiers.
+* Entities, including self-issued credentials, are accepted by BPI participants based on these credentials.
+
+Test Steps:
+
+1. Check if cryptographically signed, verifiable, and revocable credentials exist for the unique identifiers utilized within the BPI.
+2. Confirm that entities linked to unique identifiers are accepted by BPI participants based on the associated cryptographically signed credentials.
+3. Attempt to revoke cryptographically signed credentials and confirm that BPI participants no longer accept the associated entities.
+
+Expected Results: 
+
+1. Cryptographically signed credentials should be available for the specified unique identifiers.
+2. Entities linked to unique identifiers through cryptographically signed credentials should be accepted by BPI participants for interactions.
+3. Entities associated with revoked credentials should not be accepted by BPI participants for interactions.
+
 #### **[R43]** 
 The unique identifier of the (Legal) Entity MUST be the subject of the credential.
+
+[[R34]](r34) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to (Legal) Entities within the BPI.
+* Cryptographically signed credentials are issued and associated with unique identifiers.
+* The credentials have a subject field that designates the unique identifier of the (Legal) Entity.
+* Entities are accepted by BPI participants based on the associated credentials.
+
+Test Steps:
+
+1. Review the credential details and data to verify that the subject field accurately matches the unique identifier of the (Legal) Entity.
+2. Attempt to validate credentials by verifying that the subject field matches the unique identifier of the (Legal) Entity.
+
+Expected Results: 
+
+1. The subject field of each credential should correctly designate the unique identifier of the associated (Legal) Entity.
+2. Validated credentials should pass the check, confirming that the subject field matches the unique identifier of the (Legal) Entity.
 
 #### **[R44]** 
 The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
+[[R44]](r44) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to (Legal) Entities within the BPI.
+* Cryptographically signed credentials are issued and associated with unique identifiers.
+* The credentials have a subject field designating the unique identifier of the (Legal) Entity.
+* There is an issuer credential associated with the (Legal) Entity issuer's unique identifier.
+* Entities are accepted by BPI participants based on the associated credentials.
+
+Test Steps:
+
+1. Review the BPI configuration and data to ensure that an issuer credential exists for the issuer's unique identifier.
+2. Confirm that the (Legal) Entity issuer's unique identifier is accepted by BPI participants based on the issuer credential associated with it.
+3. Attempt to revoke the issuer credential and confirm that BPI participants no longer accept the (Legal) Entity issuer's unique identifier.
+
+Expected Results: 
+
+1. An issuer credential should be available for the specified issuer's unique identifier.
+2. Entities linked to the (Legal) Entity issuer's unique identifier through the issuer credential should be accepted by BPI participants for interactions.
+3. Entities associated with the revoked issuer credential should not be accepted by BPI participants for interactions.
+
 #### **[D14]** 
 A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential Standard [[W3C VC](#w3c-vc)].
 
-#### **[R45]** 
-A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
+[[D14]](d14) Testability:
 
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement for these credentials to follow the W3C Verifiable Credential Standard.
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+
+Test Steps:
+
+1. Review the credential details and data to verify that they comply with the requirements of the W3C Verifiable Credential Standard.
+2. Attempt to configure or use credentials that do not comply with the W3C Verifiable Credential Standard.
+
+Expected Results: 
+
+1. Credentials within the BPI should follow the format and standards prescribed by the W3C Verifiable Credential Standard.
+2. The BPI should not allow configurations or scenarios that result in the use of credentials that do not comply with the W3C Verifiable Credential Standard.
+
+#### **[R45]**
+A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 *Note, that the unique and resolvable identifier of a credential does not have to be associated with any cryptographic keys.*
+
+[[R45]](r45) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement for these credentials to have a unique and resolvable identifier.
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+
+Test Steps:
+
+1. Review the credential details and data to verify that each credential has a unique and resolvable identifier.
+2. Attempt to configure or use credentials that do not have a unique and resolvable identifier.
+
+Expected Results: 
+
+1. Each credential within the BPI should have a unique and resolvable identifier.
+2. The BPI should not allow configurations or scenarios that result in the use of credentials without a unique and resolvable identifier.
 
 #### **[R46]** 
 If present, the status of a credential utilized within one or more BPIs MUST be discoverable by a party verifying the credential, the credential verifier.
 
 *In the context of this document, a credential verifier is defined per the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc).*
+
+[[R46]](r46) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement for the status of these credentials to be discoverable by a party verifying the credential, the credential verifier.
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+
+Test Steps:
+
+1. Review the credential details and data to verify that the status of each credential is discoverable by a credential verifier.
+2. Attempt to configure or use credentials for which the status cannot be discovered by a party verifying the credential.
+
+Expected Results: 
+
+1. The status of each credential within the BPI should be discoverable by a party verifying the credential, as per the requirements of the W3C Verifiable Credential Standard.
+2. The BPI should not allow configurations or scenarios that result in the use of credentials for which the status cannot be discovered by a credential verifier, as required.
 
 #### **[D15]** 
 A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
