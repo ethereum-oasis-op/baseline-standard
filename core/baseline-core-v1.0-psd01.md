@@ -1311,10 +1311,49 @@ A credential utilized within one or more BPIs SHOULD be discoverable by a partic
 
 *Note that discoverability can be restricted based on privacy and / or security rules within a given BPI. Discoverability could be achieved for example through a credential registry within a BPI or by listing a credential access endpoint in the DID document of a BPI Subject.*  
 
+[[D15]](d15) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement for credentials to be discoverable by participants within the BPI(s) as specified in the requirement.
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+* Privacy and security rules governing discoverability are defined within the BPI.
+
+Test Steps:
+
+1. Review the BPI configuration, credential details, and any relevant privacy and security rules to verify that credentials can be discovered by participants within the BPI(s).
+2. Attempt to configure or use credentials in scenarios where their discoverability is restricted based on privacy and security rules within the BPI.
+
+Expected Results: 
+
+1. The BPI should support discoverability of credentials by participants within the BPI(s) according to the specified privacy and security rules.
+2. The BPI should enforce the privacy and security rules to restrict discoverability of credentials as per the configured scenarios.
+
 #### **[R47]** 
 The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the holder.
 
 *See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder [[Holder](#w3c-holder-definition)].*
+
+[[R47]](r47) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement that the presentation of credentials must be cryptographically signed by the presenter (holder).
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+
+Test Steps:
+
+1. Perform a credential presentation process and examine the presented credential to verify that it is cryptographically signed by the presenter (holder).
+2. Attempt to configure or use a credential presentation process where the presented credential is not cryptographically signed by the presenter (holder).
+
+Expected Results: 
+
+1. The presented credential should include a valid cryptographic signature by the presenter (holder).
+2. The BPI should not allow configurations or scenarios that result in the presentation of unsigned credentials.
 
 #### **[R48]** 
 If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
