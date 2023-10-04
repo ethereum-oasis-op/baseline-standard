@@ -1379,8 +1379,48 @@ For a BPI to achieve these objectives, the following requirements need to be met
 #### **[R49]** 
 A unique identifier utilized in a BPI MUST be stored by the BPI.
 
+[[R49]](r49) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A unique identifier is generated or used within the BPI for entities, issuers, or other purposes.
+* There is a requirement that the BPI must store the unique identifier.
+
+Test Steps:
+
+1. Generate or use a unique identifier within the BPI.
+2. Examine the BPI's data storage components and records to verify that the unique identifier is stored by the BPI.
+3. Query the BPI's data storage to retrieve the stored unique identifier.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the unique identifier.
+2. The unique identifier should be present in the BPI's storage, confirming that it is stored as required.
+3. The BPI should provide a valid response with the retrieved unique identifier, confirming that it is stored and retrievable.
+
 #### **[R50]** 
 The Principal Owner or their delegates MUST prove control over a unique identifier utilized in a BPI every time said unique identifier is used in the BPI by the Principal Owner or their delegates.
+
+[[R50]](r50) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A unique identifier is generated or used within the BPI for entities, issuers, or other purposes.
+* There is a requirement that the Principal Owner or their delegates must prove control over the unique identifier every time it is used.
+
+Test Steps:
+
+1. Create or utilize a unique identifier within the BPI.
+2. Initiate an action or transaction within the BPI that involves the use of the unique identifier by the Principal Owner or their delegates.
+3. Test Action: Repeat Step 2 for multiple actions or transactions within the BPI, ensuring that control over the unique identifier is verified every time it is used.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the unique identifier.
+2. The Principal Owner or their delegates should be able to prove control over the unique identifier as required.
+3. The Principal Owner or their delegates should be able to consistently prove control over the unique identifier for each action or transaction.
 
 #### **[R51]** 
 Every time a unique identifier utilized in a BPI is used in the BPI by the Principal Owner or their delegates, the BPI MUST verify that the Principal Owner or their delegates are in control of said unique identifier.
