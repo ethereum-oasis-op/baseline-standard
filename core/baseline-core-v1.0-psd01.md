@@ -988,7 +988,7 @@ Uniqueness and security of BPI identifiers are very important to unambiguously i
 #### **[R37]** 
 Requester and Provider interacting with and through a BPI, as well as any BPI Operator, MUST each have a unique identifier.
 
-[[R37]](r37) Testability:
+[[R37]](#r37) Testability:
 
 Preconditions:
 
@@ -1009,7 +1009,7 @@ Expected Results:
 #### **[R38]** 
 Any unique identifier utilized within a BPI MUST be associated with a set of public keys.
 
-[[R38]](r38) Testability: 
+[[R38]](#r38) Testability: 
 
 Preconditions:
 
@@ -1031,7 +1031,7 @@ Expected Results:
 #### **[R39]** 
 Any unique identifier utilized within a BPI MUST be discoverable by any 3rd party within said BPI.
 
-[[R39]](r39) Testability:
+[[R39]](#r39) Testability:
 
 Preconditions:
 
@@ -1052,7 +1052,7 @@ Expected Results:
 #### **[R40]** 
 Any unique identifier utilized within a BPI MUST be resolvable to its associated public keys used for cryptographic authentication of the unique identifier.
 
-[[R40]](r40) Testability: 
+[[R40]](#r40) Testability: 
 
 Preconditions:
 
@@ -1074,7 +1074,7 @@ Expected Results:
 #### **[R41]** 
 Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that identifies the Baseline Protocol Standard as a supported protocol including the supported version(s).
 
-[[R41]](r41) Testability: 
+[[R41]](#r41) Testability: 
 
 Preconditions:
 
@@ -1096,7 +1096,7 @@ Expected Results:
 #### **[R42]** 
 Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
-[[R42]](r42) Testability:
+[[R42]](#r42) Testability:
 
 Preconditions:
 
@@ -1118,7 +1118,7 @@ Expected Results:
 #### **[D12]** 
 Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#w3c-did)].
 
-[[D12]](d12) Testability: 
+[[D12]](#d12) Testability: 
 
 Preconditions:
 
@@ -1164,7 +1164,7 @@ A unique identifier utilized within one or more BPIs SHOULD be linked to an enti
 
 *Note that credentials utilized within one or more BPIs may be self-issued. The acceptance of self-issued credentials is up to the BPI participants that need to rely on the claim(s) within a self-issued credential.*
 
-[[D13]](d13) Testability: 
+[[D13]](#d13) Testability: 
 
 Preconditions:
 
@@ -1189,7 +1189,7 @@ Expected Results:
 #### **[R43]** 
 The unique identifier of the (Legal) Entity MUST be the subject of the credential.
 
-[[R34]](r34) Testability:
+[[R34]](#r34) Testability:
 
 Preconditions:
 
@@ -1212,7 +1212,7 @@ Expected Results:
 #### **[R44]** 
 The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
-[[R44]](r44) Testability: 
+[[R44]](#r44) Testability: 
 
 Preconditions:
 
@@ -1238,7 +1238,7 @@ Expected Results:
 #### **[D14]** 
 A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential Standard [[W3C VC](#w3c-vc)].
 
-[[D14]](d14) Testability:
+[[D14]](#d14) Testability:
 
 Preconditions:
 
@@ -1261,7 +1261,7 @@ Expected Results:
 A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 *Note, that the unique and resolvable identifier of a credential does not have to be associated with any cryptographic keys.*
 
-[[R45]](r45) Testability:
+[[R45]](#r45) Testability:
 
 Preconditions:
 
@@ -1285,7 +1285,7 @@ If present, the status of a credential utilized within one or more BPIs MUST be 
 
 *In the context of this document, a credential verifier is defined per the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc).*
 
-[[R46]](r46) Testability:
+[[R46]](#r46) Testability:
 
 Preconditions:
 
@@ -1311,7 +1311,7 @@ A credential utilized within one or more BPIs SHOULD be discoverable by a partic
 
 *Note that discoverability can be restricted based on privacy and / or security rules within a given BPI. Discoverability could be achieved for example through a credential registry within a BPI or by listing a credential access endpoint in the DID document of a BPI Subject.*  
 
-[[D15]](d15) Testability:
+[[D15]](#d15) Testability:
 
 Preconditions:
 
@@ -1336,7 +1336,7 @@ The presentation of a credential utilized within one or more BPIs MUST be crypto
 
 *See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder [[Holder](#w3c-holder-definition)].*
 
-[[R47]](r47) Testability:
+[[R47]](#r47) Testability:
 
 Preconditions:
 
@@ -1379,7 +1379,7 @@ For a BPI to achieve these objectives, the following requirements need to be met
 #### **[R49]** 
 A unique identifier utilized in a BPI MUST be stored by the BPI.
 
-[[R49]](r49) Testability:
+[[R49]](#r49) Testability:
 
 Preconditions:
 
@@ -1402,7 +1402,7 @@ Expected Results:
 #### **[R50]** 
 The Principal Owner or their delegates MUST prove control over a unique identifier utilized in a BPI every time said unique identifier is used in the BPI by the Principal Owner or their delegates.
 
-[[R50]](r50) Testability:
+[[R50]](#r50) Testability:
 
 Preconditions:
 
@@ -1428,6 +1428,27 @@ Every time a unique identifier utilized in a BPI is used in the BPI by the Princ
 *Note that proof of control might be performed by a relying party if authority has been delegated.*
 
 *In the context of this document, a relying party is defined per the W3C Verifiable Credential Standard] [[W3C VC]](#w3c-vc).*
+
+[[R51]](#r51) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A unique identifier is generated or used within the BPI for entities, issuers, or other purposes.
+* There is a requirement that every time the unique identifier is used by the Principal Owner or their delegates in the BPI, the BPI must verify their control over it.
+* Authority delegation mechanisms are in place, allowing relying parties to perform control verification when authority has been delegated.
+
+Test Steps:
+
+1. Generate or use a unique identifier within the BPI.
+2. Perform an action or transaction within the BPI involving the unique identifier.
+3. Perform additional actions or transactions within the BPI involving the unique identifier.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the unique identifier.
+2. The BPI or relying party (if delegated) should be able to confirm control over the unique identifier as required.
+3. The BPI or relying party (if delegated) should be able to consistently confirm control over the unique identifier for each action or transaction.
 
 #### **[D16]** 
 A credential utilized in a BPI SHOULD be stored in the BPI.
