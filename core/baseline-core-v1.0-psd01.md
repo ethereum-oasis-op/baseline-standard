@@ -1743,6 +1743,24 @@ Expected Results:
 #### **[R48]** 
 If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
 
+[[R48]](#r48) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A credential holder is a BPI participant.
+* The BPI participant is operating within a specific context or environment.
+
+Test Steps:
+
+1. Examine the BPI participant's credentials or information to determine if a unique identifier is present.
+2. Check for any duplicates or conflicting identifiers within the same context.
+
+Expected Results: 
+
+1. The BPI participant should have a unique identifier established within their operating context.
+2. The identifier should be unique and not conflict with identifiers of other participants in the same context.
+
 *As discussed in section [3.1 Introduction and High-Level Requirements](#31-introduction-and-high-level-requirements), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.*  
 
 <div align="center">
@@ -1840,8 +1858,48 @@ A credential utilized in a BPI SHOULD be stored in the BPI.
 
 *This avoids the re-presentation of the credential after the initial presentation as long as those credentials are valid.*
 
+[[D16]](#d16) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A credential is generated or utilized within the BPI for entities, issuers, or other purposes.
+* There is a requirement that credentials utilized in the BPI should be stored within the BPI.
+
+Test Steps:
+
+1. Generate or use a credential within the BPI.
+2. Examine the BPI's data storage components and records.
+3. Attempt to re-present the previously used credential within the BPI for an action or transaction that requires it.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the credential.
+2. The credential should be present in the BPI's storage, confirming that it is stored as required.
+3. The BPI should accept and validate the stored credential for re-presentation, avoiding the need for re-entering or re-generating the credential.
+
 #### **[R52]** 
 A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
+
+[[R52]](#r52) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A credential is generated or utilized within the BPI for entities, issuers, or other purposes.
+* There is a requirement that the credential holder must prove control over the credential every time it is presented to the BPI or a BPI Participant.
+
+Test Steps:
+
+1. Test Action: Generate or use a credential within the BPI.
+2. Perform an action or transaction within the BPI involving the presentation of the credential.
+3. Perform additional actions or transactions within the BPI involving the presentation of the credential.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the credential.
+2. The credential holder should be able to prove control over the credential as required.
+3. The credential holder should be able to consistently prove control over the credential for each action or transaction.
 
 #### **[R53]** 
 Every time a credential utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance, and that the credential holder is in control of said credential.
@@ -1849,6 +1907,26 @@ Every time a credential utilized in a BPI is used in the BPI by its holder, the 
 *Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an OpenId Connect Identity Provider [[OIDC]](#oidc).*
 
 *This document will discuss further, more detailed management requirements in the context of BPI participant account management in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).*
+
+[[R53]](#r53) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A credential is generated or utilized within the BPI for entities, issuers, or other purposes.
+* There is a requirement that every time the credential is used by its holder in the BPI, the BPI must verify credential integrity, schema conformance, and that the credential holder is in control of the credential.
+
+Test Steps:
+
+1. Generate or use a credential within the BPI.
+2. Perform an action or transaction within the BPI involving the presentation of the credential.
+3. Perform additional actions or transactions within the BPI involving the presentation of the credential.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the credential. 
+2. The BPI should successfully verify the integrity of the credential, verify schema conformance of the credential, and confirm that the credential holder is in control of the credential.
+3. The BPI should consistently verify credential integrity, schema conformance, and control for each action or transaction.
 
 -------
 
