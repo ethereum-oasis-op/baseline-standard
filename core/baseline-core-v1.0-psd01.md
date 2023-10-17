@@ -1574,10 +1574,50 @@ BPI Abstraction Layers MUST support an API Gateway that does not have Material I
 
 *In the context of this document, Material Impact refers to something that causes the underlying business requirements of the BPI not to be met. For example in some deployment situations, a 5-second delay can cause transactions to fail or introduce instability to the system, while in other circumstances a 5-minute delay in processing makes no difference to the system as a whole.*
 
+[[R56]](#r56) Testability:
+
+Preconditions:
+
+* A Baseline Protocol Implementation (BPI) is installed and operational.
+* The BPI includes multiple abstraction layers.
+* An API Gateway, as described in the requirement, is integrated into the BPI.
+
+Test Steps:
+
+1. Confirm that the BPI's abstraction layers support the integration of the API Gateway as described in the requirement.
+2. Interact with the BPI's APIs and services through the API Gateway, simulating typical usage scenarios, and measure the latency introduced by the API Gateway.
+3. Review each abstraction layer to confirm that it provides the necessary support and data exchange mechanisms for the API Gateway without introducing significant latency.
+
+Expected Results: 
+
+1. The API Gateway is successfully integrated and supported by the abstraction layers.
+2. The measured latency introduced by the API Gateway should be within acceptable limits, ensuring that it does not have a material impact on BPI latency, as defined in the requirement.
+3. Each abstraction layer should support the API Gateway's functionalities without causing excessive latency.
+
 #### **[D17]**	
 BPI Abstraction Layers SHOULD support Virtualized APIs.
 
 *In the context of this document, virtualized APIs are defined as a production sandbox for continuous integration testing and continuous deployment of APIs.*
+
+[[D17]](#d17) Testability:
+
+Preconditions:
+
+* A Baseline Protocol Implementation (BPI) is installed and operational.
+* The BPI includes multiple abstraction layers.
+* Virtualized APIs, as described in the requirement, are part of the BPI's architecture.
+
+Test Steps:
+
+1. Confirm that the BPI's abstraction layers support the integration of virtualized APIs as described in the requirement.
+2. Test the virtualized APIs to verify their functionality for continuous integration testing and continuous deployment.
+3. Review each abstraction layer to confirm that they interact effectively with the virtualized APIs, enabling seamless testing and deployment.
+
+Expected Results: 
+
+1. The virtualized APIs are successfully integrated and supported by the abstraction layers.
+2. The virtualized APIs should provide a production sandbox for continuous integration testing and deployment without introducing issues or errors.
+3. Each abstraction layer should support virtualized APIs without causing disruptions to the testing and deployment process.
 
 #### **[D18]**	
 A BPI Abstraction Layer SHOULD support a content delivery network (CDN) (not applicable for a CCSM Abstraction Layer).
