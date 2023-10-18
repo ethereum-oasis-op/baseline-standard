@@ -1796,7 +1796,7 @@ Test Steps:
 4. Simulate potential failure scenarios by deliberately disabling or interrupting specific components or services in the BPI.
 5. Verify that the BPI service orchestration properly handles the failures and gracefully recovers without causing a complete BPI failure.
 6. Simulate potential failure scenarios by deliberately disabling or interrupting the BPI service orchestration in the BPI.
-7. Verify that BPI service orchestration failure is discvered and thet its built-in redundancies are successfully executed. 
+7. Verify that BPI service orchestration failure is discovered and that its built-in redundancies are successfully executed. 
 8. Monitor the overall stability and resilience of the BPI system during the failure scenarios.
 
 Passing Criteria:
