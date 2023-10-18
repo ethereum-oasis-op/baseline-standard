@@ -2030,7 +2030,7 @@ Test Steps:
 Passing Criteria:
 * A BPI Subject successfully authenticates using either of the supported authentication protocols with the BPI.
 * The BPI processes the authentication request without errors and follows the chosen protocol.
-* The BPI accurately validates the BPI Subject's identity through the the authentication flow. 
+* The BPI accurately validates the BPI Subject's identity through the authentication flow. 
 
 Note: Each authentication step should occur independently and without interference from previous steps.
 
