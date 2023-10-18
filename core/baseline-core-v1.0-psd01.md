@@ -1624,16 +1624,96 @@ A BPI Abstraction Layer SHOULD support a content delivery network (CDN) (not app
 
 *In the context of a BPI, a content delivery network is a geographically distributed proxy server network providing high availability and delivery performance of content such as large data files or video streams.*
 
+[[D18]](#d18) Testability:
+
+Preconditions:
+
+* A Baseline Protocol Implementation (BPI) is installed and operational.
+* The BPI includes multiple abstraction layers.
+* CDN support is relevant for the specific abstraction layers being tested.
+
+Test Steps:
+
+1. Confirm that the applicable BPI abstraction layers support the integration of a content delivery network (CDN) as described in the requirement.
+2. Perform actions such as requesting large data files or video streams through the CDN to assess the delivery performance and high availability.
+3. Review each relevant abstraction layer to confirm that it interacts effectively with the CDN, supporting high availability and efficient content delivery.
+
+Expected Results: 
+
+1. CDN support is successfully integrated and supported by the applicable abstraction layers.
+2. The CDN should provide high availability and deliver content with good performance, ensuring efficient content delivery.
+3. Each relevant abstraction layer should support CDN functionalities without causing disruptions to content delivery.
+
 #### **[CR13]>[D18]** 
 A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support BPI subject-specific and time-based content access control. 
 
+[[CR13]>[D18]](#cr13d18) Testability: 
+
+Preconditions:
+
+* A Baseline Protocol Implementation (BPI) is installed and operational.
+* The BPI includes an abstraction layer with integrated CDN support operated by a 3rd party.
+* The CDN is configured to support BPI subject-specific and time-based content access control.
+
+Test Steps:
+
+1. Confirm that the CDN, operated by a 3rd party, is integrated into the BPI abstraction layer and configured to support BPI subject-specific and time-based content access control as required.
+2. Attempt to access content through the CDN with different subjects and permissions, ensuring that only authorized subjects can access specific content.
+3. Attempt to access content through the CDN at different times, ensuring that content availability is restricted based on specified time periods.
+
+Expected Results: 
+
+1. The CDN is successfully integrated and configured as specified.
+2. The CDN should enforce subject-specific access control, allowing or denying access based on subjects and their permissions.
+3. The CDN should enforce time-based access control, allowing or denying access to content depending on the specified time restrictions.
+
 #### **[CR14]>[D18]** 
 A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support time-based, automated content removal.
+
+[[CR14]>[D18]](#cr14d18) Testability:
+
+Preconditions:
+
+* A Baseline Protocol Implementation (BPI) is installed and operational.
+* The BPI includes an abstraction layer with integrated CDN support operated by a 3rd party.
+* The CDN is configured to support time-based, automated content removal as required.
+
+Test Steps:
+
+1. Review the documentation and configurations to ensure that the CDN is set up to automatically remove content based on specified time constraints.
+2. Upload or access content through the CDN and set time constraints for automatic removal.
+3. After the specified time has elapsed, attempt to access the content that was subject to automated removal.
+
+Expected Results: 
+
+1. The CDN is successfully integrated and configured as specified.
+2. The CDN should automatically remove content based on the specified time constraints, ensuring that content is no longer accessible after the defined time period.
+3. The content should no longer be available and should be inaccessible, confirming that automated content removal was successful.
 
 #### **[R57]**	
 BPI Abstraction Layers MUST support integration with internal, as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability), and/or external BPI Subject identity access management (IAM) or identity provider (IdP) systems. 
 
 *See Figure 4 as to the meaning of an IdP in a BPI context, and Figure 5 in this document as to the meaning of external IAM and its interplay with BPI IAM discussed in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).*
+
+[[R57]](#r57) Testability: 
+
+Preconditions:
+
+* A Baseline Protocol Implementation (BPI) is installed and operational.
+* The BPI includes an abstraction layer.
+* Internal or external BPI Subject Identity Access Management (IAM) systems are available and operational, as defined in section 5 Middleware, Communication, and Interoperability.
+
+Test Steps:
+
+1. Confirm that the BPI abstraction layer is capable of integrating with internal and external BPI Subject IAM systems.
+2. Perform actions within the BPI that require identity access management, such as user authentication and authorization.
+3. Perform actions that require authentication and authorization using external IAM systems.
+
+Expected Results: 
+
+1. The BPI abstraction layer is capable of integrating with internal and external BPI Subject IAM systems.
+2. The BPI abstraction layer should successfully integrate with internal IAM systems and provide the expected access control.
+3. The BPI abstraction layer should successfully integrate with external IAM systems and provide the expected access control.
 
 #### **[R58]**	
 BPI Abstraction Layers MUST support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
