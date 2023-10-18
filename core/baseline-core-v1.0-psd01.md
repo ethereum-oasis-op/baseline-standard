@@ -1959,7 +1959,7 @@ The communication protocol layers are defined as follows, and note that some req
     * The BPI documentation clearly states that TLS protocol versions 1.2 and/or 1.3 are utilized for message transport between BPIs.
     * The BPI supports TLS protocol version negotiation and can dynamically select the highest supported TLS version during the handshake process.
     * The TLS handshake process successfully negotiates either TLS 1.2 or TLS 1.3, depending on the capabilities of the communicating BPIs.
-    * Strong cryptographic ciphersuites and secure settings are enforced for both TLS 1.2 and TLS 1.3 connections in the BPI configuration.
+    * Strong cryptographic cipher suites and secure settings are enforced for both TLS 1.2 and TLS 1.3 connections in the BPI configuration.
     * The BPI uses valid and trusted X.509 certificates for TLS encryption, and certificate validation is performed during the handshake process.
     * During testing, the TLS-encrypted connections are established successfully between BPI instances using either TLS 1.2 or TLS 1.3 as negotiated.
     * The network traffic analysis confirms that message transport between BPIs is protected by TLS encryption.
