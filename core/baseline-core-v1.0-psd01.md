@@ -1948,7 +1948,7 @@ The communication protocol layers are defined as follows, and note that some req
     1. Check the BPI documentation to confirm that it specifies the use of TLS protocol versions 1.2 and/or 1.3 for message transport between BPIs.
     2. Ensure that the BPI supports TLS protocol version negotiation to enable the use of either TLS 1.2 or TLS 1.3 depending on the capabilities of the communicating parties.
     3. Review the BPI implementation to verify that the TLS handshake process is properly configured to negotiate the highest supported TLS version with the remote BPI.
-    4. Validate that the BPI enforces strong cryptographic ciphersuites and secure settings in the TLS configuration for both TLS 1.2 and TLS 1.3.
+    4. Validate that the BPI enforces strong cryptographic cipher suites and secure settings in the TLS configuration for both TLS 1.2 and TLS 1.3.
     5. Confirm that the BPI uses valid and trusted X.509 certificates for TLS encryption and that certificate validation is performed during the handshake process.
     6. Test the BPI communication by initiating TLS connections between BPI instances, ensuring that the selected TLS version adheres to the requirements specified in the documentation.
     7. Monitor the TLS handshake process to verify that it successfully negotiates either TLS 1.2 or TLS 1.3 based on the supported versions of the communicating BPIs.
