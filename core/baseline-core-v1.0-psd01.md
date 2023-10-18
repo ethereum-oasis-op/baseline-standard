@@ -1940,7 +1940,7 @@ Test Steps:
 
 Passing Criteria:
 1. The BPI service orchestration ensures that the service request invokes BPI service instance independent of the invoking subscriber
-2. Only the invoking subscriber receives the expected responses or notifications from the BPI service invocation..
+2. Only the invoking subscriber receives the expected responses or notifications from the BPI service invocation.
 3. The BPI system maintains its operational functionality throughout the service invocations.
 4. The subscribers maintain their functionality and responsiveness to the BPI service without being directly involved in the execution.
 
