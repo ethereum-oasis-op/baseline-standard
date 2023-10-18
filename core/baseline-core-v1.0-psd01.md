@@ -2007,7 +2007,7 @@ Test Steps:
 
 Test Passing Criteria:
 
-* The test is considered passed if the measured time for the BPI service request to propagate through the BPI serviceorchestration component and reach the BPI service consumer is below the defined "Material Impact" threshold.
+* The test is considered passed if the measured time for the BPI service request to propagate through the BPI service orchestration component and reach the BPI service consumer is below the defined "Material Impact" threshold.
 
 #### **[R97]** 
 BPI service orchestration utilized in a BPI MUST NOT have a negative Material Impact on BPI scalability and BPI availability. 
