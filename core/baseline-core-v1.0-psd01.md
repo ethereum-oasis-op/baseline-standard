@@ -2193,7 +2193,7 @@ Test Steps:
 5. Receive the response containing information about available BPI services and their specifications.
 6. Verify that the retrieved information matches the specified elements of the selected BPI service.
 7. Cross-reference the service endpoints and endpoint-specification endpoints to ensure accuracy.
-8. Check if the cryptographic prover system and its specification are accurately listed.
+8. Check if the cryptographic prover system and its specifications are accurately listed.
 
 Passing Criteria:
 * The response from the BPI service discovery mechanism contains accurate information about the specified elements of the selected BPI service.
