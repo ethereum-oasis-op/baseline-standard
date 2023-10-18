@@ -2198,7 +2198,7 @@ Test Steps:
 Passing Criteria:
 * The response from the BPI service discovery mechanism contains accurate information about the specified elements of the selected BPI service.
 * The retrieved service endpoints and endpoint-specification endpoints match the ones specified.
-* The cryptographic prover system and its specification are correctly listed.
+* The cryptographic prover system and its specifications are correctly listed.
 
 
 #### **[R120]**	
