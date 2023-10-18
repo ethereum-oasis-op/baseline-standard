@@ -2148,7 +2148,7 @@ Note that while messaging within a BPI must be asynchronous, the communication b
       3. Sign the BPI Message using the private key corresponding to one of the public keys in the W3C DID document.
       4. Attach the JWS and/or JWE to the BPI Message.
       5. Transmit the BPI Message to another BPI instance.
-      6. Verify that the recipient BPI instance can successfully validate the digital signature using the corresponding public key from the W3C DID document that is resolved from the senders W3C DID.
+      6. Verify that the recipient BPI instance can successfully validate the digital signature using the corresponding public key from the W3C DID document that is resolved from the sender's W3C DID.
       7. Attempt to verify the digital signature using a different public key not present in the W3C DID document, and ensure that the verification fails.
       8. Repeat the test with different BPI Messages and different sets of public keys from the W3C DID document.
 
