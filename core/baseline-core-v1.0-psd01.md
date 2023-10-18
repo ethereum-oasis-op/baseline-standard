@@ -1814,7 +1814,7 @@ Test Steps:
 
 1. Send a test message from one BPI Subject to another BPI Subject using the BPI communication capability.
 2. Verify that the test message is delivered successfully to the intended recipient BPI Subject.
-3. Repeat step 1 and 2 for multiple test messages to ensure consistent message delivery.
+3. Repeat steps 1 and 2 for multiple test messages to ensure consistent message delivery.
 4. Attempt to send a test message using a non-message-based protocol (e.g., direct API call).
 5. Verify that the BPI communication capability does not process the test message sent via the non-message-based protocol.
 
