@@ -1671,7 +1671,7 @@ Passing Criteria:
 * The BPI Subject is capable of creating new cryptographic keys.
 * The created keys are unique and adhere to the specified cryptographic algorithm.
 * The BPI Subject can derive new cryptographic keys from existing keys.
-* The derived keys are distinct from the original keys and conforms to the specified cryptographic algorithm.
+* The derived keys are distinct from the original keys and conform to the specified cryptographic algorithm.
 * The BPI Subject is capable of securely storing cryptographic keys.
 * The stored keys can be retrieved accurately and maintain their integrity.
 * The BPI Subject can successfully perform key revocation or rotation, rendering the revoked or rotated keys invalid.
