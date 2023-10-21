@@ -1559,7 +1559,7 @@ Test Steps:
 
 1. Confirm that the BPI's abstraction layers support the integration of the API Portal as described in the requirement.
 2. Interact with the API Portal to perform actions such as API provisioning, documentation access, registration of applications, credential resets, providing feedback, and reporting bugs.
-3. Inspect the code and configurations of each abstraction layer to verify that they interact effectively with the API Portal.
+3. Review each abstraction layer to confirm that it provides the necessary support and data exchange mechanisms for the API Portal's functionalities
 
 Expected Results: 
 
@@ -1718,7 +1718,7 @@ Expected Results:
 #### **[R58]**	
 BPI Abstraction Layers MUST support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
 
-[[R58]](#r38) Testability
+[[R58]](#r85) Testability
 
 Preconditions:
 
