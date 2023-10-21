@@ -1718,13 +1718,73 @@ Expected Results:
 #### **[R58]**	
 BPI Abstraction Layers MUST support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
 
+[[R58]](#r38) Testability
+
+Preconditions:
+
+* A Baseline Protocol Implementation (BPI) is installed and operational.
+* The BPI includes an abstraction layer.
+* The BPI Middleware Layer, as defined in section 5 Middleware, Communication, and Interoperability, is available and operational.
+
+Test Steps:
+
+1. Confirm that the BPI abstraction layer is integrated with the BPI Middleware Layer, as defined in section 5 Middleware, Communication, and Interoperability.
+2. Request and utilize various APIs through the BPI abstraction layer, including actions that require service orchestration.
+
+Expected Results: 
+
+1. The BPI abstraction layer is successfully integrated with the BPI Middleware Layer and can utilize its service orchestration capabilities.
+2. The BPI abstraction layer should effectively deliver APIs and utilize service orchestration capabilities, ensuring the proper execution of actions that depend on orchestration.
+
 #### **[R59]**	
 BPI Abstraction Layers MUST support facilitating the discovery and negotiation of capabilities and subsequent integration between a BPI and Legacy Systems/other BPIs as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability) (for BPI Abstraction Layer only).
+
+[[R59]](#r59) Testability:
+
+Preconditions:
+
+* The BPI Abstraction Layer is operational and correctly integrated into the BPI environment.
+* The BPI Abstraction Layer is configured to facilitate the discovery and negotiation of capabilities. 
+* The BPI Middleware Layer is in place and functioning as defined in section 5 Middleware, Communication, and Interoperability.
+
+Test Steps:
+
+1. Execute a request to the BPI Abstraction Layer to discover available capabilities.
+2. Send a request to the BPI Abstraction Layer to negotiate the integration of a specific capability from the list obtained in Step 1.
+3. Simulate the integration of a capability with a legacy system. 
+4. Simulate the integration of a capability with another BPI.
+
+Expected Results: 
+
+1. The list from step 1 includes both BPI-specific capabilities and those related to legacy systems and other BPIs.
+2. The BPI Abstraction Layer initiates a negotiation process, including specifying requirements, parameters, and any dependencies.
+3. The BPI Abstraction Layer successfully mediates the integration by translating requests and responses to and from the legacy system.
+4. The BPI Abstraction Layer successfully mediates the integration by handling BPI-specific communication protocols and data formats.
 
 #### **[R60]**	
 BPI Abstraction Layers MUST support the integration of CCSM specific transaction interfaces, transaction crafting, and CCSM specific smart contract management. 
 
 *Smart Contract management comprises full lifecycle management from testing, initial deployment, updates, and deactivation (for CCSM Abstraction Layer only).*
+
+[[R60]](#r60) Testability:
+
+Preconditions:
+
+* The BPI Abstraction Layer is correctly installed and configured for integration with CCSM.
+* The CCSM (Core Component Service Manager) is operational and ready for interaction.
+* Smart contracts are prepared and accessible for integration.
+
+Test Steps:
+
+1. Send a request to the BPI Abstraction Layer to integrate with CCSM-specific transaction interfaces.
+2. Initiate a request for transaction crafting using the BPI Abstraction Layer.
+3. Trigger the deployment of a smart contract using the BPI Abstraction Layer.
+
+Expected Results: 
+
+1. Transaction interfaces are accessible and functioning correctly.
+2. The BPI Abstraction Layer creates transactions with the required parameters and data in a format compatible with CCSM.
+3. The BPI Abstraction Layer manages the full lifecycle of the smart contract, including testing, initial deployment, updates, and deactivation. Smart contract updates are performed seamlessly, and deactivated contracts no longer impact the system.
 
 Figure 6 below shows the reference architecture for a BPI or CCSM Abstraction Layer. 
 
