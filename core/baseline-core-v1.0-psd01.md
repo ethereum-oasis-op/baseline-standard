@@ -2580,64 +2580,331 @@ First, the document lists the requirements common to mono-directional BPI servic
 **Requirements common to mono-directional and bi-/multi-directional BPI Services**
 
 #### **[R123]** 
-Each state object utilized in one or more mono-directional and bi-/multi-directional BPI Services MUST have a cryptographic zero-knowledge proof of correctness.
+Each BPI state object utilized in one or more mono-directional and bi-/multi-directional BPI Services MUST have a cryptographic non-interactive zero-knowledge proof of correctness.
 
 *More details on cryptographic zero-knowledge proofs of correctness in the context of a BPI are given in section [6 Agreement Execution](#6-agreement-execution) when discussing worksteps. Also, note that the requirements below are very similar to the ones given in section [6.1 BPI Workstep](#61-bpi-workstep).*
 
+[[R123]](#r123) Testability:
+
+Test Preconditions:
+* Operational BPI instances.
+* BPI State objects used in mono-/bi- or multi-directional BPI services exist.
+
+Test Steps:
+1. Select a BPI state object used in a mono-directional BPI service.
+2. Verify that the cryptographic zero-knowledge proof of correctness can be successfully generated using the state object's data.
+3. Check that the generated cryptographic zero-knowledge proof can be successfully verified.
+4. Select a BPI state object used in a bi-/multi-directional BPI service.
+5. Verify that the cryptographic zero-knowledge proof of correctness can be successfully generated using the state object's data.
+6. Check that the generated cryptographic zero-knowledge proof can be successfully verified.
+
+Passing Criteria:
+* The cryptographic zero-knowledge proof of correctness can be successfully generated for a BPI state object used in both mono-directional and bi-/multi-directional BPI services.
+* The cryptographic zero-knowledge proof of correctness for a state object used in both mono-directional and bi-/multi-directional BPI services can be successfully verified.
+
 #### **[R124]** 
-The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be succinct.
+The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be succinct.
 
 Succinct in the context of zero-knowledge proofs means that a zero-knowledge proof is verifiable by any 3rd party in a time that is sublinear to the size of the prover system that generated the proof.
 
+[[R124]](#r125) Testability:
+
+Preconditions:
+
+* A non-interactive zero-knowledge proof of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services from a prover system that can generate a zero-knowledge proof of correctness for the output of size N. The size N is given by the size of the circuit used to generate the proof in terms of the number of circuit constraint equations.
+* A verifier system that can verify the zero-knowledge proof.
+
+Test Steps:
+
+1. Verify the zero-knowledge proof using the verifier system.
+2. Measure the number of computational steps taken by the verifier system to verify the proof.
+3. Verify that the number of computational steps taken to verify the proof is proportional at most to or less than the poly-logarithm of the size of the prover system.
+
+Test Passing Criteria:
+
+* The test will pass if the non-interactive zero-knowledge proof of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services can be verified by the verifier system in a number of computational steps at most proportional to the size of the prover system that generated the proof.
+
 #### **[R125]** 
-The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
+The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
 
 *The zero-knowledge proof of correctness can be a cryptographic aggregator of proofs of correctness that would allow multiple proofs to be represented and provable within one proof.* 
 
+[[R125]](#r125) Testability:
+
+Test Preconditions:
+* BPI State objects with associated non-interactive zero-knowledge proofs are available for testing.
+* BPI system and CCSM are operational.
+
+Test Steps:
+1. Finalize a BPI state object used in a mono-directional BPI service.
+2. Retrieve the non-interactive zero-knowledge proof associated with the finalized BPI state object.
+3. Verify that the non-interactive zero-knowledge proof is accessible and retrievable from the CCSM.
+4. Finalize a BPI state object used in a bi-/multi-directional BPI service.
+5. Retrieve the non-interactive zero-knowledge proof associated with the finalized BPI state object.
+6. Verify that the non-interactive zero-knowledge proof is accessible and retrievable from the CCSM.
+
+Passing Criteria:
+* The non-interactive zero-knowledge proof associated with finalized BPI state objects used in both mono-directional and bi-/multi-directional BPI services can be individually retrieved from the CCSM.
+
 #### **[R126]** 
-The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
+The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
+
+[[R126]](#r126) Testability:
+
+Test Preconditions:
+* BPI state object with its associated non-interactive zero-knowledge proof is available for testing.
+* BPI system and CCSM are operational.
+
+Test Steps:
+1. Retrieve a BPI state object and its associated zero-knowledge proof.
+2. Provide the non-interactive zero-knowledge proof to a 3rd party not involved in the BPI process.
+3. Instruct the 3rd party to verify the non-interactive zero-knowledge proof using the CCSM.
+4. Verify that the 3rd party is able to independently verify the correctness of the BPI state object's non-interactive zero-knowledge proof on the CCSM.
+
+Passing Criteria:
+* The 3rd party successfully verifies the zero-knowledge proof of correctness of the BPI state object on the CCSM.
 
 #### **[R127]** 
-The zero-knowledge proof of correctness of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST NOT be able to be used in more than one mono-directional and/or bi-/multi-directional BPI Services event at any time.
+The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST NOT be able to be used in more than one mono-directional and/or bi-/multi-directional BPI Services event at any time.
 
 *This requirement is necessary to avoid the usage of the same output as collateral in more than one state-altering event, such as tokenization.*
 
 *A state object will have to be included in a cryptographic commitment that the state object is locked on the BPI. Note that this only restricts the usage of pledged outputs to the CCSM utilized in a given BPI.*
 
+[[R127]](#r127) Testability:
+
+Preconditions:
+* A BPI system is in place.
+* Non-interactive zero-knowledge proofs of correctness (NIZKPs) are being used.
+* BPI State Objects are utilized within mono-directional and/or bi-/multi-directional BPI Services.
+
+Test Steps:
+1. Create a BPI state object within the BPI system.
+2. Initiate a mono-directional or bi-/multi-directional BPI Service event that involves the BPI state object.
+3. Attempt to use the same non-interactive zero-knowledge proof of correctness of the state object in another mono-directional or bi-/multi-directional BPI Service event simultaneously.
+
+Passing Criteria:
+* The BPI system should detect the attempt to reuse the same non-interactive zero-knowledge proof of correctness in another event.
+* The BPI system should prevent the usage of the NIZKP in the second event.
+* An error message or notification should be generated indicating that the NIZKP is already committed to a previous event.
+* The NIZKP should be locked and exclusive to the first event until it's finalized.
+* This locking mechanism should prevent the same output from being used as collateral in more than one state-altering event.
+
+
 #### **[R128]** 
-A BPI MUST lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct, efficient, non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). 
+A BPI MUST lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). 
 
 *Note that a lock can contain more than one state object.*
 
+[[R128]](#r128) Testability:
+
+Preconditions:
+* A BPI system is operational.
+* Non-interactive zero-knowledge proofs of correctness (NIZKPs) are supported.
+* BPI State Objects are used within mono-directional and/or bi-/multi-directional BPI Services.
+
+Test Steps:
+1. Create a BPI state object within the BPI system.
+2. Initiate a mono-directional or bi-/multi-directional BPI Service event involving the state object.
+3. Verify that the BPI system generates a succinct non-interactive zero-knowledge proof (NIZKP) of the lock commitment for the state object.
+4. Attempt to use the locked state object in another event or as collateral for another transaction.
+
+Passing Criteria:
+* The BPI system should successfully generate a succinct NIZKP of the lock commitment for the state object.
+* The NIZKP should mathematically prove the lock commitment without revealing the actual content of the state object.
+* When attempting to use the locked state object in another event, the BPI system should detect that it's already locked.
+* The BPI system should prevent the usage of the locked state object in any other event or transaction.
+* The NIZKP of the lock commitment should preserve the privacy of the pledged output and ensure that it cannot be used in any other context.
+
 #### **[R129]** 
-The lock commitment MUST be committed to the CCSM utilized by the BPI (Liveness).
+The BPI state object lock commitment MUST be committed to the CCSM utilized by the BPI (Liveness).
+
+[[R129]](#r129) Testability:
+
+Preconditions:
+* A BPI system is operational.
+* Non-interactive zero-knowledge proofs of correctness (NIZKPs) are supported.
+* BPI State Objects are used within the BPI system.
+* A BPI state object has been created and utilized in a BPI Service event.
+
+Test Steps:
+1. Initiate a mono-directional or bi-/multi-directional BPI Service event involving a state object.
+2. Verify that the BPI system generates a succinct non-interactive zero-knowledge proof (NIZKP) of the lock commitment for the state object.
+3. Check that the NIZKP of the lock commitment is successfully committed to the Centralized Clearing and Settlement Mechanism (CCSM) used by the BPI.
+4. Attempt to verify the lock commitment by independently calculating the NIZKP using the state object's information and comparing it with the committed value in the CCSM.
+
+Passing Criteria:
+* The BPI system should successfully generate a succinct NIZKP of the lock commitment for the state object.
+* The NIZKP of the lock commitment should be accurately and securely committed to the CCSM.
+* Independently calculating the NIZKP using the state object's information should match the committed value in the CCSM.
+* The lock commitment should be publicly verifiable through the CCSM, ensuring liveness and transparency of the state object's lock status.
 
 #### **[R130]** 
-The lock commitment MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant proof verifiability).
+The BPI state object lock commitment MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant proof verifiability).
+
+[[R130]](#r130) Testability:
+
+Test Preconditions:
+* A BPI system is set up and operational.
+* The BPI state object lock commitment has been generated and committed to the CCSM.
+
+Test Steps:
+1. The test system initiates a request to verify the BPI state object lock commitment.
+2. The CCSM retrieves the BPI state object lock commitment.
+3. The CCSM provides the necessary cryptographic proofs and information to the test system.
+4. The test system verifies the BPI state object lock commitment using the provided cryptographic proofs and information.
+5. The test system confirms whether the verification process was successful.
+
+Passing Criteria:
+* The CCSM successfully retrieves the BPI state object lock commitment.
+* The cryptographic proofs and information provided by the CCSM allow the test system to verify the BPI state object lock commitment.
+* The test system confirms successful verification of the BPI state object lock commitment.
 
 #### **[R131]** 
-The lock commitment MUST be updatable.
+The BPI state object lock commitment MUST be updatable.
 
 *State objects are normally imported back into a BPI at which point the lock commitment on the CCSM needs to be updated. Also, for scalability reasons, the lock commitment should represent more than one locked asset on a CCSM, while individual lock commitments can remain on a BPI.*
 
+[[R131]](#r131) Testability:
+
+Test Preconditions:
+* A BPI system is set up and operational.
+* The BPI state object lock commitment has been generated and committed to the CCSM.
+
+Test Steps:
+1. The test system initiates an update request for the BPI state object lock commitment.
+2. The CCSM retrieves the existing BPI state object lock commitment.
+3. The test system provides the updated information for the BPI state object lock commitment.
+4. The CCSM updates the lock commitment based on the provided information.
+5. The test system retrieves the updated BPI state object lock commitment from the CCSM.
+6. The test system verifies that the updated lock commitment matches the provided information.
+
+Passing Criteria:
+* The CCSM successfully retrieves the existing BPI state object lock commitment.
+* The CCSM updates the lock commitment based on the provided information.
+* The test system successfully retrieves the updated BPI state object lock commitment.
+* The retrieved updated lock commitment matches the provided updated information.
+
 #### **[R132]** 
-The lock commitment MUST only be updated by the owners of the state object.
+The BPI state object lock commitment MUST only be updated by the owners of the BPI state object.
 
 *The requirements below will specify public URIs for BPI Interoperability services. Therefore, we have additional requirements for those public URIs.*
+
+[[R132]](#r132) Testability:
+
+Test Preconditions:
+* A BPI system is set up and operational.
+* BPI state objects and their owners are identified and authenticated.
+
+Test Steps:
+1. The test system initiates an update request for the BPI state object lock commitment for a specific state object.
+2. The CCSM retrieves the existing BPI state object lock commitment.
+3. The test system verifies that the requester is the owner of the BPI state object.
+4. The test system provides the updated information for the BPI state object lock commitment.
+5. The CCSM updates the lock commitment based on the provided information.
+6. The test system retrieves the updated BPI state object lock commitment from the CCSM.
+7. The test system verifies that the updated lock commitment matches the provided information.
+8. Repeat steps 1. through 3. where the requester is not the owner of the BPI state object.
+9. Verify that the BPI state object lock commitment is not updated, and the requester receives an appropriate error notification. 
+
+Passing Criteria:
+* The CCSM successfully retrieves the existing BPI state object lock commitment.
+* The requester's ownership of the BPI state object is verified.
+* The CCSM updates the lock commitment based on the provided information.
+* The test system successfully retrieves the updated BPI state object lock commitment.
+* The retrieved updated lock commitment matches the provided updated information.
+* If the requester is not the owner of the BPI state object, the operation is refused by the BPI and an appropriate error notification is sent to the requester.
 
 #### **[R133]** 
 A public validation URI for BPI Interoperability services MUST be resolvable to the underlying target resource.
 
+[[R133]](#r133) Testability:
+
+Test Preconditions:
+* BPI Interoperability services are deployed and accessible on a BPI.
+* Public validation URIs for BPI Interoperability services are configured and available.
+
+Test Steps:
+1. The test system initiates a request to the public validation URI for a specific BPI Interoperability service.
+2. The DNS resolves the public validation URI to an IP address.
+3. The request reaches the resolved IP address.
+4. The service at the resolved IP address responds with the appropriate information.
+5. The test system verifies that the response matches the expected content and format.
+
+Passing Criteria:
+* The DNS successfully resolves the public validation URI to an IP address.
+* The request reaches the resolved IP address.
+* The service at the resolved IP address responds without errors.
+* The response from the service matches the expected content and format.
+
 #### **[D25]** 
 A public validation URI for BPI Interoperability services SHOULD be independent of the originating BPI.
 
+[[D25]](#d25) Testability:
+
+Test Preconditions:
+* BPI Interoperability services are deployed and accessible.
+* Public validation URIs for BPI Interoperability services are configured and available.
+* Multiple BPIs are operational.
+
+Test Steps:
+1. Choose BPI A as the originating BPI.
+2. The test system initiates a request to the public validation URI for a specific BPI Interoperability service from BPI A.
+3. The DNS resolves the public validation URI to an IP address.
+4. The request reaches the resolved IP address.
+5. The service at the resolved IP address responds with the appropriate information.
+6. Repeat steps 2-5 using a different BPI B as the originating BPI.
+
+Passing Criteria:
+* The DNS successfully resolves the public validation URI to an IP address for both BPI A and BPI B.
+* The request reaches the resolved IP address for both BPI A and BPI B.
+* The service at the resolved IP address responds without errors for both BPI A and BPI B.
+* The responses from the service match the expected content and format for both BPI A and BPI B.
+
 #### **[R134]** 
-The system processing the BPI Interoperability service MUST notify the requesting BPI Subject with human-readable reasoning about either success or failure.
+A system processing the BPI Interoperability service MUST notify the requesting BPI Subject with human-readable reasoning about either success or failure.
+
+[[R134]](#r134) Testability:
+
+Test Preconditions:
+* BPI Interoperability services are deployed and accessible.
+* A BPI Subject's request for a BPI Interoperability service is prepared for testing.
+
+Test Steps:
+1. The test system initiates a request to a specific BPI Interoperability service.
+2. The service processes the request.
+3. The service generates a response containing human-readable reasoning for either success or failure.
+4. The test system receives the response.
+
+Passing Criteria:
+* The response received from the service contains human-readable reasoning.
+* If the service successfully processed the request, the human-readable reasoning in the response indicates success and provides a clear explanation.
+* If the service encounters an error during processing, the human-readable reasoning in the response explains the cause of the failure.
 
 #### **[R135]** 
 All BPI Interoperability services MUST be cryptographically secured and privacy-preserving.
 
 *“Cryptographically secured” in this context means that all communications follow a common authentication and authorization framework, as previously discussed. Privacy-preserving in this context means that all communications are end-to-end encrypted independent of the security properties of the transportation layer.*
+
+[[R135]](#r135) Testability:
+
+Test Preconditions:
+* BPI Interoperability services are deployed and accessible.
+* Cryptographic keys and protocols for authentication, authorization, and end-to-end encryption are established and available.
+
+Test Steps:
+* The test system initiates a request to a specific BPI Interoperability service.
+* The service processes the request.
+* The service uses the established cryptographic mechanisms to authenticate and authorize the request.
+* The service encrypts the response using end-to-end encryption.
+* The test system receives the encrypted response.
+* The test system decrypts the response using the appropriate cryptographic keys.
+   
+Passing Criteria:
+* The service successfully authenticates and authorizes the request.
+* The response received by the test system is encrypted using end-to-end encryption.
+* The test system is able to successfully decrypt the encrypted response using the appropriate cryptographic keys.
+* The privacy of the communication is preserved throughout the process.
 
 #### 5.5.4.1 Mono-directional BPI services
 
@@ -3146,13 +3413,40 @@ The detailed API specification of the Mono-directional and Bi-/Multi-directional
 #### **[R208]** 
 There MUST be a set of BPI APIs supporting the BPI Interoperability operations enumerated in requirements [**[R136]**](#r136) and [**[R139]**](#r139).
 
+[[R208]](#r208) Testability:
+
+See testability statement for [**[R136]**](#r136) and [**[R139]**](#r139).
+
 ## 5.7 BPI Interoperability: Discoverable Standard Transport Security
 
 #### **[R209]** 
 Data in transit between BPIs MUST be encrypted.
 
+[[R209]](#r209) Testability:
+
+Test Preconditions:
+* BPI communication infrastructure is set up and operational.
+* Cryptographic keys for encryption and decryption are available and properly configured.
+
+Test Steps:
+1. The test system initiates communication between two BPIs (source and target).
+2. During the communication, the data being transmitted is intercepted.
+3. The intercepted data is analyzed to determine if it is encrypted.
+4. If the intercepted data is encrypted, proceed to step 6. If not, proceed to step 5.
+5. The test system logs a failure and concludes that the data in transit is not properly encrypted.
+6. The encrypted data is decrypted at the target BPI using the appropriate cryptographic keys.
+7. The decrypted data is analyzed to verify its content and integrity.
+   
+Passing Criteria:
+* The intercepted data is found to be encrypted.
+* The decrypted data is successfully verified for content and integrity.
+
 #### **[R210]**  
 BPI Communication for BPI Interoperability services MUST satisfy all requirements in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
+
+[[R210]](#r210) Testability:
+
+See the Testability statements in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
 -------
 
