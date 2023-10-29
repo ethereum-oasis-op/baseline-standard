@@ -1373,23 +1373,154 @@ Uniqueness and security of BPI identifiers are very important to unambiguously i
 #### **[R37]** 
 Requester and Provider interacting with and through a BPI, as well as any BPI Operator, MUST each have a unique identifier.
 
+[[R37]](#r37) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Requesters, Providers, and BPI Operators are registered within the BPI.
+* Secure mechanisms for identifier assignment are in place.
+
+Test Steps:
+
+1. Review the identifiers assigned to Requesters, Providers, and BPI Operators within the BPI to ensure that each entity has a unique identifier .
+2. Attempt to assign the same identifier to multiple Requesters, Providers, or BPI Operators within the BPI.
+
+Expected Results: 
+
+1. Each Requester, Provider, and BPI Operator should have a unique and distinct identifier assigned to them.
+2. The BPI should not allow the assignment of the same identifier to multiple entities, ensuring uniqueness.
+
 #### **[R38]** 
 Any unique identifier utilized within a BPI MUST be associated with a set of public keys.
+
+[[R38]](#r38) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Public keys are generated and available for association with identifiers.
+* Secure mechanisms for associating public keys with identifiers are in place.
+
+Test Steps:
+
+1. Review the identifiers assigned to entities within the BPI and check if each identifier is associated with a set of public keys.
+2. Attempt to disassociate public keys from an identifier within the BPI.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should be associated with the appropriate set of public keys.
+2. The BPI should not allow the disassociation of public keys from an identifier, ensuring that all identifiers remain associated with their respective public keys.
 
 #### **[R39]** 
 Any unique identifier utilized within a BPI MUST be discoverable by any 3rd party within said BPI.
 
+[[R39]](#r39) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Secure mechanisms for identifier discoverability are in place.
+
+Test Steps:
+
+1. Review the identifiers assigned to entities within the BPI and confirm that unique identifiers can be discovered by any 3rd party participant within the BPI.
+2. Attempt to configure or test scenarios where unique identifiers cannot be discovered by any 3rd party within the BPI.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should be discoverable by any 3rd party participant without any access restrictions.
+2. The BPI should not allow configurations or scenarios that restrict or prevent the discoverability of unique identifiers by any 3rd party participant.
+
 #### **[R40]** 
 Any unique identifier utilized within a BPI MUST be resolvable to its associated public keys used for cryptographic authentication of the unique identifier.
+
+[[R40]](#r40) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Each identifier is associated with its corresponding set of public keys used for cryptographic authentication.
+* Secure mechanisms for identifier resolution are in place.
+
+Test Steps:
+
+1. Review the unique identifiers assigned to entities within the BPI and confirm that each identifier is associated with its corresponding set of public keys used for cryptographic authentication.
+2. Attempt to configure or test scenarios where unique identifiers cannot be resolved to their associated public keys.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should have an established association with its corresponding set of public keys.
+2. The BPI should not allow configurations or scenarios that disrupt or prevent the resolution of unique identifiers to their associated public keys.
 
 #### **[R41]** 
 Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that identifies the Baseline Protocol Standard as a supported protocol including the supported version(s).
 
+[[R41]](#r41) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Each identifier is associated with an endpoint URI that identifies the Baseline Protocol Standard as a supported protocol, including supported version(s).
+* Secure mechanisms for identifier resolution to URIs are in place.
+
+Test Steps:
+
+1. Inspect the records or configuration to ensure that each identifier can be resolved to a URI with the required protocol information.
+2. Initiate processes or configurations that disrupt or prevent the resolution of identifiers to URIs with the required protocol information.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should have an associated endpoint URI that correctly identifies the Baseline Protocol Standard as a supported protocol, including supported version(s).
+2. The BPI should not allow configurations or scenarios that disrupt or prevent the resolution of unique identifiers to URIs with the required protocol information.
+
 #### **[R42]** 
 Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
+[[R42]](#r42) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Each identifier is associated with an endpoint URI that allows for BPI messaging.
+* Secure mechanisms for identifier resolution to BPI messaging URIs are in place.
+
+Test Steps:
+
+1. Review the unique identifiers assigned to entities within the BPI and confirm that each identifier is resolvable to an endpoint URI that allows for BPI messaging.
+2. Attempt to configure or test scenarios where unique identifiers cannot be resolved to URIs that allow for BPI messaging.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should have an associated endpoint URI that enables BPI messaging, ensuring that BPI-related communication can occur.
+2. The BPI should not allow configurations or scenarios that disrupt or prevent the resolution of unique identifiers to URIs capable of facilitating BPI messaging.
+
 #### **[D12]** 
 Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#w3c-did)].
+
+[[D12]](#d12) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* There is a requirement to follow the W3C DID Core specification for these identifiers.
+* Secure mechanisms for handling and validating W3C DID-compliant identifiers are in place.
+
+Test Steps:
+
+1. Review the unique identifiers assigned to entities within the BPI and confirm that they follow the format specified in the W3C DID Core specification.
+2. Attempt to configure or use identifiers that do not comply with the W3C DID Core specification.
+
+Expected Results: 
+
+1. Each unique identifier within the BPI should follow the format prescribed by the W3C DID Core specification.
+2. The BPI should not allow configurations or scenarios that result in the use of identifiers that do not comply with the W3C DID Core specification.
 
 ### 3.2.2 BPI Identities and Credentials
 
@@ -1418,24 +1549,145 @@ A unique identifier utilized within one or more BPIs SHOULD be linked to an enti
 
 *Note that credentials utilized within one or more BPIs may be self-issued. The acceptance of self-issued credentials is up to the BPI participants that need to rely on the claim(s) within a self-issued credential.*
 
+[[D13]](#d13) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to entities within the BPI (e.g., Requesters, Providers, BPI Operators).
+* Cryptographically signed, verifiable, and revocable credentials based on public keys are supported within the BPI.
+* Cryptographically signed, verifiable, and revocable credentials are issued and associated with unique identifiers.
+* Entities, including self-issued credentials, are accepted by BPI participants based on these credentials.
+
+Test Steps:
+
+1. Check if cryptographically signed, verifiable, and revocable credentials exist for the unique identifiers utilized within the BPI.
+2. Confirm that entities linked to unique identifiers are accepted by BPI participants based on the associated cryptographically signed credentials.
+3. Attempt to revoke cryptographically signed credentials and confirm that BPI participants no longer accept the associated entities.
+
+Expected Results: 
+
+1. Cryptographically signed credentials should be available for the specified unique identifiers.
+2. Entities linked to unique identifiers through cryptographically signed credentials should be accepted by BPI participants for interactions.
+3. Entities associated with revoked credentials should not be accepted by BPI participants for interactions.
+
 #### **[R43]** 
 The unique identifier of the (Legal) Entity MUST be the subject of the credential.
+
+[[R34]](#r34) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to (Legal) Entities within the BPI.
+* Cryptographically signed credentials are issued and associated with unique identifiers.
+* The credentials have a subject field that designates the unique identifier of the (Legal) Entity.
+* Entities are accepted by BPI participants based on the associated credentials.
+
+Test Steps:
+
+1. Review the credential details and data to verify that the subject field accurately matches the unique identifier of the (Legal) Entity.
+2. Attempt to validate credentials by verifying that the subject field matches the unique identifier of the (Legal) Entity.
+
+Expected Results: 
+
+1. The subject field of each credential should correctly designate the unique identifier of the associated (Legal) Entity.
+2. Validated credentials should pass the check, confirming that the subject field matches the unique identifier of the (Legal) Entity.
 
 #### **[R44]** 
 The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
+[[R44]](#r44) Testability: 
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Unique identifiers are assigned to (Legal) Entities within the BPI.
+* Cryptographically signed credentials are issued and associated with unique identifiers.
+* The credentials have a subject field designating the unique identifier of the (Legal) Entity.
+* There is an issuer credential associated with the (Legal) Entity issuer's unique identifier.
+* Entities are accepted by BPI participants based on the associated credentials.
+
+Test Steps:
+
+1. Review the BPI configuration and data to ensure that an issuer credential exists for the issuer's unique identifier.
+2. Confirm that the (Legal) Entity issuer's unique identifier is accepted by BPI participants based on the issuer credential associated with it.
+3. Attempt to revoke the issuer credential and confirm that BPI participants no longer accept the (Legal) Entity issuer's unique identifier.
+
+Expected Results: 
+
+1. An issuer credential should be available for the specified issuer's unique identifier.
+2. Entities linked to the (Legal) Entity issuer's unique identifier through the issuer credential should be accepted by BPI participants for interactions.
+3. Entities associated with the revoked issuer credential should not be accepted by BPI participants for interactions.
+
 #### **[D14]** 
 A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential Standard [[W3C VC](#w3c-vc)].
 
-#### **[R45]** 
-A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
+[[D14]](#d14) Testability:
 
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement for these credentials to follow the W3C Verifiable Credential Standard.
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+
+Test Steps:
+
+1. Review the credential details and data to verify that they comply with the requirements of the W3C Verifiable Credential Standard.
+2. Attempt to configure or use credentials that do not comply with the W3C Verifiable Credential Standard.
+
+Expected Results: 
+
+1. Credentials within the BPI should follow the format and standards prescribed by the W3C Verifiable Credential Standard.
+2. The BPI should not allow configurations or scenarios that result in the use of credentials that do not comply with the W3C Verifiable Credential Standard.
+
+#### **[R45]**
+A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 *Note, that the unique and resolvable identifier of a credential does not have to be associated with any cryptographic keys.*
+
+[[R45]](#r45) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement for these credentials to have a unique and resolvable identifier.
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+
+Test Steps:
+
+1. Review the credential details and data to verify that each credential has a unique and resolvable identifier.
+2. Attempt to configure or use credentials that do not have a unique and resolvable identifier.
+
+Expected Results: 
+
+1. Each credential within the BPI should have a unique and resolvable identifier.
+2. The BPI should not allow configurations or scenarios that result in the use of credentials without a unique and resolvable identifier.
 
 #### **[R46]** 
 If present, the status of a credential utilized within one or more BPIs MUST be discoverable by a party verifying the credential, the credential verifier.
 
 *In the context of this document, a credential verifier is defined per the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc).*
+
+[[R46]](#r46) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement for the status of these credentials to be discoverable by a party verifying the credential, the credential verifier.
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+
+Test Steps:
+
+1. Review the credential details and data to verify that the status of each credential is discoverable by a credential verifier.
+2. Attempt to configure or use credentials for which the status cannot be discovered by a party verifying the credential.
+
+Expected Results: 
+
+1. The status of each credential within the BPI should be discoverable by a party verifying the credential, as per the requirements of the W3C Verifiable Credential Standard.
+2. The BPI should not allow configurations or scenarios that result in the use of credentials for which the status cannot be discovered by a credential verifier, as required.
 
 #### **[D15]** 
 A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
@@ -1444,13 +1696,70 @@ A credential utilized within one or more BPIs SHOULD be discoverable by a partic
 
 *Note that discoverability can be restricted based on privacy and / or security rules within a given BPI. Discoverability could be achieved for example through a credential registry within a BPI or by listing a credential access endpoint in the DID document of a BPI Subject.*  
 
+[[D15]](#d15) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement for credentials to be discoverable by participants within the BPI(s) as specified in the requirement.
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+* Privacy and security rules governing discoverability are defined within the BPI.
+
+Test Steps:
+
+1. Review the BPI configuration, credential details, and any relevant privacy and security rules to verify that credentials can be discovered by participants within the BPI(s).
+2. Attempt to configure or use credentials in scenarios where their discoverability is restricted based on privacy and security rules within the BPI.
+
+Expected Results: 
+
+1. The BPI should support discoverability of credentials by participants within the BPI(s) according to the specified privacy and security rules.
+2. The BPI should enforce the privacy and security rules to restrict discoverability of credentials as per the configured scenarios.
+
 #### **[R47]** 
 The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the holder.
 
 *See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder [[Holder](#w3c-holder-definition)].*
 
+[[R47]](#r47) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* Credentials are used within the BPI for entities, issuers, or other purposes.
+* There is a requirement that the presentation of credentials must be cryptographically signed by the presenter (holder).
+* Cryptographically signed, verifiable, and revocable credentials are supported within the BPI.
+
+Test Steps:
+
+1. Perform a credential presentation process and examine the presented credential to verify that it is cryptographically signed by the presenter (holder).
+2. Attempt to configure or use a credential presentation process where the presented credential is not cryptographically signed by the presenter (holder).
+
+Expected Results: 
+
+1. The presented credential should include a valid cryptographic signature by the presenter (holder).
+2. The BPI should not allow configurations or scenarios that result in the presentation of unsigned credentials.
+
 #### **[R48]** 
 If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
+
+[[R48]](#r48) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A credential holder is a BPI participant.
+* The BPI participant is operating within a specific context or environment.
+
+Test Steps:
+
+1. Examine the BPI participant's credentials or information to determine if a unique identifier is present.
+2. Check for any duplicates or conflicting identifiers within the same context.
+
+Expected Results: 
+
+1. The BPI participant should have a unique identifier established within their operating context.
+2. The identifier should be unique and not conflict with identifiers of other participants in the same context.
 
 *As discussed in section [3.1 Introduction and High-Level Requirements](#31-introduction-and-high-level-requirements), BPIs require either decentralized or strongly federated identifier/identity providers that have been agreed to by the participants in a BPI context of one or more BPIs.*  
 
@@ -1473,8 +1782,48 @@ For a BPI to achieve these objectives, the following requirements need to be met
 #### **[R49]** 
 A unique identifier utilized in a BPI MUST be stored by the BPI.
 
+[[R49]](#r49) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A unique identifier is generated or used within the BPI for entities, issuers, or other purposes.
+* There is a requirement that the BPI must store the unique identifier.
+
+Test Steps:
+
+1. Generate or use a unique identifier within the BPI.
+2. Examine the BPI's data storage components and records to verify that the unique identifier is stored by the BPI.
+3. Query the BPI's data storage to retrieve the stored unique identifier.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the unique identifier.
+2. The unique identifier should be present in the BPI's storage, confirming that it is stored as required.
+3. The BPI should provide a valid response with the retrieved unique identifier, confirming that it is stored and retrievable.
+
 #### **[R50]** 
 The Principal Owner or their delegates MUST prove control over a unique identifier utilized in a BPI every time said unique identifier is used in the BPI by the Principal Owner or their delegates.
+
+[[R50]](#r50) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A unique identifier is generated or used within the BPI for entities, issuers, or other purposes.
+* There is a requirement that the Principal Owner or their delegates must prove control over the unique identifier every time it is used.
+
+Test Steps:
+
+1. Create or utilize a unique identifier within the BPI.
+2. Initiate an action or transaction within the BPI that involves the use of the unique identifier by the Principal Owner or their delegates.
+3. Test Action: Repeat Step 2 for multiple actions or transactions within the BPI, ensuring that control over the unique identifier is verified every time it is used.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the unique identifier.
+2. The Principal Owner or their delegates should be able to prove control over the unique identifier as required.
+3. The Principal Owner or their delegates should be able to consistently prove control over the unique identifier for each action or transaction.
 
 #### **[R51]** 
 Every time a unique identifier utilized in a BPI is used in the BPI by the Principal Owner or their delegates, the BPI MUST verify that the Principal Owner or their delegates are in control of said unique identifier.
@@ -1483,13 +1832,74 @@ Every time a unique identifier utilized in a BPI is used in the BPI by the Princ
 
 *In the context of this document, a relying party is defined per the W3C Verifiable Credential Standard] [[W3C VC]](#w3c-vc).*
 
+[[R51]](#r51) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A unique identifier is generated or used within the BPI for entities, issuers, or other purposes.
+* There is a requirement that every time the unique identifier is used by the Principal Owner or their delegates in the BPI, the BPI must verify their control over it.
+* Authority delegation mechanisms are in place, allowing relying parties to perform control verification when authority has been delegated.
+
+Test Steps:
+
+1. Generate or use a unique identifier within the BPI.
+2. Perform an action or transaction within the BPI involving the unique identifier.
+3. Perform additional actions or transactions within the BPI involving the unique identifier.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the unique identifier.
+2. The BPI or relying party (if delegated) should be able to confirm control over the unique identifier as required.
+3. The BPI or relying party (if delegated) should be able to consistently confirm control over the unique identifier for each action or transaction.
+
 #### **[D16]** 
 A credential utilized in a BPI SHOULD be stored in the BPI.
 
 *This avoids the re-presentation of the credential after the initial presentation as long as those credentials are valid.*
 
+[[D16]](#d16) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A credential is generated or utilized within the BPI for entities, issuers, or other purposes.
+* There is a requirement that credentials utilized in the BPI should be stored within the BPI.
+
+Test Steps:
+
+1. Generate or use a credential within the BPI.
+2. Examine the BPI's data storage components and records.
+3. Attempt to re-present the previously used credential within the BPI for an action or transaction that requires it.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the credential.
+2. The credential should be present in the BPI's storage, confirming that it is stored as required.
+3. The BPI should accept and validate the stored credential for re-presentation, avoiding the need for re-entering or re-generating the credential.
+
 #### **[R52]** 
 A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
+
+[[R52]](#r52) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A credential is generated or utilized within the BPI for entities, issuers, or other purposes.
+* There is a requirement that the credential holder must prove control over the credential every time it is presented to the BPI or a BPI Participant.
+
+Test Steps:
+
+1. Test Action: Generate or use a credential within the BPI.
+2. Perform an action or transaction within the BPI involving the presentation of the credential.
+3. Perform additional actions or transactions within the BPI involving the presentation of the credential.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the credential.
+2. The credential holder should be able to prove control over the credential as required.
+3. The credential holder should be able to consistently prove control over the credential for each action or transaction.
 
 #### **[R53]** 
 Every time a credential utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance, and that the credential holder is in control of said credential.
@@ -1497,6 +1907,26 @@ Every time a credential utilized in a BPI is used in the BPI by its holder, the 
 *Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an OpenId Connect Identity Provider [[OIDC]](#oidc).*
 
 *This document will discuss further, more detailed management requirements in the context of BPI participant account management in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).*
+
+[[R53]](#r53) Testability:
+
+Preconditions:
+
+* Baseline Protocol Implementation (BPI) is installed and configured for testing.
+* A credential is generated or utilized within the BPI for entities, issuers, or other purposes.
+* There is a requirement that every time the credential is used by its holder in the BPI, the BPI must verify credential integrity, schema conformance, and that the credential holder is in control of the credential.
+
+Test Steps:
+
+1. Generate or use a credential within the BPI.
+2. Perform an action or transaction within the BPI involving the presentation of the credential.
+3. Perform additional actions or transactions within the BPI involving the presentation of the credential.
+
+Expected Results: 
+
+1. The BPI should successfully generate or utilize the credential. 
+2. The BPI should successfully verify the integrity of the credential, verify schema conformance of the credential, and confirm that the credential holder is in control of the credential.
+3. The BPI should consistently verify credential integrity, schema conformance, and control for each action or transaction.
 
 -------
 
