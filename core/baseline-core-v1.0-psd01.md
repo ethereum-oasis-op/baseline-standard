@@ -4688,6 +4688,24 @@ Mono-directional BPI services in the context of BPI interoperability, not regula
 #### **[R136]** 
 Mono-directional BPI services in the context of BPI interoperability MUST support at least two operations -- export and import.
 
+[[R136]](#r136) Testability:
+
+Preconditions:
+
+* The BPI system is properly configured and operational.
+* Mono-directional BPI services are in place and running.
+* The BPI system has data to be transferred, both for export and import.
+
+Test Steps:
+
+1. Access the BPI system and initiate the "export" operation.
+2. Access the BPI system and initiate the "import" operation.
+
+Expected Result: 
+
+1. The export operation starts without errors and retrieves data from the BPI system. The exported data is in a proper format and contains the expected information.
+2. The import operation starts without errors and successfully inserts data into the BPI system. The imported data is stored correctly and matches the data provided for import.
+
 #### **[R137]** 
 In the context of BPI interoperability, the BPI export operation MUST provide at least the following elements to the invoking BPI Subject:
 * The State Object
@@ -4703,6 +4721,22 @@ In the context of BPI interoperability, the BPI export operation MUST provide at
 * The Verification Keys for the lock commitment
 * Specification of the prover system of the lock commitment
 * A validation URI of the originating BPI that allows a 3rd party to independently verify the lock commitment
+
+[[R137]](r137) Testability:
+
+Preconditions:
+
+* Two BPI systems are set up: one to export the data and one to import the data.
+* Both BPI systems are properly configured for interoperability.
+* The data in the exporting BPI is in a valid and verifiable state.
+* The BPI export operation is accessible and functional.
+
+Test Steps:
+
+1. Initiate the BPI export operation from the exporting BPI system.
+
+Expected Result:
+1. The State Object is included in the exported data. The Zero-Knowledge Proof(s) of Correctness are part of the exported data. All public input data for validating the Zero-Knowledge Proofs is provided. Private input data for the Zero-Knowledge Proofs is included securely. The Verification Keys for the Zero-Knowledge Proofs are accessible. The prover system specifications for Zero-Knowledge Proofs are provided. The validation URI for third-party verification is included. The lock commitment of the current state object is part of the export. Public input data for the lock commitment is included. Private input data for the lock commitment is included securely. The Verification Keys for the lock commitment are accessible. The prover system specifications for the lock commitment are provided. The validation URI for third-party verification of the lock commitment is included.
 
 #### **[R138]** 
 In the context of BPI interoperability, the BPI import operation MUST provide at least the following elements by the invoking BPI Subject to the target BPI:
