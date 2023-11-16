@@ -1655,14 +1655,16 @@ Test Steps:
 1. Access the BPI system with the specific Abstraction Layer being tested. Create a new security policy, e.g., a policy that only allows workgroup participants to initiate worksteps within a specific workflow associated with a workgroup.
 2. Assign the newly created security policy to a specific workflow or a set of information objects within the BPI.
 3. Perform an action, such as attempting to initiate a workstep within the workflow associated with a workgroup.
-4. Modify the security policy to include different criteria or access rules.
+4. Modify the security policy to include different criteria or access rules. 
+5. Repeat step 3 to test the new security policy.
 
 Expected Results: 
 
 1. The Abstraction Layer provides the ability to create and manage security policies.
 2. The security policy is successfully applied to the selected workflow or information objects.
 3. The BPI enforces the security policy, preventing unauthorized actions.
-4. The changes to the security policy are successfully applied and enforced.
+4. The changes to the security policy are successfully applied.
+5. The BPI properly enforces the new security policy and prevents unauthorized actions.
 
 #### **[R64]**	
 Abstraction Layers utilized in a BPI MUST support Single-Sign-On (SSO). 
@@ -1730,17 +1732,22 @@ Preconditions:
 
 Test Steps:
 
-1. Verify that the Abstraction Layer allows for the integration of HSM devices. 
-2. Verify that cryptographic keys used within the BPI system are stored and managed securely within the HSM.
-3. Verify that the Abstraction Layer utilizes the HSM for secure data storage.
-4. Verify that HSM is used for user authentication and access control.
+1. Access the Abstraction Layers configuration settings. Confirm that there are settings or configurations related to external security components and documentation indicating the Abstraction Layers' capability to interact with external security modules.
+2. Review the configuration settings or documentation for Abstraction Layers to verify the presence of HSM integration options. Check if there are specific configuration parameters related to HSM, such as HSM connection details or API endpoints.
+3. Execute basic operations through Abstraction Layers that do not involve HSM to ensure baseline functionality. Confirm that Abstraction Layers respond appropriately to standard operations without HSM involvement.
+4. Initiate a test cryptographic operation that requires HSM interaction through Abstraction Layers. Verify that Abstraction Layers can communicate with the HSM and receive a response.
+5. Perform cryptographic operations through Abstraction Layers that explicitly require HSM support, such as key generation or signing. Confirm that these operations are successful and produce the expected results.
+6. Intentionally introduce errors in the HSM configuration or simulate HSM failures. Verify that Abstraction Layers handle these errors gracefully, providing meaningful error messages or logging.
+7. Inspect the logging or auditing mechanisms within Abstraction Layers. Execute HSM-dependent operations and check if corresponding logs are generated. Confirm that logs contain relevant information about the interactions with HSM.
 
 Expected Results:
 
-1. The Abstraction Layer allows the integration of HSM devices. HSM devices are correctly configured and accessible within the BPI system.
-2. Key management, including generation, encryption, and decryption, is performed using the HSM.
-3. Sensitive data stored within the BPI system is protected with HSM-based encryption.
-4. User authentication and access control is based on HSM-based credentials.
+1. Configuration settings indicate compatibility with external security components. Specific configurations related to HSM are present and documented.
+2. Basic Abstraction Layer functionality is confirmed.
+3. Successful communication between Abstraction Layers and HSM.
+4. Successful execution of cryptographic operations dependent on HSM.
+5. Graceful handling of errors or exceptions related to HSM.
+6. Logging or auditing mechanisms are functional, and logs capture interactions with HSM.
 
 -------
 
