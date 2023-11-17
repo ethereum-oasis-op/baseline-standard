@@ -1733,21 +1733,22 @@ Preconditions:
 Test Steps:
 
 1. Access the Abstraction Layers configuration settings. Confirm that there are settings or configurations related to external security components and documentation indicating the Abstraction Layers' capability to interact with external security modules.
-2. Review the configuration settings or documentation for Abstraction Layers to verify the presence of HSM integration options. Check if there are specific configuration parameters related to HSM, such as HSM connection details or API endpoints.
-3. Execute basic operations through Abstraction Layers that do not involve HSM to ensure baseline functionality. Confirm that Abstraction Layers respond appropriately to standard operations without HSM involvement.
-4. Initiate a test cryptographic operation that requires HSM interaction through Abstraction Layers. Verify that Abstraction Layers can communicate with the HSM and receive a response.
-5. Perform cryptographic operations through Abstraction Layers that explicitly require HSM support, such as key generation or signing. Confirm that these operations are successful and produce the expected results.
-6. Intentionally introduce errors in the HSM configuration or simulate HSM failures. Verify that Abstraction Layers handle these errors gracefully, providing meaningful error messages or logging.
+2. Review the configuration settings or documentation for Abstraction Layers to check for specific configuration parameters related to HSM, such as HSM connection details or API endpoints.
+3. Execute basic operations through Abstraction Layers that do not involve HSM. 
+4. Initiate a test cryptographic operation that requires HSM interaction through Abstraction Layers. 
+5. Perform cryptographic operations through Abstraction Layers that explicitly require HSM support, such as key generation or signing. 
+6. Intentionally introduce errors in the HSM configuration or simulate HSM failures. 
 7. Inspect the logging or auditing mechanisms within Abstraction Layers. Execute HSM-dependent operations and check if corresponding logs are generated. Confirm that logs contain relevant information about the interactions with HSM.
 
 Expected Results:
 
 1. Configuration settings indicate compatibility with external security components. Specific configurations related to HSM are present and documented.
-2. Basic Abstraction Layer functionality is confirmed.
-3. Successful communication between Abstraction Layers and HSM.
-4. Successful execution of cryptographic operations dependent on HSM.
-5. Graceful handling of errors or exceptions related to HSM.
-6. Logging or auditing mechanisms are functional, and logs capture interactions with HSM.
+2. The Basic Abstraction Layer has options for HSM integration.
+3. Abstraction Layers respond appropriately to standard operations without HSM involvement.
+4. Abstraction Layers can communicate with the HSM and receive a response.
+5. Cryptographic operations are successful and receive proper HSM support.
+6. Abstraction Layers handle errors gracefully, providing meaningful error messages or logging.
+7. Logging or auditing mechanisms are functional, and logs capture interactions with HSM.
 
 -------
 
