@@ -4722,7 +4722,7 @@ In the context of BPI interoperability, the BPI export operation MUST provide at
 * Specification of the prover system of the lock commitment
 * A validation URI of the originating BPI that allows a 3rd party to independently verify the lock commitment
 
-[[R137]](r137) Testability:
+[[R137]](#r137) Testability:
 
 Preconditions:
 
@@ -4733,10 +4733,22 @@ Preconditions:
 
 Test Steps:
 
-1. Initiate the BPI export operation from the exporting BPI system.
+1. Initiate the BPI export operation from the exporting BPI system and review the exported data.
 
 Expected Result:
-1. The State Object is included in the exported data. The Zero-Knowledge Proof(s) of Correctness are part of the exported data. All public input data for validating the Zero-Knowledge Proofs is provided. Private input data for the Zero-Knowledge Proofs is included securely. The Verification Keys for the Zero-Knowledge Proofs are accessible. The prover system specifications for Zero-Knowledge Proofs are provided. The validation URI for third-party verification is included. The lock commitment of the current state object is part of the export. Public input data for the lock commitment is included. Private input data for the lock commitment is included securely. The Verification Keys for the lock commitment are accessible. The prover system specifications for the lock commitment are provided. The validation URI for third-party verification of the lock commitment is included.
+1. The State Object is included in the exported data. 
+2. The Zero-Knowledge Proof(s) of Correctness are part of the exported data. 
+3. All public input data for validating the Zero-Knowledge Proofs is provided. 
+4. Private input data for the Zero-Knowledge Proofs is included securely. 
+5. The Verification Keys for the Zero-Knowledge Proofs are accessible. 
+6. The prover system specifications for Zero-Knowledge Proofs are provided. 
+7. The validation URI for third-party verification is included. 
+8. The lock commitment of the current state object is part of the export. 
+9. Public input data for the lock commitment is included. 
+10. Private input data for the lock commitment is included securely. 
+11. The Verification Keys for the lock commitment are accessible. 
+12. The prover system specifications for the lock commitment are provided. 
+13. The validation URI for third-party verification of the lock commitment is included.
 
 #### **[R138]** 
 In the context of BPI interoperability, the BPI import operation MUST provide at least the following elements by the invoking BPI Subject to the target BPI:
@@ -4751,6 +4763,30 @@ In the context of BPI interoperability, the BPI import operation MUST provide at
 * The Verification Keys for the lock commitment
 * Specification of the prover system of the lock commitment
 * A public validation URI of the originating BPI that allows a 3rd party to independently verify the lock commitment
+
+[[R138]](#r138) Testability: 
+
+Preconditions:
+
+* Two BPI systems are set up: one to export the data and one to import the data.
+* Both BPI systems are properly configured for interoperability.
+* The BPI Subject initiating the import operation has access to the required data and elements.
+
+Test Steps:
+
+1. Initiate the BPI import operation from the importing BPI system. 
+
+Expected Result:
+1. The State Object is included in the imported data. 
+2. The Zero-Knowledge Proof(s) of Correctness are part of the imported data. 
+3. All public input data for validating the Zero-Knowledge Proofs is provided. 
+4. The Verification Keys for the Zero-Knowledge Proofs are accessible. 
+5. The prover system specifications for Zero-Knowledge Proofs are provided. 
+6. The validation URI for third-party verification is included. 
+7. The lock commitment of the current state object is part of the import.
+8. The Verification Keys for the lock commitment are accessible. 
+9. The prover system specifications for the lock commitment are provided. 
+10. The validation URI for third-party verification of the lock commitment is included.
 
 #### 5.5.4.2 Bi- or Multi-directional BPI services
 
@@ -4780,12 +4816,61 @@ Bi- or Multi-directional BPI services in the context of BPI interoperability MUS
 * *Validity requirements of an operation's data properties*
 * *Operation execution requirements* 
 
+[[R139]](#r139) Testability: 
+
+Preconditions:
+
+* Two or more BPI systems are set up for bi- or multi-directional BPI services.
+* All BPI systems involved are configured for interoperability.
+* The BPI Subjects and Participants are properly registered in their respective systems.
+
+Test Steps:
+
+1. Create a State Synchronization and Advancement Predicate from one BPI system.
+2. Update the State Synchronization and Advancement Predicate from another BPI system.
+3. Launch an IVSM (Interoperable Verification Smart Master) from one of the BPI systems.
+4. Remove the IVSM from the system where it was launched.
+5. Commit the State in one of the BPI systems.
+6. Invite Participants to the BPI Interoperability Process from one of the BPI systems.
+7. Accept or Reject the invite from the Participant side.
+8. Add a BPI Subject to the BPI Interoperability from one of the systems.
+9. Remove a BPI Subject from the BPI Interoperability from one of the systems.
+10. Verify the State from any BPI system.
+11. Verify the Lock Commitment from any BPI system.
+12. Update the State from any BPI system.
+13. Accept or Reject the State Update from the receiving side.
+14. Exit the BPI Interoperability from any of the participating systems.
+
+Expected Results:
+
+1. All the above steps are completed without errors or exceptions.
+2. Each operation specified in the requirement is supported by the BPI services.
+3. The BPI systems synchronize and interoperate correctly during these operations.
+
 **Create State Synchronization and Advancement Predicate**
 
 As mentioned above, a State Synchronization and Advancement Predicate defines and provides an implementation of an enforcement mechanism of the required rules and data to synchronize multiple state objects from different BPIs, and if required, advance this synchronized, joint state to a new joined state. The joint state is subsequently usable in the BPI workflows in the different participating BPIs. 
 
 #### **[R140]** 
 A State Synchronization and Advancement Predicate MUST be a mathematically well-formed, deterministic formula that can be evaluated to true or false as one or more functions of the values of the variables that occur in it.
+
+[[R140]](#r140) Testability: 
+
+Preconditions:
+
+* A BPI system with a State Synchronization and Advancement Predicate capability is set up.
+
+Test Steps:
+
+1. Define the State Synchronization and Advancement Predicate in the BPI system as a formula with well-formed mathematical syntax.
+2. Test the formula with different sets of inputs and repeat each set of inputs multiple times. 
+3. Provide a set of variables that occur in the formula and evaluate the formula with specific values for these variables.
+
+Expected Results:
+
+1. The State Synchronization and Advancement Predicate accepts a well-formed mathematical formula.
+2. The formula is deterministic, producing the same result for the same input.
+3. When the formula is evaluated with specific variable values, it should correctly return "true" or "false" based on the provided input.
 
 #### **[R141]** 
 A State Synchronization and Advancement Predicate MUST at least contain the following elements:
@@ -4808,20 +4893,118 @@ A State Synchronization and Advancement Predicate MUST at least contain the foll
 
 *The unique predicate identifier allows for the disambiguation of predicates in case a system is processing more than one predicate at a time. The BPI Subject identifier assures the assignability of the originator for audit and disambiguation purposes. A human-readable format ensures that in the case of business-sensitive operations both business owners and auditors can understand and analyze the intent of the predicate. For a system to be able to process the predicate, the rules as well as input and output data for both state synchronization and advancement, together with the processing program, state storage, and output validation, need to be specified such that they can be implemented in a system through an automated process. The last element ensures predicate non-repudiability in case of disputes.*
 
+[[R141]](#r141) Testability:
+
+Preconditions:
+
+* The BPI system is configured to accept State Synchronization and Advancement Predicates.
+* The BPI Subject creating the predicate has a valid public-private key pair.
+* The BPI Subject has the necessary permissions to create and update State Synchronization and Advancement Predicates.
+
+Test Steps:
+
+1. Generate a unique identifier for the predicate and ensure it is not already in use. 
+2. Prepare input data for the creation of the State Synchronization and Advancement Predicate, including all the specified elements.
+3. Sign the content of the State Synchronization and Advancement Predicate with the BPI Subject's private key.
+4. Submit the State Synchronization and Advancement Predicate for creation within the BPI system.
+5. Retrieve the created predicate and check for all of the specified elements.
+6. Update the State Synchronization and Advancement Predicate, if necessary, and verify the update process.
+
+Expected Results:
+
+1. The State Synchronization and Advancement Predicate is successfully created within the BPI system.
+2. The created predicate contains all the specified elements outlined in the requirement.
+3. The digital signature over the predicate content is valid and tied to the public key associated with the BPI Subject creating the predicate.
+4. The BPI system correctly associates the created predicate with the unique identifier of the BPI Subject.
+5. The update to the State Synchronization and Advancement Predicate is successful, and the updated predicate reflects the changes made.
+
 #### **[R142]** 
 The output objects of the application of the State Synchronization and Advancement Predicate MUST be cryptographic assertions in zero-knowledge that evaluate to either true or false by a verifying party.
+
+[[R142]](#r142) Testability:  
+
+Preconditions:
+
+* A BPI system capable of applying the State Synchronization and Advancement Predicate is set up.
+* The State Synchronization and Advancement Predicate is created and has associated input data.
+
+Test Steps:
+
+1. Apply the State Synchronization and Advancement Predicate to the input data.
+2. Attempt to evaluate these cryptographic assertions in a zero-knowledge context. 
+3. Attempt to evaluate the cryptographic assertions to ensure they can be assessed as either true or false.
+
+Expected Results:
+
+1. The output objects generated by the State Synchronization and Advancement Predicate are cryptographic assertions.
+2. The cryptographic assertions are structured for zero-knowledge evaluation.
+3. The cryptographic assertions can be successfully evaluated by a verifying party as either true or false.
 
 #### **[R143]** 
 For BPI Interoperability, the "Create State Synchronization and Advancement Predicate" operation a BPI invokes MUST create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
 
+[[R143]](#r143) Testability:
+
+Preconditions:
+
+* A BPI system capable of invoking the "Create State Synchronization and Advancement Predicate" operation is set up.
+* The BPI system has appropriate authorization and permissions to invoke this operation.
+
+Test Steps:
+
+1. Invoke the "Create State Synchronization and Advancement Predicate" operation within the BPI system.
+2. Create an object as a result of this operation. Perform the tests described in [**[R140]**](#r140) - [**[R142]**](#r142) on this object. 
+
+Expected Results: 
+
+1. The "Create State Synchronization and Advancement Predicate" operation successfully creates an object.
+2. The created object conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142) as specified in the requirement.
+
 #### **[R144]** 
 The input data to the "Create State Synchronization and Advancement Predicate" operation MUST enable a BPI to generate a State Synchronization and Advancement Predicate per [**[R141]**](#r141).
+
+[[R144]](#r144) Testability:
+
+Preconditions:
+
+* A BPI system is set up with the capability to invoke the "Create State Synchronization and Advancement Predicate" operation.
+* The BPI system has the necessary permissions and authorization to execute this operation.
+
+Test Steps:
+
+1. Invoke the "Create State Synchronization and Advancement Predicate" operation within the BPI system.
+2. Analyze the input data provided to the operation to ensure it aligns with all requirements from [**[R141]**](#r141). Then, generate the State Synchronization and Advancement Predicate and perform the tests listed in [**[R141]**](#r141). 
+
+Expected Results:
+
+1. The "Create State Synchronization and Advancement Predicate" operation successfully executes.
+2. The input data for the operation enables the BPI system to generate a State Synchronization and Advancement Predicate that conforms to the criteria described in [R141].
 
 #### **[R145]** 
 A "Create State Synchronization and Advancement Predicate" operation MUST satisfy the following conditions to be valid:
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * A State Synchronization and Advancement Predicate conformant with [**[R141]**](#r141).
+
+[[R145]](#r145) Testability: 
+
+Preconditions:
+
+* A BPI system is set up and configured to execute the "Create State Synchronization and Advancement Predicate" operation.
+* The BPI system has registered BPI Subjects with their unique identifiers, digital signatures, and associated public keys.
+
+Test Steps:
+
+1. Invoke the "Create State Synchronization and Advancement Predicate" operation within the BPI system.
+2. Use a signature verification function with the invoking BPI Subject's digital signature and its associated public key. 
+3. Confirm that the public key used in the digital signature is cryptographically tied to the unique identifier of the invoking BPI Subject.
+4. Perform the tests listed in [**[R141]**](#r141) on the generated State Synchronization and Advancement Predicate. 
+
+Expected Results: 
+
+1. The "Create State Synchronization and Advancement Predicate" operation successfully executes.
+2. The invoking BPI Subject's digital signature is valid and matches the public key tied to the BPI Subject's unique identifier.
+3. The generated State Synchronization and Advancement Predicate complies with the criteria outlined in [R141].
 
 **Update State Synchronization and Advancement Predicate**
 
@@ -4830,20 +5013,120 @@ In case requirements change, a State Synchronization and Advancement Predicate m
 #### **[R146]** 
 A State Synchronization and Advancement Predicate MUST NOT be updated when the predicate is used in an active IVSM.
 
+[[R146]](#r146) Testability: 
+
+Preconditions:
+
+* An active IVSM (Interoperable Verifiable State Machine) exists within the BPI.
+* The BPI system is configured to use State Synchronization and Advancement Predicates.
+* There is at least one State Synchronization and Advancement Predicate in use within the active IVSM.
+
+Test Steps:
+
+1. Select a specific State Synchronization and Advancement Predicate that is currently in use within the IVSM and attempt to initiate an update or modification to the selected predicate.
+2. Monitor and record the BPI system's response to the update request.
+3. Repeat the test for each predicate in use within the IVSM if applicable.
+
+Expected Results: 
+
+1. The BPI system consistently rejects or prevents the update of a State Synchronization and Advancement Predicate when it is actively used within an IVSM.
+
 #### **[R147]** 
 An update operation to a State Synchronization and Advancement Predicate MUST be conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+
+[[R147]](#r147) Testability: 
+
+Preconditions:
+
+* A State Synchronization and Advancement Predicate (Predicate) exists within the BPI.
+* The BPI system is configured to allow updates to the Predicate.
+* The Predicate to be updated conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+
+Test Steps:
+
+1. Prepare the updates to the Predicate, testing if they conform to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+2. Initiate the update operation for the selected Predicate. Then, monitor and record the BPI system's response to the update request.
+3. Repeat the test for multiple Predicates, if applicable, to ensure all updates conform to the requirements.
+
+Expected Results: 
+
+1. The BPI system accepts the update operation if the Predicate conforms to requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+2. The BPI system consistently accepts updates that adhere to the specified requirements and consistently rejects updates that do not conform to the requirements.
 
 #### **[R148]** 
 For BPI Interoperability, the "Update State Synchronization and Advancement Predicate" operation a BPI invokes MUST create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
 
+[[R148]](#r148) Testability: 
+
+Preconditions:
+
+* A BPI Subject with the authority to update the State Synchronization and Advancement Predicate (Predicate) exists within the BPI.
+* A Predicate that requires an update is available.
+* The BPI system is configured to allow updates to Predicates.
+
+Test Steps:
+
+1. Identify and select a Predicate that requires an update. Prepare the update operation, ensuring it conforms to the requirements [R140] - [R142].
+2. Initiate the "Update State Synchronization and Advancement Predicate" operation for the selected Predicate. Then, monitor and record the BPI system's response to the update request.
+3. Repeat the test for multiple Predicates, if applicable, to ensure all updates conform to the specified requirements.
+
+Expected Results: 
+
+1. The update conforms to the requirements [R140] - [R142] and the update operation is prepared.
+2. The BPI system accepts the "Update State Synchronization and Advancement Predicate" operation. 
+3. The BPI system consistently accepts updates that adhere to the specified requirements and rejects updates that do not conform to the requirements.
+
 #### **[R149]** 
 The input data to the "Update State Synchronization and Advancement Predicate" operation MUST enable a BPI to generate a State Synchronization and Advancement Predicate per [**[R141]**](#r141).
+
+[[R149]](#r149) Testability: 
+
+Preconditions:
+
+* A BPI Subject with the authority to update the State Synchronization and Advancement Predicate (Predicate) exists within the BPI.
+* A Predicate that requires an update is available.
+* The BPI system is configured to allow updates to Predicates.
+
+Test Steps:
+
+1. Identify and select a Predicate that requires an update. Prepare the input data for the "Update State Synchronization and Advancement Predicate" operation in a format that conforms to the requirements [R141].
+2. Initiate the "Update State Synchronization and Advancement Predicate" operation for the selected Predicate with the prepared input data. Then, monitor and record the BPI system's response to the update request.
+3. Repeat the test for multiple Predicates, if applicable, to ensure all updates conform to the specified requirements.
+
+Expected Results: 
+
+1. The input data enabels the BPI to generate a State Synchronization and Advancement Predicate that conforms to the requirements [R141].
+2. The BPI system accepts the "Update State Synchronization and Advancement Predicate" operation with the provided input data.
+3. The BPI system consistently generates Predicates that meet the specified requirements using different sets of input data and accepts the update request when the input data adheres to the specified format and requirements.
 
 #### **[R150]** 
 An "Update State Synchronization and Advancement Predicate" operation MUST satisfy the following conditions to be valid:
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * A State Synchronization and Advancement Predicate conformant with [**[R141]**](#r141).
+
+[[R150]](#r150) Testability: 
+
+Preconditions:
+
+* A BPI Subject with the authority to update the State Synchronization and Advancement Predicate (Predicate) exists within the BPI.
+* A Predicate that requires an update is available.
+* The BPI system is configured to allow updates to Predicates.
+* The digital signature key pair of the invoking BPI Subject is available and appropriately managed.
+
+Test Steps:
+
+1. Identify and select a Predicate that requires an update, and prepare the input data for the "Update State Synchronization and Advancement Predicate" operation in a format that conforms to the requirements [R141].
+2. Sign the prepared input data with the digital signature key of the invoking BPI Subject.
+3. Initiate the "Update State Synchronization and Advancement Predicate" operation for the selected Predicate with the signed input data. Then, monitor and record the BPI system's response to the update request.
+4. Repeat the test for multiple Predicates, if applicable, with "Update State Synchronization and Advancement Predicate" operations that satisfy these conditions.
+
+Expected Results:
+
+1. The input data enabels the BPI to generate a State Synchronization and Advancement Predicate that conforms to the requirements [R141].
+2. The invoking BPI Subject's digital signature is valid, indicating that the signature can be verified with the associated public key. The digital signature's public key must be cryptographically tied to the unique identifier of the invoking BPI Subject.
+3. The BPI system must accept the "Update State Synchronization and Advancement Predicate" operation with the provided input data, and the signed input data must be verified as authentic.
+4. The BPI system consistently validates the digital signature, associates it with the correct BPI Subject, and generates Predicates that meet the specified requirements using different sets of input data. The BPI System also consistently accepts the update request when the input data adheres to the specified format and requirements and the digital signature is valid. Additionally, the BPI system complies with the requirement by ensuring that valid digital signatures and the associated public keys are used in the update process, and Predicates generated are conformant with the specified criteria based on the input data.
 
 **Launch IVSM**
 
