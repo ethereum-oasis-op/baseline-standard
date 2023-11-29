@@ -5126,7 +5126,9 @@ Expected Results:
 1. The input data enabels the BPI to generate a State Synchronization and Advancement Predicate that conforms to the requirements [R141].
 2. The invoking BPI Subject's digital signature is valid, indicating that the signature can be verified with the associated public key. The digital signature's public key must be cryptographically tied to the unique identifier of the invoking BPI Subject.
 3. The BPI system must accept the "Update State Synchronization and Advancement Predicate" operation with the provided input data, and the signed input data must be verified as authentic.
-4. The BPI system consistently validates the digital signature, associates it with the correct BPI Subject, and generates Predicates that meet the specified requirements using different sets of input data. The BPI System also consistently accepts the update request when the input data adheres to the specified format and requirements and the digital signature is valid. Additionally, the BPI system complies with the requirement by ensuring that valid digital signatures and the associated public keys are used in the update process, and Predicates generated are conformant with the specified criteria based on the input data.
+4. The BPI system consistently validates the digital signature, associates it with the correct BPI Subject, and generates Predicates that meet the specified requirements using different sets of input data. 
+5. The BPI System consistently accepts the update request when the input data adheres to the specified format and requirements and the digital signature is valid. 
+6. The BPI system complies with the requirement by ensuring that valid digital signatures and the associated public keys are used in the update process, and Predicates generated are conformant with the specified criteria based on the input data.
 
 **Launch IVSM**
 
@@ -5142,14 +5144,91 @@ The "Launch IVSM" operation a BPI invokes MUST contain the following elements:
 * A list of BPI Subject unique identifiers authorized to invoke the IVSM operations.
 * A digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation
 
+[[R151]](#r151) Testability: 
+
+Preconditions:
+
+* The Baseline Protocol Implementation (BPI) system is properly configured and operational.
+* The BPI Subject invoking the "Launch IVSM" operation has the necessary permissions and authentication.
+* IVSM-related configurations are properly set up within the BPI.
+
+Test Steps:
+
+1. Access the BPI configuration settings. Confirm that there are settings or configurations related to IVSM. Ensure that the configurations include options for specifying unique identifiers, creation date, and authorized BPI Subject identifiers for the IVSM.
+2. Execute the "Launch IVSM" operation from the BPI. Provide the required input parameters, including a unique identifier, BPI Subject identifier, creation date, State Synchronization and Advancement Predicate, and the list of authorized BPI Subject identifiers. Capture any response or acknowledgment from the BPI system.
+3. Retrieve information about the launched IVSM. 
+4. Confirm that the IVSM has a unique identifier associated with it. Ensure that the unique identifier is correctly linked to the launched IVSM.
+5. Confirm that the BPI Subject identifier associated with the IVSM matches the identifier of the BPI Subject invoking the operation. Ensure that the BPI Subject identifier is correctly recorded for the launched IVSM.
+6. Verify that the creation date of the IVSM matches the date specified during the "Launch IVSM" operation. Confirm that the creation date is accurately recorded for the launched IVSM.
+7. Confirm that the IVSM contains the specified State Synchronization and Advancement Predicate. Ensure that the Predicate is correctly associated with the launched IVSM.
+8. Verify that the list of authorized BPI Subject identifiers matches the input provided during the "Launch IVSM" operation. Confirm that the authorized BPI Subject identifiers are accurately recorded for the launched IVSM.
+9. Verify that the digital signature associated with the IVSM is valid. Confirm that the digital signature is correctly tied to the public key associated with the BPI Subject invoking the operation.
+
+Expected Results: 
+
+1. IVSM configurations in BPI settings are present.
+2. "Launch IVSM" operation can be initiated successfully.
+3. IVSM has a unique identifier accurately recorded.
+4. BPI Subject identifier is correctly associated with the launched IVSM.
+5. Creation date matches the specified date during the operation.
+6. State Synchronization and Advancement Predicate is correctly linked to the IVSM.
+7. Authorized BPI Subject identifiers are accurately recorded for the launched IVSM.
+8. Digital signature is valid and correctly tied to the BPI Subject's public key.
+
 #### **[R152]** 
 A "Launch IVSM" operation MUST satisfy the following conditions to be valid:
 * The BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The submitted State Synchronization and Advancement Predicate is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
 
+[[R152]](#r152) Testability: 
+
+Preconditions:
+
+* The Baseline Protocol Implementation (BPI) system is properly configured and operational.
+* The BPI Subject invoking the "Launch IVSM" operation has the necessary permissions and authentication.
+* IVSM-related configurations are properly set up within the BPI.
+
+Test Steps:
+
+1. Execute the "Launch IVSM" operation from the BPI. Provide the required input parameters, including a unique identifier, BPI Subject identifier, creation date, State Synchronization and Advancement Predicate, and the list of authorized BPI Subject identifiers. Capture any response or acknowledgment from the BPI system.
+2. Retrieve information about the launched IVSM. 
+3. Verify that the digital signature associated with the IVSM is valid. Confirm that the digital signature is correctly tied to the public key associated with the BPI Subject invoking the operation.
+4. Confirm that the public key used in the digital signature is cryptographically tied to the unique identifier of the invoking BPI Subject. Ensure that the binding between the public key and the BPI Subject's unique identifier is accurately recorded for the launched IVSM.
+5. Confirm that the IVSM contains the specified State Synchronization and Advancement Predicate. Ensure that the Predicate is correctly associated with the launched IVSM and conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+
+Expected Results: 
+
+1. "Launch IVSM" operation can be initiated successfully.
+2. Digital signature is valid and correctly tied to the BPI Subject's public key.
+3. Public key is cryptographically tied to the unique identifier of the invoking BPI Subject.
+4. State Synchronization and Advancement Predicate is correctly linked to the IVSM and conforms to [**[R140]**](#r140) - [**[R142]**](#r142).
+
 #### **[R153]** 
 An IVSM MUST implement a State Synchronization and Advancement Predicate conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+
+[[R153]](#r153) Testability: 
+
+Preconditions:
+
+* The IVSM is properly integrated and operational within the Baseline Protocol Implementation (BPI) system.
+* Appropriate configurations for State Synchronization and Advancement Predicate are set up.
+* The IVSM has been appropriately initialized and associated with a BPI Subject.
+
+Test Steps:
+
+1. Trigger an operation that involves the IVSM, such as initiating an IVSM process. Retrieve the State Synchronization and Advancement Predicate associated with the IVSM. Capture any response or acknowledgment from the BPI system.
+2. Inspect the retrieved State Synchronization and Advancement Predicate. Confirm that the Predicate contains all the required elements specified in [R140] - [R142].
+3. Examine the IVSM process execution that involves applying the State Synchronization and Advancement Predicate. Verify that the deterministic program specified in the Predicate is correctly executed. Confirm that the program's runtime environment is accurately configured, and the output objects are generated as expected.
+4. Confirm that the cryptographic prover system specified in the Predicate is employed during IVSM operations. Verify the correctness of cryptographic material used for verification. Validate that the joint state between participating BPIs and their storage is cryptographically verifiable.
+Test Passing Criteria:
+
+Expected Results: 
+
+1. IVSM can be invoked successfully, and the State Synchronization and Advancement Predicate is retrievable.
+2. The Predicate contains all required elements specified in [R140] - [R142].
+3. Deterministic program execution results in the correct generation of output objects.
+4. Cryptographic prover system is applied, and the joint state is cryptographically verifiable.
 
 #### **[R154]** 
 An IVSM MUST implement the following BPI Interoperability operations that can be invoked by BPI Subjects conformant to the requirements of said operations:
@@ -5164,8 +5243,36 @@ An IVSM MUST implement the following BPI Interoperability operations that can be
 
 *This represents the minimal set of operations required to synchronize or advance joint state objects by an IVSM.*
 
+[[R154]](#r154) Testability: 
+
+Preconditions:
+* The IVSM is deployed and operational.
+* BPI Subjects are registered and authorized to invoke IVSM operations.
+* Joint state objects are available for synchronization.
+
+Test Steps:
+
+1. Invoke the "Commit State" operation on the IVSM. Monitor the response from the system or any events triggered by the commit operation by checking for success messages, error messages, or events emitted by the smart contract on the blockchain. Query the IVSM for the current state or inspect relevant data structures or databases where the joint state is stored.
+2. Add a new BPI Subject and remove an existing BPI Subject using the respective operations.
+3. Trigger the "Verify State" operation on the IVSM. Specify what constitutes a successful verification and what conditions would lead to a failed verification. Monitor the response from the IVSM or any events triggered by the "Verify State" operation by checking for success messages, error messages, or events emitted by the system indicating the outcome of the verification. 
+4. Execute the "Verify Lock Commitment" operation on the IVSM. Clearly define the conditions that make a lock commitment valid, including time constraints, cryptographic checks, or any other criteria specified by the implementation. Monitor the response from the IVSM or any events triggered by the "Verify Lock Commitment" operation. This might include success messages, error messages, or events indicating the outcome of the verification. Query the IVSM for the validity status of the lock commitment. If the IVSM provides detailed information about the validation result, inspect these details. Compare the actual validation results with the defined expected results. 
+5. Initiate the "Update State" operation on the IVSM. Clearly define the conditions that should lead to a successful update of the joint state, including the data format, authorization checks, or any other criteria specified by the implementation. Monitor the response from the IVSM or any events triggered by the "Update State" operation by checking for success messages, error messages, or events indicating the outcome of the update. Compare the actual state after the update with the defined expected results. 
+6. Attempt to update the state with incorrect or unauthorized information. Trigger the "Update State" operation on the IVSM with the intentionally invalid data. Clearly define the conditions under which the IVSM should reject the state update as invalid including criteria such as data validation checks, authorization constraints, or other business logic requirements. Monitor the response from the IVSM or any events triggered by the "Update State" operation, including error messages, failure notifications, or events indicating the rejection of the invalid state update. Compare the actual rejection status and messages with the defined expected results. 
+7. Execute the "Finalize State" operation on the IVSM. Monitor the response from the IVSM or any events triggered by the "Finalize State" operation including success messages, completion notifications, or events indicating the finalization of the current state.
+8. Invoke the "Exit BPI Interoperability" operation on the IVSM. Monitor the response from the IVSM or any events triggered by the "Exit BPI Interoperability" operation, including success messages, completion notifications, or events indicating the conclusion of the BPI Interoperability process.
+
+Expected Results:
+1. The commit operation is properly processed and the joint state is successfully upated.
+2. The IVSM updates the joint state to reflect the addition or removal of BPI Subjects.
+3. The joint state is successfully verified, and the result is accurate.
+4. The lock commitment is valid, and the IVSM provides a positive verification result.
+5. The joint state is successfully updated.
+6. The IVSM correctly rejects the unauthorized state update.
+7. The state is successfully finalized.
+8. The IVSM successfully exits the BPI Interoperability.
+
 #### **[R155]** 
-For BPI Interoperability, a  valid "Launch IVSM" operation a BPI invokes MUST 
+For BPI Interoperability, a valid "Launch IVSM" operation a BPI invokes MUST 
 * Instantiate an operational IVSM conformant to [**[R153]**](#r153) and [**[R154]**](#r154)
 * Include the list of BPI Subjects as part of the target IVSM joint state object
 * Commit the initial state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the initial state on the CCSM together with its public input and verification key
