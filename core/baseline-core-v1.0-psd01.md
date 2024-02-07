@@ -5292,36 +5292,44 @@ Preconditions:
 Test Steps:
 
 1. Trigger the "Launch IVSM" operation on the BPI.
-Expected Result: The operation is successfully initiated.
 
 2. Retrieve the status of the IVSM instantiation process.
-Expected Result: The IVSM is operational and conforms to [R153] and [R154].
 
 3. Examine the joint state object of the target IVSM.
-Expected Result: The list of BPI Subjects is included in the joint state object.
-Verify Initial State Commitment:
 
-4. Retrieve information about the initial state of the IVSM. Utilize the public input and verification key to generate a zero-knowledge proof for the initial state. Submit the initial state information to the CCSM for commitment as a zero-knowledge proof. Inspect the storage or database where the CCSM stores committed states.
-Expected Result: The commitment is valid, succinct, and efficiently proves the correctness of the initial state. The proof includes the public input and verification key.
-Verify Return of IVSM Endpoints:
+4. Retrieve information about the initial state of the IVSM. Select a well-established zero-knowledge proof system that suits your requirements. Clearly define the statement you want to prove without revealing the actual data. During the setup phase of the zero-knowledge proof system, generate public parameters, like a proving key and a verification key. Utilize the proving key and the private input (initial state data) to generate a zero-knowledge proof. Share the public input, the generated zero-knowledge proof, and the verification key. Submit the generated zero-knowledge proof along with the initial state information to the CCSM for commitment. Submit the initial state information to the CCSM for commitment. Inspect the storage or database where the CCSM stores committed states. 
 
-Action: Retrieve the list of target IVSM endpoints returned by the "Launch IVSM" operation.
-Expected Result: The list of endpoints is provided as URIs for the operations specified in [R154].
-Verify Return of Secured and Masked Secret:
+5. Retrieve the list of target IVSM endpoints returned by the "Launch IVSM" operation.
 
-Action: Retrieve the cryptographically secured and masked secret returned by the operation.
-Expected Result: The secret is cryptographically secured and masked, ensuring that an attacker cannot unmask it without the required cryptographic material.
-Passing Criteria:
+6. Retrieve the cryptographically secured and masked secret returned by the operation.
 
-The "Launch IVSM" operation completes without errors.
-An operational IVSM is instantiated and conforms to [R153] and [R154].
-The list of BPI Subjects is included in the joint state object.
-The initial state of the IVSM is committed as a valid zero-knowledge proof on the CCSM, including public input and verification key.
-The list of target IVSM endpoints is returned as URIs for operations listed in [R154].
-The returned secret is cryptographically secured and masked, meeting the defined criteria.
+Expected Results: 
+1. The operation is successfully initiated.
+2. The IVSM is operational and conforms to [R153] and [R154].
+3. The list of BPI Subjects is included in the joint state object.
+4. The commitment is valid, succinct, and efficiently proves the correctness of the initial state. The proof includes the public input and verification key.
+5. The list of endpoints is provided as URIs for the operations specified in [R154].
+6. The secret is cryptographically secured and masked, ensuring that an attacker cannot unmask it without the required cryptographic material.
 
 #### **[R156]** 
 The valid zero-knowledge proof of correctness of the initial joint state MUST be publicly verifiable on the CCSM the IVSM utilizes. 
+
+[[R156]](#r156) Testability:
+
+Preconditions:
+
+* The IVSM has been successfully launched using the "Launch IVSM" operation.
+* The initial joint state of the IVSM has been committed with a zero-knowledge proof.
+
+Test Steps:
+
+1. Retrieve information about the initial state of the IVSM. Utilize the public input, private input (initial state), and verification key to generate a zero-knowledge proof for the initial state. 
+2. Submit the generated zero-knowledge proof along with the public input and verification key to the CCSM for verification. Inspect the storage or database where the CCSM stores committed states.
+
+Expected Results: 
+
+1. The information required for public verification is accessible.
+2. The CCSM provides confirmation or evidence that the zero-knowledge proof for the correctness of the initial joint state has been successfully verified.
 
 **Remove IVSM**
 
@@ -5330,8 +5338,50 @@ Once the IVSM has met the defined finalization criteria of the joint state it ca
 #### **[R157]** 
 An IVSM MUST NOT be stopped unless the finalization criteria of the joint state have been met.
 
+[[R157]](#r157) Testability:
+
+Preconditions:
+1. The IVSM is successfully instantiated and operational.
+2.  A zero-knowledge proof for the correctness of the initial joint state has been generated using the public input, private input, and verification key.
+
+Test Steps:
+
+1. Trigger the "Launch IVSM" operation on the BPI.
+2. Retrieve information about the initial joint state of the IVSM.
+3. Utilize the public input, private input (initial joint state), and verification key to generate a zero-knowledge proof for the correctness of the initial joint state.
+4. Submit the generated zero-knowledge proof along with the public input and verification key to the CCSM for verification.
+5. Inspect the storage or database where the CCSM stores committed states.
+
+Expected Results:
+
+1. The operation is successfully initiated, and the IVSM is instantiated.
+2. Relevant information about the initial joint state is obtained, including data to be committed.
+3. The zero-knowledge proof is successfully generated.
+4. The CCSM processes the request without errors.
+5. The CCSM provides confirmation or evidence that the zero-knowledge proof for the correctness of the initial joint state has been successfully verified.
+
 #### **[R158]** 
 An IVSM MUST NOT be able to be removed until all participants in the BPI Interoperability process have successfully invoked the "Exit BPI Interoperability" operation.
+
+[[R158]](#r158) Testbility: 
+
+Preconditions:
+
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove IVSM" operation.
+* The "Exit BPI Interoperability" operation has been invoked successfully by all participants.
+
+Test Steps:
+
+1. Invoke the "Remove IVSM" operation without all participants having successfully invoked the "Exit BPI Interoperability" operation.
+2. Invoke the "Exit BPI Interoperability" operation successfully for all participants, and then attempt the "Remove IVSM" operation.
+3. Try to perform operations on the IVSM after all participants have successfully exited BPI Interoperability and the IVSM has been removed.
+
+Expected Results: 
+
+1. The IVSM rejects the removal operation, indicating that not all participants have exited BPI Interoperability.
+2. The IVSM accepts the removal operation, as all participants have successfully exited BPI Interoperability.
+3. All operations on the removed IVSM are rejected or result in errors.
 
 #### **[R159]** 
 A "Remove IVSM" operation a BPI invokes MUST contain the following properties:
@@ -5339,6 +5389,32 @@ A "Remove IVSM" operation a BPI invokes MUST contain the following properties:
 * The unique identifier of the invoking BPI Subject
 * A digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation
 * The cryptographically secured and masked secret of the invoking BPI Subject  
+
+[[R159]](#r159) Testability: 
+
+Preconditions:
+* The IVSM is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove IVSM" operation.
+
+Test Steps:
+
+1. Trigger the "Remove IVSM" operation with the required properties, including the target IVSM identifier, invoking BPI Subject identifier, digital signature, and cryptographically secured masked secret.
+2. Trigger the "Remove IVSM" operation with all properties except the target IVSM identifier.
+3. Trigger the "Remove IVSM" operation with all properties except the invoking BPI Subject identifier.
+4. Trigger the "Remove IVSM" operation with all properties except the digital signature.
+5. Trigger the "Remove IVSM" operation with all properties except the cryptographically secured masked secret.
+6. Try to invoke the "Remove IVSM" operation with an unauthorized BPI Subject.
+7. Use the retrieved public key to verify the digital signature over the content of the "Remove IVSM" operation.
+
+Expected Results: 
+
+1. The IVSM processes the removal operation successfully.
+2. The IVSM should reject the removal operation, indicating that the target IVSM identifier is required.
+3. The IVSM should reject the removal operation, indicating that the invoking BPI Subject identifier is required.
+4. The IVSM should reject the removal operation, indicating that the digital signature is required.
+5. The IVSM should reject the removal operation, indicating that the cryptographically secured masked secret is required.
+6. The IVSM should reject the unauthorized removal operation.
+7. The IVSM successfully verifies the digital signature.
 
 #### **[R160]** 
 A "Remove IVSM" operation MUST satisfy the following conditions to be valid:
@@ -5348,8 +5424,54 @@ A "Remove IVSM" operation MUST satisfy the following conditions to be valid:
 * The invoking BPI Subject must be an authorized BPI Subject for the target IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject  
 
+[[R160]](#r160) Testability: 
+
+Preconditions:
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove IVSM" operation.
+
+Test Steps:
+
+1. Trigger the "Remove IVSM" operation with a valid IVSM identifier that matches the identifier of the target IVSM.
+2. Trigger the "Remove IVSM" operation with an IVSM identifier that does not match the identifier of the target IVSM.
+3. Trigger the "Remove IVSM" operation with a valid IVSM identifier but an invalid digital signature.
+4. Trigger the "Remove IVSM" operation with a valid IVSM identifier and a valid digital signature, but the public key is not cryptographically tied to the unique identifier of the invoking BPI Subject.
+5. Trigger the "Remove IVSM" operation with a valid IVSM identifier, a valid digital signature, and a tied public key, but from an unauthorized BPI Subject.
+6. Trigger the "Remove IVSM" operation with a valid IVSM identifier, a valid digital signature, a tied public key, and an authorized BPI Subject, but with a cryptographically secured and masked secret that does not match the one stored in the target IVSM.
+
+Expected Results: 
+1. The IVSM accepts the operation.
+2. The IVSM should reject the operation, indicating a mismatch in identifiers.
+3. The IVSM should reject the operation, indicating that the digital signature is not valid.
+4. The IVSM should reject the operation, indicating that the public key is not correctly tied to the BPI Subject's identifier.
+5. The IVSM should reject the operation, indicating that the invoking BPI Subject is not authorized for the target IVSM.
+6. The IVSM should reject the operation, indicating a mismatch in the secured and masked secret.
+
 #### **[R161]** 
 For BPI Interoperability, a valid "Remove IVSM" operation that a BPI invokes MUST remove the IVSM as identified by its unique identifier and conformant to [**[R157]**](#r157) and [**[R158]**](#r158).
+
+[[R161]](#r161) Testability: 
+
+Preconditions:
+
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove IVSM" operation.
+
+Test Steps:
+
+1. Trigger the "Remove IVSM" operation with the valid unique identifier of the target IVSM.
+2. Trigger the "Remove IVSM" operation with an invalid or non-existent unique identifier.
+3. Try to invoke the "Remove IVSM" operation without proper authorization.
+4. Verify that the IVSM removal is conformant to the requirements specified in [R157] and [R158] by following the tests listed in those testability statements.
+5. Examine the system state after the "Remove IVSM" operation.
+
+Expected Results:
+
+1. The IVSM is successfully removed, and the system state reflects the removal.
+2. The IVSM should reject the operation, indicating that the provided unique identifier does not match any existing IVSM.
+3. The IVSM should reject the unauthorized removal attempt.
+4. The IVSM removal adheres to the criteria outlined in [R157] and [R158].
+5. The IVSM is no longer present or operational, and the system state accurately reflects the removal.
 
 **Commit State**
 
@@ -5374,6 +5496,41 @@ A BPI Interoperability state object utilized in the "Commit State" operation to 
 
 *This operation is de-facto equivalent to the Mono-Directional service of BPI Import because it serves the same purpose.*
 
+[[R162]](#r162) Testability: 
+
+Preconditions:
+
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Commit State" operation.
+
+Test Steps:
+
+1. Trigger the "Commit State" operation with a BPI Interoperability state object that includes all the required properties specified in [R162].
+2. Trigger the "Commit State" operation with a state object missing one or more properties specified in [R162].
+3. Check the unique identifier for the State Synchronization and Advancement Predicate of the state object.
+4. Check the unique identifier of the BPI Subject committing the state.
+5. Check for the cryptographically secured and masked secret of the invoking BPI Subject.
+6. Check that the creation date of the state object is correctly set.
+7. Check for the state object itself within the "Commit State" operation.
+8. Check for the properties of the Zero-Knowledge Proof(s) of Correctness, such as proofs, public input data, and verification keys.
+9. Check for the properties of the lock commitment, such as the commitment itself, public input data, and verification keys.
+10. Confirm that the digital signature over the state content is tied to a public key associated with the BPI Subject committing the state.
+
+Expected Results: 
+
+1. The IVSM processes the operation, and the state object is successfully committed.
+2. The IVSM should reject the operation, indicating that the state object is incomplete.
+3. The unique identifier is present and matches the expected value.
+4. The unique identifier is present and matches the expected value.
+5. The secured and masked secret is present and matches the expected value.
+6. The creation date is present and reflects the time of the operation.
+7. The state object is present and contains the relevant information.
+8. All necessary properties for Zero-Knowledge Proofs are present and correct.
+9. All necessary properties for the lock commitment are present and correct.
+10. The digital signature is present and matches the expected value.
+11. The "Commit State" operation is accepted and processed successfully with a state object that includes all the required properties specified.
+12. The IVSM rejects the operation if the state object is missing one or more properties specified in [R162].
+
 #### **[R163]** 
 An IVSM processing a "Commit State" operation MUST satisfy the following conditions to be valid:
 * The submitted state object is conformant with the defined State Synchronization and Advancement Predicate.
@@ -5383,14 +5540,90 @@ An IVSM processing a "Commit State" operation MUST satisfy the following conditi
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject 
 
+[[R163]](#r163) Testability: 
+
+Preconditions:
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Commit State" operation.
+
+Test Steps:
+1. Trigger the "Commit State" operation with a state object that conforms to the defined State Synchronization and Advancement Predicate.
+2. Trigger the "Commit State" operation with a state object that does not conform to the defined State Synchronization and Advancement Predicate.
+3. Check the unique identifier of the submitted predicate and the predicate identifier that the IVSM is based on.
+4. Look for the unique identifier of the invoking BPI Subject in the list of authorized BPI Subjects on the target IVSM.
+5. Confirm that the digital signature over the state content is valid.
+6. Confirm that the public key used in the digital signature is cryptographically tied to the unique identifier of the invoking BPI Subject.
+7. Check the cryptographically secured and masked secret supplied by the invoking BPI Subject and the one stored in the IVSM for that BPI Subject.
+8. Trigger the "Commit State" operation with a valid state object but an invalid digital signature.
+9. Trigger the "Commit State" operation with a valid state object and valid digital signature but with a cryptographically secured and masked secret that does not match the one stored in the IVSM for that BPI Subject.
+
+Expected Results: 
+
+1. The IVSM accepts the operation.
+2. The IVSM should reject the operation, indicating that the state object does not meet the predicate requirements.
+3. The unique identifier matches, indicating consistency between the submitted state and the IVSM's predicate.
+4. The invoking BPI Subject is authorized, and the IVSM accepts the operation.
+5. The digital signature is valid, indicating the authenticity and integrity of the submitted state.
+6. The public key is correctly tied to the BPI Subject's identifier.
+7. The secured and masked secret matches, indicating consistency between the supplied and stored secrets.
+8. The IVSM should reject the operation, indicating that the digital signature is not valid.
+9. The IVSM should reject the operation, indicating a mismatch in the secured and masked secret.
+
 #### **[R164]** 
 For BPI Interoperability, a valid "Commit State" operation a BPI invokes MUST 
 * Update the joint state object in its state storage according to the rules of the State Synchronization and Advancement Predicate
 * Commit the new state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the new state on the CCSM together with its public input and verification key
 * Send that cryptographic proof of correctness of the new state on the IVSM to the invoking BPI Subject
 
+[[R164]](#r164) Testability:
+
+Preconditions:
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Commit State" operation.
+
+Test Steps:
+
+1. Trigger the "Commit State" operation with a valid state object.
+2. Check the IVSM's state storage for the joint state object.
+3. Check the commitment of the new state of the IVSM on the CCSM. 
+4. Send the cryptographic proof of correctness of the new state on the IVSM to the invoking BPI. 
+5. Trigger the "Commit State" operation without updating the joint state object in the IVSM's state storage.
+6. Trigger the "Commit State" operation without committing the new state as a zero-knowledge proof on the CCSM.
+7. Trigger the "Commit State" operation without sending the cryptographic proof to the invoking BPI Subject.
+
+Expected Results: 
+
+1. The IVSM accepts the operation.
+2. The joint state object is successfully updated.
+3. The commitment is a valid, succinct, and efficient zero-knowledge proof of correctness on the CCSM, including its public input and verification key.
+4. The invoking BPI Subject receives the cryptographic proof of correctness of the new state on the IVSM.
+5. The IVSM should reject the operation, indicating that the joint state object was not updated.
+6. The IVSM should reject the operation, indicating that the proof of correctness was not committed.
+7. The IVSM should reject the operation, indicating that the proof was not sent to the BPI Subject.
+
 #### **[R165]** 
 The valid zero-knowledge proof of correctness of the new joint state MUST be publicly verifiable on the CCSM upon which the IVSM was instantiated.
+
+[[R165]](#r165) Testability:
+
+Preconditions:
+
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* A new joint state has been committed on the CCSM (Consensus Controlled State Machine) with a valid zero-knowledge proof.
+
+Test Steps:
+
+1. Retrieve the zero-knowledge proof associated with the commitment of the new joint state on the CCSM.
+2. Set up a publicly verifiable tool or service capable of validating zero-knowledge proofs.
+3. Input the zero-knowledge proof, public input data, and verification keys into the verification tool or service.
+4. Trigger the public verification process using the configured tool or service and check the provided result.
+
+Expected Results: 
+
+1. The zero-knowledge proof is obtained.
+2. The tool or service is ready for use.
+3. The tool is configured with the necessary inputs.
+4. The tool performs cryptographic computations and verifies that the zero-knowledge proof is valid and publicly verifiable on the CCSM.
 
 **Invite Participants to BPI Interoperability Process**
 
@@ -5405,11 +5638,63 @@ A "Invite Participants to BPI Interoperability Process" operation MUST have the 
 * An object containing all of the target IVSM's endpoints as URIs
 * A digital signature of the inviting BPI Subject over the content of the invitation
 
+[[R166]](#r166) Testability: 
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The inviting BPI Subject is registered and authorized to perform the invitation.
+* The IVSM has a State Synchronization and Advancement Predicate configured.
+
+Test Steps:
+
+1. The inviting BPI Subject initiates the "Invite Participants to BPI Interoperability Process" operation.
+2. Check the invitation's message number.
+3. Check the invitation for the unique identifier of the inviting BPI Subject.
+4. Check the invitation for the State Synchronization and Advancement Predicate utilized in the IVSM.
+5. Check for a URI in the invitation for accepting or rejecting the invitation.
+6. Check that the invitation includes an object containing all of the target IVSM's endpoints as URIs.
+7. Use the public key associated with the inviting BPI subject verify the digital signature over the content of the invitation.
+
+Expected Results: 
+1. The invitation process is initiated.
+2. The invitation contains a unique and non-repeating message number.
+3. The identifier of the inviting BPI Subject is accurately included.
+4. The correct State Predicate is specified in the invitation.
+5. A valid URI is provided for participants to respond to the invitation.
+6. The URIs of the target IVSM's endpoints are accurately specified.
+7. The digital signature is valid, confirming the authenticity of the invitation.
+
 #### **[R167]** 
 A "Invite Participants to BPI Interoperability Process" operation MUST satisfy the following conditions to be valid:
 * The digital signature over the invitation content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The submitted State Synchronization and Advancement Predicate is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+
+[[R167]](#r167) Testability: 
+
+Preconditions:
+
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to participate in the BPI Interoperability process.
+Test Steps:
+
+1. Trigger the "Invite Participants to BPI Interoperability Process" operation with a valid digital signature.
+2. Trigger the "Invite Participants" operation with an invalid digital signature.
+3. Trigger the "Invite Participants" operation with a digital signature whose public key is not cryptographically tied to the unique identifier of the invoking BPI Subject.
+4. Trigger the "Invite Participants" operation with a State Synchronization and Advancement Predicate that is conformant to [R140] - [R142].
+5. Trigger the "Invite Participants" operation with a State Synchronization and Advancement Predicate that does not conform to [R140] - [R142].
+6. Trigger the "Invite Participants" operation without including a digital signature.
+7. Trigger the "Invite Participants" operation without including a State Synchronization and Advancement Predicate.
+
+Expected Results: 
+
+1. The IVSM accepts the operation as valid.
+2. The IVSM rejects the operation, indicating that the digital signature is not valid.
+3. The IVSM rejects the operation, indicating that the digital signature's public key is not tied to the BPI Subject.
+4. The IVSM accepts the operation as valid.
+5. The IVSM rejects the operation, indicating that the submitted predicate is not conformant.
+6. The IVSM rejects the operation, indicating that a valid digital signature is required.
+7. The IVSM rejects the operation, indicating that a conformant predicate is required.
 
 **Accept/Reject Invite**
 
@@ -5422,6 +5707,39 @@ A "Accept/Reject Invite" operation MUST have the following properties:
 * An accept or reject value
 * The digital signature over the content of the operation
 
+[[R168]](#r168) Testability:
+
+Preconditions:
+
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to participate in the BPI Interoperability process.
+* An invitation has been issued, and the BPI Subject has received the invitation.
+Test Steps:
+
+1. Trigger the "Accept/Reject Invite" operation with the accept value.
+2. Trigger the "Accept/Reject Invite" operation with the reject value.
+3. Confirm that the "Accept/Reject Invite" operation includes the unique identifier of the target IVSM.
+4. Confirm that the "Accept/Reject Invite" operation includes the unique identifier of the invited BPI Subject.
+5. Confirm that the "Accept/Reject Invite" operation includes the accept or reject value.
+6. Confirm that the "Accept/Reject Invite" operation includes the digital signature over the content.
+7. Trigger the "Accept/Reject Invite" operation without including the unique identifier of the target IVSM.
+8. Trigger the "Accept/Reject Invite" operation without including the unique identifier of the invited BPI Subject.
+9. Trigger the "Accept/Reject Invite" operation without including the accept or reject value.
+10. Trigger the "Accept/Reject Invite" operation without including the digital signature.
+
+Expected Results: 
+
+1. The IVSM processes the operation, and the BPI Subject is accepted to participate in the BPI Interoperability process.
+2. The IVSM processes the operation, and the invitation is rejected. The BPI Subject is not added to the BPI Interoperability process.
+3. The identifier is present and correct.
+4. The identifier is present and correct.
+5. The value is present and correct, indicating whether the invitation is accepted or rejected.
+6. The digital signature is present and can be verified with the BPI Subject's public key.
+7. The IVSM rejects the operation, indicating that the identifier is required.
+8. The IVSM rejects the operation, indicating that the identifier is required.
+9. The IVSM rejects the operation, indicating that the value is required.
+10. The IVSM rejects the operation, indicating that a valid digital signature is required.
+
 #### **[R169]** 
 A "Accept/Reject Invite" operation MUST satisfy the following conditions to be valid:
 * The digital signature over the invitation content is valid
@@ -5429,8 +5747,62 @@ A "Accept/Reject Invite" operation MUST satisfy the following conditions to be v
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
 * The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM
 
+[[R169]](#r169) Testability: 
+
+Preconditions:
+
+* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to participate in the BPI Interoperability process.
+* An invitation has been issued, and the BPI Subject has received the invitation.
+
+Test Steps:
+
+1. Trigger the "Accept/Reject Invite" operation with a valid digital signature.
+2. Trigger the "Accept/Reject Invite" operation (reject) with an invalid digital signature.
+3. Use a digital signature-verification function in a cryptographic library with the digital signature, the public key, and the invite content as inputs. 
+4. Confirm that the "Accept/Reject Invite" operation includes a digital signature whose public key is cryptographically tied to the unique identifier of the invoking BPI Subject.
+5. Check the content of the invitation for the unique identifier of the invoking BPI subject. Then, look for this identifier in the list of authorized BPI Subjects on the IVSM. 
+6. Check the IVSM identifier provided by the invoking BPI Subject and the identifier of the target IVSM. 
+7. Trigger the "Accept/Reject Invite" operation with an invalid digital signature.
+8. Trigger the "Accept/Reject Invite" operation with a BPI Subject identifier that is not in the list of authorized BPI Subjects on the IVSM.
+9. Trigger the "Accept/Reject Invite" operation with a unique IVSM identifier that does not match the unique identifier of the target IVSM.
+
+Expected Results:
+
+1. The IVSM processes the operation, and the BPI Subject is accepted to participate in the BPI Interoperability process.
+2. The IVSM processes the operation, and the invitation is rejected. The BPI Subject is not added to the BPI Interoperability process.
+3. The digital signature can be verified with the BPI Subject's public key.
+4. The public key is present and tied to the BPI Subject's unique identifier.
+5. The identifier is present and authorized.
+6. The identifiers match, indicating that the acceptance or rejection is for the correct IVSM.
+7. The IVSM rejects the operation, indicating that the digital signature is not valid.
+8. The IVSM rejects the operation, indicating that the BPI Subject is not authorized.
+9. The IVSM rejects the operation, indicating that the identifiers do not match.
+
 #### **[R170]** 
 For BPI Interoperability, a valid "Accept/Reject Invite" operation a BPI invokes MUST return from the IVSM a cryptographically secured and masked secret for the accepting BPI Subject if the invitation is accepted and no value if the invitation is rejected.
+
+[[R170]](#r170) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The "Accept/Reject Invite" operation is initiated by the inviting BPI Subject.
+* The invitation has been sent, and the accepting BPI Subject is ready to respond.
+
+Test Steps:
+
+1. The accepting BPI Subject invokes the "Accept/Reject Invite" operation with the acceptance flag.
+2. Check the return value from the IVSM after accepting the invitation.
+3. The accepting BPI Subject invokes the "Accept/Reject Invite" operation with the rejection flag.
+4. Check the return value from the IVSM after rejecting the invitation.
+
+Expected Results:
+
+1. The invitation is accepted.
+2. The IVSM returns a cryptographically secured and masked secret for the accepting BPI Subject.
+3. The invitation is rejected.
+4. The IVSM returns no value.
 
 **Add/Remove BPI Subject**
 
@@ -5439,11 +5811,61 @@ Adding to and removing from an IVSM one or more BPI Subjects is expected to be a
 #### **[R171]** 
 The "Add BPI Subject" operation a BPI invokes MUST be initiated only by an authorized BPI on the IVSM.
 
+[[R171]](#r171) Testability:
+
+Preconditions:
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. An authorized BPI Subject invokes the "Add BPI Subject" operation on the IVSM.
+2. An unauthorized BPI Subject attempts to invoke the "Add BPI Subject" operation on the IVSM.
+
+Expected Results: 
+1. The operation is initiated successfully.
+2. The operation is not initiated, and an authorization error is returned.
+
 #### **[R172]** 
 An authorized BPI Subject on an IVSM MUST only be able to remove itself through the "Remove BPI Subject" operation.
 
+[[R172]](#r172) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the IVSM to remove itself.
+2. An authorized BPI Subject attempts to invoke the "Remove BPI Subject" operation on the IVSM to remove another 
+BPI Subject.
+
+Expected Results: 
+
+1. The operation is initiated, and the BPI Subject is successfully removed.
+2. The operation is not initiated, and an error is returned indicating that a BPI Subject can only remove itself.
+
 #### **[R173]** 
 The IVSM MUST NOT be able to prevent a BPI Subject from removing itself from the IVSM.
+
+[[R173]](#r173) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the IVSM to remove itself.
+2. An unauthorized BPI Subject attempts to invoke the "Remove BPI Subject" operation on the IVSM to remove itself.
+
+Expected Results:
+
+1. The operation is initiated, and the BPI Subject is successfully removed.
+2. The operation is initiated, and the unauthorized BPI Subject is successfully removed. 
 
 #### **[R174]** 
 The "Add BPI Subject" or "Remove BPI Subject" Operation MUST have the following properties:
@@ -5453,6 +5875,27 @@ The "Add BPI Subject" or "Remove BPI Subject" Operation MUST have the following 
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
+[[R174]](#r174) Testability
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. An authorized BPI Subject invokes the "Add BPI Subject" operation on the IVSM with the correct unique identifier of the target IVSM, invoking BPI Subject, added BPI Subject, cryptographically secured and masked secret, and digital signature. 
+Expected Result: The operation is initiated with the required properties and carried out successfully.
+
+2. An authorized BPI Subject invokes the "Add BPI Subject" operation on the IVSM with one or more of the required properties missing or incorrect. 
+Expected Result: The operation is initiated without all of the required properties and fails.
+
+3. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the IVSM with the correct unique identifier of the target IVSM, invoking BPI Subject, added BPI Subject, cryptographically secured and masked secret, and digital signature. 
+Expected Result: The operation is initiated with the required properties and carried out successfully.
+
+4. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the IVSM with one or more of the required properties missing or incorrect. 
+Expected Result: The operation is initiated without all of the required properties and fails.
+
 #### **[R175]** 
 The "Add BPI Subject" or "Remove BPI Subject" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
@@ -5461,18 +5904,120 @@ The "Add BPI Subject" or "Remove BPI Subject" Operation MUST satisfy the followi
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
 * The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM
 
+[[R175]](#r175) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. Use a digital signature-verification function in a cryptographic library with the digital signature, the public key, and the invite content as inputs. 
+
+2. Trigger the "Add BPI Subject" or "Remove BPI Subject" Operation with an invalid digital signature.
+Expected Result: The operation fails.
+
+3. Examine the validity conditions associated with the "Add BPI Subject" operation.
+Expected Result: The operation satisfies the specified conditions, including valid digital signatures, tied public key, authorization check, matching secured secret, and correct IVSM identifier.
+
+4. Examine the validity conditions associated with the "Remove BPI Subject" operation.
+Expected Result: The operation satisfies the specified conditions, including valid digital signatures, tied public key, authorization check, matching secured secret, and correct IVSM identifier.
+
 #### **[R176]** 
 A newly added BPI Subject MUST be approved by a quorum of authorized BPI Subjects on the IVSM.
+
+[[R176]](#r176) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+* A new BPI Subject has been added to the IVSM.
+
+Test Steps:
+
+1. Initiate the "Add BPI Subject" operation.
+2. Check if the new BPI Subject is added to the IVSM before approval from a quorum. 
+3. Have a group of authorized BPI Subjects that is not enough to meet the quorem approve the addition of the new BPI Subject.
+4. Have a group of authorized BPI Subjects that is enough or more than enough to satisfy the quorum approve the addition of the new BPI Subject.
+5. Check the status of the quorum approval of the new BPI subject after it is authorized.
+
+Expected Results: 
+
+1. The operation is initiated successfully and a new BPI Subject is being added to the IVSM.
+2. The IVSM does not accept the new BPI subject and waits for approval from the quorum. 
+2. The IVSM does not accept the new BPI subject and waits for approval from more authorized BPI subjects to satisfy the quorum. 
+3. The IVSM acknowledges the approvals and processes the addition of the new BPI Subject.
+4. The IVSM confirms that the quorum has approved the addition of the new BPI Subject.
 
 #### **[R177]** 
 The quorum required to add a new BPI Subject to an IVSM MUST be defined in the State Synchronization and Advancement Predicate of the IVSM.
 
+[[R177]](#r177) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+* The State Synchronization and Advancement Predicate of the IVSM defines the required quorum for adding a new BPI Subject.
+
+Test Steps:
+
+1. Check the State Synchronization and Advancement Predicate of the IVSM for specification of the required quorum.
+2. Add a new BPI Subject to the IVSM by initiating the "Add BPI Subject" operation.
+3. Have less authorized BPI Subjects than the specified quorum approve the new BPI subject. 
+4. Have the quorum of authorized BPI Subjects approve the addition of the new BPI Subject.
+
+Expected Results: 
+
+1. The predicate specifies the required quorum for adding a new BPI Subject.
+2. The operation is initiated successfully.
+3. The IVSM enforces the quorum requirement and doesn't accept the new BPI subject.
+4. The IVSM acknowledges the approvals and processes the addition of the new BPI Subject, showing that is uses the specified quorum.
+
 #### **[R178]** 
 The "Add BPI Subject" operation approved on the IVSM MUST add the BPI Subject listed in the operation to the IVSM.
+
+[[R178]](#r178) Testability: 
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+* The State Synchronization and Advancement Predicate of the IVSM defines the required quorum for adding a new BPI Subject.
+
+Test Steps:
+
+1. Initiate the "Add BPI Subject" operation.
+2. Have the defined quorum of authorized BPI Subjects approve the addition of the new BPI Subject.
+3. Check the list of authorized BPI Subjects on the IVSM for the unique identifier of the newly-added BPI subject. 
+
+Expected Result: 
+
+1. The operation is initiated successfully.
+2. The IVSM acknowledges the approvals and processes the addition of the new BPI Subject.
+3. The IVSM includes the unique identifier of the new BPI subject in its list of authorized BPI subjects. 
 
 #### **[R179]** 
 The "Remove BPI Subject" operation MUST remove the BPI Subject listed in the operation to the IVSM.
 
+[[R179]](#r179) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. Initiate the "Remove BPI Subject" operation.
+2. Check the list of authorized BPI Subjects on the IVSM for the unique identifier of the recently-removed BPI subject. 
+
+Expected Results:
+
+1. The "Remove BPI Subject" operation is initiated successfully. 
+2. The list of authorized BPI Subjects on the IVSM does not include the unique identifier of the recently-removed BPI subject.
 
 **Verify State**
 
@@ -5481,14 +6026,94 @@ Verification of the joint state on an IVSM is a critical operation to validate t
 #### **[R180]** 
 Any authorized BPI Subject on an IVSM MUST be able to verify the joint state on said IVSM.
 
+[[R180]](#r180) Testability:
+
+Preconditions:
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+* Joint state changes have been made on the IVSM and are ready for verification.
+
+Test Steps:
+
+1. Check the IVSM's list of authorized BPI subjects for the BPI's unique identifier.
+2. The authorized BPI Subject triggers the "Verify State" operation on the IVSM.
+3. Check the results of the "Verify State" operation on joint state of the IVSM. 
+4. Check the audit trail generated by the IVSM for the verification operation.
+
+Expected Results: 
+
+1. The BPI Subject is authorized, and their credentials are valid.
+2. The operation is initiated successfully.
+3. The IVSM provides verification results indicating the correctness of the joint state changes.
+4. The audit trail accurately reflects the details of the verification operation initiated by the authorized BPI Subject.
+
 #### **[R181]** 
 The proof of correctness of any joint state on an IVSM MUST be verifiable on said IVSM by an authorized BPI Subject.
+
+[[R181]](#r181) Testability: 
+
+Preconditions:
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+* A joint state with a proof of correctness is present on the IVSM.
+
+Test Steps:
+1. Check for the unique identifier of the BPI in the IVSM's list of authorized BPI subjects.
+2. The authorized BPI Subject triggers the "Verify Proof of Correctness" operation on the IVSM.
+3. Inspect the results of the "Verify Proof of Correctness" operation to ensure that the joint state's proof of correctness is successfully verified.
+4. Review the audit trail generated by the IVSM for the verification operation.
+
+Expected Results: 
+
+1. The BPI Subject is authorized, and their credentials are valid.
+2. The operation is initiated successfully.
+3. The IVSM provides verification results indicating the correctness of the proof associated with the joint state.
+4. The audit trail accurately reflects the details of the verification operation initiated by the authorized BPI Subject.
+
 
 #### **[R182]** 
 The proof of correctness of the initial joint state after the "Commit State" operation is completed on an IVSM MUST be publicly verifiable on the chosen CCSM of said IVSM.
 
+[[R182]](#r182) Testability:
+
+Preconditions:
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The "Commit State" operation has been successfully completed on the IVSM.
+* The initial joint state with proof of correctness is present on the chosen CCSM.
+
+Test Steps:
+
+1. Trigger the public verification operation for the initial joint state on the chosen CCSM.
+2. Inspect the results of the public verification operation to ensure that the initial joint state's proof of correctness is successfully verified.
+3. Review the audit trail generated by the CCSM for the public verification operation.
+
+Expected Results: 
+
+1. The public verification operation is initiated successfully.
+2. The CCSM provides verification results indicating the correctness of the proof associated with the initial joint state.
+3. The audit trail accurately reflects the details of the verification operation for the initial joint state.
+
 #### **[R183]** 
 The proof of correctness of the final joint state after the "Finalize State" operation is completed on an IVSM MUST be publicly verifiable on the chosen CCSM of said IVSM.
+
+[[R183]](#r183) Testability:
+
+Preconditions:
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The "Finalize State" operation has been successfully completed on the IVSM.
+* The final joint state with proof of correctness is present on the chosen CCSM.
+
+Test Steps:
+
+1. Trigger the public verification operation for the final joint state on the chosen CCSM.
+2. Inspect the results of the public verification operation to ensure that the final joint state's proof of correctness is successfully verified.
+3. Review the audit trail generated by the CCSM for the public verification operation.
+
+Expected Results: 
+
+1. The public verification operation is initiated successfully.
+2. The CCSM provides verification results indicating the correctness of the proof associated with the final joint state.
+3. The audit trail accurately reflects the details of the verification operation for the final joint state.
 
 *Initial and final state commitments must be anchored on the CCSM to ensure that the committed or finalized state cannot be utilized in fraudulent transactions on a BPI on the anchoring CCSM. Note, that this last statement holds only for the CCSM utilized by the IVSM. Any other CCSMs and BPIs operating on them are typically not aware of any state commitment by BPIs on other CCSMs.*
 
