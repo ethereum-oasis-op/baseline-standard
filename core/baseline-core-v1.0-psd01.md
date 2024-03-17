@@ -6343,7 +6343,7 @@ Preconditions:
 
 Test Steps:
 
-1. Use the unique identifier of the target IVSM, the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, the creation date, the , and the digital signature of the invoking BPI Subject as properties for the "Update State" Operation.
+1. Use the unique identifier of the target IVSM, the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, the creation date, all required private input data, all public input data,and the digital signature of the invoking BPI Subject as properties for the "Update State" Operation.
 2. Initiate the "Update State" Operation with the properties above. 
 3. Initiate the "Update State" Operation with any of these properties missing. 
 
@@ -6497,10 +6497,46 @@ Expected Results:
 #### **[R199]** 
 The joint state object on an IVSM MUST be updated on said IVSM based on each received BPI Subject vote, either accept or reject.
 
+[[R199]](#r199) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+* The joint state object on the IVSM has a counter for accept and reject votes. 
+
+Test Steps: 
+
+1. Use an authorized BPI Subject to vote to accept a joint state update and check the vote counter on the joint state object. 
+2. Use an authorized BPI Subject to vote to reject a joint state update and check the vote counter on the joint state object. 
+
+Expected Results: 
+
+1. The counter for accept votes on the joint state object is updated and one higher than the previous count. 
+1. The counter for reject votes on the joint state object is updated and one higher than the previous count. 
+
 #### **[R200]** 
 Once the updated joint state is either accepted or rejected based on the defined quorum, an IVSM MUST: 
 * Notify all BPI Subjects if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the IVSM
 * Cryptographically seal the joint state such that no further updates to the joint state can be processed
+
+[[R200]](#r200) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+* The quorum has finished voting on whether a joint state update will be accepted or rejected. 
+
+Test Steps: 
+
+1. Check BPI Subjects in the IVSM for a notification about the joint state update. 
+2. Attempt to run the "Accept/Reject State Update" operation again on the same joint state. 
+
+Expected Results: 
+
+1. All BPI Subjects checked have received a notification about the finalization of the joint state. 
+2. The IVSM blocks further updates to the joint state once it has been finalized. 
 
 #### **[R201]** 
 The "Accept/Reject State Update" Operation MUST have the following properties:
@@ -6510,6 +6546,25 @@ The "Accept/Reject State Update" Operation MUST have the following properties:
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
+[[R201]](#r201) Testablilty:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. Use the unique identifier of the target IVSM, the unique identifier of the invoking BPI Subject, an accept or reject value, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject over the content of the operation as properties for the "Accept/Reject State Update" operation. 
+2. Initiate the "Accept/Reject State Update" Operation with the properties above. 
+3. Initiate the "Accept/Reject State Update" Operation with any of these properties missing. 
+
+Expected Results: 
+
+1. The "Accept/Reject State Update" Operation has all of the correct properties. 
+2. The "Accept/Reject State Update" Operation is successful. 
+3. The "Accept/Reject State Update" Operation fails. 
+
 #### **[R202]** 
 The "Accept/Reject State Update" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
@@ -6517,8 +6572,54 @@ The "Accept/Reject State Update" Operation MUST satisfy the following conditions
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
 
+[[R202]](#r202) Testablilty:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target IVSM. 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target IVSM for that BPI Subject. 
+3. Initiate the "Accept/Reject State Update" Operation using a valid digital signature, a public key for the digital signature that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, and the cryptographically secured and masked secret supplied by the invoking BPI Subject. 
+4. Initiate the "Accept/Reject State Update" Operation with any of the conditions in the last step missing or incorrect. 
+
+Expected Results:
+
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target IVSM. 
+2. The cryptographically secured and masked secrets are the same. 
+3. The operation executes successfully. 
+4. The operation fails. 
+
 #### **[R203]** 
 For the purpose of BPI Interoperability, a valid "Accept/Reject State Update" operation that a BPI invokes MUST return a value of joint state processing success or failure, and if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the target IVSM.
+
+[[R203]](#r203) Testablilty:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps: 
+
+1. Invoke the "Update State" operation on the IVSM with an authorized BPI Subject. 
+2. Have the quorum of authorized BPI Subjects vote to reject the joint state update. 
+3. Access the joint state on the IVSM. 
+4. Invoke the "Update State" operation on the IVSM with an authorized BPI Subject. 
+5. Have the quorum of authorized BPI Subjects vote to accept the joint state update. 
+6. Access the joint state on the IVSM. 
+
+Expected Results: 
+
+1. The operation executes successfully, and a vote starts to accept or reject the joint state update.  
+2. The joint state update is rejected. 
+3. The joint state remains the same and doesn't get finalized. 
+4. The operation executes successfully, and a vote starts to accept or reject the joint state update.  
+5. The joint state update is accepted and finalized. 
+6. The joint state includes the changes from the update, indicating that the joint state and the "Update State" operation are finalized. 
 
 **Exit BPI Interoperability**
 
@@ -6527,6 +6628,21 @@ The exit operation can be invoked at any time during the lifecycle of an IVSM if
 #### **[R204]** 
 Each BPI Subject MUST be able to invoke the "Exit BPI Interoperability" operation at any point in time after the target IVSM has been instantiated.
 
+[[R204]](#r204) Testability: 
+
+Preconditions:
+
+* The target IVSM is instantiated and operational.
+* BPI Subjects are registered and authorized on the IVSM.
+
+Test Steps: 
+
+1. Invoke the "Exit BPI Interoperability" operation using any BPI Subject in the IVSM. 
+
+Expected Results: 
+
+1. The operation executes successfully. 
+
 #### **[R205]** 
 The "Exit BPI Interoperability" Operation MUST have the following properties:
 * The unique identifier of the target IVSM
@@ -6534,12 +6650,52 @@ The "Exit BPI Interoperability" Operation MUST have the following properties:
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
+[[R205]](#r205) Testablilty:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. Use the unique identifier of the target IVSM, the unique identifier of the invoking BPI Subject, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject over the content of the operation as properties for the "Exit BPI Interoperability" operation. 
+2. Initiate the "Exit BPI Interoperability" Operation with the properties above. 
+3. Initiate the "Exit BPI Interoperability" Operation with any of these properties missing. 
+
+Expected Results: 
+
+1. The "Exit BPI Interoperability" Operation has all of the correct properties. 
+2. The "Exit BPI Interoperability" Operation is successful. 
+3. The "Exit BPI Interoperability" Operation fails. 
+
 #### **[R206]** 
 The "Exit BPI Interoperability" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
 * The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
+
+[[R206]](#r206) Testablilty:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps:
+
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target IVSM. 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target IVSM for that BPI Subject. 
+3. Initiate the "Exit BPI Interoperability" Operation using a valid digital signature, a public key for the digital signature that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, and the cryptographically secured and masked secret supplied by the invoking BPI Subject. 
+4. Initiate the "Exit BPI Interoperability" Operation with any of the conditions in the last step missing or incorrect. 
+
+Expected Results:
+
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target IVSM. 
+2. The cryptographically secured and masked secrets are the same. 
+3. The Operation executes successfully. 
+4. The Operation fails. 
 
 #### **[R207]** 
 For BPI Interoperability, a valid "Exit BPI Interoperability" operation that a BPI invokes MUST return
@@ -6551,6 +6707,27 @@ When successful:
 * The public input to the proof
 * The verification keys
 * The verification program
+
+[[R207]](#r207) Testability:
+
+Preconditions:
+
+* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the IVSM.
+
+Test Steps: 
+
+1. Invoke the "Exit BPI Interoperability" operation on the IVSM with properties and conditions conformant to [**[R205]**](#r205) and [**[R206]**](#r206). 
+2. Check any output from the operation on the BPI Subject. 
+3. Invoke the "Exit BPI Interoperability" operation on the IVSM with properties and conditions that are not conformant to [**[R205]**](#r205) and [**[R206]**](#r206). 
+4. Check any output from the operation on the BPI Subject. 
+
+Expected Results: 
+
+1. The "Exit BPI Interoperability" operation runs successfully. 
+2. The operation outputs the current joint state object, the proof of correctness of the last joint state, the public input to the proof, the verification keys, the verification program. 
+3. The "Exit BPI Interoperability" operation fails. 
+4. The operation outputs an error message indicating that is failed.
 
 This completes the specification of the Bi- and Multi-directional BPI interoperability operations.
 
