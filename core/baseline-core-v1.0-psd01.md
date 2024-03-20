@@ -2236,6 +2236,27 @@ The security requirements of this section are distinct from the security require
 Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
+
+[[R61]](#r61) Testability: 
+
+Preconditions:
+
+* The BPI is set up and configured with the specific Abstraction Layer that is being tested.
+* The external authentication services (e.g., OAuth, SAML, OIDC, AD/LDAP) are in place and operational.
+
+Test Steps:
+
+1. Access the BPI system with the specific Abstraction Layer being tested and attempt to configure the Abstraction Layer to use an external authentication service, e.g., OAuth, SAML, OIDC, or AD/LDAP.
+2. Configure the Abstraction Layer to use OAuth authentication and attempt to authenticate using valid OAuth credentials.
+3. Configure the Abstraction Layer to use SAML authentication and attempt to authenticate using valid SAML credentials.
+4. Configure the Abstraction Layer to use OIDC authentication and attempt to authenticate using valid OIDC credentials.
+5. Configure the Abstraction Layer to use Active Directory (AD) or LDAP authentication and attempt to authenticate using valid AD/LDAP credentials.
+
+Expected Results:
+
+1. The Abstraction Layer can be configured to use an external authentication service. 
+2. For all external authentication services, the BPI system successfully authenticates the user. 
+
 #### **[R62]**	
 Abstraction Layers utilized in a BPI MUST support roles & access management.
 
@@ -2248,25 +2269,136 @@ The most common access management approaches are:
 - Access Control List (ACL) tying access rights to a table listing the permissions attached to computing resources
 - Attribute Based Access Control (ABAC) tying access rights to an evaluation of a set of rules and policies to manage access rights according to specific attributes, such as environmental, system, object, or user information
 
+[[R62]](#r62) Testability: 
+
+Preconditions:
+
+* The BPI is set up and configured with the specific Abstraction Layer that is being tested.
+
+Test Steps:
+
+1. Access the BPI system with the specific Abstraction Layer being tested. Create a new role, e.g., "Workgroup Administrator." Define associated attributes for this role, such as "Add Workgroup Participant" and "Remove Workgroup Participant."
+2. Assign the newly created "Workgroup Administrator" role to a user or BPI Subject.
+3. Create an ACL that lists permissions attached to computing resources within the BPI system. Assign specific access rights to users or roles within the ACL.
+4. Define a set of rules and policies based on specific attributes, e.g., environmental, system, object, or BPI Subject information. Assign access rights to users or roles based on the evaluation of these attributes.
+
+Expected Results: 
+
+1. The Abstraction Layer provides the ability to create and manage roles and associated attributes.
+2. Role-Based Access Management (RBAC) allows users or roles to inherit access rights based on assigned roles and their associated attributes.
+3. Users or roles granted access through the ACL can perform the specified actions on computing resources.
+4. Users or roles granted access through ABAC can perform actions based on the defined attributes.
+
 #### **[R63]**	
 Abstraction Layers utilized in a BPI MUST support security policy management.
 
 Security policy is defined as a statement of required protection for (a set of) information objects [[NIST SP 800-192](#-NIST-SP-800-192)]. An example of a security policy is that only workgroup participants can initiate a workstep within a workflow that is associated with the workgroup.
+
+[[R63]](#r63) Testability: 
+
+Preconditions:
+
+* The BPI is set up and configured with the specific Abstraction Layer that is being tested.
+
+Test Steps:
+
+1. Access the BPI system with the specific Abstraction Layer being tested. Create a new security policy, e.g., a policy that only allows workgroup participants to initiate worksteps within a specific workflow associated with a workgroup.
+2. Assign the newly created security policy to a specific workflow or a set of information objects within the BPI.
+3. Perform an action, such as attempting to initiate a workstep within the workflow associated with a workgroup.
+4. Modify the security policy to include different criteria or access rules. 
+5. Repeat step 3 to test the new security policy.
+
+Expected Results: 
+
+1. The Abstraction Layer provides the ability to create and manage security policies.
+2. The security policy is successfully applied to the selected workflow or information objects.
+3. The BPI enforces the security policy, preventing unauthorized actions.
+4. The changes to the security policy are successfully applied.
+5. The BPI properly enforces the new security policy and prevents unauthorized actions.
 
 #### **[R64]**	
 Abstraction Layers utilized in a BPI MUST support Single-Sign-On (SSO). 
 
 *See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).*
 
+[[R64]](#r64) Testability:
+
+Preconditions:
+
+* The BPI is set up and configured with the specific Abstraction Layer that is being tested.
+* SSO provider and identity information have been configured for the BPI.
+
+Test Steps:
+
+1. Access the BPI system with the specific Abstraction Layer being tested.
+2. Attempt to access the BPI system and log in using SSO credentials.
+3. Ensure that the SSO user's identity is correctly mapped to their corresponding BPI identity or role.
+4. Log out of the BPI system.
+
+Expected Results:
+
+1. The Abstraction Layer provides configuration options for SSO settings.
+2. SSO is successfully integrated, allowing users to log in using SSO credentials.
+3. User mapping between SSO and BPI identities is accurate.
+4. Logging out of the BPI also logs the user out of the SSO provider.
+
 #### **[R65]**	
 Abstraction Layers utilized in a BPI MUST support multi-factor authentication.
 
 *See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
+[[R65]](#r65) Testability: 
+
+Preconditions:
+
+* The BPI is set up and configured with the specific Abstraction Layer that is being tested.
+* MFA methods and settings are available and configured within the BPI system.
+
+Test Steps:
+
+1. Access the BPI system with the specific Abstraction Layer being tested. 
+2. Attempt to enroll a user in MFA.
+3. Log in to the BPI system with MFA-enabled credentials.
+4. Test the process for MFA recovery and reset.
+
+Expected Results:
+
+1. The BPI allows configuration of MFA settings, and the Abstraction Layer supports multiple MFA methods, such as SMS, email, authenticator apps, and hardware tokens.
+2. The Abstraction Layer allows users to set up and configure multiple MFA methods. Users can enroll in MFA with at least two distinct factors.
+3. The Abstraction Layer enforces MFA during the login process. Users must successfully complete MFA to access the BPI.
+4. Users can regain access if they lose access to one of their MFA factors. Users can reset MFA settings securely.
+
 #### **[R66]**	
 Abstraction Layers utilized in a BPI MUST support hardware security modules (HSM)
 
 *This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].*
+
+[[R66]](#r66) Testability: 
+
+Preconditions:
+
+* The BPI is set up and configured with the specific Abstraction Layer that is being tested.
+* HSM devices are available and properly integrated with the Abstraction Layer.
+
+Test Steps:
+
+1. Access the Abstraction Layers configuration settings. Confirm that there are settings or configurations related to external security components and documentation indicating the Abstraction Layers' capability to interact with external security modules.
+2. Review the configuration settings or documentation for Abstraction Layers to check for specific configuration parameters related to HSM, such as HSM connection details or API endpoints.
+3. Execute basic operations through Abstraction Layers that do not involve HSM. 
+4. Initiate a test cryptographic operation that requires HSM interaction through Abstraction Layers. 
+5. Perform cryptographic operations through Abstraction Layers that explicitly require HSM support, such as key generation or signing. 
+6. Intentionally introduce errors in the HSM configuration or simulate HSM failures. 
+7. Inspect the logging or auditing mechanisms within Abstraction Layers. Execute HSM-dependent operations and check if corresponding logs are generated. Confirm that logs contain relevant information about the interactions with HSM.
+
+Expected Results:
+
+1. Configuration settings indicate compatibility with external security components. Specific configurations related to HSM are present and documented.
+2. The Basic Abstraction Layer has options for HSM integration.
+3. Abstraction Layers respond appropriately to standard operations without HSM involvement.
+4. Abstraction Layers can communicate with the HSM and receive a response.
+5. Cryptographic operations are successful and receive proper HSM support.
+6. Abstraction Layers handle errors gracefully, providing meaningful error messages or logging.
+7. Logging or auditing mechanisms are functional, and logs capture interactions with HSM.
 
 -------
 
