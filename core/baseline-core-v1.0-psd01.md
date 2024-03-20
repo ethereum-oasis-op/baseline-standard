@@ -4843,13 +4843,11 @@ In the context of BPI interoperability, the BPI export operation MUST provide at
 * The State Object
 * Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * All public input data to the Zero-Knowledge Proof(s) of Correctness of the state object and its history required to validate the proofs
-* All private input data to the Zero-Knowledge Proof(s) of Correctness of the current state object
 * Verification Keys for the Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * Specification of the prover system of the Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * A validation URI of the originating BPI that allows a 3rd party to independently verify the Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * A lock commitment of the current state object
 * The public input data to the lock commitment
-* All private input data to the lock commitment
 * The Verification Keys for the lock commitment
 * Specification of the prover system of the lock commitment
 * A validation URI of the originating BPI that allows a 3rd party to independently verify the lock commitment
@@ -4871,16 +4869,14 @@ Expected Result:
 1. The State Object is included in the exported data. 
 2. The Zero-Knowledge Proof(s) of Correctness are part of the exported data. 
 3. All public input data for validating the Zero-Knowledge Proofs is provided. 
-4. Private input data for the Zero-Knowledge Proofs is included securely. 
-5. The Verification Keys for the Zero-Knowledge Proofs are accessible. 
-6. The prover system specifications for Zero-Knowledge Proofs are provided. 
-7. The validation URI for third-party verification is included. 
-8. The lock commitment of the current state object is part of the export. 
-9. Public input data for the lock commitment is included. 
-10. Private input data for the lock commitment is included securely. 
-11. The Verification Keys for the lock commitment are accessible. 
-12. The prover system specifications for the lock commitment are provided. 
-13. The validation URI for third-party verification of the lock commitment is included.
+4. The Verification Keys for the Zero-Knowledge Proofs are accessible. 
+5. The prover system specifications for Zero-Knowledge Proofs are provided. 
+6. The validation URI for third-party verification is included. 
+7. The lock commitment of the current state object is part of the export. 
+8. Public input data for the lock commitment is included. 
+9. The Verification Keys for the lock commitment are accessible. 
+10. The prover system specifications for the lock commitment are provided. 
+11. The validation URI for third-party verification of the lock commitment is included.
 
 #### **[R138]** 
 In the context of BPI interoperability, the BPI import operation MUST provide at least the following elements by the invoking BPI Subject to the target BPI:
@@ -4960,7 +4956,7 @@ Test Steps:
 
 1. Create a State Synchronization and Advancement Predicate from one BPI system.
 2. Update the State Synchronization and Advancement Predicate from another BPI system.
-3. Launch an IVSM (Interoperable Verification Smart Master) from one of the BPI systems.
+3. Launch an IVSM from one of the BPI systems.
 4. Remove the IVSM from the system where it was launched.
 5. Commit the State in one of the BPI systems.
 6. Invite Participants to the BPI Interoperability Process from one of the BPI systems.
