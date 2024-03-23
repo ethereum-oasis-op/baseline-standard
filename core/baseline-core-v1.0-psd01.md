@@ -74,7 +74,7 @@ was last revised or approved by Baseline, part of the Ethereum OASIS Open Projec
 Comments on this work can be provided by opening issues in the project repository or by sending an email to the project’s public comment list baseline@lists.oasis-open-projects.org.
 
 #### Keywords:
-The keywords "[MUST](#rfc2119)", "[MUST NOT](#rfc2119)", "[REQUIRED](#rfc2119)", "[SHALL](#rfc2119)", "[SHALL NOT](#rfc2119)", "[SHOULD](#rfc2119)", "[SHOULD NOT](#rfc2119)", "[RECOMMENDED](#rfc2119)", "[NOT RECOMMENDED](#rfc2119)", "[MAY](#rfc2119)", and "[OPTIONAL](#rfc2119)" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] when, and only when, they appear in all capitals, as shown here.
+The keywords "MUST", "MUST NOT", "[REQUIRED](#rfc2119)", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [[RFC2119](#rfc2119)] when, and only when, they appear in all capitals, as shown here.
 
 #### Citation format:
 When referencing this specification the following citation format should be used:
@@ -439,7 +439,7 @@ A counterparty that provides one or more State Objects to another counterparty i
 A Requester may request State Objects from multiple Providers, and in the context of a supply chain of State Objects, a Provider of one State Object may also play the role of a Requester of other State Objects.
 
 #### **[R1]**
-Transacting counterparties [MUST](#rfc2119) have an agreement specifying minimally the transactions to be performed between the transacting counterparties before a transactable state of an agreement can be instantiated within a BPI.
+Transacting counterparties MUST have an agreement specifying minimally the transactions to be performed between the transacting counterparties before a transactable state of an agreement can be instantiated within a BPI.
 
 *Note, that an agreement in the context of this document may or may not be a commercial agreement as defined in [24-Commercial-Agreements](#24-commercial-agreements) below.*
 
@@ -455,7 +455,7 @@ Such commercial, and thus presumably legally enforceable, documents may be prese
 * Order
 
 #### **[R2]**	
-The parties to a Commercial Agreement [MUST](#rfc2119) have signed commercial documents with each other before a transactable state of a commercial agreement can be instantiated within a BPI.
+The parties to a Commercial Agreement MUST have signed commercial documents with each other before a transactable state of a commercial agreement can be instantiated within a BPI.
 
 [[R2]](#r2) Testability: A commercial agreement represents a state that has been agreed on in specific terms between two or more counterparties. Such an agreement with all its elements including its counterparty signatures can be implemented into a baseline protocol implementation (BPI) through a Merkle Tree structure stored in database where each agreement element represented a Merkle Tree leaf. Merkle Trees can be readily implemented. A secure, offchain Merkle Tree library with tests can be found [here](https://github.com/Tierion/merkle-tools). 
 
@@ -466,33 +466,33 @@ This section details the prerequisites required to be fulfilled by a legal contr
 A contract will typically govern all commercial transactions between its parties and includes, but is not limited to, sections defining the Governing Law, the Legal Jurisdiction, Indemnity, Liability, Force Majeure, Charges and Taxes, Term, Obligations, definitions of commercially relevant elements such as locations, equipment, and products, as well as any other terms and conditions that apply to the entire scope of commercial and legal relations between the parties. Other legal documents, such as an order, typically reference the contract for its general terms and conditions and might contain more specific terms and conditions, such as rates and discounts and other commercial information, relevant for the specific context of the legal document. These specific terms and conditions can expand or override the original contract and are intentionally not specified in the original contract. The contract is the legal document from which specific commercial documents, such as a Quote or an Order, are derived.
 
 #### **[R3]**	
-There [MUST](#rfc2119) be a legally binding contract, however simple and temporary, before a commercial transaction — such as an order — between parties takes place. 
+There MUST be a legally binding contract, however simple and temporary, before a commercial transaction — such as an order — between parties takes place. 
 
 *For example, the contract and the order can be combined into a single document for a single transaction. However, there must be a legal framework in place to provide context for monies that are exchanged and settled. The functional part of the contract forms the basis of a Baseline Protocol Implementation (BPI) defined in section [2.6 Baseline Protocol Instance](#26-baseline-protocol-instance). The requirements below are to be understood solely within the context of this document. They are not meant to be generalized beyond this context.*
 
 [[R3]](#r3) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commercial-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
 
 #### **[D1]**  
-The contract [SHOULD](#rfc2119) be in an electronic form.
+The contract SHOULD be in an electronic form.
 
 [[D1]](#d1) Testability: A legally binding contract between parties can be implemented in a baseline system referencing the suggested [Order example](#commercial-agreement-as-verifiable-credential) as a W3C Verifiable Credential with its [test suite](https://github.com/w3c/vc-test-suite).
 
 #### **[D2]**   
-The functional terms of the contract [SHOULD](#rfc2119) be represented on a BPI between the counterparties.
+The functional terms of the contract SHOULD be represented on a BPI between the counterparties.
 
 *For example, a Payment Term such as N30, a discount value, agreed upon product numbers, Service Level Agreements (SLAs) etc.*
 
 [[D2]](#d2) Testability: Legally binding functional terms of a contract between parties can be implemented in a Baseline Protocol Implementation using for example [a Merkle Tree](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), as well as the funcional terms represented as a Zero Knowledge Circuit [Example](#Functional-Terms-Implemented-as-Zero-Knowledge-Circuit).
 
 #### **[D3]**	 
-The contract [SHOULD](#rfc2119) be an MSA between the contract parties. 
+The contract SHOULD be an MSA between the contract parties. 
 
 *An MSA is preferable since it allows a proliferation of contract-based BPI workflows and worksteps between the parties reducing complexity and potential errors.*
 
 [[D3]](#d3) Testability: MSAs between counterparties can be implemented in the same way as a legally binding contract between parties, referencing the suggested Merkle Tree [Example](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), as well as the funcional terms represented as a Zero Knowledge Circuit [Example](#Functional-Terms-Implemented-as-Zero-Knowledge-Circuit).
 
 #### **[CR1]<[D3]** 	
-There [MUST](#rfc2119) be only one MSA between contract parties covering commercial transactions for a given set of products, services, or assets.
+There MUST be only one MSA between contract parties covering commercial transactions for a given set of products, services, or assets.
 
 *This requirement is intended to disambiguate which terms cover which part of a commercial relationship between parties.*
 
@@ -501,7 +501,7 @@ There [MUST](#rfc2119) be only one MSA between contract parties covering commerc
 [[CR1]<[D3]](#cr1d3) Testability: Business logic can be expressed in software code, and software code can be tested, and since BPI logic can ensure only unique combinations of an MSA, unique identifier, and an agreement type exists between two or more counterparties, the requirement is testable.
 
 #### **[D4]**	
-Each specific product, service, asset, or set thereof offered and delivered by Provider(s) to Requester(s) [SHOULD](#rfc2119) have its specific T&C document.
+Each specific product, service, asset, or set thereof offered and delivered by Provider(s) to Requester(s) SHOULD have its specific T&C document.
 
 *This would allow the fine-graining and consistent application of commercial State-Object-specific business rules and data.*
 
@@ -512,39 +512,39 @@ Each specific product, service, asset, or set thereof offered and delivered by P
 Commercial documents, a category of commercial State Objects, refer to the state of a specific product/service/asset or set thereof, which may or may not be modified from an original offering to meet the Requester requirements and includes operational and commercial details. A commercial document is an abstract construct representing mutual commitments based on a legally binding contract.
 
 #### **[R4]**	
-A commercial State Object to be transacted on [MUST](#rfc2119) be based on a specific commercial document.
+A commercial State Object to be transacted on MUST be based on a specific commercial document.
 
 [[R4]](#r4) Testability: Since the testability statement in [[R2]](#r2) represents a commercial agreement with commercial documents and is testable as stated, this requirement is testable as well.
 
 #### **[R5]**  
-A commercial document [MUST](#rfc2119) be derived from a legally binding contract.
+A commercial document MUST be derived from a legally binding contract.
 
 [[R5]](#r5) Testability:  A legally binding contract outside of a BPI can be translated into a commercial document on the BPI as given in this [example](#commercial-agreement-as-verifiable-credential) of a legally binding contract expressed as a W3C Verifiable Credential which can be tested following the W3C Verifiable Credential test suite approach.
 
 #### **[R6]**	
-A commercial document [MUST](#rfc2119) be represented as an electronic record on a BPI between the counterparties.
+A commercial document MUST be represented as an electronic record on a BPI between the counterparties.
 
 [[R6]](#r6) Testability: Since the testability statement in [[R5]](#r5) represents an electronic version of a commercial document and is testable as stated, this requirement is testable as well.
 
 #### **[R8]**	
-A commercial document [MUST](#rfc2119) be authorized by legal representatives of the parties or their legal delegates.
+A commercial document MUST be authorized by legal representatives of the parties or their legal delegates.
 
 [[R8]](#r8) Testability: A digital signature of an authorized user of the BPI state object associated with the commercial document can be extracted from the proof section of this [Example](#commercial-agreement-as-verifiable-credential), validated and compared to the key identified in the verification method.
 
 #### **[D5]**	
-The definition of a commercial document authorization [SHOULD](#rfc2119) be stated in the legal contract underlying the commercial document.
+The definition of a commercial document authorization SHOULD be stated in the legal contract underlying the commercial document.
 
 *Authorizations for commercial transactions are a foundational element in the context of this document, as they are in paper based agreements. Therefore, any legal authorization agreements relevant to the commercial agreement between commercial counterparties, and thus to commercial transactions between them, are important to be represented in a BPI to ensure mitigating the risk of unauthorized signatures.*
 
 [[D5]](#d5) Testability: Given is an [a W3C Verifiable Credential Example](#commercial-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
 
 #### **[D6]**	
-The representatives and their authorized delegates who can perform commercial document authorizations [SHOULD](#rfc2119) be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
+The representatives and their authorized delegates who can perform commercial document authorizations SHOULD be explicitly listed or inferred from the stated legal delegation rules of the counterparties in the contract underlying any commercial document. 
 
 [[D6]](#d6) Testability: Given is an [a W3C Verfiaible Credential Example](#commercial-agreement-as-verifiable-credential) showing the definition of a commercial document authorization by identifying “the buyer” and “the issuer” of the contract. A test to validate the "buyer" and "issuer" requirements can be written following the W3C Verifiable Credential test suite approach.
 
 #### **[R9]**	
-A commercial document [MUST](#rfc2119) be non-repudiable.
+A commercial document MUST be non-repudiable.
 
 *Note that while non-repudiation in the physical world is most often tied to a physical signature of a Legal Entity on a legal document, in the digital world a digital signature over a digital legal document such as an Order or an Invoice belonging to a known and verifiable digital identity of a counterparty serves the same purpose.*
 
@@ -574,7 +574,7 @@ Abstractly, a BPI consists of:
 BPIs are strongly dependent on the security and privacy capabilities of the CCSM used to implement a BPI because BPIs without a CCSM are a single point of failure, whereas with a CCSM, there is no longer a single point of failure for the state of a BPI because a CCSM has no single-point-of-failure by its very definition.
 
 #### **[R10]**	
-A BPI [MUST](#rfc2119) utilize a CCSM.
+A BPI MUST utilize a CCSM.
 
 [[R10]](#r10) Testability: The implementation of a BPI using, for example, an [Ethereum Client Transaction Crafting Function](#ethereum-client-transaction-crafting-function) demonstrates how a CCSM transaction is created, signed and sent to a CCSM client, and is therefore utilzing a CCSM.
 
@@ -585,36 +585,36 @@ A BPI [MUST](#rfc2119) utilize a CCSM.
 Hence, this document enumerates the following requirements below:
 
 #### **[R11]**	
-A BPI [MUST](#rfc2119) have the same security assurances as to the CCSM it utilizes.
+A BPI MUST have the same security assurances as to the CCSM it utilizes.
 
 [[R11]](#r11) Testability: The three security assurances given by the CCSM (Data Immutability, Provable Time Linearization, and Double Spend Protection) are automatically extended to the BPI data and, therefore, the BPI itself, when a BPI commits the Zero Knowledge Proof, the Public Input of the Proof, and the New State Commitment to, as an example, the [Shield Smart Contract](https://github.com/eea-oasis/baseline/blob/main/core/contracts/contracts/privacy/Shield.sol) on the CCSM because all the data to verify the BPI state are on the CCSM.
 
 #### **[R12]**	
-A BPI [MUST](#rfc2119) support cryptographic algorithms that have public libraries with verifiable security audits and are recommended by public security authorities such as the US National Institute of Standards and Technology (NIST).
+A BPI MUST support cryptographic algorithms that have public libraries with verifiable security audits and are recommended by public security authorities such as the US National Institute of Standards and Technology (NIST).
 
 *For information, please refer to appendix [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the NIST Cryptographic Module Verification Program [[CVMP]](#cvmp).*
 
 [[R12]](#r12) Testability: The [A.2 Non-Normative References](#a2-non-normative-references) for the cryptographic libraries that successfully passed the NIST Cryptographic Module Verification Program [[CVMP]](#cvmp) are testable. 
 
 #### **[R13]**	
-If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol [MUST](#rfc2119) support end-to-end encryption.
+If a BPI utilizes a Peer-to-Peer (P2P) message protocol, the protocol MUST support end-to-end encryption.
 
 [[R13]](#r13) Testability: This can be accomplished through a number of protocols, examples of P2P suitable messaging protocols include libp2p, NATS, or DIDCOmm that offers the ability to encrypt messages, for example through onion encryption and routing where the relays use layers of encryption around the original encrypted payload. Using an encrypted JSON web token (JWE) for the original message payload is recommended. 
 
 #### **[R14]**	
-A BPI [MUST](#rfc2119) support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001).
+A BPI MUST support cryptographic key management incl. backup and recovery that adheres to established industry security standards such as the US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001).
 
 [[R14]](#r14) Testability: US Federal Information Processing Standard [(FIPS)](#FIPS) or [ISO 27001](#ISO27001) are testable. 
 
 #### **[R15]**	
-State changes of a BPI [MUST](#rfc2119) be verifiable on the CCSM it utilizes.
+State changes of a BPI MUST be verifiable on the CCSM it utilizes.
 
 *Verifiable in this context means that a 3rd party can verify, via a cryptographic proof on the CCSM, that a transaction changed the state of a State Object in the BPI correctly, based on agreed-upon business rules - for example changing the Order status from open to completed.*
 
 [[R15]](#r15) Testability: This can be achieved through the use of Zero-Knowledge Proof verification in a smart contract, such as this [example](https://github.com/eea-oasis/baseline/blob/master/core/contracts/contracts/privacy/Shield.sol)
 
 #### **[D7]**	
-A BPI [SHOULD](#rfc2119) have at least the same Liveness properties as the CCSM it utilizes.
+A BPI SHOULD have at least the same Liveness properties as the CCSM it utilizes.
 
 *Liveness means that if a CCSM does not require counterparties to constantly monitor its state to ensure that the state of the CCSM is correct, then the BPI should not require constant observation of its state either.*
 
@@ -622,7 +622,7 @@ A BPI [SHOULD](#rfc2119) have at least the same Liveness properties as the CCSM 
 
 
 #### **[R16]**	
-A BPI [MUST](#rfc2119) be censorship-resistant.
+A BPI MUST be censorship-resistant.
 
 *Censorship-resistant means that a transacting counterparty can terminate a transaction at any time without another transacting counterparty, or any Node of the CCSM used to implement the BPI, being able to stop the termination of the transaction.*
 
@@ -630,12 +630,12 @@ A BPI [MUST](#rfc2119) be censorship-resistant.
 [[R16]](#r16) Testability: A simple way to implement the described censorship resistance in a testable manner is to define a revocation commitment that allows undoing an in-process transaction as is for example specified in the [DID Sidetree specification](https://identity.foundation/sidetree/spec/#commitment-schemes) with its [test vectors](https://identity.foundation/sidetree/spec/#test-vectors).   
 
 #### **[R17]**	
-A BPI [MUST](#rfc2119) be able to provide privacy of the transacting counterparties' data.
+A BPI MUST be able to provide privacy of the transacting counterparties' data.
 
 [[R17]](#r17) Testability: Asymmetric encryption of the data by encrypting to a shared key between BPI users and BPI requires both parties two decrypt the data, one party is not enough. 
 
 #### **[R18]** 
-A BPI [MUST](#rfc2119) implement date, time and timestamps according to [IETF RFC 3339](#rfc3339).
+A BPI MUST implement date, time and timestamps according to [IETF RFC 3339](#rfc3339).
 
 [[R18]](#r18) Testability: All requirements for [IETF RFC 3339](#rfc3339) are testable.
 
@@ -650,19 +650,19 @@ This section describes the prerequisites and high-level general operational fram
 This section states the commercial and operational functionalities required from commercial counterparties.
 
 #### **[R19]**	
-Commercial Counterparties [MUST](#rfc2119) ensure that utilized BPIs allow them to meet all required legal, compliance, and business reporting requirements as it relates to their BPI activities. 
+Commercial Counterparties MUST ensure that utilized BPIs allow them to meet all required legal, compliance, and business reporting requirements as it relates to their BPI activities. 
 
 *This comprises, e.g., fraud or tax audit requirements based on commercial transactions on a BPI.*
 
 [[R19]](#r19) Testability: Legal, compliance, and business reporting requirements are always implementable based on commercial transactions within a Baseline Protocol Instance. Adherence to these requirements can be verified by third parties utilizing Zero Knowledge Proofs.
 
 #### **[R20]**	
-Commercial Counterparties [MUST](#rfc2119) support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
+Commercial Counterparties MUST support the Reference Architecture defined in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture).
 
 [[R20]](#r20) Testability: All requirements for [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture) are testable.
 
 #### **[R21]**	
-Commercial Counterparties [MUST](#rfc2119) use the BPI APIs to transact on a commercial State Object -- see the [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml).
+Commercial Counterparties MUST use the BPI APIs to transact on a commercial State Object -- see the [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml).
 
 *An ability of a Requester to request products, services, or assets, in other words, commercial State Objects, through an instance of the Baseline Protocol's APIs do not necessarily imply the ability to provide products, services, and assets through an instance of the Baseline Protocol APIs and vice versa.*
 
@@ -671,7 +671,7 @@ Commercial Counterparties [MUST](#rfc2119) use the BPI APIs to transact on a com
 [[R21]](#r21) Testability: All requirements for [specification of the BPI APIs](https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0.0.yaml) are testable.
 
 #### **[R22]**	
-Commercial Counterparties [MUST](#rfc2119) publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
+Commercial Counterparties MUST publish their level of conformity (self-declaration or certification) with the Baseline Protocol Standard in a publicly accessible manner.
 
 Publicly accessible in the context of this document means that there exists a URI or URL pointing to a publication specifying the level of conformity with this document that is accessible through the public internet. 
 
@@ -682,7 +682,7 @@ Publicly accessible in the context of this document means that there exists a UR
 Commercial Counterparties must comply with requirements of regulatory frameworks, e.g., Office of Foreign Assets Control ("OFAC") of the US Department of the Treasury when employing new operational and commercial frameworks as laid out in this standard. This means BPI participants and BPI operators must be able to provide compliance reports to authorities derived from a BPI that demonstrate compliance with the applicable regulatory rules such as Suspicious Activity Reports as required by the US Bank Secrecy Act of 1970.  
 
 #### **[R23]**	
-If required to meet particular third-party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty [MUST](#rfc2119) record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a request's commercial State Object (products, services or assets) transacted on a BPI.
+If required to meet particular third-party requirements, (e.g., privacy or regulatory frameworks in different jurisdictions), a commercial counterparty MUST record a pseudonymous map of the supply chain that is required to fulfill the provisioning of a request's commercial State Object (products, services or assets) transacted on a BPI.
 
 *Note, that in principle every product, service, or asset, or sets thereof has a supply chain. This requirement aims at situations where the product, service, or asset or sets thereof cannot be solely supplied by the Provider without sourcing components from other Providers.*
 
@@ -737,32 +737,32 @@ The figure below visually demonstrates high-level Buyer and Seller Order generat
 Without a BPI, both Buyer and Seller must assume that the MSA between them and all its values are correctly represented in the other party’s respective Systems-of-Record. If an order is created based upon the MSA but does not comply with the MSA, it will likely result in extensive manual interactions between Seller and Buyer at one stage or another to resolve the problem to their mutual satisfaction.  
 
 #### **[R24]**	
-The transacting counterparties [MUST](#rfc2119) agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
+The transacting counterparties MUST agree on the business process rules which are represented in the business workflows and worksteps in the BPI. 
 
 [[R24]](#r24) Testability: A BPI can ensure both counterparties agree on business rules and business data required to validate the agreement by, for example, utilizing a [payment term agreement](#functional-terms-implemented-as-zero-knowledge-circuit) between two parties.
 
 #### **[R25]** 	
-The transacting counterparties [MUST](#rfc2119) validate the correctness of a State Object based on a state change against the transaction business logic in the applicable BPI workflow and workstep.
+The transacting counterparties MUST validate the correctness of a State Object based on a state change against the transaction business logic in the applicable BPI workflow and workstep.
 
 [[R25]](#r25) Testability: A BPI can validate the correctness of a State Object based on a state change against transaction logic by verifying a zero-knowledge proof of the state change in the BPI, and ultimately on the utilized CCSM. Reference back to [[R16]](#r16) to understand the verification of a zero-knowledge proof in a smart contract. 
 
 #### **[R26]** 	
-The transacting counterparties [MUST](#rfc2119) generate a Proof of Correctness of a State Object based on a state change that can be validated against the BPI transaction business logic.
+The transacting counterparties MUST generate a Proof of Correctness of a State Object based on a state change that can be validated against the BPI transaction business logic.
 
 [[R26]](#r26) Testability: This can be accomplished by creating a [privacy package](https://github.com/eea-oasis/baseline/tree/main/core/privacy) with Zero-Knowledge Circuits generating Zero-Knowledge Proofs of the State changes of a State Object. 
 
 #### **[R27]** 	
-Any new state between counterparties [MUST](#rfc2119) be recorded on the BPI between them.
+Any new state between counterparties MUST be recorded on the BPI between them.
 
 [[R27]](#r27) Testability: This can be accomplished by creating a new entry in the storage of the BPI for the new State, such as in this [example](#Storing-an-Agreement-as-State-Object-in-Merkle-Tree), which can be queried. 
 
 #### **[R28]** 	
-Any transacting counterparty having received a Proof of Correctness of a state change [MUST](#rfc2119) be able to validate that Proof of Correctness against the BPI between the counterparties.
+Any transacting counterparty having received a Proof of Correctness of a state change MUST be able to validate that Proof of Correctness against the BPI between the counterparties.
 
 [[R28]](#r28) Testability: Including a zero-knowledge proof, public input, and state commitment, together with the prover scheme, and if required the common reference string, inside the message payload would enable counterparties to validate the Proof of Correctness on their own utilizing known libraries for the prover scheme such a PLONK or Groth16.
 
 #### **[R29]** 	
-A transacting counterparty [MUST](#rfc2119) include a Proof of Correctness of the State Object generated by the state change in the BPI Messages between the transacting counterparties.
+A transacting counterparty MUST include a Proof of Correctness of the State Object generated by the state change in the BPI Messages between the transacting counterparties.
 
 [[R29]](#r29) Testability: A Proof of Correctness of the State Object can be stored and shared inside a Merkle tree, such as in this [example](#storing-an-agreement-as-state-object-in-merkle-tree).
 
@@ -783,18 +783,18 @@ To maintain modularity in the reference architecture, this document introduces t
 The Client CCSM API as an external BPI API is implementation-specific and will not be discussed further.
 
 #### **[R30]**	
-CCSMs used in the implementation of a BPI [MUST](#rfc2119) support bilateral and multi-lateral digital representations of contracts as defined in [Section 2.4.1](#241-contract).
+CCSMs used in the implementation of a BPI MUST support bilateral and multi-lateral digital representations of contracts as defined in [Section 2.4.1](#241-contract).
 
 [[R30]](#r30) Testability: Testability: All requirements in [Section 2.4.1](#241-contract) are testable.
 
 #### **[D8]**	
-A CCSM or BPI Abstraction Layer used in a BPI [SHOULD](#rfc2119) support more than one CCSM instance.
+A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM instance.
 
 [[D8]](#d8) Testability: Support for this can come from the utilization of an adapter, such as in the example code for a simple Ethereum Adapter given in [[R11]](#r11).
 
 
 #### **[D9]** 
-A CCSM or BPI Abstraction Layer used in a BPI [SHOULD](#rfc2119) support more than one CCSM type.
+A CCSM or BPI Abstraction Layer used in a BPI SHOULD support more than one CCSM type.
 
 *This approach avoids lengthy discussions about which CCSM protocol to utilize for a BPI, simplifying the decision-making process considerably if most common CCSMs are incorporated.*
 
@@ -806,14 +806,14 @@ A CCSM or BPI Abstraction Layer used in a BPI [SHOULD](#rfc2119) support more th
 
 
 #### **[R31]**	
-The transacting counterparties [MUST](#rfc2119) agree on which BPI is to be used.
+The transacting counterparties MUST agree on which BPI is to be used.
 
 [[R31]](#r31) Testability: In order for counterparties to transact on the same BPI instance, this requirement must have been fulfilled.  
 
 ### 2.8.3 External Applications
 
 #### **[R32]**	
-Application/s providing transaction functionality such as billing to counterparties, and are, therefore, external concerning the BPI, [MUST](#rfc2119) be independent of any BPI.
+Application/s providing transaction functionality such as billing to counterparties, and are, therefore, external concerning the BPI, MUST be independent of any BPI.
 
 *Note, this requirement is motivated by reducing the dependency of counterparty internal systems on the BPI and vice versa.*
 
@@ -889,7 +889,7 @@ where associated data refers to data describing the characteristics of the ident
 This approach requires a decentralized, or at least strongly federated, infrastructure as expressed in the requirements below. 
 
 #### **[D10]**
-The Public Key Infrastructure (PKI) of a BPI [SHOULD](#rfc2119) have no single point of failure, and [SHOULD NOT](#rfc2119) require pre-existing trust relationships between participants.*
+The Public Key Infrastructure (PKI) of a BPI SHOULD have no single point of failure, and SHOULD NOT require pre-existing trust relationships between participants.*
 
 [[D10]](#d10) Testability:
 
@@ -912,7 +912,7 @@ Expected Results:
 2. The BPI should successfully establish a secure communication channel between the participants without requiring pre-existing trust relationships.
 
 #### **[R33]**
-The PKI of a BPI [MUST](#rfc2119) be strongly federated.
+The PKI of a BPI MUST be strongly federated.
 
 *Strongly federated in this context means that there is a known, finite number of participants, without a single point of failure in the PKI. However, collusion of a limited number of participants in the federated infrastructure may still lead to a compromised PKI. The consensus thresholds required for a change in the infrastructure are out of scope for this document.*
 
@@ -939,7 +939,7 @@ Expected Results:
 3. The PKI architecture should demonstrate resilience against single points of failure.
 
 #### **[R34]**
-The identifiers and identity utilized in a BPI [MUST](#rfc2119) be controlled by its Principal Owner.
+The identifiers and identity utilized in a BPI MUST be controlled by its Principal Owner.
 
 *For a BPI to properly operate, communication must be trusted and secure. Communications are secured through the safe delivery of public keys tied to identities. The Principal Owner of the identity uses a corresponding secret private key to both decrypt messages sent to them, and to prove they sent a message by signing it with its private key.*
 
@@ -978,7 +978,7 @@ Expected Results:
 3. The BPI communication should remain secure and resistant to PITM attacks.
 
 #### **[D11]** 
-A BPI [SHOULD](#rfc2119) utilize a DPKI.
+A BPI SHOULD utilize a DPKI.
 
 [[D11]](#d11) Testability:
 
@@ -1001,7 +1001,7 @@ Expected Results:
 3. The BPI's use of DPKI should align with the principles and specifications defined for DPKI.
 
 #### **[CR1]>[D11]**	
-Any Principal Owner in a DPKI system utilized by a BPI [MUST](#rfc2119) be able to broadcast a message if it is well-formed within the context of the DPKI.
+Any Principal Owner in a DPKI system utilized by a BPI MUST be able to broadcast a message if it is well-formed within the context of the DPKI.
 
 *Other peers in the system do not require admission control. This implies a decentralized consensus mechanism naturally leading to the utilization of systems such as CCSMs.*
 
@@ -1027,7 +1027,7 @@ Expected Results:
 3. Expected Result: The DPKI system should employ a decentralized consensus mechanism, such as the use of systems like CCSMs.
 
 #### **[CR2]>[D11]**	
-Given two or more histories of DPKI updates, any Principal Owner within a BPI [MUST](#rfc2119) be able to determine which one is preferred due to security by inspection.
+Given two or more histories of DPKI updates, any Principal Owner within a BPI MUST be able to determine which one is preferred due to security by inspection.
 
 *This implies the existence of a method of ascertaining the level of resources backing a DPKI history such as the hash power in Bitcoin based on difficulty level and nonce.*
 
@@ -1058,7 +1058,7 @@ Expected Results:
 4. Registrars within the DPKI system should adhere to the specified requirements to confirm identity ownership.
 
 #### **[CR3]>[D11]**	
-Private keys utilized in a BPI [MUST](#rfc2119) be generated in a manner that ensures they remain under the Principal Owner’s control. 
+Private keys utilized in a BPI MUST be generated in a manner that ensures they remain under the Principal Owner’s control. 
 
 [[Cr3]>[D11]](#cr3d11) Testability:
 
@@ -1081,7 +1081,7 @@ Expected Results:
 2. The BPI's private key generation process should comply with recognized security standards and best practices.
 
 #### **[CR4]>[D11]**
-Generating key pairs in a BPI on behalf of the Principal Owner [MUST NOT](#rfc2119) be allowed.
+Generating key pairs in a BPI on behalf of the Principal Owner MUST NOT be allowed.
 
 [[Cr4]>[D11]](#cr4d11) Testability: 
 
@@ -1102,7 +1102,7 @@ Expected Results:
 2. The BPI should not allow key pair generation on behalf of the Principal Owner without their direct involvement.
 
 #### **[CR5]>[D11]**
-Principal Owners in a BPI [MUST](#rfc2119) always be in control of their identifiers and the corresponding public keys.
+Principal Owners in a BPI MUST always be in control of their identifiers and the corresponding public keys.
 
 [[CR5]>[D11]](#cr5d11) Testability: 
 
@@ -1126,7 +1126,7 @@ Expected Results:
 3. The BPI should not allow unauthorized parties to modify the identifier or public key of a Principal Owner.
 
 #### **[O1]**
-Principal Owners [MAY](#rfc2119) extend control of their identifier to third parties.
+Principal Owners MAY extend control of their identifier to third parties.
 
 *For example for recovery purposes.*
 
@@ -1152,7 +1152,7 @@ Expected Results:
 3. The third party should have direct control and ownership of the extended identifier within the DPKI.
 
 #### **[CR6]<[O1]** 
-Extension of control of identifiers to 3rd parties in a BPI [MUST](#rfc2119) be an explicit, informed decision by the Principal Owner of such identifiers.
+Extension of control of identifiers to 3rd parties in a BPI MUST be an explicit, informed decision by the Principal Owner of such identifiers.
 
 [[CR6]>[O1]](#cr6o1) Testability:
 
@@ -1176,7 +1176,7 @@ Expected Results:
 3. The BPI should allow the extension of control to the third party as an explicit, informed decision by the Principal Owner.
 
 #### **[R35]**	
-Private keys [MUST](#rfc2119) be stored and/or transmitted securely.
+Private keys MUST be stored and/or transmitted securely.
 
 *No mechanism should exist that would allow a single entity to deprive a Principal Owner of their identifier without their consent. This implies that:*
 
@@ -1201,7 +1201,7 @@ Expected Results:
 3. The BPI's handling of private keys should comply with recognized security standards and best practices.
 
 #### **[CR7]<[D11]**	
-Once a namespace is created within the context of a DPKI, it [MUST NOT](#rfc2119) be possible to destroy it.
+Once a namespace is created within the context of a DPKI, it MUST NOT be possible to destroy it.
 
 [[CR7]<[D11]](#cr7d11) Testability:
 
@@ -1222,7 +1222,7 @@ Expected Results:
 2. The namespace should be preserved and accessible, and it should not have been destroyed.
 
 #### **[CR8]<[D11]**
-Namespaces in a DPKI utilized by a BPI [MUST NOT](#rfc2119) contain blacklisting mechanisms that would allow anyone to invalidate identifiers that do not belong to them.
+Namespaces in a DPKI utilized by a BPI MUST NOT contain blacklisting mechanisms that would allow anyone to invalidate identifiers that do not belong to them.
 
 [[CR8]<[D11]](#cr8d11) Testability:
 
@@ -1243,7 +1243,7 @@ Expected Results:
 2. Expected Result: The BPI should not allow the invalidation of identifiers that do not belong to the user, confirming the absence of blacklisting mechanisms.
 
 #### **[CR9]<[D11]**	
-The rules for registering and renewing identifiers in a DPKI utilized by a BPI [MUST](#rfc2119) be transparent and expressed in simple terms.
+The rules for registering and renewing identifiers in a DPKI utilized by a BPI MUST be transparent and expressed in simple terms.
 
 [[CR9]<[D11]](#cr9d11) Testability:
 
@@ -1264,7 +1264,7 @@ Expected Results:
 2. The rules for renewing identifiers should be transparent and expressed in simple terms that are easily understandable.
 
 #### **[R36]**	
-If registration is used as security to an expiration policy, the Principal Owner [MUST](#rfc2119) be explicitly and timely warned that failure to renew the registration on time could result in the Principal Owner losing control of the identifier.
+If registration is used as security to an expiration policy, the Principal Owner MUST be explicitly and timely warned that failure to renew the registration on time could result in the Principal Owner losing control of the identifier.
 
 [[R36]](#r36) Testability:
 
@@ -1291,7 +1291,7 @@ Expected Results:
 4. The Principal Owner should receive an explicit and timely warning about the impending expiration, explicitly stating that failure to renew on time could result in loss of control of the identifier.
 
 #### **[CR10]>[D11]**	
-Once set, namespace rules within a DPKI utilized by a BPI [MUST NOT](#rfc2119) be altered to introduce any new restrictions for renewing or updating identifiers.
+Once set, namespace rules within a DPKI utilized by a BPI MUST NOT be altered to introduce any new restrictions for renewing or updating identifiers.
 
 *Otherwise, it would be possible to take control of identifiers away from Principal Owners without their consent.*
 
@@ -1316,7 +1316,7 @@ Expected Results:
 
 
 #### **[CR11]>[D11]**	
-Within a DPKI utilized by a BPI, processes for renewing or updating identifiers [MUST NOT](#rfc2119) be modified to introduce new restrictions for updating or renewing an identifier, once issued.
+Within a DPKI utilized by a BPI, processes for renewing or updating identifiers MUST NOT be modified to introduce new restrictions for updating or renewing an identifier, once issued.
 
 [[Cr11]>[D11]](#cr11d11) Testability: 
 
@@ -1338,7 +1338,7 @@ Expected Results:
 2. The BPI should not allow the modification of processes to introduce new restrictions for renewing or updating an identifier once it has been issued.
 
 #### **[CR12]>[D11]**	
-Within a DPKI utilized by a BPI, all network communications for creating, updating, renewing, or deleting identifiers [MUST](#rfc2119) be sent via a non-centralized mechanism.
+Within a DPKI utilized by a BPI, all network communications for creating, updating, renewing, or deleting identifiers MUST be sent via a non-centralized mechanism.
 
 *This is necessary to ensure that a single entity cannot prevent identifiers from being updated or renewed.*
 
@@ -1371,7 +1371,7 @@ In the following, this document will use Requester and Provider as established i
 Uniqueness and security of BPI identifiers are very important to unambiguously identify entities interacting with and through one or more BPIs and keep those interactions secure. Furthermore, to facilitate automation and real-time interactions within and through a BPI, the discovery of identifiers and an ability to resolve them to the underlying public keys that secure them is also critical. 
 
 #### **[R37]** 
-Requester and Provider interacting with and through a BPI, as well as any BPI Operator, [MUST](#rfc2119) each have a unique identifier.
+Requester and Provider interacting with and through a BPI, as well as any BPI Operator, MUST each have a unique identifier.
 
 [[R37]](#r37) Testability:
 
@@ -1392,7 +1392,7 @@ Expected Results:
 2. The BPI should not allow the assignment of the same identifier to multiple entities, ensuring uniqueness.
 
 #### **[R38]** 
-Any unique identifier utilized within a BPI [MUST](#rfc2119) be associated with a set of public keys.
+Any unique identifier utilized within a BPI MUST be associated with a set of public keys.
 
 [[R38]](#r38) Testability: 
 
@@ -1414,7 +1414,7 @@ Expected Results:
 2. The BPI should not allow the disassociation of public keys from an identifier, ensuring that all identifiers remain associated with their respective public keys.
 
 #### **[R39]** 
-Any unique identifier utilized within a BPI [MUST](#rfc2119) be discoverable by any 3rd party within said BPI.
+Any unique identifier utilized within a BPI MUST be discoverable by any 3rd party within said BPI.
 
 [[R39]](#r39) Testability:
 
@@ -1435,7 +1435,7 @@ Expected Results:
 2. The BPI should not allow configurations or scenarios that restrict or prevent the discoverability of unique identifiers by any 3rd party participant.
 
 #### **[R40]** 
-Any unique identifier utilized within a BPI [MUST](#rfc2119) be resolvable to its associated public keys used for cryptographic authentication of the unique identifier.
+Any unique identifier utilized within a BPI MUST be resolvable to its associated public keys used for cryptographic authentication of the unique identifier.
 
 [[R40]](#r40) Testability: 
 
@@ -1457,7 +1457,7 @@ Expected Results:
 2. The BPI should not allow configurations or scenarios that disrupt or prevent the resolution of unique identifiers to their associated public keys.
 
 #### **[R41]** 
-Any unique identifier utilized within a BPI [MUST](#rfc2119) be resolvable to an endpoint as a URI that identifies the Baseline Protocol Standard as a supported protocol including the supported version(s).
+Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that identifies the Baseline Protocol Standard as a supported protocol including the supported version(s).
 
 [[R41]](#r41) Testability: 
 
@@ -1479,7 +1479,7 @@ Expected Results:
 2. The BPI should not allow configurations or scenarios that disrupt or prevent the resolution of unique identifiers to URIs with the required protocol information.
 
 #### **[R42]** 
-Any unique identifier utilized within a BPI [MUST](#rfc2119) be resolvable to an endpoint as a URI that allows for BPI messaging.
+Any unique identifier utilized within a BPI MUST be resolvable to an endpoint as a URI that allows for BPI messaging.
 
 [[R42]](#r42) Testability:
 
@@ -1501,7 +1501,7 @@ Expected Results:
 2. The BPI should not allow configurations or scenarios that disrupt or prevent the resolution of unique identifiers to URIs capable of facilitating BPI messaging.
 
 #### **[D12]** 
-Any unique identifier utilized within a BPI [SHOULD](#rfc2119) follow the W3C DID Core specification [[W3C DID](#w3c-did)].
+Any unique identifier utilized within a BPI SHOULD follow the W3C DID Core specification [[W3C DID](#w3c-did)].
 
 [[D12]](#d12) Testability: 
 
@@ -1543,7 +1543,7 @@ In the figure below, this document establishes the context and scope of identity
 As depicted, identities and credentials are established outside of the context, and, therefore, the scope of a BPI. Hence, it is incumbent on BPI participants -- Requesters, Providers, and, if distinct, Operators -- to establish the trust context of acceptable identities and credentials for a BPI. This statement also applies to a network of BPIs which are to interoperate with one another.
 
 #### **[D13]** 
-A unique identifier utilized within one or more BPIs [SHOULD](#rfc2119) be linked to an entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
+A unique identifier utilized within one or more BPIs SHOULD be linked to an entity accepted by BPI participants through a cryptographically signed, cryptographically verifiable, and cryptographically revocable credential based on the public keys associated with the unique identifier of the credential issuer.
 
 *An entity can be a Legal Entity where Legal Entity is an individual, organization, or company that has legal rights and obligations.*
 
@@ -1572,7 +1572,7 @@ Expected Results:
 3. Entities associated with revoked credentials should not be accepted by BPI participants for interactions.
 
 #### **[R43]** 
-The unique identifier of the (Legal) Entity [MUST](#rfc2119) be the subject of the credential.
+The unique identifier of the (Legal) Entity MUST be the subject of the credential.
 
 [[R34]](#r34) Testability:
 
@@ -1595,7 +1595,7 @@ Expected Results:
 2. Validated credentials should pass the check, confirming that the subject field matches the unique identifier of the (Legal) Entity.
 
 #### **[R44]** 
-The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs [MUST](#rfc2119) have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
+The unique identifier of the issuer of the (Legal) Entity credential utilized in one or more BPIs MUST have a credential linking the unique identifier of the issuer to an (Legal) Entity accepted by the participants within aforementioned BPIs.
 
 [[R44]](#r44) Testability: 
 
@@ -1621,7 +1621,7 @@ Expected Results:
 3. Entities associated with the revoked issuer credential should not be accepted by BPI participants for interactions.
 
 #### **[D14]** 
-A credential utilized within one or more BPIs [SHOULD](#rfc2119) follow the W3C Verifiable Credential Standard [[W3C VC](#w3c-vc)].
+A credential utilized within one or more BPIs SHOULD follow the W3C Verifiable Credential Standard [[W3C VC](#w3c-vc)].
 
 [[D14]](#d14) Testability:
 
@@ -1643,7 +1643,7 @@ Expected Results:
 2. The BPI should not allow configurations or scenarios that result in the use of credentials that do not comply with the W3C Verifiable Credential Standard.
 
 #### **[R45]**
-A credential utilized within one or more BPIs [MUST](#rfc2119) itself have a unique and resolvable identifier.
+A credential utilized within one or more BPIs MUST itself have a unique and resolvable identifier.
 *Note, that the unique and resolvable identifier of a credential does not have to be associated with any cryptographic keys.*
 
 [[R45]](#r45) Testability:
@@ -1666,7 +1666,7 @@ Expected Results:
 2. The BPI should not allow configurations or scenarios that result in the use of credentials without a unique and resolvable identifier.
 
 #### **[R46]** 
-If present, the status of a credential utilized within one or more BPIs [MUST](#rfc2119) be discoverable by a party verifying the credential, the credential verifier.
+If present, the status of a credential utilized within one or more BPIs MUST be discoverable by a party verifying the credential, the credential verifier.
 
 *In the context of this document, a credential verifier is defined per the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc).*
 
@@ -1690,7 +1690,7 @@ Expected Results:
 2. The BPI should not allow configurations or scenarios that result in the use of credentials for which the status cannot be discovered by a credential verifier, as required.
 
 #### **[D15]** 
-A credential utilized within one or more BPIs [SHOULD](#rfc2119) be discoverable by a participant in said BPI(s).
+A credential utilized within one or more BPIs SHOULD be discoverable by a participant in said BPI(s).
 
 *Credential discoverability in the context of this document means that a BPI Subject can discover credentials of other BPI Subjects utilized within a BPI or across BPIs, if relevant for BPI interoperability.*
 
@@ -1717,7 +1717,7 @@ Expected Results:
 2. The BPI should enforce the privacy and security rules to restrict discoverability of credentials as per the configured scenarios.
 
 #### **[R47]** 
-The presentation of a credential utilized within one or more BPIs [MUST](#rfc2119) be cryptographically signed by the presenter of the credential, also known as the holder.
+The presentation of a credential utilized within one or more BPIs MUST be cryptographically signed by the presenter of the credential, also known as the holder.
 
 *See the W3C Verifiable Credential Standard [[W3C VC]](#w3c-vc) for a definition of credential holder [[Holder](#w3c-holder-definition)].*
 
@@ -1741,7 +1741,7 @@ Expected Results:
 2. The BPI should not allow configurations or scenarios that result in the presentation of unsigned credentials.
 
 #### **[R48]** 
-If a credential holder is a BPI participant, the holder [MUST](#rfc2119) have a unique identifier that has been established within the context the holder operates in.
+If a credential holder is a BPI participant, the holder MUST have a unique identifier that has been established within the context the holder operates in.
 
 [[R48]](#r48) Testability:
 
@@ -1780,7 +1780,7 @@ OpenId Connect Identity Provider [[OIDC]](#oidc) is an example for a federated i
 For a BPI to achieve these objectives, the following requirements need to be met:
 
 #### **[R49]** 
-A unique identifier utilized in a BPI [MUST](#rfc2119) be stored by the BPI.
+A unique identifier utilized in a BPI MUST be stored by the BPI.
 
 [[R49]](#r49) Testability:
 
@@ -1803,7 +1803,7 @@ Expected Results:
 3. The BPI should provide a valid response with the retrieved unique identifier, confirming that it is stored and retrievable.
 
 #### **[R50]** 
-The Principal Owner or their delegates [MUST](#rfc2119) prove control over a unique identifier utilized in a BPI every time said unique identifier is used in the BPI by the Principal Owner or their delegates.
+The Principal Owner or their delegates MUST prove control over a unique identifier utilized in a BPI every time said unique identifier is used in the BPI by the Principal Owner or their delegates.
 
 [[R50]](#r50) Testability:
 
@@ -1826,7 +1826,7 @@ Expected Results:
 3. The Principal Owner or their delegates should be able to consistently prove control over the unique identifier for each action or transaction.
 
 #### **[R51]** 
-Every time a unique identifier utilized in a BPI is used in the BPI by the Principal Owner or their delegates, the BPI [MUST](#rfc2119) verify that the Principal Owner or their delegates are in control of said unique identifier.
+Every time a unique identifier utilized in a BPI is used in the BPI by the Principal Owner or their delegates, the BPI MUST verify that the Principal Owner or their delegates are in control of said unique identifier.
 
 *Note that proof of control might be performed by a relying party if authority has been delegated.*
 
@@ -1854,7 +1854,7 @@ Expected Results:
 3. The BPI or relying party (if delegated) should be able to consistently confirm control over the unique identifier for each action or transaction.
 
 #### **[D16]** 
-A credential utilized in a BPI [SHOULD](#rfc2119) be stored in the BPI.
+A credential utilized in a BPI SHOULD be stored in the BPI.
 
 *This avoids the re-presentation of the credential after the initial presentation as long as those credentials are valid.*
 
@@ -1879,7 +1879,7 @@ Expected Results:
 3. The BPI should accept and validate the stored credential for re-presentation, avoiding the need for re-entering or re-generating the credential.
 
 #### **[R52]** 
-A credential holder [MUST](#rfc2119) prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
+A credential holder MUST prove control over a credential utilized in a BPI every time said credential is presented to the BPI or a BPI Participant.
 
 [[R52]](#r52) Testability:
 
@@ -1902,7 +1902,7 @@ Expected Results:
 3. The credential holder should be able to consistently prove control over the credential for each action or transaction.
 
 #### **[R53]** 
-Every time a credential utilized in a BPI is used in the BPI by its holder, the BPI [MUST](#rfc2119) verify credential integrity, schema conformance, and that the credential holder is in control of said credential.
+Every time a credential utilized in a BPI is used in the BPI by its holder, the BPI MUST verify credential integrity, schema conformance, and that the credential holder is in control of said credential.
 
 *Note that credential content verification can only be done through the inspection of underlying documentation or verification by the issuer such as an OpenId Connect Identity Provider [[OIDC]](#oidc).*
 
@@ -1948,7 +1948,7 @@ The Abstraction layers define common standards and processes such as Information
 This document defines an Abstraction Layer within the context of a BPI as a set of functions and procedures allowing the interaction of BPI-enabled applications that access the features or data of an operating system, application, or other services with BPI capabilities.
 
 #### **[R54]**	
-BPI Abstraction Layers [MUST](#rfc2119) support Operational Monitoring of an API system.
+BPI Abstraction Layers MUST support Operational Monitoring of an API system.
 
 *In the context of this document, an operational monitoring system of BPI APIs refers to the practice of monitoring APIs, most commonly in production, to gain visibility into performance, availability, and functional correctness. These types of systems are designed to help a BPI operator analyze the performance of BPI applications and improve performance. Examples are measurements of how long a service takes to execute, how often it is called, where it is called from, and how much of the total time is spent executing the service.*
 
@@ -1973,7 +1973,7 @@ Expected Results:
 3. The monitoring system should accurately capture and display operational data, including response times, error rates, and other relevant metrics.
 
 #### **[R55]**	
-BPI Abstraction Layers [MUST](#rfc2119) support an API Portal for provisioning.
+BPI Abstraction Layers MUST support an API Portal for provisioning.
 
 *A BPI API portal in the context of this document is defined as a visual or a programmatic presentation that provides information about an API at every stage of its lifecycle. A BPI API portal allows operators to expose, document, provision access, and otherwise enable their APIs, and users of those APIs to register applications, reset credentials,  provide API feedback, report bugs, etc. A non-normative example of a minimal set of functionalities can be found here [[API Portal Functionality](#api-portal)]*
 
@@ -1998,7 +1998,7 @@ Expected Results:
 3. Each abstraction layer should support the API Portal's functionalities and data exchange.
 
 #### **[R56]**	
-BPI Abstraction Layers [MUST](#rfc2119) support an API Gateway that does not have Material Impact on BPI latency. 
+BPI Abstraction Layers MUST support an API Gateway that does not have Material Impact on BPI latency. 
 
 *In the context of this document, an API gateway is an application or software pattern that sits in front of an API or a collection of microservices, facilitating requests and delivery of data and services. Its main function is to act as a single entry point and standardized process for interactions between a BPI and its data and services and external/internal users. An API gateway may perform various other functions to support and manage API usage, from authentication to rate limiting to analytics.*
 
@@ -2025,7 +2025,7 @@ Expected Results:
 3. Each abstraction layer should support the API Gateway's functionalities without causing excessive latency.
 
 #### **[D17]**	
-BPI Abstraction Layers [SHOULD](#rfc2119) support Virtualized APIs.
+BPI Abstraction Layers SHOULD support Virtualized APIs.
 
 *In the context of this document, virtualized APIs are defined as a production sandbox for continuous integration testing and continuous deployment of APIs.*
 
@@ -2050,7 +2050,7 @@ Expected Results:
 3. Each abstraction layer should support virtualized APIs without causing disruptions to the testing and deployment process.
 
 #### **[D18]**	
-A BPI Abstraction Layer [SHOULD](#rfc2119) support a content delivery network (CDN) (not applicable for a CCSM Abstraction Layer).
+A BPI Abstraction Layer SHOULD support a content delivery network (CDN) (not applicable for a CCSM Abstraction Layer).
 
 *In the context of a BPI, a content delivery network is a geographically distributed proxy server network providing high availability and delivery performance of content such as large data files or video streams.*
 
@@ -2075,7 +2075,7 @@ Expected Results:
 3. Each relevant abstraction layer should support CDN functionalities without causing disruptions to content delivery.
 
 #### **[CR13]>[D18]** 
-A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party [MUST](#rfc2119) support BPI subject-specific and time-based content access control. 
+A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support BPI subject-specific and time-based content access control. 
 
 [[CR13]>[D18]](#cr13d18) Testability: 
 
@@ -2098,7 +2098,7 @@ Expected Results:
 3. The CDN should enforce time-based access control, allowing or denying access to content depending on the specified time restrictions.
 
 #### **[CR14]>[D18]** 
-A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party [MUST](#rfc2119) support time-based, automated content removal.
+A CDN utilized in a BPI Abstraction Layer and operated by a 3rd party MUST support time-based, automated content removal.
 
 [[CR14]>[D18]](#cr14d18) Testability:
 
@@ -2121,7 +2121,7 @@ Expected Results:
 3. The content should no longer be available and should be inaccessible, confirming that automated content removal was successful.
 
 #### **[R57]**	
-BPI Abstraction Layers [MUST](#rfc2119) support integration with internal, as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability), and/or external BPI Subject identity access management (IAM) or identity provider (IdP) systems. 
+BPI Abstraction Layers MUST support integration with internal, as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability), and/or external BPI Subject identity access management (IAM) or identity provider (IdP) systems. 
 
 *See Figure 4 as to the meaning of an IdP in a BPI context, and Figure 5 in this document as to the meaning of external IAM and its interplay with BPI IAM discussed in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).*
 
@@ -2146,7 +2146,7 @@ Expected Results:
 3. The BPI abstraction layer should successfully integrate with external IAM systems and provide the expected access control.
 
 #### **[R58]**	
-BPI Abstraction Layers [MUST](#rfc2119) support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
+BPI Abstraction Layers MUST support API delivery utilizing the service orchestration capabilities of the BPI Middleware Layer defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability).
 
 [[R58]](#r85) Testability
 
@@ -2167,7 +2167,7 @@ Expected Results:
 2. The BPI abstraction layer should effectively deliver APIs and utilize service orchestration capabilities, ensuring the proper execution of actions that depend on orchestration.
 
 #### **[R59]**	
-BPI Abstraction Layers [MUST](#rfc2119) support facilitating the discovery and negotiation of capabilities and subsequent integration between a BPI and Legacy Systems/other BPIs as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability) (for BPI Abstraction Layer only).
+BPI Abstraction Layers MUST support facilitating the discovery and negotiation of capabilities and subsequent integration between a BPI and Legacy Systems/other BPIs as defined in section [5  Middleware, Communication and Interoperability](#5-middleware-communication-and-interoperability) (for BPI Abstraction Layer only).
 
 [[R59]](#r59) Testability:
 
@@ -2192,7 +2192,7 @@ Expected Results:
 4. The BPI Abstraction Layer successfully mediates the integration by handling BPI-specific communication protocols and data formats.
 
 #### **[R60]**	
-BPI Abstraction Layers [MUST](#rfc2119) support the integration of CCSM specific transaction interfaces, transaction crafting, and CCSM specific smart contract management. 
+BPI Abstraction Layers MUST support the integration of CCSM specific transaction interfaces, transaction crafting, and CCSM specific smart contract management. 
 
 *Smart Contract management comprises full lifecycle management from testing, initial deployment, updates, and deactivation (for CCSM Abstraction Layer only).*
 
@@ -2233,7 +2233,7 @@ Figure 6 below shows the reference architecture for a BPI or CCSM Abstraction La
 The security requirements of this section are distinct from the security requirements of the other BPI layers or any custom APIs because the external systems which are invoking services exposed by the BPI or CCSM Abstraction Layer should not be assumed to be a trusted service without authentication. This is because this standard does not define the operating model of external systems or a BPI or any of the BPI layers, and, therefore, must necessarily prescribe requirements assuming a 100% adversarial environment.
 
 #### **[R61]**	
-Abstraction Layers utilized in a BPI [MUST](#rfc2119) be compatible with widely used external authentication services. 
+Abstraction Layers utilized in a BPI MUST be compatible with widely used external authentication services. 
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
 
@@ -2258,7 +2258,7 @@ Expected Results:
 2. For all external authentication services, the BPI system successfully authenticates the user. 
 
 #### **[R62]**	
-Abstraction Layers utilized in a BPI [MUST](#rfc2119) support roles & access management.
+Abstraction Layers utilized in a BPI MUST support roles & access management.
 
 Roles management means that a BPI has the ability to define different roles and associated attributes for BPI Subjects, for example, the role of a "Workgroup Administrator" together with associated attributes such as "Add Workgroup Participant" or "Remove Workgroup Participant".
 
@@ -2290,7 +2290,7 @@ Expected Results:
 4. Users or roles granted access through ABAC can perform actions based on the defined attributes.
 
 #### **[R63]**	
-Abstraction Layers utilized in a BPI [MUST](#rfc2119) support security policy management.
+Abstraction Layers utilized in a BPI MUST support security policy management.
 
 Security policy is defined as a statement of required protection for (a set of) information objects [[NIST SP 800-192](#-NIST-SP-800-192)]. An example of a security policy is that only workgroup participants can initiate a workstep within a workflow that is associated with the workgroup.
 
@@ -2317,7 +2317,7 @@ Expected Results:
 5. The BPI properly enforces the new security policy and prevents unauthorized actions.
 
 #### **[R64]**	
-Abstraction Layers utilized in a BPI [MUST](#rfc2119) support Single-Sign-On (SSO). 
+Abstraction Layers utilized in a BPI MUST support Single-Sign-On (SSO). 
 
 *See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).*
 
@@ -2343,7 +2343,7 @@ Expected Results:
 4. Logging out of the BPI also logs the user out of the SSO provider.
 
 #### **[R65]**	
-Abstraction Layers utilized in a BPI [MUST](#rfc2119) support multi-factor authentication.
+Abstraction Layers utilized in a BPI MUST support multi-factor authentication.
 
 *See the link here for the NIST definition adopted in this document [MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
@@ -2369,7 +2369,7 @@ Expected Results:
 4. Users can regain access if they lose access to one of their MFA factors. Users can reset MFA settings securely.
 
 #### **[R66]**	
-Abstraction Layers utilized in a BPI [MUST](#rfc2119) support hardware security modules (HSM)
+Abstraction Layers utilized in a BPI MUST support hardware security modules (HSM)
 
 *This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].*
 
@@ -2421,7 +2421,7 @@ This section describes the capabilities of a BPI Subject in the context of a BPI
 The minimal set of BPI Subject capabilities are as follows:
 
 #### **[R67]**	
-A BPI Subject [MUST](#rfc2119) be capable of performing all of the following cryptographic key management functionalities:
+A BPI Subject MUST be capable of performing all of the following cryptographic key management functionalities:
 * Creation
 * Derivation
 * Storage
@@ -2461,7 +2461,7 @@ Passing Criteria:
 * The backup keys can be successfully recovered and restored.
 
 #### **[R68]**	
-A BPI Subject [MUST](#rfc2119) be capable of performing encryption and decryption operations based on BPI specified cryptographic algorithms.
+A BPI Subject MUST be capable of performing encryption and decryption operations based on BPI specified cryptographic algorithms.
 
 [R68](#r68) Testability:
 
@@ -2494,7 +2494,7 @@ Passing Criteria:
 * The encrypted and decrypted data remains consistent across different cryptographic algorithms.
 
 #### **[R69]**	
-A BPI Subject [MUST](#rfc2119) be capable of performing cryptographic hashing operations based on BPI specified cryptographic algorithms.
+A BPI Subject MUST be capable of performing cryptographic hashing operations based on BPI specified cryptographic algorithms.
 
 [R69](#r69) Testability:
 
@@ -2524,7 +2524,7 @@ Passing Criteria:
 * The BPI supports multiple cryptographic hashing algorithms that produce algorithm compliant outputs (expected length and format, hash changes when input changes)
 
 #### **[R70]**	
-A BPI Subject [MUST](#rfc2119) be capable of performing cryptographic digital signature creation and verification based on BPI specified cryptographic algorithms.
+A BPI Subject MUST be capable of performing cryptographic digital signature creation and verification based on BPI specified cryptographic algorithms.
 
 [R70](#r70) Testability:
 
@@ -2556,7 +2556,7 @@ Passing Criteria:
 * The digital signatures from different cryptographic algorithms can be verified using the appropriate verification algorithm.
 
 #### **[R71]**	
-A BPI Subject [MUST](#rfc2119) be capable of performing cryptographic threshold-digital-signature creation and verification based on BPI specified cryptographic algorithms.
+A BPI Subject MUST be capable of performing cryptographic threshold-digital-signature creation and verification based on BPI specified cryptographic algorithms.
 
 [R71](#r71) Testability:
 
@@ -2590,7 +2590,7 @@ Passing Criteria:
 7. Threshold digital signatures from different cryptogrphic algorithms can be verified using the appropriate verification algorithm.
 
 #### **[R72]**	
-A BPI Subject [MUST](#rfc2119) be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms between two or more BPI Subjects.
+A BPI Subject MUST be capable of performing cryptographic secret sharing based on BPI specified cryptographic algorithms between two or more BPI Subjects.
 
 *An example of cryptographic secret sharing is called "Shamir Secret Sharing" see [[Shamir](#shamir)].*
 
@@ -2627,7 +2627,7 @@ Independent of the applied secret sharing alogrithm:
 * Changing the number of shares or the threshold value does not affect the secret sharing and reconstruction process.
 
 #### **[R73]** 
-An external BPI Subject [MUST](#rfc2119) at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Subjects:
+An external BPI Subject MUST at least be able to create, read, update and delete the following BPI core components following business rules for each component that were established by the BPI operator and agreed to by BPI Subjects:
 * A BPI Account belonging to the BPI Subject. Note that a BPI Account as defined in section [6.4 BPI Account](#64-bpi-account) is different from a BPI Subject Account as defined in section [5.2 BPI Subject Account](#52-bpi-subject-account)
 * A BPI Workgroup as defined in section [6.3 BPI Workgroup](#63-bpi-workgroup) 
 * A BPI Workflow as defined in section [6.2 BPI Workflow](#62-bpi-workflow) 
@@ -2711,7 +2711,7 @@ Passing Criteria:
 * The BPI Account is no longer accessible after deletion.
 
 #### **[R74]** 
-An internal BPI Subject [MUST](#rfc2119) be able to create, read, update and delete all components of a BPI.
+An internal BPI Subject MUST be able to create, read, update and delete all components of a BPI.
 
 [R74](#r74) Testability:
 
@@ -2741,7 +2741,7 @@ Passing Criteria:
     * The BPI component is no longer accessible after deletion by the internal BPI Subject.
 
 #### **[R75]** 
-A BPI Subject [MUST](#rfc2119) be able to send and receive BPI messages from other BPI subjects using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
+A BPI Subject MUST be able to send and receive BPI messages from other BPI subjects using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
 [R75](#r75) Testability:
 
@@ -2768,7 +2768,7 @@ Passing Criteria:
 
 
 #### **[R76]** 
-A BPI Subject [MUST](#rfc2119) be able to create, read, and delete BPI messages from other BPI subjects to said BPI Subject using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
+A BPI Subject MUST be able to create, read, and delete BPI messages from other BPI subjects to said BPI Subject using the BPI Communication capability as defined in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
 *Note that when a BPI Subject executes these capabilities they are understood to be enabled by services under the direct custody of the BPI Subject. However, the BPI Subject may delegate these capabilities to the BPI in which the BPI subject operates.*
 
@@ -2804,7 +2804,7 @@ Passing Criteria:
 * Attempting to read deleted BPI messages results in an appropriate error or empty response.
 
 #### **[R77]** 
-A BPI Subject [MUST](#rfc2119) be able to delegate one or more BPI Subject capabilities to a 3rd party that is also a BPI Subject.
+A BPI Subject MUST be able to delegate one or more BPI Subject capabilities to a 3rd party that is also a BPI Subject.
 
 [R77](#r77) Testability:
 
@@ -2842,7 +2842,7 @@ A BPI Subject Account is a key component of a BPI because it is the anchor point
 The following requirements on a BPI Subject Account assume that all identifiers and credentials referring to a BPI Subject are compliant with the requirements in section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
 #### **[R78]** 
-A BPI Subject Account [MUST NOT](#rfc2119) contain any personal identifiable information (PII).
+A BPI Subject Account MUST NOT contain any personal identifiable information (PII).
 
 *This requirement facilitates compliance with privacy laws in different jurisdictions.*
 
@@ -2876,7 +2876,7 @@ Passing Criteria:
 * Updates without PII are approved and applied to the BPI Subject Account.
 
 #### **[R79]** 
-A BPI Subject Account [MUST NOT](#rfc2119) be created by an external BPI Subject.
+A BPI Subject Account MUST NOT be created by an external BPI Subject.
 
 *This requirement ensures that only a BPI operator can create a BPI Subject Account to avoid account creation spamming and implementation of KYC processes required in certain jurisdictions.*
 
@@ -2901,7 +2901,7 @@ Passing Criteria:
 * No records or data related to the attempted creation of a BPI Subject Account by an external BPI Subject are generated.
 
 #### **[R80]** 
-A BPI Subject Account [MUST](#rfc2119) have at least the following data properties:
+A BPI Subject Account MUST have at least the following data properties:
 1. A unique, resolvable, and cryptographically verifiable identifier
 2. One or more security policies including authentication and authorization policies
 3. A cryptographically verifiable credential establishing the (legal) identity of a BPI Subject, and utilized by a BPI in the creation of the BPI Subject Account
@@ -2943,7 +2943,7 @@ Passing Criteria:
 * A BPI Suject Account is not created if one or more of the required data properties are missing.
 
 #### **[R81]** 
-A BPI Subject Account [MUST](#rfc2119) have a cryptographically verifiable audit trail for all BPI Subject Account operations both attempted and completed.
+A BPI Subject Account MUST have a cryptographically verifiable audit trail for all BPI Subject Account operations both attempted and completed.
 
 *This is a critical audit requirement to ensure ease of compliance with regulatory statutes across jurisdictions. Audit trail in the context of this document refers to the time sequenced capture of the state of a data structure within a BPI such as a BPI Subject Account from state instantiation to state deletion or archiving including all successful and unsuccessful state changes. An audit trail is said to be cryptographically verifiable if the audit trail includes auxiliary cryptographic information that allows 3rd parties to verify an audit trail as consistent. Creating a linked chain of hashes of each audit trail entry such as a Merkle proof is an example of such auxiliary cryptographic information.*
 
@@ -2977,7 +2977,7 @@ Passing Criteria:
 * The search and retrieval functionality of the audit trail returns the expected records accurately.
 
 #### **[R82]** 
-A BPI Subject Account [MUST](#rfc2119) be encrypted to and decrypted by a cryptographic key only known to the BPI Subject Account owner.
+A BPI Subject Account MUST be encrypted to and decrypted by a cryptographic key only known to the BPI Subject Account owner.
 
 [R82](#r82) Testability:
 
@@ -3008,7 +3008,7 @@ Passing Criteria:
 * The updated data of the BPI Subject Account is successfully encrypted using the cryptographic key.
 
 #### **[D19]** 
-A BPI Subject Account [SHOULD](#rfc2119) be encrypted when not in active use by the BPI Subject that owns the BPI Subject Account.
+A BPI Subject Account SHOULD be encrypted when not in active use by the BPI Subject that owns the BPI Subject Account.
 
 [D19](#d19) Testability:
 
@@ -3032,7 +3032,7 @@ Passing Criteria:
 *[**[R82]**](#r82) and [**[D19]**](#d19) ensure that a compromised BPI does not expose BPI Subject Account information. A BPI may use the BPI Subject Account unique identifier or another unique identifier such as an account number known to the BPI Subject Account holder as an unencrypted identifier of the BPI Subject Account stored within the BPI.*
 
 #### **[R83]** 
-A BPI Subject Account owner [MUST](#rfc2119) be able to perform the following operations on its BPI Subject Account: read, update and delete.
+A BPI Subject Account owner MUST be able to perform the following operations on its BPI Subject Account: read, update and delete.
 
 [R83](#r83) Testability:
 
@@ -3064,7 +3064,7 @@ Passing Criteria:
 
 
 #### **[R84]** 
-An internal BPI Subject [MUST](#rfc2119) be able to perform the following operations on its BPI Subject Account: create, read, update and delete.
+An internal BPI Subject MUST be able to perform the following operations on its BPI Subject Account: create, read, update and delete.
 
 [R84](#r84) Testability:
 
@@ -3096,7 +3096,7 @@ Passing Criteria:
 6. The deleted BPI Subject Account is inaccessible and cannot be retrieved.
 
 #### **[R85]** 
-An internal BPI Subject [MUST](#rfc2119) be able to perform the following operations on other BPI Subject Accounts: create, read, update and delete provided that there exist one or more security policies authorizing these capabilities to said internal BPI Subject.
+An internal BPI Subject MUST be able to perform the following operations on other BPI Subject Accounts: create, read, update and delete provided that there exist one or more security policies authorizing these capabilities to said internal BPI Subject.
 
 [R85](#r85) Testability:
 
@@ -3129,7 +3129,7 @@ Passing Criteria:
 * The deleted BPI Subject Account is inaccessible and cannot be retrieved.
 
 #### **[R86]** 
-A BPI Subject Account owner [MUST](#rfc2119) be notified by a BPI of any changes to a BPI Subject Account or BPI Accounts associated with a BPI Subject Account.
+A BPI Subject Account owner MUST be notified by a BPI of any changes to a BPI Subject Account or BPI Accounts associated with a BPI Subject Account.
 
 [R86](#r86) Testability:
 
@@ -3160,7 +3160,7 @@ This document defines service orchestration as the sequence and conditions organ
 BPI service orchestration is intended to operate in a business environment with high service volume (many BPI service requests), low system latency (fast completion of BPI service requests by a BPI required), and where BPI service requests change BPI data often. It is key to achieve a flexible, loosely-coupled architecture as described in section [2.8 Baseline Protocol Reference Architecture](#28-baseline-protocol-reference-architecture). BPI service orchestration is geared towards high-volume, low latency environments with many data changes.
 
 #### **[R87]** 
-BPI service orchestration utilized in a BPI [MUST](#rfc2119) be able to identify the actions to be completed by services based on message context and content, and successfully orchestrate the desired action.
+BPI service orchestration utilized in a BPI MUST be able to identify the actions to be completed by services based on message context and content, and successfully orchestrate the desired action.
 
 [R87](#r87) Testability:
 
@@ -3188,7 +3188,7 @@ Passing Criteria:
 * The expected outcome or result of the orchestrated actions is achieved.
 
 #### **[R88]** 
-BPI service orchestration utilized in a BPI [MUST NOT](#rfc2119) introduce additional points of failure.
+BPI service orchestration utilized in a BPI MUST NOT introduce additional points of failure.
 
 In the context of this document, a point of failure is defined as any non-redundant part of a BPI that, if not operational, would cause a BPI to fail.
 
@@ -3221,7 +3221,7 @@ Passing Criteria:
 * No single non-redundant part of the BPI, including the BPI service orchestration, is identified as a point of failure during the test.
 
 #### **[R89]** 
-BPI service orchestration utilized in a BPI [MUST](#rfc2119) have source consistency preservation.
+BPI service orchestration utilized in a BPI MUST have source consistency preservation.
 
 *This means that the content of a message/service request cannot be altered after it has been created by the BPI service orchestration capability.* 
 
@@ -3246,7 +3246,7 @@ Passing Criteria:
 * The comparison between the original content and the content after processing shows no differences or alterations.
 
 #### **[R90]** 
-BPI service orchestration utilized in a BPI [MUST](#rfc2119) avoid having the orchestration consumers see partial and/or inconsistent data. 
+BPI service orchestration utilized in a BPI MUST avoid having the orchestration consumers see partial and/or inconsistent data. 
 
 *Note that transaction boundaries, i.e., a single service's action, may trigger atomic updates.*
 
@@ -3274,7 +3274,7 @@ Passing Criteria:
 4. The BPI service orchestration ensures that the data seen by the orchestration consumers is complete and consistent, even in the presence of potential failures or inconsistencies in the underlying data sources or services.
 
 #### **[R91]** 
-BPI service orchestration utilized in a BPI [MUST](#rfc2119) capture the exact order in which operations happened. 
+BPI service orchestration utilized in a BPI MUST capture the exact order in which operations happened. 
 
 In the context of this document, operations in a BPI service orchestration do not necessarily have to be causally connected to be ordered by the BPI service orchestration. For example, if operation 1, the creation of an invoice between Alice and Bob in a BPI, is received by the BPI service orchestration of a BPI before operation 2, the creation of a shipping notice of a purchase order between Bob and Claire, then the operation identifiers assigned to operation 1 and operation 2 must reflect that order through for example a deterministic nonce as the operation's identifier.
 
@@ -3304,7 +3304,7 @@ Passing Criteria:
 * The captured order of operations matches the actual order in which they were performed, providing a reliable audit trail of the BPI activities.
 
 #### **[R92]** 
-BPI service orchestration utilized in a BPI [MUST](#rfc2119) preserve a consistent state.
+BPI service orchestration utilized in a BPI MUST preserve a consistent state.
 
 [R92](#r92) Testability:
 
@@ -3330,7 +3330,7 @@ Passing Criteria:
 * Concurrent operations do not result in conflicts or data corruption, preserving the consistent state of the BPI.
 
 #### **[R93]** 
-BPI service orchestration utilized in a BPI [MUST](#rfc2119) ensure that a service subscriber is decoupled from a BPI service it invokes. 
+BPI service orchestration utilized in a BPI MUST ensure that a service subscriber is decoupled from a BPI service it invokes. 
 
 *This ensures that there is less load and more stability of the orchestration stack and that subscribers are decoupled from the state machine, such that they can independently scale.*
 
@@ -3357,7 +3357,7 @@ Passing Criteria:
 4. The subscribers maintain their functionality and responsiveness to the BPI service without being directly involved in the execution.
 
 #### **[R94]** 
-BPI service orchestration utilized in a BPI [MUST NOT](#rfc2119) make assumptions about consumer uptime.
+BPI service orchestration utilized in a BPI MUST NOT make assumptions about consumer uptime.
 
 [R94](#r94) Testability:
 
@@ -3381,7 +3381,7 @@ Passing Criteria:
 4. The BPI system maintains its overall functionality and responsiveness throughout the test.
 
 #### **[R95]** 
-BPI service orchestration utilized in a BPI [MUST](#rfc2119) isolate data sources from data consumers.
+BPI service orchestration utilized in a BPI MUST isolate data sources from data consumers.
 
 [R95](#r95) Testability:
 
@@ -3401,7 +3401,7 @@ Passing Criteria:
 2. Each invoked BPI service receives the necessary data from the data source through the BPI service orchestration independent from any of the other BPI service requests.
 
 #### **[R96]** 
-BPI service orchestration [MUST](#rfc2119) not have a Material Impact on the overall system latency of the BPI.
+BPI service orchestration MUST not have a Material Impact on the overall system latency of the BPI.
 
 [R96](#r96) Testability:
 
@@ -3422,7 +3422,7 @@ Test Passing Criteria:
 * The test is considered passed if the measured time for the BPI service request to propagate through the BPI service orchestration component and reach the BPI service consumer is below the defined "Material Impact" threshold.
 
 #### **[R97]** 
-BPI service orchestration utilized in a BPI [MUST NOT](#rfc2119) have a negative Material Impact on BPI scalability and BPI availability. 
+BPI service orchestration utilized in a BPI MUST NOT have a negative Material Impact on BPI scalability and BPI availability. 
 
 *This requirement ensures that overall system latency is not impacted when volume meaningfully and rapidly changes (scalable) at any given point in time (highly available).*
 
@@ -3460,7 +3460,7 @@ The BPI Communication capability is a foundational element of any BPI to facilit
 This leads to the following core capability requirements within a BPI:
 
 #### **[R98]** 
-BPI communication protocols [MUST](#rfc2119) be message-based.
+BPI communication protocols MUST be message-based.
 
 [[R98]](#r98) Testability: 
 
@@ -3483,7 +3483,7 @@ Passing Criteria:
 * Test messages sent using non-message-based protocols are not processed by the BPI communication capability.
 
 #### **[R99]** 
-BPI communication protocols [MUST](#rfc2119) be asynchronous.
+BPI communication protocols MUST be asynchronous.
 
 [[R99]](#r99) Testability:
 
@@ -3520,7 +3520,7 @@ Passing Criteria:
 * The BPI system demonstrates reliable and consistent asynchronous communication throughout the test.
 
 #### **[R100]** 
-BPI communication protocols [MUST](#rfc2119) be simplex. 
+BPI communication protocols MUST be simplex. 
 
 *Simplex is a communication mode in which only one message is transmitted, and always going in the same direction.*
 
@@ -3552,7 +3552,7 @@ Passing Criteria:
 * Simultaneous message transmissions are not possible in simplex mode, and messages are transmitted sequentially without overlapping.
 
 #### **[R101]** 
-BPI communication protocols [MUST](#rfc2119) be based on established communication protocol standards.
+BPI communication protocols MUST be based on established communication protocol standards.
 
 *Non-normative examples include, but are not limited to, NATS [[NATS](#nats)], AMQP [[AMQP](#amqp-core-complete-v10)], and DIDComm [[DIDCOMM](#didcomm)].*
 
@@ -3595,7 +3595,7 @@ Passing Criteria:
 The communication protocol layers are defined as follows, and note that some requirements refer to communication between BPIs as noted within the relevant requirement:
 * Transport Layer
   - #### **[R102]**	
-    A BPI [MUST](#rfc2119) utilize the well established TLS 1.2 [[RFC5246](#rfc5246)] or 1.3 [[RFC8446](#rfc8446)] protocol to transport messages between BPIs.
+    A BPI MUST utilize the well established TLS 1.2 [[RFC5246](#rfc5246)] or 1.3 [[RFC8446](#rfc8446)] protocol to transport messages between BPIs.
     
     [[R102]](#r102) Testability:
 
@@ -3625,7 +3625,7 @@ The communication protocol layers are defined as follows, and note that some req
     * The vulnerability assessment does not identify any critical security issues in the TLS implementation and configuration of the BPI.
 
   - #### **[R103]**	
-    For synchronous BPI messaging between BPIs, a BPI [MUST](#rfc2119) utilize HTTPS [[RFC2818](#rfc2818)].
+    For synchronous BPI messaging between BPIs, a BPI MUST utilize HTTPS [[RFC2818](#rfc2818)].
 
     [[R103]](#r103) Testability:
 
@@ -3653,7 +3653,7 @@ The communication protocol layers are defined as follows, and note that some req
     * The vulnerability assessment does not identify any critical security issues related to the HTTPS implementation and configuration of the BPI.
 
   - #### **[R104]**	 
-    For asynchronous BPI messaging between BPIs or messaging within a BPI, a BPI [MUST](#rfc2119) utilize established asynchronous protocols such as Websockets or AMQP. 
+    For asynchronous BPI messaging between BPIs or messaging within a BPI, a BPI MUST utilize established asynchronous protocols such as Websockets or AMQP. 
 
     [[R104]](#r104) Testability:
 
@@ -3691,7 +3691,7 @@ Note that while messaging within a BPI must be asynchronous, the communication b
 
 * Cryptographic Layer: This layer deals with the BPI message envelope and the BPI message payload authenticity. However, it does not deal with authorization. Authorization is assumed to be validated based on security policies in the BPI core components such as workgroups. 
   - #### **[R105]**	
-    All BPI envelope level formats [MUST](#rfc2119) be achieved through JOSE-based data structures see **[R106]** and **[R107]**. 
+    All BPI envelope level formats MUST be achieved through JOSE-based data structures see **[R106]** and **[R107]**. 
 
     *Note that JOSE stands for JSON Object Signing and Encryption.*
 
@@ -3716,7 +3716,7 @@ Note that while messaging within a BPI must be asynchronous, the communication b
     6. The BPI enforces security measures defined by JOSE to protect the confidentiality, integrity, and authenticity of the exchanged data.
 
   - #### **[R106]**	
-    BPI encrypted message formats [MUST](#rfc2119) use an Encrypted JSON Web Encryption (JWE) structure [[RFC7516](#rfc7516)].
+    BPI encrypted message formats MUST use an Encrypted JSON Web Encryption (JWE) structure [[RFC7516](#rfc7516)].
 
     [[R106]](#r106) Testability:
 
@@ -3741,7 +3741,7 @@ Note that while messaging within a BPI must be asynchronous, the communication b
     * The BPI enforces necessary security measures for key management and encryption algorithm selection when using JWE structure.
   
   - #### **[R107]** 
-    BPI signed unencrypted formats [MUST](#rfc2119) use a Signed JSON Web Signature (JWS) structure following [[RFC7519](#rfc7519)] and following [[RFC7515](#rfc7515)] for its digital signature. 
+    BPI signed unencrypted formats MUST use a Signed JSON Web Signature (JWS) structure following [[RFC7519](#rfc7519)] and following [[RFC7515](#rfc7515)] for its digital signature. 
   
     [[R107]](#r107) Testability:
 
@@ -3766,7 +3766,7 @@ Note that while messaging within a BPI must be asynchronous, the communication b
     * The BPI enforces necessary security measures for key management and signature algorithm selection when using JWS structure for signing.
   
   - #### **[D20]**	
-    BPI messages [SHOULD](#rfc2119) always use JWEs with the ciphertext containing a signed payload. 
+    BPI messages SHOULD always use JWEs with the ciphertext containing a signed payload. 
     
       *A JWS may be used for initial authentication and authorization between BPIs.*
 
@@ -3790,7 +3790,7 @@ Note that while messaging within a BPI must be asynchronous, the communication b
     * The BPI can properly process and decrypt BPI messages received from other BPI instances that use JWEs with signed payloads.
 
   - #### **[D21]** 
-      The digital signature used for the JWS and JWE of a BPI Message [SHOULD](#rfc2119) be based on the public keys associated with a W3C DID in the W3C DID document as defined in [[W3C DID](#W3C-DID)]. 
+      The digital signature used for the JWS and JWE of a BPI Message SHOULD be based on the public keys associated with a W3C DID in the W3C DID document as defined in [[W3C DID](#W3C-DID)]. 
         
       *This simplifies the authentication of the message without having to rely on a 3rd party identity provider to validate the digital certificate issued to the BPI Subject. Non-normative examples of W3C DID Documents can be found in [[W3C DID](#W3C-DID)]*
 
@@ -3816,7 +3816,7 @@ Note that while messaging within a BPI must be asynchronous, the communication b
       * The BPI rejects the verification of a digital signature when using a public key not present in the W3C DID document.
 
   - #### **[R108]** 
-    BPI Message authenticity and proof of control of the private keys [MUST](#rfc2119) be established through a cryptographic challenge-response scheme utilizing a shared secret and the public keys of the involved BPI Subject. 
+    BPI Message authenticity and proof of control of the private keys MUST be established through a cryptographic challenge-response scheme utilizing a shared secret and the public keys of the involved BPI Subject. 
 
     [[R108]](#r108) Testability:
 
@@ -3858,7 +3858,7 @@ An example of a challenge-response system is given in the figure below.
 * Routing Layer:  A BPI is a “gated community”, hence, all BPI capabilities and BPI Subject services are known, or at least directly discoverable, and, therefore, directly addressable within a BPI. Therefore, there is no unknown path between sender and receiver, and, thus, routing is not required as it would be in a public network with an unknown number of participants of unknown identity. The scenario of a BPI Subject with an unknown communication endpoint will be addressed in Section 5.5 BPI Integration.
 
   - #### **[R109]** 
-    Any BPI Capability addressable using a BPI Message [MUST](#rfc2119) be discoverable by a BPI Subject utilizing resolvable URIs of said BPI capabilities.
+    Any BPI Capability addressable using a BPI Message MUST be discoverable by a BPI Subject utilizing resolvable URIs of said BPI capabilities.
   
     *An example of such a URI would be a BPI API endpoint.*9
 
@@ -3888,7 +3888,7 @@ An example of a challenge-response system is given in the figure below.
     * BPI Subject A can successfully perform the test for multiple capability URIs, and the responses match the expected specifications.
 
   - #### **[R110]** 
-    Any BPI Subject within a BPI [MUST](#rfc2119) be discoverable by any other BPI Subject within a BPI.
+    Any BPI Subject within a BPI MUST be discoverable by any other BPI Subject within a BPI.
 
     *For example, a BPI Subject DID can be resolved to its DID document containing a BPI communication endpoint in its "service" section that is directly addressable through the BPI Communication capability.*
 
@@ -3920,7 +3920,7 @@ An example of a challenge-response system is given in the figure below.
 * Semantic Layer: The semantic layer specifies how a message payload needs to be structured to be both BPI capability/service and BPI Subject friendly. Note that the content level refers to the content and message inside the message envelope. For the semantic layer, this document specifies how messages are identified and processed.
 
   - #### **[R111]**	
-    Every BPI message [MUST](#rfc2119) contain a message type that allows the context of the message to be established, the content structure to be verified against the context, and the content to be correctly processed.
+    Every BPI message MUST contain a message type that allows the context of the message to be established, the content structure to be verified against the context, and the content to be correctly processed.
 
    *Message identification does not merely identify the message. The message type also identifies the associated processing protocol such as the specification for a particular zero-knowledge prover scheme. A processing protocol is essentially a group of related messages that are required to achieve a multi-step business process.*
 
@@ -3949,7 +3949,7 @@ An example of a challenge-response system is given in the figure below.
     * BPI Subject A receives a response from the BPI indicating successful processing of the BPI Message.
 
   - #### **[R112]**	
-    A BPI message [MUST](#rfc2119) contain a unique message identifier that is generated by the sender.
+    A BPI message MUST contain a unique message identifier that is generated by the sender.
 
     *This allows unique identification of the message through its lifecycle.*
 
@@ -3979,7 +3979,7 @@ An example of a challenge-response system is given in the figure below.
     * The BPI is capable of handling multiple unique message identifiers concurrently without any conflicts or errors.
 
   - #### **[D22]**	
-    A BPI message [SHOULD](#rfc2119) contain one or more message decorators.
+    A BPI message SHOULD contain one or more message decorators.
 
       *In general, decorators in messages at a content level allow for the support of reusable conventions that are present across multiple messages to handle the same functionality consistently. A relevant analogy for decorators is that they are like HTTP headers in an HTTP request. The same HTTP header is often reused as a convention across multiple requests to achieve cross-domain functionality.*
 
@@ -4014,7 +4014,7 @@ An example of a challenge-response system is given in the figure below.
     * The BPI demonstrates the ability to handle various message decorators concurrently and consistently, contributing to enhanced message functionality.
 
   - #### **[R113]**	
-    All content level BPI messages [MUST](#rfc2119) be represented in JSON format [[RFC7159](#rfc7159)].
+    All content level BPI messages MUST be represented in JSON format [[RFC7159](#rfc7159)].
 
     [[R113]](#r113) Testability:
 
@@ -4046,7 +4046,7 @@ An example of a challenge-response system is given in the figure below.
     * The BPI successfully processes the nested JSON structures within the message, accurately extracting data and context from the nested JSON elements.
 
   - #### **[R114]**	
-    BPI Messages [MUST](#rfc2119) be either a valid JSON-LD document, or a JSON document that can be interpreted as JSON-LD by associating a context through HTTP headers, as described in the section "Interpreting JSON as JSON-LD" of the JSON-LD standard [[JSONLD](#jsonld)].
+    BPI Messages MUST be either a valid JSON-LD document, or a JSON document that can be interpreted as JSON-LD by associating a context through HTTP headers, as described in the section "Interpreting JSON as JSON-LD" of the JSON-LD standard [[JSONLD](#jsonld)].
 
     *Note that BPI Messages may fully, and directly support JSON-LD.*
 
@@ -4121,11 +4121,11 @@ In the context of these 3 BPIs having to interoperate, Alice, Bob, and Claire mu
 
 4. Alice, Bob, and Clair have agreed upon a zero-knowledge prover scheme and one or more worksteps expressed through human-readable predicates that allow them to synchronize their respective workflow states and deterministically advance the joint state.
 
-4. Alice has the following data set available from the last workstep of her shipping workflow, called Set A -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a predicate as a human-readable version of the ZK Proof.
+4. Alice has the following data set available from the last workstep of her shipping workflow, called Set A -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) as a human-readable version of the ZK Proof.
 
-5. Bob has the following data set available from the last workstep of his import workflow, called Set B -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a predicate as a human-readable version of the ZK Proof.
+5. Bob has the following data set available from the last workstep of his import workflow, called Set B -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) as a human-readable version of the ZK Proof.
 
-6. Claire has the following data set available from the last workstep of her customs workflow, called Set C -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a predicate as a human-readable version of the ZK Proof.
+6. Claire has the following data set available from the last workstep of her customs workflow, called Set C -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) as a human-readable version of the ZK Proof.
 
 The usage of ZK proofs is required since the counterparties will not be able to see sensitive information that has entered either of the workflows. For example, intelligence service information about a particular load in a shipping container cannot be shared with Alice and Bob, or the identity of the ultimate load recipient cannot be disclosed to Alice by Bob.
 
@@ -4139,7 +4139,7 @@ Furthermore, and for the simplicity of the example here, it is assumed that the 
 
     Note, any singleton state machine such as a state channel, sidechain, or other Layer 2 solution may be employed.
 
-3. Alice sends state channel invites to Bob and Claire based on their communication endpoints in their DID documents, creating the equivalent of a temporary Workgroup. The invite must include the state information both Bob and Clair need to submit to the state channel, Set B and set C, and the required agreement criteria e.g. 2 of 3 digital signatures over the joined state of the ZK proofs in the form of an agreement predicate. The predicate would be a ZK prover circuit with specified private and public inputs that can be run by Bob and Claire to generate ZK proofs proving correct state updates. In this case, simple signatures over the ZK-proofs are chosen.  
+3. Alice sends state channel invites to Bob and Claire based on their communication endpoints in their DID documents, creating the equivalent of a temporary Workgroup. The invite must include the state information both Bob and Clair need to submit to the state channel, Set B and set C, and the required agreement criteria e.g. 2 of 3 digital signatures over the joined state of the ZK proofs in the form of an agreement [Predicate](#5542-bi--or-multi-directional-bpi-services). The [Predicate](#5542-bi--or-multi-directional-bpi-services) would be a ZK prover circuit with specified private and public inputs that can be run by Bob and Claire to generate ZK proofs proving correct state updates. In this case, simple signatures over the ZK-proofs are chosen.  
 
 4. After accepting the invites, Bob and Claire commit their states to the state channel in the following manner -> newStateRoot = H(H(Alice state, Bob State),H(Claire State)) and also store the inputs (Alice state, Bob State, Claire State)
 
@@ -4170,7 +4170,7 @@ Because the state advancement in the state channel is strictly deterministic and
 Resolvable identifiers utilized within a BPI are of equivalent importance for interactions between BPIs. 
 
 #### **[R115]** 
-Identifiers and Credentials utilized in BPI Interoperability [MUST](#rfc2119) satisfy all requirements in section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management). 
+Identifiers and Credentials utilized in BPI Interoperability MUST satisfy all requirements in section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management). 
 
 [[R115]](#r115) Testability: See the Testability Statements in section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
@@ -4179,7 +4179,7 @@ Identifiers and Credentials utilized in BPI Interoperability [MUST](#rfc2119) sa
 Similar to a BPI itself, the interactions between BPIs through BPI Interoperability services must follow a similar, albeit slightly reduced set of requirements around BPI Subject authentication and authorization as a BPI.
 
 #### **[R116]**	
-BPI Interoperability Services [MUST](#rfc2119) be compatible with widely used external authentication services.
+BPI Interoperability Services MUST be compatible with widely used external authentication services.
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAUTH-2.0](oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
 
@@ -4204,7 +4204,7 @@ Passing Criteria:
 Note: Each authentication step should occur independently and without interference from previous steps.
 
 #### **[R117]**	
-BPI Interoperability Services [MUST](#rfc2119) support roles & access management.
+BPI Interoperability Services MUST support roles & access management.
 
 *Role and Access Management in this context refers to the required roles of BPI Subjects and their authority to access and execute BPI functionality across multiple BPIs.*
 
@@ -4240,7 +4240,7 @@ Passing Criteria:
 Note: Each access request should be independent, and the roles should be accurately verified according to the established access management configuration.
 
 #### **[R118]**	
-BPI Interoperability Services [MUST](#rfc2119) support policy management.
+BPI Interoperability Services MUST support policy management.
 
 *Policy Management in this context refers to the management of authentication and authorization rules to access and execute BPI functionality for roles of BPI Subjects across multiple BPIs.*
 
@@ -4282,7 +4282,7 @@ The discovery of BPI Interoperability services is facilitated through BPI identi
 To facilitate ease of discovery, a BPI may publish a verifiable and non-repudiable list of its BPI Subjects. Ideally, each entry consists of W3C verifiable credentials establishing the membership of a BPI Subject in a BPI with credential subjects resolvable to the offered BPI services. 
 
 #### **[R119]**	
-The service endpoint specification of the resolvable BPI identifier [MUST](#rfc2119) list BPI service endpoints that allow for further BPI service discovery and the establishment of a secure channel between either BPIs or BPI Subjects.
+The service endpoint specification of the resolvable BPI identifier MUST list BPI service endpoints that allow for further BPI service discovery and the establishment of a secure channel between either BPIs or BPI Subjects.
 
 [[R119]](#r119) Testability:
 
@@ -4314,7 +4314,7 @@ Passing Criteria:
 Note: Each test step verifies the accuracy and functionality of the service endpoint specification associated with a resolvable BPI identifier.
 
 #### **[D23]** 
-Each BPI service [SHOULD](#rfc2119) be defined by an identifier that corresponds to the resolvable BPI identifier and its associated signing key(s) that offer this BPI service. 
+Each BPI service SHOULD be defined by an identifier that corresponds to the resolvable BPI identifier and its associated signing key(s) that offer this BPI service. 
 
 [[D23]](#d23) Testability:
 
@@ -4338,7 +4338,7 @@ Passing Criteria:
 * The digital signature verification using the public key associated with the identifier is successful.
 
 #### **[D24]** 
-Each BPI service [SHOULD](#rfc2119) be minimally specified by the following elements:
+Each BPI service SHOULD be minimally specified by the following elements:
 * A BPI service domain such as “BPIStateProcessing”
 * A BPI service description
 * A BPI service version,
@@ -4371,7 +4371,7 @@ Passing Criteria:
 
 
 #### **[R120]**	
-To ensure a BPI service specification timeline, the BPI service specification [MUST](#rfc2119) include “created” and “updated” timestamps, and the full history of "updated" timestamps.
+To ensure a BPI service specification timeline, the BPI service specification MUST include “created” and “updated” timestamps, and the full history of "updated" timestamps.
 
 [[R120]](#r120) Testability:
 
@@ -4391,7 +4391,7 @@ Passing Criteria:
 * The "updated" timestamps history is present and aligned with external records.
 
 #### **[R121]**	
-After a BPI service endpoint has been discovered by a BPI or BPI Subject, the exact specification of the BPI service endpoint [MUST](#rfc2119) be negotiated between the different BPIs and their BPI Subjects. 
+After a BPI service endpoint has been discovered by a BPI or BPI Subject, the exact specification of the BPI service endpoint MUST be negotiated between the different BPIs and their BPI Subjects. 
 
 *Negotiation in the context of this document is the process of two or more BPIs presenting each other with and then agreeing to a way to fulfill BPI service requests amongst each other.*  
 
@@ -4413,7 +4413,7 @@ Passing Criteria:
 *Based upon published BPI service capabilities, a BPI service requester may present the BPI service provider with one or more service requests expressed using one of the published specifications of the requested BPI service. Such requirements may include BPI Service Version, List of BPIs offering a BPI service, etc.*
 
 #### **[R122]**	
-A BPI service requester [MUST](#rfc2119) present the BPI service provider with one or more service requirements expressed using one of the published specifications of the requested BPI service.
+A BPI service requester MUST present the BPI service provider with one or more service requirements expressed using one of the published specifications of the requested BPI service.
 
 [[R122]](#r122) Testability:
 
@@ -4431,7 +4431,7 @@ Passing Criteria:
 * The BPIs successfully reach an agreement on how to fulfill the BPI service request.
 
 #### **[O2]**	
-The service provider [MAY](#rfc2119) respond to one of the requirements.
+The service provider MAY respond to one of the requirements.
 
 *An example of this could be a JSON object with a response e.g. the standard HTTP response 200 or 403*
 
@@ -4453,7 +4453,7 @@ Passing Criteria:
 
 
 #### **[CR15]<[O2]** 
-If the BPI service provider has not responded to any of the BPI service requests by a BPI, the BPI service provider [MUST](#rfc2119) refuse the service request.
+If the BPI service provider has not responded to any of the BPI service requests by a BPI, the BPI service provider MUST refuse the service request.
 
 [[CR15]<[O2]](#cr15o2) Testability:
 
@@ -4487,7 +4487,7 @@ First, the document lists the requirements common to mono-directional BPI servic
 **Requirements common to mono-directional and bi-/multi-directional BPI Services**
 
 #### **[R123]** 
-Each BPI state object utilized in one or more mono-directional and bi-/multi-directional BPI Services [MUST](#rfc2119) have a cryptographic non-interactive zero-knowledge proof of correctness.
+Each BPI state object utilized in one or more mono-directional and bi-/multi-directional BPI Services MUST have a cryptographic non-interactive zero-knowledge proof of correctness.
 
 *More details on cryptographic zero-knowledge proofs of correctness in the context of a BPI are given in section [6 Agreement Execution](#6-agreement-execution) when discussing worksteps. Also, note that the requirements below are very similar to the ones given in section [6.1 BPI Workstep](#61-bpi-workstep).*
 
@@ -4510,7 +4510,7 @@ Passing Criteria:
 * The cryptographic zero-knowledge proof of correctness for a state object used in both mono-directional and bi-/multi-directional BPI services can be successfully verified.
 
 #### **[R124]** 
-The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services [MUST](#rfc2119) be succinct.
+The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be succinct.
 
 Succinct in the context of zero-knowledge proofs means that a zero-knowledge proof is verifiable by any 3rd party in a time that is sublinear to the size of the prover system that generated the proof.
 
@@ -4532,7 +4532,7 @@ Test Passing Criteria:
 * The test will pass if the non-interactive zero-knowledge proof of a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services can be verified by the verifier system in a number of computational steps at most proportional to the size of the prover system that generated the proof.
 
 #### **[R125]** 
-The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services [MUST](#rfc2119) be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
+The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
 
 *The zero-knowledge proof of correctness can be a cryptographic aggregator of proofs of correctness that would allow multiple proofs to be represented and provable within one proof.* 
 
@@ -4554,7 +4554,7 @@ Passing Criteria:
 * The non-interactive zero-knowledge proof associated with finalized BPI state objects used in both mono-directional and bi-/multi-directional BPI services can be individually retrieved from the CCSM.
 
 #### **[R126]** 
-The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services [MUST](#rfc2119) be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
+The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
 
 [[R126]](#r126) Testability:
 
@@ -4572,7 +4572,7 @@ Passing Criteria:
 * The 3rd party successfully verifies the zero-knowledge proof of correctness of the BPI state object on the CCSM.
 
 #### **[R127]** 
-The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services [MUST NOT](#rfc2119) be able to be used in more than one mono-directional and/or bi-/multi-directional BPI Services event at any time.
+The non-interactive zero-knowledge proof of correctness of a BPI state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services MUST NOT be able to be used in more than one mono-directional and/or bi-/multi-directional BPI Services event at any time.
 
 *This requirement is necessary to avoid the usage of the same output as collateral in more than one state-altering event, such as tokenization.*
 
@@ -4599,7 +4599,7 @@ Passing Criteria:
 
 
 #### **[R128]** 
-A BPI [MUST](#rfc2119) lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). 
+A BPI MUST lock a state object utilized in one or more mono-directional and/or bi-/multi-directional BPI Services as a succinct non-interactive zero-knowledge proof of the lock commitment (privacy preservation of an output pledged in a commercial value-creation event). 
 
 *Note that a lock can contain more than one state object.*
 
@@ -4624,7 +4624,7 @@ Passing Criteria:
 * The NIZKP of the lock commitment should preserve the privacy of the pledged output and ensure that it cannot be used in any other context.
 
 #### **[R129]** 
-The BPI state object lock commitment [MUST](#rfc2119) be committed to the CCSM utilized by the BPI (Liveness).
+The BPI state object lock commitment MUST be committed to the CCSM utilized by the BPI (Liveness).
 
 [[R129]](#r129) Testability:
 
@@ -4647,7 +4647,7 @@ Passing Criteria:
 * The lock commitment should be publicly verifiable through the CCSM, ensuring liveness and transparency of the state object's lock status.
 
 #### **[R130]** 
-The BPI state object lock commitment [MUST](#rfc2119) be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant proof verifiability).
+The BPI state object lock commitment MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant proof verifiability).
 
 [[R130]](#r130) Testability:
 
@@ -4668,7 +4668,7 @@ Passing Criteria:
 * The test system confirms successful verification of the BPI state object lock commitment.
 
 #### **[R131]** 
-The BPI state object lock commitment [MUST](#rfc2119) be updatable.
+The BPI state object lock commitment MUST be updatable.
 
 *State objects are normally imported back into a BPI at which point the lock commitment on the CCSM needs to be updated. Also, for scalability reasons, the lock commitment should represent more than one locked asset on a CCSM, while individual lock commitments can remain on a BPI.*
 
@@ -4693,7 +4693,7 @@ Passing Criteria:
 * The retrieved updated lock commitment matches the provided updated information.
 
 #### **[R132]** 
-The BPI state object lock commitment [MUST](#rfc2119) only be updated by the owners of the BPI state object.
+The BPI state object lock commitment MUST only be updated by the owners of the BPI state object.
 
 *The requirements below will specify public URIs for BPI Interoperability services. Therefore, we have additional requirements for those public URIs.*
 
@@ -4723,7 +4723,7 @@ Passing Criteria:
 * If the requester is not the owner of the BPI state object, the operation is refused by the BPI and an appropriate error notification is sent to the requester.
 
 #### **[R133]** 
-A public validation URI for BPI Interoperability services [MUST](#rfc2119) be resolvable to the underlying target resource.
+A public validation URI for BPI Interoperability services MUST be resolvable to the underlying target resource.
 
 [[R133]](#r133) Testability:
 
@@ -4745,7 +4745,7 @@ Passing Criteria:
 * The response from the service matches the expected content and format.
 
 #### **[D25]** 
-A public validation URI for BPI Interoperability services [SHOULD](#rfc2119) be independent of the originating BPI.
+A public validation URI for BPI Interoperability services SHOULD be independent of the originating BPI.
 
 [[D25]](#d25) Testability:
 
@@ -4769,7 +4769,7 @@ Passing Criteria:
 * The responses from the service match the expected content and format for both BPI A and BPI B.
 
 #### **[R134]** 
-A system processing the BPI Interoperability service [MUST](#rfc2119) notify the requesting BPI Subject with human-readable reasoning about either success or failure.
+A system processing the BPI Interoperability service MUST notify the requesting BPI Subject with human-readable reasoning about either success or failure.
 
 [[R134]](#r134) Testability:
 
@@ -4789,7 +4789,7 @@ Passing Criteria:
 * If the service encounters an error during processing, the human-readable reasoning in the response explains the cause of the failure.
 
 #### **[R135]** 
-All BPI Interoperability services [MUST](#rfc2119) be cryptographically secured and privacy-preserving.
+All BPI Interoperability services MUST be cryptographically secured and privacy-preserving.
 
 *“Cryptographically secured” in this context means that all communications follow a common authentication and authorization framework, as previously discussed. Privacy-preserving in this context means that all communications are end-to-end encrypted independent of the security properties of the transportation layer.*
 
@@ -4818,7 +4818,7 @@ Passing Criteria:
 Mono-directional BPI services in the context of BPI interoperability, not regular BPI transactions as specified in section [6.5 BPI Transactions](#65-bpi-transactions) and section [6.6 BPI Transaction Lifecycle](#66-bpi-transaction-lifecycle), need only to perform two operations -- export and import. These operations have to encompass cryptographic material and URIs that allow independent verification of the cryptographic material presented to 3rd parties such as an auditor or another BPI.
 
 #### **[R136]** 
-[Mono-directional BPI](#5541-mono-directional-bpi-services) services in the context of BPI interoperability [MUST](#rfc2119) support at least two operations -- export and import.
+[Mono-directional BPI services](#5541-mono-directional-bpi-services) in the context of BPI interoperability MUST support at least two operations -- export and import.
 
 [[R136]](#r136) Testability:
 
@@ -4839,7 +4839,7 @@ Expected Result:
 2. The import operation starts without errors and successfully inserts data into the BPI system. The imported data is stored correctly and matches the data provided for import.
 
 #### **[R137]** 
-In the context of [BPI interoperability](#55-bpi-integration), the BPI export operation [MUST](#rfc2119) provide at least the following elements to the invoking BPI Subject:
+In the context of [BPI interoperability](#55-bpi-integration), the BPI export operation MUST provide at least the following elements to the invoking BPI Subject:
 * The State Object
 * Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * All public input data to the Zero-Knowledge Proof(s) of Correctness of the state object and its history required to validate the proofs
@@ -4879,7 +4879,7 @@ Expected Result:
 11. The validation URI for third-party verification of the lock commitment is included.
 
 #### **[R138]** 
-In the context of BPI interoperability, the BPI import operation [MUST](#rfc2119) provide at least the following elements by the invoking BPI Subject to the target BPI:
+In the context of BPI interoperability, the BPI import operation MUST provide at least the following elements by the invoking BPI Subject to the target BPI:
 * The State Object
 * Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * All public input data to the Zero-Knowledge Proof(s) of Correctness of the state object and its history required to validate the proofs
@@ -4920,14 +4920,14 @@ Expected Result:
 
 Bi- and Multi-directional BPI services in the context of BPI Interoperability enable dynamic processes between BPIs.
 
-In the following, the standard introduces the concept of a State Synchronization and Advancement Predicate for BPI Interoperability (processes). A predicate in the context of this document is understood as an assertion that may be true or false, depending on the values of the variables that occur in it and the logical, well-formed connections between those variables. A State Synchronization and Advancement Predicate is a definition of an Interoperability Virtual State Machine (IVSM) based on a set of agreed-upon business rules and business data that is deterministic. It synchronizes and advances the state of committed state objects of participants in the BPI Interoperability process. An IVSM is an implementation of a State Synchronization and Advancement Predicate. One can think of an IVSM as a stripped-down version of a BPI with a single workgroup that can process only one workstep.
+In the following, the standard introduces the concept of a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) for BPI Interoperability (processes). A [Predicate](#5542-bi--or-multi-directional-bpi-services) in the context of this document is understood as an assertion that may be true or false, depending on the values of the variables that occur in it and the logical, well-formed connections between those variables. A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is a definition of an Interoperability Virtual State Machine ([IVSM](#5542-bi--or-multi-directional-bpi-services)) based on a set of agreed-upon business rules and business data that is deterministic. It synchronizes and advances the state of committed state objects of participants in the BPI Interoperability process. An [IVSM](#5542-bi--or-multi-directional-bpi-services) is an implementation of a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). One can think of an [IVSM](#5542-bi--or-multi-directional-bpi-services) as a stripped-down version of a BPI with a single workgroup that can process only one workstep.
 
 #### **[R139]** 
-Bi- or Multi-directional BPI services in the context of BPI interoperability [MUST](#rfc2119) support at least the following operations:
-* Create State Synchronization and Advancement Predicate
-* Update State Synchronization and Advancement Predicate
-* Launch IVSM
-* Remove IVSM 
+Bi- or Multi-directional BPI services in the context of BPI interoperability MUST support at least the following operations:
+* Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* Remove [IVSM](#5542-bi--or-multi-directional-bpi-services) 
 * Commit State
 * Invite Participants to BPI Interoperability Process
 * Accept/Reject Invite
@@ -4954,10 +4954,10 @@ Preconditions:
 
 Test Steps:
 
-1. Create a State Synchronization and Advancement Predicate from one BPI system.
-2. Update the State Synchronization and Advancement Predicate from another BPI system.
-3. Launch an IVSM from one of the BPI systems.
-4. Remove the IVSM from the system where it was launched.
+1. Create a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) from one BPI system.
+2. Update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) from another BPI system.
+3. Launch an [IVSM](#5542-bi--or-multi-directional-bpi-services) from one of the BPI systems.
+4. Remove the [IVSM](#5542-bi--or-multi-directional-bpi-services) from the system where it was launched.
 5. Commit the State in one of the BPI systems.
 6. Invite Participants to the BPI Interoperability Process from one of the BPI systems.
 7. Accept or Reject the invite from the Participant side.
@@ -4975,300 +4975,300 @@ Expected Results:
 2. Each operation specified in the requirement is supported by the BPI services.
 3. The BPI systems synchronize and interoperate correctly during these operations.
 
-**Create State Synchronization and Advancement Predicate**
+**Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)**
 
-As mentioned above, a State Synchronization and Advancement Predicate defines and provides an implementation of an enforcement mechanism of the required rules and data to synchronize multiple state objects from different BPIs, and if required, advance this synchronized, joint state to a new joined state. The joint state is subsequently usable in the BPI workflows in the different participating BPIs. 
+As mentioned above, a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) defines and provides an implementation of an enforcement mechanism of the required rules and data to synchronize multiple state objects from different BPIs, and if required, advance this synchronized, joint state to a new joined state. The joint state is subsequently usable in the BPI workflows in the different participating BPIs. 
 
 #### **[R140]** 
-A State Synchronization and Advancement Predicate [MUST](#rfc2119) be a mathematically well-formed, deterministic formula that can be evaluated to true or false as one or more functions of the values of the variables that occur in it.
+A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST be a mathematically well-formed, deterministic formula that can be evaluated to true or false as one or more functions of the values of the variables that occur in it.
 
 [[R140]](#r140) Testability: 
 
 Preconditions:
 
-* A BPI system with a State Synchronization and Advancement Predicate capability is set up.
+* A BPI system with a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) capability is set up.
 
 Test Steps:
 
-1. Define the State Synchronization and Advancement Predicate in the BPI system as a formula with well-formed mathematical syntax.
+1. Define the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) in the BPI system as a formula with well-formed mathematical syntax.
 2. Test the formula with different sets of inputs and repeat each set of inputs multiple times. 
 3. Provide a set of variables that occur in the formula and evaluate the formula with specific values for these variables.
 
 Expected Results:
 
-1. The State Synchronization and Advancement Predicate accepts a well-formed mathematical formula.
+1. The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) accepts a well-formed mathematical formula.
 2. The formula is deterministic, producing the same result for the same input.
 3. When the formula is evaluated with specific variable values, it should correctly return "true" or "false" based on the provided input.
 
 #### **[R141]** 
-A State Synchronization and Advancement Predicate [MUST](#rfc2119) at least contain the following elements:
-* A unique identifier for the predicate which may be resolvable
-* The unique identifier of the BPI Subject within the context of the originating BPI who creates the predicate
+A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST at least contain the following elements:
+* A unique identifier for the [Predicate](#5542-bi--or-multi-directional-bpi-services) which may be resolvable
+* The unique identifier of the BPI Subject within the context of the originating BPI who creates the [Predicate](#5542-bi--or-multi-directional-bpi-services)
 * A creation date
 * An update date
-* The content of the State Synchronization and Advancement Predicate in a human-readable format
+* The content of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) in a human-readable format
 * The specification of the rules to synchronize participating BPI state objects
 * The specification of the input data to synchronize participating BPI state objects both private and public
-* The specification of the output objects of the application of the State Synchronization and Advancement Predicate to the input data to synchronize participating BPI state objects
+* The specification of the output objects of the application of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to the input data to synchronize participating BPI state objects
 * The specification of the rules to advance the state of synchronized, participating BPI state objects
 * The specification of the input data to advance the state of synchronized, participating BPI state objects both private and public
-* The specification of the output objects of the application of the State Synchronization and Advancement Predicate to the input data to advance the state of synchronized, participating BPI state objects
+* The specification of the output objects of the application of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to the input data to advance the state of synchronized, participating BPI state objects
 * The specification of the cryptographically verifiable joint state between the participating BPIs and their storage
-* The specification of a deterministic program and its runtime environment applying the State Synchronization and Advancement Predicate rules and data to its input data and generating its output objects 
-* The specification of the cryptographic prover system utilized in verifying the correct application of the State Synchronization and Advancement Predicate to its input data
+* The specification of a deterministic program and its runtime environment applying the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) rules and data to its input data and generating its output objects 
+* The specification of the cryptographic prover system utilized in verifying the correct application of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to its input data
 * The specification of the required cryptographic material for the cryptographic prover system
-* A digital signature over the predicate content tied to a public key associated with the BPI Subject creating the predicate
+* A digital signature over the [Predicate](#5542-bi--or-multi-directional-bpi-services) content tied to a public key associated with the BPI Subject creating the [Predicate](#5542-bi--or-multi-directional-bpi-services)
 
-*The unique predicate identifier allows for the disambiguation of predicates in case a system is processing more than one predicate at a time. The BPI Subject identifier assures the assignability of the originator for audit and disambiguation purposes. A human-readable format ensures that in the case of business-sensitive operations both business owners and auditors can understand and analyze the intent of the predicate. For a system to be able to process the predicate, the rules as well as input and output data for both state synchronization and advancement, together with the processing program, state storage, and output validation, need to be specified such that they can be implemented in a system through an automated process. The last element ensures predicate non-repudiability in case of disputes.*
+*The unique [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier allows for the disambiguation of predicates in case a system is processing more than one [Predicate](#5542-bi--or-multi-directional-bpi-services) at a time. The BPI Subject identifier assures the assignability of the originator for audit and disambiguation purposes. A human-readable format ensures that in the case of business-sensitive operations both business owners and auditors can understand and analyze the intent of the [Predicate](#5542-bi--or-multi-directional-bpi-services). For a system to be able to process the [Predicate](#5542-bi--or-multi-directional-bpi-services), the rules as well as input and output data for both state synchronization and advancement, together with the processing program, state storage, and output validation, need to be specified such that they can be implemented in a system through an automated process. The last element ensures [Predicate](#5542-bi--or-multi-directional-bpi-services) non-repudiability in case of disputes.*
 
 [[R141]](#r141) Testability:
 
 Preconditions:
 
-* The BPI system is configured to accept State Synchronization and Advancement Predicates.
-* The BPI Subject creating the predicate has a valid public-private key pair.
-* The BPI Subject has the necessary permissions to create and update State Synchronization and Advancement Predicates.
+* The BPI system is configured to accept [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)s.
+* The BPI Subject creating the [Predicate](#5542-bi--or-multi-directional-bpi-services) has a valid public-private key pair.
+* The BPI Subject has the necessary permissions to create and update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)s.
 
 Test Steps:
 
-1. Generate a unique identifier for the predicate and ensure it is not already in use. 
-2. Prepare input data for the creation of the State Synchronization and Advancement Predicate, including all the specified elements.
-3. Sign the content of the State Synchronization and Advancement Predicate with the BPI Subject's private key.
-4. Submit the State Synchronization and Advancement Predicate for creation within the BPI system.
-5. Retrieve the created predicate and check for all of the specified elements.
-6. Update the State Synchronization and Advancement Predicate, if necessary, and verify the update process.
+1. Generate a unique identifier for the [Predicate](#5542-bi--or-multi-directional-bpi-services) and ensure it is not already in use. 
+2. Prepare input data for the creation of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services), including all the specified elements.
+3. Sign the content of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) with the BPI Subject's private key.
+4. Submit the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) for creation within the BPI system.
+5. Retrieve the created [Predicate](#5542-bi--or-multi-directional-bpi-services) and check for all of the specified elements.
+6. Update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services), if necessary, and verify the update process.
 
 Expected Results:
 
-1. The State Synchronization and Advancement Predicate is successfully created within the BPI system.
-2. The created predicate contains all the specified elements outlined in the requirement.
-3. The digital signature over the predicate content is valid and tied to the public key associated with the BPI Subject creating the predicate.
-4. The BPI system correctly associates the created predicate with the unique identifier of the BPI Subject.
-5. The update to the State Synchronization and Advancement Predicate is successful, and the updated predicate reflects the changes made.
+1. The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is successfully created within the BPI system.
+2. The created [Predicate](#5542-bi--or-multi-directional-bpi-services) contains all the specified elements outlined in the requirement.
+3. The digital signature over the [Predicate](#5542-bi--or-multi-directional-bpi-services) content is valid and tied to the public key associated with the BPI Subject creating the [Predicate](#5542-bi--or-multi-directional-bpi-services).
+4. The BPI system correctly associates the created [Predicate](#5542-bi--or-multi-directional-bpi-services) with the unique identifier of the BPI Subject.
+5. The update to the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is successful, and the updated [Predicate](#5542-bi--or-multi-directional-bpi-services) reflects the changes made.
 
 #### **[R142]** 
-The output objects of the application of the State Synchronization and Advancement Predicate [MUST](#rfc2119) be cryptographic assertions in zero-knowledge that evaluate to either true or false by a verifying party.
+The output objects of the application of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST be cryptographic assertions in zero-knowledge that evaluate to either true or false by a verifying party.
 
 [[R142]](#r142) Testability:  
 
 Preconditions:
 
-* A BPI system capable of applying the State Synchronization and Advancement Predicate is set up.
-* The State Synchronization and Advancement Predicate is created and has associated input data.
+* A BPI system capable of applying the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is set up.
+* The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is created and has associated input data.
 
 Test Steps:
 
-1. Apply the State Synchronization and Advancement Predicate to the input data.
+1. Apply the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to the input data.
 2. Attempt to evaluate these cryptographic assertions in a zero-knowledge context. 
 3. Attempt to evaluate the cryptographic assertions to ensure they can be assessed as either true or false.
 
 Expected Results:
 
-1. The output objects generated by the State Synchronization and Advancement Predicate are cryptographic assertions.
+1. The output objects generated by the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) are cryptographic assertions.
 2. The cryptographic assertions are structured for zero-knowledge evaluation.
 3. The cryptographic assertions can be successfully evaluated by a verifying party as either true or false.
 
 #### **[R143]** 
-For BPI Interoperability, the "Create State Synchronization and Advancement Predicate" operation a BPI invokes [MUST](#rfc2119) create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+For BPI Interoperability, the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
 
 [[R143]](#r143) Testability:
 
 Preconditions:
 
-* A BPI system capable of invoking the "Create State Synchronization and Advancement Predicate" operation is set up.
+* A BPI system capable of invoking the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation is set up.
 * The BPI system has appropriate authorization and permissions to invoke this operation.
 
 Test Steps:
 
-1. Invoke the "Create State Synchronization and Advancement Predicate" operation within the BPI system.
+1. Invoke the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation within the BPI system.
 2. Create an object as a result of this operation. Perform the tests described in [**[R140]**](#r140) - [**[R142]**](#r142) on this object. 
 
 Expected Results: 
 
-1. The "Create State Synchronization and Advancement Predicate" operation successfully creates an object.
+1. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation successfully creates an object.
 2. The created object conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142) as specified in the requirement.
 
 #### **[R144]** 
-The input data to the "Create State Synchronization and Advancement Predicate" operation [MUST](#rfc2119) enable a BPI to generate a State Synchronization and Advancement Predicate per [**[R141]**](#r141).
+The input data to the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation MUST enable a BPI to generate a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) per [**[R141]**](#r141).
 
 [[R144]](#r144) Testability:
 
 Preconditions:
 
-* A BPI system is set up with the capability to invoke the "Create State Synchronization and Advancement Predicate" operation.
+* A BPI system is set up with the capability to invoke the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation.
 * The BPI system has the necessary permissions and authorization to execute this operation.
 
 Test Steps:
 
-1. Invoke the "Create State Synchronization and Advancement Predicate" operation within the BPI system.
-2. Analyze the input data provided to the operation to ensure it aligns with all requirements from [**[R141]**](#r141). Then, generate the State Synchronization and Advancement Predicate and perform the tests listed in [**[R141]**](#r141). 
+1. Invoke the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation within the BPI system.
+2. Analyze the input data provided to the operation to ensure it aligns with all requirements from [**[R141]**](#r141). Then, generate the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) and perform the tests listed in [**[R141]**](#r141). 
 
 Expected Results:
 
-1. The "Create State Synchronization and Advancement Predicate" operation successfully executes.
-2. The input data for the operation enables the BPI system to generate a State Synchronization and Advancement Predicate that conforms to the criteria described in [R141].
+1. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation successfully executes.
+2. The input data for the operation enables the BPI system to generate a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that conforms to the criteria described in [R141].
 
 #### **[R145]** 
-A "Create State Synchronization and Advancement Predicate" operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+A "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation MUST satisfy the following conditions to be valid:
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* A State Synchronization and Advancement Predicate conformant with [**[R141]**](#r141).
+* A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
 
 [[R145]](#r145) Testability: 
 
 Preconditions:
 
-* A BPI system is set up and configured to execute the "Create State Synchronization and Advancement Predicate" operation.
+* A BPI system is set up and configured to execute the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation.
 * The BPI system has registered BPI Subjects with their unique identifiers, digital signatures, and associated public keys.
 
 Test Steps:
 
-1. Initiate a "Create State Synchronization and Advancement Predicate" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a Predicate conformant with [**[R141]**](#r141).
-2. Initiate a "Create State Synchronization and Advancement Predicate" operation with an invalid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a Predicate conformant with [**[R141]**](#r141).
-3. Initiate a "Create State Synchronization and Advancement Predicate" operation with a valid digital signature, a public key that is not cryptographically tied to the unique identifier of the invoking BPI Subject, and a Predicate conformant with [**[R141]**](#r141).
-4. Initiate a "Create State Synchronization and Advancement Predicate" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a Predicate that is not conformant with [**[R141]**](#r141). 
+1. Initiate a "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+2. Initiate a "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with an invalid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+3. Initiate a "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is not cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+4. Initiate a "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) that is not conformant with [**[R141]**](#r141). 
 
 Expected Results: 
 
-1. The "Create State Synchronization and Advancement Predicate" operation successfully executes.
-2. The "Create State Synchronization and Advancement Predicate" operation fails.
-3. The "Create State Synchronization and Advancement Predicate" operation fails.
-4. The "Create State Synchronization and Advancement Predicate" operation fails.
+1. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation successfully executes.
+2. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+3. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+4. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
 
-**Update State Synchronization and Advancement Predicate**
+**Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)**
 
-In case requirements change, a State Synchronization and Advancement Predicate may have to be updated. Such an update process needs to be conformant to the following requirements.
+In case requirements change, a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) may have to be updated. Such an update process needs to be conformant to the following requirements.
 
 #### **[R146]** 
-A State Synchronization and Advancement Predicate [MUST NOT](#rfc2119) be updated when the predicate is used in an active IVSM.
+A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST NOT be updated when the [Predicate](#5542-bi--or-multi-directional-bpi-services) is used in an active [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R146]](#r146) Testability: 
 
 Preconditions:
 
-* An active IVSM (Interoperable Verifiable State Machine) exists within the BPI.
-* The BPI system is configured to use State Synchronization and Advancement Predicates.
-* There is at least one State Synchronization and Advancement Predicate in use within the active IVSM.
+* An active [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperable Verifiable State Machine) exists within the BPI.
+* The BPI system is configured to use [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)s.
+* There is at least one [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) in use within the active [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Select a specific State Synchronization and Advancement Predicate that is currently in use within the IVSM and attempt to initiate an update or modification to the selected predicate.
+1. Select a specific [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that is currently in use within the [IVSM](#5542-bi--or-multi-directional-bpi-services) and attempt to initiate an update or modification to the selected [Predicate](#5542-bi--or-multi-directional-bpi-services).
 2. Monitor and record the BPI system's response to the update request.
-3. Repeat the test for each predicate in use within the IVSM if applicable.
+3. Repeat the test for each [Predicate](#5542-bi--or-multi-directional-bpi-services) in use within the [IVSM](#5542-bi--or-multi-directional-bpi-services) if applicable.
 
 Expected Results: 
 
-1. The BPI system consistently rejects or prevents the update of a State Synchronization and Advancement Predicate when it is actively used within an IVSM.
+1. The BPI system consistently rejects or prevents the update of a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) when it is actively used within an [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 #### **[R147]** 
-An update operation to a State Synchronization and Advancement Predicate [MUST](#rfc2119) be conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+An update operation to a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST be conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
 
 [[R147]](#r147) Testability: 
 
 Preconditions:
 
-* A State Synchronization and Advancement Predicate (Predicate) exists within the BPI.
-* The BPI system is configured to allow updates to the Predicate.
-* The Predicate to be updated conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+* A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) (Predicate) exists within the BPI.
+* The BPI system is configured to allow updates to the [Predicate](#5542-bi--or-multi-directional-bpi-services).
+* The [Predicate](#5542-bi--or-multi-directional-bpi-services) to be updated conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
 
 Test Steps:
 
-1. Prepare the updates to the Predicate, testing if they conform to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
-2. Initiate the update operation for the selected Predicate. Then, monitor and record the BPI system's response to the update request.
-3. Repeat the test for multiple Predicates, if applicable, to ensure all updates conform to the requirements.
+1. Prepare the updates to the [Predicate](#5542-bi--or-multi-directional-bpi-services), testing if they conform to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+2. Initiate the update operation for the selected [Predicate](#5542-bi--or-multi-directional-bpi-services). Then, monitor and record the BPI system's response to the update request.
+3. Repeat the test for multiple [Predicates](#5542-bi--or-multi-directional-bpi-services), if applicable, to ensure all updates conform to the requirements.
 
 Expected Results: 
 
-1. The BPI system accepts the update operation if the Predicate conforms to requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+1. The BPI system accepts the update operation if the [Predicate](#5542-bi--or-multi-directional-bpi-services) conforms to requirements [**[R140]**](#r140) - [**[R142]**](#r142).
 2. The BPI system consistently accepts updates that adhere to the specified requirements and consistently rejects updates that do not conform to the requirements.
 
 #### **[R148]** 
-For BPI Interoperability, the "Update State Synchronization and Advancement Predicate" operation a BPI invokes [MUST](#rfc2119) create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+For BPI Interoperability, the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
 
 [[R148]](#r148) Testability: 
 
 Preconditions:
 
-* A BPI Subject with the authority to update the State Synchronization and Advancement Predicate (Predicate) exists within the BPI.
-* A Predicate that requires an update is available.
-* The BPI system is configured to allow updates to Predicates.
+* A BPI Subject with the authority to update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) (Predicate) exists within the BPI.
+* A [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update is available.
+* The BPI system is configured to allow updates to [Predicates](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Identify and select a Predicate that requires an update. Prepare the update operation, ensuring it conforms to the requirements [R140] - [R142].
-2. Initiate the "Update State Synchronization and Advancement Predicate" operation for the selected Predicate. Then, monitor and record the BPI system's response to the update request.
-3. Repeat the test for multiple Predicates, if applicable, to ensure all updates conform to the specified requirements.
+1. Identify and select a [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update. Prepare the update operation, ensuring it conforms to the requirements [R140] - [R142].
+2. Initiate the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation for the selected [Predicate](#5542-bi--or-multi-directional-bpi-services). Then, monitor and record the BPI system's response to the update request.
+3. Repeat the test for multiple [Predicates](#5542-bi--or-multi-directional-bpi-services), if applicable, to ensure all updates conform to the specified requirements.
 
 Expected Results: 
 
 1. The update conforms to the requirements [R140] - [R142] and the update operation is prepared.
-2. The BPI system accepts the "Update State Synchronization and Advancement Predicate" operation. 
+2. The BPI system accepts the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation. 
 3. The BPI system consistently accepts updates that adhere to the specified requirements and rejects updates that do not conform to the requirements.
 
 #### **[R149]** 
-The input data to the "Update State Synchronization and Advancement Predicate" operation [MUST](#rfc2119) enable a BPI to generate a State Synchronization and Advancement Predicate per [**[R141]**](#r141).
+The input data to the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation MUST enable a BPI to generate a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) per [**[R141]**](#r141).
 
 [[R149]](#r149) Testability: 
 
 Preconditions:
 
-* A BPI Subject with the authority to update the State Synchronization and Advancement Predicate (Predicate) exists within the BPI.
-* A Predicate that requires an update is available.
-* The BPI system is configured to allow updates to Predicates.
+* A BPI Subject with the authority to update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) (Predicate) exists within the BPI.
+* A [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update is available.
+* The BPI system is configured to allow updates to [Predicates](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Identify and select a Predicate that requires an update. Prepare the input data for the "Update State Synchronization and Advancement Predicate" operation in a format that conforms to the requirements [R141].
-2. Initiate the "Update State Synchronization and Advancement Predicate" operation for the selected Predicate with the prepared input data. Then, monitor and record the BPI system's response to the update request.
-3. Repeat the test for multiple Predicates, if applicable, to ensure all updates conform to the specified requirements.
+1. Identify and select a [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update. Prepare the input data for the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation in a format that conforms to the requirements [R141].
+2. Initiate the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation for the selected [Predicate](#5542-bi--or-multi-directional-bpi-services) with the prepared input data. Then, monitor and record the BPI system's response to the update request.
+3. Repeat the test for multiple [Predicates](#5542-bi--or-multi-directional-bpi-services), if applicable, to ensure all updates conform to the specified requirements.
 
 Expected Results: 
 
-1. The input data enabels the BPI to generate a State Synchronization and Advancement Predicate that conforms to the requirements [R141].
-2. The BPI system accepts the "Update State Synchronization and Advancement Predicate" operation with the provided input data.
-3. The BPI system consistently generates Predicates that meet the specified requirements using different sets of input data and accepts the update request when the input data adheres to the specified format and requirements.
+1. The input data enabels the BPI to generate a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that conforms to the requirements [R141].
+2. The BPI system accepts the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with the provided input data.
+3. The BPI system consistently generates [Predicates](#5542-bi--or-multi-directional-bpi-services) that meet the specified requirements using different sets of input data and accepts the update request when the input data adheres to the specified format and requirements.
 
 #### **[R150]** 
-An "Update State Synchronization and Advancement Predicate" operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+An "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation MUST satisfy the following conditions to be valid:
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* A State Synchronization and Advancement Predicate conformant with [**[R141]**](#r141).
+* A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
 
 [[R150]](#r150) Testability: 
 
 Preconditions:
 
-* A BPI Subject with the authority to update the State Synchronization and Advancement Predicate (Predicate) exists within the BPI.
-* A Predicate that requires an update is available.
-* The BPI system is configured to allow updates to Predicates.
+* A BPI Subject with the authority to update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) (Predicate) exists within the BPI.
+* A [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update is available.
+* The BPI system is configured to allow updates to [Predicates](#5542-bi--or-multi-directional-bpi-services).
 * The digital signature key pair of the invoking BPI Subject is available and appropriately managed.
 
 Test Steps:
 
-1. Initiate a "Update State Synchronization and Advancement Predicate" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a Predicate conformant with [**[R141]**](#r141).
-2. Initiate a "Update State Synchronization and Advancement Predicate" operation with an invalid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a Predicate conformant with [**[R141]**](#r141).
-3. Initiate a "Update State Synchronization and Advancement Predicate" operation with a valid digital signature, a public key that is not cryptographically tied to the unique identifier of the invoking BPI Subject, and a Predicate conformant with [**[R141]**](#r141).
-4. Initiate a "Update State Synchronization and Advancement Predicate" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a Predicate that is not conformant with [**[R141]**](#r141). 
+1. Initiate a "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+2. Initiate a "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with an invalid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+3. Initiate a "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is not cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+4. Initiate a "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) that is not conformant with [**[R141]**](#r141). 
 
 Expected Results: 
 
-1. The "Update State Synchronization and Advancement Predicate" operation successfully executes.
-2. The "Update State Synchronization and Advancement Predicate" operation fails.
-3. The "Update State Synchronization and Advancement Predicate" operation fails.
-4. The "Update State Synchronization and Advancement Predicate" operation fails.
+1. The "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation successfully executes.
+2. The "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+3. The "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+4. The "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
 
-**Launch IVSM**
+**Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)**
 
-As mentioned above, the IVSM represents an implementation of the State Synchronization and Advancement Predicate.
-To properly implement an IVSM, the standard defines the following requirements.
+As mentioned above, the [IVSM](#5542-bi--or-multi-directional-bpi-services) represents an implementation of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
+To properly implement an [IVSM](#5542-bi--or-multi-directional-bpi-services), the standard defines the following requirements.
 
 #### **[R151]** 
-The "Launch IVSM" operation a BPI invokes [MUST](#rfc2119) contain the following elements:
-* A unique identifier for the IVSM
+The "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST contain the following elements:
+* A unique identifier for the [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the BPI Subject within the context of the originating BPI invoking the operation
 * A creation date
-* A State Synchronization and Advancement Predicate
-* A list of BPI Subject unique identifiers authorized to invoke the IVSM operations.
+* A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* A list of BPI Subject unique identifiers authorized to invoke the [IVSM](#5542-bi--or-multi-directional-bpi-services) operations.
 * A digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation
 
 [[R151]](#r151) Testability: 
@@ -5276,76 +5276,76 @@ The "Launch IVSM" operation a BPI invokes [MUST](#rfc2119) contain the following
 Preconditions:
 
 * The Baseline Protocol Implementation (BPI) system is properly configured and operational.
-* The BPI Subject invoking the "Launch IVSM" operation has the necessary permissions and authentication.
-* IVSM-related configurations are properly set up within the BPI.
+* The BPI Subject invoking the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation has the necessary permissions and authentication.
+* [IVSM](#5542-bi--or-multi-directional-bpi-services)-related configurations are properly set up within the BPI.
 
 Test Steps:
 
-1. Initiate the "Launch IVSM" operation with a unique identifier for the IVSM, the unique identifier of the invoking BPI Subject, a creation date, a State Synchronization and Advancement Predicate, a list of BPI Subject unique identifiers authorized to invoke the IVSM operations, a digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation. 
-2. Attempt to initiate the "Launch IVSM" operation with any of the elements from step one missing. 
+1. Initiate the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a unique identifier for the [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, a creation date, a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services), a list of BPI Subject unique identifiers authorized to invoke the [IVSM](#5542-bi--or-multi-directional-bpi-services) operations, a digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation. 
+2. Attempt to initiate the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with any of the elements from step one missing. 
 
 Expected Results: 
 
-1. The "Launch IVSM" operation is successfully initiated. 
-2. The "Launch IVSM" operation's initiation fails. 
+1. The "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation is successfully initiated. 
+2. The "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation's initiation fails. 
 
 #### **[R152]** 
-A "Launch IVSM" operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+A "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation MUST satisfy the following conditions to be valid:
 * The BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The submitted State Synchronization and Advancement Predicate is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+* The submitted [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
 
 [[R152]](#r152) Testability: 
 
 Preconditions:
 
 * The Baseline Protocol Implementation (BPI) system is properly configured and operational.
-* The BPI Subject invoking the "Launch IVSM" operation has the necessary permissions and authentication.
-* IVSM-related configurations are properly set up within the BPI.
+* The BPI Subject invoking the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation has the necessary permissions and authentication.
+* [IVSM](#5542-bi--or-multi-directional-bpi-services)-related configurations are properly set up within the BPI.
 
 Test Steps:
 
-1. Execute the "Launch IVSM" operation from the BPI. Provide the required input parameters, including a unique identifier, BPI Subject identifier, creation date, State Synchronization and Advancement Predicate, and the list of authorized BPI Subject identifiers. Capture any response or acknowledgment from the BPI system.
-2. Retrieve information about the launched IVSM. 
-3. Verify that the digital signature associated with the IVSM is valid. Confirm that the digital signature is correctly tied to the public key associated with the BPI Subject invoking the operation.
-4. Confirm that the public key used in the digital signature is cryptographically tied to the unique identifier of the invoking BPI Subject. Ensure that the binding between the public key and the BPI Subject's unique identifier is accurately recorded for the launched IVSM.
-5. Confirm that the IVSM contains the specified State Synchronization and Advancement Predicate. Ensure that the Predicate is correctly associated with the launched IVSM and conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+1. Execute the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation from the BPI. Provide the required input parameters, including a unique identifier, BPI Subject identifier, creation date, [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services), and the list of authorized BPI Subject identifiers. Capture any response or acknowledgment from the BPI system.
+2. Retrieve information about the launched [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+3. Verify that the digital signature associated with the [IVSM](#5542-bi--or-multi-directional-bpi-services) is valid. Confirm that the digital signature is correctly tied to the public key associated with the BPI Subject invoking the operation.
+4. Confirm that the public key used in the digital signature is cryptographically tied to the unique identifier of the invoking BPI Subject. Ensure that the binding between the public key and the BPI Subject's unique identifier is accurately recorded for the launched [IVSM](#5542-bi--or-multi-directional-bpi-services).
+5. Confirm that the [IVSM](#5542-bi--or-multi-directional-bpi-services) contains the specified [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). Ensure that the [Predicate](#5542-bi--or-multi-directional-bpi-services) is correctly associated with the launched [IVSM](#5542-bi--or-multi-directional-bpi-services) and conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
 
 Expected Results: 
 
-1. "Launch IVSM" operation can be initiated successfully.
+1. "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation can be initiated successfully.
 2. Digital signature is valid and correctly tied to the BPI Subject's public key.
 3. Public key is cryptographically tied to the unique identifier of the invoking BPI Subject.
-4. State Synchronization and Advancement Predicate is correctly linked to the IVSM and conforms to [**[R140]**](#r140) - [**[R142]**](#r142).
+4. [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is correctly linked to the [IVSM](#5542-bi--or-multi-directional-bpi-services) and conforms to [**[R140]**](#r140) - [**[R142]**](#r142).
 
 #### **[R153]** 
-An IVSM [MUST](#rfc2119) implement a State Synchronization and Advancement Predicate conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST implement a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
 
 [[R153]](#r153) Testability: 
 
 Preconditions:
 
-* The IVSM is properly integrated and operational within the Baseline Protocol Implementation (BPI) system.
-* Appropriate configurations for State Synchronization and Advancement Predicate are set up.
-* The IVSM has been appropriately initialized and associated with a BPI Subject.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is properly integrated and operational within the Baseline Protocol Implementation (BPI) system.
+* Appropriate configurations for [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) are set up.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has been appropriately initialized and associated with a BPI Subject.
 
 Test Steps:
 
-1. Trigger an operation that involves the IVSM, such as initiating an IVSM process. Retrieve the State Synchronization and Advancement Predicate associated with the IVSM. Capture any response or acknowledgment from the BPI system.
-2. Inspect the retrieved State Synchronization and Advancement Predicate. Confirm that the Predicate contains all the required elements specified in [R140] - [R142].
-3. Examine the IVSM process execution that involves applying the State Synchronization and Advancement Predicate. Verify that the deterministic program specified in the Predicate is correctly executed. Confirm that the program's runtime environment is accurately configured, and the output objects are generated as expected.
-4. Confirm that the cryptographic prover system specified in the Predicate is employed during IVSM operations. Verify the correctness of cryptographic material used for verification. Validate that the joint state between participating BPIs and their storage is cryptographically verifiable.
+1. Trigger an operation that involves the [IVSM](#5542-bi--or-multi-directional-bpi-services), such as initiating an [IVSM](#5542-bi--or-multi-directional-bpi-services) process. Retrieve the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) associated with the [IVSM](#5542-bi--or-multi-directional-bpi-services). Capture any response or acknowledgment from the BPI system.
+2. Inspect the retrieved [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). Confirm that the [Predicate](#5542-bi--or-multi-directional-bpi-services) contains all the required elements specified in [R140] - [R142].
+3. Examine the [IVSM](#5542-bi--or-multi-directional-bpi-services) process execution that involves applying the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). Verify that the deterministic program specified in the [Predicate](#5542-bi--or-multi-directional-bpi-services) is correctly executed. Confirm that the program's runtime environment is accurately configured, and the output objects are generated as expected.
+4. Confirm that the cryptographic prover system specified in the [Predicate](#5542-bi--or-multi-directional-bpi-services) is employed during [IVSM](#5542-bi--or-multi-directional-bpi-services) operations. Verify the correctness of cryptographic material used for verification. Validate that the joint state between participating BPIs and their storage is cryptographically verifiable.
 Test Passing Criteria:
 
 Expected Results: 
 
-1. IVSM can be invoked successfully, and the State Synchronization and Advancement Predicate is retrievable.
-2. The Predicate contains all required elements specified in [R140] - [R142].
+1. [IVSM](#5542-bi--or-multi-directional-bpi-services) can be invoked successfully, and the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is retrievable.
+2. The [Predicate](#5542-bi--or-multi-directional-bpi-services) contains all required elements specified in [R140] - [R142].
 3. Deterministic program execution results in the correct generation of output objects.
 4. Cryptographic prover system is applied, and the joint state is cryptographically verifiable.
 
 #### **[R154]** 
-An IVSM [MUST](#rfc2119) implement the following BPI Interoperability operations that can be invoked by BPI Subjects conformant to the requirements of said operations:
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST implement the following BPI Interoperability operations that can be invoked by BPI Subjects conformant to the requirements of said operations:
 * Commit State
 * Add/Remove BPI Subject
 * Verify State
@@ -5355,42 +5355,42 @@ An IVSM [MUST](#rfc2119) implement the following BPI Interoperability operations
 * Finalize State
 * Exit BPI Interoperability
 
-*This represents the minimal set of operations required to synchronize or advance joint state objects by an IVSM.*
+*This represents the minimal set of operations required to synchronize or advance joint state objects by an [IVSM](#5542-bi--or-multi-directional-bpi-services).*
 
 [[R154]](#r154) Testability: 
 
 Preconditions:
-* The IVSM is deployed and operational.
-* BPI Subjects are registered and authorized to invoke IVSM operations.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is deployed and operational.
+* BPI Subjects are registered and authorized to invoke [IVSM](#5542-bi--or-multi-directional-bpi-services) operations.
 * Joint state objects are available for synchronization.
 
 Test Steps:
 
-1. Invoke the "Commit State" operation on the IVSM. Monitor the response from the system or any events triggered by the commit operation by checking for success messages, error messages, or events emitted by the smart contract on the blockchain. Query the IVSM for the current state or inspect relevant data structures or databases where the joint state is stored.
+1. Invoke the "Commit State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Monitor the response from the system or any events triggered by the commit operation by checking for success messages, error messages, or events emitted by the smart contract on the blockchain. Query the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the current state or inspect relevant data structures or databases where the joint state is stored.
 2. Add a new BPI Subject and remove an existing BPI Subject using the respective operations.
-3. Trigger the "Verify State" operation on the IVSM. Specify what constitutes a successful verification and what conditions would lead to a failed verification. Monitor the response from the IVSM or any events triggered by the "Verify State" operation by checking for success messages, error messages, or events emitted by the system indicating the outcome of the verification. 
-4. Execute the "Verify Lock Commitment" operation on the IVSM. Clearly define the conditions that make a lock commitment valid, including time constraints, cryptographic checks, or any other criteria specified by the implementation. Monitor the response from the IVSM or any events triggered by the "Verify Lock Commitment" operation. This might include success messages, error messages, or events indicating the outcome of the verification. Query the IVSM for the validity status of the lock commitment. If the IVSM provides detailed information about the validation result, inspect these details. Compare the actual validation results with the defined expected results. 
-5. Initiate the "Update State" operation on the IVSM. Clearly define the conditions that should lead to a successful update of the joint state, including the data format, authorization checks, or any other criteria specified by the implementation. Monitor the response from the IVSM or any events triggered by the "Update State" operation by checking for success messages, error messages, or events indicating the outcome of the update. Compare the actual state after the update with the defined expected results. 
-6. Attempt to update the state with incorrect or unauthorized information. Trigger the "Update State" operation on the IVSM with the intentionally invalid data. Clearly define the conditions under which the IVSM should reject the state update as invalid including criteria such as data validation checks, authorization constraints, or other business logic requirements. Monitor the response from the IVSM or any events triggered by the "Update State" operation, including error messages, failure notifications, or events indicating the rejection of the invalid state update. Compare the actual rejection status and messages with the defined expected results. 
-7. Execute the "Finalize State" operation on the IVSM. Monitor the response from the IVSM or any events triggered by the "Finalize State" operation including success messages, completion notifications, or events indicating the finalization of the current state.
-8. Invoke the "Exit BPI Interoperability" operation on the IVSM. Monitor the response from the IVSM or any events triggered by the "Exit BPI Interoperability" operation, including success messages, completion notifications, or events indicating the conclusion of the BPI Interoperability process.
+3. Trigger the "Verify State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Specify what constitutes a successful verification and what conditions would lead to a failed verification. Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Verify State" operation by checking for success messages, error messages, or events emitted by the system indicating the outcome of the verification. 
+4. Execute the "Verify Lock Commitment" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Clearly define the conditions that make a lock commitment valid, including time constraints, cryptographic checks, or any other criteria specified by the implementation. Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Verify Lock Commitment" operation. This might include success messages, error messages, or events indicating the outcome of the verification. Query the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the validity status of the lock commitment. If the [IVSM](#5542-bi--or-multi-directional-bpi-services) provides detailed information about the validation result, inspect these details. Compare the actual validation results with the defined expected results. 
+5. Initiate the "Update State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Clearly define the conditions that should lead to a successful update of the joint state, including the data format, authorization checks, or any other criteria specified by the implementation. Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Update State" operation by checking for success messages, error messages, or events indicating the outcome of the update. Compare the actual state after the update with the defined expected results. 
+6. Attempt to update the state with incorrect or unauthorized information. Trigger the "Update State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with the intentionally invalid data. Clearly define the conditions under which the [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the state update as invalid including criteria such as data validation checks, authorization constraints, or other business logic requirements. Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Update State" operation, including error messages, failure notifications, or events indicating the rejection of the invalid state update. Compare the actual rejection status and messages with the defined expected results. 
+7. Execute the "Finalize State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Finalize State" operation including success messages, completion notifications, or events indicating the finalization of the current state.
+8. Invoke the "Exit BPI Interoperability" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Exit BPI Interoperability" operation, including success messages, completion notifications, or events indicating the conclusion of the BPI Interoperability process.
 
 Expected Results:
 1. The commit operation is properly processed and the joint state is successfully upated.
-2. The IVSM updates the joint state to reflect the addition or removal of BPI Subjects.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) updates the joint state to reflect the addition or removal of BPI Subjects.
 3. The joint state is successfully verified, and the result is accurate.
-4. The lock commitment is valid, and the IVSM provides a positive verification result.
+4. The lock commitment is valid, and the [IVSM](#5542-bi--or-multi-directional-bpi-services) provides a positive verification result.
 5. The joint state is successfully updated.
-6. The IVSM correctly rejects the unauthorized state update.
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) correctly rejects the unauthorized state update.
 7. The state is successfully finalized.
-8. The IVSM successfully exits the BPI Interoperability.
+8. The [IVSM](#5542-bi--or-multi-directional-bpi-services) successfully exits the BPI Interoperability.
 
 #### **[R155]** 
-For BPI Interoperability, a valid "Launch IVSM" operation a BPI invokes [MUST](#rfc2119) 
-* Instantiate an operational IVSM conformant to [**[R153]**](#r153) and [**[R154]**](#r154)
-* Include the list of BPI Subjects as part of the target IVSM joint state object
-* Commit the initial state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the initial state on the CCSM together with its public input and verification key
-* Return a list of target IVSM endpoints as URIs for the operations listed in [**[R154]**](#r154)
+For BPI Interoperability, a valid "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST 
+* Instantiate an operational [IVSM](#5542-bi--or-multi-directional-bpi-services) conformant to [**[R153]**](#r153) and [**[R154]**](#r154)
+* Include the list of BPI Subjects as part of the target [IVSM](#5542-bi--or-multi-directional-bpi-services) joint state object
+* Commit the initial state of an [IVSM](#5542-bi--or-multi-directional-bpi-services) as a valid, succinct, and efficient zero-knowledge proof of correctness of the initial state on the CCSM together with its public input and verification key
+* Return a list of target [IVSM](#5542-bi--or-multi-directional-bpi-services) endpoints as URIs for the operations listed in [**[R154]**](#r154)
 * Return a cryptographically secured and masked secret for the invoking BPI Subject
 
 *In the context of this document, cryptographically secured and masked means that an attacker cannot unmask the secret without the cryptographic material used to secure and mask the secret, such as a cryptographic secret used in a key exchange protocol.*
@@ -5401,43 +5401,43 @@ Preconditions:
 
 * The BPI is deployed and operational.
 * BPI Subjects are registered and authorized to invoke BPI operations.
-* The IVSM is not currently launched.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is not currently launched.
 
 Test Steps:
 
-1. Trigger the "Launch IVSM" operation on the BPI.
+1. Trigger the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation on the BPI.
 
-2. Retrieve the status of the IVSM instantiation process.
+2. Retrieve the status of the [IVSM](#5542-bi--or-multi-directional-bpi-services) instantiation process.
 
-3. Examine the joint state object of the target IVSM.
+3. Examine the joint state object of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
-4. Retrieve information about the initial state of the IVSM. Select a well-established zero-knowledge proof system that suits your requirements. Clearly define the statement you want to prove without revealing the actual data. During the setup phase of the zero-knowledge proof system, generate public parameters, like a proving key and a verification key. Utilize the proving key and the private input (initial state data) to generate a zero-knowledge proof. Share the public input, the generated zero-knowledge proof, and the verification key. Submit the generated zero-knowledge proof along with the initial state information to the CCSM for commitment. Submit the initial state information to the CCSM for commitment. Inspect the storage or database where the CCSM stores committed states. 
+4. Retrieve information about the initial state of the [IVSM](#5542-bi--or-multi-directional-bpi-services). Select a well-established zero-knowledge proof system that suits your requirements. Clearly define the statement you want to prove without revealing the actual data. During the setup phase of the zero-knowledge proof system, generate public parameters, like a proving key and a verification key. Utilize the proving key and the private input (initial state data) to generate a zero-knowledge proof. Share the public input, the generated zero-knowledge proof, and the verification key. Submit the generated zero-knowledge proof along with the initial state information to the CCSM for commitment. Submit the initial state information to the CCSM for commitment. Inspect the storage or database where the CCSM stores committed states. 
 
-5. Retrieve the list of target IVSM endpoints returned by the "Launch IVSM" operation.
+5. Retrieve the list of target [IVSM](#5542-bi--or-multi-directional-bpi-services) endpoints returned by the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
 
 6. Retrieve the cryptographically secured and masked secret returned by the operation.
 
 Expected Results: 
 1. The operation is successfully initiated.
-2. The IVSM is operational and conforms to [R153] and [R154].
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) is operational and conforms to [R153] and [R154].
 3. The list of BPI Subjects is included in the joint state object.
 4. The commitment is valid, succinct, and efficiently proves the correctness of the initial state. The proof includes the public input and verification key.
 5. The list of endpoints is provided as URIs for the operations specified in [R154].
 6. The secret is cryptographically secured and masked, ensuring that an attacker cannot unmask it without the required cryptographic material.
 
 #### **[R156]** 
-The valid zero-knowledge proof of correctness of the initial joint state [MUST](#rfc2119) be publicly verifiable on the CCSM the IVSM utilizes. 
+The valid zero-knowledge proof of correctness of the initial joint state MUST be publicly verifiable on the CCSM the [IVSM](#5542-bi--or-multi-directional-bpi-services) utilizes. 
 
 [[R156]](#r156) Testability:
 
 Preconditions:
 
-* The IVSM has been successfully launched using the "Launch IVSM" operation.
-* The initial joint state of the IVSM has been committed with a zero-knowledge proof.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has been successfully launched using the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+* The initial joint state of the [IVSM](#5542-bi--or-multi-directional-bpi-services) has been committed with a zero-knowledge proof.
 
 Test Steps:
 
-1. Retrieve information about the initial state of the IVSM. Utilize the public input, private input (initial state), and verification key to generate a zero-knowledge proof for the initial state. 
+1. Retrieve information about the initial state of the [IVSM](#5542-bi--or-multi-directional-bpi-services). Utilize the public input, private input (initial state), and verification key to generate a zero-knowledge proof for the initial state. 
 2. Submit the generated zero-knowledge proof along with the public input and verification key to the CCSM for verification. Inspect the storage or database where the CCSM stores committed states.
 
 Expected Results: 
@@ -5445,61 +5445,61 @@ Expected Results:
 1. The information required for public verification is accessible.
 2. The CCSM provides confirmation or evidence that the zero-knowledge proof for the correctness of the initial joint state has been successfully verified.
 
-**Remove IVSM**
+**Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)**
 
-Once the IVSM has met the defined finalization criteria of the joint state it can be stopped, and removed, but not before.
+Once the [IVSM](#5542-bi--or-multi-directional-bpi-services) has met the defined finalization criteria of the joint state it can be stopped, and removed, but not before.
 
 #### **[R157]** 
-An IVSM [MUST NOT](#rfc2119) be stopped unless the finalization criteria of the joint state have been met.
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST NOT be stopped unless the finalization criteria of the joint state have been met.
 
 [[R157]](#r157) Testability:
 
 Preconditions:
-1. The IVSM is successfully instantiated and operational.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) is successfully instantiated and operational.
 2.  A zero-knowledge proof for the correctness of the initial joint state has been generated using the public input, private input, and verification key.
 
 Test Steps:
 
-1. Trigger the "Launch IVSM" operation on the BPI.
-2. Retrieve information about the initial joint state of the IVSM.
+1. Trigger the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation on the BPI.
+2. Retrieve information about the initial joint state of the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 3. Utilize the public input, private input (initial joint state), and verification key to generate a zero-knowledge proof for the correctness of the initial joint state.
 4. Submit the generated zero-knowledge proof along with the public input and verification key to the CCSM for verification.
 5. Inspect the storage or database where the CCSM stores committed states.
 
 Expected Results:
 
-1. The operation is successfully initiated, and the IVSM is instantiated.
+1. The operation is successfully initiated, and the [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated.
 2. Relevant information about the initial joint state is obtained, including data to be committed.
 3. The zero-knowledge proof is successfully generated.
 4. The CCSM processes the request without errors.
 5. The CCSM provides confirmation or evidence that the zero-knowledge proof for the correctness of the initial joint state has been successfully verified.
 
 #### **[R158]** 
-An IVSM [MUST NOT](#rfc2119) be able to be removed until all participants in the BPI Interoperability process have successfully invoked the "Exit BPI Interoperability" operation.
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST NOT be able to be removed until all participants in the BPI Interoperability process have successfully invoked the "Exit BPI Interoperability" operation.
 
 [[R158]](#r158) Testbility: 
 
 Preconditions:
 
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove IVSM" operation.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
 * The "Exit BPI Interoperability" operation has been invoked successfully by all participants.
 
 Test Steps:
 
-1. Invoke the "Remove IVSM" operation without all participants having successfully invoked the "Exit BPI Interoperability" operation.
-2. Invoke the "Exit BPI Interoperability" operation successfully for all participants, and then attempt the "Remove IVSM" operation.
-3. Try to perform operations on the IVSM after all participants have successfully exited BPI Interoperability and the IVSM has been removed.
+1. Invoke the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation without all participants having successfully invoked the "Exit BPI Interoperability" operation.
+2. Invoke the "Exit BPI Interoperability" operation successfully for all participants, and then attempt the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+3. Try to perform operations on the [IVSM](#5542-bi--or-multi-directional-bpi-services) after all participants have successfully exited BPI Interoperability and the [IVSM](#5542-bi--or-multi-directional-bpi-services) has been removed.
 
 Expected Results: 
 
-1. The IVSM rejects the removal operation, indicating that not all participants have exited BPI Interoperability.
-2. The IVSM accepts the removal operation, as all participants have successfully exited BPI Interoperability.
-3. All operations on the removed IVSM are rejected or result in errors.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the removal operation, indicating that not all participants have exited BPI Interoperability.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the removal operation, as all participants have successfully exited BPI Interoperability.
+3. All operations on the removed [IVSM](#5542-bi--or-multi-directional-bpi-services) are rejected or result in errors.
 
 #### **[R159]** 
-A "Remove IVSM" operation a BPI invokes [MUST](#rfc2119) contain the following properties:
-* The unique identifier for the target IVSM
+A "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST contain the following properties:
+* The unique identifier for the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * A digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation
 * The cryptographically secured and masked secret of the invoking BPI Subject  
@@ -5507,93 +5507,93 @@ A "Remove IVSM" operation a BPI invokes [MUST](#rfc2119) contain the following p
 [[R159]](#r159) Testability: 
 
 Preconditions:
-* The IVSM is instantiated and operational.
-* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove IVSM" operation.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
 
 Test Steps:
 
-1. Trigger the "Remove IVSM" operation with the required properties, including the target IVSM identifier, invoking BPI Subject identifier, digital signature, and cryptographically secured masked secret.
-2. Trigger the "Remove IVSM" operation with all properties except the target IVSM identifier.
-3. Trigger the "Remove IVSM" operation with all properties except the invoking BPI Subject identifier.
-4. Trigger the "Remove IVSM" operation with all properties except the digital signature.
-5. Trigger the "Remove IVSM" operation with all properties except the cryptographically secured masked secret.
-6. Try to invoke the "Remove IVSM" operation with an unauthorized BPI Subject.
-7. Use the retrieved public key to verify the digital signature over the content of the "Remove IVSM" operation.
+1. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with the required properties, including the target [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier, invoking BPI Subject identifier, digital signature, and cryptographically secured masked secret.
+2. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with all properties except the target [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier.
+3. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with all properties except the invoking BPI Subject identifier.
+4. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with all properties except the digital signature.
+5. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with all properties except the cryptographically secured masked secret.
+6. Try to invoke the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with an unauthorized BPI Subject.
+7. Use the retrieved public key to verify the digital signature over the content of the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
 
 Expected Results: 
 
-1. The IVSM processes the removal operation successfully.
-2. The IVSM should reject the removal operation, indicating that the target IVSM identifier is required.
-3. The IVSM should reject the removal operation, indicating that the invoking BPI Subject identifier is required.
-4. The IVSM should reject the removal operation, indicating that the digital signature is required.
-5. The IVSM should reject the removal operation, indicating that the cryptographically secured masked secret is required.
-6. The IVSM should reject the unauthorized removal operation.
-7. The IVSM successfully verifies the digital signature.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the removal operation successfully.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the removal operation, indicating that the target [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier is required.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the removal operation, indicating that the invoking BPI Subject identifier is required.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the removal operation, indicating that the digital signature is required.
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the removal operation, indicating that the cryptographically secured masked secret is required.
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the unauthorized removal operation.
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) successfully verifies the digital signature.
 
 #### **[R160]** 
-A "Remove IVSM" operation [MUST](#rfc2119) satisfy the following conditions to be valid:
-* The provided IVSM identifier matches the identifier of the target IVSM
+A "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation MUST satisfy the following conditions to be valid:
+* The provided [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier matches the identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The invoking BPI Subject must be an authorized BPI Subject for the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject  
+* The invoking BPI Subject must be an authorized BPI Subject for the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject  
 
 [[R160]](#r160) Testability: 
 
 Preconditions:
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove IVSM" operation.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
 
 Test Steps:
 
-1. Trigger the "Remove IVSM" operation with a valid IVSM identifier that matches the identifier of the target IVSM.
-2. Trigger the "Remove IVSM" operation with an IVSM identifier that does not match the identifier of the target IVSM.
-3. Trigger the "Remove IVSM" operation with a valid IVSM identifier but an invalid digital signature.
-4. Trigger the "Remove IVSM" operation with a valid IVSM identifier and a valid digital signature, but the public key is not cryptographically tied to the unique identifier of the invoking BPI Subject.
-5. Trigger the "Remove IVSM" operation with a valid IVSM identifier, a valid digital signature, and a tied public key, but from an unauthorized BPI Subject.
-6. Trigger the "Remove IVSM" operation with a valid IVSM identifier, a valid digital signature, a tied public key, and an authorized BPI Subject, but with a cryptographically secured and masked secret that does not match the one stored in the target IVSM.
+1. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier that matches the identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+2. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with an [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier that does not match the identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+3. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier but an invalid digital signature.
+4. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier and a valid digital signature, but the public key is not cryptographically tied to the unique identifier of the invoking BPI Subject.
+5. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier, a valid digital signature, and a tied public key, but from an unauthorized BPI Subject.
+6. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier, a valid digital signature, a tied public key, and an authorized BPI Subject, but with a cryptographically secured and masked secret that does not match the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Expected Results: 
-1. The IVSM accepts the operation.
-2. The IVSM should reject the operation, indicating a mismatch in identifiers.
-3. The IVSM should reject the operation, indicating that the digital signature is not valid.
-4. The IVSM should reject the operation, indicating that the public key is not correctly tied to the BPI Subject's identifier.
-5. The IVSM should reject the operation, indicating that the invoking BPI Subject is not authorized for the target IVSM.
-6. The IVSM should reject the operation, indicating a mismatch in the secured and masked secret.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating a mismatch in identifiers.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the digital signature is not valid.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the public key is not correctly tied to the BPI Subject's identifier.
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the invoking BPI Subject is not authorized for the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating a mismatch in the secured and masked secret.
 
 #### **[R161]** 
-For BPI Interoperability, a valid "Remove IVSM" operation that a BPI invokes [MUST](#rfc2119) remove the IVSM as identified by its unique identifier and conformant to [**[R157]**](#r157) and [**[R158]**](#r158).
+For BPI Interoperability, a valid "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation that a BPI invokes MUST remove the [IVSM](#5542-bi--or-multi-directional-bpi-services) as identified by its unique identifier and conformant to [**[R157]**](#r157) and [**[R158]**](#r158).
 
 [[R161]](#r161) Testability: 
 
 Preconditions:
 
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove IVSM" operation.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
 
 Test Steps:
 
-1. Trigger the "Remove IVSM" operation with the valid unique identifier of the target IVSM.
-2. Trigger the "Remove IVSM" operation with an invalid or non-existent unique identifier.
-3. Try to invoke the "Remove IVSM" operation without proper authorization.
-4. Verify that the IVSM removal is conformant to the requirements specified in [R157] and [R158] by following the tests listed in those testability statements.
-5. Examine the system state after the "Remove IVSM" operation.
+1. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with the valid unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+2. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with an invalid or non-existent unique identifier.
+3. Try to invoke the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation without proper authorization.
+4. Verify that the [IVSM](#5542-bi--or-multi-directional-bpi-services) removal is conformant to the requirements specified in [R157] and [R158] by following the tests listed in those testability statements.
+5. Examine the system state after the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
 
 Expected Results:
 
-1. The IVSM is successfully removed, and the system state reflects the removal.
-2. The IVSM should reject the operation, indicating that the provided unique identifier does not match any existing IVSM.
-3. The IVSM should reject the unauthorized removal attempt.
-4. The IVSM removal adheres to the criteria outlined in [R157] and [R158].
-5. The IVSM is no longer present or operational, and the system state accurately reflects the removal.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) is successfully removed, and the system state reflects the removal.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the provided unique identifier does not match any existing [IVSM](#5542-bi--or-multi-directional-bpi-services).
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the unauthorized removal attempt.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) removal adheres to the criteria outlined in [R157] and [R158].
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) is no longer present or operational, and the system state accurately reflects the removal.
 
 **Commit State**
 
-Once an IVSM is instantiated, a BPI Subject can commit a BPI Interoperability state object to the IVSM through the "Commit State" operation to start or contribute to the BPI Interoperability state and process.
+Once an [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated, a BPI Subject can commit a BPI Interoperability state object to the [IVSM](#5542-bi--or-multi-directional-bpi-services) through the "Commit State" operation to start or contribute to the BPI Interoperability state and process.
 
 #### **[R162]** 
-A BPI Interoperability state object utilized in the "Commit State" operation to the IVSM [MUST](#rfc2119) have the following properties:
-* The unique identifier for the State Synchronization and Advancement Predicate of the state to be committed is based on
+A BPI Interoperability state object utilized in the "Commit State" operation to the [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST have the following properties:
+* The unique identifier for the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the state to be committed is based on
 * The unique identifier of the BPI Subject within the context of the originating BPI who commits the state
 * The cryptographically secured and masked secret of the invoking BPI Subject
 * A creation date
@@ -5614,14 +5614,14 @@ A BPI Interoperability state object utilized in the "Commit State" operation to 
 
 Preconditions:
 
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
 * BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Commit State" operation.
 
 Test Steps:
 
 1. Trigger the "Commit State" operation with a BPI Interoperability state object that includes all the required properties specified in [R162].
 2. Trigger the "Commit State" operation with a state object missing one or more properties specified in [R162].
-3. Check the unique identifier for the State Synchronization and Advancement Predicate of the state object.
+3. Check the unique identifier for the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the state object.
 4. Check the unique identifier of the BPI Subject committing the state.
 5. Check for the cryptographically secured and masked secret of the invoking BPI Subject.
 6. Check that the creation date of the state object is correctly set.
@@ -5632,8 +5632,8 @@ Test Steps:
 
 Expected Results: 
 
-1. The IVSM processes the operation, and the state object is successfully committed.
-2. The IVSM should reject the operation, indicating that the state object is incomplete.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the state object is successfully committed.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the state object is incomplete.
 3. The unique identifier is present and matches the expected value.
 4. The unique identifier is present and matches the expected value.
 5. The secured and masked secret is present and matches the expected value.
@@ -5643,86 +5643,86 @@ Expected Results:
 9. All necessary properties for the lock commitment are present and correct.
 10. The digital signature is present and matches the expected value.
 11. The "Commit State" operation is accepted and processed successfully with a state object that includes all the required properties specified.
-12. The IVSM rejects the operation if the state object is missing one or more properties specified in [R162].
+12. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation if the state object is missing one or more properties specified in [R162].
 
 #### **[R163]** 
-An IVSM processing a "Commit State" operation [MUST](#rfc2119) satisfy the following conditions to be valid:
-* The submitted state object is conformant with the defined State Synchronization and Advancement Predicate.
-* The submitted predicate unique identifier matches the predicate identifier the IVSM is based on.
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) processing a "Commit State" operation MUST satisfy the following conditions to be valid:
+* The submitted state object is conformant with the defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
+* The submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier matches the [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier the [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on.
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The digital signature over the state content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject 
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject 
 
 [[R163]](#r163) Testability: 
 
 Preconditions:
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
 * BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Commit State" operation.
 
 Test Steps:
-1. Trigger the "Commit State" operation with a state object that conforms to the defined State Synchronization and Advancement Predicate.
-2. Trigger the "Commit State" operation with a state object that does not conform to the defined State Synchronization and Advancement Predicate.
-3. Check the unique identifier of the submitted predicate and the predicate identifier that the IVSM is based on.
-4. Look for the unique identifier of the invoking BPI Subject in the list of authorized BPI Subjects on the target IVSM.
+1. Trigger the "Commit State" operation with a state object that conforms to the defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
+2. Trigger the "Commit State" operation with a state object that does not conform to the defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
+3. Check the unique identifier of the submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) and the [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier that the [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on.
+4. Look for the unique identifier of the invoking BPI Subject in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
 5. Confirm that the digital signature over the state content is valid.
 6. Confirm that the public key used in the digital signature is cryptographically tied to the unique identifier of the invoking BPI Subject.
-7. Check the cryptographically secured and masked secret supplied by the invoking BPI Subject and the one stored in the IVSM for that BPI Subject.
+7. Check the cryptographically secured and masked secret supplied by the invoking BPI Subject and the one stored in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject.
 8. Trigger the "Commit State" operation with a valid state object but an invalid digital signature.
-9. Trigger the "Commit State" operation with a valid state object and valid digital signature but with a cryptographically secured and masked secret that does not match the one stored in the IVSM for that BPI Subject.
+9. Trigger the "Commit State" operation with a valid state object and valid digital signature but with a cryptographically secured and masked secret that does not match the one stored in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject.
 
 Expected Results: 
 
-1. The IVSM accepts the operation.
-2. The IVSM should reject the operation, indicating that the state object does not meet the predicate requirements.
-3. The unique identifier matches, indicating consistency between the submitted state and the IVSM's predicate.
-4. The invoking BPI Subject is authorized, and the IVSM accepts the operation.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the state object does not meet the [Predicate](#5542-bi--or-multi-directional-bpi-services) requirements.
+3. The unique identifier matches, indicating consistency between the submitted state and the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s [Predicate](#5542-bi--or-multi-directional-bpi-services).
+4. The invoking BPI Subject is authorized, and the [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation.
 5. The digital signature is valid, indicating the authenticity and integrity of the submitted state.
 6. The public key is correctly tied to the BPI Subject's identifier.
 7. The secured and masked secret matches, indicating consistency between the supplied and stored secrets.
-8. The IVSM should reject the operation, indicating that the digital signature is not valid.
-9. The IVSM should reject the operation, indicating a mismatch in the secured and masked secret.
+8. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the digital signature is not valid.
+9. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating a mismatch in the secured and masked secret.
 
 #### **[R164]** 
-For BPI Interoperability, a valid "Commit State" operation a BPI invokes [MUST](#rfc2119) 
-* Update the joint state object in its state storage according to the rules of the State Synchronization and Advancement Predicate
-* Commit the new state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the new state on the CCSM together with its public input and verification key
-* Send that cryptographic proof of correctness of the new state on the IVSM to the invoking BPI Subject
+For BPI Interoperability, a valid "Commit State" operation a BPI invokes MUST 
+* Update the joint state object in its state storage according to the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* Commit the new state of an [IVSM](#5542-bi--or-multi-directional-bpi-services) as a valid, succinct, and efficient zero-knowledge proof of correctness of the new state on the CCSM together with its public input and verification key
+* Send that cryptographic proof of correctness of the new state on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to the invoking BPI Subject
 
 [[R164]](#r164) Testability:
 
 Preconditions:
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
 * BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Commit State" operation.
 
 Test Steps:
 
 1. Trigger the "Commit State" operation with a valid state object.
-2. Check the IVSM's state storage for the joint state object.
-3. Check the commitment of the new state of the IVSM on the CCSM. 
-4. Send the cryptographic proof of correctness of the new state on the IVSM to the invoking BPI. 
-5. Trigger the "Commit State" operation without updating the joint state object in the IVSM's state storage.
+2. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage for the joint state object.
+3. Check the commitment of the new state of the [IVSM](#5542-bi--or-multi-directional-bpi-services) on the CCSM. 
+4. Send the cryptographic proof of correctness of the new state on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to the invoking BPI. 
+5. Trigger the "Commit State" operation without updating the joint state object in the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage.
 6. Trigger the "Commit State" operation without committing the new state as a zero-knowledge proof on the CCSM.
 7. Trigger the "Commit State" operation without sending the cryptographic proof to the invoking BPI Subject.
 
 Expected Results: 
 
-1. The IVSM accepts the operation.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation.
 2. The joint state object is successfully updated.
 3. The commitment is a valid, succinct, and efficient zero-knowledge proof of correctness on the CCSM, including its public input and verification key.
-4. The invoking BPI Subject receives the cryptographic proof of correctness of the new state on the IVSM.
-5. The IVSM should reject the operation, indicating that the joint state object was not updated.
-6. The IVSM should reject the operation, indicating that the proof of correctness was not committed.
-7. The IVSM should reject the operation, indicating that the proof was not sent to the BPI Subject.
+4. The invoking BPI Subject receives the cryptographic proof of correctness of the new state on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the joint state object was not updated.
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the proof of correctness was not committed.
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the proof was not sent to the BPI Subject.
 
 #### **[R165]** 
-The valid zero-knowledge proof of correctness of the new joint state [MUST](#rfc2119) be publicly verifiable on the CCSM upon which the IVSM was instantiated.
+The valid zero-knowledge proof of correctness of the new joint state MUST be publicly verifiable on the CCSM upon which the [IVSM](#5542-bi--or-multi-directional-bpi-services) was instantiated.
 
 [[R165]](#r165) Testability:
 
 Preconditions:
 
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
 * A new joint state has been committed on the CCSM (Consensus Controlled State Machine) with a valid zero-knowledge proof.
 
 Test Steps:
@@ -5741,82 +5741,82 @@ Expected Results:
 
 **Invite Participants to BPI Interoperability Process**
 
-Once an IVSM has been launched, the initiating BPI Subject can invite the initially specified, authorized BPI Subject from other BPIs.
+Once an [IVSM](#5542-bi--or-multi-directional-bpi-services) has been launched, the initiating BPI Subject can invite the initially specified, authorized BPI Subject from other BPIs.
 
 #### **[R166]** 
-A "Invite Participants to BPI Interoperability Process" operation [MUST](#rfc2119) have the following properties:
+A "Invite Participants to BPI Interoperability Process" operation MUST have the following properties:
 * A unique message number
 * The unique identifier of the inviting BPI Subject
-* The State Synchronization and Advancement Predicate utilized in the IVSM for which the invitation was issued.
+* The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) utilized in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for which the invitation was issued.
 * A URI to accept or reject the invitation
-* An object containing all of the target IVSM's endpoints as URIs
+* An object containing all of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s endpoints as URIs
 * A digital signature of the inviting BPI Subject over the content of the invitation
 
 [[R166]](#r166) Testability: 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
 * The inviting BPI Subject is registered and authorized to perform the invitation.
-* The IVSM has a State Synchronization and Advancement Predicate configured.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) configured.
 
 Test Steps:
 
 1. The inviting BPI Subject initiates the "Invite Participants to BPI Interoperability Process" operation.
 2. Check the invitation's message number.
 3. Check the invitation for the unique identifier of the inviting BPI Subject.
-4. Check the invitation for the State Synchronization and Advancement Predicate utilized in the IVSM.
+4. Check the invitation for the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) utilized in the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 5. Check for a URI in the invitation for accepting or rejecting the invitation.
-6. Check that the invitation includes an object containing all of the target IVSM's endpoints as URIs.
+6. Check that the invitation includes an object containing all of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s endpoints as URIs.
 7. Use the public key associated with the inviting BPI subject verify the digital signature over the content of the invitation.
 
 Expected Results: 
 1. The invitation process is initiated.
 2. The invitation contains a unique and non-repeating message number.
 3. The identifier of the inviting BPI Subject is accurately included.
-4. The correct State Predicate is specified in the invitation.
+4. The correct State [Predicate](#5542-bi--or-multi-directional-bpi-services) is specified in the invitation.
 5. A valid URI is provided for participants to respond to the invitation.
-6. The URIs of the target IVSM's endpoints are accurately specified.
+6. The URIs of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s endpoints are accurately specified.
 7. The digital signature is valid, confirming the authenticity of the invitation.
 
 #### **[R167]** 
-A "Invite Participants to BPI Interoperability Process" operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+A "Invite Participants to BPI Interoperability Process" operation MUST satisfy the following conditions to be valid:
 * The digital signature over the invitation content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The submitted State Synchronization and Advancement Predicate is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+* The submitted [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
 
 [[R167]](#r167) Testability: 
 
 Preconditions:
 
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
 * BPI (Baseline Protocol Implementation) Subjects are registered and authorized to participate in the BPI Interoperability process.
 Test Steps:
 
 1. Trigger the "Invite Participants to BPI Interoperability Process" operation with a valid digital signature.
 2. Trigger the "Invite Participants" operation with an invalid digital signature.
 3. Trigger the "Invite Participants" operation with a digital signature whose public key is not cryptographically tied to the unique identifier of the invoking BPI Subject.
-4. Trigger the "Invite Participants" operation with a State Synchronization and Advancement Predicate that is conformant to [R140] - [R142].
-5. Trigger the "Invite Participants" operation with a State Synchronization and Advancement Predicate that does not conform to [R140] - [R142].
+4. Trigger the "Invite Participants" operation with a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that is conformant to [R140] - [R142].
+5. Trigger the "Invite Participants" operation with a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that does not conform to [R140] - [R142].
 6. Trigger the "Invite Participants" operation without including a digital signature.
-7. Trigger the "Invite Participants" operation without including a State Synchronization and Advancement Predicate.
+7. Trigger the "Invite Participants" operation without including a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
 
 Expected Results: 
 
-1. The IVSM accepts the operation as valid.
-2. The IVSM rejects the operation, indicating that the digital signature is not valid.
-3. The IVSM rejects the operation, indicating that the digital signature's public key is not tied to the BPI Subject.
-4. The IVSM accepts the operation as valid.
-5. The IVSM rejects the operation, indicating that the submitted predicate is not conformant.
-6. The IVSM rejects the operation, indicating that a valid digital signature is required.
-7. The IVSM rejects the operation, indicating that a conformant predicate is required.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation as valid.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the digital signature is not valid.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the digital signature's public key is not tied to the BPI Subject.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation as valid.
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) is not conformant.
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that a valid digital signature is required.
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that a conformant [Predicate](#5542-bi--or-multi-directional-bpi-services) is required.
 
 **Accept/Reject Invite**
 
 To accept or reject an invitation, a BPI Subject must invoke the endpoint provided by the invitation operation.
 
 #### **[R168]** 
-A "Accept/Reject Invite" operation [MUST](#rfc2119) have the following properties:
-* The unique identifier of the target IVSM
+A "Accept/Reject Invite" operation MUST have the following properties:
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invited BPI Subject
 * An accept or reject value
 * The digital signature over the content of the operation
@@ -5825,47 +5825,47 @@ A "Accept/Reject Invite" operation [MUST](#rfc2119) have the following propertie
 
 Preconditions:
 
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
 * BPI (Baseline Protocol Implementation) Subjects are registered and authorized to participate in the BPI Interoperability process.
 * An invitation has been issued, and the BPI Subject has received the invitation.
 Test Steps:
 
 1. Trigger the "Accept/Reject Invite" operation with the accept value.
 2. Trigger the "Accept/Reject Invite" operation with the reject value.
-3. Confirm that the "Accept/Reject Invite" operation includes the unique identifier of the target IVSM.
+3. Confirm that the "Accept/Reject Invite" operation includes the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
 4. Confirm that the "Accept/Reject Invite" operation includes the unique identifier of the invited BPI Subject.
 5. Confirm that the "Accept/Reject Invite" operation includes the accept or reject value.
 6. Confirm that the "Accept/Reject Invite" operation includes the digital signature over the content.
-7. Trigger the "Accept/Reject Invite" operation without including the unique identifier of the target IVSM.
+7. Trigger the "Accept/Reject Invite" operation without including the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
 8. Trigger the "Accept/Reject Invite" operation without including the unique identifier of the invited BPI Subject.
 9. Trigger the "Accept/Reject Invite" operation without including the accept or reject value.
 10. Trigger the "Accept/Reject Invite" operation without including the digital signature.
 
 Expected Results: 
 
-1. The IVSM processes the operation, and the BPI Subject is accepted to participate in the BPI Interoperability process.
-2. The IVSM processes the operation, and the invitation is rejected. The BPI Subject is not added to the BPI Interoperability process.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the BPI Subject is accepted to participate in the BPI Interoperability process.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the invitation is rejected. The BPI Subject is not added to the BPI Interoperability process.
 3. The identifier is present and correct.
 4. The identifier is present and correct.
 5. The value is present and correct, indicating whether the invitation is accepted or rejected.
 6. The digital signature is present and can be verified with the BPI Subject's public key.
-7. The IVSM rejects the operation, indicating that the identifier is required.
-8. The IVSM rejects the operation, indicating that the identifier is required.
-9. The IVSM rejects the operation, indicating that the value is required.
-10. The IVSM rejects the operation, indicating that a valid digital signature is required.
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the identifier is required.
+8. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the identifier is required.
+9. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the value is required.
+10. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that a valid digital signature is required.
 
 #### **[R169]** 
-A "Accept/Reject Invite" operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+A "Accept/Reject Invite" operation MUST satisfy the following conditions to be valid:
 * The digital signature over the invitation content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
-* The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The unique [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier provided by the invoking BPI Subject matches the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 
 [[R169]](#r169) Testability: 
 
 Preconditions:
 
-* The IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
 * BPI (Baseline Protocol Implementation) Subjects are registered and authorized to participate in the BPI Interoperability process.
 * An invitation has been issued, and the BPI Subject has received the invitation.
 
@@ -5875,85 +5875,85 @@ Test Steps:
 2. Trigger the "Accept/Reject Invite" operation (reject) with an invalid digital signature.
 3. Use a digital signature-verification function in a cryptographic library with the digital signature, the public key, and the invite content as inputs. 
 4. Confirm that the "Accept/Reject Invite" operation includes a digital signature whose public key is cryptographically tied to the unique identifier of the invoking BPI Subject.
-5. Check the content of the invitation for the unique identifier of the invoking BPI subject. Then, look for this identifier in the list of authorized BPI Subjects on the IVSM. 
-6. Check the IVSM identifier provided by the invoking BPI Subject and the identifier of the target IVSM. 
+5. Check the content of the invitation for the unique identifier of the invoking BPI subject. Then, look for this identifier in the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+6. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier provided by the invoking BPI Subject and the identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 7. Trigger the "Accept/Reject Invite" operation with an invalid digital signature.
-8. Trigger the "Accept/Reject Invite" operation with a BPI Subject identifier that is not in the list of authorized BPI Subjects on the IVSM.
-9. Trigger the "Accept/Reject Invite" operation with a unique IVSM identifier that does not match the unique identifier of the target IVSM.
+8. Trigger the "Accept/Reject Invite" operation with a BPI Subject identifier that is not in the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+9. Trigger the "Accept/Reject Invite" operation with a unique [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier that does not match the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Expected Results:
 
-1. The IVSM processes the operation, and the BPI Subject is accepted to participate in the BPI Interoperability process.
-2. The IVSM processes the operation, and the invitation is rejected. The BPI Subject is not added to the BPI Interoperability process.
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the BPI Subject is accepted to participate in the BPI Interoperability process.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the invitation is rejected. The BPI Subject is not added to the BPI Interoperability process.
 3. The digital signature can be verified with the BPI Subject's public key.
 4. The public key is present and tied to the BPI Subject's unique identifier.
 5. The identifier is present and authorized.
-6. The identifiers match, indicating that the acceptance or rejection is for the correct IVSM.
-7. The IVSM rejects the operation, indicating that the digital signature is not valid.
-8. The IVSM rejects the operation, indicating that the BPI Subject is not authorized.
-9. The IVSM rejects the operation, indicating that the identifiers do not match.
+6. The identifiers match, indicating that the acceptance or rejection is for the correct [IVSM](#5542-bi--or-multi-directional-bpi-services).
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the digital signature is not valid.
+8. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the BPI Subject is not authorized.
+9. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the identifiers do not match.
 
 #### **[R170]** 
-For BPI Interoperability, a valid "Accept/Reject Invite" operation a BPI invokes [MUST](#rfc2119) return from the IVSM a cryptographically secured and masked secret for the accepting BPI Subject if the invitation is accepted and no value if the invitation is rejected.
+For BPI Interoperability, a valid "Accept/Reject Invite" operation a BPI invokes MUST return from the [IVSM](#5542-bi--or-multi-directional-bpi-services) a cryptographically secured and masked secret for the accepting BPI Subject if the invitation is accepted and no value if the invitation is rejected.
 
 [[R170]](#r170) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
 * The "Accept/Reject Invite" operation is initiated by the inviting BPI Subject.
 * The invitation has been sent, and the accepting BPI Subject is ready to respond.
 
 Test Steps:
 
 1. The accepting BPI Subject invokes the "Accept/Reject Invite" operation with the acceptance flag.
-2. Check the return value from the IVSM after accepting the invitation.
+2. Check the return value from the [IVSM](#5542-bi--or-multi-directional-bpi-services) after accepting the invitation.
 3. The accepting BPI Subject invokes the "Accept/Reject Invite" operation with the rejection flag.
-4. Check the return value from the IVSM after rejecting the invitation.
+4. Check the return value from the [IVSM](#5542-bi--or-multi-directional-bpi-services) after rejecting the invitation.
 
 Expected Results:
 
 1. The invitation is accepted.
-2. The IVSM returns a cryptographically secured and masked secret for the accepting BPI Subject.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) returns a cryptographically secured and masked secret for the accepting BPI Subject.
 3. The invitation is rejected.
-4. The IVSM returns no value.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) returns no value.
 
 **Add/Remove BPI Subject**
 
-Adding to and removing from an IVSM one or more BPI Subjects is expected to be a typical operation given that, for example, joint state finalization requirements may change during processing requiring BPI Subjects to be added or removed. Given that this is a sensitive business operation concerning, in particular, audits, care has to be taken to ensure proper controls. 
+Adding to and removing from an [IVSM](#5542-bi--or-multi-directional-bpi-services) one or more BPI Subjects is expected to be a typical operation given that, for example, joint state finalization requirements may change during processing requiring BPI Subjects to be added or removed. Given that this is a sensitive business operation concerning, in particular, audits, care has to be taken to ensure proper controls. 
 
 #### **[R171]** 
-The "Add BPI Subject" operation a BPI invokes [MUST](#rfc2119) be initiated only by an authorized BPI on the IVSM.
+The "Add BPI Subject" operation a BPI invokes MUST be initiated only by an authorized BPI on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R171]](#r171) Testability:
 
 Preconditions:
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. An authorized BPI Subject invokes the "Add BPI Subject" operation on the IVSM.
-2. An unauthorized BPI Subject attempts to invoke the "Add BPI Subject" operation on the IVSM.
+1. An authorized BPI Subject invokes the "Add BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+2. An unauthorized BPI Subject attempts to invoke the "Add BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Expected Results: 
 1. The operation is initiated successfully.
 2. The operation is not initiated, and an authorization error is returned.
 
 #### **[R172]** 
-An authorized BPI Subject on an IVSM [MUST](#rfc2119) only be able to remove itself through the "Remove BPI Subject" operation.
+An authorized BPI Subject on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST only be able to remove itself through the "Remove BPI Subject" operation.
 
 [[R172]](#r172) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the IVSM to remove itself.
-2. An authorized BPI Subject attempts to invoke the "Remove BPI Subject" operation on the IVSM to remove another 
+1. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to remove itself.
+2. An authorized BPI Subject attempts to invoke the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to remove another 
 BPI Subject.
 
 Expected Results: 
@@ -5962,19 +5962,19 @@ Expected Results:
 2. The operation is not initiated, and an error is returned indicating that a BPI Subject can only remove itself.
 
 #### **[R173]** 
-The IVSM [MUST NOT](#rfc2119) be able to prevent a BPI Subject from removing itself from the IVSM.
+The [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST NOT be able to prevent a BPI Subject from removing itself from the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R173]](#r173) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the IVSM to remove itself.
-2. An unauthorized BPI Subject attempts to invoke the "Remove BPI Subject" operation on the IVSM to remove itself.
+1. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to remove itself.
+2. An unauthorized BPI Subject attempts to invoke the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to remove itself.
 
 Expected Results:
 
@@ -5982,8 +5982,8 @@ Expected Results:
 2. The operation is initiated, and the unauthorized BPI Subject is successfully removed. 
 
 #### **[R174]** 
-The "Add BPI Subject" or "Remove BPI Subject" Operation [MUST](#rfc2119) have the following properties:
-* The unique identifier of the target IVSM
+The "Add BPI Subject" or "Remove BPI Subject" Operation MUST have the following properties:
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * The unique identifier of the added or removed BPI Subject
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
@@ -5993,37 +5993,37 @@ The "Add BPI Subject" or "Remove BPI Subject" Operation [MUST](#rfc2119) have th
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. An authorized BPI Subject invokes the "Add BPI Subject" operation on the IVSM with the correct unique identifier of the target IVSM, invoking BPI Subject, added BPI Subject, cryptographically secured and masked secret, and digital signature. 
+1. An authorized BPI Subject invokes the "Add BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with the correct unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), invoking BPI Subject, added BPI Subject, cryptographically secured and masked secret, and digital signature. 
 Expected Result: The operation is initiated with the required properties and carried out successfully.
 
-2. An authorized BPI Subject invokes the "Add BPI Subject" operation on the IVSM with one or more of the required properties missing or incorrect. 
+2. An authorized BPI Subject invokes the "Add BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with one or more of the required properties missing or incorrect. 
 Expected Result: The operation is initiated without all of the required properties and fails.
 
-3. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the IVSM with the correct unique identifier of the target IVSM, invoking BPI Subject, added BPI Subject, cryptographically secured and masked secret, and digital signature. 
+3. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with the correct unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), invoking BPI Subject, added BPI Subject, cryptographically secured and masked secret, and digital signature. 
 Expected Result: The operation is initiated with the required properties and carried out successfully.
 
-4. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the IVSM with one or more of the required properties missing or incorrect. 
+4. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with one or more of the required properties missing or incorrect. 
 Expected Result: The operation is initiated without all of the required properties and fails.
 
 #### **[R175]** 
-The "Add BPI Subject" or "Remove BPI Subject" Operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+The "Add BPI Subject" or "Remove BPI Subject" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
-* The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
+* The unique [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier provided by the invoking BPI Subject matches the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 
 [[R175]](#r175) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
@@ -6036,145 +6036,145 @@ Expected Results:
 
 1. The function's output shows that the digital signature is valid. 
 2. The operation fails.
-3. The operation satisfies the specified conditions, including valid digital signatures, tied public key, authorization check, matching secured secret, and correct IVSM identifier.
-4. The operation satisfies the specified conditions, including valid digital signatures, tied public key, authorization check, matching secured secret, and correct IVSM identifier.
+3. The operation satisfies the specified conditions, including valid digital signatures, tied public key, authorization check, matching secured secret, and correct [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier.
+4. The operation satisfies the specified conditions, including valid digital signatures, tied public key, authorization check, matching secured secret, and correct [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier.
 
 #### **[R176]** 
-A newly added BPI Subject [MUST](#rfc2119) be approved by a quorum of authorized BPI Subjects on the IVSM.
+A newly added BPI Subject MUST be approved by a quorum of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R176]](#r176) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
-* A quorum of authorized BPI Subjects needed to add a new BPI Subject is defined in the State Synchronization and Advancement Predicate of the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* A quorum of authorized BPI Subjects needed to add a new BPI Subject is defined in the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
 1. Initiate the "Add BPI Subject" operation with the BPI Subject that will be added.
-2. Check if the new BPI Subject is added to the IVSM before approval from a quorum. 
+2. Check if the new BPI Subject is added to the [IVSM](#5542-bi--or-multi-directional-bpi-services) before approval from a quorum. 
 3. Have a group of authorized BPI Subjects that is not enough to meet the quorum approve the addition of the new BPI Subject.
 4. Have a group of authorized BPI Subjects that is enough or more than enough to satisfy the quorum approve the addition of the new BPI Subject.
 5. Check the status of the quorum approval of the new BPI subject after it is authorized.
 
 Expected Results: 
 
-1. The operation is initiated successfully and a new BPI Subject is being added to the IVSM.
-2. The IVSM does not accept the new BPI subject and waits for approval from the quorum. 
-2. The IVSM does not accept the new BPI subject and waits for approval from more authorized BPI subjects to satisfy the quorum. 
-3. The IVSM acknowledges the approvals and processes the addition of the new BPI Subject.
-4. The IVSM confirms that the quorum has approved the addition of the new BPI Subject.
+1. The operation is initiated successfully and a new BPI Subject is being added to the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) does not accept the new BPI subject and waits for approval from the quorum. 
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) does not accept the new BPI subject and waits for approval from more authorized BPI subjects to satisfy the quorum. 
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the approvals and processes the addition of the new BPI Subject.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) confirms that the quorum has approved the addition of the new BPI Subject.
 
 #### **[R177]** 
-The quorum required to add a new BPI Subject to an IVSM [MUST](#rfc2119) be defined in the State Synchronization and Advancement Predicate of the IVSM.
+The quorum required to add a new BPI Subject to an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be defined in the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R177]](#r177) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Check the State Synchronization and Advancement Predicate of the IVSM for specification of the required quorum.
-2. Add a new BPI Subject to the IVSM by initiating the "Add BPI Subject" operation.
+1. Check the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services) for specification of the required quorum.
+2. Add a new BPI Subject to the [IVSM](#5542-bi--or-multi-directional-bpi-services) by initiating the "Add BPI Subject" operation.
 3. Have less authorized BPI Subjects than the specified quorum approve the new BPI subject. 
 4. Have the quorum of authorized BPI Subjects approve the addition of the new BPI Subject.
 
 Expected Results: 
 
-1. The predicate specifies the required quorum for adding a new BPI Subject.
+1. The [Predicate](#5542-bi--or-multi-directional-bpi-services) specifies the required quorum for adding a new BPI Subject.
 2. The operation is initiated successfully.
-3. The IVSM enforces the quorum requirement and doesn't accept the new BPI subject.
-4. The IVSM acknowledges the approvals and processes the addition of the new BPI Subject, showing that is uses the specified quorum.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) enforces the quorum requirement and doesn't accept the new BPI subject.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the approvals and processes the addition of the new BPI Subject, showing that is uses the specified quorum.
 
 #### **[R178]** 
-The "Add BPI Subject" operation approved on the IVSM [MUST](#rfc2119) add the BPI Subject listed in the operation to the IVSM.
+The "Add BPI Subject" operation approved on the [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST add the BPI Subject listed in the operation to the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R178]](#r178) Testability: 
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
-* The State Synchronization and Advancement Predicate of the IVSM defines the required quorum for adding a new BPI Subject.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services) defines the required quorum for adding a new BPI Subject.
 
 Test Steps:
 
 1. Initiate the "Add BPI Subject" operation.
 2. Have the defined quorum of authorized BPI Subjects approve the addition of the new BPI Subject.
-3. Check the list of authorized BPI Subjects on the IVSM for the unique identifier of the newly-added BPI subject. 
+3. Check the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the unique identifier of the newly-added BPI subject. 
 
 Expected Result: 
 
 1. The operation is initiated successfully.
-2. The IVSM acknowledges the approvals and processes the addition of the new BPI Subject.
-3. The IVSM includes the unique identifier of the new BPI subject in its list of authorized BPI subjects. 
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the approvals and processes the addition of the new BPI Subject.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) includes the unique identifier of the new BPI subject in its list of authorized BPI subjects. 
 
 #### **[R179]** 
-The "Remove BPI Subject" operation [MUST](#rfc2119) remove the BPI Subject listed in the operation to the IVSM.
+The "Remove BPI Subject" operation MUST remove the BPI Subject listed in the operation to the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R179]](#r179) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
 1. Initiate the "Remove BPI Subject" operation.
-2. Check the list of authorized BPI Subjects on the IVSM for the unique identifier of the recently-removed BPI subject. 
+2. Check the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the unique identifier of the recently-removed BPI subject. 
 
 Expected Results:
 
 1. The "Remove BPI Subject" operation is initiated successfully. 
-2. The list of authorized BPI Subjects on the IVSM does not include the unique identifier of the recently-removed BPI subject.
+2. The list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services) does not include the unique identifier of the recently-removed BPI subject.
 
 **Verify State**
 
-Verification of the joint state on an IVSM is a critical operation to validate the correctness of any joint state changes before these changes are finalized on an IVSM. From an audit point of view, the verification of joint state changes is critical, especially for regulatory compliance of business-sensitive operations.
+Verification of the joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services) is a critical operation to validate the correctness of any joint state changes before these changes are finalized on an [IVSM](#5542-bi--or-multi-directional-bpi-services). From an audit point of view, the verification of joint state changes is critical, especially for regulatory compliance of business-sensitive operations.
 
 #### **[R180]** 
-Any authorized BPI Subject on an IVSM [MUST](#rfc2119) be able to verify the joint state on said IVSM.
+Any authorized BPI Subject on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be able to verify the joint state on said [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R180]](#r180) Testability:
 
 Preconditions:
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
-* Joint state changes have been made on the IVSM and are ready for verification.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* Joint state changes have been made on the [IVSM](#5542-bi--or-multi-directional-bpi-services) and are ready for verification.
 
 Test Steps:
 
-1. Check the IVSM's list of authorized BPI subjects for the BPI's unique identifier.
-2. The authorized BPI Subject triggers the "Verify State" operation on the IVSM.
-3. Check the results of the "Verify State" operation on joint state of the IVSM. 
-4. Check the audit trail generated by the IVSM for the verification operation.
+1. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s list of authorized BPI subjects for the BPI's unique identifier.
+2. The authorized BPI Subject triggers the "Verify State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+3. Check the results of the "Verify State" operation on joint state of the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+4. Check the audit trail generated by the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the verification operation.
 
 Expected Results: 
 
 1. The BPI Subject is authorized, and their credentials are valid.
 2. The operation is initiated successfully.
-3. The IVSM provides verification results indicating the correctness of the joint state changes.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) provides verification results indicating the correctness of the joint state changes.
 4. The audit trail accurately reflects the details of the verification operation initiated by the authorized BPI Subject.
 
 #### **[R181]** 
-The proof of correctness of any joint state on an IVSM [MUST](#rfc2119) be verifiable on said IVSM by an authorized BPI Subject.
+The proof of correctness of any joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be verifiable on said [IVSM](#5542-bi--or-multi-directional-bpi-services) by an authorized BPI Subject.
 
 [[R181]](#r181) Testability: 
 
 Preconditions:
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
-* A joint state with a verifier system for the proof of correctness is present on the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* A joint state with a verifier system for the proof of correctness is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
-1. Check for the unique identifier of the BPI in the IVSM's list of authorized BPI subjects.
+1. Check for the unique identifier of the BPI in the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s list of authorized BPI subjects.
 2. Verify the zero-knowledge proof using the verifier system.
-4. Review the audit trail generated by the IVSM for the verification operation.
+4. Review the audit trail generated by the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the verification operation.
 
 Expected Results: 
 
@@ -6184,14 +6184,14 @@ Expected Results:
 
 
 #### **[R182]** 
-The proof of correctness of the initial joint state after the "Commit State" operation is completed on an IVSM [MUST](#rfc2119) be publicly verifiable on the chosen CCSM of said IVSM.
+The proof of correctness of the initial joint state after the "Commit State" operation is completed on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be publicly verifiable on the chosen CCSM of said [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R182]](#r182) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 * A verifier system for proofs of correctness is present on the chosen CCSM.
 
 Test Steps:
@@ -6207,14 +6207,14 @@ Expected Results:
 3. The audit trail accurately reflects the details of the verification operation for the final joint state.
 
 #### **[R183]** 
-The proof of correctness of the final joint state after the "Finalize State" operation is completed on an IVSM [MUST](#rfc2119) be publicly verifiable on the chosen CCSM of said IVSM.
+The proof of correctness of the final joint state after the "Finalize State" operation is completed on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be publicly verifiable on the chosen CCSM of said [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R183]](#r183) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* The "Finalize State" operation has been successfully completed on the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* The "Finalize State" operation has been successfully completed on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 * A verifier system for proofs of correctness is present on the chosen CCSM.
 
 Test Steps:
@@ -6229,11 +6229,11 @@ Expected Results:
 2. The CCSM provides verification results indicating the correctness of the proof associated with the final joint state.
 3. The audit trail accurately reflects the details of the verification operation for the final joint state.
 
-*Initial and final state commitments must be anchored on the CCSM to ensure that the committed or finalized state cannot be utilized in fraudulent transactions on a BPI on the anchoring CCSM. Note, that this last statement holds only for the CCSM utilized by the IVSM. Any other CCSMs and BPIs operating on them are typically not aware of any state commitment by BPIs on other CCSMs.*
+*Initial and final state commitments must be anchored on the CCSM to ensure that the committed or finalized state cannot be utilized in fraudulent transactions on a BPI on the anchoring CCSM. Note, that this last statement holds only for the CCSM utilized by the [IVSM](#5542-bi--or-multi-directional-bpi-services). Any other CCSMs and BPIs operating on them are typically not aware of any state commitment by BPIs on other CCSMs.*
 
 #### **[R184]** 
-The "Verify State" Operation [MUST](#rfc2119) have the following properties:
-* The unique identifier of the target IVSM
+The "Verify State" Operation MUST have the following properties:
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * The cryptographic proof of correctness of the last joint state
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
@@ -6243,12 +6243,12 @@ The "Verify State" Operation [MUST](#rfc2119) have the following properties:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* A verifier system for cryptographic proofs of correctness of the last joint state is present on the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness of the last joint state is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Use the unique identifier of the target IVSM, the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject as properties for the "Verify State" Operation.
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject as properties for the "Verify State" Operation.
 2. Initiate the "Verify State" Operation with the properties above. 
 3. Initiate the "Verify State" Operation with any of these properties missing. 
 
@@ -6260,51 +6260,51 @@ Expected Results:
 
 
 #### **[R185]** 
-The "Verify State" Operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+The "Verify State" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
-* The cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject matches the cryptographic proof of correctness of the last joint state of the target IVSM
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
+* The cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject matches the cryptographic proof of correctness of the last joint state of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 
 [[R185]](#r185) Testablilty:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* A verifier system for cryptographic proofs of correctness is present on the IVSM.
-* The IVSM has a State Synchronization and Advancement Predicate configured.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) configured.
 
 Test Steps:
 
-1. Find the unique identifier of the invoking BPI Subject and look for it in the list of authorized BPI Subjects on the target IVSM. 
-2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target IVSM for that BPI Subject. 
-3. Compare the cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject to the cryptographic proof of correctness of the last joint state of the target IVSM. 
+1. Find the unique identifier of the invoking BPI Subject and look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
+3. Compare the cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject to the cryptographic proof of correctness of the last joint state of the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 4. Initiate the "Verify State" Operation using a valid digital signature, the digital signature's public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, the cryptographically secured and masked secret, and the cryptographic proof of correctness of the last joint state. 
 5. Initiate the "Verify State" Operation with any of the conditions in the last step missing or incorrect. 
 
 Expected Results:
 
-1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target IVSM. 
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 2. The cryptographically secured and masked secrets are the same. 
 3. The cryptographic proofs of correctness are the same. 
 4. The operation runs successfully. 
 5. The operation fails. 
 
 #### **[R186]** 
-For BPI Interoperability, a valid "Verify State" operation which a BPI invokes [MUST](#rfc2119) return from either the IVSM or the CCSM a value of true or false.
+For BPI Interoperability, a valid "Verify State" operation which a BPI invokes MUST return from either the [IVSM](#5542-bi--or-multi-directional-bpi-services) or the CCSM a value of true or false.
 
 [[R186]](#r186) Testability:
 
 Preconditions:
 
-* The IVSM is instantiated and operational.
-* BPI Subjects are registered and authorized on the IVSM.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps: 
 
 1. Initiate the "Verify State" operation following requirements [**[R184]**](#r184) and [**[R185]**](#r185). 
-2. Check the output of the "Verify State" operation in the CCSM or the IVSM. 
+2. Check the output of the "Verify State" operation in the CCSM or the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 
 Expected Results: 
 
@@ -6316,14 +6316,14 @@ Expected Results:
 A participating BPI Subject needs to know that the initial state commitments from the participating BPI Subjects are locked and cannot be altered while the BPI Interoperability process is occurring. Therefore, verifying the lock commitment of an initial state commit is crucial.
 
 #### **[R187]** 
-Any authorized BPI subject on an IVSM [MUST](#rfc2119) be able to verify the lock commitment of the initial state commit of a participating BPI Subject to the joint initial state of the BPI Interoperability process. 
+Any authorized BPI subject on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be able to verify the lock commitment of the initial state commit of a participating BPI Subject to the joint initial state of the BPI Interoperability process. 
 
 [[R187]](#r187) Testability:
 
 Preconditions:
 
-* The IVSM is instantiated and operational.
-* BPI Subjects are registered and authorized on the IVSM.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps: 
 1. Attempt to initiate and run the "Verify Lock Commitment State" operation with all of the properties specified in [**[R189]**](#r189) and following all of the conditions in [**[R190]**](#r190). Repeat this step on all/several authorized BPI Subjects. 
@@ -6332,14 +6332,14 @@ Expected Results:
 1. The operation is successfully initiated on all BPI Subjects that were tested. 
 
 #### **[R188]** 
-The proof of correctness of the lock commitment after the "Commit State" operation is completed on an IVSM [MUST](#rfc2119) be publicly verifiable on the chosen CCSM of said IVSM.
+The proof of correctness of the lock commitment after the "Commit State" operation is completed on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be publicly verifiable on the chosen CCSM of said [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R188]](#r188) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* The "Commit State" operation has been successfully completed on the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* The "Commit State" operation has been successfully completed on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 * A verifier system for proofs of correctness is present on the chosen CCSM.
 
 Test Steps: 
@@ -6353,8 +6353,8 @@ Expected Results:
 2. The CCSM provides verification results indicating the correctness of the proof associated with the lock commitment of the joint state.
 
 #### **[R189]** 
-The "Verify Lock Commitment State" Operation [MUST](#rfc2119) have the following properties:
-* The unique identifier of the target IVSM
+The "Verify Lock Commitment State" Operation MUST have the following properties:
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * A lock commitment of one of the initial joint state contributions
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
@@ -6364,12 +6364,12 @@ The "Verify Lock Commitment State" Operation [MUST](#rfc2119) have the following
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* A verifier system for cryptographic proofs of correctness of the lock commitment of the joint state is present on the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness of the lock commitment of the joint state is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Use the unique identifier of the target IVSM, the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject as properties for the "Verify Lock Commitment State" Operation.
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject as properties for the "Verify Lock Commitment State" Operation.
 2. Initiate the "Verify Lock Commitment State" Operation with the properties above. 
 3. Initiate the "Verify Lock Commitment State" Operation with any of these properties missing. 
 
@@ -6380,51 +6380,51 @@ Expected Results:
 3. The "Verify Lock Commitment State" Operation fails. 
 
 #### **[R190]** 
-The "Verify Lock Commitment State" Operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+The "Verify Lock Commitment State" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject
-* The lock commitment of an initial joint state contribution provided by the invoking BPI Subject matches the lock commitment of one of the initial joint state contributions of the target IVSM
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
+* The lock commitment of an initial joint state contribution provided by the invoking BPI Subject matches the lock commitment of one of the initial joint state contributions of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 
 [[R190]](#r190) Testablilty:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* A verifier system for cryptographic proofs of correctness is present on the IVSM.
-* The IVSM has a State Synchronization and Advancement Predicate configured.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) configured.
 
 Test Steps:
 
-1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target IVSM. 
-2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target IVSM for that BPI Subject. 
-3. Compare the cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject to the cryptographic proof of correctness of the last joint state of the target IVSM. 
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
+3. Compare the cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject to the cryptographic proof of correctness of the last joint state of the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 4. Initiate the "Verify State" Operation using a valid digital signature, the digital signature's public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, the cryptographically secured and masked secret, and the cryptographic proof of correctness of the last joint state. 
 5. Initiate the "Verify State" Operation with any of the conditions in the last step missing or incorrect. 
 
 Expected Results:
 
-1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target IVSM. 
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 2. The cryptographically secured and masked secrets are the same. 
 3. The cryptographic proofs of correctness are the same. 
 4. The operation executes successfully. 
 5. The operation fails. 
 
 #### **[R191]** 
-For the purpose of BPI Interoperability, a valid "Verify Lock Commitment State" operation which a BPI invokes [MUST](#rfc2119) return from the CCSM underlying the target IVSM a value of true or false.
+For the purpose of BPI Interoperability, a valid "Verify Lock Commitment State" operation which a BPI invokes MUST return from the CCSM underlying the target [IVSM](#5542-bi--or-multi-directional-bpi-services) a value of true or false.
 
 [[R191]](#r191) Testability:
 
 Preconditions:
 
-* The IVSM is instantiated and operational.
-* BPI Subjects are registered and authorized on the IVSM.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps: 
 
 1. Initiate the "Verify Lock Commitment State" operation following requirements [**[R189]**](#r189) and [**[R190]**](#r190). 
-2. Check the output of the "Verify State" operation in the CCSM or the IVSM. 
+2. Check the output of the "Verify State" operation in the CCSM or the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 
 Expected Results: 
 
@@ -6433,17 +6433,17 @@ Expected Results:
 
 **Update State**
 
-Once an IVSM is instantiated and all required initial states committed, a BPI Subject can update the joint state on an IVSM through the "Update State" operation to contribute to the BPI Interoperability state and process.
+Once an [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and all required initial states committed, a BPI Subject can update the joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services) through the "Update State" operation to contribute to the BPI Interoperability state and process.
 
 #### **[R192]** 
-Any authorized BPI subject on an IVSM [MUST](#rfc2119) be able to update a joint state on an IVSM.
+Any authorized BPI subject on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be able to update a joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R192]](#r192) Testability:
 
 Preconditions:
 
-* The IVSM is instantiated and operational.
-* BPI Subjects are registered and authorized on the IVSM.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps: 
 1. Attempt to initiate and run the "Update State" operation with all of the properties specified in [**[R193]**](#r193) and following all of the conditions in [**[R194]**](#r194). Repeat this step on all/several authorized BPI Subjects. 
@@ -6452,8 +6452,8 @@ Expected Results:
 1. The operation is successfully initiated on all BPI Subjects that were tested. 
 
 #### **[R193]** 
-A BPI Interoperability state object utilized in the "Update State" operation to the target IVSM [MUST](#rfc2119) have the following properties:
-* The unique identifier for the State Synchronization and Advancement Predicate of the state to be updated	
+A BPI Interoperability state object utilized in the "Update State" operation to the target [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST have the following properties:
+* The unique identifier for the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the state to be updated	
 * The cryptographic proof of correctness of the last joint state
 * The unique identifier of the BPI Subject within the context of the originating BPI who updates the state
 * The cryptographically secured and masked secret of the invoking BPI Subject
@@ -6466,12 +6466,12 @@ A BPI Interoperability state object utilized in the "Update State" operation to 
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* A verifier system for cryptographic proofs of correctness of the lock commitment of the joint state is present on the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness of the lock commitment of the joint state is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Use the unique identifier of the target IVSM, the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, the creation date, all required private input data, all public input data,and the digital signature of the invoking BPI Subject as properties for the "Update State" Operation.
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, the creation date, all required private input data, all public input data,and the digital signature of the invoking BPI Subject as properties for the "Update State" Operation.
 2. Initiate the "Update State" Operation with the properties above. 
 3. Initiate the "Update State" Operation with any of these properties missing. 
 
@@ -6482,87 +6482,87 @@ Expected Results:
 3. The "Update State" Operation fails. 
 
 #### **[R194]** 
-An "Update State" operation [MUST](#rfc2119) satisfy the following conditions to be valid:
-* The submitted state object is conformant with the target IVSM's defined State Synchronization and Advancement Predicate
-* The submitted predicate unique identifier matches the predicate identifier the target IVSM is based on
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographic proof of correctness of the last joint state submitted matches the cryptographic proof of correctness of the last joint state on the target IVSM
+An "Update State" operation MUST satisfy the following conditions to be valid:
+* The submitted state object is conformant with the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* The submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier matches the [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier the target [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographic proof of correctness of the last joint state submitted matches the cryptographic proof of correctness of the last joint state on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The digital signature over the state content is valid:
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject 
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject 
 
 [[R194]](#r194) Testablilty:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* A verifier system for cryptographic proofs of correctness is present on the IVSM.
-* The IVSM has a State Synchronization and Advancement Predicate configured.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) configured.
 
 Test Steps:
 
-1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target IVSM. 
-2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target IVSM for that BPI Subject. 
-3. Compare the cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject to the cryptographic proof of correctness of the last joint state on the target IVSM. 
-4. Check the submitted state object with the conditions of the State Synchronization and Advancement Predicate. 
-5. Find the predicate unique identifier the IVSM is based on and compare it to the submitted unique identifier.
-6. Initiate the "Update State" Operation using the state object, predicate unique identifier, valid digital signature, digital signature's public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, unique identifier of the invoking BPI Subject, and cryptographically secured and masked secret. 
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
+3. Compare the cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject to the cryptographic proof of correctness of the last joint state on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+4. Check the submitted state object with the conditions of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). 
+5. Find the [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier the [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on and compare it to the submitted unique identifier.
+6. Initiate the "Update State" Operation using the state object, [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier, valid digital signature, digital signature's public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, unique identifier of the invoking BPI Subject, and cryptographically secured and masked secret. 
 7. Initiate the "Update State" Operation with any of the conditions in the last step missing or incorrect. 
 
 Expected Results:
 
-1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target IVSM. 
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 2. The cryptographically secured and masked secrets are the same. 
 3. The cryptographic proofs of correctness are the same. 
-4. The submitted state object is conformant with the target IVSM's defined State Synchronization and Advancement Predicate. 
-5. The submitted predicate unique identifier matches the predicate identifier the target IVSM is based on
+4. The submitted state object is conformant with the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). 
+5. The submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier matches the [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier the target [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on
 6. The operation executes successfully. 
 7. The operation fails. 
 
 #### **[R195]** 
-For BPI Interoperability, a valid "Update State" operation that a BPI invokes [MUST](#rfc2119) update the target IVSM's state storage according to the rules of the State Synchronization and Advancement Predicate and return the updated joint state, and its cryptographic zero-knowledge proof of correctness including all public inputs and required keys for proof verification.
+For BPI Interoperability, a valid "Update State" operation that a BPI invokes MUST update the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage according to the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) and return the updated joint state, and its cryptographic zero-knowledge proof of correctness including all public inputs and required keys for proof verification.
 
 [[R195]](#r195) Testability: 
 
 Preconditions:
 
-* The IVSM is instantiated and operational.
-* BPI Subjects are registered and authorized on the IVSM.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 * The joint state object and its cryptographic proof are available for updating.
 
 Test Steps: 
 
-1. Check the IVSM's state storage. 
+1. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage. 
 2. Initiate the "Update State" operation so that it is conformant to requirements [**[R193]**](#r193) and [**[R194]**](#r194). 
-3. Check the IVSM's state storage. 
+3. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage. 
 4. Check the output from the operation. 
 
 Expected Results: 
 
 1. The state storage has many states stored on it leading up to and including the current state. 
 2. The "Update State" operation executes successfully. 
-3. The state storage is updated according to the rules of the State Synchronization and Advancement Predicate to include the newest state added from the "Update State" operation. 
+3. The state storage is updated according to the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to include the newest state added from the "Update State" operation. 
 4. The operation returns the updated joint state, its cryptographic proof of correctness, all public inputs, and the required keys for proof verification. 
 
 **Accept/Reject State Update**
 
-An updated joint state can only be finalized or further advanced if a pre-defined quorum of all participating BPI Subjects agrees on this new joint state on an IVSM.
+An updated joint state can only be finalized or further advanced if a pre-defined quorum of all participating BPI Subjects agrees on this new joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 #### **[R196]** 
-An IVSM after a joint state update operation has been completed [MUST](#rfc2119) generate a notification to all authorized BPI Subjects with an endpoint as a URI to accept/reject a joint state update as well as the complete new joint state object.
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) after a joint state update operation has been completed MUST generate a notification to all authorized BPI Subjects with an endpoint as a URI to accept/reject a joint state update as well as the complete new joint state object.
 
 [[R196]](#r196) Testability:
 
 Preconditions:
 
-* The IVSM is instantiated and operational.
-* BPI Subjects are registered and authorized on the IVSM.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 * The joint state has been successfully updated through the "Update State" operation.
 
 Test Steps: 
 
 1. Initiate the "Update State" operation with properties and conditions conformant to requirements [**[R193]**](#r193) and [**[R194]**](#r194). 
-2. Check one of the authorized BPI Subjects on the IVSM for notifications from the "Update State" operation. 
+2. Check one of the authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services) for notifications from the "Update State" operation. 
 3. Access the endpoint specified by the URI in the notification. 
 
 Expected Results: 
@@ -6572,20 +6572,20 @@ Expected Results:
 3. The URI leads to the endpoint where the BPI Subject is able to accept or reject the joint state update as well as the complete new joint state object.
 
 #### **[R197]** 
-A quorum of authorized BPI Subjects [MUST](#rfc2119) accept the new joint state before it is finalized by the requesting IVSM.
+A quorum of authorized BPI Subjects MUST accept the new joint state before it is finalized by the requesting [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R197]](#r197) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
-* A quorum of authorized BPI Subjects needed to add a new BPI Subject is defined in the State Synchronization and Advancement Predicate of the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* A quorum of authorized BPI Subjects needed to add a new BPI Subject is defined in the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
 1. Initiate the "Update State" operation  with properties and conditions conformant to requirements [**[R193]**](#r193) and [**[R194]**](#r194).
-2. Check if the joint state of the IVSM was updated before approval from a quorum. 
+2. Check if the joint state of the [IVSM](#5542-bi--or-multi-directional-bpi-services) was updated before approval from a quorum. 
 3. Have a group of authorized BPI Subjects that is not enough to meet the quorum approve the joint state update.
 4. Have a group of authorized BPI Subjects that is enough or more than enough to satisfy the quorum approve the joint state update.
 5. Check the status of the quorum's approval of the joint state update after it is finalized.
@@ -6593,45 +6593,45 @@ Test Steps:
 Expected Results: 
 
 1. The operation is initiated successfully and a joint state update is waiting for approval from the quorum.
-2. The IVSM does not accept the joint state update and waits for approval from the quorum. 
-3. The IVSM does not accept the joint state update and waits for approval from more authorized BPI subjects to satisfy the quorum. 
-4. The IVSM acknowledges the approvals and finalizes the joint state update.
-5. The IVSM confirms that the quorum has approved the joint state update.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) does not accept the joint state update and waits for approval from the quorum. 
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) does not accept the joint state update and waits for approval from more authorized BPI subjects to satisfy the quorum. 
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the approvals and finalizes the joint state update.
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) confirms that the quorum has approved the joint state update.
 
 #### **[R198]** 
-The quorum required to accept or reject a joint state update on an IVSM [MUST](#rfc2119) be defined in the State Synchronization and Advancement Predicate of said IVSM.
+The quorum required to accept or reject a joint state update on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be defined in the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of said [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R198]](#r198) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Check the State Synchronization and Advancement Predicate of the IVSM for specification of the quorum required to accept or reject a joint state update.
+1. Check the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services) for specification of the quorum required to accept or reject a joint state update.
 2. Initiate the "Update State" operation with properties and conditions conformant to requirements [**[R193]**](#r193) and [**[R194]**](#r194).
 3. Have less authorized BPI Subjects than the specified quorum approve the joint state update. 
 4. Have the quorum of authorized BPI Subjects approve the joint state update.
 
 Expected Results: 
 
-1. The predicate specifies the required quorum for accepting or reject a joint state update.
+1. The [Predicate](#5542-bi--or-multi-directional-bpi-services) specifies the required quorum for accepting or reject a joint state update.
 2. The operation is initiated successfully.
-3. The IVSM enforces the quorum requirement and doesn't accept the joint state update.
-4. The IVSM acknowledges the acceptances and processes the joint state update, showing that it uses the specified quorum.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) enforces the quorum requirement and doesn't accept the joint state update.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the acceptances and processes the joint state update, showing that it uses the specified quorum.
 
 #### **[R199]** 
-The joint state object on an IVSM [MUST](#rfc2119) be updated on said IVSM based on each received BPI Subject vote, either accept or reject.
+The joint state object on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be updated on said [IVSM](#5542-bi--or-multi-directional-bpi-services) based on each received BPI Subject vote, either accept or reject.
 
 [[R199]](#r199) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
-* The joint state object on the IVSM has a counter for accept and reject votes. 
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The joint state object on the [IVSM](#5542-bi--or-multi-directional-bpi-services) has a counter for accept and reject votes. 
 
 Test Steps: 
 
@@ -6644,31 +6644,31 @@ Expected Results:
 1. The counter for reject votes on the joint state object is updated and one higher than the previous count. 
 
 #### **[R200]** 
-Once the updated joint state is either accepted or rejected based on the defined quorum, an IVSM MUST: 
-* Notify all BPI Subjects if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the IVSM
+Once the updated joint state is either accepted or rejected based on the defined quorum, an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST: 
+* Notify all BPI Subjects if the joint state has been finalized based on the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * Cryptographically seal the joint state such that no further updates to the joint state can be processed
 
 [[R200]](#r200) Testability:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 * The quorum has finished voting on whether a joint state update will be accepted or rejected. 
 
 Test Steps: 
 
-1. Check BPI Subjects in the IVSM for a notification about the joint state update. 
+1. Check BPI Subjects in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for a notification about the joint state update. 
 2. Attempt to run the "Accept/Reject State Update" operation again on the same joint state. 
 
 Expected Results: 
 
 1. All BPI Subjects checked have received a notification about the finalization of the joint state. 
-2. The IVSM blocks further updates to the joint state once it has been finalized. 
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) blocks further updates to the joint state once it has been finalized. 
 
 #### **[R201]** 
-The "Accept/Reject State Update" Operation [MUST](#rfc2119) have the following properties:
-* The unique identifier of the target IVSM
+The "Accept/Reject State Update" Operation MUST have the following properties:
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * An accept or reject value 
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
@@ -6678,12 +6678,12 @@ The "Accept/Reject State Update" Operation [MUST](#rfc2119) have the following p
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Use the unique identifier of the target IVSM, the unique identifier of the invoking BPI Subject, an accept or reject value, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject over the content of the operation as properties for the "Accept/Reject State Update" operation. 
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, an accept or reject value, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject over the content of the operation as properties for the "Accept/Reject State Update" operation. 
 2. Initiate the "Accept/Reject State Update" Operation with the properties above. 
 3. Initiate the "Accept/Reject State Update" Operation with any of these properties missing. 
 
@@ -6694,51 +6694,51 @@ Expected Results:
 3. The "Accept/Reject State Update" Operation fails. 
 
 #### **[R202]** 
-The "Accept/Reject State Update" Operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+The "Accept/Reject State Update" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
 
 [[R202]](#r202) Testablilty:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target IVSM. 
-2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target IVSM for that BPI Subject. 
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
 3. Initiate the "Accept/Reject State Update" Operation using a valid digital signature, a public key for the digital signature that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, and the cryptographically secured and masked secret supplied by the invoking BPI Subject. 
 4. Initiate the "Accept/Reject State Update" Operation with any of the conditions in the last step missing or incorrect. 
 
 Expected Results:
 
-1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target IVSM. 
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 2. The cryptographically secured and masked secrets are the same. 
 3. The operation executes successfully. 
 4. The operation fails. 
 
 #### **[R203]** 
-For the purpose of BPI Interoperability, a valid "Accept/Reject State Update" operation that a BPI invokes [MUST](#rfc2119) return a value of joint state processing success or failure, and if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the target IVSM.
+For the purpose of BPI Interoperability, a valid "Accept/Reject State Update" operation that a BPI invokes MUST return a value of joint state processing success or failure, and if the joint state has been finalized based on the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 [[R203]](#r203) Testablilty:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps: 
 
-1. Invoke the "Update State" operation on the IVSM with an authorized BPI Subject. 
+1. Invoke the "Update State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with an authorized BPI Subject. 
 2. Have the quorum of authorized BPI Subjects vote to reject the joint state update. 
-3. Access the joint state on the IVSM. 
-4. Invoke the "Update State" operation on the IVSM with an authorized BPI Subject. 
+3. Access the joint state on the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+4. Invoke the "Update State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with an authorized BPI Subject. 
 5. Have the quorum of authorized BPI Subjects vote to accept the joint state update. 
-6. Access the joint state on the IVSM. 
+6. Access the joint state on the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 
 Expected Results: 
 
@@ -6751,29 +6751,29 @@ Expected Results:
 
 **Exit BPI Interoperability**
 
-The exit operation can be invoked at any time during the lifecycle of an IVSM if a BPI Subject determines that something is occurring that puts their business at risk, or if the joint state has been finalized according to rules of the State Synchronization and Advancement Predicate of an IVSM.  
+The exit operation can be invoked at any time during the lifecycle of an [IVSM](#5542-bi--or-multi-directional-bpi-services) if a BPI Subject determines that something is occurring that puts their business at risk, or if the joint state has been finalized according to rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of an [IVSM](#5542-bi--or-multi-directional-bpi-services).  
 
 #### **[R204]** 
-Each BPI Subject [MUST](#rfc2119) be able to invoke the "Exit BPI Interoperability" operation at any point in time after the target IVSM has been instantiated.
+Each BPI Subject MUST be able to invoke the "Exit BPI Interoperability" operation at any point in time after the target [IVSM](#5542-bi--or-multi-directional-bpi-services) has been instantiated.
 
 [[R204]](#r204) Testability: 
 
 Preconditions:
 
-* The target IVSM is instantiated and operational.
-* BPI Subjects are registered and authorized on the IVSM.
+* The target [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps: 
 
-1. Invoke the "Exit BPI Interoperability" operation using any BPI Subject in the IVSM. 
+1. Invoke the "Exit BPI Interoperability" operation using any BPI Subject in the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 
 Expected Results: 
 
 1. The operation executes successfully. 
 
 #### **[R205]** 
-The "Exit BPI Interoperability" Operation [MUST](#rfc2119) have the following properties:
-* The unique identifier of the target IVSM
+The "Exit BPI Interoperability" Operation MUST have the following properties:
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject 
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
@@ -6782,12 +6782,12 @@ The "Exit BPI Interoperability" Operation [MUST](#rfc2119) have the following pr
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Use the unique identifier of the target IVSM, the unique identifier of the invoking BPI Subject, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject over the content of the operation as properties for the "Exit BPI Interoperability" operation. 
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject over the content of the operation as properties for the "Exit BPI Interoperability" operation. 
 2. Initiate the "Exit BPI Interoperability" Operation with the properties above. 
 3. Initiate the "Exit BPI Interoperability" Operation with any of these properties missing. 
 
@@ -6798,35 +6798,35 @@ Expected Results:
 3. The "Exit BPI Interoperability" Operation fails. 
 
 #### **[R206]** 
-The "Exit BPI Interoperability" Operation [MUST](#rfc2119) satisfy the following conditions to be valid:
+The "Exit BPI Interoperability" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
 
 [[R206]](#r206) Testablilty:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps:
 
-1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target IVSM. 
-2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target IVSM for that BPI Subject. 
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
 3. Initiate the "Exit BPI Interoperability" Operation using a valid digital signature, a public key for the digital signature that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, and the cryptographically secured and masked secret supplied by the invoking BPI Subject. 
 4. Initiate the "Exit BPI Interoperability" Operation with any of the conditions in the last step missing or incorrect. 
 
 Expected Results:
 
-1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target IVSM. 
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 2. The cryptographically secured and masked secrets are the same. 
 3. The Operation executes successfully. 
 4. The Operation fails. 
 
 #### **[R207]** 
-For BPI Interoperability, a valid "Exit BPI Interoperability" operation that a BPI invokes [MUST](#rfc2119) return
+For BPI Interoperability, a valid "Exit BPI Interoperability" operation that a BPI invokes MUST return
 * A value of processing success or failure
 
 When successful:
@@ -6840,14 +6840,14 @@ When successful:
 
 Preconditions:
 
-* An IVSM (Interoperability Virtual State Machine) is instantiated and operational.
-* Authorized BPI Subjects are registered with the IVSM.
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 Test Steps: 
 
-1. Invoke the "Exit BPI Interoperability" operation on the IVSM with properties and conditions conformant to [**[R205]**](#r205) and [**[R206]**](#r206). 
+1. Invoke the "Exit BPI Interoperability" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with properties and conditions conformant to [**[R205]**](#r205) and [**[R206]**](#r206). 
 2. Check any output from the operation on the BPI Subject. 
-3. Invoke the "Exit BPI Interoperability" operation on the IVSM with properties and conditions that are not conformant to [**[R205]**](#r205) and [**[R206]**](#r206). 
+3. Invoke the "Exit BPI Interoperability" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with properties and conditions that are not conformant to [**[R205]**](#r205) and [**[R206]**](#r206). 
 4. Check any output from the operation on the BPI Subject. 
 
 Expected Results: 
@@ -6864,7 +6864,7 @@ This completes the specification of the Bi- and Multi-directional BPI interopera
 The detailed API specification of the Mono-directional and Bi-/Multi-directional BPI Interoperability operations is out-of-scope for the current version of the Baseline Protocol standard, and will be given in a later version of the Baseline Protocol API specification.
 
 #### **[R208]** 
-There [MUST](#rfc2119) be a set of BPI APIs supporting the BPI Interoperability operations enumerated in requirements [**[R136]**](#r136) and [**[R139]**](#r139).
+There MUST be a set of BPI APIs supporting the BPI Interoperability operations enumerated in requirements [**[R136]**](#r136) and [**[R139]**](#r139).
 
 [[R208]](#r208) Testability:
 
@@ -6873,7 +6873,7 @@ See testability statement for [**[R136]**](#r136) and [**[R139]**](#r139).
 ## 5.7 BPI Interoperability: Discoverable Standard Transport Security
 
 #### **[R209]** 
-Data in transit between BPIs [MUST](#rfc2119) be encrypted.
+Data in transit between BPIs MUST be encrypted.
 
 [[R209]](#r209) Testability:
 
@@ -6895,7 +6895,7 @@ Passing Criteria:
 * The decrypted data is successfully verified for content and integrity.
 
 #### **[R210]**  
-BPI Communication for BPI Interoperability services [MUST](#rfc2119) satisfy all requirements in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
+BPI Communication for BPI Interoperability services MUST satisfy all requirements in section [5.3 BPI Service Orchestration](#53-bpi-service-orchestration).
 
 [[R210]](#r210) Testability:
 
@@ -6924,7 +6924,7 @@ Note that a deterministic state transition in the context of this document is fa
 First, this document will discuss the requirements for worksteps that will be implemented in the Virtual State Machine of the BPI Processing Layer. Note that strictly speaking one needs to differentiate between the workstep as a logical construct, and its instantiation within a BPI which is called a workstep instance. In the following, and unless required for disambiguation, this document shall use workstep also to mean workstep instance. 
 
 #### **[R211]** 
-A workstep [MUST](#rfc2119) have an input, one or more process steps, and an output.
+A workstep MUST have an input, one or more process steps, and an output.
 
 *This is just a well-known convention from business process management frameworks.*
 
@@ -6934,7 +6934,7 @@ A workstep [MUST](#rfc2119) have an input, one or more process steps, and an out
 - it does not have an output.
 
 #### **[R212]** 
-The input of a workstep [MUST](#rfc2119) represent a new, proposed state of a state object compliant with the agreement between the agreement counterparties.
+The input of a workstep MUST represent a new, proposed state of a state object compliant with the agreement between the agreement counterparties.
 
 [[R212]](#r212) Testability: The input and output of a workstep can be formatted according to the data schema of a state object that represents the state of a given agreement.
 
@@ -6943,12 +6943,12 @@ If the input and output are valid representations of a state according to the ag
 If they are equal, or cannot be represented as a valid state object, they do not meet the requirement.
 
 #### **[R213]** 
-The process steps in a workstep [MUST](#rfc2119) represent a verification system comprised of the set, or subset, of agreement rules and agreement data such that an input can be validated to comply with the agreement rules and agreement data, or not.
+The process steps in a workstep MUST represent a verification system comprised of the set, or subset, of agreement rules and agreement data such that an input can be validated to comply with the agreement rules and agreement data, or not.
 
 [[R213]](#r213) Testability: A verification system is comprised of one or more individual rules as a sequence of evaluation steps, 1 through N. Each evaluation step can be evaluated to a boolean (true or false) using a comparison operator of the step input against a known state or fact such as input value = 1 for evaluation step 1. The final evaluation of the verification system is the product of all the boolean outputs of each evaluation step. The product will, therefore, evaluate to another boolean (true, if all evaluations steps ield a true output, or false, if one evaluation step output is false). Since an agreement rule can be expressed as an evaluation step, so can the set, or subset, of agreement rules and agreement data. Therefore, process steps based on agreement rules that evaluate to either true or false represent a valid verification system. If process steps based on agreement rules that do not evaluate to true or flase are not a valid verification system.     
 
 #### **[R214]** 
-The output of a workstep [MUST](#rfc2119) represent the verifiable validation result of an input into a workstep as a correct or incorrect new agreement state.
+The output of a workstep MUST represent the verifiable validation result of an input into a workstep as a correct or incorrect new agreement state.
 
 *Note that a new agreement state after a correct workstep execution is defined as*
 ```
@@ -6957,10 +6957,10 @@ New Agreement State = Old Agreement State + Agreed upon New State Object + Works
 
 *See sections 6.4 and 6.5 below on BPI Accounts associated with state objects and BPI transactions for details.*
 
-[[R214]](#r214) Testability: IF an input is provided to a workstep, THEN the output of the workstep [MUST](#rfc2119) represent the validation result of the input as a correct or incorrect new agreement state. AND the validation result [MUST](#rfc2119) be verifiable. To verify the validation result, the output of the workstep should contain information that allows the result to be tested or confirmed using a predefined method or standard. This may involve providing a reference to the criteria or rules used for validation, or specifying the expected behavior of the new agreement state. 
+[[R214]](#r214) Testability: IF an input is provided to a workstep, THEN the output of the workstep MUST represent the validation result of the input as a correct or incorrect new agreement state. AND the validation result MUST be verifiable. To verify the validation result, the output of the workstep should contain information that allows the result to be tested or confirmed using a predefined method or standard. This may involve providing a reference to the criteria or rules used for validation, or specifying the expected behavior of the new agreement state. 
 
 #### **[R215]** 
-A workstep instance [MUST](#rfc2119) be associated with only one workgroup.
+A workstep instance MUST be associated with only one workgroup.
 
 [[R215]](#r215) Testability: A test of this requirement can be comprised of the following sequence:
 
@@ -6979,14 +6979,14 @@ If all of the above test steps are successfully completed, then the requirement 
 
 
 #### **[R216]** 
-A workstep instance [MUST](#rfc2119) inherit the security and privacy policies of its associated workgroup.
+A workstep instance MUST inherit the security and privacy policies of its associated workgroup.
 
 *See the details of workgroups and their security and privacy policies in [Section 6.3](63-bpi-workgroup).*
 
 [[R216]](#r216) Testability: Policies such as an authentication requirement of a BPI Subject are expressible as functions evaluating to true or false, and, therefore, represent worksteps that can be applied to input data in a workstep instance. Furthermore, [[R215]](#r215) expresses the testable association of one or more workstep instances and a workgroup. Therefore, one or more workgroup policies can be evaluated as worktsep instances in the context of any workstep instance associated with a workgroup before that workstep instance is executed. Hence, the execution of a given workstep instance associated with a workgroup is contingent upon the output of the evaluation of one or more workgroup policies as workstep instances -- the workstep instance is executed if the individual policies together evaluate to true, or is not executed if the policies together evaluate to false either result meets the requirement. If a set of workgroup policies is not successfully associated with a workstep instance associated with the worgroup with those policies, then the workstep instance is executed independent of the evaluation result of the workgroup policies' workstep instances which does not meet the requirement.    
 
 #### **[R217]** 
-A workstep [MUST](#rfc2119) have a unique identifier within a BPI.
+A workstep MUST have a unique identifier within a BPI.
 
 [[R217]](#r217) Testability:
 
@@ -7009,7 +7009,7 @@ Test Passing criteria:
 * Test step 4 passes if the attempt to create a workstep with the same identifier as an existing workstep is rejected.
 
 #### **[R218]** 
-A workstep [MUST](#rfc2119) be updatable.
+A workstep MUST be updatable.
 
 [[R218]](#r218) Testability:
 
@@ -7031,7 +7031,7 @@ Test Passing Criteria:
 * The changes to the workstep are saved successfully and can be viewed when accessing the workstep again.
 
 #### **[R219]** 
-A workstep instance [MUST NOT](#rfc2119) be updated while the workstep instance is being executed by the BPI.
+A workstep instance MUST NOT be updated while the workstep instance is being executed by the BPI.
 
 *This ensures that no breaking changes with potentially significant negative business impact are introduced while a workstep instance is being executed.*
 
@@ -7057,7 +7057,7 @@ Test Passing criteria:
 * Step 5 must successfully update the workstep instance.
 
 #### **[R220]** 
-A workstep [MUST](#rfc2119) be versioned within a BPI.
+A workstep MUST be versioned within a BPI.
 
 *Note that versions of the same workstep do not have to be compatible with one another.* 
 
@@ -7090,7 +7090,7 @@ Test Passing Criteria:
 * The test passes if all steps execute successfully and the workstep can be versioned and executed without errors or warnings.
 
 #### **[R221]** 
-A workstep [MUST](#rfc2119) be executed inside a BPI's Virtual State Machine (VSM).
+A workstep MUST be executed inside a BPI's Virtual State Machine (VSM).
 
 Note, that a BPI's Virtual State Machine is part of the BPI Processing Layer as discussed in [Section 2.8.4](#284-baseline-protocol-stack-detailed-reference-architecture-layers-and-components).
 
@@ -7120,7 +7120,7 @@ Test Passing Criteria:
 * All worksteps are successfully executed within the BPI's VSM.
 
 #### **[R222]** 
-The input of a workstep instance [MUST](#rfc2119) be submitted by an authorized member of the workgroup attached to that workstep instance.
+The input of a workstep instance MUST be submitted by an authorized member of the workgroup attached to that workstep instance.
 
 *Note, that this allows for delegation of authorization from the authorization bearing Entity A to Entity B, akin to a power-of-attorney. This concept is also known as attenuated authorization.*
 
@@ -7147,7 +7147,7 @@ Test Passing Criteria:
 * The test passes if all the test steps pass.
 
 #### **[R223]** 
-A BPI workstep [MUST](#rfc2119) be deterministic.
+A BPI workstep MUST be deterministic.
 
 *This means that for a given input, there can be only one valid output from the workstep generated by the BPI.*
 
@@ -7174,7 +7174,7 @@ Test Passing Criteria:
 
 
 #### **[R224]** 
-The output from a workstep execution [MUST](#rfc2119) be finalized through an agreed-upon quorum of cryptographic signatures of the workgroup participants associated with the workstep.
+The output from a workstep execution MUST be finalized through an agreed-upon quorum of cryptographic signatures of the workgroup participants associated with the workstep.
 
 *This means that the output of a workstep execution must be verified and agreed upon by a previously defined number of the workgroup participants.*
 
@@ -7202,7 +7202,7 @@ Test Passing Criteria: The test will pass if and only if the following condition
 * The number of valid signatures obtained is equal to or greater than the quorum threshold.
 
 #### **[R225]** 
-The output from a workstep execution [MUST](#rfc2119) be a valid zero-knowledge proof of correctness of the new agreement state generated by the BPI executing the workstep (privacy preservation).
+The output from a workstep execution MUST be a valid zero-knowledge proof of correctness of the new agreement state generated by the BPI executing the workstep (privacy preservation).
 
 *A Zero-Knowledge Proof is defined as having to satisfy the following three properties:*
 
@@ -7237,7 +7237,7 @@ Test Passing Criteria:
 
 
 #### **[R226]** 
-A zero-knowledge proof of correctness of a workstep output [MUST](#rfc2119) be non-interactive.
+A zero-knowledge proof of correctness of a workstep output MUST be non-interactive.
 
 *Non-interactive in this context means that there is no interaction between the prover (generating the proof) and the verifier.*
 
@@ -7262,7 +7262,7 @@ Test Passing Criteria:
 * The zero-knowledge proof of correctness is valid and shows the correctness of the output generated by the workstep based only on the proof data provided to the verification function from the workstep output.
 
 #### **[R227]** 
-An input that does not represent a new, valid agreement state of a state object [MUST NOT](#rfc2119) generate a valid zero-knowledge proof of correctness of the input. 
+An input that does not represent a new, valid agreement state of a state object MUST NOT generate a valid zero-knowledge proof of correctness of the input. 
 
 [[R227]](#r227) Testability:
 
@@ -7287,7 +7287,7 @@ Test Passing Criteria:
 * The BPI should accept the valid input, generate a valid zero-knowledge proof of correctness for the output, and update the state object accordingly in step 6.
 
 #### **[R228]** 
-A zero-knowledge proof of correctness of a workstep output [MUST](#rfc2119) be verifiable by any 3rd party in a time at most proportional to the size of the prover system that generated the proof.
+A zero-knowledge proof of correctness of a workstep output MUST be verifiable by any 3rd party in a time at most proportional to the size of the prover system that generated the proof.
 
 *The time requirement means that any 3rd party verifier must be able to verify the proof representing a prover system of size n in time O(n), e.g., a Merkle-proof of a Merkle-trie branch of 10 tuples can be verified in 10 computational steps. It also means that the zero-knowledge proof of correctness of input does not have to be succinct. Succinct means that the proofs are short (smaller than the size of the prover circuit) and that the verification is fast.*
 
@@ -7314,7 +7314,7 @@ Test Passing Criteria:
 * The test will pass if the zero-knowledge proof of correctness for the workstep output can be verified by the verifier system in a number of computational step at most proportional to the size of the prover system that generated the proof.
 
 #### **[D26]** 
-The zero-knowledge proof of correctness of a workstep output [SHOULD](#rfc2119) be succinct.
+The zero-knowledge proof of correctness of a workstep output SHOULD be succinct.
 
 *A zero-knowledge proof is said to be succinct if the proof is smaller than the size of the circuit, the poly-logarithm to be precise, used to generate the proof.* 
 
@@ -7341,7 +7341,7 @@ Test Passing Criteria:
 * The test will pass if the zero-knowledge proof of correctness for the workstep output can be verified by the verifier system in a number of computational steps at most proportional to the size of the prover system that generated the proof.
 
 #### **[D27]** 
-The zero-knowledge proof of correctness of a workstep output [SHOULD](#rfc2119) be efficient.
+The zero-knowledge proof of correctness of a workstep output SHOULD be efficient.
 
 *Efficient in this context means that the size of the proof does not grow with the size of the prover system(s). This is a highly desirable feature when it comes to both data on a CCSM and verification time.*
 
@@ -7369,7 +7369,7 @@ Test Passing criteria:
 * If the verification time grows significantly as the size of the prover system grows, the test fails, indicating that the zero-knowledge proof system is not efficient.
 
 #### **[D28]** 
-The zero-knowledge proof of correctness of a workstep output [SHOULD](#rfc2119) be based on modular constructions.
+The zero-knowledge proof of correctness of a workstep output SHOULD be based on modular constructions.
 
 *Modular in this context means that the proof system can represent multiple statements, in other words, multiple proofs together, in one proof. For example, "I have an invoice with a face value of over $10,000, payable within 30 days, and the payee has never missed a payment in 10 years of doing business with me". This is also highly desirable, especially when having to combine various proofs as in the previous statement.*
 
@@ -7397,7 +7397,7 @@ Test Passing Criteria: The test passes if,
 
 
 #### **[R229]** 
-A zero-knowledge proof of correctness of a workstep output that has been finalized on the BPI [MUST](#rfc2119) be committed to the CCSM utilized by the BPI using a compact cryptographic proof.
+A zero-knowledge proof of correctness of a workstep output that has been finalized on the BPI MUST be committed to the CCSM utilized by the BPI using a compact cryptographic proof.
 
 *Such a commitment can represent more than one zero-knowledge proof of correctness of an input. Compact in this context means that the CCSM commitment is smaller in size than the totality of the proof(s) represented by the commitment. This is desirable because it reduces the data footprint of the BPI which should be one of the implementation goals of a BPI. Note that a compact proof may be succinct or efficient.*
 
@@ -7423,7 +7423,7 @@ Test Passing Criteria:
 * The commitment to the proof(s) has been stored on the CCSM.
 
 #### **[R230]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM [MUST](#rfc2119) be verifiable by any 3rd party at any time in a time at most proportional to the size of the prover system. 
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM MUST be verifiable by any 3rd party at any time in a time at most proportional to the size of the prover system. 
 
 *Note, that the requirement does not state that the proof has to be verifiable on the CCSM itself, that it does not need to be succinct, and that it does not need to be efficient.*
 
@@ -7449,7 +7449,7 @@ Test Passing Criteria:
 * The test will pass if the verification of the cryptographic proof of correctness of the BPI state transition can be completed by a third party within a time at most proportional to the size of the prover system, as specified by the requirement.
 
 #### **[D29]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output generated by a BPI and stored on the CCSM utilized by the BPI [SHOULD](#rfc2119) be verifiable by any 3rd party and at any time by the CCSM utilized by the BPI.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output generated by a BPI and stored on the CCSM utilized by the BPI SHOULD be verifiable by any 3rd party and at any time by the CCSM utilized by the BPI.
 
 [[D29]](#d29) Testability:
 
@@ -7473,24 +7473,24 @@ Test Passing Criteria: The test is considered passing if all of the following cr
 * The test has been repeated for multiple workstep outputs stored on the CCSM utilized by the BPI, at random points in time during the testing period, and all verifications are successful.
 
 #### **[D30]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output and stored on the CCSM [SHOULD](#rfc2119) be succinct.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output and stored on the CCSM SHOULD be succinct.
 
 [[D30]](#d30) Testability: The same test as for [[D26]](#d26) can be used for [[D30]](#d30) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characteristics as in used in [[D26]](#d26).
 
 #### **[D31]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM [SHOULD](#rfc2119) be efficient.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM SHOULD be efficient.
 
 [[D31]](#d31) Testability: The same test as for [[D27]](#d27) can be used for [[D31]](#d31) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characteristics as in used in [[D27]](#d27).
 
 #### **[D32]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM [SHOULD](#rfc2119) be based on modular constructions.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output on the CCSM SHOULD be based on modular constructions.
 
 [[D32]](#d32) Testability: The same test as for [[D28]](#d28) can be used for [[D32]](#d32) if the cryptographic proof of correctness of a BPI state transition that is stored on the CCSM is a zero-knowledge proof with the same characterisitcs as in used in [[D28]](#d28).
 
-*In specific situations, the above [SHOULD](#rfc2119) requirements become MUST.*
+*In specific situations, the above SHOULD requirements become MUST.*
 
 #### **[O3]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output [MAY](#rfc2119) be used in a commercial value-creation or value-exchange event.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output MAY be used in a commercial value-creation or value-exchange event.
 
 *This means that the output of a workstep can be used to represent a unit of value accounting such as a digital asset. For example, one or more workstep outputs may be used as (verifiable) collateral in issuing an asset-backed security (value-creation).*
 
@@ -7515,24 +7515,24 @@ Test Passing Criteria:
 * The cryptographic proof is available for any 3rd party to verify the correctness of the state transition.
 
 #### **[CR16]<[O3]** 
-A cryptographic proof of correctness of a BPI state transition used in a commercial value-creation [MUST](#rfc2119) be succinct.
+A cryptographic proof of correctness of a BPI state transition used in a commercial value-creation MUST be succinct.
 
 [[CR16]<[O3]](#cr16o3) Testability: The same test as in [[D26]](#d26) Testability may be used.
 
 #### **[CR17]<[O3]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output [MUST](#rfc2119) be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output MUST be individually available on the CCSM utilized by the BPI after it has been finalized on the BPI (Liveness).
 
 *The zero-knowledge proof of correctness can be a cryptographic aggregator of proofs of workstep input correctness that would allow multiple proofs to be represented and provable within one proof.*
 
 [[CR17]<[O3]](#cr76o3) Testability: The same test as in [[R229]](#r229) Testability may be used with the only difference being that the proof on the CCSM contains the representation of only one proof.
 
 #### **[CR18]<[O3]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output [MUST](#rfc2119) be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant individual proof verifiability). 
 
 [[CR18]<[O3]](#cr18o3) Testability: The same test as in [[R230]](#r230) Testability may be used.
 
 #### **[CR19]<[O3]** 
-A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output [MUST NOT](#rfc2119) be able to be used in more than one commercial value-creation/exchange event at any time.
+A cryptographic proof of correctness of a BPI state transition as expressed by a workstep output MUST NOT be able to be used in more than one commercial value-creation/exchange event at any time.
 
 *This requirement is necessary to avoid the usage of the same output as collateral in more than one commercial value-creation event, such as tokenization, and subsequent usage in value-exchange events, also known as double-pledging.*
 
@@ -7567,7 +7567,7 @@ Test Passing Criteria:
 The test will pass if the output pledge can only be used in the commercial value-creation/exchange event in which it was committed, and any attempt to use the same output pledge in another commercial value-creation/exchange event fails as long as said event is restricted to the CCSM the BPI uses for the Output Pledge. Additionally, the Output Pledge should be able to be revoked by removing it from the commitment system on the CCSM utilized by the BPI.
 
 #### **[CR20]<[O3]** 
-A BPI [MUST](#rfc2119) create an Output Pledge of a workstep output used in a commercial value-creation event as a succinct, non-interactive zero-knowledge proof of the pledge commitment (privacy preservation of an output pledged in a commercial value-creation event).
+A BPI MUST create an Output Pledge of a workstep output used in a commercial value-creation event as a succinct, non-interactive zero-knowledge proof of the pledge commitment (privacy preservation of an output pledged in a commercial value-creation event).
 
 *Note that an Output Pledge can contain, and usually will contain more than one workstep output used in a commercial value-creation event.*
 
@@ -7592,22 +7592,22 @@ Test Passing Criteria:
 * The generated zero-knowledge proof of the Output Pledge is succinct.
 
 #### **[CR21]<[O3]** 
-An Output Pledge [MUST](#rfc2119) be committed to the CCSM utilized by the BPI (Liveness).
+An Output Pledge MUST be committed to the CCSM utilized by the BPI (Liveness).
 
 [[CR21]<[O3]](#cr21o3) Testability: The same test as in [[R229]](#r229) Testability may be used.
 
 #### **[CR22]<[O3]** 
-An Output Pledge [MUST](#rfc2119) be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant proof verifiability).
+An Output Pledge MUST be verifiable by any 3rd party on the CCSM utilized by the BPI (censorship-resistant proof verifiability).
 
 [[CR22]<[O3]](#cr22o3) Testability: The same test as in [[D29]](#rd29) Testability may be used.
 
 #### **[CR23]<[O3]** 
-An Output Pledge [MUST](#rfc2119) be updatable.
+An Output Pledge MUST be updatable.
 
 [[CR23]<[O3]](#cr23o3) Testability: The same test as in [CR19]<[O3]](#cr19o3) Testability may be used since it involves an update operation of an Output Pledge.
 
 #### **[CR24]<[O3]** 
-An Output Pledge [MUST](#rfc2119) only be updated by the owners of the workstep output used in a commercial value-creation event.
+An Output Pledge MUST only be updated by the owners of the workstep output used in a commercial value-creation event.
 
 *Note that there are many ways this can be achieved. Note also that the ownership of the output might change and be highly fractionalized if used in a token as collateral. Therefore, there might be the need for a custodianship that is authorized to update the Output Pledge, and only under specific circumstances, such as when the outstanding token number is zero.*
 
@@ -7634,7 +7634,7 @@ Test Passing Criteria:
 After specifying a workstep, this document will now turn to a workflow.
 
 #### **[R231]** 
-A workflow [MUST](#rfc2119) contain at least one workstep.
+A workflow MUST contain at least one workstep.
 
 [[R231]](#r231) Testability:
 
@@ -7658,7 +7658,7 @@ Test Passing Criteria:
 * If the BPI correctly saves a workflow with one workstep.
 
 #### **[R232]** 
-If there is more than one workstep in a workflow, the worksteps in a workflow [MUST](#rfc2119) be causally connected.
+If there is more than one workstep in a workflow, the worksteps in a workflow MUST be causally connected.
 
 *This means that the output of a workstep in a workflow is a required input into one or more subsequent worksteps.*
 
@@ -7681,7 +7681,7 @@ Test Passing criteria:
 * All pairs of consecutive worksteps in the workflow use the output of one workstep as input in the next workstep.
 
 #### **[D33]** 
-If there is more than one workstep in a workflow, the zero-knowledge proof of correctness of the input to the last workstep in the workflow [SHOULD](#rfc2119) be a proof that accumulates the valid proofs for all previous inputs.
+If there is more than one workstep in a workflow, the zero-knowledge proof of correctness of the input to the last workstep in the workflow SHOULD be a proof that accumulates the valid proofs for all previous inputs.
 
 *Such proofs are known as inductive proof chains as each proof accumulates the previous proof, with further local inputs, in the causal chain of worksteps. The verifier, therefore, does not have to verify all proofs and hold all inputs but rather only the final one with the final public input to prove the validity of the entire computational chain.*
 
@@ -7709,7 +7709,7 @@ Test Passing Criteria:
 * The inductive proof chain can be updated with the latest proof of any previous input without invalidating the final proof.
 
 #### **[D34]** 
-The prover system in a workflow with more than one workstep [SHOULD](#rfc2119) be the same for all worksteps.
+The prover system in a workflow with more than one workstep SHOULD be the same for all worksteps.
 
 [[D34]](#d34) Testability:
 
@@ -7735,7 +7735,7 @@ Test Passing Criteria:
 * If any verification in step 6 fails, the test fails and the specific combination of worksteps and verification results are recorded for further investigation.
 
 #### **[R233]** 
-A workflow with more than one workstep [MUST](#rfc2119) have a unique identifier within a BPI. 
+A workflow with more than one workstep MUST have a unique identifier within a BPI. 
 
 [[R233]](#r233) Testability:
 
@@ -7762,7 +7762,7 @@ Test passing criteria:
 
 
 #### **[R234]** 
-A workflow with more than one workstep and a given set of inputs [MUST](#rfc2119) be sequentially executed by a BPI.
+A workflow with more than one workstep and a given set of inputs MUST be sequentially executed by a BPI.
 
 *This simply means that for a given set of inputs there is only one process path through a given workflow.*
 
@@ -7793,7 +7793,7 @@ Test passing criteria:
 In this section, the document will discuss the requirements for a workgroup. Note that which BPI Subjects may or may not be able to create a workgroup is up to the individual implementations. However,
 
 #### **[R235]** 
-There [MUST](#rfc2119) be at least one BPI Subject role that has the authorization to create a workgroup.
+There MUST be at least one BPI Subject role that has the authorization to create a workgroup.
 
 [[R235]](#r235) Testability:
 
@@ -7818,7 +7818,7 @@ Test Passing Criteria:
 * Step 6: The system denies the attempt to create a workgroup using unauthorized credentials.
 
 #### **[R236]** 
-A workgroup [MUST](#rfc2119) consist of at least one BPI Subject participant.
+A workgroup MUST consist of at least one BPI Subject participant.
 
 *Note that a workgroup participant may be a BPI Subject of another BPI than the BPI the workgroup is defined in. The appropriate authentication and authorization policies to enable such a scenario are up to implementers and beyond the scope of this document.*
 
@@ -7846,7 +7846,7 @@ Test passing criteria:
 * Steps 6 to 8 should execute successfully.
 
 #### **[R237]** 
-A workgroup [MUST](#rfc2119) have at least one administrator.
+A workgroup MUST have at least one administrator.
 
 [[R237]](#r237) Testability:
 
@@ -7871,7 +7871,7 @@ Test Passing Criteria:
 * Step 6: The action should not be allowed, and an appropriate error message should be displayed.
 
 #### **[R238]** 
-A workgroup [MUST](#rfc2119) have at least one security policy.
+A workgroup MUST have at least one security policy.
 
 *Note that a security policy consists of authentication and authorization rules for the workgroup participants. Note also that one or more workgroup administrators define the workgroup security policy.*
 
@@ -7902,7 +7902,7 @@ Test passing criteria:
 * The unauthorized action is denied for participants that do not have the required authorization according to the security policy.
 
 #### **[R239]** 
-A workgroup [MUST](#rfc2119) have at least one privacy policy.
+A workgroup MUST have at least one privacy policy.
 
 *A privacy policy consists of the data visibility rules for each participant.*
 
@@ -7934,7 +7934,7 @@ Passing criteria:
 * The second privacy policy is successfully removed.  
 
 #### **[R240]** 
-A workgroup administrator [MUST](#rfc2119) be able to perform at minimum the following functions:
+A workgroup administrator MUST be able to perform at minimum the following functions:
 * add or remove one or more participants
 * create, update and delete both security and privacy policies.
 * delete or archive a workgroup
@@ -7977,12 +7977,12 @@ Test passing criteria:
 * All test steps passed without any errors.
 
 #### **[O4]** 
-A workgroup [MAY](#rfc2119) have more than one administrator.
+A workgroup MAY have more than one administrator.
 
 [[O4]](#o4) Testability: Execute the test in [[R237]](#r237) Testability twice.
 
 #### **[CR25]>[O4]** 
-There [MUST](#rfc2119) be a consensus model for administrative actions.
+There MUST be a consensus model for administrative actions.
 
 [[CR25]<[O4]](#cr25o4) Testability:
 
@@ -8017,7 +8017,7 @@ Test Passing Criteria:
 * The workgroup is successfully archived and deleted with the consensus of both administrators.
 
 #### **[O5]** 
-A workgroup [MAY](#rfc2119) be attached to one or more workstep instances. 
+A workgroup MAY be attached to one or more workstep instances. 
 
 [[O5]](#o5) Testability:
 
@@ -8045,7 +8045,7 @@ Test Passing Criteria:
 * The workgroup is attached to multiple workstep instances simultaneously without any issues.
 
 #### **[CR26]>[O5]** 
-A workgroup attached to a workflow [MUST](#rfc2119) be also attached to each workstep in the workflow.
+A workgroup attached to a workflow MUST be also attached to each workstep in the workflow.
 
 [[CR26]<[O5]](#cr26o5) Testability:
 
@@ -8073,7 +8073,7 @@ Test Passing Criteria:
 Before moving on to the requirements on the individual components in the processing layer required for agreement execution, this document needs to define and specify the prerequisites. Since this document has been defining and discussing state objects in the context of a BPI, it needs to define stateful object processing. This necessitates an account-based model for both BPI subjects and BPI state objects. This is analogous to the Ethereum model using accounts for individual participants and smart contracts -- both are stateful objects. For simplicity, this document refers to account instead of BPI Account
 
 #### **[R241]** 
-An account [MUST](#rfc2119) be associated with one or more BPI Subjects.
+An account MUST be associated with one or more BPI Subjects.
 
 [[R241]](#r241) Testability:
 
@@ -8099,7 +8099,7 @@ Test Passing Criteria:
 * Step 7 must result in an error message indicating that the BPI subject does not exist.
 
 #### **[R242]**
-A BPI State Object [MUST](#rfc2119) be associated with an account.
+A BPI State Object MUST be associated with an account.
 
 [[R242]](#r242) Testability:
 
@@ -8124,7 +8124,7 @@ The test passes if the BPI State Object produced by the workstep is associated w
 *An account itself is defined through the following requirements:*
 
 #### **[R243]** 
-An account [MUST](#rfc2119) have a unique account identifier.
+An account MUST have a unique account identifier.
 
 [[R243]](#r243) Testability:
 
@@ -8149,7 +8149,7 @@ Test Passing Criteria:
 * Step 7: The system allows the creation of the new account with the previously used account identifier.
 
 #### **[R244]** 
-An account [MUST](#rfc2119) have at least one account owner.
+An account MUST have at least one account owner.
 
 [[R244]](#r244) Testability:
 
@@ -8172,7 +8172,7 @@ Test Passing Criteria: The test passes,
 * If the BPI does not create an account if there is no BPI Subject inidcated as the owner.
 
 #### **[O6]** 
-An account [MAY](#rfc2119) have more than one account owner.
+An account MAY have more than one account owner.
 
 [[O6]](#ro6) Testability:
 
@@ -8195,7 +8195,7 @@ Test Passing Criteria: The test passes,
 * If a second owner is successfully added to an account.
 
 #### **[CR27]>[O6]** 
-If an account has more than one account owner, the account [MUST](#rfc2119) have an account authorization condition.
+If an account has more than one account owner, the account MUST have an account authorization condition.
 
 *An account authorization condition is a condition that has to be met by all or a portion of the account owners such as an m-of-n signature condition to authorize a BPI transaction from that account.*
 
@@ -8231,7 +8231,7 @@ Test Passing Criteria:
 * Step 11 should verify that the transaction request is authorized only when the required number of account owners have provided their authorization.
 
 #### **[R245]** 
-Account ownership authentication and account authorization conditions [MUST](#rfc2119) be cryptographically provable.
+Account ownership authentication and account authorization conditions MUST be cryptographically provable.
 
 *This may be achieved through for example a cryptographic digital signature.*
 
@@ -8260,7 +8260,7 @@ Test Passing Criteria:
 * The BPI allows the transaction only if the authentication and authorization conditions are valid.
 
 #### **[R246]** 
-An account [MUST](#rfc2119) have a deterministic nonce.
+An account MUST have a deterministic nonce.
 
 *This ensures that transactions originating from an account are processed in the correct order.*
 
@@ -8287,7 +8287,7 @@ Test Passing Criteria:
 * The updated nonce values from step 4. can be independently recalculated using the nonce implementation in the BPI.
 
 #### **[D35]** 
-An account [SHOULD](#rfc2119) have one or more units of value-accounting balances.
+An account SHOULD have one or more units of value-accounting balances.
 
 *Also often known as tokens, these units of value-accounting allow the usage of state objects in financial transactions requiring units of accounting.*
 
@@ -8315,7 +8315,7 @@ Passing Criteria:
 * The addition of a new value-accounting balance is successful.
 
 #### **[R247]** 
-The state of an account [MUST](#rfc2119) be represented by a cryptographic vector commitment scheme.
+The state of an account MUST be represented by a cryptographic vector commitment scheme.
 
 A cryptographic vector commitment scheme commits to an ordered sequence of q values (m<sub>1</sub>, . . . , m<sub>q</sub>) in such a way that one
 can later open the commitment at specific positions (e.g., prove that m<sub>i</sub> is the i<sup>th</sup> committed message). For security, Vector Commitments are required to satisfy position binding which states that an adversary should not be able to open a commitment to two different values at the same position. An example of such a scheme is a Merkle Trie.
@@ -8345,7 +8345,7 @@ Passing Criteria:
 * If the Merkle root hashes in step 7. match the test succeeds, otherwise, it fails.
 
 #### **[R248]** 
-Account properties consisting of more than one element [MUST](#rfc2119) be represented by the same cryptographic vector commitment scheme as the full account and its state.
+Account properties consisting of more than one element MUST be represented by the same cryptographic vector commitment scheme as the full account and its state.
 
 [[R248]](#r248) Testability: 
 
@@ -8375,7 +8375,7 @@ Passing Criteria:
 *[R247] and [R248] ensure the structural integrity and cryptographic verifiability of the account at all times.*
 
 #### **[R249]** 
-The history of the state of an account [MUST](#rfc2119) be represented by a cryptographic vector commitment.
+The history of the state of an account MUST be represented by a cryptographic vector commitment.
 
 *This is required because not only does each state have to have structural integrity at all times but also its history with a causal connection between states.*
 
@@ -8408,7 +8408,7 @@ Passing Criteria:
 * If the Merkle proof successfully verifies, the test succeeds, otherwise it fails.
 
 #### **[R250]** 
-The state of an account [MUST](#rfc2119) be minimally comprised of the following elements:
+The state of an account MUST be minimally comprised of the following elements:
 * Account Identifier
 * Owner(s)
 * Authorization Condition (if more than one owner)
@@ -8448,7 +8448,7 @@ Passing criteria:
 
 
 #### **[R251]** 
-The state of an account [MUST](#rfc2119) only be changed based on a valid transaction compliant with the account authorization condition(s).
+The state of an account MUST only be changed based on a valid transaction compliant with the account authorization condition(s).
 
 [[R251]](#r251) Testability:
 
@@ -8479,7 +8479,7 @@ Passing criteria:
 * The BPI accurately enforces the authorization condition(s) to control state object modifications.
 
 #### **[R252]** 
-The state of a state object [MUST](#rfc2119) only be changed based on a valid transaction compliant with the authorization condition(s) of the account to which the state object belongs.
+The state of a state object MUST only be changed based on a valid transaction compliant with the authorization condition(s) of the account to which the state object belongs.
 
 *This document will discuss the requirements of a transaction and what constitutes a valid transaction in the next section. Note, that an account is associated with a workstep instance through the shared state objects.*
 
@@ -8516,7 +8516,7 @@ Passing Criteria:
 Account states, and therefore, the state of BPI state objects, and, thus, agreement states are altered through BPI transactions submitted by requesters of state changes from their accounts. In the following, this document specifies requirements for the structure and characteristics of transactions.
 
 #### **[R253]** 
-Each transaction [MUST](#rfc2119) minimally have the following identifiers:
+Each transaction MUST minimally have the following identifiers:
 * Workflow (instance) ID (UID)
 * Workstep (instance) ID (UID)
 * Transaction ID (UID)
@@ -8555,7 +8555,7 @@ Passing Criteria:
 * The identifiers enable proper tracking, identification, and correlation of transactions within the BPI system.
 
 #### **[R254]** 
-The Workflow Instance ID [MUST](#rfc2119) be derivable from the Workflow ID.
+The Workflow Instance ID MUST be derivable from the Workflow ID.
 
 [[R254]](#r254) Testability:
 
@@ -8588,7 +8588,7 @@ Passing Criteria:
 * The BPI system correctly applies the derivation logic and generates accurate Workflow Instance IDs.
 
 #### **[R255]** 
-The Workstep Instance ID [MUST](#rfc2119) be derivable from the Workstep ID.
+The Workstep Instance ID MUST be derivable from the Workstep ID.
 
 [[R255]](#r255) Testability:
 
@@ -8621,7 +8621,7 @@ Passing Criteria:
 * The BPI system correctly applies the derivation logic and generates accurate Workstep Instance IDs.
 
 #### **[D36]** 
-A Transaction ID [SHOULD](#rfc2119) be generated by the transaction originator/sender.
+A Transaction ID SHOULD be generated by the transaction originator/sender.
 
 [[D36]](#d36) Testability:
 
@@ -8650,7 +8650,7 @@ Passing Criteria:
 * The generated Transaction IDs are consistently and accurately associated with their corresponding transactions.
 
 #### **[R256]** 
-A Transaction [MUST](#rfc2119) have a `From` (Sender) and a `To` (Receiver) element each containing the respective Sender and Receiver account numbers.
+A Transaction MUST have a `From` (Sender) and a `To` (Receiver) element each containing the respective Sender and Receiver account numbers.
 
 [[R256]](#r256) Testability:
 
@@ -8682,7 +8682,7 @@ Passing Criteria:
 * Different sender and receiver accounts should be successfully used in multiple transactions.
 
 #### **[R257]** 
-Each transaction [MUST](#rfc2119) have a different, deterministic nonce based on the account of the sender.
+Each transaction MUST have a different, deterministic nonce based on the account of the sender.
 
 [[R257]](#r257) Testability:
 
@@ -8710,7 +8710,7 @@ Passing Criteria:
 * The derived nonces using the deterministic method must match the recorded nonces for all the transactions.
 
 #### **[R258]** 
-Each transaction [MUST](#rfc2119) contain a representation of a document as a state object constituting the suggested new agreement state.  
+Each transaction MUST contain a representation of a document as a state object constituting the suggested new agreement state.  
 
 [[R258]](#r258) Testability:
 
@@ -8734,7 +8734,7 @@ Passing Criteria:
 * The BPI system updates the agreement state based on the contents of the document.
 
 #### **[R259]** 
-A transaction [MUST](#rfc2119) contain the cryptographic digital signature of one or more of the owner(s) of the Sender account compliant with the account's authorization condition.
+A transaction MUST contain the cryptographic digital signature of one or more of the owner(s) of the Sender account compliant with the account's authorization condition.
 
 [[R259]](#r259) Testability:
 
@@ -8760,7 +8760,7 @@ Passing Criteria:
 * If the signature(s) do not comply with the authorization condition, the BPI system rejects the transaction.
 
 #### **[R260]** 
-A transaction [MUST](#rfc2119) be considered invalid if one of the following conditions is met:
+A transaction MUST be considered invalid if one of the following conditions is met:
 * The transaction nonce is not equal to the next deterministic value of the account nonce.
 * The cryptographic signature of the account owner(s) on the transaction cannot be verified
 * The account authorization condition for the Sender account is not met.
@@ -8823,7 +8823,7 @@ A prerequisite for transaction lifecycle step 4 where the BPI Processing Layer T
 The requirements for the subsequent step (5) are as follows:
 
 #### **[R261]** 
-A Transaction Pool [MUST](#rfc2119) be able to validate all transaction requirements for a valid transaction in section [6.5 BPI Transactions](#65-bpi-transactions).
+A Transaction Pool MUST be able to validate all transaction requirements for a valid transaction in section [6.5 BPI Transactions](#65-bpi-transactions).
 
 [[R261]](#r261) Testability:
 
@@ -8851,7 +8851,7 @@ Passing Criteria:
 * The rejected Transaction is not in the valid transaction pool.
 
 #### **[R262]** 
-A Transaction Pool [MUST](#rfc2119) order transactions for processing based on the order of their unique messaging ID and their account nonces for the same 'From" account.
+A Transaction Pool MUST order transactions for processing based on the order of their unique messaging ID and their account nonces for the same 'From" account.
 
 [[R262]](#r262) Testability:
 
@@ -8873,7 +8873,7 @@ Passing Criteria:
 * The first transaction with a lower messaging ID and nonce should be processed before the second transaction with a higher messaging ID and nonce.
 
 #### **[R263]** 
-If the order of two or more transactions from the same account in the Transaction Pool is in contradiction to the order of the deterministic account nonce, the transactions [MUST](#rfc2119) first be ordered by their account nonces and then by their message IDs.
+If the order of two or more transactions from the same account in the Transaction Pool is in contradiction to the order of the deterministic account nonce, the transactions MUST first be ordered by their account nonces and then by their message IDs.
 
 *Note, that this is required to avoid a BPI operator ordering transactions maliciously, or injecting malicious transactions ahead of other transactions.*
 
@@ -8899,7 +8899,7 @@ Passing Criteria:
 * The reordered transactions are processed in the correct order according to the ordering criteria.
 
 #### **[R264]** 
-A Transaction Pool [MUST](#rfc2119) create a batch of transactions to be processed by the Virtual State Machine given one or more batching parameters such as time, number of transactions, or storage size of a batch.
+A Transaction Pool MUST create a batch of transactions to be processed by the Virtual State Machine given one or more batching parameters such as time, number of transactions, or storage size of a batch.
 
 *The number of transactions per batch and the time period covered by each batch while fixed can be freely chosen by an implementer. Recommendations as to batch size and time frame will be given in an implementers guide and is beyond the scope of this document.*
 
@@ -8925,7 +8925,7 @@ Passing Criteria:
 * The batch of transactions is correctly forwarded to the Virtual State Machine for processing.
 
 #### **[R265]** 
-A Transaction Pool [MUST](#rfc2119) process an invalid transaction by assigning the transaction an error code and an easily human-readable error message and issuing a message minimally consisting of the tuple `(Sender Account, Error Code, Error Message, Transaction)` to the Messaging Capability of the BPI to inform the sender of the transaction failure and its reason.
+A Transaction Pool MUST process an invalid transaction by assigning the transaction an error code and an easily human-readable error message and issuing a message minimally consisting of the tuple `(Sender Account, Error Code, Error Message, Transaction)` to the Messaging Capability of the BPI to inform the sender of the transaction failure and its reason.
 
 [[R265]](#r265) Testability:
 
@@ -8953,7 +8953,7 @@ In the following, this document will discuss the requirements on the Virtual Sta
 Since BPIs are used to verify the correctness of state transitions (see step (6) in Fig. 10 above), BPIs will utilize a Virtual State Machine (VSM) for its computations to validate state transitions of state objects; a digital computer running on a physical computer. A VSM requires architecture and execution rules which together define the Execution Framework.
 
 #### **[R266]**	
-The Execution Framework of a VSM [MUST](#rfc2119) be deterministic.
+The Execution Framework of a VSM MUST be deterministic.
 
 *Any BPI running the same Execution Framework on the same state object with the same input data needs to arrive at the same result, in other words, deterministic outcomes. This is only guaranteed if the Execution Framework either does not allow instructions to be executed in parallel, but only strictly sequential, or if the Execution Framework has methods in place that allow the identification and prevention of transactions that would cause state conflicts if processed in parallel.* 
 
@@ -8984,7 +8984,7 @@ Passing Criteria:
 * The recorded sequences of actions and events remain consistent even when the execution environment is varied.
 
 #### **[R267]**	
-The Execution Framework of a VSM [MUST](#rfc2119) ensure that state transition validation computations are either completed or aborted in finite time. 
+The Execution Framework of a VSM MUST ensure that state transition validation computations are either completed or aborted in finite time. 
 
 *Note that what is deemed to be a suitable, finite time is determined by the allowable duration of a transaction. This requirement means that infinite computational loops cannot be allowed in a BPI.*
 
@@ -9011,7 +9011,7 @@ Passing Criteria:
 * Problematic state transitions triggering potentially infinite computations or exceptionally long validation processes are either completed within a predetermined time limit or resource consumption limit or aborted if the time or resource limit is exceeded.
 
 #### **[R268]**	
-The Execution Framework of a VSM [MUST](#rfc2119) support commonly used cryptographic primitives for zero-knowledge proofs, e.g., hashing, commitments, accumulators, or zero-knowledge proof verification.
+The Execution Framework of a VSM MUST support commonly used cryptographic primitives for zero-knowledge proofs, e.g., hashing, commitments, accumulators, or zero-knowledge proof verification.
 
 [[R268]](#r268) Testability:
 
@@ -9034,12 +9034,12 @@ Passing Criteria:
 * The zero-knowledge proof of document integrity is correctly generated and is correctly verified. 
 
 #### **[D37]**	
-The Execution Framework of a VSM [SHOULD](#rfc2119) have a mathematical proof of correctness and security.
+The Execution Framework of a VSM SHOULD have a mathematical proof of correctness and security.
 
 [[D37]](#d37) Testability: There is a peer-reviewed academic paper that proves the mathematical correctness and security of the utilized VSM given certain security assumptions such as the hardness of the Diffie-Hellman Discrete Logarithm and framework such as the universal composability framework.
 
 #### **[D38]**	
-The Execution Framework of a VSM [SHOULD](#rfc2119) be Verifiably Secure. 
+The Execution Framework of a VSM SHOULD be Verifiably Secure. 
 
 [[D38]](#d38) Testability:
 
@@ -9065,7 +9065,7 @@ Passing Criteria:
 * The Execution Framework independently verifies the provided proofs and validates the correctness of the computation results.
 
 #### **[R269]** 
-If a VSM can generate a valid Proof-of-Correctness for a transaction, it [MUST](#rfc2119) update the state and the state history of the state object the transaction targeted based on the transaction data.
+If a VSM can generate a valid Proof-of-Correctness for a transaction, it MUST update the state and the state history of the state object the transaction targeted based on the transaction data.
 
 [[R269]](#r269) Testability:
 
@@ -9094,7 +9094,7 @@ Passing Criteria:
 * The updated state and state history align with the expected changes specified by the transaction data.
 
 #### **[R270]** 
-A VSM [MUST](#rfc2119) store all proofs, state objects, their associated data, and their histories in the Storage capability of the BPI Processing Layer.
+A VSM MUST store all proofs, state objects, their associated data, and their histories in the Storage capability of the BPI Processing Layer.
 
 [[R270]](#r270) Testability:
 
@@ -9120,7 +9120,7 @@ Passing Criteria:
 * The retrieved information matches the original data and corresponds to the respective transactions.
 
 #### **[R271]** 
-The integrity of proofs, transactions, state objects, and their data and histories [MUST](#rfc2119) be cryptographically verifiable by the owners of the accounts associated with the proofs, transactions, state objects, and their data and history.
+The integrity of proofs, transactions, state objects, and their data and histories MUST be cryptographically verifiable by the owners of the accounts associated with the proofs, transactions, state objects, and their data and history.
 
 [[R271]](#r271) Testability:
 
@@ -9144,7 +9144,7 @@ Passing Criteria:
 * Using the chosen verification method and associated tooling, the account owners can successfully cryptographically verify the integrity of the proof, transaction, state object, and their data and histories.
 
 #### **[R272]** 
-All updates to an agreement state and their associated accounts by a VSM [MUST](#rfc2119) be communicated to all agreement counterparties through the Message capability in the BPI Middleware layer. 
+All updates to an agreement state and their associated accounts by a VSM MUST be communicated to all agreement counterparties through the Message capability in the BPI Middleware layer. 
 
 [[R272]](#r272) Testability:
 
@@ -9169,7 +9169,7 @@ Passing Criteria:
 * All agreement counterparties receive the message.
 
 #### **[R273]** 
-A Proof-of-Correctness of a state transition and associated data required for proof verification generated by a VSM [MUST](#rfc2119) be communicated to the CCSM Abstraction Layer for subsequent commitment to the CCSM utilized by the BPI through the Message capability in the BPI Middleware layer. 
+A Proof-of-Correctness of a state transition and associated data required for proof verification generated by a VSM MUST be communicated to the CCSM Abstraction Layer for subsequent commitment to the CCSM utilized by the BPI through the Message capability in the BPI Middleware layer. 
 
 *Note, see the BPI transaction lifecycle management flow in Fig. 10, in particular step (8).*
 
@@ -9200,7 +9200,7 @@ Passing Criteria:
 The following requirements are addressing the operating scenario where a BPI consists of more than one node. This is a perfectly feasible scenario with its pros and cons beyond the scope of this document to discuss. However, certain requirements need to be met for such a scenario to be operationally viable.
 
 #### **[O7]** 
-A BPI [MAY](#rfc2119) consist of more than one processing node.
+A BPI MAY consist of more than one processing node.
 
 *This document will call such a structure a BPI network.*
 
@@ -9225,7 +9225,7 @@ Passing Criteria:
 * The processing nodes effectively communicate and coordinate with each other during transaction processing.
 
 #### **[CR29]>[O7]** 
-A BPI network executing and finalizing transactions [MUST](#rfc2119) utilize a consensus algorithm fulfilling all requirements described in the Baseline CCSM Specification.
+A BPI network executing and finalizing transactions MUST utilize a consensus algorithm fulfilling all requirements described in the Baseline CCSM Specification.
 
 [[CR29]>[O7]](#cr29o7) Testability:
 
@@ -9250,7 +9250,7 @@ Passing Criteria:
 * The submitted transactions are successfully executed and finalized based on the consensus algorithm.
 
 #### **[CR30]>[O7]** 
-The consensus algorithm of a BPI network [MUST](#rfc2119) have a time to consensus that is smaller than the time to consensus of the CCSM utilized by the BPI network.
+The consensus algorithm of a BPI network MUST have a time to consensus that is smaller than the time to consensus of the CCSM utilized by the BPI network.
 
 [[CR30]>[O7]](#cr30o7) Testablity:
 
@@ -9275,7 +9275,7 @@ Passing Criteria:
 * The time to consensus of the BPI is smaller than the time to consensus of the CCSM.
 
 #### **[CR31]>[O7]** 
-The consensus algorithm of a BPI network [MUST](#rfc2119) have a time to finality that is smaller than the time to finality of the CCSM utilized by the BPI network.
+The consensus algorithm of a BPI network MUST have a time to finality that is smaller than the time to finality of the CCSM utilized by the BPI network.
 
 [[CR31]>[O7]](#cr31o7) Testablity:
 
@@ -9302,7 +9302,7 @@ Passing Criteria:
 *The above requirements are necessary such that transactions in the BPI cannot be altered after they have been committed to and finalized on the CCSM utilized by the BPI.*
 
 #### **[CR32]>[O7]** 
-A BPI network [MUST](#rfc2119) reach consensus on both the order and the correct execution of transactions.
+A BPI network MUST reach consensus on both the order and the correct execution of transactions.
 
 [[CR32]>[O7]](#cr32o7) Testablity:
 
@@ -9327,7 +9327,7 @@ Passing Criteria:
 * All nodes in the BPI network have the same ordered and executed transactions.
 
 #### **[CR33]>[O7]** 
-A BPI network [MUST](#rfc2119) use a common execution framework. 
+A BPI network MUST use a common execution framework. 
 
 *Note that if more than one execution framework were chosen, no consensus could be reached on the outcome of a transaction because the state representation is execution framework dependent e.g. Ethereum account state vs. a zero-knowledge-proof of account state.*
 
@@ -9357,7 +9357,7 @@ The key discussion on the Storage capability is full data persistency (write man
 In the case of a BPI, this document needs to distinguish between proof, transaction, and state data and its history and metadata associated with state objects, etc. Given the need to maintain consistency between state data on the CCSM utilized by the BPI and state data in the BPI, the following requirement is important.
 
 #### **[R274]** 
-Proof, transaction, and state object data and their histories together with their integrity proofs [MUST](#rfc2119) be stored as partially persistent data in the BPI storage capability.
+Proof, transaction, and state object data and their histories together with their integrity proofs MUST be stored as partially persistent data in the BPI storage capability.
 
 Partially persistent data is defined as append-only (write once, read many).
 
@@ -9412,7 +9412,7 @@ The document defines storage capability requirements in the following areas:
 As has been done throughout this document, there are BPI layer-specific security requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI security requirements in [2 Design and Architecture](#2-design-and-architecture). 
 
 #### **[R275]** 
-Data in transit in a BPI [MUST](#rfc2119) be encrypted.
+Data in transit in a BPI MUST be encrypted.
 
 [[R275]](#r275) Testability: 
 
@@ -9434,7 +9434,7 @@ Expected Results: All data transmitted between the nodes is encrypted (does not 
 The requirement is met, if all expected results are met. The requirement is not met, if any of the results are not meeting test expectations.
 
 #### **[R276]** 
-Data at rest in a BPI [MUST](#rfc2119) be encrypted.
+Data at rest in a BPI MUST be encrypted.
 
 [[R276]](#r276) Testability: 
 
@@ -9455,7 +9455,7 @@ Expected Results: The data at rest in the BPI is encrypted and cannot be decrypt
 The requirement is met, if all expected results are met. The requirement is not met, if any of the results are not meeting test expectations.
 
 #### **[R277]**	
-BPI Storage arranged in a network [MUST](#rfc2119) support pairwise key/identity relationships between storage nodes.
+BPI Storage arranged in a network MUST support pairwise key/identity relationships between storage nodes.
 
 *This is also known as a secure connection.*
 
@@ -9484,7 +9484,7 @@ Expected Results:
 The requirement is met, if all expected results are met. The requirement is not met, if any of the results are not meeting test expectations.
 
 #### **[R278]**	
-BPI Storage [MUST](#rfc2119) be compatible with commonly used external authentication services. 
+BPI Storage MUST be compatible with commonly used external authentication services. 
 
 *Non-normative examples of such authentication technologies are OAUTH [[OAuth-2.0](#oauth-20)] , SAML [[SAML](#saml)] , OIDC [[OIDC](#oidc)], AD/LDAP [[ActiveDirectory](#activedirectory)].*
 
@@ -9510,7 +9510,7 @@ The test will pass if one or more of the external authentication services succes
 Note that the test policy could be any combination of read and write access to the BPI Storage.
 
 #### **[R279]**	
-BPI Storage [MUST](#rfc2119) support roles & access management.
+BPI Storage MUST support roles & access management.
 
 [[R279]](#r279) Testability: 
 
@@ -9535,7 +9535,7 @@ Test pass criteria:
 * Additionally, attempting operations that require different permissions than the test BPI Subjects' roles must be denied, and appropriate error messages must be displayed.
 
 #### **[R280]**	
-BPI Storage [MUST](#rfc2119) support policy management.
+BPI Storage MUST support policy management.
 
 *Policy management in the context of this document means the creation, reading of, updating and deletion or archiving of policies used in a BPI Storage. Examples of such policies to be managed are rules governing creation, modification, deletion, and retention of data.* 
 
@@ -9569,7 +9569,7 @@ Test Passing Criteria: The test will pass if all of the following criteria are m
 * There are no errors or exceptions during the test.
 
 #### **[R281]**	
-BPI Storage [MUST](#rfc2119) support Single-Sign-On (SSO).
+BPI Storage MUST support Single-Sign-On (SSO).
 
 *See [[SSO](#sso)] also for the recommendations of the National Institute of Standards and Technology (NIST Guide to Secure Web Services).*
 
@@ -9604,7 +9604,7 @@ Test Passing Criteria: The test will pass if
 
 
 #### **[R282]**	
-BPI Storage [MUST](#rfc2119) support multi-factor authentication (MFA)
+BPI Storage MUST support multi-factor authentication (MFA)
 
 *This document adopts [NIST's definition of MFA](https://csrc.nist.gov/glossary/term/mfa).*
 
@@ -9644,7 +9644,7 @@ Test Passing Criteria: The test will pass if
 *After disabling MFA, the BPI allows the BPI Subject to log in with only the initial credentials used by the BPI Subject.
 
 #### **[R283]**	
-BPI Storage [MUST](#rfc2119) support hardware security modules (HSM). 
+BPI Storage MUST support hardware security modules (HSM). 
 
 *This document adopts the [NIST definition](https://csrc.nist.gov/glossary/term/hardware_security_module_hsm) and for further information, refer to [[HSM](#hsm)].*
 
@@ -9691,7 +9691,7 @@ Test Passing Criteria: The test will pass if
 As has been done throughout this document, there are BPI layer-specific privacy requirements for layers and/or components which are listed below. It is assumed that the BPI Storage capabilities are required to fulfill all BPI privacy requirements in section [2 Design and Architecture](#2-design-and-architecture).
 
 #### **[R284]**	
-Personal Identifiable Information (PII) [MUST NOT](#rfc2119) be stored in a BPI.
+Personal Identifiable Information (PII) MUST NOT be stored in a BPI.
 
 [[R284]](#r284) Testability: 
 
@@ -9724,7 +9724,7 @@ Test Passing Criteria: The test will pass if
 Note: The test above only verifies write operations, as the requirement is related to the storage of PII. However, read operations should also be checked to ensure that PII cannot be accessed or returned in query results.
 
 #### **[D39]**	
-BPI Storage arranged in a network [SHOULD](#rfc2119) utilize privacy-preserving P2P message protocols.
+BPI Storage arranged in a network SHOULD utilize privacy-preserving P2P message protocols.
 
 [[D39]](#d39) Testability: 
 
@@ -9745,7 +9745,7 @@ Data Orchestration is an automated process for taking siloed data from multiple 
 To accommodate a high-volume, Low Latency environment with many data changes, BPI Data Orchestration has the following requirements:
 
 #### **[R285]**	
-Data Orchestration utilized in a BPI [MUST NOT](#rfc2119) be a single point of failure.
+Data Orchestration utilized in a BPI MUST NOT be a single point of failure.
 
 [[R285]](#r285) Testability: 
 
@@ -9773,7 +9773,7 @@ Test Passing Criteria: The test will pass if
 Note: Additional tests may be required to verify that the Data Orchestration component can handle high traffic and is able to scale horizontally to accommodate additional nodes as needed.
 
 #### **[R286]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) preserve data consistency from source to target within the BPI. 
+Data Orchestration utilized in a BPI MUST preserve data consistency from source to target within the BPI. 
 
 [[R286]](#r286) Testability: 
 
@@ -9804,7 +9804,7 @@ Test Passing Criteria: The test will pass if,
 *To avoid subscribers seeing partial and/or inconsistent data, BPI Data Orchestration has the following requirements:*
 
 #### **[R287]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) implement transaction boundaries.
+Data Orchestration utilized in a BPI MUST implement transaction boundaries.
 
 *This means that a single BPI Subject's action can trigger atomic updates. A transaction boundary is defined as where a transaction begins or ends, where within the transaction all writes to a system are atomic, in that they either all complete, or are all reverted if any single write in a given transaction fails. An atomic update is defined as an indivisible and irreducible series of system operations such that either all occurs, or nothing occurs. An example of a transaction boundary is a "Create Invoice" transaction that creates an invoice in a system or fails if an error occurs.*
 
@@ -9833,7 +9833,7 @@ Test Passing Criteria: The test will pass if,
 * All writes of the incorrectly formed transactions to the transaction type specific Data Orchestration exit points fail, and generate an error message relayed back to the BPI Subject.
 
 #### **[R288]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) commit to the exact order in which transactions are received by Data Orchestration.
+Data Orchestration utilized in a BPI MUST commit to the exact order in which transactions are received by Data Orchestration.
 
 [[R288]](#r288) Testability: 
 
@@ -9857,7 +9857,7 @@ Passing Criteria: The test will pass if all the following criteria are met,
 * The committed transactions have been properly applied to the targeted BPI State Object and the final state of the BPI State Object is consistent with the transactions that were sent.
 
 #### **[R289]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) support a consistent Data Orchestration state.
+Data Orchestration utilized in a BPI MUST support a consistent Data Orchestration state.
 
 *This can be achieved for example using a two-phase-lock commitment that ensures that a message log in the data orchestration module is idempotent, in other words is append only once per message and not more.*
 
@@ -9885,7 +9885,7 @@ Test Passing Criteria: The test passes if:
 
 
 #### **[R290]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) support user-space processing. 
+Data Orchestration utilized in a BPI MUST support user-space processing. 
 
 *In the context of this document, this requirement establishes a capability that allows for one or more computations outside a database to be triggered by a data change in the data storage system.*
 
@@ -9916,7 +9916,7 @@ Test Passing Criteria:
 * The BPI storage system remains stable and consistent throughout the test.
 
 #### **[R291]**	
-Data Orchestration utilized in a BPI [MUST NOT](#rfc2119) make assumptions about the uptime of a Data Orchestration consumer.
+Data Orchestration utilized in a BPI MUST NOT make assumptions about the uptime of a Data Orchestration consumer.
 
 [[R291]](#r291) Testability: 
 
@@ -9940,7 +9940,7 @@ Test Passing Criteria:
 * The BPI must remain operational and functional even when the Data Orchestration consumer is down.
 
 #### **[R292]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) isolate Data Orchestration data sources from Data Orchestration consumers to which data from the Data Orchestration data sources is delivered via the BPI's Data Orchestration component.
+Data Orchestration utilized in a BPI MUST isolate Data Orchestration data sources from Data Orchestration consumers to which data from the Data Orchestration data sources is delivered via the BPI's Data Orchestration component.
 
 [[R292]](#r292) Testability: 
 
@@ -9967,7 +9967,7 @@ Test Passing Criteria:
 * The test should pass for all tested data sources and consumers.
 
 #### **[R293]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) support Low Latency.
+Data Orchestration utilized in a BPI MUST support Low Latency.
 
 *Low latency in this context refers to a latency that does not impact the overall system latency of the BPI.*
 
@@ -9993,7 +9993,7 @@ Test Passing Criteria:
 
 
 #### **[R294]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes at any point in time.
+Data Orchestration utilized in a BPI MUST be scalable and highly available such that overall system latency is not impacted when volume meaningfully and rapidly changes at any point in time.
 
 [[R294]](#r294) Testability: 
 
@@ -10023,7 +10023,7 @@ Passing Criteria:
 *The BPI Data Orchestration must include the following four components:*
 
 #### **[R295]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) include a fetcher capability that extracts changes from the data source or another bus component.
+Data Orchestration utilized in a BPI MUST include a fetcher capability that extracts changes from the data source or another bus component.
 
 [[R295]](#r295) Testability: 
 
@@ -10047,7 +10047,7 @@ Test Passing Criteria:
 Note: The test steps can be modified to include multiple records and various types of data sources to test the scalability and flexibility of the fetcher capability.
 
 #### **[R296]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) include a log store that caches the generated data change stream in a BPI.
+Data Orchestration utilized in a BPI MUST include a log store that caches the generated data change stream in a BPI.
 
 [[R296]](#r296) Testability: 
 
@@ -10073,7 +10073,7 @@ Test Passing Criteria:
 * The log store can be enabled or disabled as desired, and only captures changes when enabled.
 
 #### **[R297]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) include a snapshot store that stores a moving snapshot of the generated change data stream.
+Data Orchestration utilized in a BPI MUST include a snapshot store that stores a moving snapshot of the generated change data stream.
 
 [[R297]](#r297) Testability: 
 
@@ -10099,7 +10099,7 @@ Test Passing Criteria:
 * The snapshot store should capture any changes to the data source in the moving snapshot from the log store.
 
 #### **[R298]**	
-Data Orchestration utilized in a BPI [MUST](#rfc2119) include a subscription client pulling change events across the Data Orchestration component and delivering them to a service in a BPI with Low Latency.
+Data Orchestration utilized in a BPI MUST include a subscription client pulling change events across the Data Orchestration component and delivering them to a service in a BPI with Low Latency.
 
 [[R298]](#r298) Testability: 
 
@@ -10131,7 +10131,7 @@ Test Passing Criteria:
 There are operating scenarios where it could be necessary that BPI data is replicated outside of a BPI such as to avoid having to rebase the state of a system or record due to an accidental data update if the correct state is not readily accessible to enforce system-of-record access policies. 
 
 #### **[R299]**	
-BPI Edge Storage [MUST](#rfc2119) ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
+BPI Edge Storage MUST ensure eventual consistency between edge storage and BPI under a weak synchrony assumption.
 
 *Weak synchrony in this context means:* 
 * *All messages will eventually reach their intended recipients* 
@@ -10163,7 +10163,7 @@ Test Passing Criteria:
 * The updated data is available in BPI with minimal delay after the network delay is removed.
 
 #### **[R300]**	
-Data replication conflicts in BPI Edge Storage [MUST](#rfc2119) be automatically detectable. 
+Data replication conflicts in BPI Edge Storage MUST be automatically detectable. 
 
 [[R300]](#r300) Testability: 
 
@@ -10190,7 +10190,7 @@ Test Passing Criteria:
 * The resolution is propagated to all nodes in the storage cluster, so that all nodes eventually have the same data.
 
 #### **[R301]** 
-Data replication conflicts in BPI Edge Storage [MUST](#rfc2119) be resolvable either automatically or manually.
+Data replication conflicts in BPI Edge Storage MUST be resolvable either automatically or manually.
 
 [[R301]](#r301) Testability: 
 
@@ -10214,7 +10214,7 @@ Test Passing Criteria:
 * The time taken to detect and resolve the conflict is within acceptable limits.
 
 #### **[R302]**	
-BPI Edge Storage [MUST](#rfc2119) use a secure and privacy-preserving wire protocol for communication.
+BPI Edge Storage MUST use a secure and privacy-preserving wire protocol for communication.
 
 [[R302]](#r302) Testability: 
 
@@ -10240,7 +10240,7 @@ Test Passing criteria:
 * The wire protocol is resistant to person-in-the-middle attacks.
 
 #### **[D40]**	
-BPI Edge Storage [SHOULD](#rfc2119) be able to cryptographically sign messages.
+BPI Edge Storage SHOULD be able to cryptographically sign messages.
 
 [[D40]](#d40) Testability: 
 
@@ -10264,7 +10264,7 @@ Test Passing Criteria:
 * The signature of the message is verified as valid using the corresponding cryptographic keys.
 
 #### **[D41]**	
-BPI Edge Storage [SHOULD](#rfc2119) be discoverable by BPI Workgroup members or their delegates within a BPI.
+BPI Edge Storage SHOULD be discoverable by BPI Workgroup members or their delegates within a BPI.
 
 [[D41]](#d41) Testability: 
 
@@ -10292,7 +10292,7 @@ Test Passing criteria:
 * The BPI Edge Storage is not discoverable in Step 5.
 
 #### **[R303]**	
-BPI Edge Storage [MUST](#rfc2119) support BPI identifiers and identity as defined in this document. 
+BPI Edge Storage MUST support BPI identifiers and identity as defined in this document. 
 
 See section [3 Identifiers, Identity and Credential Management](#3-identifiers-identity-and-credential-management).
 
@@ -10319,7 +10319,7 @@ Test Passing Criteria:
 * The BPI Edge Storage is able to correctly identify itself to other BPI components using the assigned BPI Identifier and Identity without error.
 
 #### **[R304]**	
-BPI Edge Storage [MUST](#rfc2119) support Partially Persistent Data and Fully Persistent Data.
+BPI Edge Storage MUST support Partially Persistent Data and Fully Persistent Data.
 
 See section [7.5 BPI-Internal Storage](#75-bpi-internal-storage) requirements for security, privacy, and integration.
 
@@ -10369,7 +10369,7 @@ Since BPIs are typically used in an enterprise context, BPI Storage ideally has 
 
 
 #### **[O8]** 
-Centralized BPI Storage [MAY](#rfc2119) be partially persistent. 
+Centralized BPI Storage MAY be partially persistent. 
 
 [[O8]](#o8) Testability: 
 
@@ -10397,7 +10397,7 @@ Test Passing Criteria:
 * The Centralized BPI Storage is functioning properly and no data is lost or corrupted.
 
 #### **[CR34]>[O8]** 
-Partially Persistent BPI Storage  [MUST](#rfc2119) be append-only.
+Partially Persistent BPI Storage  MUST be append-only.
 
 *Non-normative examples of such data bases are, but not limited to, OracleDB, MongoDB, PostGres, Cassandra, and DynamoDB.*
 
@@ -10429,7 +10429,7 @@ Test Passing Criteria: The test will pass if,
 ###### BPIINTERNALSTORAGEDECENTRALIZED
 
 #### **[R305]**	
-BPI Storage  [MUST](#rfc2119) support authenticated naming systems.
+BPI Storage  MUST support authenticated naming systems.
 
 *An authenticated naming system in the context of this document is defined as a security protocol that enables a named entity such as an internet domain to be bound to cryptographic material such as a public key that allows for cryptographic authentication of the named entity. An example is a W3C DID or DNS-based Authentication of Named Entities [[DANE](#dane)].*   
 
@@ -10459,7 +10459,7 @@ Test Passing Criteria:
 * The updated record contains the new authenticated name and associated cryptographic material.
 
 #### **[R306]**	
-BPI Storage  [MUST](#rfc2119) support a data exchange protocol that allows for large blocks of data to be replicated. 
+BPI Storage  MUST support a data exchange protocol that allows for large blocks of data to be replicated. 
 
 A large data block in this document is defined to be larger than 1MB but less than 128MB. 
 
@@ -10488,7 +10488,7 @@ Test Passing criteria:
 * The replication of a data block larger than 128MB to the BPI Storage fails.
 
 #### **[R307]**	
-BPI Storage  [MUST](#rfc2119) support a routing protocol that enables locating data peers and data objects.
+BPI Storage  MUST support a routing protocol that enables locating data peers and data objects.
 
 *Non-normative examples are [libp2p](#libp2p) or distributed hash tables [[DHT]](#dht).*
 
@@ -10517,7 +10517,7 @@ Test Passing Criteria:
 * The routing protocol must not significantly degrade the performance of BPI Storage, with requests being handled within 500 milliseconds on average
 
 #### **[R308]**	
-BPI Storage  [MUST](#rfc2119) support a Network Protocol that handles all of:
+BPI Storage  MUST support a Network Protocol that handles all of:
 * NAT traversal such as hole punching, port mapping, and relay
 * Multiple transport protocols
 * Encryption, signing, or clear text communications
@@ -10556,7 +10556,7 @@ Passing Criteria:
 * NAT traversal, multiple transport protocols, encryption, signing, and clear communications, and multi-multiplexes tests should pass without any errors or failures.
 
 #### **[R309]**	
-Fully Persistent BPI Storage  [MUST](#rfc2119) support Generalized Time Stamps.
+Fully Persistent BPI Storage  MUST support Generalized Time Stamps.
 
 *Non-normative examples are conflict-free replicated data types [[CRDT](#crdt)] or Interval Tree Clocks [[ITC](#itc)] to ensure eventual data consistency.*
 
@@ -10589,7 +10589,7 @@ The BPI Storage system has successfully stored data conflict-free using Generali
 * The Fully Persistent BPI Storage provides full data persistence.
 
 #### **[O9]** 
-Decentralized BPI Storage [MAY](#rfc2119) be partially persistent.
+Decentralized BPI Storage MAY be partially persistent.
 
 [[O9]](#o9) Testability: 
 
@@ -10621,7 +10621,7 @@ Test Passing Criteria:
 
 
 #### **[CR35]>[O9]**	
-Partially Persistent BPI Storage  [MUST](#rfc2119) support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
+Partially Persistent BPI Storage  MUST support Generalized Time Stamps or consensus protocols that guarantee eventual data consistency.
 
 [[CR35]>[O9]](#cr35o9) Testability: 
 
@@ -10666,7 +10666,7 @@ This section of the document focuses on the requirements and considerations rela
 Internal authoritative data means that there exists only one authoritative version of the input data in some system of record of a BPI participant, making it the only choice for input into a BPI workstep. Authoritative in this context means that BPI participants involved in a BPI workstep have agreed that the authoritative source is the accurate and reliable truth for that particular type of data.
 
 #### **[O10]** 
-Internal authoritative input data to a BPI workstep [MAY](#rfc2119) come from a single source.
+Internal authoritative input data to a BPI workstep MAY come from a single source.
 
 [[O10]](#o10) Testability: 
 
@@ -10694,7 +10694,7 @@ Test Passing Criteria:
 * The BPI workstep creates an error, and exits with the expected error message, when the input data comes from the second input data source.
 
 #### **[CR36]>[O10]** 
-If the internal authoritative input data to a BPI workstep is single-sourced, that source [MUST](#rfc2119) be authoritative.
+If the internal authoritative input data to a BPI workstep is single-sourced, that source MUST be authoritative.
 
 [[CR36]>[O10]](#cr36o10) Testability: 
 
@@ -10725,7 +10725,7 @@ Test Passing Criteria:
 External authoritative data means that the input data to a BPI workstep is held in some authoritative 3rd party data store, such as government records in a centralized database. Unlike internal authoritative data where there is only one version, external authoritative data input to a BPI workstep may have multiple versions each coming from a different source such as pricing data of a commodity.
 
 #### **[R315]** 
-BPI Subjects participating in a workstep [MUST](#rfc2119) agree upon the source and type of the external authoritative data used as input to a BPI workstep.
+BPI Subjects participating in a workstep MUST agree upon the source and type of the external authoritative data used as input to a BPI workstep.
 
 [[R315]](#r315) Testability: 
 
@@ -10774,7 +10774,7 @@ External non-authoritative, non-deterministic data means that there does not exi
 External non-authoritative, non-deterministic data for BPIs resides outside of an authoritative source and is subject to manipulation. As such, steps should be taken to remove counterparty manipulation and error risk through mechanisms such as redundancy in data reporting and error checking, either cross-party, or by an appropriately incentivized 3rd party.
 
 #### **[D42]** 
-External non-authoritative, non-deterministic BPI input data into a BPI workstep [SHOULD](#rfc2119) be sourced from multiple sources.
+External non-authoritative, non-deterministic BPI input data into a BPI workstep SHOULD be sourced from multiple sources.
 
 [[D42]](#d42) Testability: 
 
@@ -10799,7 +10799,7 @@ Test Passing Criteria:
 
 
 #### **[R316]** 
-External non-authoritative, non-deterministic BPI input data into a BPI workstep [MUST](#rfc2119) be validated by one or more authoritative entities.
+External non-authoritative, non-deterministic BPI input data into a BPI workstep MUST be validated by one or more authoritative entities.
 
 [[R316]](#r316) Testability: 
 
@@ -10826,7 +10826,7 @@ Test Passing Criteria: The test passes if,
 * If the input data does not pass the validation criteria defined by the authoritative entities, the BPI stops the workstep processing and responds to the workstep participants with an appropriate error message.
 
 #### **[R317]** 
-BPI workstep participants [MUST](#rfc2119) agree upon a validation method for external non-authoritative,  non-deterministic input data to a BPI workstep.
+BPI workstep participants MUST agree upon a validation method for external non-authoritative,  non-deterministic input data to a BPI workstep.
 
 [[R317]](#r317) Testability: 
 
@@ -10851,7 +10851,7 @@ Test Passing Criteria:
 * The validation method and testing results have been recorded on the test BPI.
 
 #### **[R318]** 
-A BPI workstep participant [MUST](#rfc2119) be able to validate that the validation criteria of external non-authoritative,  non-deterministic input data to the BPI workstep has been met.
+A BPI workstep participant MUST be able to validate that the validation criteria of external non-authoritative,  non-deterministic input data to the BPI workstep has been met.
 
 *Appropriate data validation methods vary on a case-by-case basis depending upon the data types, sources and formats. As such, it is up to the BPI participants to agree upon the optimal validation method for their implementation. This includes design decisions such as what threshold of unresponsive oracles leads to a rejected input, how to aggregate the oracle responses and remove outliers, signing data to ensure provenance, implementing cryptographic mechanisms such as threshold signatures/secret sharing and TEEs such as Intel SGX or AMD SEV to obfuscate data from oracle providers.*
 
@@ -10893,26 +10893,26 @@ This section describes the conformance clauses and tests required to achieve an 
 
 ## 9.1 Conformance Targets
 
-This document does not yet define a standardized set of test-fixtures with test inputs for all MUST, SHOULD, and [MAY](#rfc2119) requirements with conditional [MUST](#rfc2119) or [SHOULD](#rfc2119) requirements. 
+This document does not yet define a standardized set of test-fixtures with test inputs for all MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements. 
 
-A standardized set of test-fixtures with test inputs for all MUST, SHOULD, and [MAY](#rfc2119) requirements with conditional [MUST](#rfc2119) or [SHOULD](#rfc2119) requirements is intended to be published with the next version of the standard.
+A standardized set of test-fixtures with test inputs for all MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements is intended to be published with the next version of the standard.
 
 ## 9.2 Conformance Levels
 
 This section specifies the conformance levels of this standard. The conformance levels offer implementers several levels of conformance. These can be used to establish competitive differentiation.
 
 This document defines the conformance levels of a BPI as follows:
-* **Level 1:** All [MUST](#rfc2119) requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
-* **Level 2:** All [MUST](#rfc2119) and [SHOULD](#rfc2119) requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
-* **Level 3:** All MUST, SHOULD, and [MAY](#rfc2119) requirements with conditional [MUST](#rfc2119) or [SHOULD](#rfc2119) requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
+* **Level 1:** All MUST requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
+* **Level 2:** All MUST and SHOULD requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
+* **Level 3:** All MUST, SHOULD, and MAY requirements with conditional MUST or SHOULD requirements are fulfilled by a specific implementation as proven by a test report that proves in an easily understandable manner the implementation's conformance with each requirement based on implementation-specific test-fixtures with implementation-specific test-fixture inputs.
 
 ### **[D43]** 
-A claim that a BPI conforms to this specification [SHOULD](#rfc2119) describe a testing procedure carried out for each requirement to which conformance is claimed, that justifies the claim with respect to that requirement.
+A claim that a BPI conforms to this specification SHOULD describe a testing procedure carried out for each requirement to which conformance is claimed, that justifies the claim with respect to that requirement.
 
 [[D43]](#d43) Testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, and can be described as required in [[D43]](#d43).
 
 #### **[R319]** 
-A claim that a BPI conforms to this specification at **Level 2** or higher [MUST](#rfc2119) describe the testing procedure carried out for each requirement at **Level 2** or higher, that justifies the claim to that requirement.
+A claim that a BPI conforms to this specification at **Level 2** or higher MUST describe the testing procedure carried out for each requirement at **Level 2** or higher, that justifies the claim to that requirement.
 
 [[R319]](#r319) Testability: Since each of the non-conformance-target requirements in this documents is testable, so must be the totality of the requirements in this document. Therefore, conformance tests for all requirements can exist, be described, be built and implemented and results can be recorded as required in [[R319]](#r319).
 
