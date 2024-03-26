@@ -6424,7 +6424,7 @@ Preconditions:
 Test Steps: 
 
 1. Initiate the "Verify Lock Commitment State" operation following requirements [**[R189]**](#r189) and [**[R190]**](#r190). 
-2. Check the output of the "Verify State" operation in the CCSM or the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Check the output of the "Verify State" operation in the CCSM and the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
 
 Expected Results: 
 
