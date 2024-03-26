@@ -4121,11 +4121,11 @@ In the context of these 3 BPIs having to interoperate, Alice, Bob, and Claire mu
 
 4. Alice, Bob, and Clair have agreed upon a zero-knowledge prover scheme and one or more worksteps expressed through human-readable predicates that allow them to synchronize their respective workflow states and deterministically advance the joint state.
 
-4. Alice has the following data set available from the last workstep of her shipping workflow, called Set A -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a predicate as a human-readable version of the ZK Proof.
+4. Alice has the following data set available from the last workstep of her shipping workflow, called Set A -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) as a human-readable version of the ZK Proof.
 
-5. Bob has the following data set available from the last workstep of his import workflow, called Set B -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a predicate as a human-readable version of the ZK Proof.
+5. Bob has the following data set available from the last workstep of his import workflow, called Set B -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) as a human-readable version of the ZK Proof.
 
-6. Claire has the following data set available from the last workstep of her customs workflow, called Set C -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a predicate as a human-readable version of the ZK Proof.
+6. Claire has the following data set available from the last workstep of her customs workflow, called Set C -- a ZK proof, associated public input data, proof-verification key, a verification endpoint for the ZK proof verification, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) as a human-readable version of the ZK Proof.
 
 The usage of ZK proofs is required since the counterparties will not be able to see sensitive information that has entered either of the workflows. For example, intelligence service information about a particular load in a shipping container cannot be shared with Alice and Bob, or the identity of the ultimate load recipient cannot be disclosed to Alice by Bob.
 
@@ -4139,7 +4139,7 @@ Furthermore, and for the simplicity of the example here, it is assumed that the 
 
     Note, any singleton state machine such as a state channel, sidechain, or other Layer 2 solution may be employed.
 
-3. Alice sends state channel invites to Bob and Claire based on their communication endpoints in their DID documents, creating the equivalent of a temporary Workgroup. The invite must include the state information both Bob and Clair need to submit to the state channel, Set B and set C, and the required agreement criteria e.g. 2 of 3 digital signatures over the joined state of the ZK proofs in the form of an agreement predicate. The predicate would be a ZK prover circuit with specified private and public inputs that can be run by Bob and Claire to generate ZK proofs proving correct state updates. In this case, simple signatures over the ZK-proofs are chosen.  
+3. Alice sends state channel invites to Bob and Claire based on their communication endpoints in their DID documents, creating the equivalent of a temporary Workgroup. The invite must include the state information both Bob and Clair need to submit to the state channel, Set B and set C, and the required agreement criteria e.g. 2 of 3 digital signatures over the joined state of the ZK proofs in the form of an agreement [Predicate](#5542-bi--or-multi-directional-bpi-services). The [Predicate](#5542-bi--or-multi-directional-bpi-services) would be a ZK prover circuit with specified private and public inputs that can be run by Bob and Claire to generate ZK proofs proving correct state updates. In this case, simple signatures over the ZK-proofs are chosen.  
 
 4. After accepting the invites, Bob and Claire commit their states to the state channel in the following manner -> newStateRoot = H(H(Alice state, Bob State),H(Claire State)) and also store the inputs (Alice state, Bob State, Claire State)
 
@@ -4818,23 +4818,65 @@ Passing Criteria:
 Mono-directional BPI services in the context of BPI interoperability, not regular BPI transactions as specified in section [6.5 BPI Transactions](#65-bpi-transactions) and section [6.6 BPI Transaction Lifecycle](#66-bpi-transaction-lifecycle), need only to perform two operations -- export and import. These operations have to encompass cryptographic material and URIs that allow independent verification of the cryptographic material presented to 3rd parties such as an auditor or another BPI.
 
 #### **[R136]** 
-Mono-directional BPI services in the context of BPI interoperability MUST support at least two operations -- export and import.
+[Mono-directional BPI services](#5541-mono-directional-bpi-services) in the context of BPI interoperability MUST support at least two operations -- export and import.
+
+[[R136]](#r136) Testability:
+
+Preconditions:
+
+* The BPI system is properly configured and operational.
+* Mono-directional BPI services are in place and running.
+* The BPI system has data to be transferred, both for export and import.
+
+Test Steps:
+
+1. Access the BPI system and initiate the "export" operation.
+2. Access the BPI system and initiate the "import" operation.
+
+Expected Result: 
+
+1. The export operation starts without errors and retrieves data from the BPI system. The exported data is in a proper format and contains the expected information.
+2. The import operation starts without errors and successfully inserts data into the BPI system. The imported data is stored correctly and matches the data provided for import.
 
 #### **[R137]** 
-In the context of BPI interoperability, the BPI export operation MUST provide at least the following elements to the invoking BPI Subject:
+In the context of [BPI interoperability](#55-bpi-integration), the BPI export operation MUST provide at least the following elements to the invoking BPI Subject:
 * The State Object
 * Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * All public input data to the Zero-Knowledge Proof(s) of Correctness of the state object and its history required to validate the proofs
-* All private input data to the Zero-Knowledge Proof(s) of Correctness of the current state object
 * Verification Keys for the Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * Specification of the prover system of the Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * A validation URI of the originating BPI that allows a 3rd party to independently verify the Zero-Knowledge Proof(s) of Correctness of the state object and its history
 * A lock commitment of the current state object
 * The public input data to the lock commitment
-* All private input data to the lock commitment
 * The Verification Keys for the lock commitment
 * Specification of the prover system of the lock commitment
 * A validation URI of the originating BPI that allows a 3rd party to independently verify the lock commitment
+
+[[R137]](#r137) Testability:
+
+Preconditions:
+
+* Two BPI systems are set up: one to export the data and one to import the data.
+* Both BPI systems are properly configured for interoperability.
+* The data in the exporting BPI is in a valid and verifiable state.
+* The BPI export operation is accessible and functional.
+
+Test Steps:
+
+1. Initiate the BPI export operation from the exporting BPI system and review the exported data.
+
+Expected Result:
+1. The State Object is included in the exported data. 
+2. The Zero-Knowledge Proof(s) of Correctness are part of the exported data. 
+3. All public input data for validating the Zero-Knowledge Proofs is provided. 
+4. The Verification Keys for the Zero-Knowledge Proofs are accessible. 
+5. The prover system specifications for Zero-Knowledge Proofs are provided. 
+6. The validation URI for third-party verification is included. 
+7. The lock commitment of the current state object is part of the export. 
+8. Public input data for the lock commitment is included. 
+9. The Verification Keys for the lock commitment are accessible. 
+10. The prover system specifications for the lock commitment are provided. 
+11. The validation URI for third-party verification of the lock commitment is included.
 
 #### **[R138]** 
 In the context of BPI interoperability, the BPI import operation MUST provide at least the following elements by the invoking BPI Subject to the target BPI:
@@ -4850,18 +4892,42 @@ In the context of BPI interoperability, the BPI import operation MUST provide at
 * Specification of the prover system of the lock commitment
 * A public validation URI of the originating BPI that allows a 3rd party to independently verify the lock commitment
 
+[[R138]](#r138) Testability: 
+
+Preconditions:
+
+* Two BPI systems are set up: one to export the data and one to import the data.
+* Both BPI systems are properly configured for interoperability.
+* The BPI Subject initiating the import operation has access to the required data and elements.
+
+Test Steps:
+
+1. Initiate the BPI import operation from the importing BPI system. 
+
+Expected Result:
+1. The State Object is included in the imported data. 
+2. The Zero-Knowledge Proof(s) of Correctness are part of the imported data. 
+3. All public input data for validating the Zero-Knowledge Proofs is provided. 
+4. The Verification Keys for the Zero-Knowledge Proofs are accessible. 
+5. The prover system specifications for Zero-Knowledge Proofs are provided. 
+6. The validation URI for third-party verification is included. 
+7. The lock commitment of the current state object is part of the import.
+8. The Verification Keys for the lock commitment are accessible. 
+9. The prover system specifications for the lock commitment are provided. 
+10. The validation URI for third-party verification of the lock commitment is included.
+
 #### 5.5.4.2 Bi- or Multi-directional BPI services
 
 Bi- and Multi-directional BPI services in the context of BPI Interoperability enable dynamic processes between BPIs.
 
-In the following, the standard introduces the concept of a State Synchronization and Advancement Predicate for BPI Interoperability (processes). A predicate in the context of this document is understood as an assertion that may be true or false, depending on the values of the variables that occur in it and the logical, well-formed connections between those variables. A State Synchronization and Advancement Predicate is a definition of an Interoperability Virtual State Machine (IVSM) based on a set of agreed-upon business rules and business data that is deterministic. It synchronizes and advances the state of committed state objects of participants in the BPI Interoperability process. An IVSM is an implementation of a State Synchronization and Advancement Predicate. One can think of an IVSM as a stripped-down version of a BPI with a single workgroup that can process only one workstep.
+In the following, the standard introduces the concept of a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) for BPI Interoperability (processes). A [Predicate](#5542-bi--or-multi-directional-bpi-services) in the context of this document is understood as an assertion that may be true or false, depending on the values of the variables that occur in it and the logical, well-formed connections between those variables. A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is a definition of an Interoperability Virtual State Machine ([IVSM](#5542-bi--or-multi-directional-bpi-services)) based on a set of agreed-upon business rules and business data that is deterministic. It synchronizes and advances the state of committed state objects of participants in the BPI Interoperability process. An [IVSM](#5542-bi--or-multi-directional-bpi-services) is an implementation of a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). One can think of an [IVSM](#5542-bi--or-multi-directional-bpi-services) as a stripped-down version of a BPI with a single workgroup that can process only one workstep.
 
 #### **[R139]** 
 Bi- or Multi-directional BPI services in the context of BPI interoperability MUST support at least the following operations:
-* Create State Synchronization and Advancement Predicate
-* Update State Synchronization and Advancement Predicate
-* Launch IVSM
-* Remove IVSM 
+* Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* Remove [IVSM](#5542-bi--or-multi-directional-bpi-services) 
 * Commit State
 * Invite Participants to BPI Interoperability Process
 * Accept/Reject Invite
@@ -4878,96 +4944,408 @@ Bi- or Multi-directional BPI services in the context of BPI interoperability MUS
 * *Validity requirements of an operation's data properties*
 * *Operation execution requirements* 
 
-**Create State Synchronization and Advancement Predicate**
+[[R139]](#r139) Testability: 
 
-As mentioned above, a State Synchronization and Advancement Predicate defines and provides an implementation of an enforcement mechanism of the required rules and data to synchronize multiple state objects from different BPIs, and if required, advance this synchronized, joint state to a new joined state. The joint state is subsequently usable in the BPI workflows in the different participating BPIs. 
+Preconditions:
+
+* Two or more BPI systems are set up for bi- or multi-directional BPI services.
+* All BPI systems involved are configured for interoperability.
+* The BPI Subjects and Participants are properly registered in their respective systems.
+
+Test Steps:
+
+1. Create a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) from one BPI system.
+2. Update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) from another BPI system.
+3. Launch an [IVSM](#5542-bi--or-multi-directional-bpi-services) from one of the BPI systems.
+4. Remove the [IVSM](#5542-bi--or-multi-directional-bpi-services) from the system where it was launched.
+5. Commit the State in one of the BPI systems.
+6. Invite Participants to the BPI Interoperability Process from one of the BPI systems.
+7. Accept or Reject the invite from the Participant side.
+8. Add a BPI Subject to the BPI Interoperability from one of the systems.
+9. Remove a BPI Subject from the BPI Interoperability from one of the systems.
+10. Verify the State from any BPI system.
+11. Verify the Lock Commitment from any BPI system.
+12. Update the State from any BPI system.
+13. Accept or Reject the State Update from the receiving side.
+14. Exit the BPI Interoperability from any of the participating systems.
+
+Expected Results:
+
+1. All the above steps are completed without errors or exceptions.
+2. Each operation specified in the requirement is supported by the BPI services.
+3. The BPI systems synchronize and interoperate correctly during these operations.
+
+**Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)**
+
+As mentioned above, a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) defines and provides an implementation of an enforcement mechanism of the required rules and data to synchronize multiple state objects from different BPIs, and if required, advance this synchronized, joint state to a new joined state. The joint state is subsequently usable in the BPI workflows in the different participating BPIs. 
 
 #### **[R140]** 
-A State Synchronization and Advancement Predicate MUST be a mathematically well-formed, deterministic formula that can be evaluated to true or false as one or more functions of the values of the variables that occur in it.
+A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST be a mathematically well-formed, deterministic formula that can be evaluated to true or false as one or more functions of the values of the variables that occur in it.
+
+[[R140]](#r140) Testability: 
+
+Preconditions:
+
+* A BPI system with a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) capability is set up.
+
+Test Steps:
+
+1. Define the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) in the BPI system as a formula with well-formed mathematical syntax.
+2. Test the formula with different sets of inputs and repeat each set of inputs multiple times. 
+3. Provide a set of variables that occur in the formula and evaluate the formula with specific values for these variables.
+
+Expected Results:
+
+1. The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) accepts a well-formed mathematical formula.
+2. The formula is deterministic, producing the same result for the same input.
+3. When the formula is evaluated with specific variable values, it should correctly return "true" or "false" based on the provided input.
 
 #### **[R141]** 
-A State Synchronization and Advancement Predicate MUST at least contain the following elements:
-* A unique identifier for the predicate which may be resolvable
-* The unique identifier of the BPI Subject within the context of the originating BPI who creates the predicate
+A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST at least contain the following elements:
+* A unique identifier for the [Predicate](#5542-bi--or-multi-directional-bpi-services) which may be resolvable
+* The unique identifier of the BPI Subject within the context of the originating BPI who creates the [Predicate](#5542-bi--or-multi-directional-bpi-services)
 * A creation date
 * An update date
-* The content of the State Synchronization and Advancement Predicate in a human-readable format
+* The content of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) in a human-readable format
 * The specification of the rules to synchronize participating BPI state objects
 * The specification of the input data to synchronize participating BPI state objects both private and public
-* The specification of the output objects of the application of the State Synchronization and Advancement Predicate to the input data to synchronize participating BPI state objects
+* The specification of the output objects of the application of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to the input data to synchronize participating BPI state objects
 * The specification of the rules to advance the state of synchronized, participating BPI state objects
 * The specification of the input data to advance the state of synchronized, participating BPI state objects both private and public
-* The specification of the output objects of the application of the State Synchronization and Advancement Predicate to the input data to advance the state of synchronized, participating BPI state objects
+* The specification of the output objects of the application of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to the input data to advance the state of synchronized, participating BPI state objects
 * The specification of the cryptographically verifiable joint state between the participating BPIs and their storage
-* The specification of a deterministic program and its runtime environment applying the State Synchronization and Advancement Predicate rules and data to its input data and generating its output objects 
-* The specification of the cryptographic prover system utilized in verifying the correct application of the State Synchronization and Advancement Predicate to its input data
+* The specification of a deterministic program and its runtime environment applying the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) rules and data to its input data and generating its output objects 
+* The specification of the cryptographic prover system utilized in verifying the correct application of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to its input data
 * The specification of the required cryptographic material for the cryptographic prover system
-* A digital signature over the predicate content tied to a public key associated with the BPI Subject creating the predicate
+* A digital signature over the [Predicate](#5542-bi--or-multi-directional-bpi-services) content tied to a public key associated with the BPI Subject creating the [Predicate](#5542-bi--or-multi-directional-bpi-services)
 
-*The unique predicate identifier allows for the disambiguation of predicates in case a system is processing more than one predicate at a time. The BPI Subject identifier assures the assignability of the originator for audit and disambiguation purposes. A human-readable format ensures that in the case of business-sensitive operations both business owners and auditors can understand and analyze the intent of the predicate. For a system to be able to process the predicate, the rules as well as input and output data for both state synchronization and advancement, together with the processing program, state storage, and output validation, need to be specified such that they can be implemented in a system through an automated process. The last element ensures predicate non-repudiability in case of disputes.*
+*The unique [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier allows for the disambiguation of predicates in case a system is processing more than one [Predicate](#5542-bi--or-multi-directional-bpi-services) at a time. The BPI Subject identifier assures the assignability of the originator for audit and disambiguation purposes. A human-readable format ensures that in the case of business-sensitive operations both business owners and auditors can understand and analyze the intent of the [Predicate](#5542-bi--or-multi-directional-bpi-services). For a system to be able to process the [Predicate](#5542-bi--or-multi-directional-bpi-services), the rules as well as input and output data for both state synchronization and advancement, together with the processing program, state storage, and output validation, need to be specified such that they can be implemented in a system through an automated process. The last element ensures [Predicate](#5542-bi--or-multi-directional-bpi-services) non-repudiability in case of disputes.*
+
+[[R141]](#r141) Testability:
+
+Preconditions:
+
+* The BPI system is configured to accept [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)s.
+* The BPI Subject creating the [Predicate](#5542-bi--or-multi-directional-bpi-services) has a valid public-private key pair.
+* The BPI Subject has the necessary permissions to create and update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)s.
+
+Test Steps:
+
+1. Generate a unique identifier for the [Predicate](#5542-bi--or-multi-directional-bpi-services) and ensure it is not already in use. 
+2. Prepare input data for the creation of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services), including all the specified elements.
+3. Sign the content of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) with the BPI Subject's private key.
+4. Submit the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) for creation within the BPI system.
+5. Retrieve the created [Predicate](#5542-bi--or-multi-directional-bpi-services) and check for all of the specified elements.
+6. Update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services), if necessary, and verify the update process.
+
+Expected Results:
+
+1. The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is successfully created within the BPI system.
+2. The created [Predicate](#5542-bi--or-multi-directional-bpi-services) contains all the specified elements outlined in the requirement.
+3. The digital signature over the [Predicate](#5542-bi--or-multi-directional-bpi-services) content is valid and tied to the public key associated with the BPI Subject creating the [Predicate](#5542-bi--or-multi-directional-bpi-services).
+4. The BPI system correctly associates the created [Predicate](#5542-bi--or-multi-directional-bpi-services) with the unique identifier of the BPI Subject.
+5. The update to the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is successful, and the updated [Predicate](#5542-bi--or-multi-directional-bpi-services) reflects the changes made.
 
 #### **[R142]** 
-The output objects of the application of the State Synchronization and Advancement Predicate MUST be cryptographic assertions in zero-knowledge that evaluate to either true or false by a verifying party.
+The output objects of the application of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST be cryptographic assertions in zero-knowledge that evaluate to either true or false by a verifying party.
+
+[[R142]](#r142) Testability:  
+
+Preconditions:
+
+* A BPI system capable of applying the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is set up.
+* The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is created and has associated input data.
+
+Test Steps:
+
+1. Apply the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to the input data.
+2. Attempt to evaluate these cryptographic assertions in a zero-knowledge context. 
+3. Attempt to evaluate the cryptographic assertions to ensure they can be assessed as either true or false.
+
+Expected Results:
+
+1. The output objects generated by the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) are cryptographic assertions.
+2. The cryptographic assertions are structured for zero-knowledge evaluation.
+3. The cryptographic assertions can be successfully evaluated by a verifying party as either true or false.
 
 #### **[R143]** 
-For BPI Interoperability, the "Create State Synchronization and Advancement Predicate" operation a BPI invokes MUST create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+For BPI Interoperability, the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+
+[[R143]](#r143) Testability:
+
+Preconditions:
+
+* A BPI system capable of invoking the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation is set up.
+* The BPI system has appropriate authorization and permissions to invoke this operation.
+
+Test Steps:
+
+1. Invoke the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation within the BPI system.
+2. Create an object as a result of this operation. Perform the tests described in [**[R140]**](#r140) - [**[R142]**](#r142) on this object. 
+
+Expected Results: 
+
+1. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation successfully creates an object.
+2. The created object conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142) as specified in the requirement.
 
 #### **[R144]** 
-The input data to the "Create State Synchronization and Advancement Predicate" operation MUST enable a BPI to generate a State Synchronization and Advancement Predicate per [**[R141]**](#r141).
+The input data to the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation MUST enable a BPI to generate a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) per [**[R141]**](#r141).
+
+[[R144]](#r144) Testability:
+
+Preconditions:
+
+* A BPI system is set up with the capability to invoke the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation.
+* The BPI system has the necessary permissions and authorization to execute this operation.
+
+Test Steps:
+
+1. Invoke the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation within the BPI system.
+2. Analyze the input data provided to the operation to ensure it aligns with all requirements from [**[R141]**](#r141). Then, generate the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) and perform the tests listed in [**[R141]**](#r141). 
+
+Expected Results:
+
+1. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation successfully executes.
+2. The input data for the operation enables the BPI system to generate a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that conforms to the criteria described in [R141].
 
 #### **[R145]** 
-A "Create State Synchronization and Advancement Predicate" operation MUST satisfy the following conditions to be valid:
+A "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation MUST satisfy the following conditions to be valid:
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* A State Synchronization and Advancement Predicate conformant with [**[R141]**](#r141).
+* A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
 
-**Update State Synchronization and Advancement Predicate**
+[[R145]](#r145) Testability: 
 
-In case requirements change, a State Synchronization and Advancement Predicate may have to be updated. Such an update process needs to be conformant to the following requirements.
+Preconditions:
+
+* A BPI system is set up and configured to execute the "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation.
+* The BPI system has registered BPI Subjects with their unique identifiers, digital signatures, and associated public keys.
+
+Test Steps:
+
+1. Initiate a "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+2. Initiate a "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with an invalid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+3. Initiate a "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is not cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+4. Initiate a "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) that is not conformant with [**[R141]**](#r141). 
+
+Expected Results: 
+
+1. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation successfully executes.
+2. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+3. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+4. The "Create [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+
+**Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)**
+
+In case requirements change, a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) may have to be updated. Such an update process needs to be conformant to the following requirements.
 
 #### **[R146]** 
-A State Synchronization and Advancement Predicate MUST NOT be updated when the predicate is used in an active IVSM.
+A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST NOT be updated when the [Predicate](#5542-bi--or-multi-directional-bpi-services) is used in an active [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R146]](#r146) Testability: 
+
+Preconditions:
+
+* An active [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperable Verifiable State Machine) exists within the BPI.
+* The BPI system is configured to use [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)s.
+* There is at least one [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) in use within the active [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Select a specific [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that is currently in use within the [IVSM](#5542-bi--or-multi-directional-bpi-services) and attempt to initiate an update or modification to the selected [Predicate](#5542-bi--or-multi-directional-bpi-services).
+2. Monitor and record the BPI system's response to the update request.
+3. Repeat the test for each [Predicate](#5542-bi--or-multi-directional-bpi-services) in use within the [IVSM](#5542-bi--or-multi-directional-bpi-services) if applicable.
+
+Expected Results: 
+
+1. The BPI system consistently rejects or prevents the update of a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) when it is actively used within an [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 #### **[R147]** 
-An update operation to a State Synchronization and Advancement Predicate MUST be conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+An update operation to a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) MUST be conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+
+[[R147]](#r147) Testability: 
+
+Preconditions:
+
+* A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) (Predicate) exists within the BPI.
+* The BPI system is configured to allow updates to the [Predicate](#5542-bi--or-multi-directional-bpi-services).
+* The [Predicate](#5542-bi--or-multi-directional-bpi-services) to be updated conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+
+Test Steps:
+
+1. Prepare the updates to the [Predicate](#5542-bi--or-multi-directional-bpi-services), testing if they conform to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+2. Initiate the update operation for the selected [Predicate](#5542-bi--or-multi-directional-bpi-services). Then, monitor and record the BPI system's response to the update request.
+3. Repeat the test for multiple [Predicates](#5542-bi--or-multi-directional-bpi-services), if applicable, to ensure all updates conform to the requirements.
+
+Expected Results: 
+
+1. The BPI system accepts the update operation if the [Predicate](#5542-bi--or-multi-directional-bpi-services) conforms to requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+2. The BPI system consistently accepts updates that adhere to the specified requirements and consistently rejects updates that do not conform to the requirements.
 
 #### **[R148]** 
-For BPI Interoperability, the "Update State Synchronization and Advancement Predicate" operation a BPI invokes MUST create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+For BPI Interoperability, the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST create an object conformant to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+
+[[R148]](#r148) Testability: 
+
+Preconditions:
+
+* A BPI Subject with the authority to update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) (Predicate) exists within the BPI.
+* A [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update is available.
+* The BPI system is configured to allow updates to [Predicates](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Identify and select a [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update. Prepare the update operation, ensuring it conforms to the requirements [R140] - [R142].
+2. Initiate the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation for the selected [Predicate](#5542-bi--or-multi-directional-bpi-services). Then, monitor and record the BPI system's response to the update request.
+3. Repeat the test for multiple [Predicates](#5542-bi--or-multi-directional-bpi-services), if applicable, to ensure all updates conform to the specified requirements.
+
+Expected Results: 
+
+1. The update conforms to the requirements [R140] - [R142] and the update operation is prepared.
+2. The BPI system accepts the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation. 
+3. The BPI system consistently accepts updates that adhere to the specified requirements and rejects updates that do not conform to the requirements.
 
 #### **[R149]** 
-The input data to the "Update State Synchronization and Advancement Predicate" operation MUST enable a BPI to generate a State Synchronization and Advancement Predicate per [**[R141]**](#r141).
+The input data to the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation MUST enable a BPI to generate a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) per [**[R141]**](#r141).
+
+[[R149]](#r149) Testability: 
+
+Preconditions:
+
+* A BPI Subject with the authority to update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) (Predicate) exists within the BPI.
+* A [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update is available.
+* The BPI system is configured to allow updates to [Predicates](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Identify and select a [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update. Prepare the input data for the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation in a format that conforms to the requirements [R141].
+2. Initiate the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation for the selected [Predicate](#5542-bi--or-multi-directional-bpi-services) with the prepared input data. Then, monitor and record the BPI system's response to the update request.
+3. Repeat the test for multiple [Predicates](#5542-bi--or-multi-directional-bpi-services), if applicable, to ensure all updates conform to the specified requirements.
+
+Expected Results: 
+
+1. The input data enabels the BPI to generate a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that conforms to the requirements [R141].
+2. The BPI system accepts the "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with the provided input data.
+3. The BPI system consistently generates [Predicates](#5542-bi--or-multi-directional-bpi-services) that meet the specified requirements using different sets of input data and accepts the update request when the input data adheres to the specified format and requirements.
 
 #### **[R150]** 
-An "Update State Synchronization and Advancement Predicate" operation MUST satisfy the following conditions to be valid:
+An "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation MUST satisfy the following conditions to be valid:
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* A State Synchronization and Advancement Predicate conformant with [**[R141]**](#r141).
+* A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
 
-**Launch IVSM**
+[[R150]](#r150) Testability: 
 
-As mentioned above, the IVSM represents an implementation of the State Synchronization and Advancement Predicate.
-To properly implement an IVSM, the standard defines the following requirements.
+Preconditions:
+
+* A BPI Subject with the authority to update the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) (Predicate) exists within the BPI.
+* A [Predicate](#5542-bi--or-multi-directional-bpi-services) that requires an update is available.
+* The BPI system is configured to allow updates to [Predicates](#5542-bi--or-multi-directional-bpi-services).
+* The digital signature key pair of the invoking BPI Subject is available and appropriately managed.
+
+Test Steps:
+
+1. Initiate a "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+2. Initiate a "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with an invalid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+3. Initiate a "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is not cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) conformant with [**[R141]**](#r141).
+4. Initiate a "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation with a valid digital signature, a public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, and a [Predicate](#5542-bi--or-multi-directional-bpi-services) that is not conformant with [**[R141]**](#r141). 
+
+Expected Results: 
+
+1. The "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation successfully executes.
+2. The "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+3. The "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+4. The "Update [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)" operation fails.
+
+**Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)**
+
+As mentioned above, the [IVSM](#5542-bi--or-multi-directional-bpi-services) represents an implementation of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
+To properly implement an [IVSM](#5542-bi--or-multi-directional-bpi-services), the standard defines the following requirements.
 
 #### **[R151]** 
-The "Launch IVSM" operation a BPI invokes MUST contain the following elements:
-* A unique identifier for the IVSM
+The "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST contain the following elements:
+* A unique identifier for the [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the BPI Subject within the context of the originating BPI invoking the operation
 * A creation date
-* A State Synchronization and Advancement Predicate
-* A list of BPI Subject unique identifiers authorized to invoke the IVSM operations.
+* A [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* A list of BPI Subject unique identifiers authorized to invoke the [IVSM](#5542-bi--or-multi-directional-bpi-services) operations.
 * A digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation
 
+[[R151]](#r151) Testability: 
+
+Preconditions:
+
+* The Baseline Protocol Implementation (BPI) system is properly configured and operational.
+* The BPI Subject invoking the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation has the necessary permissions and authentication.
+* [IVSM](#5542-bi--or-multi-directional-bpi-services)-related configurations are properly set up within the BPI.
+
+Test Steps:
+
+1. Initiate the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a unique identifier for the [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, a creation date, a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services), a list of BPI Subject unique identifiers authorized to invoke the [IVSM](#5542-bi--or-multi-directional-bpi-services) operations, a digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation. 
+2. Attempt to initiate the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with any of the elements from step one missing. 
+
+Expected Results: 
+
+1. The "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation is successfully initiated. 
+2. The "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation's initiation fails. 
+
 #### **[R152]** 
-A "Launch IVSM" operation MUST satisfy the following conditions to be valid:
+A "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation MUST satisfy the following conditions to be valid:
 * The BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The submitted State Synchronization and Advancement Predicate is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+* The submitted [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+
+[[R152]](#r152) Testability: 
+
+Preconditions:
+
+* The Baseline Protocol Implementation (BPI) system is properly configured and operational.
+* The BPI Subject invoking the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation has the necessary permissions and authentication.
+* [IVSM](#5542-bi--or-multi-directional-bpi-services)-related configurations are properly set up within the BPI.
+
+Test Steps:
+
+1. Execute the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation from the BPI. Provide the required input parameters, including a unique identifier, BPI Subject identifier, creation date, [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services), and the list of authorized BPI Subject identifiers. Capture any response or acknowledgment from the BPI system.
+2. Retrieve information about the launched [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+3. Verify that the digital signature associated with the [IVSM](#5542-bi--or-multi-directional-bpi-services) is valid. Confirm that the digital signature is correctly tied to the public key associated with the BPI Subject invoking the operation.
+4. Confirm that the public key used in the digital signature is cryptographically tied to the unique identifier of the invoking BPI Subject. Ensure that the binding between the public key and the BPI Subject's unique identifier is accurately recorded for the launched [IVSM](#5542-bi--or-multi-directional-bpi-services).
+5. Confirm that the [IVSM](#5542-bi--or-multi-directional-bpi-services) contains the specified [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). Ensure that the [Predicate](#5542-bi--or-multi-directional-bpi-services) is correctly associated with the launched [IVSM](#5542-bi--or-multi-directional-bpi-services) and conforms to the requirements [**[R140]**](#r140) - [**[R142]**](#r142).
+
+Expected Results: 
+
+1. "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation can be initiated successfully.
+2. Digital signature is valid and correctly tied to the BPI Subject's public key.
+3. Public key is cryptographically tied to the unique identifier of the invoking BPI Subject.
+4. [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is correctly linked to the [IVSM](#5542-bi--or-multi-directional-bpi-services) and conforms to [**[R140]**](#r140) - [**[R142]**](#r142).
 
 #### **[R153]** 
-An IVSM MUST implement a State Synchronization and Advancement Predicate conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST implement a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+
+[[R153]](#r153) Testability: 
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is properly integrated and operational within the Baseline Protocol Implementation (BPI) system.
+* Appropriate configurations for [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) are set up.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has been appropriately initialized and associated with a BPI Subject.
+
+Test Steps:
+
+1. Trigger an operation that involves the [IVSM](#5542-bi--or-multi-directional-bpi-services), such as initiating an [IVSM](#5542-bi--or-multi-directional-bpi-services) process. Retrieve the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) associated with the [IVSM](#5542-bi--or-multi-directional-bpi-services). Capture any response or acknowledgment from the BPI system.
+2. Inspect the retrieved [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). Confirm that the [Predicate](#5542-bi--or-multi-directional-bpi-services) contains all the required elements specified in [R140] - [R142].
+3. Examine the [IVSM](#5542-bi--or-multi-directional-bpi-services) process execution that involves applying the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). Verify that the deterministic program specified in the [Predicate](#5542-bi--or-multi-directional-bpi-services) is correctly executed. Confirm that the program's runtime environment is accurately configured, and the output objects are generated as expected.
+4. Confirm that the cryptographic prover system specified in the [Predicate](#5542-bi--or-multi-directional-bpi-services) is employed during [IVSM](#5542-bi--or-multi-directional-bpi-services) operations. Verify the correctness of cryptographic material used for verification. Validate that the joint state between participating BPIs and their storage is cryptographically verifiable.
+Test Passing Criteria:
+
+Expected Results: 
+
+1. [IVSM](#5542-bi--or-multi-directional-bpi-services) can be invoked successfully, and the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is retrievable.
+2. The [Predicate](#5542-bi--or-multi-directional-bpi-services) contains all required elements specified in [R140] - [R142].
+3. Deterministic program execution results in the correct generation of output objects.
+4. Cryptographic prover system is applied, and the joint state is cryptographically verifiable.
 
 #### **[R154]** 
-An IVSM MUST implement the following BPI Interoperability operations that can be invoked by BPI Subjects conformant to the requirements of said operations:
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST implement the following BPI Interoperability operations that can be invoked by BPI Subjects conformant to the requirements of said operations:
 * Commit State
 * Add/Remove BPI Subject
 * Verify State
@@ -4977,56 +5355,245 @@ An IVSM MUST implement the following BPI Interoperability operations that can be
 * Finalize State
 * Exit BPI Interoperability
 
-*This represents the minimal set of operations required to synchronize or advance joint state objects by an IVSM.*
+*This represents the minimal set of operations required to synchronize or advance joint state objects by an [IVSM](#5542-bi--or-multi-directional-bpi-services).*
+
+[[R154]](#r154) Testability: 
+
+Preconditions:
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is deployed and operational.
+* BPI Subjects are registered and authorized to invoke [IVSM](#5542-bi--or-multi-directional-bpi-services) operations.
+* Joint state objects are available for synchronization.
+
+Test Steps:
+
+1. Invoke the "Commit State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Monitor the response from the system or any events triggered by the commit operation by checking for success messages, error messages, or events emitted by the smart contract on the blockchain. Query the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the current state or inspect relevant data structures or databases where the joint state is stored.
+2. Add a new BPI Subject and remove an existing BPI Subject using the respective operations.
+3. Trigger the "Verify State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Specify what constitutes a successful verification and what conditions would lead to a failed verification. Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Verify State" operation by checking for success messages, error messages, or events emitted by the system indicating the outcome of the verification. 
+4. Execute the "Verify Lock Commitment" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Clearly define the conditions that make a lock commitment valid, including time constraints, cryptographic checks, or any other criteria specified by the implementation. Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Verify Lock Commitment" operation. This might include success messages, error messages, or events indicating the outcome of the verification. Query the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the validity status of the lock commitment. If the [IVSM](#5542-bi--or-multi-directional-bpi-services) provides detailed information about the validation result, inspect these details. Compare the actual validation results with the defined expected results. 
+5. Initiate the "Update State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Clearly define the conditions that should lead to a successful update of the joint state, including the data format, authorization checks, or any other criteria specified by the implementation. Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Update State" operation by checking for success messages, error messages, or events indicating the outcome of the update. Compare the actual state after the update with the defined expected results. 
+6. Attempt to update the state with incorrect or unauthorized information. Trigger the "Update State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with the intentionally invalid data. Clearly define the conditions under which the [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the state update as invalid including criteria such as data validation checks, authorization constraints, or other business logic requirements. Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Update State" operation, including error messages, failure notifications, or events indicating the rejection of the invalid state update. Compare the actual rejection status and messages with the defined expected results. 
+7. Execute the "Finalize State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Finalize State" operation including success messages, completion notifications, or events indicating the finalization of the current state.
+8. Invoke the "Exit BPI Interoperability" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services). Monitor the response from the [IVSM](#5542-bi--or-multi-directional-bpi-services) or any events triggered by the "Exit BPI Interoperability" operation, including success messages, completion notifications, or events indicating the conclusion of the BPI Interoperability process.
+
+Expected Results:
+1. The commit operation is properly processed and the joint state is successfully upated.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) updates the joint state to reflect the addition or removal of BPI Subjects.
+3. The joint state is successfully verified, and the result is accurate.
+4. The lock commitment is valid, and the [IVSM](#5542-bi--or-multi-directional-bpi-services) provides a positive verification result.
+5. The joint state is successfully updated.
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) correctly rejects the unauthorized state update.
+7. The state is successfully finalized.
+8. The [IVSM](#5542-bi--or-multi-directional-bpi-services) successfully exits the BPI Interoperability.
 
 #### **[R155]** 
-For BPI Interoperability, a  valid "Launch IVSM" operation a BPI invokes MUST 
-* Instantiate an operational IVSM conformant to [**[R153]**](#r153) and [**[R154]**](#r154)
-* Include the list of BPI Subjects as part of the target IVSM joint state object
-* Commit the initial state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the initial state on the CCSM together with its public input and verification key
-* Return a list of target IVSM endpoints as URIs for the operations listed in [**[R154]**](#r154)
+For BPI Interoperability, a valid "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST 
+* Instantiate an operational [IVSM](#5542-bi--or-multi-directional-bpi-services) conformant to [**[R153]**](#r153) and [**[R154]**](#r154)
+* Include the list of BPI Subjects as part of the target [IVSM](#5542-bi--or-multi-directional-bpi-services) joint state object
+* Commit the initial state of an [IVSM](#5542-bi--or-multi-directional-bpi-services) as a valid, succinct, and efficient zero-knowledge proof of correctness of the initial state on the CCSM together with its public input and verification key
+* Return a list of target [IVSM](#5542-bi--or-multi-directional-bpi-services) endpoints as URIs for the operations listed in [**[R154]**](#r154)
 * Return a cryptographically secured and masked secret for the invoking BPI Subject
 
 *In the context of this document, cryptographically secured and masked means that an attacker cannot unmask the secret without the cryptographic material used to secure and mask the secret, such as a cryptographic secret used in a key exchange protocol.*
 
+[[R155]](#r155) Testability:
+
+Preconditions:
+
+* The BPI is deployed and operational.
+* BPI Subjects are registered and authorized to invoke BPI operations.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is not currently launched.
+
+Test Steps:
+
+1. Trigger the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation on the BPI.
+
+2. Retrieve the status of the [IVSM](#5542-bi--or-multi-directional-bpi-services) instantiation process.
+
+3. Examine the joint state object of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+4. Retrieve information about the initial state of the [IVSM](#5542-bi--or-multi-directional-bpi-services). Select a well-established zero-knowledge proof system that suits your requirements. Clearly define the statement you want to prove without revealing the actual data. During the setup phase of the zero-knowledge proof system, generate public parameters, like a proving key and a verification key. Utilize the proving key and the private input (initial state data) to generate a zero-knowledge proof. Share the public input, the generated zero-knowledge proof, and the verification key. Submit the generated zero-knowledge proof along with the initial state information to the CCSM for commitment. Submit the initial state information to the CCSM for commitment. Inspect the storage or database where the CCSM stores committed states. 
+
+5. Retrieve the list of target [IVSM](#5542-bi--or-multi-directional-bpi-services) endpoints returned by the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+
+6. Retrieve the cryptographically secured and masked secret returned by the operation.
+
+Expected Results: 
+1. The operation is successfully initiated.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) is operational and conforms to [R153] and [R154].
+3. The list of BPI Subjects is included in the joint state object.
+4. The commitment is valid, succinct, and efficiently proves the correctness of the initial state. The proof includes the public input and verification key.
+5. The list of endpoints is provided as URIs for the operations specified in [R154].
+6. The secret is cryptographically secured and masked, ensuring that an attacker cannot unmask it without the required cryptographic material.
+
 #### **[R156]** 
-The valid zero-knowledge proof of correctness of the initial joint state MUST be publicly verifiable on the CCSM the IVSM utilizes. 
+The valid zero-knowledge proof of correctness of the initial joint state MUST be publicly verifiable on the CCSM the [IVSM](#5542-bi--or-multi-directional-bpi-services) utilizes. 
 
-**Remove IVSM**
+[[R156]](#r156) Testability:
 
-Once the IVSM has met the defined finalization criteria of the joint state it can be stopped, and removed, but not before.
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has been successfully launched using the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+* The initial joint state of the [IVSM](#5542-bi--or-multi-directional-bpi-services) has been committed with a zero-knowledge proof.
+
+Test Steps:
+
+1. Retrieve information about the initial state of the [IVSM](#5542-bi--or-multi-directional-bpi-services). Utilize the public input, private input (initial state), and verification key to generate a zero-knowledge proof for the initial state. 
+2. Submit the generated zero-knowledge proof along with the public input and verification key to the CCSM for verification. Inspect the storage or database where the CCSM stores committed states.
+
+Expected Results: 
+
+1. The information required for public verification is accessible.
+2. The CCSM provides confirmation or evidence that the zero-knowledge proof for the correctness of the initial joint state has been successfully verified.
+
+**Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)**
+
+Once the [IVSM](#5542-bi--or-multi-directional-bpi-services) has met the defined finalization criteria of the joint state it can be stopped, and removed, but not before.
 
 #### **[R157]** 
-An IVSM MUST NOT be stopped unless the finalization criteria of the joint state have been met.
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST NOT be stopped unless the finalization criteria of the joint state have been met.
+
+[[R157]](#r157) Testability:
+
+Preconditions:
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) is successfully instantiated and operational.
+2.  A zero-knowledge proof for the correctness of the initial joint state has been generated using the public input, private input, and verification key.
+
+Test Steps:
+
+1. Trigger the "Launch [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation on the BPI.
+2. Retrieve information about the initial joint state of the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+3. Utilize the public input, private input (initial joint state), and verification key to generate a zero-knowledge proof for the correctness of the initial joint state.
+4. Submit the generated zero-knowledge proof along with the public input and verification key to the CCSM for verification.
+5. Inspect the storage or database where the CCSM stores committed states.
+
+Expected Results:
+
+1. The operation is successfully initiated, and the [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated.
+2. Relevant information about the initial joint state is obtained, including data to be committed.
+3. The zero-knowledge proof is successfully generated.
+4. The CCSM processes the request without errors.
+5. The CCSM provides confirmation or evidence that the zero-knowledge proof for the correctness of the initial joint state has been successfully verified.
 
 #### **[R158]** 
-An IVSM MUST NOT be able to be removed until all participants in the BPI Interoperability process have successfully invoked the "Exit BPI Interoperability" operation.
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST NOT be able to be removed until all participants in the BPI Interoperability process have successfully invoked the "Exit BPI Interoperability" operation.
+
+[[R158]](#r158) Testbility: 
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+* The "Exit BPI Interoperability" operation has been invoked successfully by all participants.
+
+Test Steps:
+
+1. Invoke the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation without all participants having successfully invoked the "Exit BPI Interoperability" operation.
+2. Invoke the "Exit BPI Interoperability" operation successfully for all participants, and then attempt the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+3. Try to perform operations on the [IVSM](#5542-bi--or-multi-directional-bpi-services) after all participants have successfully exited BPI Interoperability and the [IVSM](#5542-bi--or-multi-directional-bpi-services) has been removed.
+
+Expected Results: 
+
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the removal operation, indicating that not all participants have exited BPI Interoperability.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the removal operation, as all participants have successfully exited BPI Interoperability.
+3. All operations on the removed [IVSM](#5542-bi--or-multi-directional-bpi-services) are rejected or result in errors.
 
 #### **[R159]** 
-A "Remove IVSM" operation a BPI invokes MUST contain the following properties:
-* The unique identifier for the target IVSM
+A "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation a BPI invokes MUST contain the following properties:
+* The unique identifier for the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * A digital signature over the content of the operation input tied to a public key associated with the BPI Subject invoking the operation
 * The cryptographically secured and masked secret of the invoking BPI Subject  
 
+[[R159]](#r159) Testability: 
+
+Preconditions:
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+
+Test Steps:
+
+1. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with the required properties, including the target [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier, invoking BPI Subject identifier, digital signature, and cryptographically secured masked secret.
+2. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with all properties except the target [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier.
+3. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with all properties except the invoking BPI Subject identifier.
+4. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with all properties except the digital signature.
+5. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with all properties except the cryptographically secured masked secret.
+6. Try to invoke the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with an unauthorized BPI Subject.
+7. Use the retrieved public key to verify the digital signature over the content of the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+
+Expected Results: 
+
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the removal operation successfully.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the removal operation, indicating that the target [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier is required.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the removal operation, indicating that the invoking BPI Subject identifier is required.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the removal operation, indicating that the digital signature is required.
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the removal operation, indicating that the cryptographically secured masked secret is required.
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the unauthorized removal operation.
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) successfully verifies the digital signature.
+
 #### **[R160]** 
-A "Remove IVSM" operation MUST satisfy the following conditions to be valid:
-* The provided IVSM identifier matches the identifier of the target IVSM
+A "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation MUST satisfy the following conditions to be valid:
+* The provided [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier matches the identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The invoking BPI Subject's digital signature must be valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The invoking BPI Subject must be an authorized BPI Subject for the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject  
+* The invoking BPI Subject must be an authorized BPI Subject for the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject  
+
+[[R160]](#r160) Testability: 
+
+Preconditions:
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+
+Test Steps:
+
+1. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier that matches the identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+2. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with an [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier that does not match the identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+3. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier but an invalid digital signature.
+4. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier and a valid digital signature, but the public key is not cryptographically tied to the unique identifier of the invoking BPI Subject.
+5. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier, a valid digital signature, and a tied public key, but from an unauthorized BPI Subject.
+6. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with a valid [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier, a valid digital signature, a tied public key, and an authorized BPI Subject, but with a cryptographically secured and masked secret that does not match the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Expected Results: 
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating a mismatch in identifiers.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the digital signature is not valid.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the public key is not correctly tied to the BPI Subject's identifier.
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the invoking BPI Subject is not authorized for the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating a mismatch in the secured and masked secret.
 
 #### **[R161]** 
-For BPI Interoperability, a valid "Remove IVSM" operation that a BPI invokes MUST remove the IVSM as identified by its unique identifier and conformant to [**[R157]**](#r157) and [**[R158]**](#r158).
+For BPI Interoperability, a valid "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation that a BPI invokes MUST remove the [IVSM](#5542-bi--or-multi-directional-bpi-services) as identified by its unique identifier and conformant to [**[R157]**](#r157) and [**[R158]**](#r158).
+
+[[R161]](#r161) Testability: 
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+
+Test Steps:
+
+1. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with the valid unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+2. Trigger the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation with an invalid or non-existent unique identifier.
+3. Try to invoke the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation without proper authorization.
+4. Verify that the [IVSM](#5542-bi--or-multi-directional-bpi-services) removal is conformant to the requirements specified in [R157] and [R158] by following the tests listed in those testability statements.
+5. Examine the system state after the "Remove [IVSM](#5542-bi--or-multi-directional-bpi-services)" operation.
+
+Expected Results:
+
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) is successfully removed, and the system state reflects the removal.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the provided unique identifier does not match any existing [IVSM](#5542-bi--or-multi-directional-bpi-services).
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the unauthorized removal attempt.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) removal adheres to the criteria outlined in [R157] and [R158].
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) is no longer present or operational, and the system state accurately reflects the removal.
 
 **Commit State**
 
-Once an IVSM is instantiated, a BPI Subject can commit a BPI Interoperability state object to the IVSM through the "Commit State" operation to start or contribute to the BPI Interoperability state and process.
+Once an [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated, a BPI Subject can commit a BPI Interoperability state object to the [IVSM](#5542-bi--or-multi-directional-bpi-services) through the "Commit State" operation to start or contribute to the BPI Interoperability state and process.
 
 #### **[R162]** 
-A BPI Interoperability state object utilized in the "Commit State" operation to the IVSM MUST have the following properties:
-* The unique identifier for the State Synchronization and Advancement Predicate of the state to be committed is based on
+A BPI Interoperability state object utilized in the "Commit State" operation to the [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST have the following properties:
+* The unique identifier for the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the state to be committed is based on
 * The unique identifier of the BPI Subject within the context of the originating BPI who commits the state
 * The cryptographically secured and masked secret of the invoking BPI Subject
 * A creation date
@@ -5043,42 +5610,205 @@ A BPI Interoperability state object utilized in the "Commit State" operation to 
 
 *This operation is de-facto equivalent to the Mono-Directional service of BPI Import because it serves the same purpose.*
 
+[[R162]](#r162) Testability: 
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Commit State" operation.
+
+Test Steps:
+
+1. Trigger the "Commit State" operation with a BPI Interoperability state object that includes all the required properties specified in [R162].
+2. Trigger the "Commit State" operation with a state object missing one or more properties specified in [R162].
+3. Check the unique identifier for the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the state object.
+4. Check the unique identifier of the BPI Subject committing the state.
+5. Check for the cryptographically secured and masked secret of the invoking BPI Subject.
+6. Check that the creation date of the state object is correctly set.
+7. Check for the state object itself within the "Commit State" operation.
+8. Check for the properties of the Zero-Knowledge Proof(s) of Correctness, such as proofs, public input data, and verification keys.
+9. Check for the properties of the lock commitment, such as the commitment itself, public input data, and verification keys.
+10. Confirm that the digital signature over the state content is tied to a public key associated with the BPI Subject committing the state.
+
+Expected Results: 
+
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the state object is successfully committed.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the state object is incomplete.
+3. The unique identifier is present and matches the expected value.
+4. The unique identifier is present and matches the expected value.
+5. The secured and masked secret is present and matches the expected value.
+6. The creation date is present and reflects the time of the operation.
+7. The state object is present and contains the relevant information.
+8. All necessary properties for Zero-Knowledge Proofs are present and correct.
+9. All necessary properties for the lock commitment are present and correct.
+10. The digital signature is present and matches the expected value.
+11. The "Commit State" operation is accepted and processed successfully with a state object that includes all the required properties specified.
+12. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation if the state object is missing one or more properties specified in [R162].
+
 #### **[R163]** 
-An IVSM processing a "Commit State" operation MUST satisfy the following conditions to be valid:
-* The submitted state object is conformant with the defined State Synchronization and Advancement Predicate.
-* The submitted predicate unique identifier matches the predicate identifier the IVSM is based on.
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) processing a "Commit State" operation MUST satisfy the following conditions to be valid:
+* The submitted state object is conformant with the defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
+* The submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier matches the [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier the [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on.
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The digital signature over the state content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject 
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject 
+
+[[R163]](#r163) Testability: 
+
+Preconditions:
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Commit State" operation.
+
+Test Steps:
+1. Trigger the "Commit State" operation with a state object that conforms to the defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
+2. Trigger the "Commit State" operation with a state object that does not conform to the defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
+3. Check the unique identifier of the submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) and the [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier that the [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on.
+4. Look for the unique identifier of the invoking BPI Subject in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+5. Confirm that the digital signature over the state content is valid.
+6. Confirm that the public key used in the digital signature is cryptographically tied to the unique identifier of the invoking BPI Subject.
+7. Check the cryptographically secured and masked secret supplied by the invoking BPI Subject and the one stored in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject.
+8. Trigger the "Commit State" operation with a valid state object but an invalid digital signature.
+9. Trigger the "Commit State" operation with a valid state object and valid digital signature but with a cryptographically secured and masked secret that does not match the one stored in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject.
+
+Expected Results: 
+
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the state object does not meet the [Predicate](#5542-bi--or-multi-directional-bpi-services) requirements.
+3. The unique identifier matches, indicating consistency between the submitted state and the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s [Predicate](#5542-bi--or-multi-directional-bpi-services).
+4. The invoking BPI Subject is authorized, and the [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation.
+5. The digital signature is valid, indicating the authenticity and integrity of the submitted state.
+6. The public key is correctly tied to the BPI Subject's identifier.
+7. The secured and masked secret matches, indicating consistency between the supplied and stored secrets.
+8. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the digital signature is not valid.
+9. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating a mismatch in the secured and masked secret.
 
 #### **[R164]** 
 For BPI Interoperability, a valid "Commit State" operation a BPI invokes MUST 
-* Update the joint state object in its state storage according to the rules of the State Synchronization and Advancement Predicate
-* Commit the new state of an IVSM as a valid, succinct, and efficient zero-knowledge proof of correctness of the new state on the CCSM together with its public input and verification key
-* Send that cryptographic proof of correctness of the new state on the IVSM to the invoking BPI Subject
+* Update the joint state object in its state storage according to the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* Commit the new state of an [IVSM](#5542-bi--or-multi-directional-bpi-services) as a valid, succinct, and efficient zero-knowledge proof of correctness of the new state on the CCSM together with its public input and verification key
+* Send that cryptographic proof of correctness of the new state on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to the invoking BPI Subject
+
+[[R164]](#r164) Testability:
+
+Preconditions:
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to perform the "Commit State" operation.
+
+Test Steps:
+
+1. Trigger the "Commit State" operation with a valid state object.
+2. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage for the joint state object.
+3. Check the commitment of the new state of the [IVSM](#5542-bi--or-multi-directional-bpi-services) on the CCSM. 
+4. Send the cryptographic proof of correctness of the new state on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to the invoking BPI. 
+5. Trigger the "Commit State" operation without updating the joint state object in the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage.
+6. Trigger the "Commit State" operation without committing the new state as a zero-knowledge proof on the CCSM.
+7. Trigger the "Commit State" operation without sending the cryptographic proof to the invoking BPI Subject.
+
+Expected Results: 
+
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation.
+2. The joint state object is successfully updated.
+3. The commitment is a valid, succinct, and efficient zero-knowledge proof of correctness on the CCSM, including its public input and verification key.
+4. The invoking BPI Subject receives the cryptographic proof of correctness of the new state on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the joint state object was not updated.
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the proof of correctness was not committed.
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) should reject the operation, indicating that the proof was not sent to the BPI Subject.
 
 #### **[R165]** 
-The valid zero-knowledge proof of correctness of the new joint state MUST be publicly verifiable on the CCSM upon which the IVSM was instantiated.
+The valid zero-knowledge proof of correctness of the new joint state MUST be publicly verifiable on the CCSM upon which the [IVSM](#5542-bi--or-multi-directional-bpi-services) was instantiated.
+
+[[R165]](#r165) Testability:
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A new joint state has been committed on the CCSM (Consensus Controlled State Machine) with a valid zero-knowledge proof.
+
+Test Steps:
+
+1. Retrieve the zero-knowledge proof associated with the commitment of the new joint state on the CCSM.
+2. Set up a publicly verifiable tool or service capable of validating zero-knowledge proofs.
+3. Input the zero-knowledge proof, public input data, and verification keys into the verification tool or service.
+4. Trigger the public verification process using the configured tool or service and check the provided result.
+
+Expected Results: 
+
+1. The zero-knowledge proof is obtained.
+2. The tool or service is ready for use.
+3. The tool is configured with the necessary inputs.
+4. The tool performs cryptographic computations and verifies that the zero-knowledge proof is valid and publicly verifiable on the CCSM.
 
 **Invite Participants to BPI Interoperability Process**
 
-Once an IVSM has been launched, the initiating BPI Subject can invite the initially specified, authorized BPI Subject from other BPIs.
+Once an [IVSM](#5542-bi--or-multi-directional-bpi-services) has been launched, the initiating BPI Subject can invite the initially specified, authorized BPI Subject from other BPIs.
 
 #### **[R166]** 
 A "Invite Participants to BPI Interoperability Process" operation MUST have the following properties:
 * A unique message number
 * The unique identifier of the inviting BPI Subject
-* The State Synchronization and Advancement Predicate utilized in the IVSM for which the invitation was issued.
+* The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) utilized in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for which the invitation was issued.
 * A URI to accept or reject the invitation
-* An object containing all of the target IVSM's endpoints as URIs
+* An object containing all of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s endpoints as URIs
 * A digital signature of the inviting BPI Subject over the content of the invitation
+
+[[R166]](#r166) Testability: 
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* The inviting BPI Subject is registered and authorized to perform the invitation.
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) configured.
+
+Test Steps:
+
+1. The inviting BPI Subject initiates the "Invite Participants to BPI Interoperability Process" operation.
+2. Check the invitation's message number.
+3. Check the invitation for the unique identifier of the inviting BPI Subject.
+4. Check the invitation for the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) utilized in the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+5. Check for a URI in the invitation for accepting or rejecting the invitation.
+6. Check that the invitation includes an object containing all of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s endpoints as URIs.
+7. Use the public key associated with the inviting BPI subject verify the digital signature over the content of the invitation.
+
+Expected Results: 
+1. The invitation process is initiated.
+2. The invitation contains a unique and non-repeating message number.
+3. The identifier of the inviting BPI Subject is accurately included.
+4. The correct State [Predicate](#5542-bi--or-multi-directional-bpi-services) is specified in the invitation.
+5. A valid URI is provided for participants to respond to the invitation.
+6. The URIs of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s endpoints are accurately specified.
+7. The digital signature is valid, confirming the authenticity of the invitation.
 
 #### **[R167]** 
 A "Invite Participants to BPI Interoperability Process" operation MUST satisfy the following conditions to be valid:
 * The digital signature over the invitation content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The submitted State Synchronization and Advancement Predicate is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+* The submitted [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) is conformant to [**[R140]**](#r140) - [**[R142]**](#r142).
+
+[[R167]](#r167) Testability: 
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to participate in the BPI Interoperability process.
+Test Steps:
+
+1. Trigger the "Invite Participants to BPI Interoperability Process" operation with a valid digital signature.
+2. Trigger the "Invite Participants" operation with an invalid digital signature.
+3. Trigger the "Invite Participants" operation with a digital signature whose public key is not cryptographically tied to the unique identifier of the invoking BPI Subject.
+4. Trigger the "Invite Participants" operation with a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that is conformant to [R140] - [R142].
+5. Trigger the "Invite Participants" operation with a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) that does not conform to [R140] - [R142].
+6. Trigger the "Invite Participants" operation without including a digital signature.
+7. Trigger the "Invite Participants" operation without including a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services).
+
+Expected Results: 
+
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation as valid.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the digital signature is not valid.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the digital signature's public key is not tied to the BPI Subject.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) accepts the operation as valid.
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) is not conformant.
+6. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that a valid digital signature is required.
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that a conformant [Predicate](#5542-bi--or-multi-directional-bpi-services) is required.
 
 **Accept/Reject Invite**
 
@@ -5086,139 +5816,644 @@ To accept or reject an invitation, a BPI Subject must invoke the endpoint provid
 
 #### **[R168]** 
 A "Accept/Reject Invite" operation MUST have the following properties:
-* The unique identifier of the target IVSM
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invited BPI Subject
 * An accept or reject value
 * The digital signature over the content of the operation
+
+[[R168]](#r168) Testability:
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to participate in the BPI Interoperability process.
+* An invitation has been issued, and the BPI Subject has received the invitation.
+Test Steps:
+
+1. Trigger the "Accept/Reject Invite" operation with the accept value.
+2. Trigger the "Accept/Reject Invite" operation with the reject value.
+3. Confirm that the "Accept/Reject Invite" operation includes the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+4. Confirm that the "Accept/Reject Invite" operation includes the unique identifier of the invited BPI Subject.
+5. Confirm that the "Accept/Reject Invite" operation includes the accept or reject value.
+6. Confirm that the "Accept/Reject Invite" operation includes the digital signature over the content.
+7. Trigger the "Accept/Reject Invite" operation without including the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+8. Trigger the "Accept/Reject Invite" operation without including the unique identifier of the invited BPI Subject.
+9. Trigger the "Accept/Reject Invite" operation without including the accept or reject value.
+10. Trigger the "Accept/Reject Invite" operation without including the digital signature.
+
+Expected Results: 
+
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the BPI Subject is accepted to participate in the BPI Interoperability process.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the invitation is rejected. The BPI Subject is not added to the BPI Interoperability process.
+3. The identifier is present and correct.
+4. The identifier is present and correct.
+5. The value is present and correct, indicating whether the invitation is accepted or rejected.
+6. The digital signature is present and can be verified with the BPI Subject's public key.
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the identifier is required.
+8. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the identifier is required.
+9. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the value is required.
+10. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that a valid digital signature is required.
 
 #### **[R169]** 
 A "Accept/Reject Invite" operation MUST satisfy the following conditions to be valid:
 * The digital signature over the invitation content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the IVSM
-* The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The unique [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier provided by the invoking BPI Subject matches the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+
+[[R169]](#r169) Testability: 
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* BPI (Baseline Protocol Implementation) Subjects are registered and authorized to participate in the BPI Interoperability process.
+* An invitation has been issued, and the BPI Subject has received the invitation.
+
+Test Steps:
+
+1. Trigger the "Accept/Reject Invite" operation with a valid digital signature.
+2. Trigger the "Accept/Reject Invite" operation (reject) with an invalid digital signature.
+3. Use a digital signature-verification function in a cryptographic library with the digital signature, the public key, and the invite content as inputs. 
+4. Confirm that the "Accept/Reject Invite" operation includes a digital signature whose public key is cryptographically tied to the unique identifier of the invoking BPI Subject.
+5. Check the content of the invitation for the unique identifier of the invoking BPI subject. Then, look for this identifier in the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+6. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier provided by the invoking BPI Subject and the identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+7. Trigger the "Accept/Reject Invite" operation with an invalid digital signature.
+8. Trigger the "Accept/Reject Invite" operation with a BPI Subject identifier that is not in the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+9. Trigger the "Accept/Reject Invite" operation with a unique [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier that does not match the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Expected Results:
+
+1. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the BPI Subject is accepted to participate in the BPI Interoperability process.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) processes the operation, and the invitation is rejected. The BPI Subject is not added to the BPI Interoperability process.
+3. The digital signature can be verified with the BPI Subject's public key.
+4. The public key is present and tied to the BPI Subject's unique identifier.
+5. The identifier is present and authorized.
+6. The identifiers match, indicating that the acceptance or rejection is for the correct [IVSM](#5542-bi--or-multi-directional-bpi-services).
+7. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the digital signature is not valid.
+8. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the BPI Subject is not authorized.
+9. The [IVSM](#5542-bi--or-multi-directional-bpi-services) rejects the operation, indicating that the identifiers do not match.
 
 #### **[R170]** 
-For BPI Interoperability, a valid "Accept/Reject Invite" operation a BPI invokes MUST return from the IVSM a cryptographically secured and masked secret for the accepting BPI Subject if the invitation is accepted and no value if the invitation is rejected.
+For BPI Interoperability, a valid "Accept/Reject Invite" operation a BPI invokes MUST return from the [IVSM](#5542-bi--or-multi-directional-bpi-services) a cryptographically secured and masked secret for the accepting BPI Subject if the invitation is accepted and no value if the invitation is rejected.
+
+[[R170]](#r170) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* The "Accept/Reject Invite" operation is initiated by the inviting BPI Subject.
+* The invitation has been sent, and the accepting BPI Subject is ready to respond.
+
+Test Steps:
+
+1. The accepting BPI Subject invokes the "Accept/Reject Invite" operation with the acceptance flag.
+2. Check the return value from the [IVSM](#5542-bi--or-multi-directional-bpi-services) after accepting the invitation.
+3. The accepting BPI Subject invokes the "Accept/Reject Invite" operation with the rejection flag.
+4. Check the return value from the [IVSM](#5542-bi--or-multi-directional-bpi-services) after rejecting the invitation.
+
+Expected Results:
+
+1. The invitation is accepted.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) returns a cryptographically secured and masked secret for the accepting BPI Subject.
+3. The invitation is rejected.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) returns no value.
 
 **Add/Remove BPI Subject**
 
-Adding to and removing from an IVSM one or more BPI Subjects is expected to be a typical operation given that, for example, joint state finalization requirements may change during processing requiring BPI Subjects to be added or removed. Given that this is a sensitive business operation concerning, in particular, audits, care has to be taken to ensure proper controls. 
+Adding to and removing from an [IVSM](#5542-bi--or-multi-directional-bpi-services) one or more BPI Subjects is expected to be a typical operation given that, for example, joint state finalization requirements may change during processing requiring BPI Subjects to be added or removed. Given that this is a sensitive business operation concerning, in particular, audits, care has to be taken to ensure proper controls. 
 
 #### **[R171]** 
-The "Add BPI Subject" operation a BPI invokes MUST be initiated only by an authorized BPI on the IVSM.
+The "Add BPI Subject" operation a BPI invokes MUST be initiated only by an authorized BPI on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R171]](#r171) Testability:
+
+Preconditions:
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. An authorized BPI Subject invokes the "Add BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+2. An unauthorized BPI Subject attempts to invoke the "Add BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Expected Results: 
+1. The operation is initiated successfully.
+2. The operation is not initiated, and an authorization error is returned.
 
 #### **[R172]** 
-An authorized BPI Subject on an IVSM MUST only be able to remove itself through the "Remove BPI Subject" operation.
+An authorized BPI Subject on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST only be able to remove itself through the "Remove BPI Subject" operation.
+
+[[R172]](#r172) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to remove itself.
+2. An authorized BPI Subject attempts to invoke the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to remove another 
+BPI Subject.
+
+Expected Results: 
+
+1. The operation is initiated, and the BPI Subject is successfully removed.
+2. The operation is not initiated, and an error is returned indicating that a BPI Subject can only remove itself.
 
 #### **[R173]** 
-The IVSM MUST NOT be able to prevent a BPI Subject from removing itself from the IVSM.
+The [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST NOT be able to prevent a BPI Subject from removing itself from the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R173]](#r173) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to remove itself.
+2. An unauthorized BPI Subject attempts to invoke the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) to remove itself.
+
+Expected Results:
+
+1. The operation is initiated, and the BPI Subject is successfully removed.
+2. The operation is initiated, and the unauthorized BPI Subject is successfully removed. 
 
 #### **[R174]** 
 The "Add BPI Subject" or "Remove BPI Subject" Operation MUST have the following properties:
-* The unique identifier of the target IVSM
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * The unique identifier of the added or removed BPI Subject
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
+[[R174]](#r174) Testability
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. An authorized BPI Subject invokes the "Add BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with the correct unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), invoking BPI Subject, added BPI Subject, cryptographically secured and masked secret, and digital signature. 
+Expected Result: The operation is initiated with the required properties and carried out successfully.
+
+2. An authorized BPI Subject invokes the "Add BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with one or more of the required properties missing or incorrect. 
+Expected Result: The operation is initiated without all of the required properties and fails.
+
+3. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with the correct unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), invoking BPI Subject, added BPI Subject, cryptographically secured and masked secret, and digital signature. 
+Expected Result: The operation is initiated with the required properties and carried out successfully.
+
+4. An authorized BPI Subject invokes the "Remove BPI Subject" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with one or more of the required properties missing or incorrect. 
+Expected Result: The operation is initiated without all of the required properties and fails.
+
 #### **[R175]** 
 The "Add BPI Subject" or "Remove BPI Subject" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
-* The unique IVSM identifier provided by the invoking BPI Subject matches the unique identifier of the target IVSM
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
+* The unique [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier provided by the invoking BPI Subject matches the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+
+[[R175]](#r175) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Use a digital signature-verification function in a cryptographic library with the digital signature, the public key, and the invite content as inputs. 
+2. Trigger the "Add BPI Subject" or "Remove BPI Subject" Operation with an invalid digital signature.
+3. Examine the validity conditions associated with the "Add BPI Subject" operation.
+4. Examine the validity conditions associated with the "Remove BPI Subject" operation.
+
+Expected Results: 
+
+1. The function's output shows that the digital signature is valid. 
+2. The operation fails.
+3. The operation satisfies the specified conditions, including valid digital signatures, tied public key, authorization check, matching secured secret, and correct [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier.
+4. The operation satisfies the specified conditions, including valid digital signatures, tied public key, authorization check, matching secured secret, and correct [IVSM](#5542-bi--or-multi-directional-bpi-services) identifier.
 
 #### **[R176]** 
-A newly added BPI Subject MUST be approved by a quorum of authorized BPI Subjects on the IVSM.
+A newly added BPI Subject MUST be approved by a quorum of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R176]](#r176) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* A quorum of authorized BPI Subjects needed to add a new BPI Subject is defined in the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Initiate the "Add BPI Subject" operation with the BPI Subject that will be added.
+2. Check if the new BPI Subject is added to the [IVSM](#5542-bi--or-multi-directional-bpi-services) before approval from a quorum. 
+3. Have a group of authorized BPI Subjects that is not enough to meet the quorum approve the addition of the new BPI Subject.
+4. Have a group of authorized BPI Subjects that is enough or more than enough to satisfy the quorum approve the addition of the new BPI Subject.
+5. Check the status of the quorum approval of the new BPI subject after it is authorized.
+
+Expected Results: 
+
+1. The operation is initiated successfully and a new BPI Subject is being added to the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) does not accept the new BPI subject and waits for approval from the quorum. 
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) does not accept the new BPI subject and waits for approval from more authorized BPI subjects to satisfy the quorum. 
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the approvals and processes the addition of the new BPI Subject.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) confirms that the quorum has approved the addition of the new BPI Subject.
 
 #### **[R177]** 
-The quorum required to add a new BPI Subject to an IVSM MUST be defined in the State Synchronization and Advancement Predicate of the IVSM.
+The quorum required to add a new BPI Subject to an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be defined in the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R177]](#r177) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Check the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services) for specification of the required quorum.
+2. Add a new BPI Subject to the [IVSM](#5542-bi--or-multi-directional-bpi-services) by initiating the "Add BPI Subject" operation.
+3. Have less authorized BPI Subjects than the specified quorum approve the new BPI subject. 
+4. Have the quorum of authorized BPI Subjects approve the addition of the new BPI Subject.
+
+Expected Results: 
+
+1. The [Predicate](#5542-bi--or-multi-directional-bpi-services) specifies the required quorum for adding a new BPI Subject.
+2. The operation is initiated successfully.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) enforces the quorum requirement and doesn't accept the new BPI subject.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the approvals and processes the addition of the new BPI Subject, showing that is uses the specified quorum.
 
 #### **[R178]** 
-The "Add BPI Subject" operation approved on the IVSM MUST add the BPI Subject listed in the operation to the IVSM.
+The "Add BPI Subject" operation approved on the [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST add the BPI Subject listed in the operation to the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R178]](#r178) Testability: 
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services) defines the required quorum for adding a new BPI Subject.
+
+Test Steps:
+
+1. Initiate the "Add BPI Subject" operation.
+2. Have the defined quorum of authorized BPI Subjects approve the addition of the new BPI Subject.
+3. Check the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the unique identifier of the newly-added BPI subject. 
+
+Expected Result: 
+
+1. The operation is initiated successfully.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the approvals and processes the addition of the new BPI Subject.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) includes the unique identifier of the new BPI subject in its list of authorized BPI subjects. 
 
 #### **[R179]** 
-The "Remove BPI Subject" operation MUST remove the BPI Subject listed in the operation to the IVSM.
+The "Remove BPI Subject" operation MUST remove the BPI Subject listed in the operation to the [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
+[[R179]](#r179) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Initiate the "Remove BPI Subject" operation.
+2. Check the list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the unique identifier of the recently-removed BPI subject. 
+
+Expected Results:
+
+1. The "Remove BPI Subject" operation is initiated successfully. 
+2. The list of authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services) does not include the unique identifier of the recently-removed BPI subject.
 
 **Verify State**
 
-Verification of the joint state on an IVSM is a critical operation to validate the correctness of any joint state changes before these changes are finalized on an IVSM. From an audit point of view, the verification of joint state changes is critical, especially for regulatory compliance of business-sensitive operations.
+Verification of the joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services) is a critical operation to validate the correctness of any joint state changes before these changes are finalized on an [IVSM](#5542-bi--or-multi-directional-bpi-services). From an audit point of view, the verification of joint state changes is critical, especially for regulatory compliance of business-sensitive operations.
 
 #### **[R180]** 
-Any authorized BPI Subject on an IVSM MUST be able to verify the joint state on said IVSM.
+Any authorized BPI Subject on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be able to verify the joint state on said [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R180]](#r180) Testability:
+
+Preconditions:
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* Joint state changes have been made on the [IVSM](#5542-bi--or-multi-directional-bpi-services) and are ready for verification.
+
+Test Steps:
+
+1. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s list of authorized BPI subjects for the BPI's unique identifier.
+2. The authorized BPI Subject triggers the "Verify State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+3. Check the results of the "Verify State" operation on joint state of the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+4. Check the audit trail generated by the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the verification operation.
+
+Expected Results: 
+
+1. The BPI Subject is authorized, and their credentials are valid.
+2. The operation is initiated successfully.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) provides verification results indicating the correctness of the joint state changes.
+4. The audit trail accurately reflects the details of the verification operation initiated by the authorized BPI Subject.
 
 #### **[R181]** 
-The proof of correctness of any joint state on an IVSM MUST be verifiable on said IVSM by an authorized BPI Subject.
+The proof of correctness of any joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be verifiable on said [IVSM](#5542-bi--or-multi-directional-bpi-services) by an authorized BPI Subject.
+
+[[R181]](#r181) Testability: 
+
+Preconditions:
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* A joint state with a verifier system for the proof of correctness is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+1. Check for the unique identifier of the BPI in the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s list of authorized BPI subjects.
+2. Verify the zero-knowledge proof using the verifier system.
+4. Review the audit trail generated by the [IVSM](#5542-bi--or-multi-directional-bpi-services) for the verification operation.
+
+Expected Results: 
+
+1. The BPI Subject is authorized, and their credentials are valid.
+2. The proof of correctness is successfully verified by the verifier system. 
+4. The audit trail accurately reflects the details of the verification by the verifier system.
+
 
 #### **[R182]** 
-The proof of correctness of the initial joint state after the "Commit State" operation is completed on an IVSM MUST be publicly verifiable on the chosen CCSM of said IVSM.
+The proof of correctness of the initial joint state after the "Commit State" operation is completed on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be publicly verifiable on the chosen CCSM of said [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R182]](#r182) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* A verifier system for proofs of correctness is present on the chosen CCSM.
+
+Test Steps:
+
+1. Use the verifier system to verify the proof of correctness for the initial joint state on the chosen CCSM.
+2. Inspect the results of the public verification operation to ensure that the initial joint state's proof of correctness is successfully verified.
+3. Review the audit trail generated by the CCSM for the public verification operation.
+
+Expected Results:
+
+1. The proof of correctness is successfully verified.
+2. The CCSM provides verification results indicating the correctness of the proof associated with the initial joint state.
+3. The audit trail accurately reflects the details of the verification operation for the final joint state.
 
 #### **[R183]** 
-The proof of correctness of the final joint state after the "Finalize State" operation is completed on an IVSM MUST be publicly verifiable on the chosen CCSM of said IVSM.
+The proof of correctness of the final joint state after the "Finalize State" operation is completed on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be publicly verifiable on the chosen CCSM of said [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
-*Initial and final state commitments must be anchored on the CCSM to ensure that the committed or finalized state cannot be utilized in fraudulent transactions on a BPI on the anchoring CCSM. Note, that this last statement holds only for the CCSM utilized by the IVSM. Any other CCSMs and BPIs operating on them are typically not aware of any state commitment by BPIs on other CCSMs.*
+[[R183]](#r183) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* The "Finalize State" operation has been successfully completed on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* A verifier system for proofs of correctness is present on the chosen CCSM.
+
+Test Steps:
+
+1. Use the verifier system to verify the proof of correctness for the final joint state on the chosen CCSM.
+2. Inspect the results of the public verification operation to ensure that the final joint state's proof of correctness is successfully verified.
+3. Review the audit trail generated by the CCSM for the public verification operation.
+
+Expected Results:
+
+1. The proof of correctness is successfully verified.
+2. The CCSM provides verification results indicating the correctness of the proof associated with the final joint state.
+3. The audit trail accurately reflects the details of the verification operation for the final joint state.
+
+*Initial and final state commitments must be anchored on the CCSM to ensure that the committed or finalized state cannot be utilized in fraudulent transactions on a BPI on the anchoring CCSM. Note, that this last statement holds only for the CCSM utilized by the [IVSM](#5542-bi--or-multi-directional-bpi-services). Any other CCSMs and BPIs operating on them are typically not aware of any state commitment by BPIs on other CCSMs.*
 
 #### **[R184]** 
 The "Verify State" Operation MUST have the following properties:
-* The unique identifier of the target IVSM
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * The cryptographic proof of correctness of the last joint state
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
+[[R184]](#r184) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness of the last joint state is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject as properties for the "Verify State" Operation.
+2. Initiate the "Verify State" Operation with the properties above. 
+3. Initiate the "Verify State" Operation with any of these properties missing. 
+
+Expected Results: 
+
+1. The "Verify State" Operation has all of the correct properties. 
+2. The "Verify State" Operation is successful. 
+3. The "Verify State" Operation fails. 
+
+
 #### **[R185]** 
 The "Verify State" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
-* The cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject matches the cryptographic proof of correctness of the last joint state of the target IVSM
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
+* The cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject matches the cryptographic proof of correctness of the last joint state of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+
+[[R185]](#r185) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) configured.
+
+Test Steps:
+
+1. Find the unique identifier of the invoking BPI Subject and look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
+3. Compare the cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject to the cryptographic proof of correctness of the last joint state of the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+4. Initiate the "Verify State" Operation using a valid digital signature, the digital signature's public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, the cryptographically secured and masked secret, and the cryptographic proof of correctness of the last joint state. 
+5. Initiate the "Verify State" Operation with any of the conditions in the last step missing or incorrect. 
+
+Expected Results:
+
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. The cryptographically secured and masked secrets are the same. 
+3. The cryptographic proofs of correctness are the same. 
+4. The operation runs successfully. 
+5. The operation fails. 
 
 #### **[R186]** 
-For BPI Interoperability, a valid "Verify State" operation which a BPI invokes MUST return from either the IVSM or the CCSM a value of true or false.
+For BPI Interoperability, a valid "Verify State" operation which a BPI invokes MUST return from either the [IVSM](#5542-bi--or-multi-directional-bpi-services) or the CCSM a value of true or false.
+
+[[R186]](#r186) Testability:
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps: 
+
+1. Initiate the "Verify State" operation following requirements [**[R184]**](#r184) and [**[R185]**](#r185). 
+2. Check the output of the "Verify State" operation in the CCSM or the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+
+Expected Results: 
+
+1. The "Verify State Operation" is successfully initiated. 
+2. The the operation outputs either true or false. 
 
 **Verify Lock Commitment**
 
 A participating BPI Subject needs to know that the initial state commitments from the participating BPI Subjects are locked and cannot be altered while the BPI Interoperability process is occurring. Therefore, verifying the lock commitment of an initial state commit is crucial.
 
 #### **[R187]** 
-Any authorized BPI subject on an IVSM MUST be able to verify the lock commitment of the initial state commit of a participating BPI Subject to the joint initial state of the BPI Interoperability process. 
+Any authorized BPI subject on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be able to verify the lock commitment of the initial state commit of a participating BPI Subject to the joint initial state of the BPI Interoperability process. 
+
+[[R187]](#r187) Testability:
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps: 
+1. Attempt to initiate and run the "Verify Lock Commitment State" operation with all of the properties specified in [**[R189]**](#r189) and following all of the conditions in [**[R190]**](#r190). Repeat this step on all/several authorized BPI Subjects. 
+
+Expected Results: 
+1. The operation is successfully initiated on all BPI Subjects that were tested. 
 
 #### **[R188]** 
-The proof of correctness of the lock commitment after the "Commit State" operation is completed on an IVSM MUST be publicly verifiable on the chosen CCSM of said IVSM.
+The proof of correctness of the lock commitment after the "Commit State" operation is completed on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be publicly verifiable on the chosen CCSM of said [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R188]](#r188) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* The "Commit State" operation has been successfully completed on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* A verifier system for proofs of correctness is present on the chosen CCSM.
+
+Test Steps: 
+
+1. Use the verifier system on the CCSM to verify the proof of correctness of the lock commitment of the joint state. 
+2. Check the results of the verifier system to ensure that the proof was successfully verified. 
+
+Expected Results: 
+
+1. The proof of correctness is successfully verified. 
+2. The CCSM provides verification results indicating the correctness of the proof associated with the lock commitment of the joint state.
 
 #### **[R189]** 
 The "Verify Lock Commitment State" Operation MUST have the following properties:
-* The unique identifier of the target IVSM
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * A lock commitment of one of the initial joint state contributions
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
+[[R189]](#r189) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness of the lock commitment of the joint state is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject as properties for the "Verify Lock Commitment State" Operation.
+2. Initiate the "Verify Lock Commitment State" Operation with the properties above. 
+3. Initiate the "Verify Lock Commitment State" Operation with any of these properties missing. 
+
+Expected Results: 
+
+1. The "Verify Lock Commitment State" Operation has all of the correct properties. 
+2. The "Verify Lock Commitment State" Operation is successful. 
+3. The "Verify Lock Commitment State" Operation fails. 
+
 #### **[R190]** 
 The "Verify Lock Commitment State" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the IVSM for that BPI Subject
-* The lock commitment of an initial joint state contribution provided by the invoking BPI Subject matches the lock commitment of one of the initial joint state contributions of the target IVSM
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
+* The lock commitment of an initial joint state contribution provided by the invoking BPI Subject matches the lock commitment of one of the initial joint state contributions of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+
+[[R190]](#r190) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) configured.
+
+Test Steps:
+
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
+3. Compare the cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject to the cryptographic proof of correctness of the last joint state of the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+4. Initiate the "Verify State" Operation using a valid digital signature, the digital signature's public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, the cryptographically secured and masked secret, and the cryptographic proof of correctness of the last joint state. 
+5. Initiate the "Verify State" Operation with any of the conditions in the last step missing or incorrect. 
+
+Expected Results:
+
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. The cryptographically secured and masked secrets are the same. 
+3. The cryptographic proofs of correctness are the same. 
+4. The operation executes successfully. 
+5. The operation fails. 
 
 #### **[R191]** 
-For the purpose of BPI Interoperability, a valid "Verify Lock Commitment State" operation which a BPI invokes MUST return from the CCSM underlying the target IVSM a value of true or false.
+For the purpose of BPI Interoperability, a valid "Verify Lock Commitment State" operation which a BPI invokes MUST return from the CCSM underlying the target [IVSM](#5542-bi--or-multi-directional-bpi-services) a value of true or false.
+
+[[R191]](#r191) Testability:
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps: 
+
+1. Initiate the "Verify Lock Commitment State" operation following requirements [**[R189]**](#r189) and [**[R190]**](#r190). 
+2. Check the output of the "Verify State" operation in the CCSM and the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+
+Expected Results: 
+
+1. The "Verify State Operation" is successfully initiated. 
+2. The operation outputs from both the IVSM and the CCSM are either true or false. 
 
 **Update State**
 
-Once an IVSM is instantiated and all required initial states committed, a BPI Subject can update the joint state on an IVSM through the "Update State" operation to contribute to the BPI Interoperability state and process.
+Once an [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and all required initial states committed, a BPI Subject can update the joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services) through the "Update State" operation to contribute to the BPI Interoperability state and process.
 
 #### **[R192]** 
-Any authorized BPI subject on an IVSM MUST be able to update a joint state on an IVSM.
+Any authorized BPI subject on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be able to update a joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R192]](#r192) Testability:
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps: 
+1. Attempt to initiate and run the "Update State" operation with all of the properties specified in [**[R193]**](#r193) and following all of the conditions in [**[R194]**](#r194). Repeat this step on all/several authorized BPI Subjects. 
+
+Expected Results: 
+1. The operation is successfully initiated on all BPI Subjects that were tested. 
 
 #### **[R193]** 
-A BPI Interoperability state object utilized in the "Update State" operation to the target IVSM MUST have the following properties:
-* The unique identifier for the State Synchronization and Advancement Predicate of the state to be updated	
+A BPI Interoperability state object utilized in the "Update State" operation to the target [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST have the following properties:
+* The unique identifier for the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the state to be updated	
 * The cryptographic proof of correctness of the last joint state
 * The unique identifier of the BPI Subject within the context of the originating BPI who updates the state
 * The cryptographically secured and masked secret of the invoking BPI Subject
@@ -5227,78 +6462,368 @@ A BPI Interoperability state object utilized in the "Update State" operation to 
 * All public input data to the program updating the joint state object and creating a zero-knowledge proof of correctness of the updated state object
 * A digital signature over the state content tied to a public key associated with the BPI Subject committing the state
 
+[[R193]](#r193) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness of the lock commitment of the joint state is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, the cryptographic proof of correctness of the last joint state, the cryptographically secured and masked secret supplied by the invoking BPI Subject, the creation date, all required private input data, all public input data,and the digital signature of the invoking BPI Subject as properties for the "Update State" Operation.
+2. Initiate the "Update State" Operation with the properties above. 
+3. Initiate the "Update State" Operation with any of these properties missing. 
+
+Expected Results: 
+
+1. The "Update State" Operation has all of the correct properties. 
+2. The "Update State" Operation is successful. 
+3. The "Update State" Operation fails. 
+
 #### **[R194]** 
 An "Update State" operation MUST satisfy the following conditions to be valid:
-* The submitted state object is conformant with the target IVSM's defined State Synchronization and Advancement Predicate
-* The submitted predicate unique identifier matches the predicate identifier the target IVSM is based on
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographic proof of correctness of the last joint state submitted matches the cryptographic proof of correctness of the last joint state on the target IVSM
+* The submitted state object is conformant with the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services)
+* The submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier matches the [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier the target [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographic proof of correctness of the last joint state submitted matches the cryptographic proof of correctness of the last joint state on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The digital signature over the state content is valid:
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject 
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject 
+
+[[R194]](#r194) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* A verifier system for cryptographic proofs of correctness is present on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) has a [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) configured.
+
+Test Steps:
+
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
+3. Compare the cryptographic proof of correctness of the last joint state provided by the invoking BPI Subject to the cryptographic proof of correctness of the last joint state on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+4. Check the submitted state object with the conditions of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). 
+5. Find the [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier the [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on and compare it to the submitted unique identifier.
+6. Initiate the "Update State" Operation using the state object, [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier, valid digital signature, digital signature's public key that is cryptographically tied to the unique identifier of the invoking BPI Subject, unique identifier of the invoking BPI Subject, and cryptographically secured and masked secret. 
+7. Initiate the "Update State" Operation with any of the conditions in the last step missing or incorrect. 
+
+Expected Results:
+
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. The cryptographically secured and masked secrets are the same. 
+3. The cryptographic proofs of correctness are the same. 
+4. The submitted state object is conformant with the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s defined [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services). 
+5. The submitted [Predicate](#5542-bi--or-multi-directional-bpi-services) unique identifier matches the [Predicate](#5542-bi--or-multi-directional-bpi-services) identifier the target [IVSM](#5542-bi--or-multi-directional-bpi-services) is based on
+6. The operation executes successfully. 
+7. The operation fails. 
 
 #### **[R195]** 
-For BPI Interoperability, a valid "Update State" operation that a BPI invokes MUST update the target IVSM's state storage according to the rules of the State Synchronization and Advancement Predicate and return the updated joint state, and its cryptographic zero-knowledge proof of correctness including all public inputs and required keys for proof verification.
+For BPI Interoperability, a valid "Update State" operation that a BPI invokes MUST update the target [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage according to the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) and return the updated joint state, and its cryptographic zero-knowledge proof of correctness including all public inputs and required keys for proof verification.
+
+[[R195]](#r195) Testability: 
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The joint state object and its cryptographic proof are available for updating.
+
+Test Steps: 
+
+1. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage. 
+2. Initiate the "Update State" operation so that it is conformant to requirements [**[R193]**](#r193) and [**[R194]**](#r194). 
+3. Check the [IVSM](#5542-bi--or-multi-directional-bpi-services)'s state storage. 
+4. Check the output from the operation. 
+
+Expected Results: 
+
+1. The state storage has many states stored on it leading up to and including the current state. 
+2. The "Update State" operation executes successfully. 
+3. The state storage is updated according to the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) to include the newest state added from the "Update State" operation. 
+4. The operation returns the updated joint state, its cryptographic proof of correctness, all public inputs, and the required keys for proof verification. 
 
 **Accept/Reject State Update**
 
-An updated joint state can only be finalized or further advanced if a pre-defined quorum of all participating BPI Subjects agrees on this new joint state on an IVSM.
+An updated joint state can only be finalized or further advanced if a pre-defined quorum of all participating BPI Subjects agrees on this new joint state on an [IVSM](#5542-bi--or-multi-directional-bpi-services).
 
 #### **[R196]** 
-An IVSM after a joint state update operation has been completed MUST generate a notification to all authorized BPI Subjects with an endpoint as a URI to accept/reject a joint state update as well as the complete new joint state object.
+An [IVSM](#5542-bi--or-multi-directional-bpi-services) after a joint state update operation has been completed MUST generate a notification to all authorized BPI Subjects with an endpoint as a URI to accept/reject a joint state update as well as the complete new joint state object.
+
+[[R196]](#r196) Testability:
+
+Preconditions:
+
+* The [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The joint state has been successfully updated through the "Update State" operation.
+
+Test Steps: 
+
+1. Initiate the "Update State" operation with properties and conditions conformant to requirements [**[R193]**](#r193) and [**[R194]**](#r194). 
+2. Check one of the authorized BPI Subjects on the [IVSM](#5542-bi--or-multi-directional-bpi-services) for notifications from the "Update State" operation. 
+3. Access the endpoint specified by the URI in the notification. 
+
+Expected Results: 
+
+1. The "Update State" operation runs successfully. 
+2. The operation sends a notification to all authorized BPI Subjects with a URI. 
+3. The URI leads to the endpoint where the BPI Subject is able to accept or reject the joint state update as well as the complete new joint state object.
 
 #### **[R197]** 
-A quorum of authorized BPI Subjects MUST accept the new joint state before it is finalized by the requesting IVSM.
+A quorum of authorized BPI Subjects MUST accept the new joint state before it is finalized by the requesting [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R197]](#r197) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* A quorum of authorized BPI Subjects needed to add a new BPI Subject is defined in the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Initiate the "Update State" operation  with properties and conditions conformant to requirements [**[R193]**](#r193) and [**[R194]**](#r194).
+2. Check if the joint state of the [IVSM](#5542-bi--or-multi-directional-bpi-services) was updated before approval from a quorum. 
+3. Have a group of authorized BPI Subjects that is not enough to meet the quorum approve the joint state update.
+4. Have a group of authorized BPI Subjects that is enough or more than enough to satisfy the quorum approve the joint state update.
+5. Check the status of the quorum's approval of the joint state update after it is finalized.
+
+Expected Results: 
+
+1. The operation is initiated successfully and a joint state update is waiting for approval from the quorum.
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) does not accept the joint state update and waits for approval from the quorum. 
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) does not accept the joint state update and waits for approval from more authorized BPI subjects to satisfy the quorum. 
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the approvals and finalizes the joint state update.
+5. The [IVSM](#5542-bi--or-multi-directional-bpi-services) confirms that the quorum has approved the joint state update.
 
 #### **[R198]** 
-The quorum required to accept or reject a joint state update on an IVSM MUST be defined in the State Synchronization and Advancement Predicate of said IVSM.
+The quorum required to accept or reject a joint state update on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be defined in the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of said [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R198]](#r198) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Check the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services) for specification of the quorum required to accept or reject a joint state update.
+2. Initiate the "Update State" operation with properties and conditions conformant to requirements [**[R193]**](#r193) and [**[R194]**](#r194).
+3. Have less authorized BPI Subjects than the specified quorum approve the joint state update. 
+4. Have the quorum of authorized BPI Subjects approve the joint state update.
+
+Expected Results: 
+
+1. The [Predicate](#5542-bi--or-multi-directional-bpi-services) specifies the required quorum for accepting or reject a joint state update.
+2. The operation is initiated successfully.
+3. The [IVSM](#5542-bi--or-multi-directional-bpi-services) enforces the quorum requirement and doesn't accept the joint state update.
+4. The [IVSM](#5542-bi--or-multi-directional-bpi-services) acknowledges the acceptances and processes the joint state update, showing that it uses the specified quorum.
 
 #### **[R199]** 
-The joint state object on an IVSM MUST be updated on said IVSM based on each received BPI Subject vote, either accept or reject.
+The joint state object on an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST be updated on said [IVSM](#5542-bi--or-multi-directional-bpi-services) based on each received BPI Subject vote, either accept or reject.
+
+[[R199]](#r199) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The joint state object on the [IVSM](#5542-bi--or-multi-directional-bpi-services) has a counter for accept and reject votes. 
+
+Test Steps: 
+
+1. Use an authorized BPI Subject to vote to accept a joint state update and check the vote counter on the joint state object. 
+2. Use an authorized BPI Subject to vote to reject a joint state update and check the vote counter on the joint state object. 
+
+Expected Results: 
+
+1. The counter for accept votes on the joint state object is updated and one higher than the previous count. 
+1. The counter for reject votes on the joint state object is updated and one higher than the previous count. 
 
 #### **[R200]** 
-Once the updated joint state is either accepted or rejected based on the defined quorum, an IVSM MUST: 
-* Notify all BPI Subjects if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the IVSM
+Once the updated joint state is either accepted or rejected based on the defined quorum, an [IVSM](#5542-bi--or-multi-directional-bpi-services) MUST: 
+* Notify all BPI Subjects if the joint state has been finalized based on the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * Cryptographically seal the joint state such that no further updates to the joint state can be processed
+
+[[R200]](#r200) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+* The quorum has finished voting on whether a joint state update will be accepted or rejected. 
+
+Test Steps: 
+
+1. Check BPI Subjects in the [IVSM](#5542-bi--or-multi-directional-bpi-services) for a notification about the joint state update. 
+2. Attempt to run the "Accept/Reject State Update" operation again on the same joint state. 
+
+Expected Results: 
+
+1. All BPI Subjects checked have received a notification about the finalization of the joint state. 
+2. The [IVSM](#5542-bi--or-multi-directional-bpi-services) blocks further updates to the joint state once it has been finalized. 
 
 #### **[R201]** 
 The "Accept/Reject State Update" Operation MUST have the following properties:
-* The unique identifier of the target IVSM
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject
 * An accept or reject value 
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
 
+[[R201]](#r201) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, an accept or reject value, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject over the content of the operation as properties for the "Accept/Reject State Update" operation. 
+2. Initiate the "Accept/Reject State Update" Operation with the properties above. 
+3. Initiate the "Accept/Reject State Update" Operation with any of these properties missing. 
+
+Expected Results: 
+
+1. The "Accept/Reject State Update" Operation has all of the correct properties. 
+2. The "Accept/Reject State Update" Operation is successful. 
+3. The "Accept/Reject State Update" Operation fails. 
+
 #### **[R202]** 
 The "Accept/Reject State Update" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
+
+[[R202]](#r202) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
+3. Initiate the "Accept/Reject State Update" Operation using a valid digital signature, a public key for the digital signature that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, and the cryptographically secured and masked secret supplied by the invoking BPI Subject. 
+4. Initiate the "Accept/Reject State Update" Operation with any of the conditions in the last step missing or incorrect. 
+
+Expected Results:
+
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. The cryptographically secured and masked secrets are the same. 
+3. The operation executes successfully. 
+4. The operation fails. 
 
 #### **[R203]** 
-For the purpose of BPI Interoperability, a valid "Accept/Reject State Update" operation that a BPI invokes MUST return a value of joint state processing success or failure, and if the joint state has been finalized based on the rules of the State Synchronization and Advancement Predicate of the target IVSM.
+For the purpose of BPI Interoperability, a valid "Accept/Reject State Update" operation that a BPI invokes MUST return a value of joint state processing success or failure, and if the joint state has been finalized based on the rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of the target [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+[[R203]](#r203) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps: 
+
+1. Invoke the "Update State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with an authorized BPI Subject. 
+2. Have the quorum of authorized BPI Subjects vote to reject the joint state update. 
+3. Access the joint state on the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+4. Invoke the "Update State" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with an authorized BPI Subject. 
+5. Have the quorum of authorized BPI Subjects vote to accept the joint state update. 
+6. Access the joint state on the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+
+Expected Results: 
+
+1. The operation executes successfully, and a vote starts to accept or reject the joint state update.  
+2. The joint state update is rejected. 
+3. The joint state remains the same and doesn't get finalized. 
+4. The operation executes successfully, and a vote starts to accept or reject the joint state update.  
+5. The joint state update is accepted and finalized. 
+6. The joint state includes the changes from the update, indicating that the joint state and the "Update State" operation are finalized. 
 
 **Exit BPI Interoperability**
 
-The exit operation can be invoked at any time during the lifecycle of an IVSM if a BPI Subject determines that something is occurring that puts their business at risk, or if the joint state has been finalized according to rules of the State Synchronization and Advancement Predicate of an IVSM.  
+The exit operation can be invoked at any time during the lifecycle of an [IVSM](#5542-bi--or-multi-directional-bpi-services) if a BPI Subject determines that something is occurring that puts their business at risk, or if the joint state has been finalized according to rules of the [State Synchronization and Advancement Predicate](#5542-bi--or-multi-directional-bpi-services) of an [IVSM](#5542-bi--or-multi-directional-bpi-services).  
 
 #### **[R204]** 
-Each BPI Subject MUST be able to invoke the "Exit BPI Interoperability" operation at any point in time after the target IVSM has been instantiated.
+Each BPI Subject MUST be able to invoke the "Exit BPI Interoperability" operation at any point in time after the target [IVSM](#5542-bi--or-multi-directional-bpi-services) has been instantiated.
+
+[[R204]](#r204) Testability: 
+
+Preconditions:
+
+* The target [IVSM](#5542-bi--or-multi-directional-bpi-services) is instantiated and operational.
+* BPI Subjects are registered and authorized on the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps: 
+
+1. Invoke the "Exit BPI Interoperability" operation using any BPI Subject in the [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+
+Expected Results: 
+
+1. The operation executes successfully. 
 
 #### **[R205]** 
 The "Exit BPI Interoperability" Operation MUST have the following properties:
-* The unique identifier of the target IVSM
+* The unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
 * The unique identifier of the invoking BPI Subject 
 * The cryptographically secured and masked secret supplied by the invoking BPI Subject
 * The digital signature of the invoking BPI Subject over the content of the operation 
+
+[[R205]](#r205) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Use the unique identifier of the target [IVSM](#5542-bi--or-multi-directional-bpi-services), the unique identifier of the invoking BPI Subject, the cryptographically secured and masked secret supplied by the invoking BPI Subject, and the digital signature of the invoking BPI Subject over the content of the operation as properties for the "Exit BPI Interoperability" operation. 
+2. Initiate the "Exit BPI Interoperability" Operation with the properties above. 
+3. Initiate the "Exit BPI Interoperability" Operation with any of these properties missing. 
+
+Expected Results: 
+
+1. The "Exit BPI Interoperability" Operation has all of the correct properties. 
+2. The "Exit BPI Interoperability" Operation is successful. 
+3. The "Exit BPI Interoperability" Operation fails. 
 
 #### **[R206]** 
 The "Exit BPI Interoperability" Operation MUST satisfy the following conditions to be valid:
 * The digital signature over the operation's content is valid
 * The digital signature's public key is cryptographically tied to the unique identifier of the invoking BPI Subject
-* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target IVSM
-* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target IVSM for that BPI Subject
+* The unique identifier of the invoking BPI Subject is in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services)
+* The cryptographically secured and masked secret supplied by the invoking BPI Subject matches the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject
+
+[[R206]](#r206) Testablilty:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps:
+
+1. Find the unique identifier of the invoking BPI Subject and then look for it in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. Compare the cryptographically secured and masked secret supplied by the invoking BPI Subject to the one stored in the target [IVSM](#5542-bi--or-multi-directional-bpi-services) for that BPI Subject. 
+3. Initiate the "Exit BPI Interoperability" Operation using a valid digital signature, a public key for the digital signature that is cryptographically tied to the unique identifier of the invoking BPI Subject, the unique identifier of the invoking BPI Subject, and the cryptographically secured and masked secret supplied by the invoking BPI Subject. 
+4. Initiate the "Exit BPI Interoperability" Operation with any of the conditions in the last step missing or incorrect. 
+
+Expected Results:
+
+1. The unique identifier of the invoking BPI Subject is included in the list of authorized BPI Subjects on the target [IVSM](#5542-bi--or-multi-directional-bpi-services). 
+2. The cryptographically secured and masked secrets are the same. 
+3. The Operation executes successfully. 
+4. The Operation fails. 
 
 #### **[R207]** 
 For BPI Interoperability, a valid "Exit BPI Interoperability" operation that a BPI invokes MUST return
@@ -5310,6 +6835,27 @@ When successful:
 * The public input to the proof
 * The verification keys
 * The verification program
+
+[[R207]](#r207) Testability:
+
+Preconditions:
+
+* An [IVSM](#5542-bi--or-multi-directional-bpi-services) (Interoperability Virtual State Machine) is instantiated and operational.
+* Authorized BPI Subjects are registered with the [IVSM](#5542-bi--or-multi-directional-bpi-services).
+
+Test Steps: 
+
+1. Invoke the "Exit BPI Interoperability" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with properties and conditions conformant to [**[R205]**](#r205) and [**[R206]**](#r206). 
+2. Check any output from the operation on the BPI Subject. 
+3. Invoke the "Exit BPI Interoperability" operation on the [IVSM](#5542-bi--or-multi-directional-bpi-services) with properties and conditions that are not conformant to [**[R205]**](#r205) and [**[R206]**](#r206). 
+4. Check any output from the operation on the BPI Subject. 
+
+Expected Results: 
+
+1. The "Exit BPI Interoperability" operation runs successfully. 
+2. The operation outputs the current joint state object, the proof of correctness of the last joint state, the public input to the proof, the verification keys, the verification program. 
+3. The "Exit BPI Interoperability" operation fails. 
+4. The operation outputs an error message indicating that is failed.
 
 This completes the specification of the Bi- and Multi-directional BPI interoperability operations.
 
