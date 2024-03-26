@@ -6429,7 +6429,7 @@ Test Steps:
 Expected Results: 
 
 1. The "Verify State Operation" is successfully initiated. 
-2. The the operation outputs either true or false. 
+2. The operation outputs from both the IVSM and the CCSM are either true or false. 
 
 **Update State**
 
