@@ -6345,7 +6345,7 @@ Preconditions:
 Test Steps: 
 
 1. Use the verifier system on the CCSM to verify the proof of correctness of the lock commitment of the joint state. 
-2. Ckeck the results of the verifier system to ensure that the proof was successfully verified. 
+2. Check the results of the verifier system to ensure that the proof was successfully verified. 
 
 Expected Results: 
 
