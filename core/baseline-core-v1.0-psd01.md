@@ -6,7 +6,7 @@
 
 ## Project Specification Draft (V0.1)
 
-## 23 September 2021, Final Editor's Draft Version 11 October 2021, First Release as Draft Specification on 17 November 2021
+## 23 September 2021, Final Editor's Draft Version 11 October 2021, First Release as Draft Specification on 17 November 2021, Project Specification Draft as of April 17 2024
 
 <!-- URI list start (commented out except during publication by OASIS TC Admin)
 
@@ -26,15 +26,19 @@ https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.pdf
 URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Open Project:
-[Baseline](https://www.baseline-protocol.org/), an initiative of [EEA Community Projects](https://entethalliance.org/eeacommunityprojects/)
+[Baseline](https://www.baseline-protocol.org/), an initiative of [Ethereum Community Projects](https://entethalliance.org/eeacommunityprojects/)
 
 #### Project Chair:
-John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
+Dr. Andreas Freund (a.freundhaskel@gmail.com) \
+
+Former Chair: \
+John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/)
 
 #### Editors:
 Dr. Andreas Freund (a.freundhaskel@gmail.com) \
 Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/) \
 Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) \
+Keith Salzman (keith.salzman@mesh.xyz), [ConsenSys Mesh](httpes://mesh.xyz) \
 Chaals Nevile (chaals@entethalliance.org), [EEA](entethalliance.org)
 
 <!--
@@ -55,17 +59,17 @@ This specification replaces or supersedes:
 
 This specification is related to:
 
-**[baseline-api-v1.0]** _Baseline API and Data Model Version 0.1_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 17 November 2021. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md . Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md.
+**[baseline-api-v1.0]** _Baseline API and Data Model Version 1.0_. Edited by Dr. Andreas Freund, Yoav Bittan, Keith Salzman, Chaal Neville,Anais Ofranc and Kyle Thomas. 17 April 2024. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md . Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md.
 
 
-**[baseline-ccsm-v1.0]** _Baseline CCSM Requirements Version 0.1_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 17 November 2021. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md . Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md.
+**[baseline-ccsm-v1.0]** _Baseline CCSM Requirements Version 1.0_. Edited by Dr. Andreas Freund, Yoav Bittan, Keith Salzman, Chaal Neville,Anais Ofranc and Kyle Thomas. 17 April 2024. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md . Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md.
 
 
 #### Abstract:
 This document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more Systems of Record can synchronize their system state over a Consensus Controlled State Machine (CCSM) network with little or no trust assumptions.
 
 #### Status:
-This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline Core Dev team.
+This document is a Project Specification Draft and is no longer under active development.
 
 <!--
 was last revised or approved by Baseline, part of the Ethereum OASIS Open Project, on the above date. The level of approval is also listed above. Check the "Latest stage" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Open Project (OP) are listed at [TBD].
@@ -79,12 +83,12 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 #### Citation format:
 When referencing this specification the following citation format should be used:
 
-**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 23 September 2021. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md. Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md.
+**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 17 April 2024. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md. Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md.
 
 -------
 
 ## Notices
-Copyright © OASIS Open 2021-2023. All Rights Reserved.
+Copyright © OASIS Open 2021-2024. All Rights Reserved.
 
 Distributed under the terms of the OASIS [IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr).
 
@@ -11423,7 +11427,6 @@ The following individuals have participated in the creation of this specificatio
 
 Andreas Freund \
 Anais Ofranc, Consianimis \
-Chaals Nevile, EEA \
 Gage Mondok, Chainlink \
 Kyle Thomas, Provide \
 Daven Jones, Provide \
@@ -11432,7 +11435,10 @@ Alessandro Gasch, SAP \
 John Wolpert, ConsenSys \
 Sam Stokes, ConsenSys \
 Nick Kritikos, ConsenSys \
-Yoav Bittan, ConsenSys 
+Keith Salzman, ConsenSys \
+Yoav Bittan, ConsenSys \
+Kailen Patel \
+Chaals Neville, EEA
  
 -------
 
@@ -11444,7 +11450,7 @@ Revisions made since the initial stage of this numbered Version of this document
 
 # Appendix E - Notices
 
-Copyright © OASIS Open 2023. All Rights Reserved.
+Copyright © OASIS Open 2021 - 2024. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
 

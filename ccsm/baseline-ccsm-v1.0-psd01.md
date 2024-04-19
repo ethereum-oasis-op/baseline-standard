@@ -6,7 +6,7 @@
 
 ## Project Specification Draft (V0.1)
 
-## 23 September 2021, Final Editor's Draft Version 11 October 2021, First Release as Draft Specification on 17 November 2021
+## 23 September 2021, Final Editor's Draft Version 11 October 2021, First Release as Draft Specification on 17 November 2021, Project Specification Draft as of 17 April 2024.
 
 <!-- URI list start (commented out except during publication by OASIS TC Admin)
 
@@ -26,15 +26,19 @@ https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.pdf
 URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Open Project:
-[Baseline](https://www.baseline-protocol.org/), an initiative of [EEA Community Projects](https://entethalliance.org/eeacommunityprojects/)
+[Baseline](https://www.baseline-protocol.org/), an initiative of [Ethereum Community Projects](https://entethalliance.org/eeacommunityprojects/)
 
 #### Project Chair:
+Dr. Andreas Freund (a.freundhaskel@gmail.com) \
+
+Former Chair: \
 John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) 
 
 #### Editors:
 Dr. Andreas Freund (a.freundhaskel@gmail.com) \
 Kyle Thomas (kyle@provide.services), [Provide ](https://provide.services/) \
 Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/)  \ 
+Keith Salzman (keith.salzman@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz) \
 Chaals Nevile (chaals@entethalliance.org), [EEA](entethalliance.org)
 
 
@@ -56,11 +60,9 @@ This specification replaces or supersedes:
 
 This specification is related to:
 
-**[baseline-core-v1.0]**
-_Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html. **FIX Link**
+**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Yoav Bittan, Keith Salzman, Chaal Neville, Anais Ofranc and Kyle Thomas. 17 April 2024. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md. Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md.
 
-**[baseline-api-v1.0]**
-_Baseline API and Data Model Version 1.0_. Edited by Dr. Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.html. **FIX link**
+**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Yoav Bittan, Keith Salzman, Chaal Neville, Anais Ofranc and Kyle Thomas. 17 April 2024. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md. Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md.
 
 
 
@@ -68,7 +70,7 @@ _Baseline API and Data Model Version 1.0_. Edited by Dr. Andreas Freund, Anais O
 The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements for a Consensus Controlled State Machine (CCSM) network that when utilized ensures that two or more systems of record can synchronize their system state over said CCSM securely and privately.
 
 #### Status:
-This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline TC team.
+This document is a Project Specification Drat and is no longer under active development.
 
 <!--
 was last revised or approved by Baseline, part of the Ethereum OASIS Open Project, on the above date. The level of approval is also listed above. Check the "Latest stage" location noted above for possible later revisions of this document. Any other numbered Versions and other technical work produced by the Open Project (OP) are listed at [TBD].
@@ -82,13 +84,12 @@ The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SH
 #### Citation format:
 When referencing this specification the following citation format should be used:
 
-**[baseline-dlt-v1.0]** _Baseline CCSM Requirements Version 1.0_. Edited by Andreas Freund, Anais Ofranc and Kyle Thomas. 22 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
-**FIX link**
+**[baseline-ccsm-v1.0]** _Baseline CCSM Requirements Version 1.0_. Edited by Dr. Andreas Freund, Yoav Bittan, Keith Salzman, Chaal Neville,Anais Ofranc and Kyle Thomas. 17 April 2024. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md . Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md.
 
 -------
 
 ## Notices
-Copyright © OASIS Open 2021. All Rights Reserved.
+Copyright © OASIS Open 2021 - 2024. All Rights Reserved.
 
 Distributed under the terms of the OASIS [IPR Policy](https://www.oasis-open.org/policies-guidelines/ipr).
 
@@ -592,13 +593,13 @@ Yoav Bittan, ConsenSys
 
 # Appendix C - Revision History
 
-Revisions made since the initial stage of this numbered Version of this document have been tracked on [Github](https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-dlt-v1.0-psd01.md) .
+Revisions made since the initial stage of this numbered Version of this document have been tracked on [Github](https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md) .
 
 -------
 
 # Appendix D - Notices
 
-Copyright © OASIS Open 2021. All Rights Reserved.
+Copyright © OASIS Open 2021 - 2024. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
 
