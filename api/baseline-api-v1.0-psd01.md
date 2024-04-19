@@ -6,7 +6,7 @@
 
 ## Project Specification Draft (V0.1)
 
-## 23 September 2021, Final Editor's Draft Version 11 October 2021, First Release as Draft Specification on 17 November 2021
+## 23 September 2021, Final Editor's Draft Version 11 October 2021, Fist Release as Draft Specification on 17 November 2021, Project Specification Draft as of 17 April 2024. 
 
 <!-- URI list start (commented out except during publication by OASIS TC Admin)
 
@@ -26,15 +26,19 @@ https://docs.oasis-open.org/baseline/baseline-api/v1.0/baseline-api-v1.0.pdf
 URI list end (commented out except during publication by OASIS TC Admin) -->
 
 #### Open Project:
-[Baseline, part of the EEA Community Projects](https://www.baseline-protocol.org/)
+[Baseline, part of the Ethereum Community Projects](https://www.baseline-protocol.org/)
 
 #### Project Chair:
-John Wolpert (john.wolpert@mesh.xyz), [ConsenSys](https://consensys.net/) 
+Dr. Andreas Freund (a.freundhaskel@gmail.com) \
+
+Former Chair: \
+John Wolpert (john.wolpert@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/)
 
 #### Editors:
 Kyle Thomas (kyle@provide.services), [Provide](https://provide.services/) \
 Andreas Freund (a.freundhaskel@gmail.com) \
 Yoav Bittan (yoav.bittan@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz/) \
+Keith Salzman (keith.salzman@mesh.xyz), [ConsenSys Mesh](https://mesh.xyz) \
 Chaals Nevile (chaals@entethalliance.org), [EEA](entethalliance.org)
 
 <!--
@@ -54,32 +58,30 @@ This specification replaces or supersedes:
  -->
 
 This specification is related to: \
-**[baseline-core-v1.0]**
-_Baseline Core Specification Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 17 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-core/v1.0/psd01/baseline-core-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-core/v1.0/baseline-core-v1.0.html. \
-**[baseline-dlt-v1.0]**
-_Baseline CCSM Requiements Version 1.0_. Edited by Andreas Freund and Anais Ofranc. 17 September 2021. OASIS Project Specification Draft 01. https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/psd01/baseline-dlt-v1.0-psd01.html. Latest stage: https://docs.oasis-open.org/baseline/baseline-dlt/v1.0/baseline-dlt-v1.0.html.
 
+**[baseline-core-v1.0]** _Baseline Core Specification Version 1.0_. Edited by Dr. Andreas Freund, Yoav Bittan, Keith Salzman, Chaal Neville, Anais Ofranc and Kyle Thomas. 17 April 2024. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md. Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/core/baseline-core-v1.0-psd01.md.
+
+**[baseline-ccsm-v1.0]** _Baseline CCSM Requirements Version 1.0_. Edited by Dr. Andreas Freund, Yoav Bittan, Keith Salzman, Chaal Neville, Anais Ofranc and Kyle Thomas. 17 April 2024. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md . Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/ccsm/baseline-ccsm-v1.0-psd01.md.
 
 #### Abstract:
 
 This document describes the Baseline programming interface and expected behaviors of all instances of this interface together with the required programming interface data model.
 
 #### Status:
-This document is under active development and implementers are advised against implementing the specification unless they are directly involved with the Baseline TC team.
+This document is a Project Specification Draft and is no longer under active development.
+
 Comments on this work can be provided by opening issues in the project repository or by sending email to the project’s public comment list baseline@lists.oasis-open-projects.org.
 
 
 #### Citation format:
 When referencing this specification the following citation format should be used:
 
-**[baseline-api-v1.0]**
-
-_Baseline API and Data Model Version 1.0_. Edited by Kyle Thomas, Daven Jones, Andreas Freund and Anais Ofranc. 17 September 2021. OASIS Standard. https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md . Latest stage: https://docs.oasis-open.org/baseline/baseline-api/v1.0/psd01/baseline-api-v1.0-psd01.md .
+**[baseline-api-v1.0]** _Baseline API and Data Model Version 1.0_. Edited by Dr. Andreas Freund, Yoav Bittan, Keith Salzman, Chaal Neville,Anais Ofranc and Kyle Thomas. 17 April 2024. OASIS Standard. https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md . Latest stage: https://github.com/eea-oasis/baseline-standard/blob/main/api/baseline-api-v1.0-psd01.md. .
 
 -------
 
 ## Notices
-Copyright © OASIS Open 2021. All Rights Reserved.
+Copyright © OASIS 2021 - 2024. All Rights Reserved.
 
 All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full  [Policy](https://www.oasis-open.org/policies-guidelines/ipr/) may be found at the OASIS website.
 This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restriction of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Technical Committee (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
@@ -4250,6 +4252,7 @@ John Wolpert, ConsenSys \
 Sam Stokes, ConsenSys \
 Nick Kritikos, ConsenSys \
 Yoav Bittan, ConsenSys \
+Keith Salzman, ConsenSys \
 Chaals Nevile, EEA
  
 -------
@@ -4266,4 +4269,35 @@ Revisions made since the initial stage of this numbered Version of this document
 Aaron Parecki, (2020), “OAuth 2.0 Simplified”, ISBN-13: 978-1387751518.
 
 ## C.1 Internationalization and Localization Reference
-The standard encourages implementers to follow the [W3C "Strings on the Web: Language and Direction Metadata" best practices guide](#W3C-String-Meta) for identifying language and base direction for strings used on the Web wherever appropriate. 
+The standard encourages implementers to follow the [W3C "Strings on the Web: Language and Direction Metadata" best practices guide](#W3C-String-Meta) for identifying language and base direction for strings used on the Web wherever appropriate.
+
+# Appendix D - Notices
+
+Copyright © OASIS Open 2021 - 2024. All Rights Reserved.
+
+All capitalized terms in the following text have the meanings assigned to them in the OASIS Intellectual Property Rights Policy (the "OASIS IPR Policy"). The full [Policy](https://www.oasis-open.org/policies-guidelines/ipr) may be found at the OASIS website.
+
+This specification is published under the [CC0 1.0 Universal (CC0 1.0)](http://creativecommons.org/publicdomain/zero/1.0/) license. Portions of this specification are also provided under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+
+All contributions made to this project have been made under the [OASIS Contributor License Agreement (CLA)](https://www.oasis-open.org/policies-guidelines/open-projects-process#individual-cla-exhibit).
+
+For information on whether any patents have been disclosed that may be essential to implementing this specification, and any offers of patent licensing terms, please refer to the [Open Projects IPR Statements](https://github.com/oasis-open-projects/administration/blob/master/IPR_STATEMENTS.md) page.
+
+This document and translations of it may be copied and furnished to others, and derivative works that comment on or otherwise explain it or assist in its implementation may be prepared, copied, published, and distributed, in whole or in part, without restrictions of any kind, provided that the above copyright notice and this section are included on all such copies and derivative works. However, this document itself may not be modified in any way, including by removing the copyright notice or references to OASIS, except as needed for the purpose of developing any document or deliverable produced by an OASIS Open Project (in which case the rules applicable to copyrights, as set forth in the OASIS IPR Policy, must be followed) or as required to translate it into languages other than English.
+
+The limited permissions granted above are perpetual and will not be revoked by OASIS or its successors or assigns.
+
+This document and the information contained herein is provided on an "AS IS" basis and OASIS DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY OWNERSHIP RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. OASIS AND ITS MEMBERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THIS DOCUMENT OR ANY PART THEREOF.
+
+As stated in the OASIS IPR Policy, the following three paragraphs in brackets apply to OASIS Standards Final Deliverable documents (Project Specifications, OASIS Standards, or Approved Errata).
+
+\[OASIS requests that any OASIS Party or any other party that believes it has patent claims that would necessarily be infringed by implementations of this OASIS Standards Final Deliverable, to notify OASIS TC Administrator and provide an indication of its willingness to grant patent licenses to such patent claims in a manner consistent with the IPR Mode of the OASIS Open Project that produced this deliverable.\]
+
+\[OASIS invites any party to contact the OASIS TC Administrator if it is aware of a claim of ownership of any patent claims that would necessarily be infringed by implementations of this OASIS Standards Final Deliverable by a patent holder that is not willing to provide a license to such patent claims in a manner consistent with the IPR Mode of the OASIS Open Project that produced this OASIS Standards Final Deliverable. OASIS may include such claims on its website but disclaims any obligation to do so.\]
+
+\[OASIS takes no position regarding the validity or scope of any intellectual property or other rights that might be claimed to pertain to the implementation or use of the technology described in this OASIS Standards Final Deliverable or the extent to which any license under such rights might or might not be available; neither does it represent that it has made any effort to identify any such rights. Information on OASIS' procedures with respect to rights in any document or deliverable produced by an OASIS Open Project can be found on the OASIS website. Copies of claims of rights made available for publication and any assurances of licenses to be made available, or the result of an attempt made to obtain a general license or permission for the use of such proprietary rights by implementers or users of this OASIS Standards Final Deliverable, can be obtained from the OASIS TC Administrator. OASIS makes no representation that any information or list of intellectual property rights will at any time be complete, or that any claims in such list are, in fact, Essential Claims.\]
+
+The name "OASIS" is a trademark of [OASIS](https://www.oasis-open.org/), the owner and developer of this specification, and should be used only to refer to the organization and its official outputs. OASIS welcomes reference to, and implementation, and use of, specifications, while reserving the right to enforce its marks against misleading uses. Please see https://www.oasis-open.org/policies-guidelines/trademark for the above guidance.
+
+![OASIS Logo](http://docs.oasis-open.org/templates/OASISLogo-v2.0.jpg)
+-------
