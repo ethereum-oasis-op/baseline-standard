@@ -15,11 +15,11 @@ In addition to describing the current state of the Baseline protocol, the specs 
 
 ## Status
 
-The Baseline protocol specifications are currently in draft status.
+The Baseline protocol specifications are currently a Project Specification Draft (PSD).
 
 ## Specifications
 
-There are currently three specifications in development:
+There are currently three specifications in PSD status:
 
 OASIS Specification 1 - The Baseline CORE Specifications document: The document describes the minimal set of business and technical prerequisites, functional and non-functional requirements, together with a reference architecture that when implemented ensures that two or more systems of record can synchronize their system state over a permissionless public Distributed Ledger Technology (CCSM) network.
 
